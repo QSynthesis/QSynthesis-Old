@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/truef/QTProjects/QSynthesis/QSynthesis/Backend/Import/libvsqx-master/libvsqx.cpp
+vsqx.h
+-
+
+C:/Users/truef/QTProjects/QSynthesis/QSynthesis/Backend/Import/libvsqx-master/test1.cpp
+vsqx.h
+-
+iostream
+-
+stdlib.h
+-
+

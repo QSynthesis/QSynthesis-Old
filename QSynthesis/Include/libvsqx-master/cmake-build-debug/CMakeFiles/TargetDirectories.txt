@@ -1,0 +1,3 @@
+C:/Users/truef/QTProjects/QSynthesis/QSynthesis/Backend/Import/libvsqx-master/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/truef/QTProjects/QSynthesis/QSynthesis/Backend/Import/libvsqx-master/cmake-build-debug/CMakeFiles/test.dir
+C:/Users/truef/QTProjects/QSynthesis/QSynthesis/Backend/Import/libvsqx-master/cmake-build-debug/CMakeFiles/edit_cache.dir

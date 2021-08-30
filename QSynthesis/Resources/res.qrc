@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/WidgetFold.svg</file>
+        <file>images/WidgetUnfold.svg</file>
+        <file>images/NormalMenuBtn.svg</file>
+        <file>images/PlayGroupBtn1.svg</file>
+        <file>images/PlayGroupBtn2.svg</file>
+        <file>images/PlayGroupBtn3.svg</file>
+        <file>images/PlayGroupBtn4.svg</file>
+        <file>images/PlayGroupBtn5.svg</file>
+        <file>images/TrackPanIcon.svg</file>
+        <file>images/TrackVolIcon.svg</file>
+        <file>images/EnvGroupBtn1.svg</file>
+        <file>images/EnvGroupBtn2.svg</file>
+        <file>images/EnvGroupBtn3.svg</file>
+        <file>images/Pencil.svg</file>
+        <file>../qt/etc/qt.conf</file>
+        <file>themes/theme.qss</file>
+        <file>images/user-fill.svg</file>
+        <file>translations/qsynthesis_cn.qm</file>
+        <file>images/close-line.svg</file>
+    </qresource>
+</RCC>
