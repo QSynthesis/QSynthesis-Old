@@ -11,6 +11,7 @@ QOtoIni::QOtoIni(QObject *parent) : FileManager(parent) {
 }
 
 QOtoIni::QOtoIni(const QString &filename, QObject *parent) : FileManager(parent) {
+    m_codec = defaultCodec;
     setFilename(filename);
 }
 
@@ -36,6 +37,7 @@ bool QOtoIni::loadCore(bool *valid) {
     if (!charset.isEmpty()) {
         m_codec = QTextCodec::codecForName(charset.toLatin1());
     }
+
     in.setCodec(m_codec);
 
     QString line;

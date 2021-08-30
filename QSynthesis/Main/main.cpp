@@ -14,7 +14,7 @@ void created() {
 
     MainTitle = "QSynthesis For UTAU";
     UntitledPrefix = "*";
-    AppPath = GetAppPath2();
+    AppPath = QDir::currentPath();
 
     MainWindow::checkWorkingDir();
     MainWindow::checkTemporaryDir();
@@ -36,6 +36,15 @@ void destroyed() {
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
+
+#ifdef Q_OS_MAC
+    QDir bin(QCoreApplication::applicationDirPath());
+    bin.cdUp(); /* Fix this on Mac because of the .app folder, */
+    bin.cdUp(); /* which means that the actual executable is   */
+    bin.cdUp(); /* three levels deep. Grrr.                    */
+    QDir::setCurrent(bin.absolutePath());
+#endif
+
     QTranslator t;
 
     a.setFont(mainFont());

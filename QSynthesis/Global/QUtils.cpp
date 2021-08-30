@@ -79,18 +79,6 @@ void DestroyDir(QString fullPath) {
     }
 }
 
-QString GetAppPath2() {
-#ifdef __APPLE__
-    QString str = QCoreApplication::applicationDirPath();
-    for (int i = 0; i < 3; ++i) {
-        str = str.mid(0, str.lastIndexOf(Slash));
-    }
-    return str;
-#else
-    return QDir::currentPath();
-#endif
-}
-
 bool isSameFile(QString filename1, QString filename2) {
     QFileInfo fileInfo1(filename1), fileInfo2(filename2);
 

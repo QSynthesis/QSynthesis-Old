@@ -45,8 +45,6 @@ void CreateDir(QString fullPath); // Make a directory
 
 void DestroyDir(QString fullPath); // Remove a directory
 
-QString GetAppPath2(); // Get the directory of application
-
 bool isSameFile(QString filename1, QString filename2);
 
 bool isSubDir(QString dirname, QString subdirname);
