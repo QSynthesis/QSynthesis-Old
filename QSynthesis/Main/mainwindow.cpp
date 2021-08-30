@@ -3,6 +3,8 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     setAcceptDrops(true); // Accept Drops
     initValues();
+
+    qDebug() << QTextCodec::availableCodecs();
 }
 
 void MainWindow::initAndShow() {

@@ -28,11 +28,23 @@ private:
     void resetCore() override;
 
 public:
+    QTextCodec *codec() const;
+    void setCodec(QTextCodec *codec);
+
     SettingIniData data() const;
     void setData(const SettingIniData &data);
 
 private:
     SettingIniData m_data;
+
+    QTextCodec *m_codec;
+
+private:
+    static QTextCodec *defaultCodec;
+
+public:
+    static QTextCodec *codeForDefault();
+    static void setCodeForDefault(QTextCodec *codec);
 };
 
 #endif // SETTINGINIFILE_H

@@ -3,11 +3,15 @@
 
 using namespace UtaSettingText;
 
+QTextCodec *SettingIniFile::defaultCodec = nullptr;
+
 SettingIniFile::SettingIniFile(QObject *parent) : FileManager(parent) {
+    m_codec = defaultCodec;
     reset();
 }
 
 SettingIniFile::SettingIniFile(const QString &filename, QObject *parent) : FileManager(parent) {
+    m_codec = defaultCodec;
     setFilename(filename);
 }
 
@@ -21,6 +25,8 @@ bool SettingIniFile::loadCore(bool *valid) {
     }
 
     QTextStream in(&file);
+    in.setCodec(m_codec);
+
     QString line;
     int eq;
 
@@ -100,6 +106,7 @@ bool SettingIniFile::saveCore() {
     }
 
     QTextStream out(&file);
+    out.setCodec(m_codec);
 
     out << "[" << SECTION_NAME_TEMP << "]" << Qt::endl;
 
@@ -206,4 +213,20 @@ SettingIniData SettingIniFile::data() const {
 
 void SettingIniFile::setData(const SettingIniData &data) {
     m_data = data;
+}
+
+QTextCodec *SettingIniFile::codec() const {
+    return m_codec;
+}
+
+void SettingIniFile::setCodec(QTextCodec *codec) {
+    m_codec = codec;
+}
+
+QTextCodec *SettingIniFile::codeForDefault() {
+    return defaultCodec;
+}
+
+void SettingIniFile::setCodeForDefault(QTextCodec *codec) {
+    defaultCodec = codec;
 }

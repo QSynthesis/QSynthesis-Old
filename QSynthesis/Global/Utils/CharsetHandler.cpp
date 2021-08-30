@@ -40,7 +40,8 @@ QString CharsetHandler::detectCharset(const QByteArray &data) {
         return charset;
     }
 
-    QList<QTextCodec *> codecs{QTextCodec::codecForName("UTF-8"), QTextCodec::codecForLocale()};
+    QList<QTextCodec *> codecs{QTextCodec::codecForName("UTF-8")};
+
     for (auto it = codecs.begin(); it != codecs.end(); ++it) {
         QTextCodec::ConverterState state;
         QTextCodec *codec = *it;

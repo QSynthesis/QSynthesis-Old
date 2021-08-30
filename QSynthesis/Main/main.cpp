@@ -4,6 +4,14 @@
 #include "mainwindow.h"
 
 void created() {
+    QTextCodec *loc;
+#ifdef Q_OS_WINDOWS
+    loc = QTextCodec::codecForName("UTF-16LE");
+#else
+    loc = QTextCodec::codecForLocale();
+#endif
+    SettingIniFile::setCodeForDefault(loc);
+
     QTextCodec *gbk = QTextCodec::codecForName("GBK");
 
     SequenceTextFile::setCodeForDefault(gbk); // *.ust
