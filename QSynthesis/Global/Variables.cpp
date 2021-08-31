@@ -1,7 +1,7 @@
 #include "Variables.h"
 #include "QUtauStrings.h"
 
-QString Version = "0.1.65";
+QString Version = "0.1.66";
 QString TempDirName = "QSyntehsis_Temporary";
 
 QString AppPath;
