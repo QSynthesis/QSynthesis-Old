@@ -18,7 +18,7 @@ QLineEdit, QTextEdit, QPlainTextEdit {
 	background-color: white;
 }
 
-QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
 	border-color: #167FD2;
 }
 
@@ -364,6 +364,10 @@ KeyTableWidget>QTableWidget>QHeaderView::section {
 
 
 /* BaseDialog */
+
+BaseDialog {
+    background-color: whitesmoke;
+}
 
 BaseDialog>QPushButton {
 	border: 1px solid #CCCCCC;
