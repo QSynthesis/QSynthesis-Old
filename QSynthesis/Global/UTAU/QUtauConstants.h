@@ -2,6 +2,7 @@
 #define QUTAUCONSTANTS_H
 
 #include <QString>
+#include <climits>
 
 const QString TONE_NAMES = "CCDDEFFGGAAB";
 const QString TONE_NAME_SHARP = "#";

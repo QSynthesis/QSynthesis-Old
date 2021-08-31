@@ -215,17 +215,17 @@ void RevealFile(QString filename) {
     scriptArgs << QLatin1String("-e") << QLatin1String("tell application \"Finder\" to activate");
     QProcess::execute("/usr/bin/osascript", scriptArgs);
 #else
-    const QFileInfo fileInfo(filename);
-    const QString folder = fileInfo.absoluteFilePath();
-    const QString app = Utils::UnixUtils::fileBrowser(Core::ICore::instance()->settings());
-    QProcess browserProc;
-    const QString browserArgs = Utils::UnixUtils::substituteFileBrowserParameters(app, folder);
-    if (debug)
-        qDebug() << browserArgs;
-    bool success = browserProc.startDetached(browserArgs);
-    const QString error = QString::fromLocal8Bit(browserProc.readAllStandardError());
-    success = success && error.isEmpty();
-    if (!success)
-        showGraphicalShellError(parent, app, error);
+//    const QFileInfo fileInfo(filename);
+//    const QString folder = fileInfo.absoluteFilePath();
+//    const QString app = Utils::UnixUtils::fileBrowser(Core::ICore::instance()->settings());
+//    QProcess browserProc;
+//    const QString browserArgs = Utils::UnixUtils::substituteFileBrowserParameters(app, folder);
+//    bool success = browserProc.startDetached(browserArgs);
+//    const QString error = QString::fromLocal8Bit(browserProc.readAllStandardError());
+//    success = success && error.isEmpty();
+//    if (!success){
+//       // showGraphicalShellError(parent, app, error);
+//    }
+    QDesktopServices::openUrl(filename);
 #endif
 }
