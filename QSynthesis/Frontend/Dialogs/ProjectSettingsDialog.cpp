@@ -21,8 +21,6 @@ void ProjectSettingsDialog::init() {
     setFixedSize(720, 350);
 
     // 添加标签和按钮
-    QFont font(mainFont());
-
     btnCancel = new QPushButton(tr("Cancel"), this);
     btnOK = new QPushButton(tr("OK"), this);
     btnClear = new QPushButton(tr("Clear"), this);
@@ -43,12 +41,6 @@ void ProjectSettingsDialog::init() {
 
     ccWavtool->Combo()->setCurrentText(
         QDir::toNativeSeparators(PathFindFileName(wavtool, AppPath)));
-
-    // Initialize Properties
-    btnCancel->setFont(font);
-    btnOK->setFont(font);
-    btnClear->setFont(font);
-    btnBrowse->setFont(font);
 
     btnCancel->setFixedSize(115, 35);
     btnOK->setFixedSize(115, 35);

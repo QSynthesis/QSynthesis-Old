@@ -33,13 +33,8 @@ void TerminalDialog::init() {
     setFixedSize(420, 140);
 
     // 添加标签和按钮
-    QFont font(mainFont());
-
     lbCaption = new QLabel(tr("Rendering..."), this);
     btnCancel = new QPushButton(tr("Cancel"), this);
-
-    lbCaption->setFont(font);
-    btnCancel->setFont(font);
 
     lbCaption->move(25, 25);
 

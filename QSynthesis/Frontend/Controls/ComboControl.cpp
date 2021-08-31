@@ -63,13 +63,8 @@ QComboBox *ComboControl::Combo() const {
 
 void ComboControl::InitComboControl(QString text, const QStringList &values) {
 
-    QFont font(mainFont());
-
     pLabel = new QLabel(text, this);
     pCombo = new QComboBox(this);
-
-    pLabel->setFont(font);
-    pCombo->setFont(font);
 
     pLabel->adjustSize();
     pCombo->adjustSize();

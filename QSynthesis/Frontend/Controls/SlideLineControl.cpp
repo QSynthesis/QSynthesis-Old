@@ -74,11 +74,8 @@ void SlideLineControl::InitSlideControl(QString text, double value) {
 
     isSliderMoving = isTextEditing = false;
 
-    QFont font(mainFont());
-
     // 标签
     pLabel = new QLabel(text, this);
-    pLabel->setFont(font);
     pLabel->adjustSize();
 
     // 微调框
@@ -88,7 +85,6 @@ void SlideLineControl::InitSlideControl(QString text, double value) {
     pValidator->setDecimals(2);
     pValidator->setNotation(QDoubleValidator::StandardNotation);
 
-    pText->setFont(font);
     pText->setValidator(pValidator);
 
     pText->adjustSize();

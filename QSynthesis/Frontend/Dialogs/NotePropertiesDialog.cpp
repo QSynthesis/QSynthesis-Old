@@ -23,8 +23,6 @@ void NotePropertiesDialog::init() {
     setFixedSize(450, 600);
 
     // 添加标签和按钮
-    QFont font(mainFont());
-
     btnCancel = new QPushButton(tr("Cancel"), this);
     btnOK = new QPushButton(tr("OK"), this);
 
@@ -37,10 +35,6 @@ void NotePropertiesDialog::init() {
     tcLength = new LineControl(Qt::Horizontal, tr("Length"), this);
     tcVelocity = new LineControl(Qt::Horizontal, tr("Consonant Velocity"), this);
     tcStartPoint = new LineControl(Qt::Horizontal, tr("Start Point"), this);
-
-    // Initialize Properties
-    btnCancel->setFont(font);
-    btnOK->setFont(font);
 
     btnCancel->setFixedSize(115, 35);
     btnOK->setFixedSize(115, 35);

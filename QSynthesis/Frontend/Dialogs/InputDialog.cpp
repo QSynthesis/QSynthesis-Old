@@ -21,17 +21,12 @@ void InputDialog::init() {
     setFixedSize(450, 200);
 
     // 添加标签和按钮
-    QFont font(mainFont());
 
     btnCancel = new QPushButton(tr("Cancel"), this);
     btnOK = new QPushButton(tr("OK"), this);
 
     lcInput = new LineControl(Qt::Vertical, m_caption, QString::number(orgValue), this);
     lcInput->setValidator(m_validator);
-
-    // Initialize Properties
-    btnCancel->setFont(font);
-    btnOK->setFont(font);
 
     btnCancel->setFixedSize(115, 35);
     btnOK->setFixedSize(115, 35);

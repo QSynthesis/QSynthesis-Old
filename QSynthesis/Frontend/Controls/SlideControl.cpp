@@ -59,17 +59,14 @@ QString SlideControl::caption() const {
 }
 
 void SlideControl::InitSlideControl(QString text, double value) {
-    QFont font(mainFont());
 
     // 标签
     pLabel = new QLabel(text, this);
-    pLabel->setFont(font);
     pLabel->adjustSize();
 
     // 微调框
     pSpinBox = new QDoubleSpinBox(this);
     pSpinBox->setDecimals(2);
-    pSpinBox->setFont(font);
     pSpinBox->adjustSize();
 
     // 滑动条

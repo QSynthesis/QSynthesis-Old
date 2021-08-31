@@ -80,15 +80,10 @@ FixedLineEdit *LineControl::Text() const {
 
 void LineControl::InitLineControl(QString text, QString value) {
 
-    QFont font(mainFont());
-
     pLabel = new QLabel(text, this);
     pText = new FixedLineEdit(value, this);
 
     pValidator = nullptr;
-
-    pLabel->setFont(font);
-    pText->setFont(font);
 
     pLabel->adjustSize();
     pText->adjustSize();

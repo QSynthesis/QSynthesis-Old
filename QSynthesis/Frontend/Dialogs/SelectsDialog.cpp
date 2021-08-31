@@ -21,8 +21,6 @@ void SelectsDialog::init() {
     setWindowTitle(m_title);
 
     // 添加标签和按钮
-    QFont font(mainFont());
-
     lbCaption = new QLabel(m_caption, this);
 
     btnCancel = new QPushButton(tr("Cancel"), this);
@@ -38,11 +36,6 @@ void SelectsDialog::init() {
             boxes.at(i)->setAutoExclusive(true);
         }
     }
-
-    // Initialize Properties
-    lbCaption->setFont(font);
-    btnCancel->setFont(font);
-    btnOK->setFont(font);
 
     btnCancel->setFixedSize(115, 35);
     btnOK->setFixedSize(115, 35);

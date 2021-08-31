@@ -18,7 +18,17 @@ QLineEdit, QTextEdit, QPlainTextEdit {
 	background-color: white;
 }
 
-QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
+	border-color: #167FD2;
+}
+
+QComboBox {
+	border: 1px solid black;
+	color: black;
+	background-color: white;
+}
+
+QComboBox:focus {
 	border-color: #167FD2;
 }
 
@@ -67,6 +77,7 @@ TabWidget[type=voice] {
 
 TabWidget[type=voice]>QTabBar::tab {
 	border: 1px solid lightgrey;
+	border-bottom: none;
 	color: #333333;
 	padding: 3px 5px;
 	background-color: #ECECEC;
@@ -370,7 +381,7 @@ BaseDialog {
 }
 
 BaseDialog>QPushButton {
-	border: 1px solid #CCCCCC;
+	border: 1px solid darkgray;
 	background-color: white;
 	color: #2B579A;
 	border-radius: 2px;

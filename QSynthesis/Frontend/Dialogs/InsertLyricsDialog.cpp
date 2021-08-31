@@ -33,7 +33,6 @@ void InsertLyricsDialog::init() {
     setFixedSize(450, 350);
 
     // 添加标签和按钮
-    QFont font(mainFont());
 
     btnCancel = new QPushButton(tr("Cancel"), this);
     btnOK = new QPushButton(tr("OK"), this);
@@ -47,11 +46,6 @@ void InsertLyricsDialog::init() {
 
     cbIgnore->setChecked(true);
     cbReplace->setChecked(true);
-
-    // Initialize Properties
-    btnCancel->setFont(font);
-    btnOK->setFont(font);
-    btnReset->setFont(font);
 
     btnCancel->setFixedSize(115, 35);
     btnOK->setFixedSize(115, 35);
