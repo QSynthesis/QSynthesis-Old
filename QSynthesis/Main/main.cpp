@@ -69,6 +69,8 @@ int main(int argc, char *argv[]) {
 
     int code = a.exec();
 
+    w.beforeDelete();
+
     destroyed(); // Destroy
 
     return code;

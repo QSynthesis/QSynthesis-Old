@@ -44,6 +44,7 @@ public:
     // Construct
 public:
     void initAndShow();
+    void beforeDelete();
 
 private:
     void initValues();

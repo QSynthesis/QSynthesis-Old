@@ -26,10 +26,12 @@ void MainWindow::initAndShow() {
     initWindow();
 }
 
-MainWindow::~MainWindow() {
+void MainWindow::beforeDelete() {
     settingIni.windowRect = geometry();
     settingIni.windowMaximized = windowState() == Qt::WindowMaximized;
+}
 
+MainWindow::~MainWindow() {
     qDebug() << "[Destruct] MainWindow";
 }
 

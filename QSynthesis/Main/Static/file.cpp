@@ -12,6 +12,8 @@ void MainWindow::initSettingIni() {
                  << "setting.ini found";
         settingIni = reader.data();
     }
+
+    qDebug() << reader.filename();
 }
 
 void MainWindow::saveSettingIni() {
@@ -24,6 +26,9 @@ void MainWindow::saveSettingIni() {
         QMessageBox::warning(nullptr, MainTitle,
                              tr("Unable to write %1!").arg(FILE_NAME_SETTING_INI));
         exitOnNoIOPermission();
+    } else {
+        qDebug() << "[I/O]"
+                 << "setting.ini write";
     }
 }
 
