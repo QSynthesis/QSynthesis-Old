@@ -3,7 +3,6 @@
 
 #include <QCloseEvent>
 #include <QDebug>
-#include <QDialog>
 #include <QLabel>
 #include <QMessageBox>
 #include <QProcess>
@@ -11,17 +10,19 @@
 #include <QTimer>
 #include <QWidget>
 
+#include "BaseDialog.h"
+
 #ifdef WIN32
 #include "Windows.h"
 #endif
 #ifdef linux
 #endif
 
-class ScriptPluginDialog : public QDialog {
+class ScriptPluginDialog : public BaseDialog {
     Q_OBJECT
 public:
     explicit ScriptPluginDialog(QString tmpFile, QString exeFile, QString workingDir,
-                                 QWidget *parent = nullptr);
+                                QWidget *parent = nullptr);
 
     ~ScriptPluginDialog();
 

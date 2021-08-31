@@ -10,6 +10,7 @@
 
 #include "Backend/Render/ResamplerArgs.h"
 #include "Backend/Render/WavtoolArgs.h"
+#include "BaseDialog.h"
 #include "QUtils.h"
 
 #ifdef WIN32
@@ -19,7 +20,7 @@
 #include <unistd.h>
 #endif
 
-class TerminalDialog : public QDialog {
+class TerminalDialog : public BaseDialog {
     Q_OBJECT
 public:
     explicit TerminalDialog(QString dir, QWidget *parent = nullptr);

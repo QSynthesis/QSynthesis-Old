@@ -1,6 +1,0 @@
-/* KeyboardTab */
-
-KeyTableWidget>QTableWidget>QHeaderView::section {
-	background-color: #FAFAFA;
-	border: 0px;
-}

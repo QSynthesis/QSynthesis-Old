@@ -1,9 +1,0 @@
-/* Central Tab */
-
-CentralTab {
-	background-color: #FAF9F8;
-}
-
-CentralTabContent {
-	background-color: transparent;
-}

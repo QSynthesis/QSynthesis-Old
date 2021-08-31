@@ -16,17 +16,14 @@ WelcomeTabContent::WelcomeTabContent(WelcomeTab *tab, QWidget *parent)
 
     // -- Top Layout
     lbTitle = new QLabel("QSynthesis");
-    lbTitle->setFont(mainFont(30, QFont::Bold));
     lbTitle->setProperty("type", "title");
-    lbTitle->adjustSize();
 
     btnNew = new QPushButton(tr("New"));
     btnNew->setProperty("type", "special");
     btnOpen = new QPushButton(tr("Open"));
     btnOpen->setProperty("type", "special");
 
-    btnNew->setFont(mainFont(20));
-    btnOpen->setFont(mainFont(20));
+    lbTitle->adjustSize();
     btnNew->adjustSize();
     btnOpen->adjustSize();
 
@@ -43,10 +40,6 @@ WelcomeTabContent::WelcomeTabContent(WelcomeTab *tab, QWidget *parent)
     sBtnFiles->setProperty("type", "list");
     sBtnFolders->setProperty("type", "list");
     sBtnTemplates->setProperty("type", "list");
-
-    sBtnFiles->setFont(mainFont(18));
-    sBtnFolders->setFont(mainFont(18));
-    sBtnTemplates->setFont(mainFont(18));
 
     // sBtnFiles->setRecommendedSize(1, 1.75);
     // sBtnFolders->setRecommendedSize(1, 1.75);
@@ -68,7 +61,7 @@ WelcomeTabContent::WelcomeTabContent(WelcomeTab *tab, QWidget *parent)
 
     // Empty Label
     lbEmpty = new QLabel(tr("No data."), this);
-    lbTitle->setProperty("type", "tip");
+    lbEmpty->setProperty("type", "tip");
     lbEmpty->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     lbEmpty->adjustSize();
 

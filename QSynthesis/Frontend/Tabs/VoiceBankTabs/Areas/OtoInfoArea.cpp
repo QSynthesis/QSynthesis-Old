@@ -23,6 +23,7 @@ void OtoInfoArea::init() {
 
     // Tabs
     infoTabs = new TabWidget(this);
+    infoTabs->setProperty("type", "voice");
     readmeTab = new TextBoxTab(infoTabs);
     prefixTab = new PrefixMapTab(infoTabs);
 

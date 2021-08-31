@@ -2,7 +2,7 @@
 
 SelectsDialog::SelectsDialog(const QString &title, const QString &caption, const QStringList &list,
                              QVector<bool> &result, bool single, QWidget *parent)
-    : QDialog(parent), m_result(result), m_single(single), m_options(list), m_title(title),
+    : BaseDialog(parent), m_result(result), m_single(single), m_options(list), m_title(title),
       m_caption(caption) {
     init();
 }

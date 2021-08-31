@@ -9,9 +9,10 @@
 #include <QVBoxLayout>
 #include <QValidator>
 
+#include "BaseDialog.h"
 #include "QUtils.h"
 
-class SelectsDialog : public QDialog {
+class SelectsDialog : public BaseDialog {
     Q_OBJECT
 public:
     SelectsDialog(const QString &title, const QString &caption, const QStringList &list,

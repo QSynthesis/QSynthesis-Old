@@ -7,9 +7,10 @@
 
 #include "../Controls/CustomControls.h"
 #include "Backend/Note/QLinkNote.h"
+#include "BaseDialog.h"
 #include "QUtils.h"
 
-class NotePropertiesDialog : public QDialog {
+class NotePropertiesDialog : public BaseDialog {
     Q_OBJECT
 public:
     explicit NotePropertiesDialog(NoteProperties &np, int count, QWidget *parent = nullptr);

@@ -2,7 +2,7 @@
 
 InputDialog::InputDialog(QString title, QString caption, double &value, QValidator *validator,
                          QWidget *parent)
-    : QDialog(parent), orgValue(value), m_title(title), m_caption(caption), m_validator(validator) {
+    : BaseDialog(parent), orgValue(value), m_title(title), m_caption(caption), m_validator(validator) {
     init();
 }
 

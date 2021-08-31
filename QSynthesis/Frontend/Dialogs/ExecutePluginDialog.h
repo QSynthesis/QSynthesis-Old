@@ -3,13 +3,14 @@
 
 #include <QCloseEvent>
 #include <QDebug>
-#include <QDialog>
 #include <QLabel>
 #include <QMessageBox>
 #include <QProcess>
 #include <QPushButton>
 #include <QTimer>
 #include <QWidget>
+
+#include "BaseDialog.h"
 
 #ifdef WIN32
 #include "Windows.h"
@@ -18,7 +19,7 @@
 #include <unistd.h>
 #endif
 
-class ExecutePluginDialog : public QDialog {
+class ExecutePluginDialog : public BaseDialog {
     Q_OBJECT
 public:
     explicit ExecutePluginDialog(QString tmpFile, QString exeFile, QString workingDir,

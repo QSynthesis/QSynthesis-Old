@@ -2,12 +2,12 @@
 #include "mainwindow.h"
 
 TerminalDialog::TerminalDialog(QString dir, QWidget *parent)
-    : QDialog(parent), workingDir(dir), batchFile(FILE_NAME_TEMP_BATCH) {
+    : BaseDialog(parent), workingDir(dir), batchFile(FILE_NAME_TEMP_BATCH) {
     init();
 }
 
 TerminalDialog::TerminalDialog(QString dir, QString temp, QWidget *parent)
-    : QDialog(parent), workingDir(dir), batchFile(temp) {
+    : BaseDialog(parent), workingDir(dir), batchFile(temp) {
     init();
 }
 

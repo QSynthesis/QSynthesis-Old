@@ -2,7 +2,7 @@
 #include "QUtauUtils.h"
 
 InsertLyricsDialog::InsertLyricsDialog(QStringList &lyrics, QWidget *parent)
-    : QDialog(parent), orgLyrics(lyrics) {
+    : BaseDialog(parent), orgLyrics(lyrics) {
     init();
 }
 

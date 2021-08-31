@@ -77,6 +77,7 @@ SOURCES += \
     Frontend/Controls/TextControl.cpp \
     Frontend/Customs/LinearScrollArea.cpp \
     Frontend/Customs/TopComboBox.cpp \
+    Frontend/Dialogs/BaseDialog.cpp \
     Frontend/Dialogs/ExecutePluginDialog.cpp \
     Frontend/Dialogs/InputDialog.cpp \
     Frontend/Dialogs/InsertLyricsDialog.cpp \
@@ -395,6 +396,7 @@ HEADERS += \
     Frontend/Controls/TextControl.h \
     Frontend/Customs/LinearScrollArea.h \
     Frontend/Customs/TopComboBox.h \
+    Frontend/Dialogs/BaseDialog.h \
     Frontend/Dialogs/ExecutePluginDialog.h \
     Frontend/Dialogs/InputDialog.h \
     Frontend/Dialogs/InsertLyricsDialog.h \

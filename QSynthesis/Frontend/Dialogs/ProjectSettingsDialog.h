@@ -7,9 +7,10 @@
 #include <QValidator>
 
 #include "../Controls/CustomControls.h"
+#include "BaseDialog.h"
 #include "QUtils.h"
 
-class ProjectSettingsDialog : public QDialog {
+class ProjectSettingsDialog : public BaseDialog {
     Q_OBJECT
 public:
     explicit ProjectSettingsDialog(QString &wavtool, QString &outfile, QString &cache,

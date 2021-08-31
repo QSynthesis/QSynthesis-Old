@@ -3,7 +3,7 @@
 #include <cmath>
 
 NotePropertiesDialog::NotePropertiesDialog(NoteProperties &np, int count, QWidget *parent)
-    : QDialog(parent), orgValues(np), count(count) {
+    : BaseDialog(parent), orgValues(np), count(count) {
     init();
 }
 

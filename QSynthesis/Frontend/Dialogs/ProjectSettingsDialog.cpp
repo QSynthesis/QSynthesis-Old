@@ -3,7 +3,7 @@
 
 ProjectSettingsDialog::ProjectSettingsDialog(QString &wavtool, QString &outfile, QString &cache,
                                              QWidget *parent)
-    : QDialog(parent), wavtool(wavtool), outfile(outfile), cache(cache) {
+    : BaseDialog(parent), wavtool(wavtool), outfile(outfile), cache(cache) {
     init();
 }
 

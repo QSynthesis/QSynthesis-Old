@@ -6,9 +6,10 @@
 #include <QPushButton>
 
 #include "../Controls/CustomControls.h"
+#include "BaseDialog.h"
 #include "QUtils.h"
 
-class InsertLyricsDialog : public QDialog {
+class InsertLyricsDialog : public BaseDialog {
     Q_OBJECT
 public:
     explicit InsertLyricsDialog(QStringList &lyrics, QWidget *parent = nullptr);

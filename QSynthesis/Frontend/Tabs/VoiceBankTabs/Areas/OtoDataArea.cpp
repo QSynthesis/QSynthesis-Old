@@ -17,6 +17,7 @@ void OtoDataArea::init() {
     mainLayout->setMargin(10);
 
     otoTabs = new TabWidget(this);
+    otoTabs->setProperty("type", "voice");
 
     mainLayout->addWidget(otoTabs);
     setLayout(mainLayout);

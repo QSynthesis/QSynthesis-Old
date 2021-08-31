@@ -7,9 +7,10 @@
 #include <QValidator>
 
 #include "../Controls/CustomControls.h"
+#include "BaseDialog.h"
 #include "QUtils.h"
 
-class InputDialog : public QDialog {
+class InputDialog : public BaseDialog {
     Q_OBJECT
 public:
     explicit InputDialog(QString title, QString caption, double &value, QValidator *validator,

@@ -3,7 +3,7 @@
 
 ExecutePluginDialog::ExecutePluginDialog(QString tmpFile, QString exeFile, QString workingDir,
                                          QWidget *parent)
-    : QDialog(parent), m_tmpFile(tmpFile), m_exeFile(exeFile), m_workingDir(workingDir) {
+    : BaseDialog(parent), m_tmpFile(tmpFile), m_exeFile(exeFile), m_workingDir(workingDir) {
     init();
 }
 

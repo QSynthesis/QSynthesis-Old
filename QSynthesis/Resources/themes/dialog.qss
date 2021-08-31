@@ -1,21 +1,33 @@
-/* QDialog */
+/* BaseDialog */
 
-QDialog>QPushButton {
+BaseDialog {
+	background-color: whitesmoke;
+}
+
+BaseDialog>QPushButton {
 	border: 1px solid #CCCCCC;
 	background-color: white;
 	color: #2B579A;
 	border-radius: 2px;
 }
 
-QDialog>QPushButton:disabled {
+BaseDialog>QPushButton:disabled {
 	color: #CCCCCC;
 }
 
-QDialog>QPushButton:hover {
+BaseDialog>QPushButton:hover {
 	background-color: #2B579A;
 	color: white;
 }
 
-QDialog>QPushButton:pressed {
+BaseDialog>QPushButton:pressed {
 	background-color: #002050;
 }
+
+/* General */
+
+/* QLineEdit, QTextEdit, QPlainTextEdit {
+	border: 1px solid black;
+	color: black;
+	background-color: white;
+} */
