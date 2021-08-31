@@ -82,7 +82,7 @@ bool NotesArea::eventFilter(QObject *obj, QEvent *event) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         int key = keyEvent->key();
         if (key == Qt::Key_Tab) {
-            return true;
+            qDragOut.removeAll();
         }
     }
     return QGraphicsScene::eventFilter(obj, event);
