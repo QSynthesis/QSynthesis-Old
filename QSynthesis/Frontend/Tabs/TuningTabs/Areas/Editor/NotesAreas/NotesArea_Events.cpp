@@ -6,14 +6,15 @@
 
 void NotesArea::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     QGraphicsItem *curItem = itemAt(event->scenePos(), QTransform());
+
+    if (isLyricEditing() && curItem != m_lyricEdit) {
+        editFinish();
+    }
+
     if (curItem) {
         return QGraphicsScene::mousePressEvent(event);
     } else {
         qDragOut.removeAll();
-
-        if (isLyricEditing()) {
-            editFinish();
-        }
 
         Qt::KeyboardModifiers c = QApplication::keyboardModifiers();
         if (c == MainWindow::config.notes.sceneDragging) {
