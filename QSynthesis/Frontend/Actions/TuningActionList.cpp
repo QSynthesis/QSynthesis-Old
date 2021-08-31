@@ -110,6 +110,10 @@ void TuningActionList::makeDefaultShortcuts() {
     switchNote->setShortcut(QKeySequence("Q"));
     switchPitch->setShortcut(QKeySequence("W"));
     switchEnvelope->setShortcut(QKeySequence("E"));
+
+    switchInt->setShortcut(QKeySequence("A"));
+    switchMod->setShortcut(QKeySequence("S"));
+    switchVel->setShortcut(QKeySequence("D"));
 }
 
 QList<QAction *> TuningActionList::actions() const {

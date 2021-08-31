@@ -74,6 +74,9 @@ bool NotesArea::eventFilter(QObject *obj, QEvent *event) {
         } else if (key == Qt::Key_Escape) {
             abandonLyric();
             return true;
+        } else if (key == Qt::Key_Enter || key == Qt::Key_Return) {
+            editFinish();
+            return true;
         }
     } else if (obj == this && event->type() == QEvent::KeyPress) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);

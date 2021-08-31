@@ -11,8 +11,6 @@ void NotesArea::initLyricModules() {
     m_lyricEdit->installEventFilter(this);
     m_lyricEdit->hide();
 
-    connect(m_lyricEdit, &GraphicsLineEdit::loseFocus, this, &NotesArea::editFinish);
-
     m_curEditNote = nullptr;
 }
 
@@ -35,6 +33,7 @@ void NotesArea::editFinish() {
     replaceSingleLyric(m_lyricEdit->text(), m_curEditNote);
 
     m_lyricEdit->hide();
+    m_curEditNote->setFocus();
     setCurEditNote(nullptr);
 }
 

@@ -24,8 +24,6 @@ void GraphicsNote::setSelected(bool selected) {
 
     if (selected && qDragIn.selectedNotes.size() == 1) {
         setFocus();
-    } else if (hasFocus()) {
-        clearFocus();
     }
 
     if (m_lifter) {

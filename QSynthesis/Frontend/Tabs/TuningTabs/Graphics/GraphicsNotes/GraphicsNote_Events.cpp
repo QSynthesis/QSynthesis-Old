@@ -67,7 +67,6 @@ void GraphicsNote::keyPressEvent(QKeyEvent *event) {
             }
             return;
         } else if (key == Qt::Key_Tab) {
-            qDebug() << "tab";
             return;
         }
     }
