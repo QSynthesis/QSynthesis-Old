@@ -32,7 +32,9 @@ void MainWindow::reloadBackendStrings() {
 
 #if defined(_WIN32)
     toolsFilterString = tr("Executable(*.exe);;All Files(*.*)");
-#elif defined(linux) or defined(__APPLE__)
+#elif defined(linux)
     toolsFilterString = tr("Executable Files(*.*)");
+#else
+    toolsFilterString = tr("Executable Files()");
 #endif
 }
