@@ -46,6 +46,7 @@ void PrefixMapTab::init() {
     QStringList headerList{tr("Pitch"), tr("Prefix"), tr("Suffix")};
     mapTable->setHorizontalHeaderLabels(headerList);
     // mapTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    mapTable->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 
     mainLayout = new QVBoxLayout(this);
     mainLayout->setMargin(0);

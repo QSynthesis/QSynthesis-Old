@@ -155,11 +155,11 @@ bool EditorInterface::eventFilter(QObject *obj, QEvent *event) {
 }
 
 void EditorInterface::handleHorizontalMove(int value) {
-    notesArea->update();
+    // notesArea->update();
     sectionsScroll->setValueX(value);
 }
 
 void EditorInterface::handleVerticalMove(int value) {
-    notesArea->update();
+    // notesArea->update();
     pianoScroll->setValueY(value);
 }
