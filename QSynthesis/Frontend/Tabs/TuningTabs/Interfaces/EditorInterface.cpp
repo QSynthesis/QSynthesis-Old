@@ -103,6 +103,7 @@ void EditorInterface::wheelEvent(QWheelEvent *event) {
     }
 
 #ifdef __APPLE__
+    delta = -delta;
     if (c == Qt::NoModifier) {
         if (delta.x() != 0) {
             moveHorizontally(delta.x());
