@@ -22,7 +22,7 @@ bool VoiceBankTab::exportCurrentSettings(const QString &filename) {
 
     bool res = otoIni.save();
     if (!res){
-        QMessageBox::warning(nullptr, MainTitle, tr("Unable to write file!"));
+        QMessageBox::warning(this, MainTitle, tr("Unable to write file!"));
     }
     return res;
 }

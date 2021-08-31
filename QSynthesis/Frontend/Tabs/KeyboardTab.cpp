@@ -33,7 +33,7 @@ bool KeyboardTab::load() {
 
     if (success && valid) {
     } else {
-        QMessageBox::about(nullptr, ErrorTitle, tr("Unable to load configuration file!"));
+        QMessageBox::about(this, ErrorTitle, tr("Unable to load configuration file!"));
         return false;
     }
 
@@ -45,7 +45,7 @@ bool KeyboardTab::load() {
 bool KeyboardTab::save() {
     cfg.setData(keys);
     if (!cfg.save()) {
-        QMessageBox::about(nullptr, ErrorTitle, tr("Unable to save file!"));
+        QMessageBox::about(this, ErrorTitle, tr("Unable to save file!"));
         return false;
     }
 

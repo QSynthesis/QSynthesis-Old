@@ -47,7 +47,7 @@ bool MainWindow::execSaveAs(TuningTab *tab) {
     // Attempt to cover an opening file
     int existIndex = findTuningTab(path);
     if (existIndex >= 0 && existIndex != tabs->currentIndex()) {
-        QMessageBox::warning(nullptr, MainTitle,
+        QMessageBox::warning(this, MainTitle,
                              tr("You can't overwrite a file opened in QSynthesis!"));
         return false;
     }

@@ -17,6 +17,7 @@ WelcomeTabContent::WelcomeTabContent(WelcomeTab *tab, QWidget *parent)
     // -- Top Layout
     lbTitle = new QLabel("QSynthesis");
     lbTitle->setFont(mainFont(30, QFont::Bold));
+    lbTitle->setProperty("type", "title");
     lbTitle->adjustSize();
 
     btnNew = new QPushButton(tr("New"));
@@ -67,6 +68,7 @@ WelcomeTabContent::WelcomeTabContent(WelcomeTab *tab, QWidget *parent)
 
     // Empty Label
     lbEmpty = new QLabel(tr("No data."), this);
+    lbTitle->setProperty("type", "tip");
     lbEmpty->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     lbEmpty->adjustSize();
 

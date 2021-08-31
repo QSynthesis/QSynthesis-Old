@@ -53,7 +53,7 @@ void ImageLabel::handleReplaceClicked() {
     QMimeDatabase db;
     QMimeType mime = db.mimeTypeForFile(path);
     if (!mime.name().startsWith("image/")) {
-        QMessageBox::warning(nullptr, MainTitle, tr("This file is not a valid image file!"));
+        QMessageBox::warning(this, MainTitle, tr("This file is not a valid image file!"));
         return;
     }
 

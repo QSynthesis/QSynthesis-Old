@@ -8,6 +8,10 @@ NoneScrollArea {
 	background-color: transparent;
 }
 
+.QLabel {
+	color: black;
+}
+
 /* TabWidget */
 
 TabWidget::pane {
@@ -20,11 +24,11 @@ TabWidget::tab-bar{
 
 /* Main TabWidget */
 
-TabWidget#MainTab {
+TabWidget[type=central] {
 	background-color: #F3F3F3;
 }
 
-TabWidget#MainTab>QTabBar::tab {
+TabWidget[type=central]>QTabBar::tab {
 	border-right: 1px solid #F3F3F3;
 	border-left: 1px solid #F3F3F3;
 	color: #333333;
@@ -32,19 +36,19 @@ TabWidget#MainTab>QTabBar::tab {
 	background-color: #ECECEC;
 }
 
-TabWidget#MainTab>QTabBar::tab:selected {
+TabWidget[type=central]>QTabBar::tab:selected {
 	background-color: white;
 }
 
-TabWidget#MainTab>QTabBar::tab:!selected:hover {
+TabWidget[type=central]>QTabBar::tab:!selected:hover {
 	background-color: #EFEFEF;
 }
 
-TabWidget#MainTab>QTabBar::scroller {
+TabWidget[type=central]>QTabBar::scroller {
 	width: 40px;
 }
 
-/* Welcome Tab */
+/* Central Tab */
 
 CentralTab {
 	background-color: #FAF9F8;
@@ -54,7 +58,9 @@ CentralTabContent {
 	background-color: transparent;
 }
 
-.SwitchButton[type=list] {
+/* Welcome Tab */
+
+WelcomeTabContent>.SwitchButton[type=list] {
 	color: darkgrey;
 	background-color: transparent;
 	border-top: none;
@@ -65,16 +71,16 @@ CentralTabContent {
 	padding: 10px 0;
 }
 
-.SwitchButton[type=list]:hover {
+WelcomeTabContent>.SwitchButton[type=list]:hover {
 	color: black;
 }
 
-.SwitchButton[type=list]:checked {
+WelcomeTabContent>.SwitchButton[type=list]:checked {
 	color: black;
 	border-bottom-color: #2B579A;
 }
 
-.QPushButton[type=special] {
+WelcomeTabContent>.QPushButton[type=special] {
 	border: 1px solid #CCCCCC;
 	background-color: white;
 	color: #2B579A;
@@ -82,20 +88,20 @@ CentralTabContent {
 	padding: 8px 35px;
 }
 
-.QPushButton[type=special]:disabled {
+WelcomeTabContent>.QPushButton[type=special]:disabled {
 	color: #CCCCCC;
 }
 
-.QPushButton[type=special]:hover {
+WelcomeTabContent>.QPushButton[type=special]:hover {
 	background-color: #2B579A;
 	color: white;
 }
 
-.QPushButton[type=special]:pressed {
+WelcomeTabContent>.QPushButton[type=special]:pressed {
 	background-color: #002050;
 }
 
-.FileListWidget {
+WelcomeTabContent>.FileListWidget {
 	background-color: transparent;
 	qproperty-itemHeight: 72;
 	qproperty-selectColor: rgba(0, 0, 0, 10%);
@@ -169,8 +175,6 @@ QMenu::separator {
 }
 
 /* Editor */
-
-EditorContent {}
 
 SectionsArea {}
 
@@ -261,6 +265,12 @@ QDialog>QPushButton:pressed {
 	background-color: #002050;
 }
 
+/* TracksInterface */
+TracksInterface>QFrame[type=track-separator] {
+	border: none;
+	background: grey;
+}
+
 /* TrackHead */
 
 TrackHead {
@@ -316,6 +326,11 @@ TrackHead>QPushButton[type="letter"]:hover {
 
 TrackHead>QPushButton[type="letter"]:pressed {
 	background-color: #002050;
+}
+
+/* TrackContent */
+TrackContent {
+	background-color: #EEEEEE;
 }
 
 /* KeyboardTab */

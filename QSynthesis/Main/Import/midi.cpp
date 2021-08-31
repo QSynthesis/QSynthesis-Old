@@ -6,7 +6,7 @@ bool MainWindow::parseMidiFile(const QString &filename, SectionNotes &oNotes) {
     bool aSuccess = midi.load(filename);
 
     if (!aSuccess) {
-        QMessageBox::warning(nullptr, MainTitle, tr("Unable to read MIDI file!"));
+        QMessageBox::warning(this, MainTitle, tr("Unable to read MIDI file!"));
         return 0;
     }
 
@@ -81,7 +81,7 @@ bool MainWindow::parseMidiFile(const QString &filename, SectionNotes &oNotes) {
 
     QVector<bool> result;
     SelectsDialog *dlg =
-        new SelectsDialog(tr("Import Midi"), tr("Tracks in file"), titles, result, true);
+        new SelectsDialog(tr("Import Midi"), tr("Tracks in file"), titles, result, true, this);
 
     int code = dlg->exec();
     dlg->deleteLater();

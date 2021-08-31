@@ -79,6 +79,6 @@ void TuningTab::handleStatusChanged(QMediaPlayer::MediaStatus newStatus) {
         QString title = MainTitle;
         QString content = tr("Wave file format error, please check the settings!");
 
-        QMessageBox::warning(nullptr, title, content);
+        QMessageBox::warning(this, title, content);
     }
 }

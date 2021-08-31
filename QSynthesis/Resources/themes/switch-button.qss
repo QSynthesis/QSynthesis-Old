@@ -1,0 +1,44 @@
+/* Title Bar Switch Button */
+
+.SwitchButton[type=titleBar] {
+	color: darkgrey;
+	background-color: transparent;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 1px solid transparent;
+
+	padding: 4px 0;
+}
+
+.SwitchButton[type=titleBar]:hover {
+	color: black;
+}
+
+.SwitchButton[type=titleBar]:checked {
+	color: black;
+	border-bottom-color: black;
+}
+
+
+/* Welcome List Switch Button */
+
+.SwitchButton[type=list] {
+	color: darkgrey;
+	background-color: transparent;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 4px solid transparent;
+
+	padding: 10px 0;
+}
+
+.SwitchButton[type=list]:hover {
+	color: black;
+}
+
+.SwitchButton[type=list]:checked {
+	color: black;
+	border-bottom-color: #2B579A;
+}

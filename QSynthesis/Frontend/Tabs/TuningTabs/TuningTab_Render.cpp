@@ -173,7 +173,7 @@ bool TuningTab::renderSelection() {
     QFile tempFile(tempBatPath);
 
     if (!tempFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        QMessageBox::critical(root(), ErrorTitle, tr("Unable to create batch file!"));
+        QMessageBox::critical(this, ErrorTitle, tr("Unable to create batch file!"));
         return 0;
     }
 
@@ -300,7 +300,7 @@ bool TuningTab::renderSelection() {
     QFile helperFile(helperBatPath);
 
     if (!helperFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        QMessageBox::critical(root(), ErrorTitle, tr("Unable to create batch file!"));
+        QMessageBox::critical(this, ErrorTitle, tr("Unable to create batch file!"));
         return 0;
     }
 
@@ -372,15 +372,15 @@ void TuningTab::setPlayable(bool playable) {
 
 bool TuningTab::renderCore() {
     if (!isDirExist(m_ptrs->tracksContent->defaultVoiceDir())) {
-        QMessageBox::warning(nullptr, ErrorTitle, tr("Voice database is not available."));
+        QMessageBox::warning(this, ErrorTitle, tr("Voice database is not available."));
         return 0;
     }
     if (!isFileExist(projectInfo->wavtool())) {
-        QMessageBox::warning(nullptr, ErrorTitle, tr("Wavtool is not available."));
+        QMessageBox::warning(this, ErrorTitle, tr("Wavtool is not available."));
         return 0;
     }
     if (!isFileExist(m_ptrs->tracksContent->defaultResampler())) {
-        QMessageBox::warning(nullptr, ErrorTitle, tr("Resampler is not available."));
+        QMessageBox::warning(this, ErrorTitle, tr("Resampler is not available."));
         return 0;
     }
 
@@ -398,7 +398,7 @@ bool TuningTab::renderCore() {
     setPlaying(false);
 
     // Open Dialog And Wait
-    TerminalDialog *dlg = new TerminalDialog(workingDir());
+    TerminalDialog *dlg = new TerminalDialog(workingDir(), this);
     int code = dlg->exec();
     dlg->deleteLater();
 

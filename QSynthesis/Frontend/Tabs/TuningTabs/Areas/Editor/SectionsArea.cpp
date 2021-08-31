@@ -63,8 +63,8 @@ void SectionsArea::handleRemoveTempo() {
 
 void SectionsArea::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
-    painter.setClipRegion(event->region());
     painter.setRenderHint(QPainter::Antialiasing);
+    painter.setClipRegion(event->region());
 
     QPen pen(m_lineColor, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     QPen pen2(m_numColor, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);

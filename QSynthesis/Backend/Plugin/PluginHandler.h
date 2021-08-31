@@ -15,7 +15,8 @@
 class PluginHandler : public QObject {
     Q_OBJECT
 public:
-    PluginHandler(PluginTempData &data, const PluginInfo &plugin, const QString &workingDir);
+    explicit PluginHandler(PluginTempData &data, const PluginInfo &plugin,
+                           const QString &workingDir, QWidget *parent = nullptr);
     ~PluginHandler();
 
     int exec();

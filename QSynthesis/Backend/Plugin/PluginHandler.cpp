@@ -12,8 +12,8 @@
 using namespace UtaProjectText;
 
 PluginHandler::PluginHandler(PluginTempData &data, const PluginInfo &plugin,
-                             const QString &workingDir)
-    : plugin(plugin), data(data) {
+                             const QString &workingDir, QWidget *parent)
+    : QObject(parent), plugin(plugin), data(data) {
     stateCode = 0;
 
     // Check dir
@@ -63,12 +63,14 @@ int PluginHandler::exec() {
 
     // open dialog
     if (plugin.useShell()) {
-        ScriptPluginDialog *dlg = new ScriptPluginDialog(tmpPath, exePath, pluginWorkingDir);
+        ScriptPluginDialog *dlg = new ScriptPluginDialog(tmpPath, exePath, pluginWorkingDir,
+                                                         qobject_cast<QWidget *>(parent()));
         stateCode = dlg->exec();
 
         dlg->deleteLater();
     } else {
-        ExecutePluginDialog *dlg = new ExecutePluginDialog(tmpPath, exePath, pluginWorkingDir);
+        ExecutePluginDialog *dlg = new ExecutePluginDialog(tmpPath, exePath, pluginWorkingDir,
+                                                           qobject_cast<QWidget *>(parent()));
         stateCode = dlg->exec();
 
         dlg->deleteLater();

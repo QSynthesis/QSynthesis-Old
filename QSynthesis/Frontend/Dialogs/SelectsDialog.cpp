@@ -90,7 +90,7 @@ void SelectsDialog::onOKClicked() {
     }
 
     if (!isChecked) {
-        QMessageBox::warning(nullptr, MainTitle, tr("Please select at least one!"));
+        QMessageBox::warning(this, MainTitle, tr("Please select at least one!"));
         return;
     }
 

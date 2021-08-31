@@ -106,7 +106,7 @@ void TuningTab::showNoteProperty() {
 
     np2 = np;
 
-    NotePropertiesDialog *dlg = new NotePropertiesDialog(np, list.size());
+    NotePropertiesDialog *dlg = new NotePropertiesDialog(np, list.size(), this);
     int code = -1;
 
     code = dlg->exec();

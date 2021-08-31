@@ -22,7 +22,7 @@ void TuningTab::handleRunPlugin(const PluginInfo &plugin) {
     QPoint orgRegion =
         QPoint(ns.start - ns.normalBegin(), ns.start - ns.normalBegin() + ns.notes.size() - 1);
 
-    PluginHandler *handler = new PluginHandler(ns, plugin, m_workingDir);
+    PluginHandler *handler = new PluginHandler(ns, plugin, m_workingDir, this);
 
     int code = handler->exec();
     handler->deleteLater();

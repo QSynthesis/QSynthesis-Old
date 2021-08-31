@@ -41,6 +41,7 @@ TracksInterface::TracksInterface(TracksForm *parent) : BaseInterface(parent) {
     mainLayout->addWidget(leftScroll, 1, 0);
 
     QFrame *separator = new QFrame(this);
+    separator->setProperty("type", "track-separator");
     separator->setFrameStyle(QFrame::VLine);
     mainLayout->addWidget(separator, 1, 1);
 

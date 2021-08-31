@@ -27,7 +27,7 @@ bool MainWindow::handleTabCloseRequent(int index) {
 
     if (!accept) {
         QMessageBox::StandardButton result = QMessageBox::question(
-            0, MainTitle, title, QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel,
+            this, MainTitle, title, QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel,
             QMessageBox::Yes);
         switch (result) {
         case QMessageBox::Yes:

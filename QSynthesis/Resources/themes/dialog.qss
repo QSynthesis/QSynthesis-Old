@@ -1,0 +1,21 @@
+/* QDialog */
+
+QDialog>QPushButton {
+	border: 1px solid #CCCCCC;
+	background-color: white;
+	color: #2B579A;
+	border-radius: 2px;
+}
+
+QDialog>QPushButton:disabled {
+	color: #CCCCCC;
+}
+
+QDialog>QPushButton:hover {
+	background-color: #2B579A;
+	color: white;
+}
+
+QDialog>QPushButton:pressed {
+	background-color: #002050;
+}

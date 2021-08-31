@@ -15,10 +15,10 @@ bool TuningTab::load() {
     if (!aResult) {
         if (aValid) {
             // Query file failed
-            QMessageBox::warning(nullptr, MainTitle, tr("Unable to open file!"));
+            QMessageBox::warning(this, MainTitle, tr("Unable to open file!"));
         } else {
             // The format is invalid
-            QMessageBox::warning(nullptr, MainTitle, tr("Invalid format!"));
+            QMessageBox::warning(this, MainTitle, tr("Invalid format!"));
         }
         ustFile.reset();
     }
@@ -105,7 +105,7 @@ bool TuningTab::saveOrSaveAs(const QString &filename) {
 
     if (!aResult) {
         // No permission granted to write file
-        QMessageBox::warning(nullptr, MainTitle, tr("Unable to write file!"));
+        QMessageBox::warning(this, MainTitle, tr("Unable to write file!"));
 
         // rescore
         if (saveAs) {

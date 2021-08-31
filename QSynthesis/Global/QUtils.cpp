@@ -215,7 +215,6 @@ void RevealFile(QString filename) {
     scriptArgs << QLatin1String("-e") << QLatin1String("tell application \"Finder\" to activate");
     QProcess::execute("/usr/bin/osascript", scriptArgs);
 #else
-    qDebug() << filename;
     if (isDirExist(filename)) {
         QProcess::startDetached("bash", {"-c", "xdg-open \'" + filename + "\'"});
     } else if (isFileExist(filename)) {

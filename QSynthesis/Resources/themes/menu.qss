@@ -1,0 +1,27 @@
+/* Menu Bar */
+
+QMenu {
+	padding: 5px 5px;
+	background: white;
+}
+
+QMenu::item {
+	padding: 6px 30px;
+	background: transparent;
+	color: #333333;
+}
+
+QMenu::item:selected {
+	color: white;
+	background: #0060C0;
+}
+
+QMenu::item:disabled {
+	color: #CCCCCC;
+}
+
+QMenu::separator {
+	height: 1px;
+	background-color: #CCCCCC;
+	margin: 6px 6px 6px 6px;
+}

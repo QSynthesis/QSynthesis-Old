@@ -1,0 +1,38 @@
+/* Tab Widget */
+
+TabWidget::pane {
+	border: 0;
+}
+
+TabWidget::tab-bar{
+    left: 0;
+}
+
+
+/* Central Tab Widget */
+
+TabWidget[type=central] {
+	background-color: #F3F3F3;
+}
+
+TabWidget[type=central]>QTabBar::tab {
+	border-right: 1px solid #F3F3F3;
+	border-left: 1px solid #F3F3F3;
+	color: #333333;
+	padding: 8px 15px;
+	background-color: #ECECEC;
+}
+
+TabWidget[type=central]>QTabBar::tab:selected {
+	background-color: white;
+}
+
+TabWidget[type=central]>QTabBar::tab:!selected:hover {
+	background-color: #EFEFEF;
+}
+
+TabWidget[type=central]>QTabBar::scroller {
+	width: 40px;
+}
+
+/* Voice Tab Widget */

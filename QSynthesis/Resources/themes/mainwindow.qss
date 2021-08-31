@@ -1,0 +1,9 @@
+/* General */
+
+QScrollArea {
+	background-color: transparent;
+}
+
+NoneScrollArea {
+	background-color: transparent;
+}

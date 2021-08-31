@@ -15,7 +15,7 @@ void TuningTab::showProjectSettings() {
     QString outfile = projectInfo->outFile();
     QString cache = relativeCacheDir();
 
-    ProjectSettingsDialog *dlg = new ProjectSettingsDialog(wavtool, outfile, cache);
+    ProjectSettingsDialog *dlg = new ProjectSettingsDialog(wavtool, outfile, cache, this);
 
     int code = dlg->exec();
     dlg->deleteLater();

@@ -113,3 +113,14 @@ void pathCosineRTo(QPainterPath &path, QPointF prev, QPointF curr) {
 double Hypotenuse(double x1, double x2, double y1, double y2) {
     return sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
 }
+
+bool loadStyleFromResource(QWidget *w, const QString &filebody) {
+    QFile qss;
+    qss.setFileName(":/themes/" + filebody + ".qss");
+    if (qss.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        w->setStyleSheet(qss.readAll());
+        qss.close();
+        return true;
+    }
+    return false;
+}

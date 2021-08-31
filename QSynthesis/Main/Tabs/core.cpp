@@ -2,7 +2,7 @@
 
 void MainWindow::initTabs() {
     tabs = new CentralTabWidget(this);
-    tabs->setObjectName("MainTab");
+    tabs->setProperty("type", "central");
 
     tabs->setMovable(true);      // Set the tab movable
     tabs->setTabsClosable(true); // Set the tab closable

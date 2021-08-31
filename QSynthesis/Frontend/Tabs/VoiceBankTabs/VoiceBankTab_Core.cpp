@@ -8,7 +8,7 @@ bool VoiceBankTab::load() {
     aResult = voicebank.load();
 
     if (!aResult) {
-        QMessageBox::warning(nullptr, MainTitle, tr("Unable to open folder!"));
+        QMessageBox::warning(this, MainTitle, tr("Unable to open folder!"));
         voicebank.reset();
     } else {
         loadCore();
@@ -25,7 +25,7 @@ bool VoiceBankTab::save() {
     bool aResult = voicebank.save();
     if (!aResult) {
         // No permission granted to write file
-        QMessageBox::warning(nullptr, MainTitle, tr("Unable to modify files!"));
+        QMessageBox::warning(this, MainTitle, tr("Unable to modify files!"));
     } else {
         updateOtoReferences();
         setEdited(false);
@@ -38,7 +38,7 @@ bool VoiceBankTab::save() {
 
 bool VoiceBankTab::restore() {
     if (!voicebank.restore()) {
-        QMessageBox::warning(nullptr, MainTitle, tr("Unable to restore voice database!"));
+        QMessageBox::warning(this, MainTitle, tr("Unable to restore voice database!"));
         return false;
     }
 
@@ -91,7 +91,7 @@ bool VoiceBankTab::saveCore() {
     if (!imagePath.isEmpty() && !imagePath.startsWith(m_filename)) {
         newPath = m_filename + Slash + PathFindFileName(imagePath);
         if (!infoArea->image().save(newPath)) {
-            QMessageBox::information(nullptr, MainTitle,
+            QMessageBox::information(this, MainTitle,
                                      tr("Unable to copy the image to voice bank directory!"));
             return false;
         }

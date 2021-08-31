@@ -15,9 +15,9 @@
         <file>images/EnvGroupBtn3.svg</file>
         <file>images/Pencil.svg</file>
         <file>../qt/etc/qt.conf</file>
-        <file>themes/theme.qss</file>
         <file>images/user-fill.svg</file>
         <file>translations/qsynthesis_cn.qm</file>
         <file>images/close-line.svg</file>
+        <file>themes/theme.qss</file>
     </qresource>
 </RCC>

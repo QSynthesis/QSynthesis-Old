@@ -222,7 +222,7 @@ void TerminalDialog::closeEvent(QCloseEvent *event) {
     if (!killProcess()) {
         QString content = tr("Fail to stop rendering.");
 
-        QMessageBox::warning(NULL, MainTitle, content);
+        QMessageBox::warning(this, MainTitle, content);
 
         event->ignore();
         return;

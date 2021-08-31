@@ -21,7 +21,7 @@ void TuningTab::showLyricInsertion() {
         lyrics.append(lrc);
     }
 
-    InsertLyricsDialog *dlg = new InsertLyricsDialog(lyrics);
+    InsertLyricsDialog *dlg = new InsertLyricsDialog(lyrics, this);
     int code = -1;
 
     code = dlg->exec();
@@ -67,7 +67,7 @@ void TuningTab::showTempoEdit(bool remove) {
     QDoubleValidator *validator = new QDoubleValidator(10, 512, 3, this);
     validator->setNotation(QDoubleValidator::StandardNotation);
 
-    InputDialog *dlg = new InputDialog(title, caption, tempo, validator);
+    InputDialog *dlg = new InputDialog(title, caption, tempo, validator, this);
     int code = dlg->exec();
     dlg->deleteLater();
     if (code != 1) {
@@ -98,8 +98,8 @@ void TuningTab::removeRest() {
     }
     double length = 0;
     QIntValidator *validator = new QIntValidator(0, INT_MAX, this);
-    InputDialog *dlg =
-        new InputDialog(tr("Remove Rests"), tr("Remove rests shorter than..."), length, validator);
+    InputDialog *dlg = new InputDialog(tr("Remove Rests"), tr("Remove rests shorter than..."),
+                                       length, validator, this);
 
     int code = dlg->exec();
     dlg->deleteLater();
@@ -131,8 +131,8 @@ void TuningTab::transpose(int offset) {
     if (offset == 0) {
         double dbOffset = offset;
         QIntValidator *validator = new QIntValidator(-84, 84, this);
-        InputDialog *dlg =
-            new InputDialog(tr("Transpose"), tr("Pitch Shift(semitones)"), dbOffset, validator);
+        InputDialog *dlg = new InputDialog(tr("Transpose"), tr("Pitch Shift(semitones)"), dbOffset,
+                                           validator, this);
 
         int code = dlg->exec();
         dlg->deleteLater();

@@ -22,11 +22,11 @@ VoiceBankTab *MainWindow::addVoiceBankTab(const QString &filename, bool notify) 
             if (relation == Qs::ParentDir) {
                 QString caption =
                     tr("You have opened the upper directory of this folder, please close first.");
-                QMessageBox::warning(nullptr, MainTitle, caption);
+                QMessageBox::warning(this, MainTitle, caption);
             } else if (relation == Qs::SubDir) {
                 QString caption =
                     tr("You have opened the lower directory of this folder, please close first.");
-                QMessageBox::warning(nullptr, MainTitle, caption);
+                QMessageBox::warning(this, MainTitle, caption);
             }
         }
 

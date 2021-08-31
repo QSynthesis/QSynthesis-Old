@@ -27,7 +27,7 @@ void TuningTab::exportRecentAudio() {
     QString tempFileName = tempAudioFile();
 
     if (!m_playable || !isFileExist(tempFileName)) {
-        QMessageBox::warning(nullptr, MainTitle,
+        QMessageBox::warning(this, MainTitle,
                              tr("No audio files have been generated recently."));
         return;
     }
@@ -37,7 +37,7 @@ void TuningTab::exportRecentAudio() {
 
     if (!path.isEmpty()) {
         if (!CopyFile(tempFileName, path)) {
-            QMessageBox::warning(nullptr, MainTitle,
+            QMessageBox::warning(this, MainTitle,
                                  tr("Unable to copy file, please check permissions!"));
             return;
         }

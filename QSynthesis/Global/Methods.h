@@ -30,4 +30,6 @@ void pathCosineRTo(QPainterPath &path, QPointF prev, QPointF curr);
 
 double Hypotenuse(double x1, double x2, double y1, double y2);
 
+bool loadStyleFromResource(QWidget *w, const QString &filebody);
+
 #endif // METHODS_H
