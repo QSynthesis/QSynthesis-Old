@@ -12,8 +12,6 @@ void MainWindow::initSettingIni() {
                  << "setting.ini found";
         settingIni = reader.data();
     }
-
-    qDebug() << reader.filename();
 }
 
 void MainWindow::saveSettingIni() {

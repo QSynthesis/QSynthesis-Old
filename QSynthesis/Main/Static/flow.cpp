@@ -34,11 +34,15 @@ void MainWindow::checkWorkingDir() {
         }
     }
 
+#ifdef Q_OS_MAC
+    AppFontName = qApp->font().family();
+#else
     QFontDatabase::addApplicationFont(fonts + Slash + "msyh.ttc");
     QFontDatabase::addApplicationFont(fonts + Slash + "msyhbd.ttc");
     QFontDatabase::addApplicationFont(fonts + Slash + "msyhl.ttc");
     AppFontName = "Microsoft YaHei UI";
     qApp->setFont(mainFont());
+#endif
 }
 
 void MainWindow::checkTemporaryDir() {
@@ -48,6 +52,8 @@ void MainWindow::checkTemporaryDir() {
 
     // Normal path under windows is "C:\Users\{usename}\AppData\Local\Temp\"
     QString tempDirName = QDir::tempPath() + Slash + TempDirName;
+
+    qDebug() << tempDirName;
 
     QDir tempDir(tempDirName);
     if (tempDir.exists()) {
