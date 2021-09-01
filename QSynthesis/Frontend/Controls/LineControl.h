@@ -35,7 +35,8 @@ public:
     FixedLineEdit *Text() const;
 
     void setUnmodified(bool value);
-    bool isUnmodified();
+    bool unmodified() const;
+
     void setPlaceholder(QString modi, QString unmo);
     void setValidator(QValidator *v);
 
@@ -56,7 +57,7 @@ private:
     QValidator *pValidator;
 
     double blankValue;
-    bool bUnmodified;
+    bool m_unmodified;
     QString placeholderModified, placeholderUnmodified;
 
     Qt::Orientation orient;

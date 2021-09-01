@@ -1,5 +1,6 @@
 #include "SlideControl.h"
 
+#include <QStyle>
 #include <cmath>
 
 /*--------------------------------------滑块控制--------------------------------------*/
@@ -65,7 +66,9 @@ void SlideControl::InitSlideControl(QString text, double value) {
     pLabel->adjustSize();
 
     // 微调框
-    pSpinBox = new QDoubleSpinBox(this);
+    pSpinBox = new FixedSpinBox(this);
+    pSpinBox->setProperty("status", "normal");
+
     pSpinBox->setDecimals(2);
     pSpinBox->adjustSize();
 
@@ -92,11 +95,11 @@ void SlideControl::InitSlideControl(QString text, double value) {
 
     connect(pSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onTextChanged(double)));
     connect(pSlider, SIGNAL(valueChanged(int)), this, SLOT(onSliderChanged(int)));
-    bUnmodified = false;
+    m_unmodified = false;
 }
 
 void SlideControl::onModifyAction() {
-    if (bUnmodified) {
+    if (m_unmodified) {
         setUnmodified(false);
     }
 }
@@ -122,14 +125,16 @@ void SlideControl::setMargin(int n) {
 
 void SlideControl::setUnmodified(bool value) {
     if (value) {
-        pSpinBox->setStyleSheet("background-color:#E1E1E1;");
+        pSpinBox->setProperty("status", "unmodified");
+        style()->polish(pSpinBox);
     } else {
-        pSpinBox->setStyleSheet("background-color:white;");
+        pSpinBox->setProperty("status", "normal");
+        style()->polish(pSpinBox);
     }
 
-    bUnmodified = value;
+    m_unmodified = value;
 }
 
-bool SlideControl::isUnmodified() {
-    return bUnmodified;
+bool SlideControl::unmodified() const {
+    return m_unmodified;
 }

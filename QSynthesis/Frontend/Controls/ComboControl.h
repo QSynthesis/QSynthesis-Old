@@ -7,6 +7,7 @@
 #include <QWidget>
 
 #include "QUtils.h"
+#include "FixedComboBox.h"
 
 class ComboControl : public QWidget {
     Q_OBJECT
@@ -23,9 +24,9 @@ public:
     void setMargin(int n);
 
     void setUnmodified(bool value);
-    bool isUnmodified();
+    bool unmodified() const;
 
-    QComboBox *Combo() const;
+    FixedComboBox *Combo() const;
 
     Qt::Orientation orientation() const;
 
@@ -34,12 +35,12 @@ private:
     void InitComboControl(QString text, const QStringList &values);
     void onModifyAction();
 
-    QComboBox *pCombo;
+    FixedComboBox *pCombo;
     QLabel *pLabel;
 
     QLayout *pLayout;
 
-    bool bUnmodified;
+    bool m_unmodified;
 
     Qt::Orientation orient;
 };

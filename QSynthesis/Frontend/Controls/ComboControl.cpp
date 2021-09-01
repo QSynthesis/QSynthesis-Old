@@ -48,26 +48,28 @@ void ComboControl::setMargin(int n) {
 
 void ComboControl::setUnmodified(bool value) {
     if (value) {
-        pCombo->setStyleSheet("background-color:#E1E1E1;");
+        pCombo->setProperty("status", "normal");
+        style()->polish(pCombo);
     } else {
-        pCombo->setStyleSheet("background-color:white;");
+        pCombo->setProperty("status", "unmodified");
+        style()->polish(pCombo);
     }
-    bUnmodified = value;
+    m_unmodified = value;
 }
 
-bool ComboControl::isUnmodified() {
-    return bUnmodified;
+bool ComboControl::unmodified() const {
+    return m_unmodified;
 }
 
-QComboBox *ComboControl::Combo() const {
+FixedComboBox *ComboControl::Combo() const {
     return pCombo;
 }
 
 void ComboControl::InitComboControl(QString text, const QStringList &values) {
     pLabel = new QLabel(text, this);
-    pCombo = new QComboBox(this);
 
-    pCombo->setStyleSheet("background-color:white;");
+    pCombo = new FixedComboBox(this);
+    pCombo->setProperty("status", "normal");
 
     pLabel->adjustSize();
     pCombo->adjustSize();
@@ -90,11 +92,11 @@ void ComboControl::InitComboControl(QString text, const QStringList &values) {
     setLayout(pLayout);
 
     connect(pCombo, &QComboBox::currentTextChanged, this, &ComboControl::onModifyAction);
-    bUnmodified = false;
+    m_unmodified = false;
 }
 
 void ComboControl::onModifyAction() {
-    if (bUnmodified) {
+    if (m_unmodified) {
         setUnmodified(false);
     }
 }

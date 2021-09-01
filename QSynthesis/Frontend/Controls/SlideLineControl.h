@@ -37,7 +37,7 @@ public:
     void setMargin(int n);
 
     void setUnmodified(bool value);
-    bool isUnmodified();
+    bool unmodified() const;
 
     void setPlaceholder(QString modi, QString unmo);
 
@@ -57,7 +57,7 @@ private:
     QLabel *pLabel;
     QGridLayout *pLayout;
 
-    bool bUnmodified;
+    bool m_unmodified;
     double blankValue;
 
     bool isTextEditing;

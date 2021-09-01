@@ -1,5 +1,7 @@
 #include "LineControl.h"
 
+#include <QStyle>
+
 /*--------------------------------------文本控制--------------------------------------*/
 LineControl::LineControl(Qt::Orientation orient, QWidget *parent)
     : QWidget(parent), orient(orient) {
@@ -43,23 +45,25 @@ void LineControl::setMargin(int n) {
 
 void LineControl::setUnmodified(bool value) {
     if (value) {
-        pText->setStyleSheet("background-color:#E1E1E1;");
+        pText->setProperty("status", "unmodified");
+        style()->polish(pText);
         pText->setPlaceholderText(placeholderUnmodified);
     } else {
-        pText->setStyleSheet("background-color:white;");
+        pText->setProperty("status", "normal");
+        style()->polish(pText);
         pText->setPlaceholderText(placeholderModified);
     }
-    bUnmodified = value;
+    m_unmodified = value;
 }
 
-bool LineControl::isUnmodified() {
-    return bUnmodified;
+bool LineControl::unmodified() const {
+    return m_unmodified;
 }
 
 void LineControl::setPlaceholder(QString modi, QString unmo) {
     placeholderModified = modi;
     placeholderUnmodified = unmo;
-    if (bUnmodified) {
+    if (m_unmodified) {
         pText->setPlaceholderText(unmo);
     } else {
         pText->setPlaceholderText(modi);
@@ -81,7 +85,9 @@ FixedLineEdit *LineControl::Text() const {
 void LineControl::InitLineControl(QString text, QString value) {
 
     pLabel = new QLabel(text, this);
+
     pText = new FixedLineEdit(value, this);
+    pText->setProperty("status", "normal");
 
     pValidator = nullptr;
 
@@ -105,11 +111,11 @@ void LineControl::InitLineControl(QString text, QString value) {
     connect(pText, &FixedLineEdit::textChanged, this, &LineControl::onTextChanged);
 
     pText->setPlaceholderText(placeholderModified);
-    bUnmodified = false;
+    m_unmodified = false;
 }
 
 void LineControl::onModifyAction() {
-    if (bUnmodified) {
+    if (m_unmodified) {
         bool status = pText->isClearButtonEnabled();
         pText->setClearButtonEnabled(false);
         pText->clear();

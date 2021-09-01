@@ -68,7 +68,9 @@ SOURCES += \
     Frontend/Common/TabWidget.cpp \
     Frontend/Controls/ComboControl.cpp \
     Frontend/Controls/CustomControls.cpp \
+    Frontend/Controls/FixedComboBox.cpp \
     Frontend/Controls/FixedLineEdit.cpp \
+    Frontend/Controls/FixedSpinBox.cpp \
     Frontend/Controls/FixedTextEdit.cpp \
     Frontend/Controls/LineControl.cpp \
     Frontend/Controls/SlideControl.cpp \
@@ -387,7 +389,9 @@ HEADERS += \
     Frontend/Common/TabWidget.h \
     Frontend/Controls/ComboControl.h \
     Frontend/Controls/CustomControls.h \
+    Frontend/Controls/FixedComboBox.h \
     Frontend/Controls/FixedLineEdit.h \
+    Frontend/Controls/FixedSpinBox.h \
     Frontend/Controls/FixedTextEdit.h \
     Frontend/Controls/LineControl.h \
     Frontend/Controls/SlideControl.h \

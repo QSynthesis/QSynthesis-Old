@@ -18,7 +18,6 @@
         <file>images/user-fill.svg</file>
         <file>translations/qsynthesis_cn.qm</file>
         <file>images/close-line.svg</file>
-        <file>themes/mainwindow.qss</file>
-        <file>themes/dialog.qss</file>
+        <file>themes/theme-light.qss</file>
     </qresource>
 </RCC>

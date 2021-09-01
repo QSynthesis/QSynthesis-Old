@@ -1,5 +1,6 @@
 #include "SlideLineControl.h"
 
+#include <QStyle>
 #include <cmath>
 
 /*--------------------------------------滑块文本控制--------------------------------------*/
@@ -80,6 +81,8 @@ void SlideLineControl::InitSlideControl(QString text, double value) {
 
     // 微调框
     pText = new FixedLineEdit(this);
+    pText->setProperty("status", "normal");
+
     pValidator = new QDoubleValidator();
 
     pValidator->setDecimals(2);
@@ -100,11 +103,6 @@ void SlideLineControl::InitSlideControl(QString text, double value) {
     setValue(value);
     setBlankValue(0);
 
-    // pLabel->setGeometry(25, 10, 100, 18);
-    // pSpinBox->setGeometry(150, 10, 100, 18);
-    // pSlider->setGeometry(25, 32, 225, 18);
-    // setFixedSize(280, 60);
-
     pSlider->setFixedHeight(18);
 
     pLayout = new QGridLayout(this);
@@ -120,11 +118,11 @@ void SlideLineControl::InitSlideControl(QString text, double value) {
     connect(pSlider, SIGNAL(valueChanged(int)), this, SLOT(onSliderChanged(int)));
 
     pText->setPlaceholderText(placeholderModified);
-    bUnmodified = false;
+    m_unmodified = false;
 }
 
 void SlideLineControl::onModifyAction() {
-    if (bUnmodified) {
+    if (m_unmodified) {
         bool status = pText->isClearButtonEnabled();
         pText->setClearButtonEnabled(false);
         pText->clear();
@@ -138,7 +136,7 @@ void SlideLineControl::setPlaceholder(QString modi, QString unmo) {
     placeholderModified = modi;
     placeholderUnmodified = unmo;
 
-    if (bUnmodified) {
+    if (m_unmodified) {
         pText->setPlaceholderText(unmo);
     } else {
         pText->setPlaceholderText(modi);
@@ -186,16 +184,18 @@ void SlideLineControl::setMargin(int n) {
 
 void SlideLineControl::setUnmodified(bool value) {
     if (value) {
-        pText->setStyleSheet("background-color:#E1E1E1;");
+        pText->setProperty("status", "unmodified");
+        style()->polish(pText);
         pText->setPlaceholderText(placeholderUnmodified);
     } else {
-        pText->setStyleSheet("background-color:white;");
+        pText->setProperty("status", "normal");
+        style()->polish(pText);
         pText->setPlaceholderText(placeholderModified);
     }
 
-    bUnmodified = value;
+    m_unmodified = value;
 }
 
-bool SlideLineControl::isUnmodified() {
-    return bUnmodified;
+bool SlideLineControl::unmodified() const {
+    return m_unmodified;
 }

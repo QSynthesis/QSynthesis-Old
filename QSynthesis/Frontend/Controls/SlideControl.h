@@ -8,6 +8,7 @@
 #include <QWidget>
 
 #include "QUtils.h"
+#include "FixedSpinBox.h"
 
 class SlideControl : public QWidget {
     Q_OBJECT
@@ -32,7 +33,7 @@ public:
     void setMargin(int n);
 
     void setUnmodified(bool value);
-    bool isUnmodified();
+    bool unmodified() const;
 
 private:
     double value;
@@ -41,12 +42,12 @@ private:
     void InitSlideControl(QString text, double value);
     void onModifyAction();
 
-    QDoubleSpinBox *pSpinBox;
+    FixedSpinBox *pSpinBox;
     QSlider *pSlider;
     QLabel *pLabel;
     QGridLayout *pLayout;
 
-    bool bUnmodified;
+    bool m_unmodified;
 
 public slots:
     void onSliderChanged(int n);

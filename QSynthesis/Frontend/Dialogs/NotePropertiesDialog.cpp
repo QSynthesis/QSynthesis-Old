@@ -224,28 +224,28 @@ void NotePropertiesDialog::SetCurrentValues() {
 }
 
 void NotePropertiesDialog::SaveCurrentValues() {
-    if (!tcLength->isUnmodified()) {
+    if (!tcLength->unmodified()) {
         orgValues.length = tcLength->getValue();
     }
-    if (!scIntensity->isUnmodified()) {
+    if (!scIntensity->unmodified()) {
         orgValues.intensity = scIntensity->getText();
     }
-    if (!scModulation->isUnmodified()) {
+    if (!scModulation->unmodified()) {
         orgValues.modulation = scModulation->getText();
     }
-    if (!tcPreUtterance->isUnmodified()) {
+    if (!tcPreUtterance->unmodified()) {
         orgValues.preUttr = tcPreUtterance->getValue();
     }
-    if (!tcOverlap->isUnmodified()) {
+    if (!tcOverlap->unmodified()) {
         orgValues.overlap = tcOverlap->getValue();
     }
-    if (!tcVelocity->isUnmodified()) {
+    if (!tcVelocity->unmodified()) {
         orgValues.velocity = tcVelocity->getValue();
     }
-    if (!tcStartPoint->isUnmodified()) {
+    if (!tcStartPoint->unmodified()) {
         orgValues.startpoint = tcStartPoint->getValue();
     }
-    if (!tcFlags->isUnmodified()) {
+    if (!tcFlags->unmodified()) {
         orgValues.flags = tcFlags->getValue();
     }
 }

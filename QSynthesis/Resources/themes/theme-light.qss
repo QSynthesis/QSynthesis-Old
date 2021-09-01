@@ -26,14 +26,37 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
     border-color: #167FD2;
 }
 
-QComboBox {
-    border: 1px solid black;
-    color: black;
+/* Custom Controls */
+LineControl>FixedLineEdit[status=normal] {
     background-color: white;
 }
 
-QComboBox:focus {
-    border-color: #167FD2;
+LineControl>FixedLineEdit[status=unmodified] {
+    background-color: #E1E1E1;
+}
+
+ComboControl>FixedComboBox[status=normal] {
+    background-color: white;
+}
+
+ComboControl>FixedComboBox[status=unmodified] {
+    background-color: #E1E1E1;
+}
+
+SlideControl>FixedSpinBox[status=normal] {
+    background-color: white;
+}
+
+SlideControl>FixedSpinBox[status=unmodified] {
+    background-color: #E1E1E1;
+}
+
+SlideLineControl>FixedLineEdit[status=normal] {
+    background-color: white;
+}
+
+SlideLineControl>FixedLineEdit[status=unmodified] {
+    background-color: #E1E1E1;
 }
 
 /* TabWidget */
