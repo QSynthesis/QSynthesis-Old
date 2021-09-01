@@ -76,8 +76,9 @@ QCorrectGenon::QCorrectGenon(double pre, double ove, double stp) {
 }
 
 bool QCorrectGenon::operator==(const QCorrectGenon &oCorrect) const {
-    return (PreUtterance == oCorrect.PreUtterance) && (VoiceOverlap == oCorrect.VoiceOverlap) &&
-           (StartPoint == oCorrect.StartPoint);
+    return equalDouble(PreUtterance, oCorrect.PreUtterance) &&
+           equalDouble(VoiceOverlap, oCorrect.VoiceOverlap) &&
+           equalDouble(StartPoint, oCorrect.StartPoint);
 }
 
 bool QCorrectGenon::operator!=(const QCorrectGenon &oCorrect) const {

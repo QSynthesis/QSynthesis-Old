@@ -5,6 +5,7 @@ QString Version = "0.1.66";
 QString TempDirName = "QSyntehsis_Temporary";
 
 QString AppPath;
+QString AppFontName;
 
 QString MainTitle;
 QString ErrorTitle;
@@ -49,6 +50,10 @@ QString themesProfile() {
 
 QString languagesProfile() {
     return configProfile() + Slash + DIR_NAME_CONFIG_LANGUAGES;
+}
+
+QString fontsProfile() {
+    return configProfile() + Slash + DIR_NAME_CONFIG_FONTS;
 }
 
 QString settingConifgPath() {

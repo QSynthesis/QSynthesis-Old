@@ -13,5 +13,6 @@ const QString FILE_NAME_KEYBOARD_JSON = "keyboard.json";
 const QString DIR_NAME_CONFIG = "config";
 const QString DIR_NAME_CONFIG_THEMES = "themes";
 const QString DIR_NAME_CONFIG_LANGUAGES = "translations";
+const QString DIR_NAME_CONFIG_FONTS = "fonts";
 
 #endif // QUTAUSTRINGS_H

@@ -16,13 +16,13 @@ QGraphicsView {
     color: black;
 }
 
-QLineEdit, QTextEdit, QPlainTextEdit {
+QLineEdit, QTextEdit, QPlainTextEdit, QComboBox {
     border: 1px solid black;
     color: black;
     background-color: white;
 }
 
-QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
     border-color: #167FD2;
 }
 

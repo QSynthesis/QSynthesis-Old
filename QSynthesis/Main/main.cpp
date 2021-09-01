@@ -55,7 +55,6 @@ int main(int argc, char *argv[]) {
 
     QTranslator t;
 
-    a.setFont(mainFont());
     translator = &t;
     if (translator->load(":/translations/qsynthesis_cn.qm")) {
         qApp->installTranslator(translator);

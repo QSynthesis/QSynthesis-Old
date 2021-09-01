@@ -7,6 +7,7 @@ void MainWindow::checkWorkingDir() {
 
     QString themes = themesProfile();
     QString languages = languagesProfile();
+    QString fonts = fontsProfile();
 
     qDebug() << "Voice:" << voice;
     qDebug() << "Plugins:" << plugin;
@@ -28,7 +29,16 @@ void MainWindow::checkWorkingDir() {
         if (!dir.exists(languages)) {
             dir.mkpath(languages);
         }
+        if (!dir.exists(fonts)) {
+            dir.mkpath(fonts);
+        }
     }
+
+    QFontDatabase::addApplicationFont(fonts + Slash + "msyh.ttc");
+    QFontDatabase::addApplicationFont(fonts + Slash + "msyhbd.ttc");
+    QFontDatabase::addApplicationFont(fonts + Slash + "msyhl.ttc");
+    AppFontName = "Microsoft YaHei UI";
+    qApp->setFont(mainFont());
 }
 
 void MainWindow::checkTemporaryDir() {

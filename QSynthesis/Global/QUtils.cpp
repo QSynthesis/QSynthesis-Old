@@ -5,7 +5,7 @@ QFont mainFont(int pixelSize, int weight, bool italic) {
     QFont font;
     font.setStyleStrategy(QFont::PreferAntialias);
 
-    font.setFamily("Microsoft YaHei");
+    font.setFamily(AppFontName);
     font.setPixelSize(pixelSize);
     font.setWeight(weight);
     font.setItalic(italic);

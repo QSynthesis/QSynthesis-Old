@@ -14,6 +14,7 @@ extern QString Version;
 extern QString TempDirName;
 
 extern QString AppPath;
+extern QString AppFontName;
 
 extern QString MainTitle;
 extern QString ErrorTitle;
@@ -46,6 +47,7 @@ QString pluginsProfile();
 QString configProfile();
 QString themesProfile();
 QString languagesProfile();
+QString fontsProfile();
 
 QString settingConifgPath();
 QString keyboardConfigPath();
