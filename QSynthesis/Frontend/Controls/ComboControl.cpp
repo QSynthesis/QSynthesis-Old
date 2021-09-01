@@ -1,5 +1,7 @@
 #include "ComboControl.h"
 
+#include <QStyleFactory>
+
 /*--------------------------------------列表框控制--------------------------------------*/
 ComboControl::ComboControl(Qt::Orientation orient, QWidget *parent)
     : QWidget(parent), orient(orient) {
@@ -62,9 +64,10 @@ QComboBox *ComboControl::Combo() const {
 }
 
 void ComboControl::InitComboControl(QString text, const QStringList &values) {
-
     pLabel = new QLabel(text, this);
     pCombo = new QComboBox(this);
+
+    pCombo->setStyleSheet("background-color:white;");
 
     pLabel->adjustSize();
     pCombo->adjustSize();
