@@ -7,8 +7,8 @@ ProjectName=MoLiHua
 VoiceDir=%VOICE%New Geping UTAU Database
 OutFile=MoLiHua.wav
 CacheDir=‹‘¿Úª®22.cache
-Tool1=tools\wavtoolex.exe
-Tool2=tools\Multisampler.exe
+Tool1=wavtool-yawu
+Tool2=macres
 Mode2=True
 Flags=eMb-100
 [#0000]

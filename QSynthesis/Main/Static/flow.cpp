@@ -53,8 +53,6 @@ void MainWindow::checkTemporaryDir() {
     // Normal path under windows is "C:\Users\{usename}\AppData\Local\Temp\"
     QString tempDirName = QDir::tempPath() + Slash + TempDirName;
 
-    qDebug() << tempDirName;
-
     QDir tempDir(tempDirName);
     if (tempDir.exists()) {
         QFileInfoList flist = tempDir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Time);
