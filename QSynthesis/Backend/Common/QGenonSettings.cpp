@@ -15,10 +15,12 @@ bool QGenonSettings::operator<(const QGenonSettings &oGenon) const {
 }
 
 bool QGenonSettings::operator==(const QGenonSettings &oGenon) const {
-    return (mFileName == oGenon.mFileName) && (mAlias == oGenon.mAlias) &&
-           (mOffset == oGenon.mOffset) && (mConstant == oGenon.mConstant) &&
-           (mBlank == oGenon.mBlank) && (mPreUtterance == oGenon.mPreUtterance) &&
-           (mVoiceOverlap == oGenon.mVoiceOverlap);
+    bool b = (mFileName == oGenon.mFileName) && (mAlias == oGenon.mAlias) &&
+             equalDouble(mOffset, oGenon.mOffset) && equalDouble(mConstant, oGenon.mConstant) &&
+             equalDouble(mBlank, oGenon.mBlank) &&
+             equalDouble(mPreUtterance, oGenon.mPreUtterance) &&
+             equalDouble(mVoiceOverlap, oGenon.mVoiceOverlap);
+    return b;
 }
 
 bool QGenonSettings::operator!=(const QGenonSettings &oGenon) const {
@@ -37,7 +39,10 @@ void QGenonSettings::clear() {
 
 QDebug operator<<(QDebug debug, const QGenonSettings &oGenon) {
     QString info =
-        QString("QGenonSettings(file:\"%1\"; alias:\"%2\";)").arg(oGenon.mFileName, oGenon.mAlias);
+        QString("QGenonSettings(file:\"%1\"; alias:\"%2\"; off:%3; con:%4; bla:%5; pre:%6; ove:%7)")
+            .arg(PathFindFileName(oGenon.mFileName), oGenon.mAlias, QString::number(oGenon.mOffset),
+                 QString::number(oGenon.mConstant), QString::number(oGenon.mBlank),
+                 QString::number(oGenon.mPreUtterance), QString::number(oGenon.mVoiceOverlap));
     debug.noquote() << info;
     return debug;
 }

@@ -192,6 +192,10 @@ bool isNumber(QString s, bool considerDot, bool considerNeg) {
     return flag;
 }
 
+bool equalDouble(double a, double b) {
+    return QString::number(a) == QString::number(b);
+}
+
 void RevealFile(QString filename) {
 #if defined(_WIN32)
     if (isFileExist(filename)) {

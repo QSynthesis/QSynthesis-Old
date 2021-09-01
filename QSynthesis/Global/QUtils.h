@@ -61,6 +61,8 @@ QDateTime GetFileLastModifyTime(QString filename);
 
 bool isNumber(QString s, bool considerDot, bool considerNeg);
 
+bool equalDouble(double a, double b);
+
 void RevealFile(QString filename);
 
 #endif // QUTILS_H

@@ -27,8 +27,7 @@ void TuningTab::exportRecentAudio() {
     QString tempFileName = tempAudioFile();
 
     if (!m_playable || !isFileExist(tempFileName)) {
-        QMessageBox::warning(this, MainTitle,
-                             tr("No audio files have been generated recently."));
+        QMessageBox::warning(this, MainTitle, tr("No audio files have been generated recently."));
         return;
     }
 
@@ -56,6 +55,7 @@ void TuningTab::configueLyric() {
     }
     if (!m_ptrs->draggers.selectedNotes.isEmpty()) {
         GraphicsNote *p = m_ptrs->draggers.selectedNotes.front();
+        qDebug() << p->genonSettings();
         tab->locateSample(p->genonSettings());
     }
 }

@@ -138,6 +138,7 @@ bool OtoTableTab::selectSample(const QGenonSettings &genon) {
     if (sequence >= 0) {
         const QOtoSample &sample = otoSamples.at(sequence);
         int index = sample.indexOf(genon);
+        qDebug() << index;
         if (index >= 0) {
             int row = findFirstRow(filename);
             row += index;
