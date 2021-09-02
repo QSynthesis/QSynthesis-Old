@@ -210,14 +210,21 @@ void RevealFile(QString filename) {
         QProcess::startDetached("explorer.exe", cmds);
     }
 #elif defined(__APPLE__)
-    QStringList scriptArgs;
-    scriptArgs << QLatin1String("-e")
-               << QString::fromLatin1("tell application \"Finder\" to reveal POSIX file \"%1\"")
-                      .arg(filename);
-    QProcess::execute(QLatin1String("/usr/bin/osascript"), scriptArgs);
-    scriptArgs.clear();
-    scriptArgs << QLatin1String("-e") << QLatin1String("tell application \"Finder\" to activate");
-    QProcess::execute("/usr/bin/osascript", scriptArgs);
+    if (isDirExist(filename)) {
+        if (!filename.endsWith(Slash)) {
+            filename.append(Slash);
+        }
+        QProcess::startDetached("bash", {"-c", "open \'" + filename + "\'"});
+    } else if (isFileExist(filename)) {
+        QStringList scriptArgs;
+        scriptArgs << QLatin1String("-e")
+                   << QString::fromLatin1("tell application \"Finder\" to reveal POSIX file \"%1\"")
+                          .arg(filename);
+        QProcess::execute(QLatin1String("/usr/bin/osascript"), scriptArgs);
+        scriptArgs.clear();
+        scriptArgs << QLatin1String("-e") << QLatin1String("tell application \"Finder\" to activate");
+        QProcess::execute("/usr/bin/osascript", scriptArgs);
+    }
 #else
     if (isDirExist(filename)) {
         QProcess::startDetached("bash", {"-c", "xdg-open \'" + filename + "\'"});
