@@ -41,8 +41,15 @@ private:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
 
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
+
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget = nullptr) override;
+
+public:
+    void afterPress();
+    void afterMove(QPointF pos);
+    void afterRelease();
 };
 
 #endif // VIBRATOLINEHANDLE_H

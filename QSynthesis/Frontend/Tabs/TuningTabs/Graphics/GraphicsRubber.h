@@ -45,6 +45,7 @@ private:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget = nullptr) override;
 
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
 
 signals:

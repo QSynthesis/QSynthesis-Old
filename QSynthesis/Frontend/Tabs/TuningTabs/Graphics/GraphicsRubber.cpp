@@ -101,6 +101,10 @@ void GraphicsRubber::paint(QPainter *painter, const QStyleOptionGraphicsItem *op
     painter->drawRect(rect);
 }
 
+void GraphicsRubber::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
+    emit selectOver();
+}
+
 void GraphicsRubber::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     emit selectOver();
 }

@@ -11,7 +11,7 @@ void NotesArea::mousePressEvent(QGraphicsSceneMouseEvent *event) {
         editFinish();
     }
 
-    if (curItem) {
+    if (curItem || qDragOut.dragging) {
         return QGraphicsScene::mousePressEvent(event);
     } else {
         qDragOut.removeAll();

@@ -98,23 +98,23 @@ QPointF VibratoPlaneHandle::limitArea(QPointF origin) {
 
 void VibratoPlaneHandle::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     qDragIn.removeAll();
-    if (event->button() == Qt::LeftButton) {
-        linkPress(event->scenePos());
-        emit pressed();
-    }
+    emit pressed();
 }
 
 void VibratoPlaneHandle::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
-    if (m_move) {
-        linkMove(event->scenePos());
-        emit moved();
+    if (event->buttons() == Qt::LeftButton) {
+        afterMove(event->scenePos());
     }
 }
 
 void VibratoPlaneHandle::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
-    if (m_moving) {
-        linkRelease();
-        emit clicked();
+    afterRelease();
+}
+
+void VibratoPlaneHandle::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
+    GraphicsPlaneHandle::hoverLeaveEvent(event);
+    if (m_move) {
+        afterRelease();
     }
 }
 
@@ -135,4 +135,25 @@ void VibratoPlaneHandle::paint(QPainter *painter, const QStyleOptionGraphicsItem
     painter->setBrush(Qt::NoBrush);
     painter->setFont(uiFont());
     painter->drawText(rect(), Qt::AlignCenter, m_text);
+}
+
+void VibratoPlaneHandle::afterPress() {
+}
+
+void VibratoPlaneHandle::afterMove(QPointF pos) {
+    if (!m_move) {
+        linkPress(pos);
+        emit pressed();
+    }
+    if (m_move) {
+        linkMove(pos);
+        emit moved();
+    }
+}
+
+void VibratoPlaneHandle::afterRelease() {
+    if (m_move) {
+        linkRelease();
+        emit clicked();
+    }
 }

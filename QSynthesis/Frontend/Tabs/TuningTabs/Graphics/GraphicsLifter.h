@@ -96,6 +96,8 @@ private:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
+
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget = nullptr) override;
 
@@ -104,7 +106,7 @@ private:
 public:
     void afterPress();
     void afterMove(QPointF pos);
-    void afterRelease(QPointF pos);
+    void afterRelease();
 };
 
 #endif // GRAPHICSLIFTER_H

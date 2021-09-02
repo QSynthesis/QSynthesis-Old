@@ -6,8 +6,9 @@
 void GraphicsNote::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     qDragIn.filter(m_element); // Deselect all draggers other than note
 
-    afterPress();
-    if (event->button() == Qt::RightButton) {
+    if (event->button() == Qt::LeftButton) {
+        afterPress();
+    } else if (event->button() == Qt::RightButton) {
         m_handler->openContextMenu();
     }
 }
@@ -16,7 +17,7 @@ void GraphicsNote::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
     if (!m_movable || m_editor->isPlaying()) {
         return;
     }
-    if (event->buttons() == Qt::LeftButton) {
+    if (event->buttons() & Qt::LeftButton) {
         afterMove(event->scenePos());
     }
 }
@@ -25,7 +26,9 @@ void GraphicsNote::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     if (!m_movable || m_editor->isPlaying()) {
         return;
     }
-    afterRelease(event->scenePos());
+    if (event->button() == Qt::LeftButton) {
+        afterRelease();
+    }
 }
 
 void GraphicsNote::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
@@ -50,7 +53,9 @@ void GraphicsNote::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
     if (m_stretch) {
         setStretch(false);
     }
-    autoRelease();
+    if (m_move || m_drawing) {
+        afterRelease();
+    }
 }
 
 void GraphicsNote::keyPressEvent(QKeyEvent *event) {
@@ -163,7 +168,7 @@ void GraphicsNote::afterMove(QPointF pos) {
     }
 }
 
-void GraphicsNote::afterRelease(QPointF pos) {
+void GraphicsNote::afterRelease() {
     if (m_move || m_drawing) {
         // Release the mouse
         if (m_drawing) {
@@ -192,46 +197,9 @@ void GraphicsNote::afterRelease(QPointF pos) {
         if (m_next) {
             m_next->adjustComponents();
         }
-
     } else {
         m_editor->statusCall();
     }
 
     qDragIn.stretching = Qs::NoStretch;
-}
-
-void GraphicsNote::autoRelease() {
-    if (m_move || m_drawing) {
-        // Release the mouse
-        if (m_drawing) {
-            // Born
-            qDebug() << "Release mouse from Note";
-            this->ungrabMouse();
-            setDrawing(false);
-            m_editor->afterDraw(this);
-        } else {
-            // Move
-            m_editor->endMove(this);
-        }
-
-        QPointF pos(0, 0);
-
-        if (m_stretch) {
-            qDragIn.stopDrag(this, pos); // Blank
-            qDragIn.endInvolve(this, pos);
-            qDragIn.removeAllT(); // Remove all involved notes
-        } else {
-            qDragIn.stopDrag(this, pos);
-            qDragIn.endInvolve(this, pos);
-            qDragIn.removeAllT(); // Remove all involved notes
-        }
-
-        // Subsequent Modifications
-        adjustComponents();
-        if (m_next) {
-            m_next->adjustComponents();
-        }
-
-        qDragIn.stretching = Qs::NoStretch;
-    }
 }

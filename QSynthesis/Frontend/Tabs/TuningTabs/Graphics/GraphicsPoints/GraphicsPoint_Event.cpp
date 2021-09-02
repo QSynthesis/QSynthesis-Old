@@ -8,7 +8,7 @@ void GraphicsPoint::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     qDragIn.filter(m_element); // Deselect all draggers other than point
 
     if (event->button() == Qt::RightButton) {
-        if (!m_editor->isPlaying()) {
+        if (!m_editor->isPlaying() && !(m_move || m_drawing)) {
             qDragIn.removeAll();
             m_editor->changePointFromCursor(this);
         }
@@ -22,7 +22,7 @@ void GraphicsPoint::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
         return;
     }
     // First Move
-    if (event->buttons() == Qt::LeftButton) {
+    if (event->buttons() & Qt::LeftButton) {
         afterMove(event->scenePos());
     }
 }
@@ -31,7 +31,9 @@ void GraphicsPoint::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     if (m_editor->isPlaying()) {
         return;
     }
-    afterRelease();
+    if (event->button() == Qt::LeftButton) {
+        afterRelease();
+    }
 }
 
 void GraphicsPoint::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
@@ -55,6 +57,10 @@ void GraphicsPoint::hoverMoveEvent(QGraphicsSceneHoverEvent *event) {
 
 void GraphicsPoint::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
     setHovered(false);
+
+    if (m_move || m_drawing) {
+        afterRelease();
+    }
 }
 
 void GraphicsPoint::afterPress() {
@@ -122,5 +128,25 @@ void GraphicsPoint::afterRelease() {
         qDragIn.removeAllT(); // Remove all involved notes
     } else {
         m_editor->statusCall();
+    }
+}
+
+void GraphicsPoint::autoRelease() {
+    if (m_move || m_drawing) {
+        // Release the mouse
+        if (m_drawing) {
+            // Born
+            qDebug() << "Release mouse from SimplePoint";
+            this->ungrabMouse();
+            setDrawing(false);
+            m_editor->afterDraw(this);
+        } else {
+            // Move
+            m_editor->endMove(this);
+        }
+
+        qDragIn.stopDrag(this);
+        qDragIn.endInvolve(this);
+        qDragIn.removeAllT(); // Remove all involved notes
     }
 }

@@ -18,7 +18,6 @@ public:
 protected:
     QRectF m_region;
 
-private:
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
 };

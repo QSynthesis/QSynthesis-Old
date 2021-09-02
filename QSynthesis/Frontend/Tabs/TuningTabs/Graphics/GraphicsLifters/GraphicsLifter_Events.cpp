@@ -13,7 +13,7 @@ void GraphicsLifter::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
     if (m_editor->isPlaying()) {
         return;
     }
-    if (event->buttons() == Qt::LeftButton) {
+    if (event->buttons() & Qt::LeftButton) {
         afterMove(event->scenePos());
     }
 }
@@ -22,10 +22,19 @@ void GraphicsLifter::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     if (m_editor->isPlaying()) {
         return;
     }
-    afterRelease(event->scenePos());
+    if (event->button() == Qt::LeftButton) {
+        afterRelease();
+    }
 }
 
 void GraphicsLifter::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
+}
+
+void GraphicsLifter::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
+    GraphicsLineHandle::hoverLeaveEvent(event);
+    if (m_move) {
+        afterRelease();
+    }
 }
 
 void GraphicsLifter::afterPress() {
@@ -48,7 +57,7 @@ void GraphicsLifter::afterMove(QPointF pos) {
     }
 }
 
-void GraphicsLifter::afterRelease(QPointF pos) {
+void GraphicsLifter::afterRelease() {
     if (m_move) {
         m_editor->endMove(this);
 

@@ -111,22 +111,24 @@ void VibratoLineHandle::setShowLine(bool show) {
 void VibratoLineHandle::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     qDragIn.removeAll();
     if (event->button() == Qt::LeftButton) {
-        linkPress(event->scenePos());
-        emit pressed();
+        afterPress();
     }
 }
 
 void VibratoLineHandle::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
-    if (m_move) {
-        linkMove(event->scenePos());
-        emit moved();
+    if (event->buttons() == Qt::LeftButton) {
+        afterMove(event->pos());
     }
 }
 
 void VibratoLineHandle::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
-    if (m_moving) {
-        linkRelease();
-        emit clicked();
+    afterRelease();
+}
+
+void VibratoLineHandle::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
+    GraphicsLineHandle::hoverLeaveEvent(event);
+    if (m_move) {
+        afterRelease();
     }
 }
 
@@ -138,4 +140,25 @@ void VibratoLineHandle::paint(QPainter *painter, const QStyleOptionGraphicsItem 
     painter->setPen(Qt::NoPen);
     painter->setBrush(m_lineColor);
     painter->drawRect(0, 0, rect().width(), rect().height());
+}
+
+void VibratoLineHandle::afterPress() {
+    emit pressed();
+}
+
+void VibratoLineHandle::afterMove(QPointF pos) {
+    if (!m_move) {
+        linkPress(pos);
+    }
+    if (m_move) {
+        linkMove(pos);
+        emit moved();
+    }
+}
+
+void VibratoLineHandle::afterRelease() {
+    if (m_move) {
+        linkRelease();
+        emit clicked();
+    }
 }

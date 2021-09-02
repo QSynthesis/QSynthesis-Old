@@ -30,6 +30,7 @@ QPointF GraphicsNote::limitAreaT(QPointF p) {
             p.setX(m_prev->x() + m_prev->width());
         }
     } else {
+        QGraphicsItem *item = qDragIn.leftmost();
         if (p.x() < qDragIn.leftmost()->staticPos().x()) {
             if (p.x() >= qDragIn.leftmost()->x()) {
                 if (m_prev && m_prev->staticPos().x() != m_prev->x()) {
