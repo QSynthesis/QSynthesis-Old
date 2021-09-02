@@ -53,6 +53,7 @@ protected:
 #endif
 #ifdef __APPLE__
     QProcess *m_pTerminal;
+    QProcess *e_pTerminal;
 #endif
 
     QTimer *timer;

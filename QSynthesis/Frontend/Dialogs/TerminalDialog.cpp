@@ -99,12 +99,29 @@ bool TerminalDialog::runInCmd() {
     m_pTerminal->start("/bin/bash", {tempPath});
 #endif
 #ifdef __APPLE__
+    qDebug() << workingDir;
     m_pTerminal = new QProcess(this);
-    connect(m_pTerminal, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
+    connect(m_pTerminal,
+            QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            this,
             &TerminalDialog::onProcessFinished);
-
-    m_pTerminal->setWorkingDirectory(workingDir);
-    m_pTerminal->start("/bin/bash", {tempPath});
+    QString cmdStr = QString("   set status to do script \"cd %1 && ./temp.sh && exit\"\n").arg(workingDir);
+    QString script = "tell application \"Terminal\"\n"
+                     "   activate\n"
+                     + cmdStr +
+                     "   repeat until busy of status is false\n"
+                     "       delay 1\n"
+                     "   end repeat\n"
+                     "   tell application \"Terminal\"\n"
+                     "      quit\n"
+                     "   end tell\n"
+                     "end tell\n";
+    QStringList processArguments;
+    processArguments << "-l" << "AppleScript";
+    QString osascript = "/usr/bin/osascript";
+    m_pTerminal->start(osascript, processArguments);
+    m_pTerminal->write(script.toUtf8());
+    m_pTerminal->closeWriteChannel();
 #endif
     return true;
 }
@@ -154,10 +171,12 @@ void TerminalDialog::onProcessFinished(int exitCode, QProcess::ExitStatus exitSt
     onRenderOver();
 #endif
 #ifdef __APPLE__
-    delete m_pTerminal;
-    m_pTerminal = nullptr;
-
-    onRenderOver();
+    qDebug() << exitStatus << exitCode;
+    if (exitStatus == QProcess::ExitStatus::NormalExit) {
+        delete m_pTerminal;
+        m_pTerminal = nullptr;
+        onRenderOver();
+    }
 #endif
 }
 
@@ -196,9 +215,11 @@ bool TerminalDialog::killProcess() {
 #ifdef __APPLE__
     if (m_pTerminal) {
         m_pTerminal->terminate();
-
+        m_pTerminal->close();
         delete m_pTerminal;
         m_pTerminal = nullptr;
+        delete e_pTerminal;
+        e_pTerminal = nullptr;
     }
 #endif
     return 1;
@@ -210,6 +231,22 @@ void TerminalDialog::onRenderOver() {
 }
 
 void TerminalDialog::onCancelClicked() {
+    setResult(-1);
+#ifdef __APPLE__
+    m_pTerminal->terminate();
+    m_pTerminal->close();
+    e_pTerminal = new QProcess(this);
+    QString script = "tell application \"Terminal\"\n"
+                     "   quit\n"
+                     "end tell\n";
+    QStringList processArguments;
+    processArguments << "-l" << "AppleScript";
+    QString osascript = "/usr/bin/osascript";
+    e_pTerminal->start(osascript, processArguments);
+    e_pTerminal->write(script.toUtf8());
+    e_pTerminal->closeWriteChannel();
+    e_pTerminal->waitForFinished();
+#endif
     close();
 }
 

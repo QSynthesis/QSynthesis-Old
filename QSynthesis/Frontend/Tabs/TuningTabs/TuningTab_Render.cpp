@@ -402,9 +402,13 @@ bool TuningTab::renderCore() {
     int code = dlg->exec();
     dlg->deleteLater();
 
-    if (code != 1) {
+    if (code == 0) {
         qDebug() << "[Process]"
                  << "Render exited abnormally";
+        return 0;
+    } else if (code == -1) {
+        qDebug() << "[Process]"
+                 << "Render exited manuallys";
         return 0;
     }
 
