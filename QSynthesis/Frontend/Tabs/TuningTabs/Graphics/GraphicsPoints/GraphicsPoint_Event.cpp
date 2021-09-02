@@ -7,13 +7,11 @@
 void GraphicsPoint::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     qDragIn.filter(m_element); // Deselect all draggers other than point
 
+    afterPress();
     if (event->button() == Qt::RightButton) {
         if (!m_editor->isPlaying() && !(m_move || m_drawing)) {
-            qDragIn.removeAll();
             m_editor->changePointFromCursor(this);
         }
-    } else if (event->button() == Qt::LeftButton) {
-        afterPress();
     }
 }
 
