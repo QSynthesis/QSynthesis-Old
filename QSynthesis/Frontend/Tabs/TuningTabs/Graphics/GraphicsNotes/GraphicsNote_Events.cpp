@@ -208,15 +208,21 @@ void GraphicsNote::autoRelease() {
             qDebug() << "Release mouse from Note";
             this->ungrabMouse();
             setDrawing(false);
+            m_editor->afterDraw(this);
+        } else {
+            // Move
+            m_editor->endMove(this);
         }
 
+        QPointF pos(0, 0);
+
         if (m_stretch) {
-            qDragIn.abandonDrag(this); // Blank
-            qDragIn.abandonInvolve(this);
+            qDragIn.stopDrag(this, pos); // Blank
+            qDragIn.endInvolve(this, pos);
             qDragIn.removeAllT(); // Remove all involved notes
         } else {
-            qDragIn.abandonDrag(this);
-            qDragIn.abandonInvolve(this);
+            qDragIn.stopDrag(this, pos);
+            qDragIn.endInvolve(this, pos);
             qDragIn.removeAllT(); // Remove all involved notes
         }
 
