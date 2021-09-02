@@ -408,7 +408,7 @@ bool TuningTab::renderCore() {
         return 0;
     } else if (code == -1) {
         qDebug() << "[Process]"
-                 << "Render exited manuallys";
+                 << "Render exited manually";
         return 0;
     }
 
