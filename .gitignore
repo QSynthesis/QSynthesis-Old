@@ -33,4 +33,6 @@
 
 build*
 QSynthesis/QSynthesis.pro.user*
-*.DS_Store
+.DS_Store
+*/.DS_Store
+
