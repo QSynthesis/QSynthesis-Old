@@ -113,7 +113,7 @@ void VibratoPlaneHandle::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
 void VibratoPlaneHandle::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     if (m_moving) {
-        linkRelease(event->scenePos());
+        linkRelease();
         emit clicked();
     }
 }

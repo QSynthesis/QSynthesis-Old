@@ -178,12 +178,12 @@ void GraphicsNote::afterRelease(QPointF pos) {
         }
 
         if (m_stretch) {
-            qDragIn.stopDrag(this, pos); // Blank
-            qDragIn.endInvolve(this, pos);
+            qDragIn.stopDrag(this); // Blank
+            qDragIn.endInvolve(this);
             qDragIn.removeAllT(); // Remove all involved notes
         } else {
-            qDragIn.stopDrag(this, pos);
-            qDragIn.endInvolve(this, pos);
+            qDragIn.stopDrag(this);
+            qDragIn.endInvolve(this);
             qDragIn.removeAllT(); // Remove all involved notes
         }
 

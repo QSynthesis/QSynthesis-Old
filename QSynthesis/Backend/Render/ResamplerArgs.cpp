@@ -27,6 +27,7 @@ void ResamplerArgs::clear() {
 
     m_voiceTime = QDateTime();
     m_frqTime = QDateTime();
+    m_mrqTime = QDateTime();
 }
 
 QString ResamplerArgs::inFile() const {
@@ -39,6 +40,7 @@ void ResamplerArgs::setInFile(const QString &inFile) {
     QGenonSettings genon(m_inFile);
     m_voiceTime = GetFileLastModifyTime(inFile);
     m_frqTime = GetFileLastModifyTime(genon.frqFile());
+    m_mrqTime = GetFileLastModifyTime(genon.mrqFile());
 }
 
 QString ResamplerArgs::outFile() const {
@@ -178,7 +180,7 @@ void ResamplerArgs::setGenonSettings(const QGenonSettings &genonSettings, bool u
     m_genonSettings = genonSettings;
 
     if (useFileName) {
-        m_inFile = genonSettings.mFileName;
+        setInFile(genonSettings.mFileName);
     }
 }
 
@@ -245,6 +247,9 @@ bool ResamplerArgs::operator==(const ResamplerArgs &another) const {
         return false;
     }
     if (m_frqTime != another.m_frqTime) {
+        return false;
+    }
+    if (m_mrqTime != another.m_mrqTime) {
         return false;
     }
     return true;

@@ -29,6 +29,8 @@ struct QGenonSettings {
 
     QString frqFile() const;
     bool frqExist() const;
+
+    QString mrqFile() const;
 };
 
 // Fixed Sample Variables

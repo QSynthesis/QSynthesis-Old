@@ -66,12 +66,12 @@ public:
 protected:
     virtual void linkPress(QPointF pos);
     virtual void linkMove(QPointF pos);
-    virtual void linkRelease(QPointF pos);
+    virtual void linkRelease();
     virtual void linkAbandon();
 
     virtual void involvePress(QPointF pos);
     virtual void involveMove(QPointF pos);
-    virtual void involveRelease(QPointF pos);
+    virtual void involveRelease();
     virtual void involveAbandon();
 
     virtual QPointF limitArea(QPointF p);  // Restrict the region when moving

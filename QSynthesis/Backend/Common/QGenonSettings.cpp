@@ -65,6 +65,11 @@ bool QGenonSettings::frqExist() const {
     return isFileExist(frqFile());
 }
 
+QString QGenonSettings::mrqFile() const {
+    QFileInfo info(mFileName);
+    return info.absolutePath() + Slash + "desc.mrq";
+}
+
 QCorrectGenon::QCorrectGenon() {
     PreUtterance = VoiceOverlap = StartPoint = 0;
 }

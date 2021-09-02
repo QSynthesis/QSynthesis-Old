@@ -135,6 +135,8 @@ bool OtoTableTab::selectSample(const QGenonSettings &genon) {
     QString filename = genon.mFileName;
     int sequence = otoSamples.findAuto(filename);
 
+    otoTable->setFocus();
+
     if (sequence >= 0) {
         const QOtoSample &sample = otoSamples.at(sequence);
         int index = sample.indexOf(genon);

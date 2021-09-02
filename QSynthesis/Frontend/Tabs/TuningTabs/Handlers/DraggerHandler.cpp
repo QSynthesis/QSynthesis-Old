@@ -215,26 +215,26 @@ void DraggerHandler::duringDrag(GraphicsDragger *obj, QPointF pos) {
     }
 }
 
-void DraggerHandler::stopDrag(GraphicsDragger *obj, QPointF pos) {
+void DraggerHandler::stopDrag(GraphicsDragger *obj) {
     dragging = false;
     center = nullptr;
 
     switch (obj->element()) {
     case GraphicsDragger::Note: {
         for (auto it = selectedNotes.begin(); it != selectedNotes.end(); ++it) {
-            (*it)->linkRelease(pos);
+            (*it)->linkRelease();
         }
         break;
     }
     case GraphicsDragger::Point: {
         for (auto it = selectedPoints.begin(); it != selectedPoints.end(); ++it) {
-            (*it)->linkRelease(pos);
+            (*it)->linkRelease();
         }
         break;
     }
     case GraphicsDragger::Lifter: {
         for (auto it = selectedHandles.begin(); it != selectedHandles.end(); ++it) {
-            (*it)->linkRelease(pos);
+            (*it)->linkRelease();
         }
         break;
     }
@@ -321,23 +321,23 @@ void DraggerHandler::duringInvolve(GraphicsDragger *obj, QPointF pos) {
     }
 }
 
-void DraggerHandler::endInvolve(GraphicsDragger *obj, QPointF pos) {
+void DraggerHandler::endInvolve(GraphicsDragger *obj) {
     switch (obj->element()) {
     case GraphicsDragger::Note: {
         for (auto it = involvedNotes.begin(); it != involvedNotes.end(); ++it) {
-            (*it)->involveRelease(pos);
+            (*it)->involveRelease();
         }
         break;
     }
     case GraphicsDragger::Point: {
         for (auto it = involvedPoints.begin(); it != involvedPoints.end(); ++it) {
-            (*it)->involveRelease(pos);
+            (*it)->involveRelease();
         }
         break;
     }
     case GraphicsDragger::Lifter: {
         for (auto it = involvedHandles.begin(); it != involvedHandles.end(); ++it) {
-            (*it)->involveRelease(pos);
+            (*it)->involveRelease();
         }
         break;
     }

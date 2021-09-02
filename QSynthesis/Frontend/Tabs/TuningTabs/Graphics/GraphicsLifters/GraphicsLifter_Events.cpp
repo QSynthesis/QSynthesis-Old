@@ -52,8 +52,8 @@ void GraphicsLifter::afterRelease(QPointF pos) {
     if (m_move) {
         m_editor->endMove(this);
 
-        qDragIn.stopDrag(this, pos);
-        qDragIn.endInvolve(this, pos);
+        qDragIn.stopDrag(this);
+        qDragIn.endInvolve(this);
         qDragIn.removeAllT();
     }
 }

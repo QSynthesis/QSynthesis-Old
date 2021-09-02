@@ -27,12 +27,12 @@ public:
 
     void startDrag(GraphicsDragger *obj, QPointF pos);
     void duringDrag(GraphicsDragger *obj, QPointF pos);
-    void stopDrag(GraphicsDragger *obj, QPointF pos);
+    void stopDrag(GraphicsDragger *obj);
     void abandonDrag(GraphicsDragger *obj);
 
     void startInvolve(GraphicsDragger *obj, QPointF pos);
     void duringInvolve(GraphicsDragger *obj, QPointF pos);
-    void endInvolve(GraphicsDragger *obj, QPointF pos);
+    void endInvolve(GraphicsDragger *obj);
     void abandonInvolve(GraphicsDragger *obj);
 
     GraphicsDragger *rightmost(GraphicsDragger::Element element = GraphicsDragger::Note);

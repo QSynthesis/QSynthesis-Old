@@ -125,7 +125,7 @@ void VibratoLineHandle::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
 void VibratoLineHandle::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     if (m_moving) {
-        linkRelease(event->scenePos());
+        linkRelease();
         emit clicked();
     }
 }

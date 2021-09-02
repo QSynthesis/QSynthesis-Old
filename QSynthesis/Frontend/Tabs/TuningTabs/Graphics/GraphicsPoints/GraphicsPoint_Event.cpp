@@ -31,7 +31,7 @@ void GraphicsPoint::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     if (m_editor->isPlaying()) {
         return;
     }
-    afterRelease(event->pos());
+    afterRelease();
 }
 
 void GraphicsPoint::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
@@ -103,7 +103,7 @@ void GraphicsPoint::afterMove(QPointF pos) {
     }
 }
 
-void GraphicsPoint::afterRelease(QPointF pos) {
+void GraphicsPoint::afterRelease() {
     if (m_move || m_drawing) {
         // Release the mouse
         if (m_drawing) {
@@ -117,8 +117,8 @@ void GraphicsPoint::afterRelease(QPointF pos) {
             m_editor->endMove(this);
         }
 
-        qDragIn.stopDrag(this, pos);
-        qDragIn.endInvolve(this, pos);
+        qDragIn.stopDrag(this);
+        qDragIn.endInvolve(this);
         qDragIn.removeAllT(); // Remove all involved notes
     } else {
         m_editor->statusCall();

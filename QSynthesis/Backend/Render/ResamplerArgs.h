@@ -90,6 +90,7 @@ private:
 private:
     QDateTime m_voiceTime;
     QDateTime m_frqTime;
+    QDateTime m_mrqTime;
 };
 
 #endif // RESAMPLERARGS_H

@@ -69,7 +69,7 @@ private:
 public:
     void afterPress();
     void afterMove(QPointF pos);
-    void afterRelease(QPointF pos);
+    void afterRelease();
 
 private:
     QPointF limitArea(QPointF origin) override;

@@ -97,6 +97,9 @@ bool OtoDataArea::locateSample(const QGenonSettings &genon) {
     QString dirname = PathFindUpper(genon.mFileName);
     auto it = TableMap.find(dirname);
     if (it == TableMap.end()) {
+        if (otoTabs->currentWidget()) {
+            otoTabs->currentWidget()->setFocus();
+        }
         qDebug() << "Cannot find sub folder" << dirname;
         return false;
     }

@@ -129,7 +129,7 @@ void GraphicsOtoHandle::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
 void GraphicsOtoHandle::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     if (m_moving) {
-        linkRelease(event->scenePos());
+        linkRelease();
         emit clicked();
     }
 }

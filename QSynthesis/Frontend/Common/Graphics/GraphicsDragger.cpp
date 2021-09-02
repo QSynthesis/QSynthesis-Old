@@ -173,7 +173,7 @@ void GraphicsDragger::linkMove(QPointF pos) {
     }
 }
 
-void GraphicsDragger::linkRelease(QPointF pos) {
+void GraphicsDragger::linkRelease() {
     m_move = false;
     m_moving = false;
 }
@@ -203,7 +203,7 @@ void GraphicsDragger::involveMove(QPointF pos) {
     }
 }
 
-void GraphicsDragger::involveRelease(QPointF pos) {
+void GraphicsDragger::involveRelease() {
     m_involved = false;
 }
 

@@ -57,6 +57,7 @@ void MainWindow::handleTabIndexChanged(int index) {
     }
     setCurrentActions(tab->tabType());
     tab->awake();
+
     reloadTitle(); // Reload Window Title refering to current tab
 }
 
