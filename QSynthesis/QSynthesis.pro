@@ -58,6 +58,7 @@ SOURCES += \
     Frontend/Actions/TuningActionList.cpp \
     Frontend/Actions/VoiceActionList.cpp \
     Frontend/Actions/WelcomeActionList.cpp \
+    Frontend/Common/ColorTheme.cpp \
     Frontend/Common/Graphics/GraphicsDragger.cpp \
     Frontend/Common/Graphics/GraphicsHandle.cpp \
     Frontend/Common/Graphics/GraphicsLineEdit.cpp \
@@ -379,6 +380,7 @@ HEADERS += \
     Frontend/Actions/TuningActionList.h \
     Frontend/Actions/VoiceActionList.h \
     Frontend/Actions/WelcomeActionList.h \
+    Frontend/Common/ColorTheme.h \
     Frontend/Common/Graphics/GraphicsDragger.h \
     Frontend/Common/Graphics/GraphicsHandle.h \
     Frontend/Common/Graphics/GraphicsLineEdit.h \

@@ -36,6 +36,9 @@ QString PrefixMapTab::suffix(int noteNum) const {
 
 void PrefixMapTab::selectTone(int noteNum) {
     int row = convertToneToRow(noteNum);
+    if (row < 0 || row >= mapTable->rowCount()) {
+        return;
+    }
     mapTable->selectRow(row);
     mapTable->setFocus();
 }

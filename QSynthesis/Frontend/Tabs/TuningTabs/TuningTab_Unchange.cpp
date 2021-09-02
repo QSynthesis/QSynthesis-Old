@@ -71,6 +71,8 @@ void TuningTab::configuePrefix() {
     if (!m_ptrs->draggers.selectedNotes.isEmpty()) {
         GraphicsNote *p = m_ptrs->draggers.selectedNotes.front();
         tab->locatePrefix(p->Note.noteNum);
+    } else {
+        tab->locatePrefix(-1);
     }
 }
 
