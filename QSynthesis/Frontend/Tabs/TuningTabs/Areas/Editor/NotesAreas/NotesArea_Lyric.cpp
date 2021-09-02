@@ -7,6 +7,7 @@ void NotesArea::initLyricModules() {
     addItem(m_lyricEdit);
 
     m_lyricEdit->setZValue(lyricEditZIndex);
+    m_lyricEdit->setDefaultTextColor(Qt::black);
 
     m_lyricEdit->installEventFilter(this);
     m_lyricEdit->hide();
