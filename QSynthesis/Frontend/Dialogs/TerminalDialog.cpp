@@ -101,14 +101,13 @@ bool TerminalDialog::runInCmd() {
 #ifdef __APPLE__
     qDebug() << workingDir;
     m_pTerminal = new QProcess(this);
-    connect(m_pTerminal,
-            QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-            this,
+    connect(m_pTerminal, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
             &TerminalDialog::onProcessFinished);
-    QString cmdStr = QString("   set status to do script \"cd %1 && ./temp.sh && exit\"\n").arg(workingDir);
+    QString cmdStr =
+        QString("   set status to do script \"cd %1 && ./temp.sh && exit\"\n").arg(workingDir);
     QString script = "tell application \"Terminal\"\n"
-                     "   activate\n"
-                     + cmdStr +
+                     "   activate\n" +
+                     cmdStr +
                      "   repeat until busy of status is false\n"
                      "       delay 1\n"
                      "   end repeat\n"
@@ -117,7 +116,8 @@ bool TerminalDialog::runInCmd() {
                      "   end tell\n"
                      "end tell\n";
     QStringList processArguments;
-    processArguments << "-l" << "AppleScript";
+    processArguments << "-l"
+                     << "AppleScript";
     QString osascript = "/usr/bin/osascript";
     m_pTerminal->start(osascript, processArguments);
     m_pTerminal->write(script.toUtf8());
@@ -240,7 +240,8 @@ void TerminalDialog::onCancelClicked() {
                      "   quit\n"
                      "end tell\n";
     QStringList processArguments;
-    processArguments << "-l" << "AppleScript";
+    processArguments << "-l"
+                     << "AppleScript";
     QString osascript = "/usr/bin/osascript";
     e_pTerminal->start(osascript, processArguments);
     e_pTerminal->write(script.toUtf8());

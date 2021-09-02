@@ -36,6 +36,9 @@ void MainWindow::handleOpenAliasMenu() {
 }
 
 void MainWindow::handleSwitchTrack() {
+    qDebug() << "[Action]"
+             << "Overview";
+
     CentralTab *tab = currentTab();
     if (tab->tabType() == Qs::Tuning) {
         TuningTab *tab1 = qobject_cast<TuningTab *>(tab);
@@ -44,6 +47,9 @@ void MainWindow::handleSwitchTrack() {
 }
 
 void MainWindow::handleSwitchConfig() {
+    qDebug() << "[Action]"
+             << "Configuration";
+
     CentralTab *tab = currentTab();
     if (tab->tabType() == Qs::Tuning) {
         TuningTab *tab1 = qobject_cast<TuningTab *>(tab);
@@ -52,6 +58,9 @@ void MainWindow::handleSwitchConfig() {
 }
 
 void MainWindow::handleSwitchNote() {
+    qDebug() << "[Action]"
+             << "Note";
+
     CentralTab *tab = currentTab();
     if (tab->tabType() == Qs::Tuning) {
         TuningTab *tab1 = qobject_cast<TuningTab *>(tab);
@@ -60,6 +69,9 @@ void MainWindow::handleSwitchNote() {
 }
 
 void MainWindow::handleSwitchPitch() {
+    qDebug() << "[Action]"
+             << "Pitch";
+
     CentralTab *tab = currentTab();
     if (tab->tabType() == Qs::Tuning) {
         TuningTab *tab1 = qobject_cast<TuningTab *>(tab);
@@ -68,6 +80,9 @@ void MainWindow::handleSwitchPitch() {
 }
 
 void MainWindow::handleSwitchEnvelope() {
+    qDebug() << "[Action]"
+             << "Envelope";
+
     CentralTab *tab = currentTab();
     if (tab->tabType() == Qs::Tuning) {
         TuningTab *tab1 = qobject_cast<TuningTab *>(tab);
@@ -76,6 +91,9 @@ void MainWindow::handleSwitchEnvelope() {
 }
 
 void MainWindow::handleSwitchInt() {
+    qDebug() << "[Action]"
+             << "Intensity";
+
     CentralTab *tab = currentTab();
     if (tab->tabType() == Qs::Tuning) {
         TuningTab *tab1 = qobject_cast<TuningTab *>(tab);
@@ -84,6 +102,9 @@ void MainWindow::handleSwitchInt() {
 }
 
 void MainWindow::handleSwitchMod() {
+    qDebug() << "[Action]"
+             << "Modulation";
+
     CentralTab *tab = currentTab();
     if (tab->tabType() == Qs::Tuning) {
         TuningTab *tab1 = qobject_cast<TuningTab *>(tab);
@@ -92,6 +113,9 @@ void MainWindow::handleSwitchMod() {
 }
 
 void MainWindow::handleSwitchVel() {
+    qDebug() << "[Action]"
+             << "Velocity";
+
     CentralTab *tab = currentTab();
     if (tab->tabType() == Qs::Tuning) {
         TuningTab *tab1 = qobject_cast<TuningTab *>(tab);
