@@ -50,6 +50,7 @@ void GraphicsNote::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
     if (m_stretch) {
         setStretch(false);
     }
+    autoRelease();
 }
 
 void GraphicsNote::keyPressEvent(QKeyEvent *event) {
@@ -197,4 +198,34 @@ void GraphicsNote::afterRelease(QPointF pos) {
     }
 
     qDragIn.stretching = Qs::NoStretch;
+}
+
+void GraphicsNote::autoRelease() {
+    if (m_move || m_drawing) {
+        // Release the mouse
+        if (m_drawing) {
+            // Born
+            qDebug() << "Release mouse from Note";
+            this->ungrabMouse();
+            setDrawing(false);
+        }
+
+        if (m_stretch) {
+            qDragIn.abandonDrag(this); // Blank
+            qDragIn.abandonInvolve(this);
+            qDragIn.removeAllT(); // Remove all involved notes
+        } else {
+            qDragIn.abandonDrag(this);
+            qDragIn.abandonInvolve(this);
+            qDragIn.removeAllT(); // Remove all involved notes
+        }
+
+        // Subsequent Modifications
+        adjustComponents();
+        if (m_next) {
+            m_next->adjustComponents();
+        }
+
+        qDragIn.stretching = Qs::NoStretch;
+    }
 }

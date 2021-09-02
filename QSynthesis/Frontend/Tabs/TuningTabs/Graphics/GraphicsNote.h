@@ -193,6 +193,7 @@ public:
     void afterPress();
     void afterMove(QPointF pos);
     void afterRelease(QPointF pos);
+    void autoRelease();
 
     // Link
 
