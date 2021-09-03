@@ -91,8 +91,8 @@ private:
     QColor m_sectionLineColor;
     QColor m_pitchLineColor;
     QColor m_levelLineColor;
-    QColor m_backLowColor;
-    QColor m_backHighColor;
+    QColor m_backDarkColor;
+    QColor m_backLightColor;
 
 public:
     void saveOperation(NoteOperation *n, QString desc = "");  // Out

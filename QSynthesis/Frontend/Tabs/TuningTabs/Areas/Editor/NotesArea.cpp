@@ -21,8 +21,8 @@ NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *parent)
     m_sectionLineColor = QColor(0xBFBFBF);
     m_pitchLineColor = QColor(0xE6E6E6);
     m_levelLineColor = QColor(0xCCCCCC);
-    m_backLowColor = QColor(0xFFFFFF);
-    m_backHighColor = QColor(0xF2F2F2);
+    m_backDarkColor = QColor(0xF2F2F2);
+    m_backLightColor = QColor(0xFFFFFF);
 
     initLyricModules();
     initSelectModules();
@@ -70,7 +70,7 @@ void NotesArea::updateBackground() {
     painter.translate(0, 0);
 
     for (int i = 0; i < 12; ++i) {
-        painter.setBrush((deep.contains(i % 12)) ? m_backLowColor : m_backHighColor);
+        painter.setBrush((deep.contains(i % 12)) ? m_backDarkColor : m_backLightColor);
         painter.drawRect(QRectF(0, i * curHeight, totalWidth, curHeight));
     }
 

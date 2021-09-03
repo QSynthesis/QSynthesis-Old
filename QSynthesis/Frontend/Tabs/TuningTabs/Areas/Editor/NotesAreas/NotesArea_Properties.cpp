@@ -42,21 +42,21 @@ void NotesArea::setLevelLineColor(const QColor &levelLineColor) {
 }
 
 QColor NotesArea::backLowColor() const {
-    return m_backLowColor;
+    return m_backDarkColor;
 }
 
 void NotesArea::setBackLowColor(const QColor &backLowColor) {
-    m_backLowColor = backLowColor;
+    m_backDarkColor = backLowColor;
     updateBackground();
     emit colorChanged();
 }
 
 QColor NotesArea::backHighColor() const {
-    return m_backHighColor;
+    return m_backLightColor;
 }
 
 void NotesArea::setBackHighColor(const QColor &backHighColor) {
-    m_backHighColor = backHighColor;
+    m_backLightColor = backHighColor;
     updateBackground();
     emit colorChanged();
 }

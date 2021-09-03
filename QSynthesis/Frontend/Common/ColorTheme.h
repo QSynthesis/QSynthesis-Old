@@ -1,9 +1,7 @@
 #ifndef COLORTHEME_H
 #define COLORTHEME_H
 
-
-class ColorTheme
-{
+class ColorTheme {
 public:
     ColorTheme();
 };
