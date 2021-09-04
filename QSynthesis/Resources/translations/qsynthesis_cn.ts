@@ -4,27 +4,28 @@
 <context>
     <name>BackstageDialog</name>
     <message>
-        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="40"/>
+        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="46"/>
         <source>Rendering...</source>
         <translation type="unfinished">正在渲染...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="41"/>
+        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="47"/>
+        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="260"/>
         <source>Loading...</source>
         <translation type="unfinished">加载中...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="42"/>
+        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="48"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="225"/>
+        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="244"/>
         <source>Resample Process: </source>
         <translation type="unfinished">重采样进度：</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="229"/>
+        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="250"/>
         <source>Concatenate Process: </source>
         <translation type="unfinished">拼接进度：</translation>
     </message>
@@ -213,6 +214,61 @@
         <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForm.cpp" line="20"/>
         <source>Envelope</source>
         <translation type="unfinished">音量包络</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="7"/>
+        <source>Quantization</source>
+        <translation type="unfinished">量化</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="9"/>
+        <source>Quarter</source>
+        <translation type="unfinished">四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="10"/>
+        <source>1/2 Quarter</source>
+        <translation type="unfinished">1/2 个四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="11"/>
+        <source>1/4 Quarter</source>
+        <translation type="unfinished">1/4 个四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="12"/>
+        <source>1/6 Quarter</source>
+        <translation type="unfinished">1/6 个四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="13"/>
+        <source>1/8 Quarter</source>
+        <translation type="unfinished">1/8 个四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="14"/>
+        <source>1/12 Quarter</source>
+        <translation type="unfinished">1/12 个四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="15"/>
+        <source>1/16 Quarter</source>
+        <translation type="unfinished">1/16 个四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="16"/>
+        <source>1/24 Quarter</source>
+        <translation type="unfinished">1/24 个四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="17"/>
+        <source>1/32 Quarter</source>
+        <translation type="unfinished">1/32 个四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="18"/>
+        <source>None</source>
+        <translation type="unfinished">无</translation>
     </message>
 </context>
 <context>
@@ -2363,17 +2419,17 @@
         <translation type="unfinished">无法创建批处理文件！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="391"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="402"/>
         <source>Voice database is not available.</source>
         <translation type="unfinished">音源目录不可用。</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="395"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="406"/>
         <source>Wavtool is not available.</source>
         <translation type="unfinished">合成器不可用。</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="399"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="410"/>
         <source>Resampler is not available.</source>
         <translation type="unfinished">重采样器不可用。</translation>
     </message>

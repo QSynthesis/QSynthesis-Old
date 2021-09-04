@@ -27,6 +27,7 @@ public:
 private:
     SwitchButton *btnNote, *btnPitch, *btnEnvelope;
     SwitchButtonGroup *btnsGroup;
+    VectorButton *btnMenu;
 
     PlayButtonGroup *btnPlays;
     EnvButtonGroup *btnEases;
@@ -34,8 +35,12 @@ private:
     EditorInterface *content;
     TuningGroup *m_ptrs;
 
+    QMenu *m_menu;
+
 public:
     void updatePlayStatus(bool playing);
+
+    void setLengthUnit(int n);
 
 private:
     void handleSwitchChanged();
@@ -48,6 +53,19 @@ private:
     void onEnvP2P3();
     void onEnvP1P4();
     void onEnvReset();
+
+    void handleMenuBtnClicked();
+
+    void handleFullAdsorb();
+    void handleHalfAdsorb();
+    void handleQuarterAdsorb();
+    void handleSixthAdsorb();
+    void handleEighthAdsorb();
+    void handleTwelfthAdsorb();
+    void handleSixteenthAdsorb();
+    void handleTwentyForthAdsorb();
+    void handleThirtySecondAdsorb();
+    void handleNoneAdsorb();
 
 signals:
 };

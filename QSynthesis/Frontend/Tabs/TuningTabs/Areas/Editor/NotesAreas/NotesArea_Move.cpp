@@ -164,7 +164,7 @@ void NotesArea::refreshMove(GraphicsNote *p) {
 void NotesArea::endMove(GraphicsNote *p) {
     if (qDragOut.stretching) {
         int index = NotesList.indexOf(p);
-        int length = convertWidthToLength(p->width());
+        int length = p->lengthRef();
         int length2;
 
         // New Operation
@@ -184,7 +184,7 @@ void NotesArea::endMove(GraphicsNote *p) {
             pNext = NotesList.at(index + 1);
 
             if (pNext->isVisible()) {
-                length2 = convertWidthToLength(pNext->width());
+                length2 = p->Note.length + pNext->Note.length - length;
                 indexs.append(index + 1);
                 orgs.append(pNext->Note.length);
                 news.append(length2);
@@ -278,7 +278,7 @@ void NotesArea::endMove(GraphicsNote *p) {
 
 void NotesArea::afterDraw(GraphicsNote *p) {
     int index = NotesList.indexOf(p);
-    int length = convertWidthToLength(p->width());
+    int length = p->lengthRef();
 
     p->Note.length = length;
 

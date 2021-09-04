@@ -2,6 +2,8 @@
 #include "../../TuningGroup.h"
 #include "../GraphicsNote.h"
 
+#include <cmath>
+
 QPointF GraphicsNote::limitArea(QPointF p) {
     // Adsorb to standard pitch
     int h = m_editor->ptrs()->currentHeight;
@@ -30,7 +32,6 @@ QPointF GraphicsNote::limitAreaT(QPointF p) {
             p.setX(m_prev->x() + m_prev->width());
         }
     } else {
-        QGraphicsItem *item = qDragIn.leftmost();
         if (p.x() < qDragIn.leftmost()->staticPos().x()) {
             if (p.x() >= qDragIn.leftmost()->x()) {
                 if (m_prev && m_prev->staticPos().x() != m_prev->x()) {
@@ -56,26 +57,36 @@ QPointF GraphicsNote::limitAreaT(QPointF p) {
 
 QSizeF GraphicsNote::limitSize(QSizeF s) {
     int curWidth = m_editor->ptrs()->currentWidth;
-    int curAdsorb = m_editor->ptrs()->currentAdsorb;
+    int curAdsorb = m_editor->ptrs()->currentAdsorb / 4;
 
     double minimum = double(curWidth) / 32;
+    int minimunTick = 15;
+
     s.setHeight(height());
 
     if (curAdsorb != 0) {
-        double width32 = curWidth / curAdsorb;
-        int toW = int(s.width() / width32 + 0.5) * width32;
+        double width32 = double(curWidth) / curAdsorb;
+        int ratio = round(s.width() / width32);
+
+        double toW = width32 * ratio;
+        int toTick = 480 / curAdsorb * ratio;
 
         s.setWidth(toW);
+        m_lengthRef = toTick;
+    } else {
+        m_lengthRef = s.width() / curWidth * 480;
     }
 
     if (s.width() < minimum) {
         s.setWidth(minimum);
+        m_lengthRef = minimunTick;
     }
 
     // Prevent to cover the next of next note
     if (qDragIn.stretching == Qs::RelativeStretch && m_next) {
         if (s.width() + x() > m_next->width() + m_next->x()) {
             s.setWidth(m_next->width() + m_next->x() - x());
+            m_lengthRef = Note.length + m_next->Note.length;
         }
     }
 

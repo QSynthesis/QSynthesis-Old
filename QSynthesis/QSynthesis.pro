@@ -143,6 +143,7 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/Areas/Tracks/HeadsAreas/HeadsArea_Reload.cpp \
     Frontend/Tabs/TuningTabs/Forms/BaseForm.cpp \
     Frontend/Tabs/TuningTabs/Forms/EditorForm.cpp \
+    Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp \
     Frontend/Tabs/TuningTabs/Forms/ParamsForm.cpp \
     Frontend/Tabs/TuningTabs/Forms/TracksForm.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsLifter.cpp \

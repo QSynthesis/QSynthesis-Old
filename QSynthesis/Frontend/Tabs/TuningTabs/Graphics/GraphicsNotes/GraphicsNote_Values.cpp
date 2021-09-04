@@ -63,6 +63,10 @@ void GraphicsNote::setTick(int tick) {
     setToolTip(QString::number(m_time / 1000) + "s");
 }
 
+int GraphicsNote::lengthRef() const {
+    return m_lengthRef;
+}
+
 double GraphicsNote::tempo() const {
     return m_tempo;
 }

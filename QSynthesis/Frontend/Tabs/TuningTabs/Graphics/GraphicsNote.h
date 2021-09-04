@@ -105,6 +105,8 @@ public:
     int tick() const;
     void setTick(int tick);
 
+    int lengthRef() const;
+
     double tempo() const;
     void setTempo(double tempo);
 
@@ -167,6 +169,8 @@ private:
     QCorrectGenon m_correctGenon;
 
     int m_tick;
+    int m_lengthRef;
+
     double m_time; // Time Cache
     double m_tempo;
 

@@ -366,7 +366,7 @@ void TuningTab::renderBefore() {
         aFlags += globalFlags;
         aFlags = UtaTranslator::fixFlags(aFlags);
 
-        res.setFlags(aFlags); // Add Global Flags
+        res.setFlags(aFlags);          // Add Global Flags
         wav.setOutFile(tempAudioName); // Set Temp Wav
 
         res.setOutFile(cacheDirPath + Slash + res.outFile());
@@ -425,10 +425,10 @@ bool TuningTab::renderCore() {
     setPlaying(false);
 
     // Open Dialog And Wait
-    // TerminalDialog *dlg = new TerminalDialog(workingDir(), this);
-    BackstageDialog *dlg = new BackstageDialog(workingDir(), this);
-    dlg->setThreads(1);
-    dlg->setArgs(currentRenderArgs);
+    TerminalDialog *dlg = new TerminalDialog(workingDir(), this);
+    //    BackstageDialog *dlg = new BackstageDialog(workingDir(), this);
+    //    dlg->setThreads(1);
+    //    dlg->setArgs(currentRenderArgs);
 
     int code = dlg->exec();
     dlg->deleteLater();

@@ -27,6 +27,11 @@ int BackstageDialog::exec() {
         return 1;
     }
 
+    QDir cacheDir(PathFindUpper(m_args.front().resamplerArgs.outFile()));
+    if (!cacheDir.exists()) {
+        cacheDir.mkpath(cacheDir.path());
+    }
+
     prepareResampling();
 
     return BaseDialog::exec();
@@ -113,6 +118,8 @@ void BackstageDialog::prepareResampling() {
     m_resampleCount = 0;
     m_status = Resampling;
 
+    updateProcessCaption();
+
     for (auto it = m_threads.begin(); it != m_threads.end(); ++it) {
         QThread *thread = it.key();
         thread->start();
@@ -139,6 +146,8 @@ void BackstageDialog::prepareConcatenating() {
 
     m_concatenateCount = 0;
     m_status = Concatenating;
+
+    updateProcessCaption();
 
     for (auto it = m_threads.begin(); it != m_threads.end(); ++it) {
         QThread *thread = it.key();

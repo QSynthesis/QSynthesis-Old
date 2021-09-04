@@ -27,6 +27,8 @@ void GraphicsNote::init() {
     m_tick = 0;
     m_tempo = DEFAULT_VALUE_TEMPO;
 
+    m_lengthRef = 0;
+
     m_handler = new NoteHandler(this, m_editor);
     m_curves = new Mode2Handler(this, m_editor);
     m_envelope = new EnvelopeHandler(this, m_editor);

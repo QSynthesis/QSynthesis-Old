@@ -31,12 +31,19 @@ EditorForm::EditorForm(TuningTab *parent) : BaseForm(parent) {
     btnPlays = new PlayButtonGroup(this);
     btnEases = new EnvButtonGroup(this);
 
+    btnMenu = new VectorButton(true, QSizeF(2, 2), this);
+    btnMenu->setIcons(":/images/NormalMenuBtn.svg");
+    btnMenu->setFixedSize(20, 20);
+    connect(btnMenu, &VectorButton::clicked, this, &EditorForm::handleMenuBtnClicked);
+
     titleBar()->addItem(btnNote, false, false);
     titleBar()->addItem(btnPitch, false, false);
     titleBar()->addItem(btnEnvelope, false, false);
 
-    titleBar()->addItem(btnPlays, false, true);
-    titleBar()->addItem(btnEases, false, true);
+    titleBar()->addItem(btnPlays, false);
+    titleBar()->addItem(btnEases, false);
+
+    titleBar()->addItem(btnMenu, true);
 
     connect(btnsGroup, &SwitchButtonGroup::oneDoubleClicked, this, &BaseForm::reverseFold);
     connect(btnsGroup, &SwitchButtonGroup::switched, this, &EditorForm::handleSwitchChanged);
@@ -49,6 +56,8 @@ EditorForm::EditorForm(TuningTab *parent) : BaseForm(parent) {
     connect(btnEases, &EnvButtonGroup::p2p3, this, &EditorForm::onEnvP2P3);
     connect(btnEases, &EnvButtonGroup::p1p4, this, &EditorForm::onEnvP1P4);
     connect(btnEases, &EnvButtonGroup::reset, this, &EditorForm::onEnvReset);
+
+    m_menu = new QMenu(this);
 
     // Pointers
     m_ptrs->editorContent = content;
