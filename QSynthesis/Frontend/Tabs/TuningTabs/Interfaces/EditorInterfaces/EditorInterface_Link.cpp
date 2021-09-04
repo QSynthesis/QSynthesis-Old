@@ -30,8 +30,8 @@ void EditorInterface::zoomHorizontally(int delta) {
     if (toW < 12) {
         toW = 12;
     }
-    if (toW > 240) {
-        toW = 240;
+    if (toW > 480) {
+        toW = 480;
     }
 
     int fromAbs = absPos.x() - (relativePos.x() - fromX);

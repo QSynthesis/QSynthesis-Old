@@ -6,7 +6,7 @@
 #include "TuningGroup.h"
 #include "mainwindow.h"
 
-#include "../../Dialogs/ScriptPluginDialog.h"
+#include "../../Dialogs/BackstageDialog.h"
 #include "../../Dialogs/TerminalDialog.h"
 #include "Render/RenderUtils/UtaTranslator.h"
 
@@ -71,8 +71,9 @@ bool TuningTab::renderSelection() {
     int i;
     int count = args.size();
 
+    currentRenderArgs.clear();
+
     for (i = 0; i < count; ++i) {
-        QString &path = args[i].resamplerPath;
         ResamplerArgs &res = args[i].resamplerArgs;
         WavtoolArgs &wav = args[i].wavtoolArgs;
 
@@ -86,7 +87,11 @@ bool TuningTab::renderSelection() {
         res.setFlags(aFlags);          // Add Global Flags
         wav.setOutFile(tempAudioName); // Set Temp Wav
 
-        path = resamplerPath; // Set Resampler Path
+        res.setOutFile(cacheDirPath + Slash + res.outFile());
+        wav.setInFile(cacheDirPath + Slash + wav.inFile());
+
+        args[i].resamplerPath = resamplerPath; // Set Resampler Path
+        args[i].wavtoolPath = wavtoolPath;
 
         if (wav.isRest()) {
             fs << "@\"%tool%\" \"%output%\" \"%oto%\\R.wav\" 0";
@@ -136,6 +141,8 @@ bool TuningTab::renderSelection() {
             savedRenderArgs[res.sequence()] = args.at(i);
             RemoveFilesWithPrefix(cacheDirPath, QString::number(res.sequence()));
         }
+
+        currentRenderArgs.append(args.at(i));
     }
 
     fs << Qt::endl;
@@ -216,8 +223,9 @@ bool TuningTab::renderSelection() {
 
     int count = args.size();
 
+    currentRenderArgs.clear();
+
     for (i = 0; i < count; ++i) {
-        QString &path = args[i].resamplerPath;
         ResamplerArgs &res = args[i].resamplerArgs;
         WavtoolArgs &wav = args[i].wavtoolArgs;
 
@@ -231,7 +239,11 @@ bool TuningTab::renderSelection() {
         res.setFlags(aFlags);          // Add Global Flags
         wav.setOutFile(tempAudioName); // Set Temp Wav
 
-        path = resamplerPath; // Set Resampler Path
+        res.setOutFile(cacheDirPath + Slash + res.outFile());
+        wav.setInFile(cacheDirPath + Slash + wav.inFile());
+
+        args[i].resamplerPath = resamplerPath; // Set Resampler Path
+        args[i].wavtoolPath = wavtoolPath;
 
         if (wav.isRest()) {
             fs << "\"${tool}\" \"${output}\" \"${oto}/R.wav\" 0";
@@ -281,6 +293,8 @@ bool TuningTab::renderSelection() {
             savedRenderArgs[res.sequence()] = args.at(i);
             RemoveFilesWithPrefix(cacheDirPath, QString::number(res.sequence()));
         }
+
+        currentRenderArgs.append(args.at(i));
     }
 
     fs << Qt::endl;
@@ -332,18 +346,31 @@ bool TuningTab::renderSelection() {
 }
 
 void TuningTab::renderBefore() {
+
     QList<RenderArgs> args = m_ptrs->notesArea->allRenderArgs();
+    QString wavtool = projectInfo->wavtool();
     QString resampler = m_ptrs->tracksContent->defaultResampler();
     QString globalFlags = m_ptrs->tracksContent->defaultFlags();
 
+    QString cacheDirPath = defaultCacheDir();
+    QString tempAudioName = FILE_NAME_TEMP_AUDIO;
+
     for (int i = 0; i < args.size(); ++i) {
         ResamplerArgs &res = args[i].resamplerArgs;
+        WavtoolArgs &wav = args[i].wavtoolArgs;
+
+        args[i].wavtoolPath = wavtool;
         args[i].resamplerPath = resampler;
 
         QString aFlags = res.flags();
         aFlags += globalFlags;
         aFlags = UtaTranslator::fixFlags(aFlags);
+
         res.setFlags(aFlags); // Add Global Flags
+        wav.setOutFile(tempAudioName); // Set Temp Wav
+
+        res.setOutFile(cacheDirPath + Slash + res.outFile());
+        wav.setInFile(cacheDirPath + Slash + wav.inFile());
 
         savedRenderArgs.insert(res.sequence(), args.at(i));
     }
@@ -398,7 +425,11 @@ bool TuningTab::renderCore() {
     setPlaying(false);
 
     // Open Dialog And Wait
-    TerminalDialog *dlg = new TerminalDialog(workingDir(), this);
+    // TerminalDialog *dlg = new TerminalDialog(workingDir(), this);
+    BackstageDialog *dlg = new BackstageDialog(workingDir(), this);
+    dlg->setThreads(1);
+    dlg->setArgs(currentRenderArgs);
+
     int code = dlg->exec();
     dlg->deleteLater();
 

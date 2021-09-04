@@ -198,6 +198,8 @@ protected:
     // Render
 private:
     QMap<int, RenderArgs> savedRenderArgs;
+    QList<RenderArgs> currentRenderArgs;
+
     QString m_workingDir;
 
 private:

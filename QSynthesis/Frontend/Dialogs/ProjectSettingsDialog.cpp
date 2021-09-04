@@ -11,12 +11,10 @@ ProjectSettingsDialog::~ProjectSettingsDialog() {
 }
 
 int ProjectSettingsDialog::exec() {
-    return QDialog::exec();
+    return BaseDialog::exec();
 }
 
 void ProjectSettingsDialog::init() {
-    setWindowFlags(Qt::WindowCloseButtonHint);
-
     setWindowTitle(tr("Project Settings"));
     setFixedSize(720, 350);
 
@@ -113,8 +111,4 @@ void ProjectSettingsDialog::onBrowseBtnClicked() {
         ccWavtool->Combo()->setCurrentText(
             QDir::toNativeSeparators(PathFindFileName(path, AppPath)));
     }
-}
-
-void ProjectSettingsDialog::closeEvent(QCloseEvent *event) {
-    event->accept();
 }

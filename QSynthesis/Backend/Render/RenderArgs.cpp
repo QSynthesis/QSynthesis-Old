@@ -3,13 +3,13 @@
 RenderArgs::RenderArgs() {
 }
 
-RenderArgs::RenderArgs(const ResamplerArgs &res, const WavtoolArgs &wav, const QString &path) {
-    resamplerPath = path;
+RenderArgs::RenderArgs(const ResamplerArgs &res, const WavtoolArgs &wav) {
     resamplerArgs = res;
     wavtoolArgs = wav;
 }
 
 void RenderArgs::clear() {
+    wavtoolPath.clear();
     resamplerPath.clear();
     resamplerArgs.clear();
     wavtoolArgs.clear();

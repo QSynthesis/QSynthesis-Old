@@ -15,7 +15,7 @@ ScriptPluginDialog::~ScriptPluginDialog() {
 int ScriptPluginDialog::exec() {
     if (runInCmd()) {
         setResult(0);
-        return QDialog::exec();
+        return BaseDialog::exec();
     } else {
         return -1;
     }
@@ -23,8 +23,6 @@ int ScriptPluginDialog::exec() {
 
 void ScriptPluginDialog::init() {
     // 窗口初始化
-    setWindowFlags(Qt::WindowCloseButtonHint);
-
     setWindowTitle(MainTitle);
     setFixedSize(420, 140);
 
@@ -160,8 +158,4 @@ void ScriptPluginDialog::onProcessFinished(int exitCode, QProcess::ExitStatus ex
 
 void ScriptPluginDialog::onCancelClicked() {
     close();
-}
-
-void ScriptPluginDialog::closeEvent(QCloseEvent *event) {
-    event->accept();
 }

@@ -8,6 +8,9 @@ class BaseDialog : public QDialog {
 public:
     explicit BaseDialog(QWidget *parent = nullptr);
     virtual ~BaseDialog();
+
+protected:
+    void closeEvent(QCloseEvent *event) override;
 };
 
 #endif // BASEDIALOG_H

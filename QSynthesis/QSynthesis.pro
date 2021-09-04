@@ -80,6 +80,10 @@ SOURCES += \
     Frontend/Controls/TextControl.cpp \
     Frontend/Customs/LinearScrollArea.cpp \
     Frontend/Customs/TopComboBox.cpp \
+    Frontend/Dialogs/BackstageDialog.cpp \
+    Frontend/Dialogs/BackstageDialogs/BaseWork.cpp \
+    Frontend/Dialogs/BackstageDialogs/ConcatenateWork.cpp \
+    Frontend/Dialogs/BackstageDialogs/ResampleWork.cpp \
     Frontend/Dialogs/BaseDialog.cpp \
     Frontend/Dialogs/ExecutePluginDialog.cpp \
     Frontend/Dialogs/InputDialog.cpp \
@@ -402,6 +406,10 @@ HEADERS += \
     Frontend/Controls/TextControl.h \
     Frontend/Customs/LinearScrollArea.h \
     Frontend/Customs/TopComboBox.h \
+    Frontend/Dialogs/BackstageDialog.h \
+    Frontend/Dialogs/BackstageDialogs/BaseWork.h \
+    Frontend/Dialogs/BackstageDialogs/ConcatenateWork.h \
+    Frontend/Dialogs/BackstageDialogs/ResampleWork.h \
     Frontend/Dialogs/BaseDialog.h \
     Frontend/Dialogs/ExecutePluginDialog.h \
     Frontend/Dialogs/InputDialog.h \

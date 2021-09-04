@@ -12,13 +12,11 @@ NotePropertiesDialog::~NotePropertiesDialog() {
 
 int NotePropertiesDialog::exec() {
     setResult(0);
-    return QDialog::exec();
+    return BaseDialog::exec();
 }
 
 void NotePropertiesDialog::init() {
     // 窗口初始化
-    setWindowFlags(Qt::WindowCloseButtonHint);
-
     setWindowTitle(tr("Note Properties"));
     setFixedSize(450, 600);
 
@@ -133,9 +131,6 @@ void NotePropertiesDialog::onOKClicked() {
 
 void NotePropertiesDialog::onCancelClicked() {
     close();
-}
-void NotePropertiesDialog::closeEvent(QCloseEvent *event) {
-    event->accept();
 }
 
 void NotePropertiesDialog::SetCurrentValues() {

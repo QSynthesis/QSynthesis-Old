@@ -43,8 +43,6 @@ private:
 
     void SetCurrentValues();
     void SaveCurrentValues();
-
-    void closeEvent(QCloseEvent *event) override;
 };
 
 #endif // NOTEPROPERTIESDIALOG_H

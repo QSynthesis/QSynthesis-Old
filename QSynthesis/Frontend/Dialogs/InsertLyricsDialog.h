@@ -40,8 +40,6 @@ private:
     void onOKClicked();
     void onCancelClicked();
 
-    void closeEvent(QCloseEvent *event) override; // The parent function changes result
-
 private:
     static int findNextQuote(const QString &s, int n);
 

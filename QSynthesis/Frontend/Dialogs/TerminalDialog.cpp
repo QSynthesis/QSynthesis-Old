@@ -2,12 +2,12 @@
 #include "mainwindow.h"
 
 TerminalDialog::TerminalDialog(QString dir, QWidget *parent)
-    : BaseDialog(parent), workingDir(dir), batchFile(FILE_NAME_TEMP_BATCH) {
+    : BaseDialog(parent), m_workingDir(dir), m_batchFile(FILE_NAME_TEMP_BATCH) {
     init();
 }
 
 TerminalDialog::TerminalDialog(QString dir, QString temp, QWidget *parent)
-    : BaseDialog(parent), workingDir(dir), batchFile(temp) {
+    : BaseDialog(parent), m_workingDir(dir), m_batchFile(temp) {
     init();
 }
 
@@ -19,7 +19,7 @@ TerminalDialog::~TerminalDialog() {
 int TerminalDialog::exec() {
     if (runInCmd()) {
         setResult(0);
-        return QDialog::exec();
+        return BaseDialog::exec();
     } else {
         return -1;
     }
@@ -27,8 +27,6 @@ int TerminalDialog::exec() {
 
 void TerminalDialog::init() {
     // 窗口初始化
-    setWindowFlags(Qt::WindowCloseButtonHint);
-
     setWindowTitle(MainTitle);
     setFixedSize(420, 140);
 
@@ -60,8 +58,8 @@ void TerminalDialog::init() {
 }
 
 bool TerminalDialog::runInCmd() {
-    QString tempPath = QDir::toNativeSeparators(workingDir + Slash + batchFile);
-    QString workingDir = QDir::toNativeSeparators(this->workingDir);
+    QString tempPath = QDir::toNativeSeparators(m_workingDir + Slash + m_batchFile);
+    QString workingDir = QDir::toNativeSeparators(m_workingDir);
 
     std::wstring ws_bat = tempPath.toStdWString();
     std::wstring ws_dir = workingDir.toStdWString();
@@ -133,20 +131,20 @@ bool TerminalDialog::runInCmd() {
     return true;
 }
 
-QString TerminalDialog::getWorkingDir() const {
-    return workingDir;
+QString TerminalDialog::workingDir() const {
+    return m_workingDir;
 }
 
 void TerminalDialog::setWorkingDir(const QString &value) {
-    workingDir = value;
+    m_workingDir = value;
 }
 
-QString TerminalDialog::getBatchFile() const {
-    return batchFile;
+QString TerminalDialog::batchFile() const {
+    return m_batchFile;
 }
 
 void TerminalDialog::setBatchFile(const QString &value) {
-    batchFile = value;
+    m_batchFile = value;
 }
 
 void TerminalDialog::onTimer() {

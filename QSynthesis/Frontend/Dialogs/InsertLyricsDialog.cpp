@@ -11,7 +11,7 @@ InsertLyricsDialog::~InsertLyricsDialog() {
 
 int InsertLyricsDialog::exec() {
     setResult(0);
-    return QDialog::exec();
+    return BaseDialog::exec();
 }
 
 bool InsertLyricsDialog::ignoreRest() const {
@@ -27,8 +27,6 @@ bool InsertLyricsDialog::separateIntoChar() const {
 }
 
 void InsertLyricsDialog::init() {
-    setWindowFlags(Qt::WindowCloseButtonHint);
-
     setWindowTitle(tr("Insert Lyrics"));
     setFixedSize(450, 350);
 
@@ -119,10 +117,6 @@ void InsertLyricsDialog::onOKClicked() {
 
 void InsertLyricsDialog::onCancelClicked() {
     close();
-}
-
-void InsertLyricsDialog::closeEvent(QCloseEvent *event) {
-    event->accept();
 }
 
 int InsertLyricsDialog::findNextQuote(const QString &s, int n) {

@@ -12,12 +12,10 @@ SelectsDialog::~SelectsDialog() {
 
 int SelectsDialog::exec() {
     setResult(0);
-    return QDialog::exec();
+    return BaseDialog::exec();
 }
 
 void SelectsDialog::init() {
-    setWindowFlags(Qt::WindowCloseButtonHint);
-
     setWindowTitle(m_title);
 
     // 添加标签和按钮
@@ -93,8 +91,4 @@ void SelectsDialog::onOKClicked() {
 
 void SelectsDialog::onCancelClicked() {
     close();
-}
-
-void SelectsDialog::closeEvent(QCloseEvent *event) {
-    event->accept();
 }

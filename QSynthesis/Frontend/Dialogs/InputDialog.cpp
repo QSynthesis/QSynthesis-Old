@@ -11,12 +11,10 @@ InputDialog::~InputDialog() {
 
 int InputDialog::exec() {
     setResult(0);
-    return QDialog::exec();
+    return BaseDialog::exec();
 }
 
 void InputDialog::init() {
-    setWindowFlags(Qt::WindowCloseButtonHint);
-
     setWindowTitle(m_title);
     setFixedSize(450, 200);
 
@@ -64,8 +62,4 @@ void InputDialog::onOKClicked() {
 
 void InputDialog::onCancelClicked() {
     close();
-}
-
-void InputDialog::closeEvent(QCloseEvent *event) {
-    event->accept();
 }

@@ -40,7 +40,6 @@ private:
 
     void onOKClicked();
     void onCancelClicked();
-    void closeEvent(QCloseEvent *event) override;
 };
 
 #endif // SELECTSDIALOG_H

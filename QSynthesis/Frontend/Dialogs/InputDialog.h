@@ -35,8 +35,6 @@ private:
 
     void onOKClicked();
     void onCancelClicked();
-
-    void closeEvent(QCloseEvent *event) override;
 };
 
 #endif // INPUTDIALOG_H

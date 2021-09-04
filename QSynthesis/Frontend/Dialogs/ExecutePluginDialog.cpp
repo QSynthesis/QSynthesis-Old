@@ -15,7 +15,7 @@ ExecutePluginDialog::~ExecutePluginDialog() {
 int ExecutePluginDialog::exec() {
     if (runInCmd()) {
         setResult(0);
-        return QDialog::exec();
+        return BaseDialog::exec();
     } else {
         return -1;
     }
@@ -23,8 +23,6 @@ int ExecutePluginDialog::exec() {
 
 void ExecutePluginDialog::init() {
     // 窗口初始化
-    setWindowFlags(Qt::WindowCloseButtonHint);
-
     setWindowTitle(MainTitle);
     setFixedSize(420, 140);
 
@@ -159,8 +157,4 @@ void ExecutePluginDialog::onProcessFinished(int exitCode, QProcess::ExitStatus e
 
 void ExecutePluginDialog::onCancelClicked() {
     close();
-}
-
-void ExecutePluginDialog::closeEvent(QCloseEvent *event) {
-    event->accept();
 }

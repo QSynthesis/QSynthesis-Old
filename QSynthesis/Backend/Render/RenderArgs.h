@@ -7,8 +7,9 @@
 struct RenderArgs {
 public:
     RenderArgs();
-    RenderArgs(const ResamplerArgs &res, const WavtoolArgs &wav, const QString &path = "");
+    RenderArgs(const ResamplerArgs &res, const WavtoolArgs &wav);
 
+    QString wavtoolPath;
     QString resamplerPath;
 
     ResamplerArgs resamplerArgs;

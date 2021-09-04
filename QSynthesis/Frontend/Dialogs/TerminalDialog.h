@@ -32,15 +32,15 @@ public:
 
     bool runInCmd();
 
-    QString getWorkingDir() const;
+    QString workingDir() const;
     void setWorkingDir(const QString &value);
 
-    QString getBatchFile() const;
+    QString batchFile() const;
     void setBatchFile(const QString &value);
 
 protected:
-    QString workingDir;
-    QString batchFile;
+    QString m_workingDir;
+    QString m_batchFile;
 
     QPushButton *btnCancel;
     QLabel *lbCaption;

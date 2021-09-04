@@ -60,7 +60,6 @@ private:
     void onProcessFinished(int exitCode, QProcess::ExitStatus exitStatus);
 
     void onCancelClicked();
-    void closeEvent(QCloseEvent *event) override;
 };
 
 #endif // EXECUTEPLUGINDIALOG_H

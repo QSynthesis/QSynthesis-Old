@@ -38,8 +38,6 @@ private:
 
     void onClearBtnClicked();
     void onBrowseBtnClicked();
-
-    void closeEvent(QCloseEvent *event) override;
 };
 
 #endif // PROJECTSETTINGSDIALOG_H
