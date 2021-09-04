@@ -22,6 +22,7 @@ protected:
 signals:
     void started();
     void finished();
+    void crashed();
 };
 
 #endif // BASEWORK_H

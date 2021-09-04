@@ -425,10 +425,10 @@ bool TuningTab::renderCore() {
     setPlaying(false);
 
     // Open Dialog And Wait
-    TerminalDialog *dlg = new TerminalDialog(workingDir(), this);
-    //    BackstageDialog *dlg = new BackstageDialog(workingDir(), this);
-    //    dlg->setThreads(1);
-    //    dlg->setArgs(currentRenderArgs);
+    //    TerminalDialog *dlg = new TerminalDialog(workingDir(), this);
+    BackstageDialog *dlg = new BackstageDialog(workingDir(), this);
+    dlg->setThreads(1);
+    dlg->setArgs(currentRenderArgs);
 
     int code = dlg->exec();
     dlg->deleteLater();

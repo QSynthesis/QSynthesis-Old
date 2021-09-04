@@ -5,6 +5,8 @@
 
 DraggerHandler::DraggerHandler() {
     stretching = Qs::NoStretch;
+    dragging = false;
+    center = nullptr;
 }
 
 DraggerHandler::~DraggerHandler() {

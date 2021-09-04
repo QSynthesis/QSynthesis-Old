@@ -32,6 +32,11 @@ int BackstageDialog::exec() {
         cacheDir.mkpath(cacheDir.path());
     }
 
+    QFile tempFile(m_workingDir + Slash + PathFindFileName(m_args.front().wavtoolArgs.outFile()));
+    if (tempFile.exists()) {
+        tempFile.remove();
+    }
+
     prepareResampling();
 
     return BaseDialog::exec();
@@ -137,8 +142,15 @@ void BackstageDialog::prepareConcatenating() {
 
         work->moveToThread(thread);
 
-        connect(thread, &QThread::started, work, &ConcatenateWork::start);
+        if (i == 0) {
+            connect(thread, &QThread::started, work, &ConcatenateWork::start);
+        } else {
+            ConcatenateWork *prevWork = m_concatenateWorks.back();
+            connect(prevWork, &ConcatenateWork::finished, work, &ConcatenateWork::start);
+        }
+
         connect(work, &ConcatenateWork::finished, this, &BackstageDialog::handleConcatenateOver);
+        connect(work, &ConcatenateWork::crashed, this, &BackstageDialog::handleConcatenateOver);
 
         m_concatenateWorks.append(work);
     }

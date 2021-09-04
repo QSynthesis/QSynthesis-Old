@@ -21,5 +21,9 @@ void BaseWork::terminate() {
 }
 
 void BaseWork::handleProcessFinished(int exitCode, QProcess::ExitStatus exitStatus) {
-    emit finished();
+    if (exitStatus == QProcess::NormalExit) {
+        emit finished();
+    } else {
+        emit crashed();
+    }
 }
