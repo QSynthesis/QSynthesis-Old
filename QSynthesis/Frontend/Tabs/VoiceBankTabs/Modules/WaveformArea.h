@@ -2,18 +2,18 @@
 #define WAVEFORMAREA_H
 
 #include <QDebug>
-#include <QGraphicsScene>
 #include <QPaintEvent>
 #include <QPainter>
 
 #include "../Graphics/GraphicsOtoHandle.h"
+#include "Graphics/GraphicsArea.h"
 #include "Import/QFrequencyFile.h"
 #include "Import/QWaveInfo.h"
 #include "QGenonSettings.h"
 
 class WaveformScrollArea;
 
-class WaveformArea : public QGraphicsScene {
+class WaveformArea : public GraphicsArea {
     Q_OBJECT
 public:
     explicit WaveformArea(WaveformScrollArea *parent = nullptr);

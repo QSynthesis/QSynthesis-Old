@@ -136,9 +136,9 @@ void FileListWidget::onRightClick(QModelIndex index) {
 
 void FileListWidget::handleOpen() {
     if (m_type == Files) {
-        Root(this)->addTuningTab(currentFileName, false);
+        qRoot->addTuningTab(currentFileName, false);
     } else {
-        Root(this)->addVoiceBankTab(currentFileName);
+        qRoot->addVoiceBankTab(currentFileName);
     }
 }
 
@@ -149,7 +149,7 @@ void FileListWidget::handleDelete() {
     } else {
         MainWindow::settingIni.folders.remove(currentFileName);
     }
-    Root(this)->reloadRecentMenu();
+    qRoot->reloadRecentMenu();
 }
 
 void FileListWidget::handleReveal() {

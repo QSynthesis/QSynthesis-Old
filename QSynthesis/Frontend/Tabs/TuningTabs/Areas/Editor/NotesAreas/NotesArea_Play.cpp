@@ -30,51 +30,49 @@ void NotesArea::advancePlaying(qint64 position) {
 
     // position /= 1000; // USec -> MSec
 
+    int start = m_renderRange.x();
+    int end = m_renderRange.y();
+    double startTime = NotesList[start]->time();
+
     playToPosition = position;
-    position -= NotesList[m_renderRange.x()]->correctGenon().PreUtterance;
+    position -= NotesList[start]->correctGenon().PreUtterance;
     if (position < 0) {
         position = 0;
     }
 
     // 将 m_playToNote 位置确定
-    if (playToNote < m_renderRange.x()) {
-        playToNote = m_renderRange.x();
+    if (playToNote < start) {
+        playToNote = start;
     }
-    if (playToNote > m_renderRange.y()) {
-        playToNote = m_renderRange.y();
+    if (playToNote > end) {
+        playToNote = end;
     }
 
     // 调整范围
-    while (playToNote <= m_renderRange.y() && NotesList[playToNote]->time() +
-                                                        NotesList[playToNote]->duration() -
-                                                        NotesList[m_renderRange.x()]->time() <
-                                                    position) {
+    while (playToNote <= end && NotesList[playToNote]->endTime() - startTime < position) {
         playToNote++;
     }
 
     // 不能超过范围
-    if (playToNote > qMin(m_renderRange.y() + 1, NotesList.size() - 1)) {
+    if (playToNote > qMin(end + 1, NotesList.size() - 1)) {
         qDebug() << "Over line.";
         playHead->hide();
         return;
     }
 
-    while (playToNote >= m_renderRange.x() &&
-           NotesList[playToNote]->time() - NotesList[m_renderRange.x()]->time() > position) {
+    while (playToNote >= start && NotesList[playToNote]->time() - startTime > position) {
         playToNote--;
     }
 
     // 不能小于范围
-    if (playToNote < m_renderRange.x()) {
+    if (playToNote < start) {
         playHead->hide();
         return;
     }
 
     // 减掉第一个音符的先行声音
     double unit = 120.0 / NotesList[playToNote]->tempo() / 0.96;
-    double ticks =
-        (position + NotesList[m_renderRange.x()]->time() - NotesList[playToNote]->time()) / unit /
-        480 * unit_w;
+    double ticks = (position + startTime - NotesList[playToNote]->time()) / unit / 480 * unit_w;
 
     if (!playHead->isVisible()) {
         playHead->show();

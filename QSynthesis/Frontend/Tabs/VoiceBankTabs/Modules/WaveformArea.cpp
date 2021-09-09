@@ -3,7 +3,7 @@
 
 #include <cmath>
 
-WaveformArea::WaveformArea(WaveformScrollArea *parent) : QGraphicsScene(parent), m_view(parent) {
+WaveformArea::WaveformArea(WaveformScrollArea *parent) : GraphicsArea(parent), m_view(parent) {
     m_index = -1;
 
     connect(this, &QGraphicsScene::sceneRectChanged, this, &WaveformArea::handleSceneRectChanged);

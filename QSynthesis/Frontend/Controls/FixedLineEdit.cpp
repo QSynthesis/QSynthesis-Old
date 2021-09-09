@@ -11,6 +11,7 @@ FixedLineEdit::FixedLineEdit(const QString &text, QWidget *parent) : QLineEdit(t
 void FixedLineEdit::setText(QString text) {
     recentText = text;
     QLineEdit::setText(text);
+    setCursorPosition(0);
 }
 
 void FixedLineEdit::focusOutEvent(QFocusEvent *event) {

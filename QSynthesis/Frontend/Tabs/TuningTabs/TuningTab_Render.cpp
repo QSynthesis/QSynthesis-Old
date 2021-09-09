@@ -39,7 +39,7 @@ bool TuningTab::renderSelection() {
     QFile tempFile(tempBatPath);
 
     if (!tempFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        QMessageBox::critical(root(), ErrorTitle, tr("Unable to create batch file!"));
+        QMessageBox::critical(qRoot, ErrorTitle, tr("Unable to create batch file!"));
         return 0;
     }
 
@@ -160,7 +160,7 @@ bool TuningTab::renderSelection() {
     QFile helperFile(helperBatPath);
 
     if (!helperFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        QMessageBox::critical(root(), ErrorTitle, tr("Unable to create batch file!"));
+        QMessageBox::critical(qRoot, ErrorTitle, tr("Unable to create batch file!"));
         return 0;
     }
 

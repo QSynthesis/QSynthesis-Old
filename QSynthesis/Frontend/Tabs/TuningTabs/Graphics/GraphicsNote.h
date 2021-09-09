@@ -113,6 +113,7 @@ public:
     bool tempoEdited() const;
 
     double duration() const;
+    double endTime() const;
 
     double intensity() const;
     double modulation() const;

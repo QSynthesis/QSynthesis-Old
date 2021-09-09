@@ -33,6 +33,7 @@ void TuningTab::undo() {
         }
         if (success) {
             historyIndex--;
+            handleSavedStateChanged();
             setEdited(savedHistoryIndex != historyIndex);
         }
     }
@@ -63,6 +64,7 @@ void TuningTab::redo() {
         }
         if (success) {
             historyIndex++;
+            handleSavedStateChanged();
             setEdited(savedHistoryIndex != historyIndex);
         }
     }
@@ -154,6 +156,7 @@ void TuningTab::addHistory(TuneOperation *n) {
     historyList.append(n);
     historyIndex++;
 
+    handleSavedStateChanged();
     setEdited(savedHistoryIndex != historyIndex);
 }
 

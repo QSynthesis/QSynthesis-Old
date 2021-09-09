@@ -30,3 +30,47 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     }
     event->accept();
 }
+
+bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
+    return QMainWindow::eventFilter(obj, event);
+}
+
+void MainWindow::handleGraphicsSceneEvents(QGraphicsSceneEvent *event) {
+    QList<QEvent::Type> types{QEvent::GraphicsSceneDragEnter, QEvent::GraphicsSceneDragMove,
+                              QEvent::GraphicsSceneDragLeave, QEvent::GraphicsSceneDrop};
+    if (types.indexOf(event->type()) >= 0) {
+        QGraphicsSceneDragDropEvent *dragDropEvent =
+            static_cast<QGraphicsSceneDragDropEvent *>(event);
+
+        switch (dragDropEvent->type()) {
+        case QEvent::GraphicsSceneDragEnter: {
+            QDragEnterEvent e(dragDropEvent->pos().toPoint(), dragDropEvent->possibleActions(),
+                              dragDropEvent->mimeData(), dragDropEvent->buttons(),
+                              dragDropEvent->modifiers());
+            dragEnterEvent(&e);
+            break;
+        }
+        case QEvent::GraphicsSceneDragMove: {
+            QDragMoveEvent e(dragDropEvent->pos().toPoint(), dragDropEvent->possibleActions(),
+                             dragDropEvent->mimeData(), dragDropEvent->buttons(),
+                             dragDropEvent->modifiers());
+            dragMoveEvent(&e);
+            break;
+        }
+        case QEvent::GraphicsSceneDragLeave: {
+            QDragLeaveEvent e;
+            dragLeaveEvent(&e);
+            break;
+        }
+        case QEvent::GraphicsSceneDrop: {
+            QDropEvent e(dragDropEvent->pos().toPoint(), dragDropEvent->possibleActions(),
+                         dragDropEvent->mimeData(), dragDropEvent->buttons(),
+                         dragDropEvent->modifiers());
+            dropEvent(&e);
+            break;
+        }
+        default:
+            break;
+        }
+    }
+}

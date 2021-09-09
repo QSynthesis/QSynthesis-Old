@@ -25,10 +25,6 @@ public:
 
     TabWidget *tabWidget() const;
 
-    inline MainWindow *root() {
-        return Root(this);
-    }
-
     bool active() const;
 
 protected:

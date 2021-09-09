@@ -1,6 +1,8 @@
 ﻿#include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
+    self = this;
+
     setAcceptDrops(true); // Accept Drops
     initValues();
 }

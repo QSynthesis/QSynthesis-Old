@@ -12,7 +12,7 @@ void NotesArea::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     }
 
     if (curItem || qDragOut.dragging) {
-        return QGraphicsScene::mousePressEvent(event);
+        return GraphicsArea::mousePressEvent(event);
     } else {
 
         Qt::KeyboardModifiers c = QApplication::keyboardModifiers();
@@ -33,7 +33,7 @@ void NotesArea::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 }
 
 void NotesArea::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
-    return QGraphicsScene::mouseMoveEvent(event);
+    return GraphicsArea::mouseMoveEvent(event);
 }
 
 void NotesArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
@@ -41,7 +41,7 @@ void NotesArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
         m_moving = false;
         m_view->setDragMode(QGraphicsView::NoDrag);
     }
-    QGraphicsScene::mouseReleaseEvent(event);
+    GraphicsArea::mouseReleaseEvent(event);
     statusCall();
 }
 
@@ -51,7 +51,7 @@ void NotesArea::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
         GraphicsDragger *obj;
         if (m_notesEnabled || ((obj = static_cast<GraphicsDragger *>(curItem)) &&
                                obj->element() != GraphicsDragger::Note)) {
-            return QGraphicsScene::mousePressEvent(event); // Pass to lower
+            return GraphicsArea::mousePressEvent(event); // Pass to lower
         }
     }
     if (event->button() == Qt::LeftButton) {
@@ -107,5 +107,5 @@ bool NotesArea::eventFilter(QObject *obj, QEvent *event) {
             }
         }
     }
-    return QGraphicsScene::eventFilter(obj, event);
+    return GraphicsArea::eventFilter(obj, event);
 }

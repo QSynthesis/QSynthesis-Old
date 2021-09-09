@@ -34,6 +34,8 @@
 #include <QSharedMemory>
 #include <QTranslator>
 
+#define qRoot MainWindow::instance()
+
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
@@ -288,6 +290,11 @@ private:
     void changeEvent(QEvent *event) override;
     void closeEvent(QCloseEvent *event) override;
 
+    bool eventFilter(QObject *obj, QEvent *event) override;
+
+public:
+    void handleGraphicsSceneEvents(QGraphicsSceneEvent *event);
+
     // Static
 public:
     static SettingIniData settingIni;
@@ -322,6 +329,12 @@ public:
     static void checkTemporaryDir();
 
     static void exitPreparation();
+
+private:
+    static MainWindow *self;
+
+public:
+    static MainWindow *instance();
 };
 
 #endif // MAINWINDOW_H

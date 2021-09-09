@@ -51,10 +51,6 @@ private:
 
     void refreshWidget();
 
-    inline MainWindow *root() {
-        return Root(this);
-    }
-
 signals:
     void updateTab();
 };

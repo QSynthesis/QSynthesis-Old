@@ -54,7 +54,7 @@ void TuningTab::configueLyric() {
     }
     forcePausePlaying();
 
-    VoiceBankTab *tab = root()->addVoiceBankTab(oto->voiceDir());
+    VoiceBankTab *tab = qRoot->addVoiceBankTab(oto->voiceDir());
     if (!tab) {
         return;
     }
@@ -74,7 +74,7 @@ void TuningTab::configuePrefix() {
     }
     forcePausePlaying();
 
-    VoiceBankTab *tab = root()->addVoiceBankTab(oto->voiceDir());
+    VoiceBankTab *tab = qRoot->addVoiceBankTab(oto->voiceDir());
     if (!tab) {
         return;
     }

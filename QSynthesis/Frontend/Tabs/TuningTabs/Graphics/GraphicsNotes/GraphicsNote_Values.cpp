@@ -84,6 +84,10 @@ double GraphicsNote::duration() const {
     return Note.length * unit;
 }
 
+double GraphicsNote::endTime() const {
+    return m_time + duration();
+}
+
 double GraphicsNote::intensity() const {
     return (Note.intensity == NODEF_DOUBLE) ? DEFAULT_VALUE_INTENSITY : Note.intensity;
 }

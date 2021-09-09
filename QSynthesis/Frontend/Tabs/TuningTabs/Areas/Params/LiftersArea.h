@@ -1,19 +1,18 @@
 #ifndef LIFTERSAREA_H
 #define LIFTERSAREA_H
 
-#include <QGraphicsScene>
-
 #include "QUtils.h"
 #include "Utils/ItemList.h"
 
 #include "../../Graphics/GraphicsLifter.h"
+#include "Graphics/GraphicsArea.h"
 
 class ParamsInterface;
 class TuningGroup;
 class LiftersScrollArea;
 class GraphicsNote;
 
-class LiftersArea : public QGraphicsScene {
+class LiftersArea : public GraphicsArea {
     Q_OBJECT
 
     Q_PROPERTY(QColor timeLineColor READ timeLineColor WRITE setTimeLineColor NOTIFY colorChanged)

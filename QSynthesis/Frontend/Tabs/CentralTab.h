@@ -54,6 +54,8 @@ protected:
     virtual void setTabName(const QString &value) override; // Set the title of tab
     virtual void updateTabName() override;
 
+    virtual void handleSavedStateChanged();
+
 public:
     // Edit
     virtual void undo();

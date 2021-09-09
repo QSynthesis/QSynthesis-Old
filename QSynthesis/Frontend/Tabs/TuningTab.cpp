@@ -91,7 +91,7 @@ void TuningTab::initWorkingDir() {
     QDir dir;
     if (dir.exists(m_workingDir)) {
     } else if (!dir.mkpath(m_workingDir)) {
-        Root(this)->exitOnNoIOPermission();
+        qRoot->exitOnNoIOPermission();
     }
 
     savedRenderArgs.clear();
@@ -116,7 +116,6 @@ void TuningTab::setEdited(bool value) {
     if (value) {
         saveTempFile();
     }
-    setPlayable(false);
 }
 
 void TuningTab::setTabName(const QString &value) {
@@ -168,6 +167,10 @@ void TuningTab::updatePasteMenu() {
 
     bool hasData = board->mimeData()->hasFormat(CLIPBOARD_FORMAT_NAME_NOTE);
     tabActions->paste->setEnabled(hasData && m_ptrs->notesArea->isAvailableToPaste());
+}
+
+void TuningTab::handleSavedStateChanged() {
+    setPlayable(false);
 }
 
 void TuningTab::updateTabName() {

@@ -6,8 +6,10 @@
 #include <QScrollBar>
 
 NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *parent)
-    : QGraphicsScene(parent), m_view(parent) {
+    : GraphicsArea(parent), m_view(parent) {
     m_ptrs = editor->ptrs();
+
+    m_globalTempo = DEFAULT_VALUE_TEMPO;
 
     m_notesEnabled = true;
     m_pitchesEnabled = false;

@@ -53,6 +53,8 @@ int main(int argc, char *argv[]) {
     QDir::setCurrent(bin.absolutePath());
 #endif
 
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("GBK"));
+
     QTranslator t;
 
     translator = &t;

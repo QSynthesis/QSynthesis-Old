@@ -123,3 +123,6 @@ void CentralTab::setTabName(const QString &value) {
 void CentralTab::updateTabName() {
     setTabName(m_fixedname);
 }
+
+void CentralTab::handleSavedStateChanged() {
+}

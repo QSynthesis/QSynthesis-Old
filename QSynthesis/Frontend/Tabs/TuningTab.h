@@ -89,6 +89,8 @@ protected:
 
     void updatePasteMenu();
 
+    void handleSavedStateChanged() override;
+
     // Core
 private:
     void loadCore();

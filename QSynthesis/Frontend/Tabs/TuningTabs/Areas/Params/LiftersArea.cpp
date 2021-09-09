@@ -6,7 +6,7 @@
 #include "../../TuningGroup.h"
 
 LiftersArea::LiftersArea(ParamsInterface *editor, LiftersScrollArea *parent)
-    : QGraphicsScene(parent), m_view(parent) {
+    : GraphicsArea(parent), m_view(parent) {
     m_ptrs = editor->ptrs();
 
     m_timeLineColor = QColor(0xD4D4D4);

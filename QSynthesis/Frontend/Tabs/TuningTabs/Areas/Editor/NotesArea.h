@@ -1,7 +1,6 @@
 #ifndef NOTESAREA_H
 #define NOTESAREA_H
 
-#include <QGraphicsScene>
 #include <QGraphicsSceneMoveEvent>
 #include <QRubberBand>
 #include <QWidget>
@@ -10,6 +9,7 @@
 #include "../../Graphics/GraphicsNote.h"
 #include "../../Graphics/GraphicsPoint.h"
 #include "../../Graphics/GraphicsRubber.h"
+#include "Graphics/GraphicsArea.h"
 #include "Graphics/GraphicsLineEdit.h"
 #include "Note/QLinkNote.h"
 #include "Plugin/PluginTempData.h"
@@ -22,7 +22,7 @@ class TuningGroup;
 class NoteOperation;
 class NotesScrollArea;
 
-class NotesArea : public QGraphicsScene {
+class NotesArea : public GraphicsArea {
     Q_OBJECT
 
     Q_PROPERTY(QColor timeLineColor READ timeLineColor WRITE setTimeLineColor NOTIFY colorChanged)

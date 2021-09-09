@@ -22,7 +22,7 @@ void VoiceBankTab::handleOtoFileChanged(QString path) {
 }
 
 void VoiceBankTab::handleOtoDirChanged(QString path) {
-    if (!root()->isActiveWindow() || otoTimer->isActive()) {
+    if (!qRoot->isActiveWindow() || otoTimer->isActive()) {
         otoBlock.push(path);
         return;
     }
