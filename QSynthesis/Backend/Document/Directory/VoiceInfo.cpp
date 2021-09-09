@@ -116,7 +116,7 @@ bool VoiceInfo::loadCharTxt() {
         m_name = *nameValue;
     }
     QString *imageValue = section.valueOf(KEY_NAME_CHAR_IMAGE);
-    if (nameValue) {
+    if (imageValue) {
         m_image = *imageValue;
     }
     QString *authorValue = section.valueOf(KEY_NAME_CHAR_AUTHOR);
