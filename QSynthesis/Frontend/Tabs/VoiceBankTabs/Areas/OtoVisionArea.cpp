@@ -69,12 +69,48 @@ void OtoVisionArea::wheelEvent(QWheelEvent *event) {
     Qt::KeyboardModifiers c = event->modifiers(); // 当前辅助组合键
     QPoint delta = event->angleDelta();           // 滚轮移动方向
 
-    if (delta.y() != 0) {
+    if (delta.isNull()) {
+        return;
+    }
+
+    if (delta.x() * delta.y() == 0) {
+        delta.ry() = delta.x() + delta.y();
+        delta.rx() = 0;
+    }
+
+#ifdef __APPLE__
+    if (c == Qt::NoModifier) {
+        delta = -delta;
+        if (delta.x() != 0) {
+            moveHorizontally(delta.x());
+        }
+        if (delta.y() != 0) {
+            moveVertically(delta.y());
+        }
+    } else {
+        if (delta.x() * delta.y() == 0) {
+            delta.ry() = delta.x() + delta.y();
+            delta.rx() = 0;
+        }
         if (c == MainWindow::config.wave.zoomHorizontally) {
             zoomHorizontally(delta.y() * 2);
+        } else if (c == MainWindow::config.wave.moveHorizontally) {
+            scroll->horizontalScrollBar()->triggerAction(
+                delta.y() < 0 ? QAbstractSlider::SliderSingleStepAdd
+                              : QAbstractSlider::SliderSingleStepSub);
         }
     }
-    return VoiceBankArea::wheelEvent(event);
+#else
+    if (delta.x() == 0) {
+        if (c == MainWindow::config.wave.zoomHorizontally) {
+            zoomHorizontally(delta.y() * 2);
+        } else if (c == MainWindow::config.wave.moveHorizontally) {
+            scroll->horizontalScrollBar()->triggerAction(
+                delta.y() < 0 ? QAbstractSlider::SliderSingleStepAdd
+                              : QAbstractSlider::SliderSingleStepSub);
+        }
+    }
+#endif
 }
 
 void OtoVisionArea::resizeEvent(QResizeEvent *event) {

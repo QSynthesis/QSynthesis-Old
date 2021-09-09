@@ -9,6 +9,11 @@ void TuningTab::showNoteProperty() {
     if (m_ptrs->draggers.selectedNotes.isEmpty()) {
         return;
     }
+    if (!isFreeButPlaying()) {
+        return;
+    }
+    forcePausePlaying();
+
     m_ptrs->draggers.filter(GraphicsDragger::Note);
 
     QList<NoteProperties> list = m_ptrs->notesArea->selectedProperties();
@@ -124,6 +129,11 @@ void TuningTab::resetNoteProperty() {
     if (m_ptrs->draggers.selectedNotes.isEmpty()) {
         return;
     }
+    if (!isFreeButPlaying()) {
+        return;
+    }
+    forcePausePlaying();
+
     m_ptrs->draggers.filter(GraphicsDragger::Note);
 
     QList<NoteProperties> list = m_ptrs->notesArea->selectedProperties();

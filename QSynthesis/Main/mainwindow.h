@@ -82,6 +82,10 @@ public:
         BaseTab *w = tabs->currentWidget();
         return qobject_cast<CentralTab *>(w);
     }
+    inline CentralTab *previousTab() {
+        BaseTab *w = tabs->previousTab();
+        return qobject_cast<CentralTab *>(w);
+    }
     inline CentralTab *tabAt(int index) {
         BaseTab *w = tabs->tabAt(index);
         return qobject_cast<CentralTab *>(w);
@@ -136,6 +140,7 @@ private:
     void handleSaveFile();
     void handleSaveAsFile();
     void handleRestoreFile();
+    void handleSwitchFile();
     void handleCloseFile();
 
     void handleUndo();

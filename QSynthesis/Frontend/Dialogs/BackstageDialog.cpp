@@ -110,9 +110,15 @@ void BackstageDialog::prepareResampling() {
             work->setArgs(m_args.at(i).resamplerArgs);
 
             work->moveToThread(thread);
+            if (count == 0) {
+                connect(thread, &QThread::started, work, &ResampleWork::start);
+            } else {
+                ResampleWork *prevWork = m_resampleWorks.back();
+                connect(prevWork, &ResampleWork::finished, work, &ResampleWork::start);
+            }
 
-            connect(thread, &QThread::started, work, &ResampleWork::start);
-            connect(work, &ResampleWork::finished, this, &BackstageDialog::handleResampleOver);
+            connect(work, &ConcatenateWork::finished, this, &BackstageDialog::handleResampleOver);
+            connect(work, &ConcatenateWork::crashed, this, &BackstageDialog::handleResampleOver);
 
             count++;
             m_resampleWorks.append(work);
@@ -196,22 +202,25 @@ void BackstageDialog::handleResampleOver() {
     ResampleWork *work = qobject_cast<ResampleWork *>(sender());
     QThread *thread = work->thread();
 
-    m_resampleWorks.removeOne(work);
-    work->deleteLater();
-
     auto it = m_threads.find(thread);
     if (it == m_threads.end()) {
+        qDebug() << "Coundn't find";
         return;
     }
+
+    m_resampleWorks.removeOne(work);
+    work->deleteLater();
 
     QPair<int, int> &target = it.value();
 
     target.first++;
     m_resampleCount++;
 
+    qDebug() << target.first << "/" << target.second << m_resampleWorks.size();
+
     if (target.first == target.second) {
         thread->quit();
-        qDebug() << "Thread Finished" << thread;
+        qDebug() << "Thread Finished" << thread << m_resampleWorks.size();
     }
 
     updateProcessCaption();
@@ -265,7 +274,7 @@ void BackstageDialog::updateProcessCaption() {
         break;
     }
     case Terminating: {
-        lbProcess->setText("Attempt to end render...");
+        lbProcess->setText(tr("Attempt to end render..."));
         break;
     }
     default: {

@@ -66,6 +66,14 @@ void KeyboardTab::sleep() {
     CentralTab::sleep();
 }
 
+void KeyboardTab::enter() {
+    CentralTab::enter();
+}
+
+void KeyboardTab::leave() {
+    CentralTab::leave();
+}
+
 void KeyboardTab::setFilename(const QString &value) {
     CentralTab::setFilename(value);
     cfg.setFilename(m_filename);

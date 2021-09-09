@@ -15,6 +15,7 @@ void BaseActionList::updateCommonStrings() {
     saveFile->setText(tr("Save"));
     saveAsFile->setText(tr("Save as..."));
     restoreFile->setText(tr("Restore"));
+    switchFile->setText(tr("Switch"));
     closeFile->setText(tr("Close"));
 
     QString fileType = tr("File");
@@ -25,6 +26,7 @@ void BaseActionList::updateCommonStrings() {
     textToName(saveFile, fileType);
     textToName(saveAsFile, fileType);
     textToName(restoreFile, fileType);
+    textToName(switchFile, fileType);
     textToName(closeFile, fileType);
 
     recentMenu->setTitle(tr("Recent"));
@@ -95,6 +97,7 @@ void BaseActionList::makeCommonDefaultShortcuts() {
     newFile->setShortcut(QKeySequence("Ctrl+N"));
     saveFile->setShortcut(QKeySequence("Ctrl+S"));
     saveAsFile->setShortcut(QKeySequence("Ctrl+Shift+S"));
+    switchFile->setShortcut(QKeySequence("Shift+Tab"));
     closeFile->setShortcut(QKeySequence("Ctrl+W"));
 
     undo->setShortcut(QKeySequence("Ctrl+Z"));
@@ -110,10 +113,10 @@ void BaseActionList::makeCommonDefaultShortcuts() {
 
 QList<QAction *> BaseActionList::commonActions() const {
     return {
-        newFile,      importFile,  openFile, openFolder,   saveFile, saveAsFile, restoreFile,
-        closeFile,    undo,        redo,     selectAll,    deselect, reset,      playPause,
-        replay,       stop,        settings, keyShortcuts, themes,   languages,  welcome,
-        instructions, checkUpdate, aboutApp, aboutQt,
+        newFile,      importFile,   openFile,    openFolder, saveFile,     saveAsFile, restoreFile,
+        switchFile, closeFile,    undo,        redo,       selectAll,    deselect,   reset,
+        playPause,    replay,       stop,        settings,   keyShortcuts, themes,     languages,
+        welcome,      instructions, checkUpdate, aboutApp,   aboutQt,
     };
 }
 

@@ -1,4 +1,5 @@
 #include "VoiceInfo.h"
+#include "Import/QSettingFile.h"
 #include "QUtauStrings.h"
 #include "Strings/UtaCharacterText.h"
 #include "Utils/CharsetHandler.h"
@@ -103,57 +104,50 @@ bool VoiceInfo::loadCharTxt() {
     }
     in.setCodec(m_codec);
 
-    QString line;
-    int eq;
-
-    QString key, value;
-
+    QStringList lines;
     while (!in.atEnd()) {
-        line = in.readLine();
-        if (line.isEmpty()) {
-            continue;
-        }
-
-        eq = line.indexOf('=');
-        if (eq < 0) {
-            m_custom.append(line);
-            continue;
-        }
-
-        key = line.mid(0, eq);
-        value = line.mid(eq + 1);
-
-        if (key == KEY_NAME_CHAR_NAME) {
-            m_name = value;
-        } else if (key == KEY_NAME_CHAR_AUTHOR) {
-            m_author = value;
-        } else if (key == KEY_NAME_CHAR_IMAGE) {
-            m_image = QDir::fromNativeSeparators(value);
-        } else {
-            m_custom.append(line);
-        }
+        lines.append(in.readLine());
     }
+
+    QSettingSection section;
+    section.fromLines(lines);
+    QString *nameValue = section.valueOf(KEY_NAME_CHAR_NAME);
+    if (nameValue) {
+        m_name = *nameValue;
+    }
+    QString *imageValue = section.valueOf(KEY_NAME_CHAR_IMAGE);
+    if (nameValue) {
+        m_image = *imageValue;
+    }
+    QString *authorValue = section.valueOf(KEY_NAME_CHAR_AUTHOR);
+    if (authorValue) {
+        m_author = *authorValue;
+    }
+    m_custom = section.unformattedLines();
 
     return true;
 }
 
 bool VoiceInfo::saveCharTxt() {
+    QSettingSection section;
+    if (!m_name.isEmpty()) {
+        section.addPair(KEY_NAME_CHAR_NAME, m_name);
+    }
+    if (!m_image.isEmpty()) {
+        section.addPair(KEY_NAME_CHAR_IMAGE, QDir::toNativeSeparators(m_image));
+    }
+    if (!m_author.isEmpty()) {
+        section.addPair(KEY_NAME_CHAR_AUTHOR, m_author);
+    }
+    section.setUnformattedLines(m_custom);
+
+    QStringList lines = section.toLines();
+
     QByteArray data;
     QTextStream out(&data);
     out.setCodec(m_codec);
-
-    if (!m_name.isEmpty()) {
-        out << KEY_NAME_CHAR_NAME << "=" << m_name << Qt::endl;
-    }
-    if (!m_image.isEmpty()) {
-        out << KEY_NAME_CHAR_IMAGE << "=" << QDir::toNativeSeparators(m_image) << Qt::endl;
-    }
-    if (!m_author.isEmpty()) {
-        out << KEY_NAME_CHAR_AUTHOR << "=" << m_author << Qt::endl;
-    }
-
-    for (QString &line : m_custom) {
-        out << line << Qt::endl;
+    for (auto it = lines.begin(); it != lines.end(); ++it) {
+        out << *it << Qt::endl;
     }
 
     charTxt.setData(data);

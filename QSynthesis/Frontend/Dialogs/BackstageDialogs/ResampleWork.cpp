@@ -10,19 +10,17 @@ ResampleWork::~ResampleWork() {
 }
 
 void ResampleWork::start() {
-    QProcess p;
-    p.setProgram(m_resampler);
-    p.setWorkingDirectory(m_workingDir);
-    p.setArguments(m_args.fullArguments());
+    m_process->setProgram(m_resampler);
+    m_process->setWorkingDirectory(m_workingDir);
+    m_process->setArguments(m_args.fullArguments());
 
     emit started();
 
     if (!isFileExist(m_args.outFile())) {
-        p.start();
-        p.waitForFinished();
+        m_process->start();
+    } else {
+        handleProcessFinished(0, QProcess::NormalExit);
     }
-
-    emit finished();
 }
 
 QString ResampleWork::workingDir() const {

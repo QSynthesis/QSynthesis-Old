@@ -28,8 +28,12 @@ public:
     QString fixedname() const;
     virtual void setFixedname(const QString &value);
 
-    virtual void awake();
-    virtual void sleep();
+    virtual void awake(); // Window Activate
+    virtual void sleep(); // Window Deactivate
+
+    virtual void enter() override; // Tab Switch In
+    virtual void leave() override; // Tab Switch Out
+
     virtual void change();
 
     bool isEdited() const;              // Get if the file is changed by editor

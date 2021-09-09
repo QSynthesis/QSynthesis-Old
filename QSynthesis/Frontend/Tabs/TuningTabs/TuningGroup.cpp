@@ -3,7 +3,7 @@
 TuningGroup::TuningGroup(TuningTab *parent) : QObject(parent), tab(parent) {
     currentWidth = 60;
     currentHeight = 32;
-    currentAdsorb = 4;
+    currentAdsorb = 1;
     currentSections = 40;
 }
 

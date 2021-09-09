@@ -22,9 +22,9 @@ void VoiceBankTab::undo() {
         }
         if (success) {
             historyIndex--;
+            setEdited(savedHistoryIndex != historyIndex);
         }
     }
-    setEdited(savedHistoryIndex != historyIndex);
 }
 
 void VoiceBankTab::redo() {
@@ -47,9 +47,9 @@ void VoiceBankTab::redo() {
         }
         if (success) {
             historyIndex++;
+            setEdited(savedHistoryIndex != historyIndex);
         }
     }
-    setEdited(savedHistoryIndex != historyIndex);
 }
 
 void VoiceBankTab::selectAll() {

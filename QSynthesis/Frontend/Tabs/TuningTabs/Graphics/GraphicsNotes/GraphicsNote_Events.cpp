@@ -6,10 +6,6 @@
 void GraphicsNote::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     qDragIn.filter(m_element); // Deselect all draggers other than note
 
-    if (m_drawing) {
-        afterRelease();
-    }
-
     afterPress();
     if (event->button() == Qt::RightButton) {
         m_handler->openContextMenu();

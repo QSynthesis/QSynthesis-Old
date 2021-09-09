@@ -34,6 +34,7 @@ void MainWindow::initActionLists() {
         QAction *saveFile = new QAction(this);
         QAction *saveAsFile = new QAction(this);
         QAction *restoreFile = new QAction(this);
+        QAction *switchFile = new QAction(this);
         QAction *closeFile = new QAction(this);
 
         QMenu *recentMenu = new QMenu(this);
@@ -70,6 +71,7 @@ void MainWindow::initActionLists() {
             welcomeActions->saveFile = saveFile;
             welcomeActions->saveAsFile = saveAsFile;
             welcomeActions->restoreFile = restoreFile;
+            welcomeActions->switchFile = switchFile;
             welcomeActions->closeFile = closeFile;
 
             welcomeActions->recentMenu = recentMenu;
@@ -105,6 +107,7 @@ void MainWindow::initActionLists() {
             tuningActions->saveFile = saveFile;
             tuningActions->saveAsFile = saveAsFile;
             tuningActions->restoreFile = restoreFile;
+            tuningActions->switchFile = switchFile;
             tuningActions->closeFile = closeFile;
 
             tuningActions->recentMenu = recentMenu;
@@ -140,6 +143,7 @@ void MainWindow::initActionLists() {
             voiceActions->saveFile = saveFile;
             voiceActions->saveAsFile = saveAsFile;
             voiceActions->restoreFile = restoreFile;
+            voiceActions->switchFile = switchFile;
             voiceActions->closeFile = closeFile;
 
             voiceActions->recentMenu = recentMenu;
@@ -210,6 +214,7 @@ void MainWindow::initActionLists() {
             settingActions->saveFile = saveFile;
             settingActions->saveAsFile = saveAsFile;
             settingActions->restoreFile = restoreFile;
+            settingActions->switchFile = switchFile;
             settingActions->closeFile = closeFile;
 
             settingActions->recentMenu = recentMenu;
@@ -245,6 +250,7 @@ void MainWindow::initActionLists() {
         connect(saveFile, &QAction::triggered, this, &MainWindow::handleSaveFile);
         connect(saveAsFile, &QAction::triggered, this, &MainWindow::handleSaveAsFile);
         connect(restoreFile, &QAction::triggered, this, &MainWindow::handleRestoreFile);
+        connect(switchFile, &QAction::triggered, this, &MainWindow::handleSwitchFile);
         connect(closeFile, &QAction::triggered, this, &MainWindow::handleCloseFile);
 
         connect(undo, &QAction::triggered, this, &MainWindow::handleUndo);
@@ -505,6 +511,7 @@ void MainWindow::setCurrentActions(Qs::MainTabs type) {
         fileMenu->addSeparator();
         fileMenu->addAction(welcomeActions->restoreFile);
         fileMenu->addSeparator();
+        fileMenu->addAction(welcomeActions->switchFile);
         fileMenu->addAction(welcomeActions->closeFile);
 
         editMenu->addAction(welcomeActions->undo);
@@ -543,6 +550,7 @@ void MainWindow::setCurrentActions(Qs::MainTabs type) {
         fileMenu->addSeparator();
         fileMenu->addAction(settingActions->restoreFile);
         fileMenu->addSeparator();
+        fileMenu->addAction(settingActions->switchFile);
         fileMenu->addAction(settingActions->closeFile);
 
         editMenu->addAction(settingActions->undo);
@@ -581,6 +589,7 @@ void MainWindow::setCurrentActions(Qs::MainTabs type) {
         fileMenu->addSeparator();
         fileMenu->addAction(keyboardActions->restoreFile);
         fileMenu->addSeparator();
+        fileMenu->addAction(keyboardActions->switchFile);
         fileMenu->addAction(keyboardActions->closeFile);
 
         editMenu->addAction(keyboardActions->undo);
@@ -622,6 +631,7 @@ void MainWindow::setCurrentActions(Qs::MainTabs type) {
         fileMenu->addAction(tuningActions->appendFile);
         fileMenu->addMenu(tuningActions->exportMenu);
         fileMenu->addSeparator();
+        fileMenu->addAction(tuningActions->switchFile);
         fileMenu->addAction(tuningActions->closeFile);
 
         editMenu->addAction(tuningActions->undo);
@@ -712,6 +722,7 @@ void MainWindow::setCurrentActions(Qs::MainTabs type) {
         fileMenu->addSeparator();
         fileMenu->addAction(voiceActions->exportCurrent);
         fileMenu->addSeparator();
+        fileMenu->addAction(voiceActions->switchFile);
         fileMenu->addAction(voiceActions->closeFile);
 
         editMenu->addAction(voiceActions->undo);

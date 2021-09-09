@@ -34,6 +34,9 @@ public:
     void awake() override;
     void sleep() override;
 
+    void enter() override;
+    void leave() override;
+
     void setFixedname(const QString &value) override;
 
 protected:

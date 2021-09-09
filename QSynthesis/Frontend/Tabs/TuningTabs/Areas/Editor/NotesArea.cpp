@@ -50,7 +50,7 @@ void NotesArea::adjustSize() {
 void NotesArea::updateBackground() {
     int curWidth = m_ptrs->currentWidth;
     int curHeight = m_ptrs->currentHeight;
-    int curAdsorb = m_ptrs->currentAdsorb;
+    int curAdsorb = m_ptrs->currentAdsorb * 4;
 
     double lineWidth = 1;
 
@@ -75,10 +75,14 @@ void NotesArea::updateBackground() {
         painter.drawRect(QRectF(0, i * curHeight, totalWidth, curHeight));
     }
 
+    double w = totalWidth / curAdsorb;
+    while (w < 6) {
+        curAdsorb--;
+        w = totalWidth / curAdsorb;
+    }
     for (int i = 1; i < curAdsorb; ++i) {
         painter.setBrush(m_timeLineColor);
-        painter.drawRect(QRectF(double(curWidth) * 4 / curAdsorb * i - lineWidth / 2, 0, lineWidth,
-                                totalHeight));
+        painter.drawRect(QRectF(w * i - lineWidth / 2, 0, lineWidth, totalHeight));
     }
 
     painter.setBrush(m_sectionLineColor);

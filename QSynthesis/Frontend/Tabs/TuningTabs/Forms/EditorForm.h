@@ -44,6 +44,7 @@ public:
 
 private:
     void handleSwitchChanged();
+    void handleSwitchDoubleClicked();
 
     void onPlay();
     void onStop();

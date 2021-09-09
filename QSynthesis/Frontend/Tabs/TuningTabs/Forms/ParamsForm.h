@@ -28,6 +28,7 @@ private:
     TuningGroup *m_ptrs;
 
     void handleSwitchChanged();
+    void handleSwitchDoubleClicked();
 signals:
 };
 

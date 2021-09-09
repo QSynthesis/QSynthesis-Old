@@ -8,9 +8,10 @@
 #include "TuningGroup.h"
 
 void TuningTab::showProjectSettings() {
-    if (isPlaying()) {
+    if (!isFreeButPlaying()) {
         return;
     }
+    forcePausePlaying();
     QString wavtool = projectInfo->wavtool();
     QString outfile = projectInfo->outFile();
     QString cache = relativeCacheDir();

@@ -9,16 +9,6 @@ public:
 
     void clear();
 
-    bool cacheEnable;
-    bool cacheDeleteBySize;
-    int cacheDeleteSize;
-
-    bool noOtoReport;
-    bool noCopyGenon;
-
-    bool noBatchMode;
-    int threadNumber;
-
     QString tool1Path;
     QString tool2Path;
 
@@ -29,6 +19,15 @@ public:
 
     QRect windowRect;
     bool windowMaximized;
+
+    bool tracksFormVisibility;
+    bool editorFormVisibility;
+    bool paramsFormVisibility;
+
+    int lastQuantize;
+    bool ignoreRestsWhenInsert;
+    bool replaceLyricsWhenInsert;
+    bool separateCharWhenInsert;
 };
 
 #endif // SETTINGINIDATA_H

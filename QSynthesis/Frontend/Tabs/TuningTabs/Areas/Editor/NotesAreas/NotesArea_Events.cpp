@@ -14,13 +14,15 @@ void NotesArea::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     if (curItem || qDragOut.dragging) {
         return QGraphicsScene::mousePressEvent(event);
     } else {
-        qDragOut.removeAll();
 
         Qt::KeyboardModifiers c = QApplication::keyboardModifiers();
         if (c == MainWindow::config.notes.sceneDragging) {
             m_moving = true;
             m_view->setDragMode(QGraphicsView::ScrollHandDrag);
         } else {
+            if (c != MainWindow::config.notes.reserveSelect) {
+                qDragOut.removeAll();
+            }
             if (event->buttons() == Qt::LeftButton) {
                 startSelecting();
             } else if (event->buttons() == Qt::RightButton) {
@@ -79,11 +81,30 @@ bool NotesArea::eventFilter(QObject *obj, QEvent *event) {
             editFinish();
             return true;
         }
-    } else if (obj == this && event->type() == QEvent::KeyPress) {
-        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-        int key = keyEvent->key();
-        if (key == Qt::Key_Tab) {
-            qDragOut.removeAll();
+    } else if (obj == this) {
+        if (event->type() == QEvent::KeyPress) {
+            QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+            int key = keyEvent->key();
+            if (key == Qt::Key_Tab) {
+                qDragOut.removeAll();
+            }
+        } else if (event->type() == QEvent::Leave) {
+            if (m_drawingItem) {
+                switch (m_drawingItem->element()) {
+                case GraphicsDragger::Note: {
+                    GraphicsNote *p = static_cast<GraphicsNote *>(m_drawingItem);
+                    p->afterRelease();
+                    break;
+                }
+                case GraphicsDragger::Point: {
+                    GraphicsPoint *p = static_cast<GraphicsPoint *>(m_drawingItem);
+                    p->afterRelease();
+                    break;
+                }
+                default:
+                    break;
+                }
+            }
         }
     }
     return QGraphicsScene::eventFilter(obj, event);

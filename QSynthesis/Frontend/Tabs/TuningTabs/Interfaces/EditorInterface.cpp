@@ -80,6 +80,7 @@ EditorInterface::~EditorInterface() {
 }
 
 void EditorInterface::setVisionStatus(Qs::Panels::Editor mode) {
+    m_ptrs->notesArea->endEditingNote();
     m_ptrs->notesArea->setNotesEnabled(mode == Qs::Panels::Note);
     m_ptrs->notesArea->setPitchesEnabled(mode == Qs::Panels::Pitch);
     m_ptrs->notesArea->setEnvelopesEnabled(mode == Qs::Panels::Envelope);

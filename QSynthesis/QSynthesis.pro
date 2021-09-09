@@ -33,6 +33,8 @@ SOURCES += \
     Backend/Document/File/ShortcutsFile.cpp \
     Backend/Import/QFrequencyFile.cpp \
     Backend/Import/QMidiFile.cpp \
+    Backend/Import/QSettingFile.cpp \
+    Backend/Import/QSettingFiles/QSettingSection.cpp \
     Backend/Import/QSynthVFile.cpp \
     Backend/Import/QVocaloidFile.cpp \
     Backend/Import/QWaveInfo.cpp \
@@ -122,6 +124,7 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Modify.cpp \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Move.cpp \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Operation.cpp \
+    Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Paste.cpp \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Play.cpp \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Properties.cpp \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Render.cpp \
@@ -166,7 +169,7 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_Update.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_Values.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsPoint.cpp \
-    Frontend/Tabs/TuningTabs/Graphics/GraphicsPoints/GraphicsPoint_Event.cpp \
+    Frontend/Tabs/TuningTabs/Graphics/GraphicsPoints/GraphicsPoint_Events.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsPoints/GraphicsPoint_Link.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsPoints/GraphicsPoint_Properties.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsRubber.cpp \
@@ -360,6 +363,8 @@ HEADERS += \
     Backend/Document/QSFileData.h \
     Backend/Import/QFrequencyFile.h \
     Backend/Import/QMidiFile.h \
+    Backend/Import/QSettingFile.h \
+    Backend/Import/QSettingFiles/QSettingSection.h \
     Backend/Import/QSynthVFile.h \
     Backend/Import/QVocaloidFile.h \
     Backend/Import/QWaveInfo.h \

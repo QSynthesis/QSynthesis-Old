@@ -33,9 +33,9 @@ void TuningTab::undo() {
         }
         if (success) {
             historyIndex--;
+            setEdited(savedHistoryIndex != historyIndex);
         }
     }
-    setEdited(savedHistoryIndex != historyIndex);
 }
 
 void TuningTab::redo() {
@@ -63,9 +63,9 @@ void TuningTab::redo() {
         }
         if (success) {
             historyIndex++;
+            setEdited(savedHistoryIndex != historyIndex);
         }
     }
-    setEdited(savedHistoryIndex != historyIndex);
 }
 
 void TuningTab::selectAll() {
@@ -124,12 +124,12 @@ void TuningTab::paste() {
         notes.append(QLinkNote::fromJson(it->toObject()));
     }
 
-    m_ptrs->notesArea->pasteNotes(notes);
+    m_ptrs->notesArea->autoPaste(notes);
     updateMenuCore();
 }
 
 void TuningTab::remove() {
-    m_ptrs->notesArea->handleDelete();
+    m_ptrs->notesArea->autoDelete();
     updateMenuCore();
 }
 

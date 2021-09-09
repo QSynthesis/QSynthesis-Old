@@ -1,6 +1,7 @@
 #ifndef TABWIDGET_H
 #define TABWIDGET_H
 
+#include <QPointer>
 #include <QTabBar>
 #include <QTabWidget>
 
@@ -34,15 +35,21 @@ public:
     void removeTab(int index);
     void removeTab(BaseTab *tab);
 
+    BaseTab *previousTab() const;
+
 protected:
     virtual void addTabCore(int index);
     virtual void removeTabCore(int index);
 
 private:
+    QPointer<BaseTab> m_previousTab, m_currentTab;
+
+    void handleTabIndexChanged(int index);
     void handleTabNameChanged(const QString &newName);
 
 signals:
     void titleChanged(int index, const QString &title);
+    void realIndexChanged(int index);
 };
 
 #endif // TABWIDGET_H

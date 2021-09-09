@@ -39,6 +39,9 @@ public:
     void awake() override;
     void sleep() override;
 
+    void enter() override;
+    void leave() override;
+
     void setFilename(const QString &value) override;
     VoiceBankGroup *ptrs() const;
 

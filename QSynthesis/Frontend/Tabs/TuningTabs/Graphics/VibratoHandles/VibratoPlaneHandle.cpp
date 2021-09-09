@@ -102,7 +102,7 @@ void VibratoPlaneHandle::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 }
 
 void VibratoPlaneHandle::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
-    if (event->buttons() == Qt::LeftButton) {
+    if (event->buttons() & Qt::LeftButton) {
         afterMove(event->scenePos());
     }
 }

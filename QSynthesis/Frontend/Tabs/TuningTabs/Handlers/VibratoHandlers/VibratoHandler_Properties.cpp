@@ -63,7 +63,7 @@ VibratoLineHandle *Mode2Handler::createLineHandle(Qt::Orientation orient) {
     m_editor->addItem(btn);
     btn->setZValue(m_editor->vibratoZIndex);
 
-    btn->setLineWidth(4);
+    btn->setLineWidth(8);
     return btn;
 }
 

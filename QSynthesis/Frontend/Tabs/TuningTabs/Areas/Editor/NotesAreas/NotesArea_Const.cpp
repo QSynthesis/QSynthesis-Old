@@ -5,6 +5,14 @@ double NotesArea::zeroLine() const {
     return m_ptrs->currentWidth * 4;
 }
 
+bool NotesArea::isAvailableToPaste() const {
+    if (m_notesEnabled) {
+        return true;
+    } else {
+        return !qDragOut.selectedNotes.isEmpty();
+    }
+}
+
 QList<QLinkNote> NotesArea::allNotes() const {
     QList<QLinkNote> notes;
     for (int i = 0; i < NotesList.size(); ++i) {
@@ -51,6 +59,11 @@ QPoint NotesArea::continuousSelection() const {
     } else {
         return QPoint(-1, -1);
     }
+}
+
+bool NotesArea::isSelectionContinuous() const {
+    QPoint range = continuousSelection();
+    return range.y() - range.x() + 1 == qDragOut.selectedNotes.size();
 }
 
 int NotesArea::totalLength() const {

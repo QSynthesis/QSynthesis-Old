@@ -1145,6 +1145,14 @@ void SettingTab::sleep() {
     CentralTab::sleep();
 }
 
+void SettingTab::enter() {
+    CentralTab::enter();
+}
+
+void SettingTab::leave() {
+    CentralTab::leave();
+}
+
 void SettingTab::setFixedname(const QString &value) {
     CentralTab::setFixedname(value);
     setTabName(value);

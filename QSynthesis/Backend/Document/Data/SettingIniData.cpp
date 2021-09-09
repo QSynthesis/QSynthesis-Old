@@ -10,16 +10,6 @@ SettingIniData::SettingIniData() {
 }
 
 void SettingIniData::clear() {
-    cacheEnable = true;
-    cacheDeleteBySize = false;
-    cacheDeleteSize = 0;
-
-    noOtoReport = false;
-    noCopyGenon = true;
-
-    noBatchMode = false;
-    threadNumber = 1;
-
     tool1Path = "";
     tool2Path = "";
 
@@ -30,4 +20,13 @@ void SettingIniData::clear() {
 
     windowRect = NO_RECT;
     windowMaximized = false;
+
+    tracksFormVisibility = true;
+    editorFormVisibility = true;
+    paramsFormVisibility = true;
+
+    lastQuantize = 1;
+    ignoreRestsWhenInsert = true;
+    replaceLyricsWhenInsert = true;
+    separateCharWhenInsert = false;
 }

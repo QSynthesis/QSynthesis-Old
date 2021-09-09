@@ -2,6 +2,7 @@
 #define BACKSTAGEDIALOG_H
 
 #include <QLabel>
+#include <QMutex>
 #include <QPushButton>
 
 #include "BaseDialog.h"
@@ -47,6 +48,9 @@ private:
     QHash<QThread *, QPair<int, int>> m_threads;
     QList<ResampleWork *> m_resampleWorks;
     QList<ConcatenateWork *> m_concatenateWorks;
+
+    QMutex m_resampleLock;
+    QMutex m_concatenateLock;
 
     int m_resampleCount;
     int m_concatenateCount;

@@ -20,6 +20,7 @@ public:
     QAction *saveFile;
     QAction *saveAsFile;
     QAction *restoreFile;
+    QAction *switchFile;
     QAction *closeFile;
 
     QMenu *recentMenu; // *

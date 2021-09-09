@@ -17,6 +17,8 @@ void BaseWork::start() {
 void BaseWork::terminate() {
     if (m_process->state() == QProcess::Running) {
         m_process->kill();
+    } else {
+        emit crashed();
     }
 }
 

@@ -1,5 +1,6 @@
 #include "InsertLyricsDialog.h"
 #include "QUtauUtils.h"
+#include "mainwindow.h"
 
 InsertLyricsDialog::InsertLyricsDialog(QStringList &lyrics, QWidget *parent)
     : BaseDialog(parent), orgLyrics(lyrics) {
@@ -7,6 +8,9 @@ InsertLyricsDialog::InsertLyricsDialog(QStringList &lyrics, QWidget *parent)
 }
 
 InsertLyricsDialog::~InsertLyricsDialog() {
+    MainWindow::settingIni.ignoreRestsWhenInsert = cbIgnore->isChecked();
+    MainWindow::settingIni.replaceLyricsWhenInsert = cbReplace->isChecked();
+    MainWindow::settingIni.separateCharWhenInsert = cbSplit->isChecked();
 }
 
 int InsertLyricsDialog::exec() {
@@ -42,8 +46,9 @@ void InsertLyricsDialog::init() {
     cbReplace = new QCheckBox(tr("Replace lyrics"), this);
     cbSplit = new QCheckBox(tr("Separate into characters"), this);
 
-    cbIgnore->setChecked(true);
-    cbReplace->setChecked(true);
+    cbIgnore->setChecked(MainWindow::settingIni.ignoreRestsWhenInsert);
+    cbReplace->setChecked(MainWindow::settingIni.replaceLyricsWhenInsert);
+    cbSplit->setChecked(MainWindow::settingIni.separateCharWhenInsert);
 
     btnCancel->setFixedSize(115, 35);
     btnOK->setFixedSize(115, 35);
@@ -138,6 +143,25 @@ int InsertLyricsDialog::findNextQuote(const QString &s, int n) {
     return q1;
 }
 
+int InsertLyricsDialog::findNextSpace(const QString &s, int n) {
+    int q1 = s.indexOf(' ', n);
+    int q2 = s.indexOf('\n', n);
+
+    if (q1 < 0) {
+        if (q2 >= 0) {
+            q1 = q2;
+        } else {
+            q1 = s.size();
+        }
+    } else {
+        if (q2 >= 0 && q2 < q1) {
+            q1 = q2;
+        }
+    }
+
+    return q1;
+}
+
 QStringList InsertLyricsDialog::splitBySpace(const QString &content) {
     int i, q, s, j;
     bool isQuote = false;
@@ -148,7 +172,7 @@ QStringList InsertLyricsDialog::splitBySpace(const QString &content) {
     i = 0;
     while (i < content.size()) {
         q = findNextQuote(content, i);
-        s = content.indexOf(' ', i);
+        s = findNextSpace(content, i);
         if (s < 0) {
             s = content.size();
         }

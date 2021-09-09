@@ -89,7 +89,7 @@ void FileListWidget::setDateColor(const QColor &value) {
 
 void FileListWidget::onLeftClick(QModelIndex index) {
     currentFileName = index.data(Qt::UserRole + 2).toString();
-    openTriggered();
+    handleOpen();
 }
 
 void FileListWidget::onRightClick(QModelIndex index) {
@@ -120,9 +120,9 @@ void FileListWidget::onRightClick(QModelIndex index) {
 #endif
     }
 
-    connect(openAction, &QAction::triggered, this, &FileListWidget::openTriggered);
-    connect(deleteAction, &QAction::triggered, this, &FileListWidget::deleteTriggered);
-    connect(revealAction, &QAction::triggered, this, &FileListWidget::revealTriggered);
+    connect(openAction, &QAction::triggered, this, &FileListWidget::handleOpen);
+    connect(deleteAction, &QAction::triggered, this, &FileListWidget::handleDelete);
+    connect(revealAction, &QAction::triggered, this, &FileListWidget::handleReveal);
 
     m_menu->addAction(openAction);
     m_menu->addAction(deleteAction);
@@ -134,7 +134,7 @@ void FileListWidget::onRightClick(QModelIndex index) {
     setItemSelected(itemFromIndex(index), false);
 }
 
-void FileListWidget::openTriggered() {
+void FileListWidget::handleOpen() {
     if (m_type == Files) {
         Root(this)->addTuningTab(currentFileName, false);
     } else {
@@ -142,7 +142,7 @@ void FileListWidget::openTriggered() {
     }
 }
 
-void FileListWidget::deleteTriggered() {
+void FileListWidget::handleDelete() {
     removeItemWidget(selectedItems()[0]);
     if (m_type == Files) {
         MainWindow::settingIni.projects.remove(currentFileName);
@@ -152,6 +152,6 @@ void FileListWidget::deleteTriggered() {
     Root(this)->reloadRecentMenu();
 }
 
-void FileListWidget::revealTriggered() {
+void FileListWidget::handleReveal() {
     RevealFile(currentFileName);
 }

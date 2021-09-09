@@ -57,6 +57,16 @@ void MainWindow::handleRestoreFile() {
     }
 }
 
+void MainWindow::handleSwitchFile() {
+    qDebug() << "[Action]"
+             << "Switch";
+
+    BaseTab *prevTab = previousTab();
+    if (prevTab) {
+        tabs->setCurrentWidget(prevTab);
+    }
+}
+
 void MainWindow::handleCloseFile() {
     qDebug() << "[Action]"
              << "Close";

@@ -42,6 +42,7 @@ private:
 
 private:
     static int findNextQuote(const QString &s, int n);
+    static int findNextSpace(const QString &s, int n);
 
     static QStringList splitBySpace(const QString &content);
     static QStringList splitByNone(const QString &content);

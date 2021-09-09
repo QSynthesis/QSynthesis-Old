@@ -3,6 +3,11 @@
 
 TabWidget::TabWidget(QWidget *parent) : QTabWidget(parent) {
     setAttribute(Qt::WA_StyledBackground);
+
+    m_previousTab = nullptr;
+    m_currentTab = nullptr;
+
+    connect(this, &QTabWidget::currentChanged, this, &TabWidget::handleTabIndexChanged);
 }
 
 TabWidget::~TabWidget() {
@@ -45,6 +50,9 @@ BaseTab *TabWidget::currentWidget() const {
 }
 
 BaseTab *TabWidget::tabAt(int index) const {
+    if (index < 0 || index >= count()) {
+        return nullptr;
+    }
     return qobject_cast<BaseTab *>(QTabWidget::widget(index));
 }
 
@@ -89,10 +97,33 @@ void TabWidget::removeTab(BaseTab *tab) {
     removeTabCore(index);
 }
 
+BaseTab *TabWidget::previousTab() const {
+    return m_previousTab;
+}
+
 void TabWidget::addTabCore(int index) {
 }
 
 void TabWidget::removeTabCore(int index) {
+}
+
+void TabWidget::handleTabIndexChanged(int index) {
+    BaseTab *currentTab = tabAt(index);
+    if (m_currentTab == currentTab) {
+        return;
+    }
+
+    m_previousTab = m_currentTab;
+    m_currentTab = currentTab;
+
+    if (m_previousTab) {
+        m_previousTab->leave();
+    }
+    if (m_currentTab) {
+        m_currentTab->enter();
+    }
+
+    emit realIndexChanged(index);
 }
 
 void TabWidget::handleTabNameChanged(const QString &newName) {

@@ -2,6 +2,7 @@
 #include "../../TuningTab.h"
 #include "../Interfaces/ParamsInterface.h"
 #include "../TuningGroup.h"
+#include "mainwindow.h"
 
 using namespace Qs::Panels;
 
@@ -30,7 +31,8 @@ ParamsForm::ParamsForm(TuningTab *parent) : BaseForm(parent) {
     titleBar()->addItem(btnMod, false, false);
     titleBar()->addItem(btnVel, false, false);
 
-    connect(btnsGroup, &SwitchButtonGroup::oneDoubleClicked, this, &BaseForm::reverseFold);
+    connect(btnsGroup, &SwitchButtonGroup::oneDoubleClicked, this,
+            &ParamsForm::handleSwitchDoubleClicked);
     connect(btnsGroup, &SwitchButtonGroup::switched, this, &ParamsForm::handleSwitchChanged);
 
     // Pointers
@@ -46,6 +48,10 @@ TuningGroup *ParamsForm::ptrs() const {
 
 void ParamsForm::handleSwitchChanged() {
     content->setVisionStatus(status());
+}
+
+void ParamsForm::handleSwitchDoubleClicked() {
+    reverseFold();
 }
 
 Params ParamsForm::status() const {

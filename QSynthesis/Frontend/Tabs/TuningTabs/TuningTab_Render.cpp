@@ -397,6 +397,12 @@ void TuningTab::setPlayable(bool playable) {
     m_playable = playable;
 }
 
+void TuningTab::forcePausePlaying() {
+    if (isPlaying()) {
+        pause();
+    }
+}
+
 bool TuningTab::renderCore() {
     if (!isDirExist(m_ptrs->tracksContent->defaultVoiceDir())) {
         QMessageBox::warning(this, ErrorTitle, tr("Voice database is not available."));
@@ -425,10 +431,10 @@ bool TuningTab::renderCore() {
     setPlaying(false);
 
     // Open Dialog And Wait
-    //    TerminalDialog *dlg = new TerminalDialog(workingDir(), this);
-    BackstageDialog *dlg = new BackstageDialog(workingDir(), this);
-    dlg->setThreads(1);
-    dlg->setArgs(currentRenderArgs);
+    TerminalDialog *dlg = new TerminalDialog(workingDir(), this);
+    //    BackstageDialog *dlg = new BackstageDialog(workingDir(), this);
+    //    dlg->setThreads(12);
+    //    dlg->setArgs(currentRenderArgs);
 
     int code = dlg->exec();
     dlg->deleteLater();

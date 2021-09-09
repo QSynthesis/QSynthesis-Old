@@ -57,7 +57,7 @@ QPointF GraphicsNote::limitAreaT(QPointF p) {
 
 QSizeF GraphicsNote::limitSize(QSizeF s) {
     int curWidth = m_editor->ptrs()->currentWidth;
-    int curAdsorb = m_editor->ptrs()->currentAdsorb / 4;
+    int curAdsorb = m_editor->ptrs()->currentAdsorb;
 
     double minimum = double(curWidth) / 32;
     int minimunTick = 15;
@@ -67,6 +67,10 @@ QSizeF GraphicsNote::limitSize(QSizeF s) {
     if (curAdsorb != 0) {
         double width32 = double(curWidth) / curAdsorb;
         int ratio = round(s.width() / width32);
+
+        if (ratio < 1) {
+            ratio = 1;
+        }
 
         double toW = width32 * ratio;
         int toTick = 480 / curAdsorb * ratio;

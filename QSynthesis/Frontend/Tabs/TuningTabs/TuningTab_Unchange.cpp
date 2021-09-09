@@ -46,9 +46,14 @@ void TuningTab::exportRecentAudio() {
 }
 
 void TuningTab::configueLyric() {
-    if (isPlaying() || !oto) {
+    if (!oto) {
         return;
     }
+    if (!isFreeButPlaying()) {
+        return;
+    }
+    forcePausePlaying();
+
     VoiceBankTab *tab = root()->addVoiceBankTab(oto->voiceDir());
     if (!tab) {
         return;
@@ -61,9 +66,14 @@ void TuningTab::configueLyric() {
 }
 
 void TuningTab::configuePrefix() {
-    if (isPlaying() || !oto) {
+    if (!oto) {
         return;
     }
+    if (!isFreeButPlaying()) {
+        return;
+    }
+    forcePausePlaying();
+
     VoiceBankTab *tab = root()->addVoiceBankTab(oto->voiceDir());
     if (!tab) {
         return;
@@ -77,22 +87,37 @@ void TuningTab::configuePrefix() {
 }
 
 void TuningTab::switchTrackStatus(Qs::Panels::Tracks status) {
-    if (m_ptrs->draggers.dragging) {
+    if (!isFreeButPlaying()) {
         return;
     }
     m_ptrs->tracksShell->setStatus(status);
 }
 
 void TuningTab::switchEditorStatus(Qs::Panels::Editor status) {
-    if (m_ptrs->draggers.dragging) {
+    if (!isFreeButPlaying()) {
         return;
     }
     m_ptrs->editorShell->setStatus(status);
 }
 
 void TuningTab::switchParamsStatus(Qs::Panels::Params status) {
-    if (m_ptrs->draggers.dragging) {
+    if (!isFreeButPlaying()) {
         return;
     }
     m_ptrs->paramsShell->setStatus(status);
+}
+
+void TuningTab::handleFormStatusChanged() {
+    MainWindow::settingIni.tracksFormVisibility = tracksForm->unfolded();
+    MainWindow::settingIni.editorFormVisibility = editorForm->unfolded();
+    MainWindow::settingIni.paramsFormVisibility = paramsForm->unfolded();
+}
+
+bool TuningTab::isFree() const {
+    return isFreeButPlaying() && !isPlaying();
+}
+
+bool TuningTab::isFreeButPlaying() const {
+    return !m_ptrs->notesArea->isLyricEditing() && !m_ptrs->notesArea->isSelecting() &&
+           !qDragOut.dragging;
 }

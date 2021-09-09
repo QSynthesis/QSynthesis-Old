@@ -109,6 +109,8 @@ void FormSplitter::onFormVisibilityChanged(bool b) {
         }
     }
     modifyFeatures();
+
+    emit statusChanged();
 }
 
 void FormSplitter::modifyFeatures() {

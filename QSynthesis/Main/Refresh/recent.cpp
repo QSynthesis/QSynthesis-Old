@@ -6,7 +6,7 @@ void MainWindow::clearRecentMenu() {
 
     CentralTab *tab = currentTab();
     if (tab && tab->tabType() == Qs::Welcome) {
-        tab->awake();
+        tab->enter();
     }
 }
 

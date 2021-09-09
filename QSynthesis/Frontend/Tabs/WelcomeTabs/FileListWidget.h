@@ -64,9 +64,9 @@ private:
     void onLeftClick(QModelIndex index);
     void onRightClick(QModelIndex index);
 
-    void openTriggered();
-    void deleteTriggered();
-    void revealTriggered();
+    void handleOpen();
+    void handleDelete();
+    void handleReveal();
 };
 
 #endif // FILELISTWIDGET_H

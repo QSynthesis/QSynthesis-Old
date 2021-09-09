@@ -53,10 +53,26 @@ bool VoiceBankTab::restore() {
 
 void VoiceBankTab::awake() {
     CentralTab::awake();
+
+    handleBlocks();
 }
 
 void VoiceBankTab::sleep() {
     CentralTab::sleep();
+
+    if (otoTimer->isActive()) {
+        otoTimer->stop();
+    }
+}
+
+void VoiceBankTab::enter() {
+    CentralTab::enter();
+
+    handleBlocks();
+}
+
+void VoiceBankTab::leave() {
+    CentralTab::leave();
 
     if (otoTimer->isActive()) {
         otoTimer->stop();

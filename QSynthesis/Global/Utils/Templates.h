@@ -35,4 +35,13 @@ void insertSort(QVector<T> array) {
     }
 }
 
+template <class T>
+QList<T> batchReplace(const QList<T> &list, T fun(const T &)) {
+    QList<T> res;
+    for (auto it = list.begin(); it != list.end(); ++it) {
+        res.append(fun(*it));
+    }
+    return res;
+}
+
 #endif // TEMPLATES_H

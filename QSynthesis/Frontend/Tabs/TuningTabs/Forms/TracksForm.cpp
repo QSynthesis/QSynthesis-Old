@@ -2,6 +2,7 @@
 #include "../../TuningTab.h"
 #include "../Interfaces/TracksInterface.h"
 #include "../TuningGroup.h"
+#include "mainwindow.h"
 
 using namespace Qs::Panels;
 
@@ -26,7 +27,8 @@ TracksForm::TracksForm(TuningTab *parent) : BaseForm(parent) {
     titleBar()->addItem(btnTracks, false, false);
     titleBar()->addItem(btnConfig, false, false);
 
-    connect(btnsGroup, &SwitchButtonGroup::oneDoubleClicked, this, &BaseForm::reverseFold);
+    connect(btnsGroup, &SwitchButtonGroup::oneDoubleClicked, this,
+            &TracksForm::handleSwitchDoubleClicked);
     connect(btnsGroup, &SwitchButtonGroup::switched, this, &TracksForm::handleSwitchChanged);
 
     // Pointers
@@ -54,4 +56,8 @@ void TracksForm::setStatus(Tracks status) {
 
 void TracksForm::handleSwitchChanged() {
     content->setVisionStatus(status());
+}
+
+void TracksForm::handleSwitchDoubleClicked() {
+    reverseFold();
 }

@@ -184,10 +184,12 @@ void MainWindow::removeTab(int index) {
     }
 
     tabs->removeTab(index);
-    tab->deleteLater();
+    delete tab;
 
     // If all tabs are closed, then add a welcoming tab
     if (tabs->count() == 0) {
         addWelcomeTab();
+    } else {
+        welcomeActions->switchFile->setEnabled(previousTab());
     }
 }

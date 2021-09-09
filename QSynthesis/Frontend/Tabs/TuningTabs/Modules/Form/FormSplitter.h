@@ -36,6 +36,9 @@ private:
     void modifyStretches();
 
     QSplitterHandle *createHandle() override;
+
+signals:
+    void statusChanged();
 };
 
 class FormSplitterHandle : public QSplitterHandle {

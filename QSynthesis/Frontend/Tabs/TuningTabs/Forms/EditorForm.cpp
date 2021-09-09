@@ -3,6 +3,7 @@
 #include "../Areas/Editor/NotesArea.h"
 #include "../Interfaces/EditorInterface.h"
 #include "../TuningGroup.h"
+#include "mainwindow.h"
 
 using namespace Qs::Panels;
 
@@ -45,7 +46,8 @@ EditorForm::EditorForm(TuningTab *parent) : BaseForm(parent) {
 
     titleBar()->addItem(btnMenu, true);
 
-    connect(btnsGroup, &SwitchButtonGroup::oneDoubleClicked, this, &BaseForm::reverseFold);
+    connect(btnsGroup, &SwitchButtonGroup::oneDoubleClicked, this,
+            &EditorForm::handleSwitchDoubleClicked);
     connect(btnsGroup, &SwitchButtonGroup::switched, this, &EditorForm::handleSwitchChanged);
 
     connect(btnPlays, &PlayButtonGroup::play, this, &EditorForm::onPlay);
@@ -88,6 +90,10 @@ void EditorForm::updatePlayStatus(bool playing) {
 
 void EditorForm::handleSwitchChanged() {
     content->setVisionStatus(status());
+}
+
+void EditorForm::handleSwitchDoubleClicked() {
+    reverseFold();
 }
 
 void EditorForm::onPlay() {

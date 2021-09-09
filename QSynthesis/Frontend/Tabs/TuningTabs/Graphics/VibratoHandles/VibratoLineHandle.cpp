@@ -38,6 +38,8 @@ QPointF VibratoLineHandle::limitArea(QPointF origin) {
     double h1 = h / 2;
     double unit_y = int(origin.y() / h1 - 0.5) * h1 + double(h) / 2;
 
+    QPointF p = origin;
+
     if (m_orient == Qt::Horizontal) {
         if (origin.x() < m_region.left()) {
             origin.setX(m_region.left());
@@ -116,8 +118,8 @@ void VibratoLineHandle::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 }
 
 void VibratoLineHandle::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
-    if (event->buttons() == Qt::LeftButton) {
-        afterMove(event->pos());
+    if (event->buttons() & Qt::LeftButton) {
+        afterMove(event->scenePos());
     }
 }
 

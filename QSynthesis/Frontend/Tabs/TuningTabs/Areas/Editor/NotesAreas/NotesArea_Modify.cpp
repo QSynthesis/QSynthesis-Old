@@ -36,38 +36,52 @@ void NotesArea::replaceSingleLyric(const QString &lyric, GraphicsNote *p) {
 }
 
 void NotesArea::replaceSelectedLyrics(const QStringList &lyrics, bool ignoreRest) {
-    if (lyrics.isEmpty()) {
-        return;
-    }
-    if (qDragOut.selectedNotes.isEmpty()) {
+    if (lyrics.isEmpty() || qDragOut.selectedNotes.isEmpty()) {
         return;
     }
 
     qDragOut.filter(GraphicsDragger::Note);
 
-    int i = 0;
+    int index = NotesList.indexOf(static_cast<GraphicsNote *>(qDragOut.leftmost()));
     auto it = lyrics.begin();
 
     QList<int> indexs;
     QStringList orgs, news;
 
-    for (i = 0; i < qDragOut.selectedNotes.size(); ++i) {
+    QPoint range = continuousSelection();
+    bool isContinuous = isSelectionContinuous();
+
+    for (int i = index; i < NotesList.size(); ++i) {
         if (it == lyrics.end()) {
             break;
         }
 
         QString lrc = *it;
-        GraphicsNote *p = qDragOut.selectedNotes.at(i);
+        GraphicsNote *p = NotesList.at(i);
 
         if (ignoreRest && p->isRest()) {
             continue;
         }
 
+        if (!isContinuous) {
+            if (i > range.y()) {
+                break;
+            }
+            if (!p->isSelected()) {
+                continue;
+            }
+        } else {
+            if (!p->isSelected()) {
+                qDragOut.addOne(p);
+            }
+        }
+
         orgs.append(p->Note.lyric);
         news.append(lrc);
-        indexs.append(NotesList.indexOf(p));
+        indexs.append(i);
 
         p->Note.lyric = lrc;
+
         ++it;
     }
 
@@ -293,6 +307,7 @@ void NotesArea::insertLyrics(const QStringList &lyrics) {
     int length = 480 / m_ptrs->currentAdsorb;
 
     GraphicsNote *leftmost = static_cast<GraphicsNote *>(qDragOut.leftmost());
+
     if (leftmost) {
         noteNum = leftmost->Note.noteNum;
     } else if (!NotesList.isEmpty()) {

@@ -2,6 +2,7 @@
 #include "../../TuningGroup.h"
 #include "../EditorForm.h"
 #include "Templates/TemporaryMenu.h"
+#include "mainwindow.h"
 
 void EditorForm::handleMenuBtnClicked() {
     QMenu *adsorbMenu = new QMenu(tr("Quantization"), m_menu);
@@ -17,6 +18,17 @@ void EditorForm::handleMenuBtnClicked() {
     QAction *thirtySecondAdsorbAction = new QAction(tr("1/32 Quarter"), m_menu);
     QAction *noAdsorbAction = new QAction(tr("None"), m_menu);
 
+    fullAdsorbAction->setCheckable(true);
+    halfAdsorbAction->setCheckable(true);
+    quarterAdsorbAction->setCheckable(true);
+    sixthAdsorbAction->setCheckable(true);
+    eighthAdsorbAction->setCheckable(true);
+    twelfthAdsorbAction->setCheckable(true);
+    sixteenthAdsorbAction->setCheckable(true);
+    twentyForthAdsorbAction->setCheckable(true);
+    thirtySecondAdsorbAction->setCheckable(true);
+    noAdsorbAction->setCheckable(true);
+
     connect(fullAdsorbAction, &QAction::triggered, this, &EditorForm::handleFullAdsorb);
     connect(halfAdsorbAction, &QAction::triggered, this, &EditorForm::handleHalfAdsorb);
     connect(quarterAdsorbAction, &QAction::triggered, this, &EditorForm::handleQuarterAdsorb);
@@ -29,6 +41,41 @@ void EditorForm::handleMenuBtnClicked() {
     connect(thirtySecondAdsorbAction, &QAction::triggered, this,
             &EditorForm::handleThirtySecondAdsorb);
     connect(noAdsorbAction, &QAction::triggered, this, &EditorForm::handleNoneAdsorb);
+
+    switch (m_ptrs->currentAdsorb) {
+    case 1:
+        fullAdsorbAction->setChecked(true);
+        break;
+    case 2:
+        halfAdsorbAction->setChecked(true);
+        break;
+    case 4:
+        quarterAdsorbAction->setChecked(true);
+        break;
+    case 6:
+        sixthAdsorbAction->setChecked(true);
+        break;
+    case 8:
+        eighthAdsorbAction->setChecked(true);
+        break;
+    case 12:
+        twelfthAdsorbAction->setChecked(true);
+        break;
+    case 16:
+        sixteenthAdsorbAction->setChecked(true);
+        break;
+    case 24:
+        twentyForthAdsorbAction->setChecked(true);
+        break;
+    case 32:
+        thirtySecondAdsorbAction->setChecked(true);
+        break;
+    case 0:
+        noAdsorbAction->setChecked(true);
+        break;
+    default:
+        break;
+    }
 
     adsorbMenu->addAction(fullAdsorbAction);
     adsorbMenu->addAction(halfAdsorbAction);
@@ -79,6 +126,8 @@ void EditorForm::handleNoneAdsorb() {
 }
 
 void EditorForm::setLengthUnit(int n) {
-    m_ptrs->currentAdsorb = n * 4;
+    m_ptrs->currentAdsorb = n;
     m_ptrs->notesArea->updateBackground();
+
+    MainWindow::settingIni.lastQuantize = n;
 }

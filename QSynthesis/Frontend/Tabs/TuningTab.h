@@ -48,6 +48,9 @@ public:
     void awake() override;
     void sleep() override;
 
+    void enter() override;
+    void leave() override;
+
     void newFile(const SectionNotes &notes);
     void appendFile(const SectionNotes &notes);
 
@@ -165,6 +168,11 @@ public:
     void switchEditorStatus(Qs::Panels::Editor status);
     void switchParamsStatus(Qs::Panels::Params status);
 
+    void handleFormStatusChanged();
+
+    bool isFree() const;
+    bool isFreeButPlaying() const;
+
 public:
     // Edit
     void undo() override;
@@ -225,10 +233,13 @@ public:
     void resume();
 
     bool isPlaying() const;
-    void setPlaying(bool playing);
-
-    void setPlayable(bool playable);
     void onPlaying(qint64 n);
+
+private:
+    void setPlaying(bool playing);
+    void setPlayable(bool playable);
+
+    void forcePausePlaying();
 
 private:
     void handleStateChanged(QMediaPlayer::State newState);

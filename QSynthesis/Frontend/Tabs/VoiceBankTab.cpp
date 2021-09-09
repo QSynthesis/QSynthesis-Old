@@ -43,7 +43,6 @@ void VoiceBankTab::updateMenuRoot() {
 }
 
 void VoiceBankTab::updateStatusRoot() {
-    handleBlocks();
 }
 
 void VoiceBankTab::updateMenuCore() {
@@ -99,6 +98,8 @@ void VoiceBankTab::initComponents() {
 }
 
 void VoiceBankTab::initValues() {
+    tabActions = nullptr;
+
     historyIndex = 0;
     savedHistoryIndex = 0;
 }

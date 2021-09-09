@@ -12,6 +12,7 @@ void TuningTab::initTab() {
     m_type = Qs::Tuning;
 
     m_ptrs = new TuningGroup(this);
+    m_ptrs->currentAdsorb = MainWindow::settingIni.lastQuantize;
 
     projectInfo = new ProjectInfoHandler(this);
     connect(&ustFile, &SequenceTextFile::changed, this, &TuningTab::handleFileChanged);
@@ -54,9 +55,26 @@ void TuningTab::initComponents() {
     m_ptrs->paramsShell = paramsForm;
 
     m_tempMenu = new TemporaryMenu(this);
+
+    // First Status
+    bool visibilities[3] = {MainWindow::settingIni.tracksFormVisibility,
+                            MainWindow::settingIni.editorFormVisibility,
+                            MainWindow::settingIni.paramsFormVisibility};
+    if (!visibilities[0]) {
+        tracksForm->setUnfolded(false);
+    }
+    if (!visibilities[2]) {
+        paramsForm->setUnfolded(false);
+    }
+    if (!visibilities[1] && (visibilities[0] || visibilities[2])) {
+        editorForm->setUnfolded(false);
+    }
+
+    connect(mainSplitter, &FormSplitter::statusChanged, this, &TuningTab::handleFormStatusChanged);
 }
 
 void TuningTab::initValues() {
+    tabActions = nullptr;
     oto = nullptr;
 
     untitled = false;
@@ -116,9 +134,7 @@ void TuningTab::setFilename(const QString &value) {
 
 void TuningTab::updateMenuRoot() {
     tabActions->setNaturalStatus();
-
     updateMenuCore();
-    updatePasteMenu();
 }
 
 void TuningTab::updateStatusRoot() {
@@ -130,24 +146,28 @@ void TuningTab::updateMenuCore() {
     tabActions->undo->setEnabled(!earliest());
     tabActions->redo->setEnabled(!latest());
 
-    tabActions->cut->setEnabled(!m_ptrs->draggers.selectedNotes.isEmpty());
-    tabActions->copy->setEnabled(!m_ptrs->draggers.selectedNotes.isEmpty());
-    tabActions->remove->setEnabled(!m_ptrs->draggers.selectedNotes.isEmpty() ||
-                                         !m_ptrs->draggers.selectedPoints.isEmpty());
-    tabActions->deselect->setEnabled(!m_ptrs->draggers.selectedNotes.isEmpty() ||
-                                           !m_ptrs->draggers.selectedPoints.isEmpty());
+    tabActions->cut->setEnabled(!qDragOut.selectedNotes.isEmpty());
+    tabActions->copy->setEnabled(!qDragOut.selectedNotes.isEmpty());
+    tabActions->remove->setEnabled(!qDragOut.selectedNotes.isEmpty() ||
+                                   !qDragOut.selectedPoints.isEmpty());
+    tabActions->deselect->setEnabled(!qDragOut.selectedNotes.isEmpty() ||
+                                     !qDragOut.selectedPoints.isEmpty());
 
-    tabActions->transpose->setEnabled(!m_ptrs->draggers.selectedNotes.isEmpty());
-    tabActions->octaveUp->setEnabled(!m_ptrs->draggers.selectedNotes.isEmpty());
-    tabActions->octaveDown->setEnabled(!m_ptrs->draggers.selectedNotes.isEmpty());
+    tabActions->transpose->setEnabled(!qDragOut.selectedNotes.isEmpty());
+    tabActions->octaveUp->setEnabled(!qDragOut.selectedNotes.isEmpty());
+    tabActions->octaveDown->setEnabled(!qDragOut.selectedNotes.isEmpty());
 
-    tabActions->reset->setEnabled(!m_ptrs->draggers.selectedNotes.isEmpty());
-    tabActions->noteProperty->setEnabled(!m_ptrs->draggers.selectedNotes.isEmpty());
+    tabActions->reset->setEnabled(!qDragOut.selectedNotes.isEmpty());
+    tabActions->noteProperty->setEnabled(!qDragOut.selectedNotes.isEmpty());
+
+    updatePasteMenu();
 }
 
 void TuningTab::updatePasteMenu() {
     QClipboard *board = QApplication::clipboard();
-    tabActions->paste->setEnabled(board->mimeData()->hasFormat("qsynthesis/notes"));
+
+    bool hasData = board->mimeData()->hasFormat(CLIPBOARD_FORMAT_NAME_NOTE);
+    tabActions->paste->setEnabled(hasData && m_ptrs->notesArea->isAvailableToPaste());
 }
 
 void TuningTab::updateTabName() {

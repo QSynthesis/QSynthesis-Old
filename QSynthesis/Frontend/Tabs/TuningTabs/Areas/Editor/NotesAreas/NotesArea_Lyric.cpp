@@ -76,6 +76,10 @@ void NotesArea::editNoteLyric(GraphicsNote *pNote) {
     // emit checkOnStage(m_lyricEdit, true);
 }
 
+void NotesArea::endEditingNote() {
+    abandonLyric();
+}
+
 void NotesArea::switchLyric() {
     if (!isLyricEditing()) {
         return;

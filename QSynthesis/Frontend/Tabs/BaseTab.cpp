@@ -3,9 +3,22 @@
 
 BaseTab::BaseTab(TabWidget *parent) : QWidget(parent), m_parent(parent) {
     setAttribute(Qt::WA_StyledBackground);
+
+    m_active = false;
 }
 
-TabWidget *BaseTab::parentTabWidget() const {
+BaseTab::~BaseTab() {
+}
+
+void BaseTab::enter() {
+    m_active = true;
+}
+
+void BaseTab::leave() {
+    m_active = false;
+}
+
+TabWidget *BaseTab::tabWidget() const {
     return m_parent;
 }
 
@@ -22,5 +35,6 @@ void BaseTab::updateTabName() {
     setTabName(m_tabName);
 }
 
-BaseTab::~BaseTab() {
+bool BaseTab::active() const {
+    return m_active;
 }

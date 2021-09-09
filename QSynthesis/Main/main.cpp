@@ -6,7 +6,7 @@
 void created() {
     QTextCodec *loc;
 #ifdef Q_OS_WINDOWS
-    loc = QTextCodec::codecForName("UTF-16LE");
+    loc = QTextCodec::codecForName("UTF-8");
 #else
     loc = QTextCodec::codecForLocale();
 #endif

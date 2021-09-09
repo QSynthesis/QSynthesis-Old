@@ -78,15 +78,25 @@ bool CentralTab::restore() {
 }
 
 void CentralTab::awake() {
-    updateMenuRoot();
-    updateStatusRoot();
 }
 
 void CentralTab::sleep() {
 }
 
+void CentralTab::enter() {
+    BaseTab::enter();
+    updateMenuRoot();
+    updateStatusRoot();
+}
+
+void CentralTab::leave() {
+    BaseTab::leave();
+}
+
 void CentralTab::change() {
-    updateMenuCore();
+    if (active()) {
+        updateMenuCore();
+    }
 }
 
 QString CentralTab::filename() const {

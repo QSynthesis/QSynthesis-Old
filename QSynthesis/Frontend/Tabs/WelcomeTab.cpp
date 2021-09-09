@@ -30,6 +30,14 @@ void WelcomeTab::sleep() {
     CentralTab::sleep();
 }
 
+void WelcomeTab::enter() {
+    CentralTab::enter();
+}
+
+void WelcomeTab::leave() {
+    CentralTab::leave();
+}
+
 void WelcomeTab::setFixedname(const QString &value) {
     CentralTab::setFixedname(value);
     updateTabName();

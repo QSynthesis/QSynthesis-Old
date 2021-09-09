@@ -1,4 +1,5 @@
 #include "PluginInfo.h"
+#include "Import/QSettingFile.h"
 #include "PluginsCollect.h"
 #include "QUtauStrings.h"
 #include "Strings/UtaPluginText.h"
@@ -99,71 +100,68 @@ bool PluginInfo::loadPluginTxt() {
     }
     in.setCodec(m_codec);
 
-    QString line;
-    int eq;
-    QString key, value;
-
+    QStringList lines;
     while (!in.atEnd()) {
-        line = in.readLine();
-        if (line.isEmpty()) {
-            continue;
-        }
-
-        eq = line.indexOf('=');
-        if (eq < 0) {
-            m_custom.append(line);
-            continue;
-        }
-
-        key = line.mid(0, eq);
-        value = line.mid(eq + 1);
-
-        if (key == KEY_NAME_PLUGIN_NAME) {
-            m_name = value;
-        } else if (key == KEY_NAME_PLUGIN_EXECUTABLE) {
-            m_execute = QDir::fromNativeSeparators(value);
-        } else if (key == KEY_NAME_PLUGIN_UST_VERSION) {
-            m_ustVersion = value;
-        } else if (key == KEY_NAME_PLUGIN_SHELL && value == VALUE_NAME_PLUGIN_SHELL) {
-            m_useShell = true;
-        } else if (key == KEY_NAME_PLUGIN_NOTE && value == VALUE_NAME_PLUGIN_NOTE) {
-            m_allNote = true;
-        } else if (key == KEY_NAME_PLUGIN_CHARSET && !value.isEmpty()) {
-            m_charset = value;
-        } else {
-            m_custom.append(line);
-        }
+        lines.append(in.readLine());
     }
+
+    QSettingSection section;
+    section.fromLines(lines);
+
+    QString *nameValue = section.valueOf(KEY_NAME_PLUGIN_NAME);
+    if (nameValue) {
+        m_name = *nameValue;
+    }
+    QString *executeValue = section.valueOf(KEY_NAME_PLUGIN_EXECUTABLE);
+    if (nameValue) {
+        m_execute = QDir::fromNativeSeparators(*executeValue);
+    }
+    QString *versionValue = section.valueOf(KEY_NAME_PLUGIN_UST_VERSION);
+    if (versionValue) {
+        m_ustVersion = *versionValue;
+    }
+    QString *shellValue = section.valueOf(KEY_NAME_PLUGIN_SHELL);
+    if (shellValue && *shellValue == VALUE_NAME_PLUGIN_SHELL) {
+        m_useShell = true;
+    }
+    QString *noteValue = section.valueOf(VALUE_NAME_PLUGIN_NOTE);
+    if (noteValue && *noteValue == VALUE_NAME_PLUGIN_NOTE) {
+        m_allNote = true;
+    }
+    QString *charsetValue = section.valueOf(KEY_NAME_PLUGIN_CHARSET);
+    if (charsetValue && !charsetValue->isEmpty()) {
+        m_charset = *charsetValue;
+    }
+    m_custom = section.unformattedLines();
 
     return true;
 }
 
 bool PluginInfo::savePluginTxt() {
+    QSettingSection section;
+    section.addPair(KEY_NAME_PLUGIN_NAME, m_name);
+    section.addPair(KEY_NAME_PLUGIN_EXECUTABLE, QDir::toNativeSeparators(m_execute));
+    if (m_useShell) {
+        section.addPair(KEY_NAME_PLUGIN_SHELL, VALUE_NAME_PLUGIN_SHELL);
+    }
+    if (m_allNote) {
+        section.addPair(KEY_NAME_PLUGIN_NOTE, VALUE_NAME_PLUGIN_NOTE);
+    }
+    if (!m_ustVersion.isEmpty()) {
+        section.addPair(KEY_NAME_PLUGIN_UST_VERSION, m_ustVersion);
+    }
+    if (!m_charset.isEmpty()) {
+        section.addPair(KEY_NAME_PLUGIN_CHARSET, m_charset);
+    }
+    section.setUnformattedLines(m_custom);
+
+    QStringList lines = section.toLines();
+
     QByteArray data;
     QTextStream out(&data);
     out.setCodec(m_codec);
-
-    out << KEY_NAME_PLUGIN_NAME << "=" << m_name << Qt::endl;
-    out << KEY_NAME_PLUGIN_EXECUTABLE << "=" << QDir::toNativeSeparators(m_execute) << Qt::endl;
-
-    if (m_useShell) {
-        out << KEY_NAME_PLUGIN_SHELL << "=" << VALUE_NAME_PLUGIN_SHELL << Qt::endl;
-    }
-
-    if (m_allNote) {
-        out << KEY_NAME_PLUGIN_NOTE << "=" << VALUE_NAME_PLUGIN_NOTE << Qt::endl;
-    }
-
-    if (!m_ustVersion.isEmpty()) {
-        out << KEY_NAME_PLUGIN_UST_VERSION << "=" << m_ustVersion << Qt::endl;
-    }
-
-    if (!m_charset.isEmpty()) {
-        out << KEY_NAME_PLUGIN_CHARSET << "=" << m_charset << Qt::endl;
-    }
-
-    for (QString &line : m_custom) {
-        out << line << Qt::endl;
+    for (auto it = lines.begin(); it != lines.end(); ++it) {
+        out << *it << Qt::endl;
     }
 
     pluginTxt.setData(data);

@@ -53,3 +53,18 @@ QPoint NotesArea::selectContinuously(bool selectAll) {
 
     return QPoint(min, max);
 }
+
+QPoint NotesArea::selectRange(QPoint range) {
+    if (range.x() >= NotesList.size() || range.y() < range.x()) {
+        return QPoint(-1, -1);
+    }
+    if (range.y() >= NotesList.size()) {
+        range.ry() = NotesList.size() - 1;
+    }
+
+    qDragOut.removeAll();
+    for (int i = range.x(); i <= range.y(); ++i) {
+        qDragOut.addOne(NotesList[i]);
+    }
+    return range;
+}

@@ -23,6 +23,9 @@ void NotesArea::saveOperation(NoteOperation *n, QString desc) {
 }
 
 bool NotesArea::handleOperation(NoteOperation *o, bool undo) {
+    if (isLyricEditing() || isSelecting() || qDragOut.dragging) {
+        return false;
+    }
     executeOperation(o, undo);
     return true;
 }

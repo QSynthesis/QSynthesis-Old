@@ -10,9 +10,11 @@
 #include "mainwindow.h"
 
 void TuningTab::showLyricInsertion() {
-    if (isPlaying()) {
+    if (!isFreeButPlaying()) {
         return;
     }
+    forcePausePlaying();
+
     QList<QLinkNote> notes = m_ptrs->notesArea->selectedNotes();
     QStringList lyrics;
 
@@ -43,9 +45,10 @@ void TuningTab::showLyricInsertion() {
 }
 
 void TuningTab::showTempoEdit(bool remove) {
-    if (isPlaying()) {
+    if (!isFreeButPlaying()) {
         return;
     }
+    forcePausePlaying();
 
     QList<NoteProperties> props = m_ptrs->notesArea->selectedProperties();
 
@@ -79,23 +82,28 @@ void TuningTab::showTempoEdit(bool remove) {
 }
 
 void TuningTab::showProjectCharset() {
-    if (isPlaying()) {
+    if (!isFreeButPlaying()) {
         return;
     }
+    forcePausePlaying();
 }
 
 void TuningTab::insertRest() {
-    if (isPlaying()) {
+    if (!isFreeButPlaying()) {
         return;
     }
+    forcePausePlaying();
+
     m_ptrs->notesArea->insertRest();
     updateMenuCore();
 }
 
 void TuningTab::removeRest() {
-    if (isPlaying()) {
+    if (!isFreeButPlaying()) {
         return;
     }
+    forcePausePlaying();
+
     double length = 0;
     QIntValidator *validator = new QIntValidator(0, INT_MAX, this);
     InputDialog *dlg = new InputDialog(tr("Remove Rests"), tr("Remove rests shorter than..."),
@@ -125,9 +133,11 @@ void TuningTab::resetEnvelope() {
 }
 
 void TuningTab::transpose(int offset) {
-    if (isPlaying()) {
+    if (!isFreeButPlaying()) {
         return;
     }
+    forcePausePlaying();
+
     if (offset == 0) {
         double dbOffset = offset;
         QIntValidator *validator = new QIntValidator(-84, 84, this);

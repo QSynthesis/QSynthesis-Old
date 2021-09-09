@@ -128,13 +128,14 @@ public:
     void adjustNoteComponents(QPoint range = QPoint(-1, -1));
 
     QPoint selectContinuously(bool selectAll = false);
+    QPoint selectRange(QPoint range);
 
     // Actions
 public:
-    void handleDelete();
+    void autoDelete();
+    void autoPaste(const QList<QLinkNote> &notes);
 
     void inputNotes(const QList<QLinkNote> &notes);
-    void pasteNotes(const QList<QLinkNote> &notes);
 
     void preparePlugin(PluginTempData &ns, bool all);
     void receivePlugin(const PluginTempData &ns, QPoint orgRegion);
@@ -157,6 +158,11 @@ public:
 
     void modifySelectedEnvelope(Qs::EnvelopeBatch method);
 
+public:
+    void pasteNotes(const QList<QLinkNote> &notes);
+    void pasteMode2(const QList<QLinkNote> &notes);
+    void pasteEnvelope(const QList<QLinkNote> &notes);
+
 private:
     GraphicsNote *insertNote(int index, const QLinkNote &note);
     GraphicsNote *appendNote(const QLinkNote &note); // *!*
@@ -178,7 +184,11 @@ private:
 public:
     double zeroLine() const;
 
+    bool isAvailableToPaste() const;
+
     QPoint continuousSelection() const;
+    bool isSelectionContinuous() const;
+
     int totalLength() const;
 
     QList<QLinkNote> allNotes() const;
@@ -288,6 +298,8 @@ private:
 
 public:
     void editNoteLyric(GraphicsNote *pNote);
+    void endEditingNote();
+
     GraphicsNote *curEditNote() const;
 
     // Select
@@ -321,6 +333,7 @@ private:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
+
     bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:

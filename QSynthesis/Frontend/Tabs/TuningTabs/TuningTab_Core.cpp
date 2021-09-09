@@ -46,6 +46,15 @@ void TuningTab::sleep() {
     CentralTab::sleep();
 }
 
+void TuningTab::enter() {
+    CentralTab::enter();
+}
+
+void TuningTab::leave() {
+    CentralTab::leave();
+    forcePausePlaying();
+}
+
 void TuningTab::newFile(const SectionNotes &notes) {
     if (!notes.isEmpty()) {
         ustFile.sectionSettings().globalTempo = notes.initTempo();

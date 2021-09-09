@@ -56,9 +56,9 @@ void MainWindow::handleTabIndexChanged(int index) {
         return;
     }
     setCurrentActions(tab->tabType());
-    tab->awake();
-
     reloadTitle(); // Reload Window Title refering to current tab
+
+    welcomeActions->switchFile->setEnabled(previousTab());
 }
 
 void MainWindow::handleTabNameChanged(int index, const QString &newName) {

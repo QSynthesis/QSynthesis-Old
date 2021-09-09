@@ -5,7 +5,7 @@
 #include "../../../TuningGroup.h"
 #include "../NotesArea.h"
 
-void NotesArea::handleDelete() {
+void NotesArea::autoDelete() {
     if (m_notesEnabled) {
         qDragOut.filter(GraphicsDragger::Note);
         removeSelectedNotes();
@@ -15,41 +15,19 @@ void NotesArea::handleDelete() {
     }
 }
 
+void NotesArea::autoPaste(const QList<QLinkNote> &notes) {
+    if (m_notesEnabled) {
+        pasteNotes(notes);
+    } else if (m_pitchesEnabled) {
+        pasteMode2(notes);
+    } else {
+        pasteEnvelope(notes);
+    }
+}
+
 void NotesArea::inputNotes(const QList<QLinkNote> &notes) {
     insertNotes({}, notes);
     adjustNotes();
-
-    lengthCall();
-}
-
-void NotesArea::pasteNotes(const QList<QLinkNote> &notes) {
-    QList<int> indexs;
-
-    int index = NotesList.size();
-    GraphicsNote *leftmost = static_cast<GraphicsNote *>(qDragOut.leftmost());
-    if (leftmost) {
-        index = NotesList.indexOf(leftmost);
-    }
-
-    for (int i = 0; i < notes.size(); ++i) {
-        indexs.push_back(index + i);
-    }
-
-    // New Operation
-    SequenceOperation *s = new SequenceOperation(true);
-
-    // Set History Values
-    s->setIndex(indexs);
-    s->setNotes(notes);
-
-    // Save Operation
-    saveOperation(s);
-
-    // Update Core
-    insertNotes(indexs, notes);
-
-    // Adjust vision
-    adjustNotes(QPoint(indexs.front(), -1));
 
     lengthCall();
 }
