@@ -4,6 +4,7 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QLineEdit>
+#include <QMediaPlayer>
 #include <QMessageBox>
 #include <QSplitter>
 #include <QTextEdit>
@@ -16,6 +17,7 @@
 #include "VoiceBank/QVoiceBank.h"
 #include "VoiceBankTabs/Areas/OtoDataArea.h"
 #include "VoiceBankTabs/Areas/OtoInfoArea.h"
+#include "VoiceBankTabs/Areas/OtoPlayerArea.h"
 #include "VoiceBankTabs/Areas/OtoVisionArea.h"
 #include "VoiceBankTabs/Operations/VoiceOperation.h"
 
@@ -57,6 +59,7 @@ private:
     bool saveCore();
 
     void initTab();
+    void initPlayer();
     void initComponents();
     void initValues();
 
@@ -85,12 +88,14 @@ private:
 private:
     QSplitter *mainSplitter;
     QSplitter *topSplitter;
+    QSplitter *bottomSplitter;
 
     QVBoxLayout *mainLayout;
 
     OtoInfoArea *infoArea;
     OtoDataArea *dataArea;
     OtoVisionArea *visionArea;
+    OtoPlayerArea *playerArea;
 
     VoiceBankGroup *m_ptrs;
 
@@ -104,6 +109,11 @@ public:
     void locatePrefix(int noteNum);
 
     bool exportCurrentSettings(const QString &filename);
+
+    // Unchange
+public:
+    bool isFree() const;
+    bool isFreeButPlaying() const;
 
     // Main Menu Modify
 public:
@@ -132,6 +142,41 @@ private:
     int historyIndex;
 
     int savedHistoryIndex;
+
+    // Play
+private:
+    QMediaPlayer *m_player;
+
+    bool m_playing;
+    bool m_playable;
+
+public:
+    // Preview
+    void play() override;
+    void replay() override;
+    void stop() override;
+
+    void jump(qint64 position, bool play = true);
+    void pause();
+    void resume();
+
+    qint64 duration() const;
+    qint64 position() const;
+
+    bool isPlaying() const;
+    void onPlaying(qint64 n);
+
+    void setMedia(const QMediaContent &media);
+
+private:
+    void setPlaying(bool playing);
+    void setPlayable(bool playable);
+
+    void forcePausePlaying();
+
+private:
+    void handleStateChanged(QMediaPlayer::State newState);
+    void handleStatusChanged(QMediaPlayer::MediaStatus newStatus);
 };
 
 #endif // VOICEBANKTAB_H

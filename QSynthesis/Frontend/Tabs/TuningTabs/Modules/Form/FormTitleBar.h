@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QWidget>
 
-#include "../Buttons/VectorButton.h"
+#include "Templates/VectorButton.h"
 
 class BaseForm;
 

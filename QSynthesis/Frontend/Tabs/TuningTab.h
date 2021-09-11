@@ -231,11 +231,17 @@ public:
     void replay() override;
     void stop() override;
 
+    void jump(qint64 position, bool play = true);
     void pause();
     void resume();
 
+    qint64 duration() const;
+    qint64 position() const;
+
     bool isPlaying() const;
     void onPlaying(qint64 n);
+
+    void setMedia(const QMediaContent &media);
 
 private:
     void setPlaying(bool playing);

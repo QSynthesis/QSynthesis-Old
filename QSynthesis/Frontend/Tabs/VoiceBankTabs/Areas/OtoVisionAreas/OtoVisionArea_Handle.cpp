@@ -1,10 +1,12 @@
 #include "../../Operations/OtoOperations/OtoChangeOperation.h"
 #include "../../VoiceBankGroup.h"
 #include "../OtoVisionArea.h"
+#include "../OtoPlayerArea.h"
 
 void OtoVisionArea::handleEditing() {
     m_editing = true;
     m_ptrs->dataArea->receiveFromVision(vision->sample());
+    m_ptrs->playerArea->receiveFromVision(vision->sample());
 }
 
 void OtoVisionArea::handleEditOver(const QGenonSettings &orgSample) {

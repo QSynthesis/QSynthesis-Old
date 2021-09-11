@@ -346,7 +346,6 @@ bool TuningTab::renderSelection() {
 }
 
 void TuningTab::renderBefore() {
-
     QList<RenderArgs> args = m_ptrs->notesArea->allRenderArgs();
     QString wavtool = projectInfo->wavtool();
     QString resampler = m_ptrs->tracksContent->defaultResampler();
@@ -376,33 +375,6 @@ void TuningTab::renderBefore() {
     }
 }
 
-bool TuningTab::isPlaying() const {
-    return m_playing;
-}
-
-void TuningTab::setPlaying(bool playing) {
-    m_playing = playing;
-
-    if (!playing) {
-        m_ptrs->notesArea->stopPlaying();
-    }
-
-    m_ptrs->editorShell->updatePlayStatus(playing);
-}
-
-void TuningTab::setPlayable(bool playable) {
-    if (!playable && m_playing) {
-        stop();
-    }
-    m_playable = playable;
-}
-
-void TuningTab::forcePausePlaying() {
-    if (isPlaying()) {
-        pause();
-    }
-}
-
 bool TuningTab::renderCore() {
     if (!isDirExist(m_ptrs->tracksContent->defaultVoiceDir())) {
         QMessageBox::warning(this, ErrorTitle, tr("Voice database is not available."));
@@ -427,7 +399,7 @@ bool TuningTab::renderCore() {
              << "Generate Batch File Success";
 
     // Close File
-    m_player->setMedia(QMediaContent());
+    setMedia(QMediaContent());
     setPlaying(false);
 
     // Open Dialog And Wait

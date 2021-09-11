@@ -17,6 +17,7 @@ public:
     OtoInfoArea *infoArea;
     OtoDataArea *dataArea;
     OtoVisionArea *visionArea;
+    OtoPlayerArea *playerArea;
 
     WaveformArea *otoVision;
 };

@@ -18,7 +18,7 @@ bool QWaveInfo::load(const QString &filename) {
     QDataStream data(&file);
 
     unsigned char strRiff[4], strWave[4], strFmt[4];
-    int32_t totalBytes, infoBytes;
+    qint32 totalBytes, infoBytes;
     short audioFormat;
 
     data.readRawData((char *) strRiff, 4);     // 4
@@ -52,7 +52,7 @@ bool QWaveInfo::load(const QString &filename) {
     m_audioFormat = AudioFormat::PCM;
 
     unsigned char strData[4];
-    int32_t dataLength;
+    qint32 dataLength;
     bool findData = true;
 
     while (true) {
@@ -180,6 +180,10 @@ void QWaveInfo::reset() {
     m_data2.clear();
 }
 
+bool QWaveInfo::isEmpty() const {
+    return m_data.isEmpty();
+}
+
 const QVector<int16_t> &QWaveInfo::data() const {
     return m_data;
 }
@@ -195,28 +199,32 @@ double QWaveInfo::duration() const {
     return double(m_data.size()) / m_sampleRate;
 }
 
-uint32_t QWaveInfo::totalSample() const {
+quint32 QWaveInfo::totalSample() const {
     if (m_blockAlign == 0) {
         return 0;
     }
     return m_dataLength / m_blockAlign;
 }
 
-uint32_t QWaveInfo::bitPerSample() const {
+quint32 QWaveInfo::bitPerSample() const {
     if (m_channels == 0) {
         return 0;
     }
     return m_blockPerSample / m_channels;
 }
 
-uint32_t QWaveInfo::dataNum() const {
+quint32 QWaveInfo::dataNum() const {
     return totalSample() * bitPerSample() / 16;
 }
 
-uint16_t QWaveInfo::channels() const {
+quint32 QWaveInfo::sampleRate() const {
+    return m_sampleRate;
+}
+
+quint16 QWaveInfo::channels() const {
     return m_channels;
 }
 
-uint16_t QWaveInfo::bytePerSample() const {
+quint16 QWaveInfo::bytePerSample() const {
     return m_blockPerSample / 8;
 }

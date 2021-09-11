@@ -14,7 +14,6 @@ void NotesArea::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     if (curItem || qDragOut.dragging) {
         return GraphicsArea::mousePressEvent(event);
     } else {
-
         Qt::KeyboardModifiers c = QApplication::keyboardModifiers();
         if (c == MainWindow::config.notes.sceneDragging) {
             m_moving = true;
@@ -63,6 +62,10 @@ void NotesArea::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
             prepareDrawNote(event);
         } else if (m_pitchesEnabled || m_envelopesEnabled) {
             prepareDrawPoint(event);
+        }
+    } else if (event->button() == Qt::RightButton) {
+        if (isPlaying()) {
+            jumpPlaying(event->scenePos().x());
         }
     }
 }

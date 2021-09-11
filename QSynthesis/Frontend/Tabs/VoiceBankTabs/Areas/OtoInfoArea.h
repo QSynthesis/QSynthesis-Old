@@ -19,6 +19,10 @@ public:
     explicit OtoInfoArea(VoiceBankTab *tab, QWidget *parent = nullptr);
     ~OtoInfoArea();
 
+private:
+    void init();
+
+public:
     void initExtern();
 
     void saveOperation(NonOtoOperation *no);                     // Out
@@ -86,9 +90,6 @@ private:
     void handleTextChanged(QString text);
 
     void handleAvatarChanged(QString modified, QString origin);
-
-private:
-    void init();
 };
 
 #endif // OTOINFOAREA_H

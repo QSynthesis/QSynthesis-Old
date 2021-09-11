@@ -1,5 +1,5 @@
 #include "CentralTabWidget.h"
-#include "../TuningTabs/Modules/Buttons/VectorButton.h"
+#include "Templates/VectorButton.h"
 
 #include <QPushButton>
 

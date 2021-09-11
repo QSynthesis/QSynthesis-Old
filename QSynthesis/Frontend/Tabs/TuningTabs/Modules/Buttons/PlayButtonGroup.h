@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-#include "VectorButton.h"
+#include "Templates/VectorButton.h"
 
 class PlayButtonGroup : public QWidget {
     Q_OBJECT

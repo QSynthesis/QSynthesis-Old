@@ -26,31 +26,34 @@ public:
     bool load(const QString &filename);
     void reset();
 
-    const QVector<int16_t> &data() const;
-    const QVector<int16_t> &data2() const;
+    bool isEmpty() const;
+
+    const QVector<qint16> &data() const;
+    const QVector<qint16> &data2() const;
     double duration() const;
 
-    uint32_t totalSample() const;
-    uint32_t bitPerSample() const;
-    uint32_t dataNum() const;
+    quint32 totalSample() const;
+    quint32 bitPerSample() const;
+    quint32 dataNum() const;
 
-    uint16_t channels() const;
-    uint16_t bytePerSample() const;
+    quint32 sampleRate() const;
+    quint16 channels() const;
+    quint16 bytePerSample() const;
 
 private:
     AudioFormat m_audioFormat;
 
-    uint16_t m_channels;
+    quint16 m_channels;
 
-    uint16_t m_blockAlign;
-    uint16_t m_blockPerSample;
+    quint16 m_blockAlign;
+    quint16 m_blockPerSample;
 
-    uint32_t m_sampleRate;
-    uint32_t m_byteRate;
-    uint32_t m_dataLength;
+    quint32 m_sampleRate;
+    quint32 m_byteRate;
+    quint32 m_dataLength;
 
-    QVector<int16_t> m_data;
-    QVector<int16_t> m_data2;
+    QVector<qint16> m_data;
+    QVector<qint16> m_data2;
 };
 
 #endif // QWAVEINFO_H

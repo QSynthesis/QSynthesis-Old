@@ -60,6 +60,11 @@ private:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
 
+public:
+    void afterPress();
+    void afterMove(QPointF pos);
+    void afterRelease();
+
 signals:
     void pressed();
     void moved(QPointF newPos, QPointF orgPos);

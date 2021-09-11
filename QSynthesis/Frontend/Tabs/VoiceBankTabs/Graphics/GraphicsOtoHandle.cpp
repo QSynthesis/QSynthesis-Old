@@ -110,25 +110,45 @@ void GraphicsOtoHandle::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
     a->setStartValue(m_rectWidth);
     a->setEndValue(m_lineWidth);
     a->start();
+
+    if (m_move) {
+        afterRelease();
+    }
 }
 
 void GraphicsOtoHandle::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+    afterPress();
     if (event->button() == Qt::LeftButton) {
-        linkPress(event->scenePos());
         emit pressed();
     }
 }
 
 void GraphicsOtoHandle::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
-    if (m_move) {
-        QPointF orgPos = this->pos();
-        linkMove(event->scenePos());
-        emit moved(pos(), orgPos);
+    if (event->buttons() & Qt::LeftButton) {
+        afterMove(event->scenePos());
     }
 }
 
 void GraphicsOtoHandle::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
-    if (m_moving) {
+    afterRelease();
+}
+
+void GraphicsOtoHandle::afterPress() {
+}
+
+void GraphicsOtoHandle::afterMove(QPointF pos) {
+    if (!m_move) {
+        linkPress(pos);
+    }
+    if (m_move) {
+        QPointF orgPos = this->pos();
+        linkMove(pos);
+        emit moved(this->pos(), orgPos);
+    }
+}
+
+void GraphicsOtoHandle::afterRelease() {
+    if (m_move) {
         linkRelease();
         emit clicked();
     }

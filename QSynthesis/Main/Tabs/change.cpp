@@ -36,8 +36,6 @@ VoiceBankTab *MainWindow::addVoiceBankTab(const QString &filename, bool notify) 
     // No double opened tab
     VoiceBankTab *tab = createVoiceBankTab(filename);
     tabs->setCurrentWidget(tab);
-
-    tab->setFilename(filename);
     bool loadSuccess = tab->load(); // Load File (setting.json)
 
     if (!loadSuccess) {
@@ -131,7 +129,6 @@ TuningTab *MainWindow::addTuningTab(const QString &filename, bool noCloseIfInval
     TuningTab *tab = createTuningTab(filename);
     tabs->setCurrentWidget(tab);
 
-    tab->setFilename(filename);
     bool loadSuccess = tab->load(); // Load File (setting.json)
     if (!loadSuccess) {
         if (noCloseIfInvalid) {

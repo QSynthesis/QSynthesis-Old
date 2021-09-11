@@ -122,6 +122,7 @@ namespace Qs {
     QString NoteStatusToString(NoteStatus status);
 
     QString pitchPointToString(const PitchPoint &oType);
+
     PitchPoint stringToPitchPoint(const QString &oString);
 
 } // namespace Qs

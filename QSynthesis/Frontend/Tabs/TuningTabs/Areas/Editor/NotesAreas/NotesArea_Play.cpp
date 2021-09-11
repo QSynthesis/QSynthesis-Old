@@ -3,7 +3,7 @@
 #include "../NotesArea.h"
 
 void NotesArea::initPlayModules() {
-    playHead = new QGraphicsRectItem();
+    playHead = new GraphicsPlayHead();
     addItem(playHead);
 
     playHead->setZValue(playHeadZIndex);
@@ -87,4 +87,26 @@ void NotesArea::stopPlaying() {
     playToNote = 0;
     playToPosition = 0;
     playHead->setVisible(false);
+}
+
+void NotesArea::jumpPlaying(double x) {
+    int start = m_renderRange.x();
+    int end = m_renderRange.y();
+
+    int index = findNoteAtPos(x);
+    if (index > end) {
+        return;
+    }
+    if (index < start) {
+        index = start;
+    }
+
+    GraphicsNote *startNote = NotesList.at(start);
+    double startTime = startNote->time();
+
+    GraphicsNote *p = NotesList.at(index);
+    double realTime = p->time() - startTime + (x - p->x()) / p->width() * p->duration();
+    double position = realTime + startNote->correctGenon().PreUtterance;
+
+    m_ptrs->tab->jump(position);
 }

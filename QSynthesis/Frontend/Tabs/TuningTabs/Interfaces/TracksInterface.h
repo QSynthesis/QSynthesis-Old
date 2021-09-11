@@ -6,11 +6,11 @@
 
 #include "../Areas/Tracks/BlocksArea.h"
 #include "../Areas/Tracks/HeadsArea.h"
-#include "../Modules/Buttons/VectorButton.h"
 #include "../Modules/Elements/SectionsLine.h"
 #include "../Modules/Scrolls/NoneScrollArea.h"
 #include "BaseInterface.h"
 #include "QUtils.h"
+#include "Templates/VectorButton.h"
 #include "Utils/ItemList.h"
 
 class TracksForm;

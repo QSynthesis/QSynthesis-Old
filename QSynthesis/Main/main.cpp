@@ -20,7 +20,7 @@ void created() {
     PluginInfo::setCodeForDefault(gbk);       // plugin.txt
     QReadmeText::setCodeForDefault(gbk);      // readme.txt
 
-    MainTitle = "QSynthesis For UTAU";
+    MainTitle = QString("QSynthesis For UTAU v%1").arg(Version);
     UntitledPrefix = "*";
     AppPath = QDir::currentPath();
 

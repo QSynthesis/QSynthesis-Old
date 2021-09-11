@@ -169,6 +169,7 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_States.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_Update.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_Values.cpp \
+    Frontend/Tabs/TuningTabs/Graphics/GraphicsPlayHead.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsPoint.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsPoints/GraphicsPoint_Events.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsPoints/GraphicsPoint_Link.cpp \
@@ -215,7 +216,6 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/Interfaces/TracksInterface.cpp \
     Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.cpp \
     Frontend/Tabs/TuningTabs/Modules/Buttons/PlayButtonGroup.cpp \
-    Frontend/Tabs/TuningTabs/Modules/Buttons/VectorButton.cpp \
     Frontend/Tabs/TuningTabs/Modules/Elements/PianoKey.cpp \
     Frontend/Tabs/TuningTabs/Modules/Elements/SectionsLine.cpp \
     Frontend/Tabs/TuningTabs/Modules/Elements/TrackContent.cpp \
@@ -261,6 +261,7 @@ SOURCES += \
     Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoAreas/OtoInfoArea_Avatar.cpp \
     Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoAreas/OtoInfoArea_Change.cpp \
     Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoAreas/OtoInfoArea_Operation.cpp \
+    Frontend/Tabs/VoiceBankTabs/Areas/OtoPlayerArea.cpp \
     Frontend/Tabs/VoiceBankTabs/Areas/OtoVisionArea.cpp \
     Frontend/Tabs/VoiceBankTabs/Areas/OtoVisionAreas/OtoVisionArea_Cursor.cpp \
     Frontend/Tabs/VoiceBankTabs/Areas/OtoVisionAreas/OtoVisionArea_Handle.cpp \
@@ -269,6 +270,7 @@ SOURCES += \
     Frontend/Tabs/VoiceBankTabs/Areas/VoiceBankArea.cpp \
     Frontend/Tabs/VoiceBankTabs/Graphics/GraphicsOtoHandle.cpp \
     Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp \
+    Frontend/Tabs/VoiceBankTabs/Modules/PlayerLabel.cpp \
     Frontend/Tabs/VoiceBankTabs/Modules/WaveformArea.cpp \
     Frontend/Tabs/VoiceBankTabs/Modules/WaveformScrollArea.cpp \
     Frontend/Tabs/VoiceBankTabs/Operations/NonOtoOperations/InfoTextOperation.cpp \
@@ -284,6 +286,8 @@ SOURCES += \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Edit.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Extern.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Oto.cpp \
+    Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Play.cpp \
+    Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Unchange.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_Menu.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_Properties.cpp \
@@ -296,6 +300,7 @@ SOURCES += \
     Frontend/Tabs/WelcomeTabs/FileListWidgetItem.cpp \
     Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp \
     Frontend/Templates/TemporaryMenu.cpp \
+    Frontend/Templates/VectorButton.cpp \
     Global/Methods.cpp \
     Global/QUtils.cpp \
     Global/Types.cpp \
@@ -457,6 +462,7 @@ HEADERS += \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsLifter.h \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsLines.h \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsNote.h \
+    Frontend/Tabs/TuningTabs/Graphics/GraphicsPlayHead.h \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsPoint.h \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsRubber.h \
     Frontend/Tabs/TuningTabs/Graphics/VibratoHandles/VibratoBaseHandle.h \
@@ -474,7 +480,6 @@ HEADERS += \
     Frontend/Tabs/TuningTabs/Interfaces/TracksInterface.h \
     Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.h \
     Frontend/Tabs/TuningTabs/Modules/Buttons/PlayButtonGroup.h \
-    Frontend/Tabs/TuningTabs/Modules/Buttons/VectorButton.h \
     Frontend/Tabs/TuningTabs/Modules/Elements/PianoKey.h \
     Frontend/Tabs/TuningTabs/Modules/Elements/SectionsLine.h \
     Frontend/Tabs/TuningTabs/Modules/Elements/TrackContent.h \
@@ -505,10 +510,12 @@ HEADERS += \
     Frontend/Tabs/VoiceBankTab.h \
     Frontend/Tabs/VoiceBankTabs/Areas/OtoDataArea.h \
     Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.h \
+    Frontend/Tabs/VoiceBankTabs/Areas/OtoPlayerArea.h \
     Frontend/Tabs/VoiceBankTabs/Areas/OtoVisionArea.h \
     Frontend/Tabs/VoiceBankTabs/Areas/VoiceBankArea.h \
     Frontend/Tabs/VoiceBankTabs/Graphics/GraphicsOtoHandle.h \
     Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.h \
+    Frontend/Tabs/VoiceBankTabs/Modules/PlayerLabel.h \
     Frontend/Tabs/VoiceBankTabs/Modules/WaveformArea.h \
     Frontend/Tabs/VoiceBankTabs/Modules/WaveformScrollArea.h \
     Frontend/Tabs/VoiceBankTabs/Operations/NonOtoOperations/InfoTextOperation.h \
@@ -528,6 +535,7 @@ HEADERS += \
     Frontend/Tabs/WelcomeTabs/FileListWidgetItem.h \
     Frontend/Tabs/WelcomeTabs/WelcomeTabContent.h \
     Frontend/Templates/TemporaryMenu.h \
+    Frontend/Templates/VectorButton.h \
     Global/Methods.h \
     Global/QUtils.h \
     Global/Types.h \

@@ -34,6 +34,7 @@ void NotesArea::pasteNotes(const QList<QLinkNote> &notes) {
     insertNotes(indexs, notes);
 
     // Adjust vision
+    updateNotesStatus(QPoint(indexs.front(), indexs.back() + 1));
     adjustNotes(QPoint(indexs.front(), -1));
 
     lengthCall();

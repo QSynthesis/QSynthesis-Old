@@ -7,6 +7,7 @@
 
 #include "../../Graphics/GraphicsLifter.h"
 #include "../../Graphics/GraphicsNote.h"
+#include "../../Graphics/GraphicsPlayHead.h"
 #include "../../Graphics/GraphicsPoint.h"
 #include "../../Graphics/GraphicsRubber.h"
 #include "Graphics/GraphicsArea.h"
@@ -316,7 +317,7 @@ private:
 
     // Play
 private:
-    QGraphicsRectItem *playHead;
+    GraphicsPlayHead *playHead;
     int playToNote;
     qint64 playToPosition;
 
@@ -326,6 +327,8 @@ private:
 public:
     void advancePlaying(qint64 position);
     void stopPlaying();
+
+    void jumpPlaying(double x);
 
     // Events
 private:

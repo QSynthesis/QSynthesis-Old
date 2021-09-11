@@ -1,7 +1,7 @@
 #ifndef ENVBUTTONGROUP_H
 #define ENVBUTTONGROUP_H
 
-#include "VectorButton.h"
+#include "Templates/VectorButton.h"
 
 class EnvButtonGroup : public QWidget {
     Q_OBJECT

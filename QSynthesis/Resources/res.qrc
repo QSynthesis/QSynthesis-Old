@@ -20,5 +20,11 @@
         <file>images/close-line.svg</file>
         <file>themes/theme-mac.qss</file>
         <file>themes/theme-win.qss</file>
+        <file>images/PlayGroupBtn1_Line.svg</file>
+        <file>images/PlayGroupBtn2_Line.svg</file>
+        <file>images/PlayGroupBtn3_Line.svg</file>
+        <file>images/PlayGroupBtn4_Line.svg</file>
+        <file>images/PlayGroupBtn5_Line.svg</file>
+        <file>images/PlayGroupBtn6_Line.svg</file>
     </qresource>
 </RCC>

@@ -67,7 +67,6 @@ void VoiceBankTab::sleep() {
 
 void VoiceBankTab::enter() {
     CentralTab::enter();
-
     handleBlocks();
 }
 
@@ -77,6 +76,7 @@ void VoiceBankTab::leave() {
     if (otoTimer->isActive()) {
         otoTimer->stop();
     }
+    forcePausePlaying();
 }
 
 void VoiceBankTab::loadCore() {

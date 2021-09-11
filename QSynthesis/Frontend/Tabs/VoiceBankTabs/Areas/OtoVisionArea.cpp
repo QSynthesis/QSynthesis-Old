@@ -19,6 +19,14 @@ void OtoVisionArea::setSampleAndIndex(const QGenonSettings &genon, int index) {
     vision->setSample(genon);
     vision->setIndex(index);
     limitWidth();
+
+    const QWaveInfo &wave = vision->waveInfo();
+    if (!wave.isEmpty()) {
+        m_ptrs->playerArea->setMedia(genon, wave.duration(), wave.sampleRate(), wave.bitPerSample(),
+                                     wave.channels());
+    } else {
+        m_ptrs->playerArea->removeMedia();
+    }
 }
 
 void OtoVisionArea::reset() {

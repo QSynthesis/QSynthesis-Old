@@ -29,7 +29,10 @@ void VoiceBankTab::initTab() {
 
     initValues();
     initComponents();
+
     initTimer();
+
+    initPlayer();
 }
 
 void VoiceBankTab::setFilename(const QString &value) {
@@ -65,36 +68,46 @@ void VoiceBankTab::updateTabName() {
 void VoiceBankTab::initComponents() {
     // Init splitters
     mainSplitter = new QSplitter(Qt::Vertical, this);
-    topSplitter = new QSplitter(Qt::Horizontal, mainSplitter);
-
-    topSplitter->setChildrenCollapsible(false);
     mainSplitter->setChildrenCollapsible(false);
+
+    topSplitter = new QSplitter(Qt::Horizontal, mainSplitter);
+    bottomSplitter = new QSplitter(Qt::Horizontal, mainSplitter);
+    topSplitter->setChildrenCollapsible(false);
+    bottomSplitter->setChildrenCollapsible(false);
 
     // Init areas
     infoArea = new OtoInfoArea(this, topSplitter);
     dataArea = new OtoDataArea(this, topSplitter);
-    visionArea = new OtoVisionArea(this, mainSplitter);
+
+    visionArea = new OtoVisionArea(this, bottomSplitter);
+    playerArea = new OtoPlayerArea(this, bottomSplitter);
 
     topSplitter->addWidget(infoArea);
     topSplitter->addWidget(dataArea);
 
+    bottomSplitter->addWidget(visionArea);
+    bottomSplitter->addWidget(playerArea);
+
     mainSplitter->addWidget(topSplitter);
-    mainSplitter->addWidget(visionArea);
+    mainSplitter->addWidget(bottomSplitter);
 
     mainLayout = new QVBoxLayout(this);
     mainLayout->addWidget(mainSplitter);
     setLayout(mainLayout);
 
-    topSplitter->setSizes({1000, 2000});
     mainSplitter->setSizes({2000, 1000});
+    topSplitter->setSizes({1000, 2000});
+    bottomSplitter->setSizes({4000, 1000});
 
     m_ptrs->infoArea = infoArea;
     m_ptrs->dataArea = dataArea;
     m_ptrs->visionArea = visionArea;
+    m_ptrs->playerArea = playerArea;
 
     infoArea->initExtern();
     dataArea->initExtern();
     visionArea->initExtern();
+    playerArea->initExtern();
 }
 
 void VoiceBankTab::initValues() {

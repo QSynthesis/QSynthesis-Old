@@ -56,6 +56,9 @@ public:
     QColor waveformColor() const;
     void setWaveformColor(const QColor &waveformColor);
 
+    QColor frqCurvesColor() const;
+    void setFrqCurvesColor(const QColor &frqCurvesColor);
+
     int index() const;
     void setIndex(int index);
 
@@ -71,6 +74,8 @@ public:
     QPointF cursorPos() const;
     bool containsCursor() const;
 
+    QWaveInfo waveInfo() const;
+
 private:
     WaveformScrollArea *m_view;
 
@@ -85,7 +90,7 @@ private:
 
     QColor m_offsetColor, m_constantColor, m_blankColor, m_preUttrColor, m_overlapColor;
     QColor m_offsetBackColor, m_constantBackColor, m_blankBackColor;
-    QColor m_waveformColor;
+    QColor m_waveformColor,m_frqCurvesColor;
 
     void updateHandles();
     void updateRegionBack();
@@ -95,6 +100,7 @@ private:
 
     void drawSingleChannel(QPainter &painter, int W, int H);
     void drawDoubleChannel(QPainter &painter, int W, int H);
+    void drawFrequencyCurves(QPainter &painter, int W, int H);
 
     void handleOffsetMove(QPointF newPos, QPointF orgPos);
     void handleOffsetMoveNoLink(QPointF newPos, QPointF orgPos);

@@ -35,7 +35,10 @@ bool TuningTab::saveAs(const QString &filename) {
 }
 
 bool TuningTab::restore() {
-    return false;
+    clearHistory();
+    setEdited(false);
+    loadCore();
+    return true;
 }
 
 void TuningTab::awake() {
@@ -104,31 +107,36 @@ void TuningTab::exitCore() {
 
 bool TuningTab::saveOrSaveAs(const QString &filename) {
     bool saveAs = !filename.isEmpty();
-    QString orgFileName = ustFile.filename();
+
+    SequenceTextFile orgFile;
+    orgFile.setFilename(ustFile.filename());
+    orgFile.setSectionVersion(ustFile.sectionVersion());
+    orgFile.setSectionSettings(ustFile.sectionSettings());
+    orgFile.setSectionNotes(ustFile.sectionNotes());
+
     if (saveAs) {
         ustFile.setFilename(filename);
     }
+    saveCore(); // Replace
 
-    saveCore(); // Replace Notes
     bool aResult = ustFile.save();
 
     if (!aResult) {
         // No permission granted to write file
         QMessageBox::warning(this, MainTitle, tr("Unable to write file!"));
 
-        // rescore
+        // restore
         if (saveAs) {
-            ustFile.setFilename(orgFileName);
+            ustFile.setFilename(orgFile.filename());
         }
+        ustFile.setSectionVersion(orgFile.sectionVersion());
+        ustFile.setSectionSettings(orgFile.sectionSettings());
+        ustFile.setSectionNotes(orgFile.sectionNotes());
     } else {
         deleted = false;
         untitled = false;
         setEdited(false);
         savedHistoryIndex = historyIndex; // Update saved history index
-
-        if (saveAs) {
-            setFilename(filename);
-        }
     }
 
     return aResult;

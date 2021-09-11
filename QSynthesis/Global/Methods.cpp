@@ -18,7 +18,7 @@ QPixmap createBitmapFromSVG(QString fullpath, QSize size) {
     QPixmap bmp(size);
     bmp.fill(Qt::transparent); // Set background transparent
     QPainter painter(&bmp);
-    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setRenderHint(QPainter::Antialiasing);
     svgRender.render(&painter);
     return bmp;
 }
@@ -60,7 +60,7 @@ QPixmap createBitmapFromSVG_W(QString fullpath, QSize size, QColor c) {
     QPixmap bmp(size);
     bmp.fill(Qt::transparent); // Set background transparent
     QPainter painter(&bmp);
-    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setRenderHint(QPainter::Antialiasing);
     svgRender.render(&painter);
     return bmp;
 }

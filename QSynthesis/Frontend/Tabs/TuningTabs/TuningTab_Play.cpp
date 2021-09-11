@@ -23,16 +23,25 @@ void TuningTab::play() {
         pause();
     } else if (m_player->state() == QMediaPlayer::PausedState && m_playable) {
         resume();
-    } else if (renderCore()) {
+    } else if (isFreeButPlaying() && renderCore()) {
         setPlayable(true);
-        m_player->setMedia(
-            QMediaContent(QUrl::fromLocalFile(m_workingDir + Slash + FILE_NAME_TEMP_AUDIO)));
+        setMedia(QMediaContent(QUrl::fromLocalFile(m_workingDir + Slash + FILE_NAME_TEMP_AUDIO)));
         m_player->play();
     }
 }
 
 void TuningTab::stop() {
     m_player->stop();
+}
+
+void TuningTab::jump(qint64 position, bool play) {
+    if (!m_playable) {
+        return;
+    }
+    m_player->setPosition(position);
+    if (play) {
+        m_player->play();
+    }
 }
 
 void TuningTab::pause() {
@@ -43,18 +52,53 @@ void TuningTab::resume() {
     m_player->play();
 }
 
+qint64 TuningTab::duration() const {
+    return m_player->duration();
+}
+
+qint64 TuningTab::position() const {
+    return m_player->position();
+}
+
 void TuningTab::replay() {
-    if (!m_playable) {
-        return;
+    jump(0);
+}
+
+bool TuningTab::isPlaying() const {
+    return m_playing;
+}
+
+void TuningTab::setPlaying(bool playing) {
+    m_playing = playing;
+
+    if (!playing) {
+        m_ptrs->notesArea->stopPlaying();
     }
-    m_player->setPosition(0);
-    m_player->play();
+
+    m_ptrs->editorShell->updatePlayStatus(playing);
+}
+
+void TuningTab::setPlayable(bool playable) {
+    if (!playable && m_playing) {
+        stop();
+    }
+    m_playable = playable;
+}
+
+void TuningTab::forcePausePlaying() {
+    if (isPlaying()) {
+        pause();
+    }
 }
 
 void TuningTab::onPlaying(qint64 n) {
     if (m_playing) {
         m_ptrs->notesArea->advancePlaying(n);
     }
+}
+
+void TuningTab::setMedia(const QMediaContent &media) {
+    m_player->setMedia(media);
 }
 
 void TuningTab::handleStateChanged(QMediaPlayer::State newState) {

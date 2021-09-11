@@ -26,6 +26,7 @@ void NotesArea::autoPaste(const QList<QLinkNote> &notes) {
 }
 
 void NotesArea::inputNotes(const QList<QLinkNote> &notes) {
+    removeAllNotes();
     insertNotes({}, notes);
     adjustNotes();
 

@@ -61,6 +61,7 @@ WaveformArea::WaveformArea(WaveformScrollArea *parent) : GraphicsArea(parent), m
     setOverlapColor(Qt::green);
 
     m_waveformColor = QColor(0, 110, 0);
+    m_frqCurvesColor = Qt::blue;
 
     int alpha = 96;
     setOffsetBackColor(
@@ -173,6 +174,15 @@ void WaveformArea::setWaveformColor(const QColor &waveformColor) {
     update();
 }
 
+QColor WaveformArea::frqCurvesColor() const {
+    return m_frqCurvesColor;
+}
+
+void WaveformArea::setFrqCurvesColor(const QColor &frqCurvesColor) {
+    m_frqCurvesColor = frqCurvesColor;
+    update();
+}
+
 int WaveformArea::index() const {
     return m_index;
 }
@@ -182,14 +192,17 @@ void WaveformArea::setIndex(int index) {
 }
 
 void WaveformArea::setSample(const QGenonSettings &genon) {
+    m_wavefile.reset();
+    m_frqfile.reset();
+    m_sample.clear();
+    m_orgSample.clear();
+
     if (genon.valid() && m_wavefile.load(genon.mFileName)) {
         m_sample = genon;
         m_orgSample = genon;
 
         m_frqfile.load(genon.frqFile());
     } else {
-        m_sample.clear();
-        m_orgSample.clear();
         m_wavefile.reset();
         m_frqfile.reset();
     }
@@ -257,6 +270,10 @@ QPointF WaveformArea::cursorPos() const {
 
 bool WaveformArea::containsCursor() const {
     return sceneRect().contains(cursorPos());
+}
+
+QWaveInfo WaveformArea::waveInfo() const {
+    return m_wavefile;
 }
 
 void WaveformArea::updateHandles() {
@@ -388,6 +405,57 @@ void WaveformArea::drawDoubleChannel(QPainter &painter, int W, int H) {
         x += delta;
     }
     return;
+}
+
+void WaveformArea::drawFrequencyCurves(QPainter &painter, int W, int H) {
+    const QList<double> &frq = m_frqfile.Frequency;
+
+    double Avg_Pitch = m_frqfile.AverageFrq;
+    double Avg_Tone = 0;
+    double Avg_Y = double(H) / 2;
+
+    double heightPerTone = double(H) / 10;
+
+    if (frq.size() != 0) {
+        QList<double> y;
+
+        for (int i = 0; i < frq.size(); ++i) {
+            double curPitch = frq.at(i);
+            double curTone = log(curPitch / Avg_Pitch) / log(pow(2, 1.0 / 12)) + Avg_Tone;
+            double curY = Avg_Y - (curTone - Avg_Tone) * heightPerTone;
+            y.append(curY);
+        }
+
+        QList<double> x;
+        double dx = W / frq.size();
+
+        for (int i = 0; i < frq.size(); ++i) {
+            x.append(i * dx);
+        }
+
+        QPainterPath path;
+        bool hasStart = false;
+
+        for (int i = 0; i < frq.size(); ++i) {
+            double curX = x.at(i);
+            double curY = y.at(i);
+
+            if (curY == Q_INFINITY || curY == -Q_INFINITY) {
+                hasStart = false;
+                continue;
+            }
+            if (!hasStart) {
+                path.moveTo(curX, curY);
+                hasStart = true;
+            } else {
+                path.lineTo(curX, curY);
+            }
+        }
+
+        QPen pen(m_frqCurvesColor, 2);
+        painter.setPen(pen);
+        painter.drawPath(path);
+    }
 }
 
 void WaveformArea::handleOffsetMove(QPointF newPos, QPointF orgPos) {
@@ -563,8 +631,10 @@ void WaveformArea::drawBackground(QPainter *painter, const QRectF &rect) {
     painter->setPen(pen);
     if (m_wavefile.channels() == 1) {
         drawSingleChannel(*painter, W, H);
+        drawFrequencyCurves(*painter, W, H);
     } else if (m_wavefile.channels() == 2) {
         drawDoubleChannel(*painter, W, H);
+        drawFrequencyCurves(*painter, W, H);
     }
 }
 
