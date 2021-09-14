@@ -46,6 +46,7 @@ private:
     void limitWidth();
 
     void zoomHorizontally(int delta);
+    void moveHorizontally(int delta);
 
     void handleEditing();
     void handleEditOver(const QGenonSettings &orgSample);

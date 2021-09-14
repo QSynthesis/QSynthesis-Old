@@ -42,3 +42,8 @@ void OtoVisionArea::zoomHorizontally(int delta) {
     QScrollBar *bar = scroll->horizontalScrollBar();
     bar->setValue(-toX);
 }
+
+void OtoVisionArea::moveHorizontally(int delta) {
+    QScrollBar *bar = scroll->horizontalScrollBar();
+    bar->setValue(bar->value() + delta);
+}

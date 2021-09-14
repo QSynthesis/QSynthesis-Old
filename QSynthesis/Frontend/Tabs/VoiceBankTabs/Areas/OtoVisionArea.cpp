@@ -92,9 +92,6 @@ void OtoVisionArea::wheelEvent(QWheelEvent *event) {
         if (delta.x() != 0) {
             moveHorizontally(delta.x());
         }
-        if (delta.y() != 0) {
-            moveVertically(delta.y());
-        }
     } else {
         if (delta.x() * delta.y() == 0) {
             delta.ry() = delta.x() + delta.y();
