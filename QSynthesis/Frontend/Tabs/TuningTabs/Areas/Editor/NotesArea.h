@@ -26,15 +26,6 @@ class NotesScrollArea;
 class NotesArea : public GraphicsArea {
     Q_OBJECT
 
-    Q_PROPERTY(QColor timeLineColor READ timeLineColor WRITE setTimeLineColor NOTIFY colorChanged)
-    Q_PROPERTY(
-        QColor sectionLineColor READ sectionLineColor WRITE setSectionLineColor NOTIFY colorChanged)
-    Q_PROPERTY(
-        QColor pitchLineColor READ pitchLineColor WRITE setPitchLineColor NOTIFY colorChanged)
-    Q_PROPERTY(
-        QColor levelLineColor READ levelLineColor WRITE setLevelLineColor NOTIFY colorChanged)
-    Q_PROPERTY(QColor backLowColor READ backLowColor WRITE setBackLowColor NOTIFY colorChanged)
-    Q_PROPERTY(QColor backHighColor READ backHighColor WRITE setBackHighColor NOTIFY colorChanged)
 public:
     explicit NotesArea(EditorInterface *editor, NotesScrollArea *parent = nullptr);
     virtual ~NotesArea();
@@ -72,6 +63,9 @@ public:
     QColor backHighColor() const;
     void setBackHighColor(const QColor &backHighColor);
 
+    QColor quarterLineColor() const;
+    void setQuarterLineColor(const QColor &quarterLineColor);
+
 private:
     TuningGroup *m_ptrs;
 
@@ -88,6 +82,7 @@ private:
     bool m_pitchesEnabled;
     bool m_envelopesEnabled;
 
+    QColor m_quarterLineColor;
     QColor m_timeLineColor;
     QColor m_sectionLineColor;
     QColor m_pitchLineColor;

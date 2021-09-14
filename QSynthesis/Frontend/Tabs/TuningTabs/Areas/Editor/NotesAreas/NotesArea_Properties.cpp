@@ -60,3 +60,13 @@ void NotesArea::setBackHighColor(const QColor &backHighColor) {
     updateBackground();
     emit colorChanged();
 }
+
+QColor NotesArea::quarterLineColor() const {
+    return m_quarterLineColor;
+}
+
+void NotesArea::setQuarterLineColor(const QColor &quarterLineColor) {
+    m_quarterLineColor = quarterLineColor;
+    updateBackground();
+    emit colorChanged();
+}

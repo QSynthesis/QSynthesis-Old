@@ -12,7 +12,7 @@ VolumePoint::~VolumePoint() {
 void VolumePoint::init() {
 }
 
-QPointF VolumePoint::limitArea(QPointF origin) {
+MorePoint VolumePoint::limitArea(MorePoint origin) {
     Qt::KeyboardModifiers c = QApplication::keyboardModifiers();
 
     bool cs = c == (Qt::ShiftModifier | Qt::ControlModifier);
@@ -67,6 +67,6 @@ QPointF VolumePoint::limitArea(QPointF origin) {
     return origin;
 }
 
-QPointF VolumePoint::limitAreaT(QPointF origin) {
+MorePoint VolumePoint::limitAreaT(MorePoint origin) {
     return limitArea(origin);
 }

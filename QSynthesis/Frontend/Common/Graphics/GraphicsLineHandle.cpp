@@ -32,10 +32,10 @@ void GraphicsLineHandle::setValue(double value) {
 
     if (m_orient == Qt::Horizontal) {
         toW = value * (m_region.right() - m_region.left()) + m_region.left();
-        setLocation(GraphicsDragger::limitArea(toW, y()));
+        setLocation(limitArea(MorePoint(toW, y())));
     } else {
         toW = value * (m_region.bottom() - m_region.top()) + m_region.top();
-        setLocation(GraphicsDragger::limitArea(x(), toW));
+        setLocation(limitArea(MorePoint(x(), toW)));
     }
 }
 
@@ -49,8 +49,8 @@ double GraphicsLineHandle::position() const {
 
 void GraphicsLineHandle::setPosition(double position) {
     if (m_orient == Qt::Horizontal) {
-        setLocation(GraphicsDragger::limitArea(position, y()));
+        setLocation(limitArea(MorePoint(position, y())));
     } else {
-        setLocation(GraphicsDragger::limitArea(x(), position));
+        setLocation(limitArea(MorePoint(x(), position)));
     }
 }

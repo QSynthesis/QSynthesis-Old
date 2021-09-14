@@ -7,6 +7,9 @@
 #include <QMouseEvent>
 #include <QObject>
 
+#include "../Utils/MorePoint.h"
+#include "../Utils/MoreSize.h"
+
 #define qDragOut m_ptrs->draggers
 #define qDragIn m_editor->ptrs()->draggers
 
@@ -74,12 +77,9 @@ protected:
     virtual void involveRelease();
     virtual void involveAbandon();
 
-    virtual QPointF limitArea(QPointF p);  // Restrict the region when moving
-    virtual QPointF limitAreaT(QPointF p); // Restrict the region when involved
-    virtual QSizeF limitSize(QSizeF s);
-
-    QPointF limitArea(double x, double y);
-    QPointF limitAreaT(double x, double y);
+    virtual MorePoint limitArea(MorePoint p);  // Restrict the region when moving
+    virtual MorePoint limitAreaT(MorePoint p); // Restrict the region when involved
+    virtual MoreSize limitSize(MoreSize s);
 
     virtual void handlePosChange();
     virtual void handleSizeChange();

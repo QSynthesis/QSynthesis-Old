@@ -29,7 +29,7 @@ void VibratoLineHandle::updateRect() {
     }
 }
 
-QPointF VibratoLineHandle::limitArea(QPointF origin) {
+MorePoint VibratoLineHandle::limitArea(MorePoint origin) {
     if (m_region == NO_RECTF) {
         return origin;
     }
@@ -77,9 +77,9 @@ void VibratoLineHandle::setRegion(const QRectF &region) {
     }
 
     if (m_orient == Qt::Horizontal) {
-        setLocation(GraphicsDragger::limitArea(x(), region.top()));
+        setLocation(limitArea(MorePoint(x(), region.top())));
     } else {
-        setLocation(GraphicsDragger::limitArea(region.left(), y()));
+        setLocation(limitArea(MorePoint(region.left(), y())));
     }
     updateRect();
 }

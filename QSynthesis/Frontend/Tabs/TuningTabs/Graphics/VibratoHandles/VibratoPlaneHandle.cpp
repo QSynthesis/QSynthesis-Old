@@ -76,7 +76,7 @@ void VibratoPlaneHandle::setText(const QString &text) {
     update();
 }
 
-QPointF VibratoPlaneHandle::limitArea(QPointF origin) {
+MorePoint VibratoPlaneHandle::limitArea(MorePoint origin) {
     if (m_region == NO_RECTF) {
         return origin;
     }

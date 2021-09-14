@@ -202,9 +202,9 @@ public:
     // Link
 
 protected:
-    QPointF limitArea(QPointF p) override;
-    QPointF limitAreaT(QPointF p) override;
-    QSizeF limitSize(QSizeF s) override;
+    MorePoint limitArea(MorePoint p) override;
+    MorePoint limitAreaT(MorePoint p) override;
+    MoreSize limitSize(MoreSize s) override;
 
     void linkStretch(QPointF pos);
 

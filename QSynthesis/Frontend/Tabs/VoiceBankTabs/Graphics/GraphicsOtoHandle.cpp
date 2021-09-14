@@ -47,7 +47,7 @@ void GraphicsOtoHandle::updateRect() {
     setSize(m_rectWidth, m_region.height());
 }
 
-QPointF GraphicsOtoHandle::limitArea(QPointF origin) {
+MorePoint GraphicsOtoHandle::limitArea(MorePoint origin) {
     if (origin.x() < m_region.left()) {
         origin.setX(m_region.left());
     } else if (origin.x() > m_region.right()) {
@@ -67,7 +67,7 @@ void GraphicsOtoHandle::setRegion(const QRectF &region) {
         show();
     }
 
-    setLocation(GraphicsDragger::limitArea(x(), region.top()));
+    setLocation(limitArea(MorePoint(x(), region.top())));
     updateRect();
 }
 

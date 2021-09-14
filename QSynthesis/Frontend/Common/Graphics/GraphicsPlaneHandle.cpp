@@ -17,13 +17,13 @@ void GraphicsPlaneHandle::setValue(QPointF values) {
 void GraphicsPlaneHandle::setValueX(double value) {
     double toX = 0;
     toX = value * (m_region.right() - m_region.left()) + m_region.left();
-    setLocation(GraphicsDragger::limitArea(toX, y()));
+    setLocation(limitArea(MorePoint(toX, y())));
 }
 
 void GraphicsPlaneHandle::setValueY(double value) {
     double toY = 0;
     toY = value * (m_region.bottom() - m_region.top()) + m_region.top();
-    setLocation(GraphicsDragger::limitArea(x(), toY));
+    setLocation(limitArea(MorePoint(x(), toY)));
 }
 
 QPointF GraphicsPlaneHandle::value() const {

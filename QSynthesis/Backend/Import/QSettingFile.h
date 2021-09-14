@@ -1,10 +1,12 @@
 #ifndef QSETTINGFILE_H
 #define QSETTINGFILE_H
 
-#include <QFile>
-#include <QMap>
+/*
+ * Copyright 2019-2020 by Sinestr.
+ * All rights reserved. Distributed under the terms of the MIT license.
+ */
+
 #include <QTextCodec>
-#include <QTextStream>
 
 #include "QSettingFiles/QSettingSection.h"
 

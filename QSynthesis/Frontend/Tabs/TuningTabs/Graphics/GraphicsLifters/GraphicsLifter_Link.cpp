@@ -3,7 +3,7 @@
 #include "../GraphicsLifter.h"
 #include "../GraphicsNote.h"
 
-QPointF GraphicsLifter::limitArea(QPointF origin) {
+MorePoint GraphicsLifter::limitArea(MorePoint origin) {
     double h = m_region.height() / 2;
     double h1 = h / 2;
     double unit_y =
@@ -26,7 +26,7 @@ QPointF GraphicsLifter::limitArea(QPointF origin) {
     return origin;
 }
 
-QPointF GraphicsLifter::limitAreaT(QPointF origin) {
+MorePoint GraphicsLifter::limitAreaT(MorePoint origin) {
     return limitArea(origin);
 }
 

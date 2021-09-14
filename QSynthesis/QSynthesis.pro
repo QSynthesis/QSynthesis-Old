@@ -33,6 +33,7 @@ SOURCES += \
     Backend/Document/File/ShortcutsFile.cpp \
     Backend/Import/QFrequencyFile.cpp \
     Backend/Import/QMidiFile.cpp \
+    Backend/Import/QPresampFile.cpp \
     Backend/Import/QSettingFile.cpp \
     Backend/Import/QSettingFiles/QSettingSection.cpp \
     Backend/Import/QSynthVFile.cpp \
@@ -70,6 +71,8 @@ SOURCES += \
     Frontend/Common/Graphics/GraphicsPlaneHandle.cpp \
     Frontend/Common/Operation.cpp \
     Frontend/Common/TabWidget.cpp \
+    Frontend/Common/Utils/MorePoint.cpp \
+    Frontend/Common/Utils/MoreSize.cpp \
     Frontend/Controls/ComboControl.cpp \
     Frontend/Controls/CustomControls.cpp \
     Frontend/Controls/FixedComboBox.cpp \
@@ -370,6 +373,7 @@ HEADERS += \
     Backend/Document/QSFileData.h \
     Backend/Import/QFrequencyFile.h \
     Backend/Import/QMidiFile.h \
+    Backend/Import/QPresampFile.h \
     Backend/Import/QSettingFile.h \
     Backend/Import/QSettingFiles/QSettingSection.h \
     Backend/Import/QSynthVFile.h \
@@ -407,6 +411,8 @@ HEADERS += \
     Frontend/Common/Graphics/GraphicsPlaneHandle.h \
     Frontend/Common/Operation.h \
     Frontend/Common/TabWidget.h \
+    Frontend/Common/Utils/MorePoint.h \
+    Frontend/Common/Utils/MoreSize.h \
     Frontend/Controls/ComboControl.h \
     Frontend/Controls/CustomControls.h \
     Frontend/Controls/FixedComboBox.h \

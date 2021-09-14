@@ -1,5 +1,9 @@
 #include "QSettingFile.h"
 
+#include <QFile>
+#include <QMap>
+#include <QTextStream>
+
 const QString QSettingFile::SECTION_BEGIN_MARK = "[";
 const QString QSettingFile::SECTION_END_MARK = "]";
 

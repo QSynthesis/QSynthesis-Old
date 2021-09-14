@@ -35,7 +35,7 @@ public:
     void setPadding(double padding);
 
 protected:
-    QPointF limitArea(QPointF origin) override;
+    MorePoint limitArea(MorePoint origin) override;
 
 private:
     QString m_text;

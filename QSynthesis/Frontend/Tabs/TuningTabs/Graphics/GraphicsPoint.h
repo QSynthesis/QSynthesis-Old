@@ -73,8 +73,8 @@ public:
     void autoRelease();
 
 private:
-    QPointF limitArea(QPointF origin) override;
-    QPointF limitAreaT(QPointF origin) override;
+    MorePoint limitArea(MorePoint origin) override;
+    MorePoint limitAreaT(MorePoint origin) override;
 
     void involvePress(QPointF pos) override;
     void linkPress(QPointF pos) override;

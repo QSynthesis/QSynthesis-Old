@@ -163,7 +163,7 @@ void GraphicsDragger::linkMove(QPointF pos) {
     QPointF relative_pos = global_pos - m_startPoint;
 
     m_moving = true;
-    setLocation(limitArea(m_windowPoint + relative_pos));
+    setLocation(limitArea(MorePoint(m_windowPoint + relative_pos)));
 
     m_posChanged = false;
     if (this->pos() != m_prevPoint) {
@@ -213,24 +213,16 @@ void GraphicsDragger::involveAbandon() {
     setSize(m_windowSize);
 }
 
-QPointF GraphicsDragger::limitArea(QPointF p) {
+MorePoint GraphicsDragger::limitArea(MorePoint p) {
     return p;
 }
 
-QPointF GraphicsDragger::limitAreaT(QPointF p) {
+MorePoint GraphicsDragger::limitAreaT(MorePoint p) {
     return p;
 }
 
-QSizeF GraphicsDragger::limitSize(QSizeF s) {
+MoreSize GraphicsDragger::limitSize(MoreSize s) {
     return s;
-}
-
-QPointF GraphicsDragger::limitArea(double x, double y) {
-    return limitArea(QPointF(x, y));
-}
-
-QPointF GraphicsDragger::limitAreaT(double x, double y) {
-    return limitAreaT(QPointF(x, y));
 }
 
 void GraphicsDragger::handlePosChange() {

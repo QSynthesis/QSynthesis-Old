@@ -19,7 +19,8 @@ NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *parent)
     m_drawingItem = nullptr;
 
     // Colors
-    m_timeLineColor = QColor(0xD4D4D4);
+    m_timeLineColor = QColor(0xE2E2E2);
+    m_quarterLineColor = QColor(0xD4D4D4);
     m_sectionLineColor = QColor(0xBFBFBF);
     m_pitchLineColor = QColor(0xE6E6E6);
     m_levelLineColor = QColor(0xCCCCCC);
@@ -77,13 +78,20 @@ void NotesArea::updateBackground() {
         painter.drawRect(QRectF(0, i * curHeight, totalWidth, curHeight));
     }
 
-    double w = totalWidth / curAdsorb;
-    while (w < 6) {
+    double w = (curAdsorb == 0) ? Q_INFINITY : (totalWidth / curAdsorb);
+    while (w < 6 && curAdsorb > 1) {
         curAdsorb--;
+        while (curAdsorb % 4 != 0 && curAdsorb > 1) {
+            curAdsorb--;
+        }
         w = totalWidth / curAdsorb;
     }
     for (int i = 1; i < curAdsorb; ++i) {
-        painter.setBrush(m_timeLineColor);
+        if ((i * 4) % curAdsorb == 0) {
+            painter.setBrush(m_quarterLineColor);
+        } else {
+            painter.setBrush(m_timeLineColor);
+        }
         painter.drawRect(QRectF(w * i - lineWidth / 2, 0, lineWidth, totalHeight));
     }
 

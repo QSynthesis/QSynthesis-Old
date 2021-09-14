@@ -4,7 +4,7 @@
 
 #include <cmath>
 
-QPointF GraphicsNote::limitArea(QPointF p) {
+MorePoint GraphicsNote::limitArea(MorePoint p) {
     // Adsorb to standard pitch
     int h = m_editor->ptrs()->currentHeight;
 
@@ -26,7 +26,7 @@ QPointF GraphicsNote::limitArea(QPointF p) {
     return p;
 }
 
-QPointF GraphicsNote::limitAreaT(QPointF p) {
+MorePoint GraphicsNote::limitAreaT(MorePoint p) {
     if (qDragIn.stretching) {
         if (m_prev) {
             p.setX(m_prev->x() + m_prev->width());
@@ -55,7 +55,7 @@ QPointF GraphicsNote::limitAreaT(QPointF p) {
     return p;
 }
 
-QSizeF GraphicsNote::limitSize(QSizeF s) {
+MoreSize GraphicsNote::limitSize(MoreSize s) {
     int curWidth = m_editor->ptrs()->currentWidth;
     int curAdsorb = m_editor->ptrs()->currentAdsorb;
 
@@ -73,24 +73,24 @@ QSizeF GraphicsNote::limitSize(QSizeF s) {
         }
 
         double toW = width32 * ratio;
-        int toTick = 480 / curAdsorb * ratio;
+        int toL = 480 / curAdsorb * ratio;
 
         s.setWidth(toW);
-        m_lengthRef = toTick;
+        s.setLength(toL);
     } else {
-        m_lengthRef = s.width() / curWidth * 480;
+        s.setLength(s.width() / curWidth * 480);
     }
 
     if (s.width() < minimum) {
         s.setWidth(minimum);
-        m_lengthRef = minimunTick;
+        s.setLength(minimunTick);
     }
 
     // Prevent to cover the next of next note
     if (qDragIn.stretching == Qs::RelativeStretch && m_next) {
         if (s.width() + x() > m_next->width() + m_next->x()) {
             s.setWidth(m_next->width() + m_next->x() - x());
-            m_lengthRef = Note.length + m_next->Note.length;
+            s.setLength(Note.length + m_next->Note.length);
         }
     }
 
@@ -102,8 +102,11 @@ void GraphicsNote::linkStretch(QPointF pos) {
     QPointF relative_pos = global_pos - m_startPoint;
 
     m_moving = true;
-    setSize(limitSize(
-        QSizeF(m_windowSize.width() + relative_pos.x(), m_windowSize.height() + relative_pos.y())));
+
+    MoreSize s = limitSize(MoreSize(m_windowSize.width() + relative_pos.x(),
+                                       m_windowSize.height() + relative_pos.y(), Note.length));
+    setSize(s);
+    m_lengthRef = s.length();
 
     m_sizeChanged = false;
     if (size() != m_prevSize) {

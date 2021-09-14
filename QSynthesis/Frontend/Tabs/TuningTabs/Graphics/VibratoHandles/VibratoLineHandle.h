@@ -17,7 +17,7 @@ private:
 
 protected:
     void updateRect();
-    QPointF limitArea(QPointF origin) override;
+    MorePoint limitArea(MorePoint origin) override;
 
 public:
     void setRegion(const QRectF &region = NO_RECTF) override;

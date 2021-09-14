@@ -3,7 +3,7 @@
 #include "../../TuningGroup.h"
 #include "../GraphicsPoint.h"
 
-QPointF GraphicsPoint::limitArea(QPointF origin) {
+MorePoint GraphicsPoint::limitArea(MorePoint origin) {
     Qt::KeyboardModifiers c = QApplication::keyboardModifiers();
 
     bool cs = c == (Qt::ShiftModifier | Qt::ControlModifier);
@@ -56,7 +56,7 @@ QPointF GraphicsPoint::limitArea(QPointF origin) {
     return origin;
 }
 
-QPointF GraphicsPoint::limitAreaT(QPointF origin) {
+MorePoint GraphicsPoint::limitAreaT(MorePoint origin) {
     return limitArea(origin);
 }
 
