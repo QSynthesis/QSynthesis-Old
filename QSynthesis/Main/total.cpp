@@ -1,4 +1,4 @@
-#include "app.h"
+#include "total.h"
 
 void initLocale() {
     QTextCodec *loc;

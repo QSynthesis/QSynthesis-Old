@@ -12,6 +12,8 @@
 
 #define qDragOut m_ptrs->draggers
 #define qDragIn m_editor->ptrs()->draggers
+#define qTabOut m_ptrs->tab
+#define qTabIn m_editor->ptrs()->tab
 
 // Class for objects that can be dragged to move by mouse
 class GraphicsDragger : public QGraphicsRectItem {

@@ -1,5 +1,5 @@
-#ifndef APP_H
-#define APP_H
+#ifndef TOTAL_H
+#define TOTAL_H
 
 #include "QUtils.h"
 #include "mainwindow.h"
@@ -14,4 +14,4 @@ void created();
 
 void destroyed();
 
-#endif // APP_H
+#endif // TOTAL_H

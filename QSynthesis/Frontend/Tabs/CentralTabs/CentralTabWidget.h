@@ -30,7 +30,8 @@ private:
     void handleSelectorAbandoned();
 
 public:
-    int useSelector(const QStringList &items, int current, void previewFuction(int));
+    int useSelector(const QStringList &items, const QString &clues, int current,
+                    void previewFuction(int));
 
 private:
     void resizeEvent(QResizeEvent *event) override;

@@ -1,19 +1,27 @@
 #include "ComboSelector.h"
+#include "application.h"
 
-ComboSelector::ComboSelector(QWidget *parent, const QStringList &list) : QWidget(parent) {
-    setAttribute(Qt::WA_StyledBackground);
+Q_SINGLETON_DECLARE(ComboSelector)
 
-    lineEdit = new QLineEdit();
+ComboSelector::ComboSelector(QWidget *parent, const QStringList &list)
+    : TransparentContainer(parent) {
+    createCasePrivate();
+
+    lineEdit = new FixedLineEdit();
     listWidget = new QListWidget();
     listWidget->addItems(list);
 
     mainLayout = new QVBoxLayout(this);
+    mainLayout->setMargin(10);
+    mainLayout->setSpacing(12);
     mainLayout->addWidget(lineEdit);
     mainLayout->addWidget(listWidget);
+
     setLayout(mainLayout);
 
     lineEdit->setFocusPolicy(Qt::ClickFocus);
     listWidget->setFocusPolicy(Qt::ClickFocus);
+
     lineEdit->installEventFilter(this);
     listWidget->installEventFilter(this);
 
@@ -24,6 +32,9 @@ ComboSelector::ComboSelector(QWidget *parent, const QStringList &list) : QWidget
     connect(listWidget, &QListWidget::currentTextChanged, this,
             &ComboSelector::handleCurrentTextChanged);
     connect(listWidget, &QListWidget::itemClicked, this, &ComboSelector::handleItemClicked);
+
+    connect(qApp, &Application::signal_mouseRelease, this,
+            &ComboSelector::handleGlobalMouseClicked);
 }
 
 ComboSelector::~ComboSelector() {
@@ -82,35 +93,38 @@ bool ComboSelector::eventFilter(QObject *obj, QEvent *event) {
         if ((key == Qt::Key_Up || key == Qt::Key_Down)) {
             if (obj == lineEdit) {
                 listWidget->setFocus();
-                QKeyEvent *newKeyEvent =
-                    new QKeyEvent(QEvent::KeyPress, key, keyEvent->modifiers());
-                QApplication::postEvent(listWidget, newKeyEvent);
+                QApplication::sendEvent(listWidget, keyEvent);
                 return true;
             }
         } else if (key == Qt::Key_Return || key == Qt::Key_Enter) {
             int index = currentIndex();
             if (index >= 0 && index < listWidget->count()) {
-                emit activated(index);
+                activate(index);
             }
             return true;
+        } else if (key == Qt::Key_Tab) {
+            return true;
         } else if (key == Qt::Key_Escape) {
-            emit abandoned();
+            abandon();
             return true;
         } else {
             if (obj == listWidget) {
                 lineEdit->setFocus();
-                QKeyEvent *newKeyEvent =
-                    new QKeyEvent(QEvent::KeyPress, key, keyEvent->modifiers(), keyEvent->text());
-                QApplication::postEvent(lineEdit, newKeyEvent);
+                QApplication::sendEvent(lineEdit, keyEvent);
                 return true;
             }
         }
-    } else if (event->type() == QEvent::FocusOut) {
-        if (!lineEdit->hasFocus() && !listWidget->hasFocus()) {
-            emit abandoned();
-        }
     }
     return QWidget::eventFilter(obj, event);
+}
+
+void ComboSelector::handleGlobalMouseClicked(QMouseEvent *event) {
+    if (!isVisible()) {
+        return;
+    }
+    if (!rect().contains(mapFromGlobal(event->globalPos()))) {
+        abandon();
+    }
 }
 
 QString ComboSelector::clues() const {
@@ -147,7 +161,7 @@ void ComboSelector::handleCurrentTextChanged(const QString &text) {
 }
 
 void ComboSelector::handleItemClicked(QListWidgetItem *item) {
-    emit activated(indexOf(item));
+    activate(indexOf(item));
 }
 
 void ComboSelector::addItem(const QString &text) {
@@ -254,4 +268,12 @@ void ComboSelector::setVisible(bool visible) {
         lineEdit->setFocus();
     }
     emit visibilityChanged(visible);
+}
+
+void ComboSelector::activate(int index) {
+    emit activated(index);
+}
+
+void ComboSelector::abandon() {
+    emit abandoned();
 }

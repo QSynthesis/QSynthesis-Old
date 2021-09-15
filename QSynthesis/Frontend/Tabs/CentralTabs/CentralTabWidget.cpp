@@ -54,8 +54,11 @@ void CentralTabWidget::handleSelectorActivated(int index) {
 void CentralTabWidget::handleSelectorAbandoned() {
 }
 
-int CentralTabWidget::useSelector(const QStringList &items, int current, void previewFuction(int)) {
+int CentralTabWidget::useSelector(const QStringList &items, const QString &clues, int current,
+                                  void previewFuction(int)) {
+    selector->setEditText("");
     selector->setItems(items);
+    selector->setClues(clues);
     selector->setCurrentIndex(current);
 
     int result = -1;

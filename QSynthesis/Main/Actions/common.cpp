@@ -176,9 +176,13 @@ void MainWindow::handleOpenKeyShortcuts() {
 }
 
 void MainWindow::handleOpenThemes() {
-    QStringList list = {"Light (Default)", "Dark (Default)", "My Custom Style 1",
-                        "My Custom Style 2"};
-    int index = tabs->useSelector(list, 1, ColorTheme::previewTheme);
+    QStringList list = {"Light (Default)",    "Dark (Default)",    "My Custom Style 1",
+                        "My Custom Style 2",  "My Custom Style 3", "My Custom Style 4",
+                        "My Custom Style 5",  "My Custom Style 6", "My Custom Style 7",
+                        "My Custom Style 8",  "My Custom Style 9", "My Custom Style 10",
+                        "My Custom Style 11", "My Custom Style 12"};
+    int index = tabs->useSelector(list, tr("Select color theme (Up/down keys to preview)"), 1,
+                                  ColorTheme::previewTheme);
     qDebug() << "Final Index:" << index;
 }
 

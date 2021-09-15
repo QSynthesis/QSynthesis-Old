@@ -42,14 +42,67 @@ EnvelopeHandler *GraphicsNote::envelope() {
     return m_envelope;
 }
 
-NoteHandler *GraphicsNote::handler() {
-    return m_handler;
-}
-
 GraphicsLifter *GraphicsNote::lifter() {
     return m_lifter;
 }
 
 GraphicsLines *GraphicsNote::screen() const {
     return m_screen;
+}
+
+QColor GraphicsNote::lyricColor() const {
+    return m_lyricColor;
+}
+
+void GraphicsNote::setLyricColor(const QColor &lyricColor) {
+    m_lyricColor = lyricColor;
+    update();
+}
+
+QColor GraphicsNote::unlistedLineColor() const {
+    return m_unlistedLineColor;
+}
+
+void GraphicsNote::setUnlistedLineColor(const QColor &unlistedLineColor) {
+    m_unlistedLineColor = unlistedLineColor;
+}
+
+QColor GraphicsNote::unlistedFillColor() const {
+    return m_unlistedFillColor;
+}
+
+void GraphicsNote::setUnlistedFillColor(const QColor &unlistedFillColor) {
+    m_unlistedFillColor = unlistedFillColor;
+}
+
+QColor GraphicsNote::listedLineColor() const {
+    return m_listedLineColor;
+}
+
+void GraphicsNote::setListedLineColor(const QColor &listedLineColor) {
+    m_listedLineColor = listedLineColor;
+}
+
+QColor GraphicsNote::listedFillColor() const {
+    return m_listedFillColor;
+}
+
+void GraphicsNote::setListedFillColor(const QColor &listedFillColor) {
+    m_listedFillColor = listedFillColor;
+}
+
+QColor GraphicsNote::restLineColor() const {
+    return m_restLineColor;
+}
+
+void GraphicsNote::setRestLineColor(const QColor &restLineColor) {
+    m_restLineColor = restLineColor;
+}
+
+QColor GraphicsNote::restFillColor() const {
+    return m_restFillColor;
+}
+
+void GraphicsNote::setRestFillColor(const QColor &restFillColor) {
+    m_restFillColor = restFillColor;
 }

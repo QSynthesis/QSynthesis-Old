@@ -157,3 +157,4 @@ QPointF GraphicsNote::bodyPos() const {
 QPointF GraphicsNote::tailPos() const {
     return QPointF(x() + width(), y() + height() / 2);
 }
+

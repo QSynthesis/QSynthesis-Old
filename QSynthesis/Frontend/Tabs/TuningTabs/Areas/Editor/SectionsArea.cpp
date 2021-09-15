@@ -51,13 +51,13 @@ void SectionsArea::handleModifyGlobalTempo() {
 
 void SectionsArea::handleModifyTempo() {
     if (currentNote) {
-        currentNote->handler()->handleTempoTriggered();
+        currentNote->handleTempoTriggered();
     }
 }
 
 void SectionsArea::handleRemoveTempo() {
     if (currentNote) {
-        currentNote->handler()->handleRemoveTempoTriggered();
+        currentNote->handleRemoveTempoTriggered();
     }
 }
 

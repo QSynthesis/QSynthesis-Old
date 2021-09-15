@@ -8,7 +8,7 @@ void GraphicsNote::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 
     afterPress();
     if (event->button() == Qt::RightButton) {
-        m_handler->openContextMenu();
+        openContextMenu();
     }
 }
 

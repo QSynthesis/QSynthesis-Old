@@ -7,12 +7,19 @@
 #include <QKeyEvent>
 #include <QLayout>
 #include <QLineEdit>
+#include <QList>
 #include <QListWidget>
 #include <QStringList>
 #include <QWidget>
 
-class ComboSelector : public QWidget {
+#include "../Controls/FixedLineEdit.h"
+#include "Customs/TransparentContainer.h"
+#include "Macros.h"
+
+class ComboSelector : public TransparentContainer {
     Q_OBJECT
+    Q_SINGLETON(ComboSelector)
+
 public:
     explicit ComboSelector(QWidget *parent = nullptr, const QStringList &list = {});
     virtual ~ComboSelector();
@@ -47,6 +54,9 @@ public:
 
     void setVisible(bool visible) override;
 
+    void activate(int index);
+    void abandon();
+
 public:
     QString clues() const;
     void setClues(const QString &clues);
@@ -60,9 +70,11 @@ protected:
 
     bool eventFilter(QObject *obj, QEvent *event) override;
 
+    void handleGlobalMouseClicked(QMouseEvent *event);
+
 private:
     QVBoxLayout *mainLayout;
-    QLineEdit *lineEdit;
+    FixedLineEdit *lineEdit;
     QListWidget *listWidget;
 
     void handleTextChanged(const QString &text);

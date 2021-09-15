@@ -27,6 +27,7 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
 }
 
 /* Custom Controls */
+
 LineControl>FixedLineEdit[status=normal] {
     background-color: white;
 }
@@ -71,11 +72,11 @@ TabWidget::tab-bar {
 
 /* Main TabWidget */
 
-TabWidget[type=central] {
+CentralTabWidget {
     background-color: #F3F3F3;
 }
 
-TabWidget[type=central]>QTabBar::tab {
+CentralTabWidget>QTabBar::tab {
     border-right: 1px solid #F3F3F3;
     border-left: 1px solid #F3F3F3;
     color: #333333;
@@ -83,15 +84,15 @@ TabWidget[type=central]>QTabBar::tab {
     background-color: #ECECEC;
 }
 
-TabWidget[type=central]>QTabBar::tab:selected {
+CentralTabWidget>QTabBar::tab:selected {
     background-color: white;
 }
 
-TabWidget[type=central]>QTabBar::tab:!selected:hover {
+CentralTabWidget>QTabBar::tab:!selected:hover {
     background-color: #EFEFEF;
 }
 
-TabWidget[type=central]>QTabBar::scroller {
+CentralTabWidget>QTabBar::scroller {
     width: 40px;
 }
 
@@ -460,3 +461,29 @@ QTableWidget::item::selected {
     color: red;
     background: #EFF4FF;
 } */
+
+ComboSelector {
+    background-color: transparent;
+    qproperty-wallpaper: #F3F3F3;
+
+    /* border-top: 10px solid qlineargradient(y0:0, y1:1, stop: 0 #ECECEC, stop: 1 transparent); */
+    border-top: none;
+    border-left: 8px solid qlineargradient(x0:0, x1:1, stop: 0 #ECECEC, stop: 1 transparent);
+    border-bottom: 8px solid qlineargradient(y0:0, y1:1, stop: 0 transparent, stop: 1 #ECECEC);
+    border-right: 8px solid qlineargradient(x0:0, x1:1, stop: 0 transparent, stop: 1 #ECECEC);
+}
+
+ComboSelector>FixedLineEdit {
+    font-size: 15px;
+    padding: 3px 3px;
+}
+
+ComboSelector>QListWidget {
+    border: none;
+    background-color: transparent;
+}
+
+ComboSelector>QListWidget::item {
+    font-size: 15px;
+    padding: 3px 3px;
+}

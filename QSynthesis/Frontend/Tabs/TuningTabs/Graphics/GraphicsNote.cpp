@@ -10,7 +10,6 @@ GraphicsNote::GraphicsNote(NotesArea *editor, QGraphicsItem *parent)
 }
 
 GraphicsNote::~GraphicsNote() {
-    m_handler->deleteLater();
     m_curves->deleteLater();
     m_envelope->deleteLater();
 }
@@ -29,12 +28,19 @@ void GraphicsNote::init() {
 
     m_lengthRef = 0;
 
-    m_handler = new NoteHandler(this, m_editor);
     m_curves = new Mode2Handler(this, m_editor);
     m_envelope = new EnvelopeHandler(this, m_editor);
 
     m_lifter = nullptr;
     m_screen = nullptr;
+
+    m_lyricColor = Qt::black;
+    m_restLineColor = QColor(0xCCCCCC);
+    m_restFillColor = QColor(0xEEEEEE);
+    m_listedLineColor = QColor(0x0099FF);
+    m_listedFillColor = QColor(0x40D9FF);
+    m_unlistedLineColor = QColor(0x105685);
+    m_unlistedFillColor = QColor(0x1881C7);
 
     setFlag(ItemIsFocusable);
 }

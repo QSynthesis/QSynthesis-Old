@@ -17,12 +17,12 @@
 
 #include "../Handlers/EnvelopeHandler.h"
 #include "../Handlers/Mode2Handler.h"
-#include "../Handlers/NoteHandler.h"
 
 class NotesArea;
 class GraphicsLifter;
 
-class GraphicsNote : public GraphicsDragger {
+class GraphicsNote : public QObject, public GraphicsDragger {
+    Q_OBJECT
 public:
     explicit GraphicsNote(NotesArea *editor, QGraphicsItem *parent = nullptr);
     virtual ~GraphicsNote();
@@ -49,7 +49,6 @@ public:
 
     Mode2Handler *curves();
     EnvelopeHandler *envelope();
-    NoteHandler *handler();
 
     GraphicsLifter *lifter();
     GraphicsLines *screen() const;
@@ -148,7 +147,6 @@ public:
 private:
     NotesArea *m_editor;
 
-    NoteHandler *m_handler;
     Mode2Handler *m_curves;
     EnvelopeHandler *m_envelope;
 
@@ -195,12 +193,14 @@ private:
                QWidget *widget = nullptr) override;
 
 public:
+    void drawNote(QPainter *painter);
+
+public:
     void afterPress();
     void afterMove(QPointF pos);
     void afterRelease();
 
     // Link
-
 protected:
     MorePoint limitArea(MorePoint p) override;
     MorePoint limitAreaT(MorePoint p) override;
@@ -213,6 +213,58 @@ protected:
 
     virtual void handlePosChange() override;
     virtual void handleSizeChange() override;
+
+    // Handler
+public:
+    QColor lyricColor() const;
+    void setLyricColor(const QColor &lyricColor);
+
+    QColor restFillColor() const;
+    void setRestFillColor(const QColor &restFillColor);
+
+    QColor restLineColor() const;
+    void setRestLineColor(const QColor &restLineColor);
+
+    QColor listedFillColor() const;
+    void setListedFillColor(const QColor &listedFillColor);
+
+    QColor listedLineColor() const;
+    void setListedLineColor(const QColor &listedLineColor);
+
+    QColor unlistedFillColor() const;
+    void setUnlistedFillColor(const QColor &unlistedFillColor);
+
+    QColor unlistedLineColor() const;
+    void setUnlistedLineColor(const QColor &unlistedLineColor);
+
+private:
+    QColor m_lyricColor;
+
+    QColor m_restFillColor;
+    QColor m_restLineColor;
+
+    QColor m_listedFillColor;
+    QColor m_listedLineColor;
+
+    QColor m_unlistedFillColor;
+    QColor m_unlistedLineColor;
+
+public:
+    void openContextMenu();
+
+private:
+    void handlePortamentoTriggered(bool checked);
+    void handleVibratoTriggered(bool checked);
+    void handleVibratoEditorTriggered(bool checked);
+    void handlePropertyTriggered();
+    void handleLyricConfigTriggered();
+
+public:
+    void handleTempoTriggered();
+    void handleRemoveTempoTriggered();
+
+signals:
+    void colorChanged();
 };
 
 #endif // GRAPHICSNOTE_H

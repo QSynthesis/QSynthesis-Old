@@ -8,6 +8,13 @@ void MainWindow::initMenuBar() {
     toolMenu = new QMenu(this);
     helpMenu = new QMenu(this);
 
+    fileMenu->setFocusPolicy(Qt::StrongFocus);
+    editMenu->setFocusPolicy(Qt::StrongFocus);
+    modifyMenu->setFocusPolicy(Qt::StrongFocus);
+    previewMenu->setFocusPolicy(Qt::StrongFocus);
+    toolMenu->setFocusPolicy(Qt::StrongFocus);
+    helpMenu->setFocusPolicy(Qt::StrongFocus);
+
     QMenuBar *bar = menuBar();
     bar->addMenu(fileMenu);
     bar->addMenu(editMenu);

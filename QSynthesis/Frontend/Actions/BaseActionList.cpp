@@ -108,15 +108,17 @@ void BaseActionList::makeCommonDefaultShortcuts() {
     replay->setShortcut(QKeySequence("Shift+F5"));
     stop->setShortcut(QKeySequence("F7"));
 
+    themes->setShortcut(QKeySequence("Ctrl+Shift+T"));
+
     settings->setShortcut(QKeySequence("Ctrl+,"));
 }
 
 QList<QAction *> BaseActionList::commonActions() const {
     return {
-        newFile,      importFile,   openFile,    openFolder, saveFile,     saveAsFile, restoreFile,
+        newFile,    importFile,   openFile,    openFolder, saveFile,     saveAsFile, restoreFile,
         switchFile, closeFile,    undo,        redo,       selectAll,    deselect,   reset,
-        playPause,    replay,       stop,        settings,   keyShortcuts, themes,     languages,
-        welcome,      instructions, checkUpdate, aboutApp,   aboutQt,
+        playPause,  replay,       stop,        settings,   keyShortcuts, themes,     languages,
+        welcome,    instructions, checkUpdate, aboutApp,   aboutQt,
     };
 }
 

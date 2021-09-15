@@ -84,6 +84,7 @@ SOURCES += \
     Frontend/Controls/SwitchButton.cpp \
     Frontend/Controls/TextControl.cpp \
     Frontend/Customs/LinearScrollArea.cpp \
+    Frontend/Customs/TransparentContainer.cpp \
     Frontend/Dialogs/BackstageDialog.cpp \
     Frontend/Dialogs/BackstageDialogs/BaseWork.cpp \
     Frontend/Dialogs/BackstageDialogs/ConcatenateWork.cpp \
@@ -166,6 +167,7 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsNote.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_Adjust.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_Assist.cpp \
+    Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_Events.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_Link.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_Paint.cpp \
@@ -194,10 +196,6 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/Handlers/Mode2Handlers/Mode2Handler_Paint.cpp \
     Frontend/Tabs/TuningTabs/Handlers/Mode2Handlers/Mode2Handler_States.cpp \
     Frontend/Tabs/TuningTabs/Handlers/Mode2Handlers/Mode2Handler_Variate.cpp \
-    Frontend/Tabs/TuningTabs/Handlers/NoteHandler.cpp \
-    Frontend/Tabs/TuningTabs/Handlers/NoteHandlers/NoteHandler_ContextMenu.cpp \
-    Frontend/Tabs/TuningTabs/Handlers/NoteHandlers/NoteHandler_Paint.cpp \
-    Frontend/Tabs/TuningTabs/Handlers/NoteHandlers/NoteHandler_Values.cpp \
     Frontend/Tabs/TuningTabs/Handlers/ScopeHandler.cpp \
     Frontend/Tabs/TuningTabs/Handlers/ScopeHandlers/ScopeHandler_Assist.cpp \
     Frontend/Tabs/TuningTabs/Handlers/ScopeHandlers/ScopeHandler_Core.cpp \
@@ -344,10 +342,11 @@ SOURCES += \
     Main/Tabs/core.cpp \
     Main/Tabs/handlers.cpp \
     Main/Tabs/untitle.cpp \
-    Main/app.cpp \
+    Main/application.cpp \
     Main/main.cpp \
     Main/mainwindow.cpp \
-    Main/resources.cpp
+    Main/resources.cpp \
+    Main/total.cpp
 
 HEADERS += \
     Backend/Common/QControlPoint.h \
@@ -426,6 +425,7 @@ HEADERS += \
     Frontend/Controls/SwitchButton.h \
     Frontend/Controls/TextControl.h \
     Frontend/Customs/LinearScrollArea.h \
+    Frontend/Customs/TransparentContainer.h \
     Frontend/Dialogs/BackstageDialog.h \
     Frontend/Dialogs/BackstageDialogs/BaseWork.h \
     Frontend/Dialogs/BackstageDialogs/ConcatenateWork.h \
@@ -481,7 +481,6 @@ HEADERS += \
     Frontend/Tabs/TuningTabs/Handlers/DraggerHandler.h \
     Frontend/Tabs/TuningTabs/Handlers/EnvelopeHandler.h \
     Frontend/Tabs/TuningTabs/Handlers/Mode2Handler.h \
-    Frontend/Tabs/TuningTabs/Handlers/NoteHandler.h \
     Frontend/Tabs/TuningTabs/Handlers/ScopeHandler.h \
     Frontend/Tabs/TuningTabs/Interfaces/BaseInterface.h \
     Frontend/Tabs/TuningTabs/Interfaces/EditorInterface.h \
@@ -562,9 +561,10 @@ HEADERS += \
     Global/Utils/ItemList.h \
     Global/Utils/Templates.h \
     Global/Variables.h \
-    Main/app.h \
+    Main/application.h \
     Main/mainwindow.h \
-    Main/resources.h
+    Main/resources.h \
+    Main/total.h
 
 win32{
 RC_FILE += \
