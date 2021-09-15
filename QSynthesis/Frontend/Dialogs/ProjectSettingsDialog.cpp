@@ -25,7 +25,7 @@ void ProjectSettingsDialog::init() {
     btnBrowse = new QPushButton(tr("Browse"), this);
 
     // Convert to native separators
-    QStringList wavtools = MainWindow::settingIni.wavtools.valid();
+    QStringList wavtools = qSetting->wavtools.valid();
     for (auto it = wavtools.begin(); it != wavtools.end(); ++it) {
         *it = QDir::toNativeSeparators(PathFindFileName(*it, AppPath));
     }
@@ -90,7 +90,7 @@ void ProjectSettingsDialog::onOKClicked() {
     outfile = lcOutfile->getValue();
     cache = lcCache->getValue();
 
-    MainWindow::settingIni.wavtools.advance(wavtool);
+    qSetting->wavtools.advance(wavtool);
 
     setResult(1);
     close();
@@ -102,7 +102,7 @@ void ProjectSettingsDialog::onCancelClicked() {
 
 void ProjectSettingsDialog::onClearBtnClicked() {
     ccWavtool->Combo()->clear();
-    MainWindow::settingIni.wavtools.clear();
+    qSetting->wavtools.clear();
 }
 
 void ProjectSettingsDialog::onBrowseBtnClicked() {

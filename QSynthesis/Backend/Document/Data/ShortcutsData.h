@@ -4,8 +4,15 @@
 #include <QKeySequence>
 #include <QObject>
 
+#include "Macros.h"
+
 class ShortcutsData {
+    Q_SINGLETON(ShortcutsData)
+
 public:
+    ShortcutsData();
+    virtual ~ShortcutsData();
+
     QKeySequence newFileShortcut;
     QKeySequence importFileShortcut;
     QKeySequence openFileShortcut;
@@ -66,8 +73,6 @@ public:
     QKeySequence aliasShortcut;
     QKeySequence buildInShortcut;
     QKeySequence pluginsShortcut;
-
-    ShortcutsData();
 
     static QString nameForId(int id);
 

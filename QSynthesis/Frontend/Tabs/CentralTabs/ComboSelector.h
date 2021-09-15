@@ -11,25 +11,23 @@
 #include <QStringList>
 #include <QWidget>
 
-#include "QUtils.h"
-
-class TopComboBox : public QWidget {
+class ComboSelector : public QWidget {
     Q_OBJECT
 public:
-    QLineEdit *lineEdit;
-    QListWidget *listWidget;
-
-    explicit TopComboBox(QWidget *parent = nullptr, const QStringList &list = QStringList());
+    explicit ComboSelector(QWidget *parent = nullptr, const QStringList &list = {});
+    virtual ~ComboSelector();
 
     void addItem(const QString &text);
     void addItem(const QIcon &icon, const QString &text);
     void addItems(const QStringList &texts);
+
+    void setItems(const QStringList &texts);
+
     int count() const;
     int currentIndex() const;
     QString currentText() const;
     int findText(const QString &text,
                  Qt::MatchFlags flags = Qt::MatchExactly | Qt::MatchCaseSensitive) const;
-    virtual void hidePopup();
     void insertItem(int index, const QString &text);
     void insertItem(int index, const QIcon &icon, const QString &text);
     void insertItems(int index, const QStringList &list);
@@ -47,27 +45,43 @@ public:
     void setCurrentText(const QString &text);
     void setEditText(const QString &text);
 
-    void setRoot(MainWindow *value);
+    void setVisible(bool visible) override;
+
+public:
+    QString clues() const;
+    void setClues(const QString &clues);
 
 protected:
-    int indexFromItem(const QListWidgetItem *item) const;
-    QListWidgetItem *itemFromIndex(int index) const;
+    int indexOf(const QListWidgetItem *item) const;
+    QListWidgetItem *itemOf(int index) const;
+
+    int activeIndexOf(const QListWidgetItem *item) const;
+    QListWidgetItem *activeItemOf(int index) const;
 
     bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
-    QVBoxLayout *vlayout;
+    QVBoxLayout *mainLayout;
+    QLineEdit *lineEdit;
+    QListWidget *listWidget;
 
-    MainWindow *root;
+    void handleTextChanged(const QString &text);
+    void handleCurrentRowChanged(int row);
+    void handleCurrentTextChanged(const QString &text);
+    void handleItemClicked(QListWidgetItem *item);
 
 signals:
     void activated(int index);
+    void abandoned();
+
     void currentIndexChanged(int index);
     void currentTextChanged(const QString &text);
     void editTextChanged(const QString &text);
     void highlighted(int index);
     void textActivated(const QString &text);
     void textHighlighted(const QString &text);
+
+    void visibilityChanged(bool visibility);
 };
 
 #endif // COMBOBOX_H

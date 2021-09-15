@@ -61,7 +61,6 @@ SOURCES += \
     Frontend/Actions/TuningActionList.cpp \
     Frontend/Actions/VoiceActionList.cpp \
     Frontend/Actions/WelcomeActionList.cpp \
-    Frontend/Common/ColorTheme.cpp \
     Frontend/Common/Graphics/GraphicsArea.cpp \
     Frontend/Common/Graphics/GraphicsDragger.cpp \
     Frontend/Common/Graphics/GraphicsHandle.cpp \
@@ -85,7 +84,6 @@ SOURCES += \
     Frontend/Controls/SwitchButton.cpp \
     Frontend/Controls/TextControl.cpp \
     Frontend/Customs/LinearScrollArea.cpp \
-    Frontend/Customs/TopComboBox.cpp \
     Frontend/Dialogs/BackstageDialog.cpp \
     Frontend/Dialogs/BackstageDialogs/BaseWork.cpp \
     Frontend/Dialogs/BackstageDialogs/ConcatenateWork.cpp \
@@ -99,9 +97,12 @@ SOURCES += \
     Frontend/Dialogs/ScriptPluginDialog.cpp \
     Frontend/Dialogs/SelectsDialog.cpp \
     Frontend/Dialogs/TerminalDialog.cpp \
+    Frontend/Singletons/ColorTheme.cpp \
+    Frontend/Singletons/TempHandler.cpp \
     Frontend/Tabs/BaseTab.cpp \
     Frontend/Tabs/CentralTab.cpp \
     Frontend/Tabs/CentralTabs/CentralTabWidget.cpp \
+    Frontend/Tabs/CentralTabs/ComboSelector.cpp \
     Frontend/Tabs/KeyboardTab.cpp \
     Frontend/Tabs/KeyboardTabs/KeyLabelContent.cpp \
     Frontend/Tabs/KeyboardTabs/KeyLineEdit.cpp \
@@ -304,6 +305,7 @@ SOURCES += \
     Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp \
     Frontend/Templates/TemporaryMenu.cpp \
     Frontend/Templates/VectorButton.cpp \
+    Global/Macros.cpp \
     Global/Methods.cpp \
     Global/QUtils.cpp \
     Global/Types.cpp \
@@ -329,7 +331,6 @@ SOURCES += \
     Main/Menu/init.cpp \
     Main/Menu/reload.cpp \
     Main/Menu/trigger.cpp \
-    Main/Modules/previewer.cpp \
     Main/Modules/stylesheet.cpp \
     Main/Refresh/files.cpp \
     Main/Refresh/recent.cpp \
@@ -343,6 +344,7 @@ SOURCES += \
     Main/Tabs/core.cpp \
     Main/Tabs/handlers.cpp \
     Main/Tabs/untitle.cpp \
+    Main/app.cpp \
     Main/main.cpp \
     Main/mainwindow.cpp \
     Main/resources.cpp
@@ -401,7 +403,6 @@ HEADERS += \
     Frontend/Actions/TuningActionList.h \
     Frontend/Actions/VoiceActionList.h \
     Frontend/Actions/WelcomeActionList.h \
-    Frontend/Common/ColorTheme.h \
     Frontend/Common/Graphics/GraphicsArea.h \
     Frontend/Common/Graphics/GraphicsDragger.h \
     Frontend/Common/Graphics/GraphicsHandle.h \
@@ -425,7 +426,6 @@ HEADERS += \
     Frontend/Controls/SwitchButton.h \
     Frontend/Controls/TextControl.h \
     Frontend/Customs/LinearScrollArea.h \
-    Frontend/Customs/TopComboBox.h \
     Frontend/Dialogs/BackstageDialog.h \
     Frontend/Dialogs/BackstageDialogs/BaseWork.h \
     Frontend/Dialogs/BackstageDialogs/ConcatenateWork.h \
@@ -441,9 +441,12 @@ HEADERS += \
     Frontend/Dialogs/TerminalDialog.h \
     Frontend/QSActions.h \
     Frontend/QSTabs.h \
+    Frontend/Singletons/ColorTheme.h \
+    Frontend/Singletons/TempHandler.h \
     Frontend/Tabs/BaseTab.h \
     Frontend/Tabs/CentralTab.h \
     Frontend/Tabs/CentralTabs/CentralTabWidget.h \
+    Frontend/Tabs/CentralTabs/ComboSelector.h \
     Frontend/Tabs/KeyboardTab.h \
     Frontend/Tabs/KeyboardTabs/KeyLabelContent.h \
     Frontend/Tabs/KeyboardTabs/KeyLineEdit.h \
@@ -542,6 +545,7 @@ HEADERS += \
     Frontend/Tabs/WelcomeTabs/WelcomeTabContent.h \
     Frontend/Templates/TemporaryMenu.h \
     Frontend/Templates/VectorButton.h \
+    Global/Macros.h \
     Global/Methods.h \
     Global/QUtils.h \
     Global/Types.h \
@@ -558,6 +562,7 @@ HEADERS += \
     Global/Utils/ItemList.h \
     Global/Utils/Templates.h \
     Global/Variables.h \
+    Main/app.h \
     Main/mainwindow.h \
     Main/resources.h
 

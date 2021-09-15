@@ -11,6 +11,7 @@
 #include <QPainter>
 #include <QProcess>
 
+#include "Macros.h"
 #include "Types.h"
 #include "Variables.h"
 

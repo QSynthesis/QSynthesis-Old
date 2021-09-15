@@ -28,7 +28,7 @@ class VoiceActionList;
 class VoiceBankTab : public CentralTab {
     Q_OBJECT
 public:
-    explicit VoiceBankTab(TabWidget *parent = nullptr);
+    explicit VoiceBankTab(CentralTabWidget *parent = nullptr);
     ~VoiceBankTab();
 
     VoiceActionList *tabActions;

@@ -5,7 +5,7 @@
 #include <QHeaderView>
 #include <QJsonArray>
 
-KeyboardTab::KeyboardTab(TabWidget *parent) : CentralTab(parent) {
+KeyboardTab::KeyboardTab(CentralTabWidget *parent) : CentralTab(parent) {
     m_type = Qs::Keyboard;
 
     // 新建主容器

@@ -11,8 +11,8 @@ void MainWindow::handleOpenRecentFile() {
 }
 
 void MainWindow::handleClearRecentMenu() {
-    settingIni.projects.clear();
-    settingIni.folders.clear();
+    qSetting->projects.clear();
+    qSetting->folders.clear();
     // saveSettingIni();
     reloadRecentMenu();
 }

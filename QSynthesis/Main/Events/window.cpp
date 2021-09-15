@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 
 void MainWindow::resizeEvent(QResizeEvent *event) {
-    updatePreviewer();
+    QMainWindow::resizeEvent(event);
 }
 
 void MainWindow::changeEvent(QEvent *event) {

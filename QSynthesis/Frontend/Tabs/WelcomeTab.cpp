@@ -1,7 +1,7 @@
 ﻿#include "WelcomeTab.h"
 #include "mainwindow.h"
 
-WelcomeTab::WelcomeTab(TabWidget *parent) : CentralTab(parent) {
+WelcomeTab::WelcomeTab(CentralTabWidget *parent) : CentralTab(parent) {
     m_type = Qs::Welcome;
 
     // 新建主容器

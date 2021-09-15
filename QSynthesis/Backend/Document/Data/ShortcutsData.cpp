@@ -1,5 +1,7 @@
 #include "ShortcutsData.h"
 
+Q_SINGLETON_DECLARE(ShortcutsData)
+
 ShortcutsData::ShortcutsData() {
     newFileShortcut = QKeySequence("");
     importFileShortcut = QKeySequence("");
@@ -61,6 +63,9 @@ ShortcutsData::ShortcutsData() {
     aliasShortcut = QKeySequence("V");
     buildInShortcut = QKeySequence("B");
     pluginsShortcut = QKeySequence("N");
+}
+
+ShortcutsData::~ShortcutsData() {
 }
 
 QString ShortcutsData::nameForId(int id) {

@@ -94,7 +94,7 @@ void GraphicsNote::afterPress() {
             qDragIn.removeAll();
             qDragIn.addOne(this);
             // Before stretching
-            if (c == MainWindow::config.notes.relativeStretch) {
+            if (c == qConfig->notes.relativeStretch) {
                 qDragIn.stretching = Qs::RelativeStretch;
             } else {
                 qDragIn.stretching = Qs::AbsoluteStretch;
@@ -104,14 +104,14 @@ void GraphicsNote::afterPress() {
     }
     bool selected = isSelected();
     // Shift
-    if (c == MainWindow::config.notes.continuousSelect) {
+    if (c == qConfig->notes.continuousSelect) {
         qDragIn.addOne(this);
         m_editor->selectContinuously();
         return;
     }
 
     // Ctrl
-    if (c == MainWindow::config.notes.reserveSelect) {
+    if (c == qConfig->notes.reserveSelect) {
         // Add or Remove
         if (selected) {
             qDragIn.removeOne(this);

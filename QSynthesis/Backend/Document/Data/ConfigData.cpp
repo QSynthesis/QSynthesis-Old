@@ -1,9 +1,14 @@
 #include "ConfigData.h"
 
+Q_SINGLETON_DECLARE(ConfigData)
+
 ConfigData::ConfigData() {
     notes = Modifiers();
     wave = Modifiers();
     wave.zoomHorizontally = Qt::ControlModifier;
+}
+
+ConfigData::~ConfigData() {
 }
 
 ConfigData::Modifiers::Modifiers() {

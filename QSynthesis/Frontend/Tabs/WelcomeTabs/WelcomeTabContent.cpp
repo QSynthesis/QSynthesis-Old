@@ -87,8 +87,8 @@ WelcomeTabContent::WelcomeTabContent(WelcomeTab *tab, QWidget *parent)
 }
 
 void WelcomeTabContent::refresh() {
-    QStringList ustFiles = MainWindow::settingIni.projects.valid();
-    QStringList voiceBanks = MainWindow::settingIni.folders.valid();
+    QStringList ustFiles = qSetting->projects.valid();
+    QStringList voiceBanks = qSetting->folders.valid();
 
     filesList->clear();
 

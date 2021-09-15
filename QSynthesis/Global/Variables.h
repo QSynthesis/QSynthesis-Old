@@ -4,8 +4,6 @@
 #include <QApplication>
 #include <QString>
 
-#define Slash '/'
-
 class PluginsCollect;
 class VoiceCollect;
 class NormalFileCollect;
@@ -26,8 +24,6 @@ extern PluginsCollect *plugins;
 extern VoiceCollect *voice;
 extern NormalFileCollect *themes;
 extern NormalFileCollect *languages;
-
-extern QTranslator *translator;
 
 extern QString openFilterString;
 extern QString saveFilterString;

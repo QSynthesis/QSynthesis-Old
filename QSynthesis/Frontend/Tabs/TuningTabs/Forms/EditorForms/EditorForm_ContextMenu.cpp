@@ -129,5 +129,5 @@ void EditorForm::setLengthUnit(int n) {
     m_ptrs->currentAdsorb = n;
     m_ptrs->notesArea->updateBackground();
 
-    MainWindow::settingIni.lastQuantize = n;
+    qSetting->lastQuantize = n;
 }

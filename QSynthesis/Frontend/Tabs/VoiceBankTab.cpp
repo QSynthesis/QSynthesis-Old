@@ -5,7 +5,7 @@
 #include "VoiceBankTabs/VoiceBankGroup.h"
 #include "mainwindow.h"
 
-VoiceBankTab::VoiceBankTab(TabWidget *parent) : CentralTab(parent) {
+VoiceBankTab::VoiceBankTab(CentralTabWidget *parent) : CentralTab(parent) {
     initTab();
 }
 

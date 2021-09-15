@@ -1,9 +1,5 @@
 #include "mainwindow.h"
 
-SettingIniData MainWindow::settingIni;
-ConfigData MainWindow::config;
-ShortcutsData MainWindow::shortcuts;
-
 QSharedMemory MainWindow::sharedMemory;
 
 void MainWindow::reloadBackendStrings() {

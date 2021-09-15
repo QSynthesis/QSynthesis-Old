@@ -108,9 +108,9 @@ void TuningTab::switchParamsStatus(Qs::Panels::Params status) {
 }
 
 void TuningTab::handleFormStatusChanged() {
-    MainWindow::settingIni.tracksFormVisibility = tracksForm->unfolded();
-    MainWindow::settingIni.editorFormVisibility = editorForm->unfolded();
-    MainWindow::settingIni.paramsFormVisibility = paramsForm->unfolded();
+    qSetting->tracksFormVisibility = tracksForm->unfolded();
+    qSetting->editorFormVisibility = editorForm->unfolded();
+    qSetting->paramsFormVisibility = paramsForm->unfolded();
 }
 
 bool TuningTab::isFree() const {

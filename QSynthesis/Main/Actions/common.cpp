@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 
+
 void MainWindow::handleNewFile() {
     qDebug() << "[Action]"
              << "New";
@@ -175,6 +176,10 @@ void MainWindow::handleOpenKeyShortcuts() {
 }
 
 void MainWindow::handleOpenThemes() {
+    QStringList list = {"Light (Default)", "Dark (Default)", "My Custom Style 1",
+                        "My Custom Style 2"};
+    int index = tabs->useSelector(list, 1, ColorTheme::previewTheme);
+    qDebug() << "Final Index:" << index;
 }
 
 void MainWindow::handleOpenLanguages() {

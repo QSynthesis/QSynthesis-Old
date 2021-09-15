@@ -31,7 +31,7 @@ class ProjectInfoHandler;
 class TuningTab : public CentralTab {
     Q_OBJECT
 public:
-    explicit TuningTab(TabWidget *parent = nullptr);
+    explicit TuningTab(CentralTabWidget *parent = nullptr);
     ~TuningTab();
 
     TuningActionList *tabActions;

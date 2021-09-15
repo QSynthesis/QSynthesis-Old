@@ -26,7 +26,7 @@ class WelcomeActionList;
 class WelcomeTab : public CentralTab {
     Q_OBJECT
 public:
-    explicit WelcomeTab(TabWidget *parent = nullptr);
+    explicit WelcomeTab(CentralTabWidget *parent = nullptr);
     ~WelcomeTab();
 
     WelcomeActionList *tabActions;

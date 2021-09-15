@@ -7,6 +7,8 @@
 #include <QKeySequence>
 
 class ConfigData {
+    Q_SINGLETON(ConfigData)
+
 public:
     struct Modifiers {
         Qt::KeyboardModifiers zoomHorizontally;
@@ -25,7 +27,8 @@ public:
         Modifiers();
     };
 
-    explicit ConfigData();
+    ConfigData();
+    virtual ~ConfigData();
 
     Modifiers notes;
     Modifiers wave;

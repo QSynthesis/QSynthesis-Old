@@ -1,8 +1,8 @@
 #include "CentralTab.h"
-#include "TabWidget.h"
+#include "CentralTabs/CentralTabWidget.h"
 #include "mainwindow.h"
 
-CentralTab::CentralTab(TabWidget *parent) : BaseTab(parent) {
+CentralTab::CentralTab(CentralTabWidget *parent) : BaseTab(parent) {
     m_filename = "";
     m_fixedname = "";
     m_type = Qs::NoTab;
@@ -12,6 +12,10 @@ CentralTab::CentralTab(TabWidget *parent) : BaseTab(parent) {
 CentralTab::~CentralTab() {
     qDebug() << "[Destruct]"
              << "CentralTab";
+}
+
+CentralTabWidget *CentralTab::tabWidget() const {
+    return qobject_cast<CentralTabWidget *>(BaseTab::tabWidget());
 }
 
 CentralTab::TabType CentralTab::tabType() const {

@@ -15,11 +15,11 @@ void NotesArea::mousePressEvent(QGraphicsSceneMouseEvent *event) {
         return GraphicsArea::mousePressEvent(event);
     } else {
         Qt::KeyboardModifiers c = QApplication::keyboardModifiers();
-        if (c == MainWindow::config.notes.sceneDragging) {
+        if (c == qConfig->notes.sceneDragging) {
             m_moving = true;
             m_view->setDragMode(QGraphicsView::ScrollHandDrag);
         } else {
-            if (c != MainWindow::config.notes.reserveSelect) {
+            if (c != qConfig->notes.reserveSelect) {
                 qDragOut.removeAll();
             }
             if (event->buttons() == Qt::LeftButton) {

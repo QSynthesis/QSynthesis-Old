@@ -1,7 +1,7 @@
 ﻿#include "SettingTab.h"
 #include "mainwindow.h"
 
-SettingTab::SettingTab(TabWidget *parent) : CentralTab(parent) {
+SettingTab::SettingTab(CentralTabWidget *parent) : CentralTab(parent) {
     m_type = Qs::Setting;
 
     // unified style

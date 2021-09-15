@@ -41,14 +41,14 @@ VoiceBankTab *MainWindow::addVoiceBankTab(const QString &filename, bool notify) 
     if (!loadSuccess) {
         removeTab(tab);
         // Remove from history
-        if (settingIni.folders.remove(filename)) {
+        if (qSetting->folders.remove(filename)) {
             // saveSettingIni();
             reloadRecentMenu();
         }
         return nullptr;
     } else {
         // Add to history
-        settingIni.folders.advance(filename);
+        qSetting->folders.advance(filename);
         // saveSettingIni();
         reloadRecentMenu();
     }
@@ -140,14 +140,14 @@ TuningTab *MainWindow::addTuningTab(const QString &filename, bool noCloseIfInval
             removeTab(tab);
         }
         // Remove from history
-        if (settingIni.projects.remove(filename)) {
+        if (qSetting->projects.remove(filename)) {
             // saveSettingIni();
             reloadRecentMenu();
         }
         return nullptr;
     } else {
         // Add to history
-        settingIni.projects.advance(filename);
+        qSetting->projects.advance(filename);
         // saveSettingIni();
         reloadRecentMenu();
     }

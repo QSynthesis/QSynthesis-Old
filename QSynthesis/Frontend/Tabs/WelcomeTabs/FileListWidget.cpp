@@ -145,9 +145,9 @@ void FileListWidget::handleOpen() {
 void FileListWidget::handleDelete() {
     removeItemWidget(selectedItems()[0]);
     if (m_type == Files) {
-        MainWindow::settingIni.projects.remove(currentFileName);
+        qSetting->projects.remove(currentFileName);
     } else {
-        MainWindow::settingIni.folders.remove(currentFileName);
+        qSetting->folders.remove(currentFileName);
     }
     qRoot->reloadRecentMenu();
 }

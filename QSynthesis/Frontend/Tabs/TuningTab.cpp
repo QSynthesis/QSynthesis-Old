@@ -12,7 +12,7 @@ void TuningTab::initTab() {
     m_type = Qs::Tuning;
 
     m_ptrs = new TuningGroup(this);
-    m_ptrs->currentAdsorb = MainWindow::settingIni.lastQuantize;
+    m_ptrs->currentAdsorb = qSetting->lastQuantize;
 
     projectInfo = new ProjectInfoHandler(this);
     connect(&ustFile, &SequenceTextFile::changed, this, &TuningTab::handleFileChanged);
@@ -57,9 +57,8 @@ void TuningTab::initComponents() {
     m_tempMenu = new TemporaryMenu(this);
 
     // First Status
-    bool visibilities[3] = {MainWindow::settingIni.tracksFormVisibility,
-                            MainWindow::settingIni.editorFormVisibility,
-                            MainWindow::settingIni.paramsFormVisibility};
+    bool visibilities[3] = {qSetting->tracksFormVisibility, qSetting->editorFormVisibility,
+                            qSetting->paramsFormVisibility};
     if (!visibilities[0]) {
         tracksForm->setUnfolded(false);
     }
@@ -101,7 +100,7 @@ TuningGroup *TuningTab::ptrs() const {
     return m_ptrs;
 }
 
-TuningTab::TuningTab(TabWidget *parent) : CentralTab(parent) {
+TuningTab::TuningTab(CentralTabWidget *parent) : CentralTab(parent) {
     initTab();
 }
 

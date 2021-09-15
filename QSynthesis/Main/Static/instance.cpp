@@ -1,7 +1,3 @@
 #include "mainwindow.h"
 
-MainWindow *MainWindow::self = nullptr;
-
-MainWindow *MainWindow::instance() {
-    return self;
-}
+Q_SINGLETON_DECLARE(MainWindow)

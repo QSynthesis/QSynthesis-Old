@@ -179,6 +179,7 @@ void MainWindow::initActionLists() {
             keyboardActions->saveFile = saveFile;
             keyboardActions->saveAsFile = saveAsFile;
             keyboardActions->restoreFile = restoreFile;
+            keyboardActions->switchFile = switchFile;
             keyboardActions->closeFile = closeFile;
 
             keyboardActions->recentMenu = recentMenu;

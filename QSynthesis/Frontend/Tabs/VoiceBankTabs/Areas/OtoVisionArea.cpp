@@ -97,9 +97,9 @@ void OtoVisionArea::wheelEvent(QWheelEvent *event) {
             delta.ry() = delta.x() + delta.y();
             delta.rx() = 0;
         }
-        if (c == MainWindow::config.wave.zoomHorizontally) {
+        if (c == qConfig->wave.zoomHorizontally) {
             zoomHorizontally(delta.y() * 2);
-        } else if (c == MainWindow::config.wave.moveHorizontally) {
+        } else if (c == qConfig->wave.moveHorizontally) {
             scroll->horizontalScrollBar()->triggerAction(
                 delta.y() < 0 ? QAbstractSlider::SliderSingleStepAdd
                               : QAbstractSlider::SliderSingleStepSub);
@@ -107,9 +107,9 @@ void OtoVisionArea::wheelEvent(QWheelEvent *event) {
     }
 #else
     if (delta.x() == 0) {
-        if (c == MainWindow::config.wave.zoomHorizontally) {
+        if (c == qConfig->wave.zoomHorizontally) {
             zoomHorizontally(delta.y() * 2);
-        } else if (c == MainWindow::config.wave.moveHorizontally) {
+        } else if (c == qConfig->wave.moveHorizontally) {
             scroll->horizontalScrollBar()->triggerAction(
                 delta.y() < 0 ? QAbstractSlider::SliderSingleStepAdd
                               : QAbstractSlider::SliderSingleStepSub);

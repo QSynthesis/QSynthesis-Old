@@ -20,7 +20,7 @@ class KeyboardTab : public CentralTab {
     Q_OBJECT
 
 public:
-    explicit KeyboardTab(TabWidget *parent = nullptr);
+    explicit KeyboardTab(CentralTabWidget *parent = nullptr);
     ~KeyboardTab();
 
     KeyboardActionList *tabActions;

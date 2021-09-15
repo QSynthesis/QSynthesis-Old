@@ -8,9 +8,9 @@ InsertLyricsDialog::InsertLyricsDialog(QStringList &lyrics, QWidget *parent)
 }
 
 InsertLyricsDialog::~InsertLyricsDialog() {
-    MainWindow::settingIni.ignoreRestsWhenInsert = cbIgnore->isChecked();
-    MainWindow::settingIni.replaceLyricsWhenInsert = cbReplace->isChecked();
-    MainWindow::settingIni.separateCharWhenInsert = cbSplit->isChecked();
+    qSetting->ignoreRestsWhenInsert = cbIgnore->isChecked();
+    qSetting->replaceLyricsWhenInsert = cbReplace->isChecked();
+    qSetting->separateCharWhenInsert = cbSplit->isChecked();
 }
 
 int InsertLyricsDialog::exec() {
@@ -46,9 +46,9 @@ void InsertLyricsDialog::init() {
     cbReplace = new QCheckBox(tr("Replace lyrics"), this);
     cbSplit = new QCheckBox(tr("Separate into characters"), this);
 
-    cbIgnore->setChecked(MainWindow::settingIni.ignoreRestsWhenInsert);
-    cbReplace->setChecked(MainWindow::settingIni.replaceLyricsWhenInsert);
-    cbSplit->setChecked(MainWindow::settingIni.separateCharWhenInsert);
+    cbIgnore->setChecked(qSetting->ignoreRestsWhenInsert);
+    cbReplace->setChecked(qSetting->replaceLyricsWhenInsert);
+    cbSplit->setChecked(qSetting->separateCharWhenInsert);
 
     btnCancel->setFixedSize(115, 35);
     btnOK->setFixedSize(115, 35);

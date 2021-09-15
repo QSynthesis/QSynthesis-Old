@@ -5,6 +5,8 @@
 
 #include "QUtils.h"
 
+class CentralTabWidget;
+
 class CentralTab : public BaseTab {
     Q_OBJECT
 public:
@@ -13,8 +15,10 @@ public:
 
     TabType tabType() const; // Get Tab Type
 
-    explicit CentralTab(TabWidget *parent = nullptr);
+    explicit CentralTab(CentralTabWidget *parent = nullptr);
     virtual ~CentralTab();
+
+    CentralTabWidget *tabWidget() const;
 
 public:
     virtual bool load();

@@ -28,7 +28,7 @@ bool MainWindow::execSave(CentralTab *tab) {
         KeyboardTab *tab1 = qobject_cast<KeyboardTab *>(tab);
         bool res = tab1->save();
         if (res) {
-            shortcuts = tab1->keys;
+            *qShortcuts = tab1->keys;
             reloadShortcuts();
         }
         return res;
@@ -55,7 +55,7 @@ bool MainWindow::execSaveAs(TuningTab *tab) {
     // Save the file
     bool aResult = tab->saveAs(path);
     if (aResult) {
-        settingIni.projects.advance(tab->filename());
+        qSetting->projects.advance(tab->filename());
         // saveSettingIni();
         reloadRecentMenu();
     }

@@ -13,8 +13,8 @@ void MainWindow::clearRecentMenu() {
 void MainWindow::reloadRecentMenu() {
     QMenu *recentMenu = welcomeActions->recentMenu;
 
-    QStringList projects = settingIni.projects.valid();
-    QStringList folders = settingIni.folders.valid();
+    QStringList projects = qSetting->projects.valid();
+    QStringList folders = qSetting->folders.valid();
 
     // Remove all Actions
     clearRecentMenu();

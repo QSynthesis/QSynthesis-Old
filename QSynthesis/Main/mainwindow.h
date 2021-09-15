@@ -1,7 +1,6 @@
 ﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "Customs/TopComboBox.h"
 #include "Directory/PluginsCollect.h"
 #include "Directory/VoiceCollect.h"
 #include "Document/QSFileData.h"
@@ -13,6 +12,7 @@
 #include "QSTabs.h"
 #include "QUtauUtils.h"
 #include "QUtils.h"
+#include "Singletons/ColorTheme.h"
 #include "Tabs/CentralTabs/CentralTabWidget.h"
 #include "VoiceBank/QOtoReference.h"
 
@@ -35,9 +35,13 @@
 #include <QTranslator>
 
 #define qRoot MainWindow::instance()
+#define qSetting SettingIniData::instance()
+#define qConfig ConfigData::instance()
+#define qShortcuts ShortcutsData::instance()
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
+    Q_SINGLETON(MainWindow)
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
@@ -46,11 +50,12 @@ public:
     // Construct
 public:
     void initAndShow();
-    void beforeDelete();
+
+    void initWindow();
+    void quitWindow();
 
 private:
     void initValues();
-    void initWindow();
 
     // Import
 public:
@@ -268,15 +273,7 @@ public:
     void clearRecentMenu();
     void reloadRecentMenu();
 
-    // Modules
-public:
-    TopComboBox *previewer;
-
 private:
-    void initPreviewer();
-    void updatePreviewer();
-    void showPreviewer();
-
     void initStyleSheet();
 
     // Events
@@ -297,10 +294,6 @@ public:
 
     // Static
 public:
-    static SettingIniData settingIni;
-    static ConfigData config;
-    static ShortcutsData shortcuts;
-
     static void initSettingIni();
     static void saveSettingIni();
 
@@ -329,12 +322,6 @@ public:
     static void checkTemporaryDir();
 
     static void exitPreparation();
-
-private:
-    static MainWindow *self;
-
-public:
-    static MainWindow *instance();
 };
 
 #endif // MAINWINDOW_H

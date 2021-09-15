@@ -66,14 +66,14 @@ void GraphicsPoint::afterPress() {
     bool selected = isSelected();
 
     // Shift
-    if (c == MainWindow::config.notes.continuousSelect) {
+    if (c == qConfig->notes.continuousSelect) {
         qDragIn.addOne(this);
         m_scope->selectContinuously();
         return;
     }
 
     // Ctrl
-    if (c == MainWindow::config.notes.reserveSelect) {
+    if (c == qConfig->notes.reserveSelect) {
         // Add or Remove
         if (selected) {
             qDragIn.removeOne(this);

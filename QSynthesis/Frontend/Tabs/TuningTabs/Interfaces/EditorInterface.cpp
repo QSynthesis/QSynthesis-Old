@@ -117,15 +117,15 @@ void EditorInterface::wheelEvent(QWheelEvent *event) {
             delta.ry() = delta.x() + delta.y();
             delta.rx() = 0;
         }
-        if (c == MainWindow::config.notes.zoomHorizontally) {
+        if (c == qConfig->notes.zoomHorizontally) {
             zoomHorizontally(delta.y());
-        } else if (c == MainWindow::config.notes.zoomVertically) {
+        } else if (c == qConfig->notes.zoomVertically) {
             zoomVertically(delta.y());
-        } else if (c == MainWindow::config.notes.moveHorizontally) {
+        } else if (c == qConfig->notes.moveHorizontally) {
             notesScroll->horizontalScrollBar()->triggerAction(
                 delta.y() < 0 ? QAbstractSlider::SliderSingleStepAdd
                               : QAbstractSlider::SliderSingleStepSub);
-        } else if (c == MainWindow::config.notes.moveVertically) {
+        } else if (c == qConfig->notes.moveVertically) {
             notesScroll->verticalScrollBar()->triggerAction(
                 delta.y() < 0 ? QAbstractSlider::SliderSingleStepAdd
                               : QAbstractSlider::SliderSingleStepSub);
@@ -133,16 +133,16 @@ void EditorInterface::wheelEvent(QWheelEvent *event) {
     }
 #else
     if (delta.x() == 0) {
-        if (c == MainWindow::config.notes.zoomHorizontally) {
+        if (c == qConfig->notes.zoomHorizontally) {
             zoomHorizontally(delta.y());
-        } else if (c == MainWindow::config.notes.zoomVertically) {
+        } else if (c == qConfig->notes.zoomVertically) {
             zoomVertically(delta.y());
-        } else if (c == MainWindow::config.notes.moveHorizontally) {
+        } else if (c == qConfig->notes.moveHorizontally) {
             notesScroll->horizontalScrollBar()->triggerAction(
                 delta.y() < 0 ? QAbstractSlider::SliderSingleStepAdd
                               : QAbstractSlider::SliderSingleStepSub);
 
-        } else if (c == MainWindow::config.notes.moveVertically) {
+        } else if (c == qConfig->notes.moveVertically) {
             notesScroll->verticalScrollBar()->triggerAction(
                 delta.y() < 0 ? QAbstractSlider::SliderSingleStepAdd
                               : QAbstractSlider::SliderSingleStepSub);

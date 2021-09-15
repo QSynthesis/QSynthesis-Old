@@ -62,8 +62,7 @@ TuningGroup *ParamsInterface::ptrs() const {
 
 void ParamsInterface::wheelEvent(QWheelEvent *event) {
     Qt::KeyboardModifiers c = event->modifiers();
-    if (c != MainWindow::config.notes.zoomHorizontally &&
-        c != MainWindow::config.notes.moveHorizontally) {
+    if (c != qConfig->notes.zoomHorizontally && c != qConfig->notes.moveHorizontally) {
         return;
     }
     QApplication::sendEvent(m_ptrs->editorContent, event);

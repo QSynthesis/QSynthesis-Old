@@ -1,7 +1,7 @@
 ﻿#include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
-    self = this;
+    createCasePrivate();
 
     setAcceptDrops(true); // Accept Drops
     initValues();
@@ -13,8 +13,7 @@ void MainWindow::initAndShow() {
     initMenuBar();
     initActionLists();
 
-    initTabs();      // Initialize Tab Manager
-    initPreviewer(); // Initialize other Modules
+    initTabs(); // Initialize Tab Manager
     initStyleSheet();
 
     reloadRecentMenu(); // load recent menu
@@ -28,23 +27,14 @@ void MainWindow::initAndShow() {
     initWindow();
 }
 
-void MainWindow::beforeDelete() {
-    settingIni.windowRect = geometry();
-    settingIni.windowMaximized = windowState() == Qt::WindowMaximized;
-}
-
 MainWindow::~MainWindow() {
     qDebug() << "[Destruct] MainWindow";
 }
 
-void MainWindow::initValues() {
-    untitledCount = 0;
-}
-
 void MainWindow::initWindow() {
     bool hasSize = false;
-    QRect rect = settingIni.windowRect;
-    bool max = settingIni.windowMaximized;
+    QRect rect = qSetting->windowRect;
+    bool max = qSetting->windowMaximized;
     if (rect != NO_RECT) {
         hasSize = true;
         setGeometry(rect);
@@ -57,4 +47,13 @@ void MainWindow::initWindow() {
         resize(800, 600);
     }
     show();
+}
+
+void MainWindow::quitWindow() {
+    qSetting->windowRect = geometry();
+    qSetting->windowMaximized = windowState() == Qt::WindowMaximized;
+}
+
+void MainWindow::initValues() {
+    untitledCount = 0;
 }

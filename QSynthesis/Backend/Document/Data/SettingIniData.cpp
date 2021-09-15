@@ -1,5 +1,7 @@
 #include "SettingIniData.h"
 
+Q_SINGLETON_DECLARE(SettingIniData)
+
 SettingIniData::SettingIniData() {
     projects.setType(FileNameSet::File);
     folders.setType(FileNameSet::Directory);
@@ -7,6 +9,9 @@ SettingIniData::SettingIniData() {
     resamplers.setType(FileNameSet::File);
 
     clear();
+}
+
+SettingIniData::~SettingIniData() {
 }
 
 void SettingIniData::clear() {

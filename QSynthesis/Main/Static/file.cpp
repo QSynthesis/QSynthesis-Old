@@ -10,14 +10,14 @@ void MainWindow::initSettingIni() {
     } else {
         qDebug() << "[I/O]"
                  << "setting.ini found";
-        settingIni = reader.data();
+        *qSetting = reader.data();
     }
 }
 
 void MainWindow::saveSettingIni() {
     SettingIniFile reader;
     reader.setFilename(settingIniPath());
-    reader.setData(settingIni);
+    reader.setData(*qSetting);
 
     bool aSuccess = reader.save();
     if (!aSuccess) {
@@ -39,11 +39,11 @@ void MainWindow::initShortcutsData() {
             exitOnNoIOPermission();
         }
     }
-    shortcuts = reader.data();
+    *qShortcuts = reader.data();
 }
 
 void MainWindow::initConfigData() {
-    config = ConfigData();
+    *qConfig = ConfigData();
     QString filename = settingConifgPath();
 }
 

@@ -32,7 +32,7 @@ class SettingActionList;
 class SettingTab : public CentralTab {
     Q_OBJECT
 public:
-    explicit SettingTab(TabWidget *parent = nullptr);
+    explicit SettingTab(CentralTabWidget *parent = nullptr);
     ~SettingTab();
 
     SettingActionList *tabActions;

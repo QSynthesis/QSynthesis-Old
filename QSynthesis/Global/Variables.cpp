@@ -1,4 +1,5 @@
 #include "Variables.h"
+#include "Macros.h"
 #include "QUtauStrings.h"
 
 QString Version = "0.1.73";
@@ -17,8 +18,6 @@ PluginsCollect *plugins = nullptr;
 VoiceCollect *voice = nullptr;
 NormalFileCollect *themes = nullptr;
 NormalFileCollect *languages = nullptr;
-
-QTranslator *translator = nullptr;
 
 QString openFilterString;
 QString saveFilterString;
