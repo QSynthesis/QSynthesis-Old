@@ -1,17 +1,18 @@
 #ifndef FORMTITLEBAR_H
 #define FORMTITLEBAR_H
 
-#include <QObject>
-#include <QWidget>
-
+#include "MoreWidget.h"
 #include "Templates/VectorButton.h"
 
 class BaseForm;
 
-class FormTitleBar : public QWidget {
+class FormTitleBar : public MoreWidget {
     Q_OBJECT
     Q_PROPERTY(QColor topColor READ topColor WRITE setTopColor NOTIFY colorChanged)
     Q_PROPERTY(QColor fillColor READ fillColor WRITE setFillColor NOTIFY colorChanged)
+    Q_PROPERTY(int top READ top WRITE setTop NOTIFY topChanged)
+    Q_PROPERTY(
+        int contentHeight READ contentHeight WRITE setContentHeight NOTIFY contentHeightChanged)
 
 public:
     explicit FormTitleBar(BaseForm *parent = nullptr);
@@ -22,6 +23,7 @@ public:
 
     int top() const;
     void setTop(double t);
+
     void setTopVisible(bool value);
 
     void addItem(QWidget *item, bool rightToLeft = false, bool hidden = true, bool showen = true);
@@ -70,6 +72,8 @@ private:
     void initializeComponents(int h, int t);
 
 signals:
+    void topChanged();
+    void contentHeightChanged();
 };
 
 #endif // FORMTITLEBAR_H

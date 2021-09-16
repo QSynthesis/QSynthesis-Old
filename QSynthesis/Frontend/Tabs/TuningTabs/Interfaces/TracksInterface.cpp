@@ -43,12 +43,11 @@ TracksInterface::TracksInterface(TracksForm *parent) : BaseInterface(parent) {
     QFrame *separator = new QFrame(this);
     separator->setProperty("type", "track-separator");
     separator->setFrameStyle(QFrame::VLine);
+    separator->setFrameShadow(QFrame::Plain);
+    separator->setFixedWidth(1);
     mainLayout->addWidget(separator, 0, 1, 2, 1);
-
     mainLayout->addWidget(rightScroll, 1, 2);
-
     mainLayout->setColumnStretch(2, 1);
-
     setLayout(mainLayout);
 
     m_ptrs->trackHeads = lefts;
@@ -69,7 +68,7 @@ TracksInterface::TracksInterface(TracksForm *parent) : BaseInterface(parent) {
 
     m_menu = new QMenu(this);
 
-    sections->setFixedHeight(20);
+    sections->setFixedHeight(24);
     sectionsScroll->setFixedHeight(sections->height());
 
     lefts->setFixedWidth(350);

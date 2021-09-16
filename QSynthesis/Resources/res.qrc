@@ -27,5 +27,8 @@
         <file>images/PlayGroupBtn5_Line.svg</file>
         <file>images/PlayGroupBtn6_Line.svg</file>
         <file>themes/theme-win-dark.qss</file>
+        <file>images/EnvGroupBtn1_Line.svg</file>
+        <file>images/EnvGroupBtn2_Line.svg</file>
+        <file>images/EnvGroupBtn3_Line.svg</file>
     </qresource>
 </RCC>

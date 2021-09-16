@@ -1,7 +1,7 @@
 #include "PlayButtonGroup.h"
 
 PlayButtonGroup::PlayButtonGroup(QWidget *parent) : QWidget(parent) {
-    QSizeF playGroupPadding(4, 4);
+    QSizeF playGroupPadding(5, 5);
     QSize playGroupSize(24, 24);
 
     btnPlay = new VectorButton(false, playGroupPadding, this);

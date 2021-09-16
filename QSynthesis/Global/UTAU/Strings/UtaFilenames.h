@@ -17,11 +17,11 @@ const QString DIR_NAME_VOICE = "voice";
 const QString DIR_NAME_PLUGIN = "plugins";
 
 // Cross-platform File Names
-#ifdef _WIN32
+#ifdef Q_OS_WINDOWS
 const QString FILE_NAME_TEMP_BATCH = "temp.bat";
 const QString FILE_NAME_HELPER_BATCH = "temp_helper.bat";
 #endif
-#if defined(linux) || defined(__APPLE__)
+#if defined(linux) || defined(Q_OS_MAC)
 const QString FILE_NAME_TEMP_BATCH = "temp.sh";
 const QString FILE_NAME_HELPER_BATCH = "temp_helper.sh";
 #endif

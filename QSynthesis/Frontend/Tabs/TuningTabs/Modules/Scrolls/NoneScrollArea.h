@@ -6,8 +6,10 @@
 #include <QScrollArea>
 #include <QScrollBar>
 
+#include "MoreWidget.h"
+
 // Scroll area with empty frames
-class NoneScrollArea : public QWidget {
+class NoneScrollArea : public MoreWidget {
     Q_OBJECT
 public:
     explicit NoneScrollArea(QWidget *parent = nullptr);

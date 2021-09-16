@@ -1,7 +1,6 @@
 #include "NoneScrollArea.h"
 
-NoneScrollArea::NoneScrollArea(QWidget *parent) : QWidget(parent) {
-    setAttribute(Qt::WA_StyledBackground);
+NoneScrollArea::NoneScrollArea(QWidget *parent) : MoreWidget(parent) {
     m_widget = nullptr;
 }
 

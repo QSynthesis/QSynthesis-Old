@@ -16,12 +16,6 @@ GraphicsLifter::GraphicsLifter(GraphicsNote *note, LiftersArea *editor, QGraphic
     m_values[Modulation] = DEFAULT_VALUE_MODULATION;
     m_values[Velocity] = DEFAULT_VALUE_VELOCITY;
 
-    m_activeColor = QColor(0x79BBEE);
-    m_inactiveColor = Qt::gray;
-
-    m_activeHColor = QColor(QColorConstants::Svg::pink);
-    m_inactiveHColor = Qt::lightGray;
-
     updateColorTheme();
     connect(qTheme, &ColorTheme::updated, this, &GraphicsLifter::updateColorTheme);
 }

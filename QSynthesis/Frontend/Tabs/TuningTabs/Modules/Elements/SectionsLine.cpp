@@ -4,7 +4,7 @@
 #include <QPainter>
 #include <QPen>
 
-SectionsLine::SectionsLine(QWidget *parent) : QWidget(parent) {
+SectionsLine::SectionsLine(QWidget *parent) : MoreWidget(parent) {
     m_lineColor = Qt::lightGray;
     m_numColor = Qt::black;
     m_beatColor = Qt::black;
@@ -84,8 +84,8 @@ void SectionsLine::paintEvent(QPaintEvent *event) {
     painter.setClipRegion(event->region());
     painter.setRenderHint(QPainter::Antialiasing);
 
-    QPen pen(m_lineColor, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-    QPen pen2(m_numColor, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen pen(m_lineColor, 1, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin);
+    QPen pen2(m_numColor, 1, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin);
 
     QRect rect = this->rect();
 

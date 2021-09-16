@@ -5,9 +5,7 @@
 #include "../../TuningGroup.h"
 
 TrackContent::TrackContent(ItemList<GraphicsNote> &notesList, BlocksArea *parent)
-    : QWidget(parent), m_parent(parent), notesList(notesList) {
-    setAttribute(Qt::WA_StyledBackground);
-
+    : MoreWidget(parent), m_parent(parent), notesList(notesList) {
     m_width = 48;
 
     m_midiColor = QColor(0x0060C0);

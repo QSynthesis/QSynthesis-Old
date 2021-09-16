@@ -68,10 +68,15 @@ void VoiceBankTab::updateTabName() {
 void VoiceBankTab::initComponents() {
     // Init splitters
     mainSplitter = new QSplitter(Qt::Vertical, this);
-    mainSplitter->setChildrenCollapsible(false);
 
     topSplitter = new QSplitter(Qt::Horizontal, mainSplitter);
     bottomSplitter = new QSplitter(Qt::Horizontal, mainSplitter);
+
+    mainSplitter->setProperty("type", "voice-splitter");
+    topSplitter->setProperty("type", "voice-splitter");
+    bottomSplitter->setProperty("type", "voice-splitter");
+
+    mainSplitter->setChildrenCollapsible(false);
     topSplitter->setChildrenCollapsible(false);
     bottomSplitter->setChildrenCollapsible(false);
 
@@ -93,6 +98,7 @@ void VoiceBankTab::initComponents() {
 
     mainLayout = new QVBoxLayout(this);
     mainLayout->addWidget(mainSplitter);
+    mainLayout->setMargin(20);
     setLayout(mainLayout);
 
     mainSplitter->setSizes({2000, 1000});

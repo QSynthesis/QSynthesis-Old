@@ -1,12 +1,12 @@
 #include "BaseForm.h"
 
-BaseForm::BaseForm(QWidget *parent) : QWidget(parent) {
+BaseForm::BaseForm(QWidget *parent) : MoreWidget(parent) {
     m_unfolded = true;
     m_widget = nullptr;
     m_titleBar = nullptr;
 }
 
-BaseForm::BaseForm(QWidget *w, FormTitleBar *bar, QWidget *parent) : QWidget(parent) {
+BaseForm::BaseForm(QWidget *w, FormTitleBar *bar, QWidget *parent) : MoreWidget(parent) {
     m_unfolded = true;
     m_titleBar = bar;
     m_widget = w;

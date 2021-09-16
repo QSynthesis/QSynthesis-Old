@@ -4,14 +4,14 @@
 #include <QDebug>
 #include <QObject>
 #include <QTabWidget>
-#include <QWidget>
 
 #include "Global/Methods.h"
+#include "MoreWidget.h"
 
 class MainWindow;
 class TabWidget;
 
-class BaseTab : public QWidget {
+class BaseTab : public MoreWidget {
     Q_OBJECT
 
 public:

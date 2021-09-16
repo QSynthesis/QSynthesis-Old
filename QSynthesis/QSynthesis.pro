@@ -68,6 +68,7 @@ SOURCES += \
     Frontend/Common/Graphics/GraphicsLineHandle.cpp \
     Frontend/Common/Graphics/GraphicsLinearView.cpp \
     Frontend/Common/Graphics/GraphicsPlaneHandle.cpp \
+    Frontend/Common/MoreWidget.cpp \
     Frontend/Common/Operation.cpp \
     Frontend/Common/TabWidget.cpp \
     Frontend/Common/Utils/MorePoint.cpp \
@@ -82,6 +83,8 @@ SOURCES += \
     Frontend/Controls/SlideControl.cpp \
     Frontend/Controls/SlideLineControl.cpp \
     Frontend/Controls/SwitchButton.cpp \
+    Frontend/Controls/SwitchButtons/SwitchButtonGroup.cpp \
+    Frontend/Controls/SwitchButtons/SwitchButtonUnderline.cpp \
     Frontend/Controls/TextControl.cpp \
     Frontend/Customs/LinearScrollArea.cpp \
     Frontend/Customs/TransparentContainer.cpp \
@@ -218,6 +221,7 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/Interfaces/TracksInterface.cpp \
     Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.cpp \
     Frontend/Tabs/TuningTabs/Modules/Buttons/PlayButtonGroup.cpp \
+    Frontend/Tabs/TuningTabs/Modules/Buttons/TrackButton.cpp \
     Frontend/Tabs/TuningTabs/Modules/Elements/PianoKey.cpp \
     Frontend/Tabs/TuningTabs/Modules/Elements/SectionsLine.cpp \
     Frontend/Tabs/TuningTabs/Modules/Elements/TrackContent.cpp \
@@ -301,6 +305,7 @@ SOURCES += \
     Frontend/Tabs/WelcomeTabs/FileListWidget.cpp \
     Frontend/Tabs/WelcomeTabs/FileListWidgetItem.cpp \
     Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp \
+    Frontend/Templates/LabelButton.cpp \
     Frontend/Templates/TemporaryMenu.cpp \
     Frontend/Templates/VectorButton.cpp \
     Global/Macros.cpp \
@@ -409,6 +414,7 @@ HEADERS += \
     Frontend/Common/Graphics/GraphicsLineHandle.h \
     Frontend/Common/Graphics/GraphicsLinearView.h \
     Frontend/Common/Graphics/GraphicsPlaneHandle.h \
+    Frontend/Common/MoreWidget.h \
     Frontend/Common/Operation.h \
     Frontend/Common/TabWidget.h \
     Frontend/Common/Utils/MorePoint.h \
@@ -423,6 +429,8 @@ HEADERS += \
     Frontend/Controls/SlideControl.h \
     Frontend/Controls/SlideLineControl.h \
     Frontend/Controls/SwitchButton.h \
+    Frontend/Controls/SwitchButtons/SwitchButtonGroup.h \
+    Frontend/Controls/SwitchButtons/SwitchButtonUnderline.h \
     Frontend/Controls/TextControl.h \
     Frontend/Customs/LinearScrollArea.h \
     Frontend/Customs/TransparentContainer.h \
@@ -488,6 +496,7 @@ HEADERS += \
     Frontend/Tabs/TuningTabs/Interfaces/TracksInterface.h \
     Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.h \
     Frontend/Tabs/TuningTabs/Modules/Buttons/PlayButtonGroup.h \
+    Frontend/Tabs/TuningTabs/Modules/Buttons/TrackButton.h \
     Frontend/Tabs/TuningTabs/Modules/Elements/PianoKey.h \
     Frontend/Tabs/TuningTabs/Modules/Elements/SectionsLine.h \
     Frontend/Tabs/TuningTabs/Modules/Elements/TrackContent.h \
@@ -542,6 +551,7 @@ HEADERS += \
     Frontend/Tabs/WelcomeTabs/FileListWidget.h \
     Frontend/Tabs/WelcomeTabs/FileListWidgetItem.h \
     Frontend/Tabs/WelcomeTabs/WelcomeTabContent.h \
+    Frontend/Templates/LabelButton.h \
     Frontend/Templates/TemporaryMenu.h \
     Frontend/Templates/VectorButton.h \
     Global/Macros.h \

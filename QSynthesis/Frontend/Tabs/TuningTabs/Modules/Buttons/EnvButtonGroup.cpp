@@ -8,9 +8,13 @@ EnvButtonGroup::EnvButtonGroup(QWidget *parent) : QWidget(parent) {
     btnP1P4 = new VectorButton(true, envGroupPadding, this);
     btnReset = new VectorButton(true, envGroupPadding, this);
 
-    btnP2P3->setIcons(":/images/EnvGroupBtn1.svg");
-    btnP1P4->setIcons(":/images/EnvGroupBtn2.svg");
-    btnReset->setIcons(":/images/EnvGroupBtn3.svg");
+    btnP2P3->setIcons(":/images/EnvGroupBtn2_Line.svg");
+    btnP1P4->setIcons(":/images/EnvGroupBtn1_Line.svg");
+    btnReset->setIcons(":/images/EnvGroupBtn3_Line.svg");
+
+    btnP2P3->setToolTip(tr("Envelope crossFade (p2p3)"));
+    btnP1P4->setToolTip(tr("Envelope crossFade (p1p4)"));
+    btnReset->setToolTip(tr("Reset Envelope"));
 
     btnP2P3->setFixedSize(envGroupSize);
     btnP1P4->setFixedSize(envGroupSize);

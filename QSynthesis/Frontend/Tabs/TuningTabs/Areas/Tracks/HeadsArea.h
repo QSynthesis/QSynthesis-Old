@@ -2,8 +2,8 @@
 #define HEADSAREA_H
 
 #include <QVBoxLayout>
-#include <QWidget>
 
+#include "MoreWidget.h"
 #include "Utils/ItemList.h"
 
 class TracksInterface;
@@ -12,7 +12,7 @@ class GraphicsNote;
 class TrackHead;
 class TrackOperation;
 
-class HeadsArea : public QWidget {
+class HeadsArea : public MoreWidget {
     Q_OBJECT
 public:
     explicit HeadsArea(TracksInterface *editor, QWidget *parent = nullptr);

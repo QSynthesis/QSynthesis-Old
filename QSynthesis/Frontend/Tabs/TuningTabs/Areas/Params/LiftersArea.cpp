@@ -10,10 +10,6 @@ LiftersArea::LiftersArea(ParamsInterface *editor, LiftersScrollArea *parent)
     : GraphicsArea(parent), m_view(parent) {
     m_ptrs = editor->ptrs();
 
-    m_timeLineColor = QColor(0xD4D4D4);
-    m_sectionLineColor = QColor(0xBFBFBF);
-    m_backColor = QColor(0xFFFFFF);
-
     m_standardHeight = 0;
 
     connect(this, &QGraphicsScene::sceneRectChanged, this, &LiftersArea::handleSceneRectChanged);

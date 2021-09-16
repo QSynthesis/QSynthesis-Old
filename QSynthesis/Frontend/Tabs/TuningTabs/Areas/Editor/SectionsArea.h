@@ -3,13 +3,14 @@
 
 #include <QAction>
 #include <QMenu>
-#include <QWidget>
 
 class EditorInterface;
 class TuningGroup;
 class GraphicsNote;
 
-class SectionsArea : public QWidget {
+#include "MoreWidget.h"
+
+class SectionsArea : public MoreWidget {
     Q_OBJECT
 
     Q_PROPERTY(

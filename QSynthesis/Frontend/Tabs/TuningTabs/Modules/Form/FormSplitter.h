@@ -35,25 +35,8 @@ private:
     void modifyFeatures();
     void modifyStretches();
 
-    QSplitterHandle *createHandle() override;
-
 signals:
     void statusChanged();
-};
-
-class FormSplitterHandle : public QSplitterHandle {
-    Q_OBJECT
-public:
-    explicit FormSplitterHandle(QSplitter *parent) : QSplitterHandle(Qt::Vertical, parent) {
-        QPalette pa;
-        QColor color = Qt::transparent;
-
-        // color = Qt::white;
-        pa.setColor(QPalette::Background, color);
-        setPalette(pa);
-    }
-
-private:
 };
 
 #endif // FORMSPLITTER_H

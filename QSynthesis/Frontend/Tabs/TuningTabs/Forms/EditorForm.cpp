@@ -20,6 +20,10 @@ EditorForm::EditorForm(TuningTab *parent) : BaseForm(parent) {
     btnPitch = new SwitchButton(tr("Pitch"), titleBar());
     btnEnvelope = new SwitchButton(tr("Envelope"), titleBar());
 
+    btnNote->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+    btnPitch->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+    btnEnvelope->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+
     btnNote->setProperty("type", "titleBar");
     btnPitch->setProperty("type", "titleBar");
     btnEnvelope->setProperty("type", "titleBar");

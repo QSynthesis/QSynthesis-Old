@@ -4,15 +4,13 @@
 int main(int argc, char *argv[]) {
     Application a(argc, argv);
 
-#ifdef Q_OS_MAC
+#if defined(Q_OS_MAC)
     QDir bin(QCoreApplication::applicationDirPath());
     bin.cdUp(); /* Fix this on Mac because of the .app folder, */
     bin.cdUp(); /* which means that the actual executable is   */
     bin.cdUp(); /* three levels deep. Grrr.                    */
     QDir::setCurrent(bin.absolutePath());
-#endif
-
-#ifdef Q_OS_WINDOWS
+#elif defined(Q_OS_WINDOWS)
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("GBK"));
 #endif
 

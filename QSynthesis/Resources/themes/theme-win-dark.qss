@@ -1,5 +1,9 @@
 /* General */
 
+QWidget:focus {
+    outline: none;
+}
+
 QScrollArea {
     background-color: transparent;
 }
@@ -28,6 +32,26 @@ QLineEdit, QTextEdit, QPlainTextEdit, QComboBox {
 
 QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
     border-color: #167FD2;
+}
+
+.QPushButton {
+    border: 1px solid transparent;
+    background-color: #0E639C;
+    color: white;
+    /* border-radius: 2px; */
+    padding: 5px auto;
+}
+
+.QPushButton:disabled {
+    color: #666666;
+}
+
+.QPushButton:hover {
+    background-color: #1177BB;
+}
+
+.QPushButton:pressed {
+    color: #EEEEEE;
 }
 
 /* Custom Controls */
@@ -84,7 +108,7 @@ CentralTabWidget>QTabBar::tab {
     border-right: 1px solid #252526;
     border-left: 1px solid #252526;
     color: #A0A0A0;
-    padding: 8px 15px;
+    padding: 12px 15px;
     background-color: #2D2D2D;
 }
 
@@ -94,7 +118,7 @@ CentralTabWidget>QTabBar::tab:selected {
 }
 
 CentralTabWidget>QTabBar::tab:!selected:hover {
-    background-color: #202020;
+    background-color: #333333;
 }
 
 CentralTabWidget>QTabBar::scroller {
@@ -108,19 +132,21 @@ TabWidget[type=voice] {
 }
 
 TabWidget[type=voice]>QTabBar::tab {
-    border: 1px solid lightgrey;
-    border-bottom: none;
-    color: #333333;
+    border-top: 1px solid #404040;
+    border-right: 1px solid #404040;
+    border-left: 1px solid #404040;
+    color: #CCCCCC;
     padding: 3px 5px;
-    background-color: #ECECEC;
+    background-color: #2D2D2D;
 }
 
 TabWidget[type=voice]>QTabBar::tab:selected {
-    background-color: white;
+    color: white;
+    background-color: #505050;
 }
 
 TabWidget[type=voice]>QTabBar::tab:!selected:hover {
-    background-color: #EFEFEF;
+    background-color: #383838;
 }
 
 TabWidget[type=voice]>QTabBar::scroller {
@@ -145,7 +171,7 @@ WelcomeTabContent>.SwitchButton[type=list] {
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 4px solid transparent;
+    border-bottom: none;
     font-size: 18px;
     padding: 10px 0;
 }
@@ -156,28 +182,16 @@ WelcomeTabContent>.SwitchButton[type=list]:hover {
 
 WelcomeTabContent>.SwitchButton[type=list]:checked {
     color: #DBDBDB;
-    border-bottom-color: #2B579A;
+}
+
+WelcomeTabContent>.SwitchButtonUnderline[type=list] {
+    qproperty-lineWidth: 4;
+    qproperty-color: #0E639C;
 }
 
 WelcomeTabContent>.QPushButton[type=special] {
-    border: 1px solid transparent;
-    background-color: #0E639C;
-    color: white;
-    border-radius: 2px;
     padding: 8px 35px;
     font-size: 20px;
-}
-
-WelcomeTabContent>.QPushButton[type=special]:disabled {
-    color: #666666;
-}
-
-WelcomeTabContent>.QPushButton[type=special]:hover {
-    background-color: #1177BB;
-}
-
-WelcomeTabContent>.QPushButton[type=special]:pressed {
-    color: #EEEEEE;
 }
 
 WelcomeTabContent>.FileListWidget {
@@ -239,13 +253,31 @@ QMenu::separator {
 
 /* Title Bar */
 
+FormSplitter::handle {
+    background-color: transparent;
+}
+
 FormTitleBar {
     qproperty-fillColor: #1E1E1E;
     qproperty-topColor: #333333;
+    qproperty-top: 1;
+    qproperty-contentHeight: 40;
+}
+
+.QSplitter[type=voice-splitter]::handle {
+    background-color: transparent;
+}
+
+.QSplitter[type=voice-splitter]::handle:horizontal {
+    width: 15px;
+}
+
+.QSplitter[type=voice-splitter]::handle:vertical {
+    height: 15px;
 }
 
 .SwitchButton[type=titleBar] {
-    color: #CCCCCC;
+    color: #898A8B;
     background-color: transparent;
     border-top: none;
     border-left: none;
@@ -255,28 +287,28 @@ FormTitleBar {
 }
 
 .SwitchButton[type=titleBar]:hover {
-    color: white;
+    color: #D7D7D7;
 }
 
 .SwitchButton[type=titleBar]:checked {
-    color: white;
+    color: #D7D7D7;
     border-bottom-color: white;
 }
 
 /* Editor */
 
 SectionsArea {
-    qproperty-noteTempoColor: white;
-    qproperty-globalTempoColor: pink;
-    qproperty-beatColor: white;
-    qproperty-numColor: white;
-    qproperty-lineColor: #666666;
+    qproperty-noteTempoColor: lightgrey;
+    qproperty-globalTempoColor: rgb(255, 129, 150);
+    qproperty-beatColor: lightgrey;
+    qproperty-numColor: lightgrey;
+    qproperty-lineColor: #999999;
 }
 
 SectionsLine {
-    qproperty-beatColor: white;
-    qproperty-numColor: white;
-    qproperty-lineColor: #666666;
+    qproperty-beatColor: lightgrey;
+    qproperty-numColor: lightgrey;
+    qproperty-lineColor: #999999;
 }
 
 PianoArea {
@@ -319,16 +351,6 @@ PianoKey[color=black]:hover {
     background-color: #4794CB;
 }
 
-NotesArea {
-    qproperty-timeLineColor: #D4D4D4;
-    qproperty-sectionLineColor: #BFBFBF;
-    qproperty-pitchLineColor: #E6E6E6;
-    qproperty-levelLineColor: #CCCCCC;
-    qproperty-backLowColor: #FFFFFF;
-    qproperty-backHighColor: #F2F2F2;
-    qproperty-leftRegionColor: rgba(0, 0, 0, 20%);
-}
-
 /* Note */
 
 NoteHandler {
@@ -363,20 +385,21 @@ HeadsArea {
 
 TrackHead {
     background-color: #333333;
+    qproperty-iconColor: lightgrey;
 }
 
 TrackHead>FixedLineEdit {
     border: none;
     background-color: transparent;
     padding: 1px;
-    color: white;
+    color: #D7D7D7;
 }
 
 TrackHead>FixedLineEdit:focus {
     background-color: rgba(255, 255, 255, 5%);
 }
 
-TrackHead>QPushButton[type="label"] {
+TrackHead>LabelButton {
     border: none;
     background: transparent;
     text-align: left;
@@ -384,34 +407,34 @@ TrackHead>QPushButton[type="label"] {
     color: #999999;
 }
 
-TrackHead>QPushButton[type="label"][invalid="true"] {
+TrackHead>LabelButton[invalid="true"] {
     color: orangered;
 }
 
-TrackHead>QPushButton[type="label"][invalid="false"]::hover {
+TrackHead>LabelButton[invalid="false"]::hover {
     color: white;
 }
 
-TrackHead>QPushButton[type="label"][invalid="true"]::hover {
+TrackHead>LabelButton[invalid="true"]::hover {
     color: red;
 }
 
-TrackHead>QPushButton[type="letter"] {
+TrackHead>TrackButton {
     border: 1px solid transparent;
     background-color: #0E639C;
     color: white;
-    border-radius: 2px;
+    /* border-radius: 2px; */
 }
 
-TrackHead>QPushButton[type="letter"]:disabled {
+TrackHead>TrackButton:disabled {
     color: #666666;
 }
 
-TrackHead>QPushButton[type="letter"]:hover {
+TrackHead>TrackButton:hover {
     background-color: #1177BB;
 }
 
-TrackHead>QPushButton[type="letter"]:pressed {
+TrackHead>TrackButton:pressed {
     color: #EEEEEE;
 }
 
@@ -441,32 +464,7 @@ KeyTableWidget>QTableWidget>QHeaderView::section {
 /* BaseDialog */
 
 BaseDialog {
-    background-color: #111111;
-}
-
-BaseDialog>QPushButton {
-    border: 1px solid transparent;
-    background-color: #0E639C;
-    color: white;
-    border-radius: 2px;
-}
-
-BaseDialog>QPushButton:disabled {
-    color: #666666;
-}
-
-BaseDialog>QPushButton:hover {
-    background-color: #1177BB;
-}
-
-BaseDialog>QPushButton:pressed {
-    color: #EEEEEE;
-}
-
-/* QMessageBox */
-
-QMessageBox {
-    background-color: whitesmoke;
+    background-color: #252526;
 }
 
 /* QTableWidget */
@@ -523,33 +521,47 @@ ComboSelector>QListWidget::item {
 
 /* QScrollBar */
 
-QScrollBar:vertical {
+QScrollBar {
     background: transparent;
-    width: 8px;
+    margin: 0px 0px 0px 0px;
+}
+
+QScrollBar:vertical {
+    width: 10px;
+}
+
+QScrollBar:horizontal {
+    height: 10px;
+}
+
+QScrollBar::handle {
+    background: rgba(255, 255, 255, 15%);
+    border: 0px;
+    border-radius: 3px;
     margin: 0px 0px 0px 0px;
 }
 
 QScrollBar::handle:vertical {
-    background: rgba(223, 223, 225, 200);
-    border: 0px;
-    border-radius: 4px;
-    margin: 0px 0px 0px 0px;
     min-height: 40px;
 }
 
-QScrollBar::handle:vertical:hover {
-    background: lightgray;
+QScrollBar::handle:horizontal {
+    min-width: 40px;
 }
 
-QScrollBar::handle:vertical:pressed {
-    background: rgba(200, 200, 200, 255);
+QScrollBar::handle:hover {
+    background: rgba(255, 255, 255, 20%);
 }
 
-QScrollBar::sub-page:vertical {
+QScrollBar::handle:pressed {
+    background: rgba(255, 255, 255, 18%);
+}
+
+QScrollBar::sub-page {
     background: transparent;
 }
 
-QScrollBar::add-page:vertical {
+QScrollBar::add-page {
     background: transparent;
 }
 
@@ -561,46 +573,6 @@ QScrollBar::down-arrow {
     background: transparent;
 }
 
-QScrollBar::sub-line:vertical {
-    background: transparent;
-    width: 0px;
-}
-
-QScrollBar::add-line:vertical {
-    background: transparent;
-    width: 0px;
-}
-
-QScrollBar:horizontal {
-    background: transparent;
-    height: 8px;
-    margin: 0px 0px 0px 0px;
-}
-
-QScrollBar::handle:horizontal {
-    background: rgba(223, 223, 225, 200);
-    border: 0px;
-    border-radius: 4px;
-    margin: 0px 0px 0px 0px;
-    min-width: 40px;
-}
-
-QScrollBar::handle:horizontal:hover {
-    background: lightgray;
-}
-
-QScrollBar::handle:horizontal:pressed {
-    background: rgba(200, 200, 200, 255);
-}
-
-QScrollBar::sub-page:horizontal {
-    background: transparent;
-}
-
-QScrollBar::add-page:horizontal {
-    background: transparent;
-}
-
 QScrollBar::left-arrow {
     background: transparent;
 }
@@ -609,12 +581,27 @@ QScrollBar::right-arrow {
     background: transparent;
 }
 
-QScrollBar::sub-line:horizontal {
+QScrollBar::sub-line {
     background: transparent;
-    height: 0px;
+    width: 0px;
 }
 
-QScrollBar::add-line:horizontal {
+QScrollBar::add-line {
     background: transparent;
-    height: 0px;
+    width: 0px;
+}
+
+/* VectorButton */
+
+VectorButton {
+    qproperty-upColor: lightgrey;
+    qproperty-overColor: white;
+    qproperty-downColor: lightgrey;
+}
+
+/* QMessageBox */
+
+QMessageBox {
+    background-color: #252526;
+    border-radius: 3px;
 }

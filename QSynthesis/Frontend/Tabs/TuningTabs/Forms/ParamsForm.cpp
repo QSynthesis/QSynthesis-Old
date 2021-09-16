@@ -18,6 +18,10 @@ ParamsForm::ParamsForm(TuningTab *parent) : BaseForm(parent) {
     btnMod = new SwitchButton(tr("Modulation"), titleBar());
     btnVel = new SwitchButton(tr("Velocity"), titleBar());
 
+    btnInt->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+    btnMod->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+    btnVel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+
     btnInt->setProperty("type", "titleBar");
     btnMod->setProperty("type", "titleBar");
     btnVel->setProperty("type", "titleBar");

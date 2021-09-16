@@ -36,6 +36,8 @@ void NotesArea::advancePlaying(qint64 position) {
 
     playToPosition = position;
     position -= NotesList[start]->correctGenon().PreUtterance;
+
+    int realPos = position;
     if (position < 0) {
         position = 0;
     }
@@ -71,8 +73,8 @@ void NotesArea::advancePlaying(qint64 position) {
     }
 
     // 减掉第一个音符的先行声音
-    double unit = 120.0 / NotesList[playToNote]->tempo() / 0.96;
-    double ticks = (position + startTime - NotesList[playToNote]->time()) / unit / 480 * unit_w;
+    double unit = 120.0 / tempoAt(realPos < 0 ? (playToNote - 1) : playToNote) / 0.96;
+    double ticks = (realPos + startTime - NotesList[playToNote]->time()) / unit / 480 * unit_w;
 
     if (!playHead->isVisible()) {
         playHead->show();

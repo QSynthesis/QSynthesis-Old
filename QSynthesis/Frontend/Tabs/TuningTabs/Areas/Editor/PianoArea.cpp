@@ -7,7 +7,7 @@
 #include <QTimer>
 #include <cmath>
 
-PianoArea::PianoArea(EditorInterface *editor, QWidget *parent) : QWidget(parent) {
+PianoArea::PianoArea(EditorInterface *editor, QWidget *parent) : MoreWidget(parent) {
     m_ptrs = editor->ptrs();
     setAttribute(Qt::WA_StyledBackground);
 

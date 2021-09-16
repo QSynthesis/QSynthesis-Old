@@ -17,9 +17,9 @@ void ImageLabel::init() {
 }
 
 void ImageLabel::mouseReleaseEvent(QMouseEvent *event) {
-#if defined(_WIN32)
+#if defined(Q_OS_WINDOWS)
     QAction *revealAction = new QAction(tr("Show in Explorer"), m_menu);
-#elif defined(__APPLE__)
+#elif defined(Q_OS_MAC)
     QAction *revealAction = new QAction(tr("Show in Finder"), m_menu);
 #else
     QAction *revealAction = new QAction(tr("Show in File manager"), m_menu);

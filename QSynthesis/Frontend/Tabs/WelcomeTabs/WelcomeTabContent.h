@@ -30,7 +30,7 @@ public:
 private:
     WelcomeTab *m_tab;
 
-    QVBoxLayout *mainLayout;
+    QVBoxLayout *mainLayout, *switchLineLayout;
     QHBoxLayout *topLayout, *switchLayout;
 
     QLabel *lbTitle;
@@ -41,6 +41,7 @@ private:
 
     SwitchButton *sBtnFiles, *sBtnFolders, *sBtnTemplates;
     SwitchButtonGroup *sBtnGroup;
+    SwitchButtonUnderline *sBtnUnderline;
 
     void onNewBtnClicked();
     void onOpenBtnClicked();

@@ -38,7 +38,7 @@ void NotesArea::duringSelecting() {
     int value, toValue;
     int offset;
     double ratio = 0.5;
-    QRect frameSize(20, 20, 20, 20);
+    QRect frameSize(QPoint(20, 20), QPoint(120, 20));
 
     bar = scroll->horizontalScrollBar();
     value = bar->value();

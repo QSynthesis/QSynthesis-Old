@@ -44,7 +44,7 @@ protected:
 #ifdef linux
     QProcess *m_pTerminal;
 #endif
-#ifdef __APPLE__
+#ifdef Q_OS_MAC
     QProcess *m_pTerminal;
 #endif
 

@@ -45,13 +45,13 @@ void TerminalDialog::init() {
     btnCancel->setShortcut(QKeySequence(Qt::Key_Escape));
     connect(btnCancel, &QPushButton::clicked, this, &TerminalDialog::onCancelClicked);
 
-#ifdef _WIN32
+#ifdef Q_OS_WINDOWS
     m_pRender = nullptr;
 #endif
 #ifdef linux
     m_pTerminal = nullptr;
 #endif
-#ifdef __APPLE__
+#ifdef Q_OS_MAC
     m_pTerminal = nullptr;
     e_pTerminal = nullptr;
 #endif
@@ -64,7 +64,7 @@ bool TerminalDialog::runInCmd() {
     std::wstring ws_bat = tempPath.toStdWString();
     std::wstring ws_dir = workingDir.toStdWString();
 
-#ifdef _WIN32
+#ifdef Q_OS_WINDOWS
     //------------------------------------------------------------------------
     m_pRender = new PROCESS_INFORMATION();
 
@@ -97,7 +97,7 @@ bool TerminalDialog::runInCmd() {
     m_pTerminal->setWorkingDirectory(workingDir);
     m_pTerminal->start("/bin/bash", {tempPath});
 #endif
-#ifdef __APPLE__
+#ifdef Q_OS_MAC
     qDebug() << workingDir;
     m_pTerminal = new QProcess(this);
     connect(m_pTerminal, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
@@ -148,7 +148,7 @@ void TerminalDialog::setBatchFile(const QString &value) {
 }
 
 void TerminalDialog::onTimer() {
-#ifdef _WIN32
+#ifdef Q_OS_WINDOWS
     if (m_pRender) {
         DWORD exitCode;
         GetExitCodeProcess(m_pRender->hProcess, &exitCode);
@@ -175,7 +175,7 @@ void TerminalDialog::onProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 
     onRenderOver();
 #endif
-#ifdef __APPLE__
+#ifdef Q_OS_MAC
     qDebug() << exitStatus << exitCode;
     if (exitStatus == QProcess::ExitStatus::NormalExit) {
         delete m_pTerminal;
@@ -186,7 +186,7 @@ void TerminalDialog::onProcessFinished(int exitCode, QProcess::ExitStatus exitSt
 }
 
 bool TerminalDialog::killProcess() {
-#ifdef _WIN32
+#ifdef Q_OS_WINDOWS
     if (m_pRender) {
         DWORD exitCode = 0;
         GetExitCodeProcess(m_pRender->hProcess, &exitCode);
@@ -217,7 +217,7 @@ bool TerminalDialog::killProcess() {
         m_pTerminal = nullptr;
     }
 #endif
-#ifdef __APPLE__
+#ifdef Q_OS_MAC
     if (m_pTerminal) {
         m_pTerminal->terminate();
         m_pTerminal->close();
@@ -237,7 +237,7 @@ void TerminalDialog::onRenderOver() {
 
 void TerminalDialog::onCancelClicked() {
     setResult(-1);
-#ifdef __APPLE__
+#ifdef Q_OS_MAC
     m_pTerminal->terminate();
     m_pTerminal->close();
     e_pTerminal = new QProcess(this);

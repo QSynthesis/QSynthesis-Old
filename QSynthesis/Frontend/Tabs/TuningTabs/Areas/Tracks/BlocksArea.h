@@ -2,8 +2,8 @@
 #define BLOCKSAREA_H
 
 #include <QVBoxLayout>
-#include <QWidget>
 
+#include "MoreWidget.h"
 #include "Utils/ItemList.h"
 
 class TracksInterface;
@@ -11,7 +11,7 @@ class TuningGroup;
 class TrackContent;
 class GraphicsNote;
 
-class BlocksArea : public QWidget {
+class BlocksArea : public MoreWidget {
     Q_OBJECT
 public:
     explicit BlocksArea(TracksInterface *editor, QWidget *parent = nullptr);

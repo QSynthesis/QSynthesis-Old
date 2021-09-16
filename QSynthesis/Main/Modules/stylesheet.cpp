@@ -2,7 +2,7 @@
 
 void MainWindow::initStyleSheet() {
     QFile qss;
-#ifdef __APPLE__
+#ifdef Q_OS_MAC
     qss.setFileName(":/themes/theme-mac.qss");
 #else
     qss.setFileName(":/themes/theme-win-dark.qss");

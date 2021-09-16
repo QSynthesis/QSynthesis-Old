@@ -103,17 +103,17 @@ void FileListWidget::onRightClick(QModelIndex index) {
     deleteAction->setText(tr("Remove from list(&R)"));
 
     if (m_type == Files) {
-#if defined(_WIN32)
+#if defined(Q_OS_WINDOWS)
         revealAction->setText(tr("Show in Explorer(&S)"));
-#elif defined(__APPLE__)
+#elif defined(Q_OS_MAC)
         revealAction->setText(tr("Show in Finder(&S)"));
 #else
         revealAction->setText(tr("Show in File Manager(&S)"));
 #endif
     } else {
-#if defined(_WIN32)
+#if defined(Q_OS_WINDOWS)
         revealAction->setText(tr("Open in Explorer(&S)"));
-#elif defined(__APPLE__)
+#elif defined(Q_OS_MAC)
         revealAction->setText(tr("Open in Finder(&S)"));
 #else
         revealAction->setText(tr("Open in File Manager(&S)"));

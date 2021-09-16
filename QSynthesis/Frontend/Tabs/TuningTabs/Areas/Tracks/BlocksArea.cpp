@@ -3,8 +3,7 @@
 #include "../../Modules/Elements/TrackContent.h"
 #include "../../TuningGroup.h"
 
-BlocksArea::BlocksArea(TracksInterface *editor, QWidget *parent) : QWidget(parent) {
-    setAttribute(Qt::WA_StyledBackground);
+BlocksArea::BlocksArea(TracksInterface *editor, QWidget *parent) : MoreWidget(parent) {
     m_ptrs = editor->ptrs();
 
     mainLayout = new QVBoxLayout(this);

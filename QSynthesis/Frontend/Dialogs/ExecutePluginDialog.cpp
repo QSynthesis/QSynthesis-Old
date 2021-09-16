@@ -42,13 +42,13 @@ void ExecutePluginDialog::init() {
     btnCancel->setShortcut(QKeySequence(Qt::Key_Escape));
     connect(btnCancel, &QPushButton::clicked, this, &ExecutePluginDialog::onCancelClicked);
 
-#ifdef _WIN32
+#ifdef Q_OS_WINDOWS
     m_pRender = nullptr;
 #endif
 #ifdef linux
     m_pTerminal = nullptr;
 #endif
-#ifdef __APPLE__
+#ifdef Q_OS_MAC
     m_pTerminal = nullptr;
 #endif
 }
@@ -69,7 +69,7 @@ bool ExecutePluginDialog::runInCmd() {
     std::wstring ws_exe = cmdLine.toStdWString();
     std::wstring ws_dir = m_workingDir.toStdWString();
 
-#ifdef _WIN32
+#ifdef Q_OS_WINDOWS
     //------------------------------------------------------------------------
     m_pRender = new PROCESS_INFORMATION();
 
@@ -102,7 +102,7 @@ bool ExecutePluginDialog::runInCmd() {
     m_pTerminal->setWorkingDirectory(m_workingDir);
     m_pTerminal->start(execPath, {tempPath});
 #endif
-#ifdef __APPLE__
+#ifdef Q_OS_MAC
     m_pTerminal = new QProcess(this);
     connect(m_pTerminal, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
             &ExecutePluginDialog::onProcessFinished);
@@ -115,7 +115,7 @@ bool ExecutePluginDialog::runInCmd() {
 
 
 void ExecutePluginDialog::onTimer() {
-#ifdef _WIN32
+#ifdef Q_OS_WINDOWS
     if (m_pRender) {
         DWORD exitCode;
         GetExitCodeProcess(m_pRender->hProcess, &exitCode);
@@ -147,7 +147,7 @@ void ExecutePluginDialog::onProcessFinished(int exitCode, QProcess::ExitStatus e
 
     onPluginExited();
 #endif
-#ifdef __APPLE__
+#ifdef Q_OS_MAC
     delete m_pTerminal;
     m_pTerminal = nullptr;
 

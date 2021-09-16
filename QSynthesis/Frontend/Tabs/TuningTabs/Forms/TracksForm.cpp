@@ -20,6 +20,9 @@ TracksForm::TracksForm(TuningTab *parent) : BaseForm(parent) {
     btnTracks->setProperty("type", "titleBar");
     btnConfig->setProperty("type", "titleBar");
 
+    btnTracks->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+    btnConfig->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+
     btnsGroup = new SwitchButtonGroup(this);
     btnsGroup->addButton(btnTracks);
     btnsGroup->addButton(btnConfig);

@@ -1,11 +1,10 @@
 #ifndef BASEFORM_H
 #define BASEFORM_H
 
-#include <QWidget>
-
 #include "../Modules/Form/FormTitleBar.h"
+#include "MoreWidget.h"
 
-class BaseForm : public QWidget {
+class BaseForm : public MoreWidget {
     Q_OBJECT
 public:
     explicit BaseForm(QWidget *parent = nullptr);

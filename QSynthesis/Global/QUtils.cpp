@@ -197,7 +197,7 @@ bool equalDouble(double a, double b) {
 }
 
 void RevealFile(QString filename) {
-#if defined(_WIN32)
+#if defined(Q_OS_WINDOWS)
     if (isFileExist(filename)) {
         QStringList cmds;
         cmds << "/e,"
@@ -209,7 +209,7 @@ void RevealFile(QString filename) {
              << "/root," << QDir::toNativeSeparators(filename);
         QProcess::startDetached("explorer.exe", cmds);
     }
-#elif defined(__APPLE__)
+#elif defined(Q_OS_MAC)
     if (isDirExist(filename)) {
         if (!filename.endsWith(Slash)) {
             filename.append(Slash);

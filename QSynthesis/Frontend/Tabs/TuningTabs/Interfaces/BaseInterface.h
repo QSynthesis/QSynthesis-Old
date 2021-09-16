@@ -1,9 +1,9 @@
 #ifndef BASEINTERFACE_H
 #define BASEINTERFACE_H
 
-#include <QWidget>
+#include "MoreWidget.h"
 
-class BaseInterface : public QWidget {
+class BaseInterface : public MoreWidget {
     Q_OBJECT
 public:
     explicit BaseInterface(QWidget *parent = nullptr);

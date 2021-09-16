@@ -19,15 +19,6 @@ NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *parent)
     m_moving = false;
     m_drawingItem = nullptr;
 
-    // Colors
-    m_timeLineColor = QColor(0xE2E2E2);
-    m_quarterLineColor = QColor(0xD4D4D4);
-    m_sectionLineColor = QColor(0xBFBFBF);
-    m_pitchLineColor = QColor(0xE6E6E6);
-    m_levelLineColor = QColor(0xCCCCCC);
-    m_backDarkColor = QColor(0xF2F2F2);
-    m_backLightColor = QColor(0xFFFFFF);
-
     initLyricModules();
     initSelectModules();
     initPlayModules();

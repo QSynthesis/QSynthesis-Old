@@ -32,7 +32,7 @@ void OtoInfoArea::init() {
 
     // Top Left Layout
     mainLayout = new QGridLayout(this);
-    mainLayout->setMargin(10);
+    mainLayout->setMargin(0);
 
     mainLayout->addWidget(lbImage, 0, 0, 2, 1);
     mainLayout->addWidget(lbName, 0, 1, 1, 1);

@@ -142,8 +142,3 @@ void FormSplitter::modifyStretches() {
         }
     }
 }
-
-QSplitterHandle *FormSplitter::createHandle() {
-    FormSplitterHandle *handle = new FormSplitterHandle(this);
-    return handle;
-}

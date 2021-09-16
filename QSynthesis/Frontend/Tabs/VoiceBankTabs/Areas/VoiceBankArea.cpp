@@ -1,7 +1,7 @@
 #include "VoiceBankArea.h"
 #include "../../VoiceBankTab.h"
 
-VoiceBankArea::VoiceBankArea(VoiceBankTab *tab, QWidget *parent) : QWidget(parent) {
+VoiceBankArea::VoiceBankArea(VoiceBankTab *tab, QWidget *parent) : MoreWidget(parent) {
     m_ptrs = tab->ptrs();
 }
 

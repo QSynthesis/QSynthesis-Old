@@ -1,9 +1,9 @@
 #ifndef SECTIONSLINE_H
 #define SECTIONSLINE_H
 
-#include <QWidget>
+#include "MoreWidget.h"
 
-class SectionsLine : public QWidget {
+class SectionsLine : public MoreWidget {
     Q_OBJECT
     Q_PROPERTY(QColor lineColor READ lineColor WRITE setLineColor NOTIFY colorChanged)
     Q_PROPERTY(QColor numColor READ numColor WRITE setNumColor NOTIFY colorChanged)

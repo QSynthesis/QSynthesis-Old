@@ -34,7 +34,7 @@ bool TuningTab::renderSelection() {
     QString resamplerPath = m_ptrs->tracksContent->defaultResampler();
     QString globalFlags = m_ptrs->tracksContent->defaultFlags();
 
-#ifdef _WIN32
+#ifdef Q_OS_WINDOWS
     // Generate temp.bat
     QFile tempFile(tempBatPath);
 
@@ -175,7 +175,7 @@ bool TuningTab::renderSelection() {
     helperFile.close();
 
 #endif
-#if defined(linux) || defined(__APPLE__)
+#if defined(linux) || defined(Q_OS_MAC)
     // Generate temp.sh
     QFile tempFile(tempBatPath);
 

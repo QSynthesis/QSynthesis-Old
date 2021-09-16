@@ -19,9 +19,9 @@ void OtoTableTab::openContextMenu() {
     QAction *duplicateAction = new QAction(tr("Duplicate"), m_menu);
     QAction *removeAction = new QAction(tr("Remove"), m_menu);
 
-#if defined(_WIN32)
+#if defined(Q_OS_WINDOWS)
     QAction *revealAction = new QAction(tr("Show in Explorer(&S)"), m_menu);
-#elif defined(__APPLE__)
+#elif defined(Q_OS_MAC)
     QAction *revealAction = new QAction(tr("Show in Finder(&S)"), m_menu);
 #else
     QAction *revealAction = new QAction(tr("Show in File Manager(&S)"), m_menu);

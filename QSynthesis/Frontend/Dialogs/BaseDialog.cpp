@@ -4,6 +4,7 @@
 #include <QCloseEvent>
 BaseDialog::BaseDialog(QWidget *parent) {
     setWindowFlags(Qt::WindowCloseButtonHint);
+    setFocusPolicy(Qt::ClickFocus);
 }
 
 BaseDialog::~BaseDialog() {

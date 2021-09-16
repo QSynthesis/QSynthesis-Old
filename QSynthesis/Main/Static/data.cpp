@@ -7,7 +7,7 @@ void MainWindow::reloadBackendStrings() {
     UntitledFileName = tr("Untitled");
     DeletedPrefix = tr("(Deleted)");
 
-#if defined(_WIN32)
+#if defined(Q_OS_WINDOWS)
     openFilterString = tr("UTAU Sequence Text(*.ust);;All Files(*.*)");
     saveFilterString = tr("UTAU Sequence Text(*.ust);;All Files(*.*)");
     importFilterString =

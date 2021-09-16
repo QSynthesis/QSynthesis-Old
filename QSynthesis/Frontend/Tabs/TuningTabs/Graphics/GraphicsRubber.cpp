@@ -7,9 +7,6 @@
 GraphicsRubber::GraphicsRubber(QGraphicsItem *parent) : QGraphicsRectItem(parent) {
     init();
     setStartPoint(QPoint(0, 0));
-
-    updateColorTheme();
-    connect(qTheme, &ColorTheme::updated, this, &GraphicsRubber::updateColorTheme);
 }
 
 GraphicsRubber::~GraphicsRubber() {
@@ -22,14 +19,14 @@ void GraphicsRubber::updateColorTheme() {
 }
 
 void GraphicsRubber::init() {
-    m_fillColor = QColor(0, 0, 0, 120);
-    m_frameColor = Qt::black;
-
     m_active = false;
     m_vertical = false;
 
     m_timer = new QTimer(this);
     connect(m_timer, &QTimer::timeout, this, &GraphicsRubber::onTimer);
+
+    updateColorTheme();
+    connect(qTheme, &ColorTheme::updated, this, &GraphicsRubber::updateColorTheme);
 }
 
 void GraphicsRubber::setStartPoint(QPointF pos) {

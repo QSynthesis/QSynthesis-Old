@@ -6,12 +6,12 @@
 #include "../../TuningGroup.h"
 #include "mainwindow.h"
 
-TrackHead::TrackHead(HeadsArea *parent) : QWidget(parent), m_parent(parent) {
+TrackHead::TrackHead(HeadsArea *parent) : MoreWidget(parent), m_parent(parent) {
     init();
 }
 
 TrackHead::TrackHead(QString res, QString flags, QString name, QString voice, HeadsArea *parent)
-    : QWidget(parent), m_parent(parent), m_resampler(res), m_flags(flags), m_name(name),
+    : MoreWidget(parent), m_parent(parent), m_resampler(res), m_flags(flags), m_name(name),
       m_voice(voice) {
     init();
 
@@ -22,7 +22,7 @@ TrackHead::TrackHead(QString res, QString flags, QString name, QString voice, He
 }
 
 TrackHead::TrackHead(QString flags, QString name, QString voice, HeadsArea *parent)
-    : QWidget(parent), m_parent(parent), m_flags(flags), m_name(name), m_voice(voice) {
+    : MoreWidget(parent), m_parent(parent), m_flags(flags), m_name(name), m_voice(voice) {
     init();
 
     setFlags(flags);
@@ -30,7 +30,7 @@ TrackHead::TrackHead(QString flags, QString name, QString voice, HeadsArea *pare
 }
 
 TrackHead::TrackHead(QString name, QString voice, HeadsArea *parent)
-    : QWidget(parent), m_parent(parent), m_name(name), m_voice(voice) {
+    : MoreWidget(parent), m_parent(parent), m_name(name), m_voice(voice) {
     init();
 
     setName(name);
@@ -155,9 +155,6 @@ void TrackHead::init() {
     m_name = "";
     m_voice = "";
 
-    setAttribute(Qt::WA_StyledBackground);
-    setFocusPolicy(Qt::ClickFocus);
-
     m_iconColor = Qt::lightGray;
 
     trackLayout = new QHBoxLayout(this);
@@ -168,9 +165,8 @@ void TrackHead::init() {
 
     // labelLayout
     lbNameFlags = new FixedLineEdit(this);
-    btnVoiceRes = new QPushButton(this);
+    btnVoiceRes = new LabelButton(this);
 
-    btnVoiceRes->setProperty("type", "label");
     btnVoiceRes->setProperty("invalid", "false");
 
     connect(lbNameFlags, &FixedLineEdit::editingFinished2, this, &TrackHead::onLineEditFinished);
@@ -199,9 +195,9 @@ void TrackHead::init() {
     dialLayout->addWidget(lbVolIcon, 1, 1, Qt::AlignCenter);
 
     // buttonLayout
-    btnMute = new QPushButton("M", this);
+    btnMute = new TrackButton("M", this);
     btnMute->setProperty("type", "letter");
-    btnSolo = new QPushButton("S", this);
+    btnSolo = new TrackButton("S", this);
     btnSolo->setProperty("type", "letter");
 
     btnMute->setFixedSize(20, 20);
@@ -266,9 +262,9 @@ void TrackHead::onLabelBtnClicked() {
         }
         m_menu->addSeparator();
 
-#if defined(_WIN32)
+#if defined(Q_OS_WINDOWS)
         QAction *openAction = new QAction(tr("Open in Explorer"), m_menu);
-#elif defined(__APPLE__)
+#elif defined(Q_OS_MAC)
         QAction *openAction = new QAction(tr("Open in Finder"), m_menu);
 #else
         QAction *openAction = new QAction(tr("Open in File manager"), m_menu);
@@ -282,9 +278,9 @@ void TrackHead::onLabelBtnClicked() {
     } else {
         m_menu->addSeparator();
 
-#if defined(_WIN32)
+#if defined(Q_OS_WINDOWS)
         QAction *openAction = new QAction(tr("Show in Explorer"), m_menu);
-#elif defined(__APPLE__)
+#elif defined(Q_OS_MAC)
         QAction *openAction = new QAction(tr("Show in Finder"), m_menu);
 #else
         QAction *openAction = new QAction(tr("Show in File manager"), m_menu);

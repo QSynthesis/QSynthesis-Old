@@ -14,7 +14,7 @@ void OtoDataArea::initExtern() {
 
 void OtoDataArea::init() {
     mainLayout = new QVBoxLayout(this);
-    mainLayout->setMargin(10);
+    mainLayout->setMargin(0);
 
     otoTabs = new TabWidget(this);
     otoTabs->setProperty("type", "voice");

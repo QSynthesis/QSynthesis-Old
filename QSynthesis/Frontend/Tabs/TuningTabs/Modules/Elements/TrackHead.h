@@ -10,14 +10,17 @@
 #include <QVBoxLayout>
 #include <QWidget>
 
+#include "../Buttons/TrackButton.h"
 #include "Controls/FixedLineEdit.h"
 #include "Directory/VoiceInfo.h"
+#include "MoreWidget.h"
 #include "QUtils.h"
+#include "Templates/LabelButton.h"
 #include "VoiceBank/QOtoReference.h"
 
 class HeadsArea;
 
-class TrackHead : public QWidget {
+class TrackHead : public MoreWidget {
     Q_OBJECT
 
     Q_PROPERTY(QColor iconColor READ iconColor WRITE setIconColor NOTIFY iconColorChanged)
@@ -70,13 +73,13 @@ private:
     QGridLayout *dialLayout;
     QVBoxLayout *buttonLayout;
 
-    QPushButton *btnMute, *btnSolo;
+    TrackButton *btnMute, *btnSolo;
     QDial *panDial, *volDial;
 
     QLabel *lbPanIcon, *lbVolIcon;
 
     FixedLineEdit *lbNameFlags;
-    QPushButton *btnVoiceRes;
+    LabelButton *btnVoiceRes;
 
     QMenu *m_menu;
 

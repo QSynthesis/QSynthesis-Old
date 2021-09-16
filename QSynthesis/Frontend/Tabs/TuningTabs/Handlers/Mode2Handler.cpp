@@ -46,32 +46,9 @@ void Mode2Handler::updateColorTheme() {
 void Mode2Handler::init() {
     m_type = Qs::Mode2;
 
-    m_mode1SolidLineEnabledColor = Qt::red;
-    m_mode2SolidLineEnabledColor = Qt::red;
-
-    m_mode1SolidLineDisabledColor = QColor(0xFF, 0x80, 0x80, 192);
-    m_mode2SolidLineDisabledColor = QColor(0xFF, 0x80, 0x80, 192);
-
-    m_mode1DashLineEnabledColor = QColor(0xFF, 0, 0, 192);
-    m_mode2DashLineEnabledColor = QColor(0xFF, 0, 0, 192);
-
-    m_mode1DashLineDisabledColor = QColor(0xFF, 0x80, 0x80, 192);
-    m_mode2DashLineDisabledColor = QColor(0xFF, 0x80, 0x80, 192);
-
-    m_mode2InvalidLineEnabledColor = QColor(0xFF, 0, 0, 72);
-    m_mode2InvalidLineDisabledColor = QColor(0xFF, 0, 0, 30);
-
-    m_vibratoEnabledColor = Qt::red;
-    m_vibratoDisabledColor = QColor(0xFF, 0x80, 0x80, 192);
-
-    m_vibratoEditorLinesColor = QColor(0x232323);
-
     m_ringWidth = 2;
     m_pointPadding = 2;
     m_pointRadius = 3;
-
-    m_pointColor = Qt::red;
-    m_ringColor = Qt::red;
 
     updateColorTheme();
     connect(qTheme, &ColorTheme::updated, this, &Mode2Handler::updateColorTheme);

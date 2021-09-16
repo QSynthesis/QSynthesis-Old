@@ -47,14 +47,6 @@ void GraphicsNote::init() {
     m_curves = new Mode2Handler(this, m_editor);
     m_envelope = new EnvelopeHandler(this, m_editor);
 
-    m_lyricColor = Qt::black;
-    m_restLineColor = QColor(0xCCCCCC);
-    m_restFillColor = QColor(0xEEEEEE);
-    m_listedLineColor = QColor(0x0099FF);
-    m_listedFillColor = QColor(0x40D9FF);
-    m_unlistedLineColor = QColor(0x105685);
-    m_unlistedFillColor = QColor(0x1881C7);
-
     setFlag(ItemIsFocusable);
 
     updateColorTheme();

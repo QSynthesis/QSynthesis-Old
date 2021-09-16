@@ -14,7 +14,11 @@ WelcomeTabContent::WelcomeTabContent(WelcomeTab *tab, QWidget *parent)
     switchLayout->setSpacing(25);
     switchLayout->setMargin(0);
 
-    // -- Top Layout
+    switchLineLayout = new QVBoxLayout();
+    switchLineLayout->setSpacing(0);
+    switchLineLayout->setMargin(0);
+
+    // -- Top
     lbTitle = new QLabel("QSynthesis");
     lbTitle->setProperty("type", "title");
 
@@ -27,12 +31,7 @@ WelcomeTabContent::WelcomeTabContent(WelcomeTab *tab, QWidget *parent)
     btnNew->adjustSize();
     btnOpen->adjustSize();
 
-    topLayout->addWidget(lbTitle);
-    topLayout->addStretch();
-    topLayout->addWidget(btnNew);
-    topLayout->addWidget(btnOpen);
-
-    // -- Medium Layout
+    // -- Medium
     sBtnFiles = new SwitchButton(tr("Projects"));
     sBtnFolders = new SwitchButton(tr("Folders"));
     sBtnTemplates = new SwitchButton(tr("Templates"));
@@ -41,20 +40,14 @@ WelcomeTabContent::WelcomeTabContent(WelcomeTab *tab, QWidget *parent)
     sBtnFolders->setProperty("type", "list");
     sBtnTemplates->setProperty("type", "list");
 
-    // sBtnFiles->setRecommendedSize(1, 1.75);
-    // sBtnFolders->setRecommendedSize(1, 1.75);
-    // sBtnTemplates->setRecommendedSize(1, 1.75);
-
     sBtnGroup = new SwitchButtonGroup(this);
     sBtnGroup->addButton(sBtnFiles);
     sBtnGroup->addButton(sBtnFolders);
     sBtnGroup->addButton(sBtnTemplates);
-    sBtnFiles->setChecked(true);
 
-    switchLayout->addWidget(sBtnFiles);
-    switchLayout->addWidget(sBtnFolders);
-    switchLayout->addWidget(sBtnTemplates);
-    switchLayout->addStretch();
+    sBtnUnderline = new SwitchButtonUnderline();
+    sBtnUnderline->setProperty("type", "list");
+    sBtnUnderline->setGroup(sBtnGroup);
 
     filesList = new FileListWidget();
     filesList->setFrameShape(QListWidget::NoFrame);
@@ -65,10 +58,23 @@ WelcomeTabContent::WelcomeTabContent(WelcomeTab *tab, QWidget *parent)
     lbEmpty->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     lbEmpty->adjustSize();
 
-    // Main Layout
+    // Layout
+    topLayout->addWidget(lbTitle);
+    topLayout->addStretch();
+    topLayout->addWidget(btnNew);
+    topLayout->addWidget(btnOpen);
+
+    switchLayout->addWidget(sBtnFiles);
+    switchLayout->addWidget(sBtnFolders);
+    switchLayout->addWidget(sBtnTemplates);
+    switchLayout->addStretch();
+
+    switchLineLayout->addLayout(switchLayout);
+    switchLineLayout->addWidget(sBtnUnderline);
+
     mainLayout->addLayout(topLayout);
     mainLayout->addSpacing(10);
-    mainLayout->addLayout(switchLayout);
+    mainLayout->addLayout(switchLineLayout);
     mainLayout->addSpacing(10);
 
     mainLayout->addWidget(lbEmpty);
@@ -84,6 +90,10 @@ WelcomeTabContent::WelcomeTabContent(WelcomeTab *tab, QWidget *parent)
     connect(sBtnTemplates, &SwitchButton::clicked, this, &WelcomeTabContent::onTemplatesBtnClicked);
 
     connect(filesList, &FileListWidget::propertyChanged, this, &WelcomeTabContent::refresh);
+
+    // Init
+    sBtnFiles->setChecked(true);
+    sBtnUnderline->setRealtimeState();
 }
 
 void WelcomeTabContent::refresh() {

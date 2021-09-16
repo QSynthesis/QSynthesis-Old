@@ -4,6 +4,8 @@
 #include <QPushButton>
 
 #include "QUtils.h"
+#include "SwitchButtons/SwitchButtonGroup.h"
+#include "SwitchButtons/SwitchButtonUnderline.h"
 
 class SwitchButton : public QPushButton {
     Q_OBJECT
@@ -22,31 +24,6 @@ private:
 
 signals:
     void doubleClicked();
-};
-
-class SwitchButtonGroup : public QObject {
-    Q_OBJECT
-public:
-    SwitchButtonGroup(QObject *parent);
-
-    void addButton(SwitchButton *btn);
-    void removeButton(SwitchButton *btn);
-
-    int currentIndex();
-    void setCurrentIndex(int index);
-
-    SwitchButton *currentButton();
-
-private:
-    void updateSelected(bool checked);
-    void onOneDoubleClicked();
-
-    SwitchButton *m_current;
-    QList<SwitchButton *> btns;
-
-signals:
-    void switched();
-    void oneDoubleClicked();
 };
 
 #endif // SWITCHBUTTON_H

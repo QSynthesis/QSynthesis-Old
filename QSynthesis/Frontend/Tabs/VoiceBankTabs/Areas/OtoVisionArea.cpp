@@ -41,7 +41,7 @@ void OtoVisionArea::init() {
     m_editing = false;
 
     mainLayout = new QHBoxLayout(this);
-    mainLayout->setMargin(10);
+    mainLayout->setMargin(0);
 
     scroll = new WaveformScrollArea(this);
     vision = new WaveformArea(scroll);
@@ -86,7 +86,7 @@ void OtoVisionArea::wheelEvent(QWheelEvent *event) {
         delta.rx() = 0;
     }
 
-#ifdef __APPLE__
+#ifdef Q_OS_MAC
     if (c == Qt::NoModifier) {
         delta = -delta;
         if (delta.x() != 0) {

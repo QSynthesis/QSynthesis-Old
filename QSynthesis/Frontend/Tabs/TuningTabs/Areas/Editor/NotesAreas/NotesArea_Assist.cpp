@@ -48,7 +48,7 @@ QPair<int, int> NotesArea::convertPositionToValue(QPointF pos) const {
     int curHeight = m_ptrs->currentHeight;
 
     int tick = (pos.x() - zeroLine()) / curWidth * 480;
-    int noteNum = 107 - pos.y() / curHeight;
+    int noteNum = 107 - int(pos.y() / curHeight);
 
     return qMakePair(tick, noteNum);
 }

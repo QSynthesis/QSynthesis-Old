@@ -1,9 +1,7 @@
 ﻿#include "BaseTab.h"
 #include "mainwindow.h"
 
-BaseTab::BaseTab(TabWidget *parent) : QWidget(parent), m_parent(parent) {
-    setAttribute(Qt::WA_StyledBackground);
-
+BaseTab::BaseTab(TabWidget *parent) : MoreWidget(parent), m_parent(parent) {
     m_active = false;
 }
 

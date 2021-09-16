@@ -4,8 +4,8 @@
 #include <QLabel>
 #include <QMouseEvent>
 #include <QPushButton>
-#include <QWidget>
 
+#include "MoreWidget.h"
 #include "QUtauConstants.h"
 #include "QUtauUtils.h"
 
@@ -13,7 +13,7 @@ class EditorInterface;
 class TuningGroup;
 class PianoKey;
 
-class PianoArea : public QWidget {
+class PianoArea : public MoreWidget {
     Q_OBJECT
 public:
     explicit PianoArea(EditorInterface *editor, QWidget *parent = nullptr);

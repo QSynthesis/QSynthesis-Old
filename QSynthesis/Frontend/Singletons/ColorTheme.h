@@ -24,6 +24,10 @@ public:
 
     void update();
 
+private:
+    void initLight();
+    void initDark();
+
     // NotesArea
 public:
     QColor editor_quarterLine;

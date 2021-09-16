@@ -4,7 +4,7 @@
 #include "../../Interfaces/EditorInterface.h"
 #include "../../TuningGroup.h"
 
-SectionsArea::SectionsArea(EditorInterface *editor, QWidget *parent) : QWidget(parent) {
+SectionsArea::SectionsArea(EditorInterface *editor, QWidget *parent) : MoreWidget(parent) {
     m_ptrs = editor->ptrs();
 
     setBeat(4, 4);
@@ -121,8 +121,8 @@ void SectionsArea::paintEvent(QPaintEvent *event) {
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setClipRegion(event->region());
 
-    QPen pen(m_lineColor, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-    QPen pen2(m_numColor, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen pen(m_lineColor, 1, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin);
+    QPen pen2(m_numColor, 1, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin);
 
     QRect rect = this->rect();
     int h = rect.height() / 2;

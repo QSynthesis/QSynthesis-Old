@@ -282,6 +282,24 @@
     </message>
 </context>
 <context>
+    <name>EnvButtonGroup</name>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.cpp" line="15"/>
+        <source>Envelope crossFade (p2p3)</source>
+        <translation type="unfinished">设置音量包络淡化 (p2p3)</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.cpp" line="16"/>
+        <source>Envelope crossFade (p1p4)</source>
+        <translation type="unfinished">设置音量包络淡化 (p1p4)</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.cpp" line="17"/>
+        <source>Reset Envelope</source>
+        <translation type="unfinished">重置音量包络</translation>
+    </message>
+</context>
+<context>
     <name>ExecutePluginDialog</name>
     <message>
         <source>Plugin</source>
@@ -339,6 +357,44 @@
         <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="119"/>
         <source>Open in File Manager(&amp;S)</source>
         <translation type="unfinished">在文件管理器中打开(&amp;S)</translation>
+    </message>
+</context>
+<context>
+    <name>GraphicsNote</name>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="9"/>
+        <source>Portamento</source>
+        <translation type="unfinished">滑音</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="10"/>
+        <source>Vibrato</source>
+        <translation type="unfinished">颤音</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="11"/>
+        <source>Vibrato Editor</source>
+        <translation type="unfinished">颤音编辑</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="12"/>
+        <source>Note Properties...</source>
+        <translation type="unfinished">音符属性...</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="13"/>
+        <source>Voice Bank Configue</source>
+        <translation type="unfinished">音源管理</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="15"/>
+        <source>Tempo...</source>
+        <translation type="unfinished">曲速...</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="16"/>
+        <source>Remove Tempo</source>
+        <translation type="unfinished">删除曲速</translation>
     </message>
 </context>
 <context>
@@ -854,104 +910,104 @@
         <translation type="unfinished">配置文件夹不存在。</translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="10"/>
+        <location filename="../../Main/Static/data.cpp" line="6"/>
         <source>Error</source>
         <translation type="unfinished">错误</translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="11"/>
+        <location filename="../../Main/Static/data.cpp" line="7"/>
         <source>Untitled</source>
         <translation type="unfinished">未命名</translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="12"/>
+        <location filename="../../Main/Static/data.cpp" line="8"/>
         <source>(Deleted)</source>
         <translation type="unfinished">(已删除)</translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="15"/>
-        <location filename="../../Main/Static/data.cpp" line="16"/>
+        <location filename="../../Main/Static/data.cpp" line="11"/>
+        <location filename="../../Main/Static/data.cpp" line="12"/>
         <source>UTAU Sequence Text(*.ust);;All Files(*.*)</source>
         <translation type="unfinished">UTAU 序列文本(*.ust);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="18"/>
+        <location filename="../../Main/Static/data.cpp" line="14"/>
         <source>Standard MIDI Files(*.mid);;Synthesizer V Files(*.svp *.s5p);;VOCALOID Files(*.vsqx *.vsq);;All Files(*.*)</source>
         <translation type="unfinished">标准Midi文件(*.mid);;Synthesizer V 文件(*.svp *.s5p);;VOCALOID 文件(*.vsqx *.vsq);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="21"/>
+        <location filename="../../Main/Static/data.cpp" line="17"/>
         <source>Standard MIDI Files(*.mid);;UTAU Sequence Text(*.ust);;Synthesizer V Files(*.svp *.s5p);;VOCALOID Files(*.vsqx *.vsq);;All Files(*.*)</source>
         <translation type="unfinished">标准Midi文件(*.mid);;UTAU 序列文本(*.ust);;Synthesizer V 文件(*.svp *.s5p);;VOCALOID 文件(*.vsqx *.vsq);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="24"/>
+        <location filename="../../Main/Static/data.cpp" line="20"/>
         <source>Standard MIDI Files(*.mid);;UTAU Sequence Text(*.ust);;Synthesizer V Files(*.svp);;VOCALOID Files(*.vsqx);;All Files(*.*)</source>
         <translation type="unfinished">标准Midi文件(*.mid);;UTAU 序列文本(*.ust);;Synthesizer V 文件(*.svp);;VOCALOID 文件(*.vsqx);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="27"/>
+        <location filename="../../Main/Static/data.cpp" line="23"/>
         <source>Standard MIDI Files(*.mid);;Synthesizer V Files(*.svp);;VOCALOID Files(*.vsqx);;All Files(*.*)</source>
         <translation type="unfinished">标准Midi文件(*.mid);;Synthesizer V 文件(*.svp);;VOCALOID 文件(*.vsqx);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="29"/>
+        <location filename="../../Main/Static/data.cpp" line="25"/>
         <source>Voice Configurations(oto.ini);;All Files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="30"/>
+        <location filename="../../Main/Static/data.cpp" line="26"/>
         <source>Image Files(*.bmp *.jpg *.jpeg *.png *.gif *.webp);;All Files(*.*)</source>
         <translation type="unfinished">图片文件(*.bmp *.jpg *.jpeg *.png *.gif *.webp);;All Files(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="32"/>
+        <location filename="../../Main/Static/data.cpp" line="28"/>
         <source>Audio Files(*.wav);;All Files(*.*)</source>
         <translation type="unfinished">音频文件(*.wav);;All Files(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="35"/>
-        <location filename="../../Main/Static/data.cpp" line="36"/>
+        <location filename="../../Main/Static/data.cpp" line="31"/>
+        <location filename="../../Main/Static/data.cpp" line="32"/>
         <source>UTAU Sequence Text(*.ust);;All Files(*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="38"/>
+        <location filename="../../Main/Static/data.cpp" line="34"/>
         <source>Standard MIDI Files(*.mid);;Synthesizer V Files(*.svp *.s5p);;VOCALOID Files(*.vsqx *.vsq);;All Files(*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="41"/>
+        <location filename="../../Main/Static/data.cpp" line="37"/>
         <source>Standard MIDI Files(*.mid);;UTAU Sequence Text(*.ust);;Synthesizer V Files(*.svp *.s5p);;VOCALOID Files(*.vsqx *.vsq);;All Files(*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="44"/>
+        <location filename="../../Main/Static/data.cpp" line="40"/>
         <source>Standard MIDI Files(*.mid);;UTAU Sequence Text(*.ust);;Synthesizer V Files(*.svp);;VOCALOID Files(*.vsqx);;All Files(*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="47"/>
+        <location filename="../../Main/Static/data.cpp" line="43"/>
         <source>Standard MIDI Files(*.mid);;Synthesizer V Files(*.svp);;VOCALOID Files(*.vsqx);;All Files(*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="49"/>
+        <location filename="../../Main/Static/data.cpp" line="45"/>
         <source>Voice Configurations(oto.ini);;All Files(*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="50"/>
+        <location filename="../../Main/Static/data.cpp" line="46"/>
         <source>Image Files(*.bmp *.jpg *.jpeg *.png *.gif *.webp);;All Files(*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="52"/>
+        <location filename="../../Main/Static/data.cpp" line="48"/>
         <source>Audio Files(*.wav);;All Files(*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="53"/>
+        <location filename="../../Main/Static/data.cpp" line="49"/>
         <source>Executable(*)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -960,7 +1016,7 @@
         <translation type="obsolete">音频文件(*.bmp *.jpg *.jpeg *.png *.gif *.webp);;All Files(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Main/Static/data.cpp" line="33"/>
+        <location filename="../../Main/Static/data.cpp" line="29"/>
         <source>Executable(*.exe);;All Files(*.*)</source>
         <translation type="unfinished">可执行文件(*.exe);;All Files(*.*)</translation>
     </message>
@@ -1008,51 +1064,49 @@
         <source>Export current settings</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../Main/Actions/common.cpp" line="184"/>
+        <source>Select color theme (Up/down keys to preview)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NoteHandler</name>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Handlers/NoteHandlers/NoteHandler_ContextMenu.cpp" line="10"/>
         <source>Portamento</source>
-        <translation type="unfinished">滑音</translation>
+        <translation type="obsolete">滑音</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Handlers/NoteHandlers/NoteHandler_ContextMenu.cpp" line="11"/>
         <source>Vibrato</source>
-        <translation type="unfinished">颤音</translation>
+        <translation type="obsolete">颤音</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Handlers/NoteHandlers/NoteHandler_ContextMenu.cpp" line="12"/>
         <source>Vibrato Editor</source>
-        <translation type="unfinished">颤音编辑</translation>
+        <translation type="obsolete">颤音编辑</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Handlers/NoteHandlers/NoteHandler_ContextMenu.cpp" line="13"/>
         <source>Note Properties...</source>
-        <translation type="unfinished">音符属性...</translation>
+        <translation type="obsolete">音符属性...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Handlers/NoteHandlers/NoteHandler_ContextMenu.cpp" line="16"/>
         <source>Tempo...</source>
-        <translation type="unfinished">曲速...</translation>
+        <translation type="obsolete">曲速...</translation>
     </message>
     <message>
         <source>Note Properties</source>
         <translation type="obsolete">音符属性</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Handlers/NoteHandlers/NoteHandler_ContextMenu.cpp" line="14"/>
         <source>Voice Bank Configue</source>
-        <translation type="unfinished">音源管理</translation>
+        <translation type="obsolete">音源管理</translation>
     </message>
     <message>
         <source>Tempo</source>
         <translation type="obsolete">曲速</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Handlers/NoteHandlers/NoteHandler_ContextMenu.cpp" line="17"/>
         <source>Remove Tempo</source>
-        <translation type="unfinished">删除曲速</translation>
+        <translation type="obsolete">删除曲速</translation>
     </message>
 </context>
 <context>
@@ -1146,6 +1200,24 @@
         <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.cpp" line="31"/>
         <source>Pitch</source>
         <translation type="unfinished">音高</translation>
+    </message>
+</context>
+<context>
+    <name>OtoPlayerArea</name>
+    <message>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoPlayerArea.cpp" line="66"/>
+        <source>%1Hz %2bit </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoPlayerArea.cpp" line="67"/>
+        <source>Mono</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoPlayerArea.cpp" line="67"/>
+        <source>Stereo</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1360,262 +1432,262 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="70"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="75"/>
         <source>File-New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="73"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="78"/>
         <source>File-Import</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="76"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="81"/>
         <source>File-Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="79"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="84"/>
         <source>File-Open Voice Bank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="82"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="87"/>
         <source>File-Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="85"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="90"/>
         <source>File-Save As</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="88"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="93"/>
         <source>File-Restore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="91"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="96"/>
         <source>File-Append</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="94"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="99"/>
         <source>File-Export Selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="97"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="102"/>
         <source>File-Export Track</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="100"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="105"/>
         <source>File-Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="103"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="108"/>
         <source>Edit-Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="106"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="111"/>
         <source>Edit-Redo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="109"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="114"/>
         <source>Edit-Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="112"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="117"/>
         <source>Edit-Cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="115"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="120"/>
         <source>Edit-Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="118"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="123"/>
         <source>Edit-Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="121"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="126"/>
         <source>Edit-Deselect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="124"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="129"/>
         <source>Modify-Insert Lyrics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="127"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="132"/>
         <source>Modify-Find/Replace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="130"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="135"/>
         <source>Modify-Transpose</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="133"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="138"/>
         <source>Modify-Octave Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="136"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="141"/>
         <source>Modify-Octave Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="139"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="144"/>
         <source>Modify-Remove Rests</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="142"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="147"/>
         <source>Modify-Insert Rests</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="145"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="150"/>
         <source>Modify-Set Offset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="148"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="153"/>
         <source>Modify-Set Overlap</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="151"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="156"/>
         <source>Modify-Set Pre-Utterance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="154"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="159"/>
         <source>Modify-Set Consonant</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="157"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="162"/>
         <source>Modify-Set Blank</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="160"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="165"/>
         <source>Preview-Play/Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="163"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="168"/>
         <source>Preview-Replay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="166"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="171"/>
         <source>Preview-Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="169"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="174"/>
         <source>Preview-Move To Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="172"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="177"/>
         <source>Modify-Move To End</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="175"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="180"/>
         <source>Modify-Remove Cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="178"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="183"/>
         <source>Modify-Export Recent Audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="181"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="186"/>
         <source>Tools-Voice Bank Config</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="184"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="189"/>
         <source>Tools-Prefix Map Config</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="187"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="192"/>
         <source>Tools-Variable Properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="190"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="195"/>
         <source>Tools-Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="193"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="198"/>
         <source>Tools-Keyboard Shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="196"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="201"/>
         <source>Tools-Color Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="199"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="204"/>
         <source>Tools-Languages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="202"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="207"/>
         <source>Help-Welcome</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="205"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="210"/>
         <source>Help-Instructions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="208"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="213"/>
         <source>Help-Check Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="211"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="216"/>
         <source>Help-About QSynthesis</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="214"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="219"/>
         <source>Help-About Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="217"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="222"/>
         <source>Build-in Tools</source>
         <translation type="unfinished">内置工具</translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="220"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="225"/>
         <source>Plugins</source>
         <translation type="unfinished">插件</translation>
     </message>
     <message>
-        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="223"/>
+        <location filename="../../Backend/Document/Data/ShortcutsData.cpp" line="228"/>
         <source>Similar Samples</source>
         <translation type="unfinished">相似采样</translation>
     </message>
@@ -1644,17 +1716,17 @@
         <translation type="obsolete">设置这里的曲速</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="170"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="225"/>
         <source>Set Global Tempo...</source>
         <translation type="unfinished">设置全局曲速...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="171"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="226"/>
         <source>Set Tempo here...</source>
         <translation type="unfinished">设置这里的曲速...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="172"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="227"/>
         <source>Remove Tempo</source>
         <translation type="unfinished">删除曲速</translation>
     </message>
@@ -2102,53 +2174,53 @@
         <translation type="unfinished">非法的重采样器路径。</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="250"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="246"/>
         <source>Null</source>
         <translation type="unfinished">无</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="270"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="266"/>
         <source>Open in Explorer</source>
         <translation type="unfinished">在文件资源管理器中打开</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="272"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="268"/>
         <source>Open in Finder</source>
         <translation type="unfinished">在Finder中打开</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="274"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="270"/>
         <source>Open in File manager</source>
         <translation type="unfinished">在文件管理器中打开</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="279"/>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="295"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="275"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="291"/>
         <source>Browse...</source>
         <translation type="unfinished">浏览...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="286"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="282"/>
         <source>Show in Explorer</source>
         <translation type="unfinished">在文件资源管理器中显示</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="288"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="284"/>
         <source>Show in Finder</source>
         <translation type="unfinished">在Finder中显示</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="290"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="286"/>
         <source>Show in File manager</source>
         <translation type="unfinished">在文件管理器中显示</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="312"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="308"/>
         <source>Open Voice Bank</source>
         <translation type="unfinished">打开音源文件夹</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="320"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="316"/>
         <source>Set Resampler</source>
         <translation type="unfinished">设置重采样器</translation>
     </message>
@@ -2362,7 +2434,7 @@
         <translation type="unfinished">意外的文件格式!</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Core.cpp" line="117"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Core.cpp" line="126"/>
         <source>Unable to write file!</source>
         <translation type="unfinished">无法写入文件！</translation>
     </message>
@@ -2429,22 +2501,22 @@
         <translation type="unfinished">无法创建批处理文件！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="408"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="380"/>
         <source>Voice database is not available.</source>
         <translation type="unfinished">音源目录不可用。</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="412"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="384"/>
         <source>Wavtool is not available.</source>
         <translation type="unfinished">合成器不可用。</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="416"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="388"/>
         <source>Resampler is not available.</source>
         <translation type="unfinished">重采样器不可用。</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Play.cpp" line="80"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Play.cpp" line="124"/>
         <source>Wave file format error, please check the settings!</source>
         <translation type="unfinished">Wave文件格式错误，请检查设定！</translation>
     </message>
@@ -2578,36 +2650,41 @@
         <source>Unable to write file!</source>
         <translation type="unfinished">无法写入文件！</translation>
     </message>
+    <message>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Play.cpp" line="108"/>
+        <source>Audio file format error, please check the file!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WelcomeTabContent</name>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="21"/>
+        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="25"/>
         <source>New</source>
         <translation type="unfinished">新建</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="23"/>
+        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="27"/>
         <source>Open</source>
         <translation type="unfinished">打开</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="36"/>
+        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="35"/>
         <source>Projects</source>
         <translation type="unfinished">工程文件</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="37"/>
+        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="36"/>
         <source>Folders</source>
         <translation type="unfinished">音源目录</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="38"/>
+        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="37"/>
         <source>Templates</source>
         <translation type="unfinished">模板</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="63"/>
+        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="56"/>
         <source>No data.</source>
         <translation type="unfinished">没有记录。</translation>
     </message>

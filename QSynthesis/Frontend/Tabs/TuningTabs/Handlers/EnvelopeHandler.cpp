@@ -37,21 +37,9 @@ void EnvelopeHandler::updateColorTheme() {
 void EnvelopeHandler::init() {
     m_type = Qs::Envelopes;
 
-    m_envSolidLineEnabledColor = Qt::blue;
-    m_envSolidLineDisabledColor = QColor(0x80, 0x80, 0xFF, 192);
-
-    m_envDashLineEnabledColor = QColor(0, 0, 0xFF, 192);
-    m_envDashLineDisabledColor = QColor(0x80, 0x80, 0xFF, 192);
-
-    m_envInvalidLineEnabledColor = QColor(0, 0, 0xFF, 72);
-    m_envInvalidLineDisabledColor = QColor(0, 0, 0xFF, 30);
-
     m_ringWidth = 2;
     m_pointPadding = 2;
     m_pointRadius = 3;
-
-    m_pointColor = Qt::blue;
-    m_ringColor = Qt::blue;
 
     updateColorTheme();
     connect(qTheme, &ColorTheme::updated, this, &EnvelopeHandler::updateColorTheme);

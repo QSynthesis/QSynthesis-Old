@@ -103,7 +103,7 @@ void EditorInterface::wheelEvent(QWheelEvent *event) {
         delta.rx() = 0;
     }
 
-#ifdef __APPLE__
+#ifdef Q_OS_MAC
     if (c == Qt::NoModifier) {
         delta = -delta;
         if (delta.x() != 0) {

@@ -8,6 +8,7 @@
 #include <QVBoxLayout>
 #include <QWidget>
 
+#include "MoreWidget.h"
 #include "QUtils.h"
 #include "Utils/ItemList.h"
 
@@ -16,7 +17,7 @@ class BlocksArea;
 class GraphicsNote;
 
 // Track Midi placeholder
-class TrackContent : public QWidget {
+class TrackContent : public MoreWidget {
     Q_OBJECT
 
     Q_PROPERTY(QColor midiColor READ midiColor WRITE setMidiColor NOTIFY colorChanged)

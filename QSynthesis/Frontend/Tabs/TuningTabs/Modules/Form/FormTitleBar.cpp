@@ -1,11 +1,11 @@
 #include "FormTitleBar.h"
 #include "../../Forms/BaseForm.h"
 
-FormTitleBar::FormTitleBar(BaseForm *parent) : QWidget(parent), parentForm(parent) {
+FormTitleBar::FormTitleBar(BaseForm *parent) : MoreWidget(parent), parentForm(parent) {
     initializeComponents(30, 1);
 }
 
-FormTitleBar::FormTitleBar(int h, BaseForm *parent) : QWidget(parent), parentForm(parent) {
+FormTitleBar::FormTitleBar(int h, BaseForm *parent) : MoreWidget(parent), parentForm(parent) {
     initializeComponents(h, 1);
 }
 
@@ -27,17 +27,19 @@ void FormTitleBar::setTop(double t) {
     m_top = t;
     itemsLayout->setContentsMargins(15, t, 15, 0);
     setFixedHeight(m_top + m_height);
-
     update();
+
+    emit topChanged();
 }
 
 void FormTitleBar::setTopVisible(bool value) {
     topVisible = value;
     update();
+
+    emit contentHeightChanged();
 }
 
 void FormTitleBar::addItem(QWidget *item, bool rightToLeft, bool hidden, bool showen) {
-
     int index = itemsLayout->indexOf(stretch) + rightToLeft;
     itemsLayout->insertWidget(index, item);
     itemsList.append(titleBarItem(item, hidden, showen));
