@@ -60,7 +60,7 @@ void ParamsDialArea::paintEvent(QPaintEvent *event) {
                      height() - 2 * GraphicsLifter::Radius);
 
     painter.setBrush(Qt::NoBrush);
-    painter.setPen(Qt::black);
+    painter.setPen(m_textColor);
 
     painter.drawText(entityRect, Qt::AlignTop | Qt::AlignRight, QString::number(highest));
     painter.drawText(entityRect, Qt::AlignVCenter | Qt::AlignRight, QString::number(middle));

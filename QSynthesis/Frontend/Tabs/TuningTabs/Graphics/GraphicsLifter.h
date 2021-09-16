@@ -7,11 +7,14 @@
 class GraphicsNote;
 class LiftersArea;
 
-class GraphicsLifter : public GraphicsLineHandle {
+class GraphicsLifter : public QObject, public GraphicsLineHandle {
+    Q_OBJECT
 public:
     explicit GraphicsLifter(GraphicsNote *note, LiftersArea *editor,
                             QGraphicsItem *parent = nullptr);
     virtual ~GraphicsLifter();
+
+    void updateColorTheme();
 
     static int Radius;
 
@@ -20,18 +23,6 @@ public:
     friend class DraggerHandler;
 
 public:
-    QColor activeColor() const;
-    void setActiveColor(const QColor &activeColor);
-
-    QColor inactiveColor() const;
-    void setInactiveColor(const QColor &inactiveColor);
-
-    QColor activeHColor() const;
-    void setActiveHColor(const QColor &activeHColor);
-
-    QColor inactiveHColor() const;
-    void setInactiveHColor(const QColor &inactiveHColor);
-
     GraphicsNote *note() const;
     LiftersArea *editor() const;
 

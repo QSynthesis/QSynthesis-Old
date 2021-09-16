@@ -5,7 +5,10 @@
 
 void ScopeHandler::update() {
     m_note->update();
-    screen()->update();
+
+    if (screen()) {
+        screen()->update();
+    }
 }
 
 void ScopeHandler::setPointsVisible(bool value) {

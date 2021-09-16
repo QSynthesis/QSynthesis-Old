@@ -9,21 +9,21 @@ NoneScrollArea {
 }
 
 QGraphicsView {
-    background-color: white;
+    background-color: transparent;
 }
 
 .QLabel {
-    color: black;
+    color: #CCCCCC;
 }
 
 QCheckBox {
-    color: black;
+    color: #CCCCCC;
 }
 
 QLineEdit, QTextEdit, QPlainTextEdit, QComboBox {
-    border: 1px solid black;
-    color: black;
-    background-color: white;
+    border: 1px solid transparent;
+    color: #CCCCCC;
+    background-color: #3C3C3C;
 }
 
 QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
@@ -33,35 +33,35 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
 /* Custom Controls */
 
 LineControl>FixedLineEdit[status=normal] {
-    background-color: white;
+    background-color: #3C3C3C;
 }
 
 LineControl>FixedLineEdit[status=unmodified] {
-    background-color: #E1E1E1;
+    background-color: #666666;
 }
 
 ComboControl>FixedComboBox[status=normal] {
-    background-color: white;
+    background-color: #3C3C3C;
 }
 
 ComboControl>FixedComboBox[status=unmodified] {
-    background-color: #E1E1E1;
+    background-color: #666666;
 }
 
 SlideControl>FixedSpinBox[status=normal] {
-    background-color: white;
+    background-color: #3C3C3C;
 }
 
 SlideControl>FixedSpinBox[status=unmodified] {
-    background-color: #E1E1E1;
+    background-color: #666666;
 }
 
 SlideLineControl>FixedLineEdit[status=normal] {
-    background-color: white;
+    background-color: #3C3C3C;
 }
 
 SlideLineControl>FixedLineEdit[status=unmodified] {
-    background-color: #E1E1E1;
+    background-color: #666666;
 }
 
 /* TabWidget */
@@ -77,23 +77,24 @@ TabWidget::tab-bar {
 /* Main TabWidget */
 
 CentralTabWidget {
-    background-color: #F3F3F3;
+    background-color: #252526;
 }
 
 CentralTabWidget>QTabBar::tab {
-    border-right: 1px solid #F3F3F3;
-    border-left: 1px solid #F3F3F3;
-    color: #333333;
+    border-right: 1px solid #252526;
+    border-left: 1px solid #252526;
+    color: #A0A0A0;
     padding: 8px 15px;
-    background-color: #ECECEC;
+    background-color: #2D2D2D;
 }
 
 CentralTabWidget>QTabBar::tab:selected {
-    background-color: white;
+    color: white;
+    background-color: #1E1E1E;
 }
 
 CentralTabWidget>QTabBar::tab:!selected:hover {
-    background-color: #EFEFEF;
+    background-color: #202020;
 }
 
 CentralTabWidget>QTabBar::scroller {
@@ -129,7 +130,7 @@ TabWidget[type=voice]>QTabBar::scroller {
 /* Central Tab */
 
 CentralTab {
-    background-color: #FAF9F8;
+    background-color: #1B1A19;
 }
 
 CentralTabContent {
@@ -139,7 +140,7 @@ CentralTabContent {
 /* Welcome Tab */
 
 WelcomeTabContent>.SwitchButton[type=list] {
-    color: darkgrey;
+    color: #999999;
     background-color: transparent;
     border-top: none;
     border-left: none;
@@ -150,44 +151,43 @@ WelcomeTabContent>.SwitchButton[type=list] {
 }
 
 WelcomeTabContent>.SwitchButton[type=list]:hover {
-    color: black;
+    color: #DBDBDB;
 }
 
 WelcomeTabContent>.SwitchButton[type=list]:checked {
-    color: black;
+    color: #DBDBDB;
     border-bottom-color: #2B579A;
 }
 
 WelcomeTabContent>.QPushButton[type=special] {
-    border: 1px solid #CCCCCC;
-    background-color: white;
-    color: #2B579A;
+    border: 1px solid transparent;
+    background-color: #0E639C;
+    color: white;
     border-radius: 2px;
     padding: 8px 35px;
     font-size: 20px;
 }
 
 WelcomeTabContent>.QPushButton[type=special]:disabled {
-    color: #CCCCCC;
+    color: #666666;
 }
 
 WelcomeTabContent>.QPushButton[type=special]:hover {
-    background-color: #2B579A;
-    color: white;
+    background-color: #1177BB;
 }
 
 WelcomeTabContent>.QPushButton[type=special]:pressed {
-    background-color: #002050;
+    color: #EEEEEE;
 }
 
 WelcomeTabContent>.FileListWidget {
     background-color: transparent;
     qproperty-itemHeight: 72;
-    qproperty-selectColor: rgba(0, 0, 0, 10%);
-    qproperty-underlineColor: lightGrey;
-    qproperty-filenameColor: black;
-    qproperty-directoryColor: #666666;
-    qproperty-dateColor: #666666;
+    qproperty-selectColor: rgba(255, 255, 255, 10%);
+    qproperty-underlineColor: #3A3938;
+    qproperty-filenameColor: #E0E0E0;
+    qproperty-directoryColor: #909090;
+    qproperty-dateColor: #909090;
 }
 
 WelcomeTabContent>QLabel[type=title] {
@@ -198,28 +198,28 @@ WelcomeTabContent>QLabel[type=title] {
 /* Menu Bar */
 
 QMenuBar {
-    background: #F5F3F1;
-    border-bottom: 1px solid rgba(0, 0, 0, 5%);
+    background: #3C3C3C;
+    border-bottom: 1px solid rgba(255, 255, 255, 5%);
 }
 
 QMenuBar::item {
-    color: #333333;
+    color: #CCCCCC;
     padding: 8px 10px;
 }
 
 QMenuBar::item:selected {
-    background: #C6C6C6;
+    background: #505050;
 }
 
 QMenu {
     padding: 5px 5px;
-    background: white;
+    background: #252526;
 }
 
 QMenu::item {
     padding: 6px 30px;
     background: transparent;
-    color: #333333;
+    color: #CCCCCC;
 }
 
 QMenu::item:selected {
@@ -228,24 +228,24 @@ QMenu::item:selected {
 }
 
 QMenu::item:disabled {
-    color: #CCCCCC;
+    color: #666666;
 }
 
 QMenu::separator {
     height: 1px;
-    background-color: #CCCCCC;
+    background-color: #5B5B5B;
     margin: 6px 6px 6px 6px;
 }
 
 /* Title Bar */
 
 FormTitleBar {
-    qproperty-fillColor: lightgrey;
-    qproperty-topColor: white;
+    qproperty-fillColor: #1E1E1E;
+    qproperty-topColor: #333333;
 }
 
 .SwitchButton[type=titleBar] {
-    color: darkgrey;
+    color: #CCCCCC;
     background-color: transparent;
     border-top: none;
     border-left: none;
@@ -255,24 +255,36 @@ FormTitleBar {
 }
 
 .SwitchButton[type=titleBar]:hover {
-    color: black;
+    color: white;
 }
 
 .SwitchButton[type=titleBar]:checked {
-    color: black;
-    border-bottom-color: black;
+    color: white;
+    border-bottom-color: white;
 }
 
 /* Editor */
 
-SectionsArea {}
+SectionsArea {
+    qproperty-noteTempoColor: white;
+    qproperty-globalTempoColor: pink;
+    qproperty-beatColor: white;
+    qproperty-numColor: white;
+    qproperty-lineColor: #666666;
+}
+
+SectionsLine {
+    qproperty-beatColor: white;
+    qproperty-numColor: white;
+    qproperty-lineColor: #666666;
+}
 
 PianoArea {
-    background-color: darkgray;
+    background-color: transparent;
 }
 
 PianoArea>QLabel[type=standard] {
-    color: black;
+    color: #333333;
 }
 
 PianoArea>QLabel[type=realtime] {
@@ -292,11 +304,11 @@ PianoKey {
 }
 
 PianoKey[color=white] {
-    background-color: white;
+    background-color: #B4B4B4;
 }
 
 PianoKey[color=white]:hover {
-    background-color: lightblue;
+    background-color: #4794CB;
 }
 
 PianoKey[color=black] {
@@ -304,7 +316,7 @@ PianoKey[color=black] {
 }
 
 PianoKey[color=black]:hover {
-    background-color: lightblue;
+    background-color: #4794CB;
 }
 
 NotesArea {
@@ -340,24 +352,28 @@ FrameSelector {
 
 TracksInterface>QFrame[type=track-separator] {
     border: none;
-    background: grey;
+    background: black;
 }
 
 /* TrackHead */
 
+HeadsArea {
+    background-color: transparent;
+}
+
 TrackHead {
-    background-color: #EEEEEE;
+    background-color: #333333;
 }
 
 TrackHead>FixedLineEdit {
     border: none;
     background-color: transparent;
     padding: 1px;
-    color: black;
+    color: white;
 }
 
 TrackHead>FixedLineEdit:focus {
-    background-color: rgba(0, 0, 0, 5%);
+    background-color: rgba(255, 255, 255, 5%);
 }
 
 TrackHead>QPushButton[type="label"] {
@@ -373,7 +389,7 @@ TrackHead>QPushButton[type="label"][invalid="true"] {
 }
 
 TrackHead>QPushButton[type="label"][invalid="false"]::hover {
-    color: #333333;
+    color: white;
 }
 
 TrackHead>QPushButton[type="label"][invalid="true"]::hover {
@@ -381,29 +397,38 @@ TrackHead>QPushButton[type="label"][invalid="true"]::hover {
 }
 
 TrackHead>QPushButton[type="letter"] {
-    border: 1px solid #CCCCCC;
-    background-color: white;
-    color: #2B579A;
+    border: 1px solid transparent;
+    background-color: #0E639C;
+    color: white;
     border-radius: 2px;
 }
 
 TrackHead>QPushButton[type="letter"]:disabled {
-    color: #CCCCCC;
+    color: #666666;
 }
 
 TrackHead>QPushButton[type="letter"]:hover {
-    background-color: #2B579A;
-    color: white;
+    background-color: #1177BB;
 }
 
 TrackHead>QPushButton[type="letter"]:pressed {
-    background-color: #002050;
+    color: #EEEEEE;
 }
 
 /* TrackContent */
 
+BlocksArea {
+    background-color: transparent;
+}
+
 TrackContent {
-    background-color: #EEEEEE;
+    background-color: rgba(255, 255, 255, 10%);
+}
+
+/* ParamsDialArea */
+
+ParamsDialArea {
+    qproperty-textColor: lightgrey;
 }
 
 /* KeyboardTab */
@@ -416,31 +441,26 @@ KeyTableWidget>QTableWidget>QHeaderView::section {
 /* BaseDialog */
 
 BaseDialog {
-    background-color: whitesmoke;
+    background-color: #111111;
 }
 
 BaseDialog>QPushButton {
-    border: 1px solid darkgray;
-    background-color: white;
-    color: #2B579A;
+    border: 1px solid transparent;
+    background-color: #0E639C;
+    color: white;
     border-radius: 2px;
 }
 
 BaseDialog>QPushButton:disabled {
-    color: #CCCCCC;
+    color: #666666;
 }
 
 BaseDialog>QPushButton:hover {
-    background-color: #2B579A;
-    color: white;
+    background-color: #1177BB;
 }
 
 BaseDialog>QPushButton:pressed {
-    background-color: #002050;
-}
-
-ProjectSettingsDialog>QWidget {
-    background-color: white;
+    color: #EEEEEE;
 }
 
 /* QMessageBox */
@@ -477,13 +497,12 @@ QTableWidget::item::selected {
 
 ComboSelector {
     background-color: transparent;
-    qproperty-wallpaper: #F3F3F3;
-
+    qproperty-wallpaper: #252526;
     /* border-top: 10px solid qlineargradient(y0:0, y1:1, stop: 0 #ECECEC, stop: 1 transparent); */
     border-top: none;
-    border-left: 8px solid qlineargradient(x0:0, x1:1, stop: 0 #ECECEC, stop: 1 transparent);
-    border-bottom: 8px solid qlineargradient(y0:0, y1:1, stop: 0 transparent, stop: 1 #ECECEC);
-    border-right: 8px solid qlineargradient(x0:0, x1:1, stop: 0 transparent, stop: 1 #ECECEC);
+    border-left: 8px solid qlineargradient(x0:0, x1:1, stop: 0 #111111, stop: 1 transparent);
+    border-bottom: 8px solid qlineargradient(y0:0, y1:1, stop: 0 transparent, stop: 1 #111111);
+    border-right: 8px solid qlineargradient(x0:0, x1:1, stop: 0 transparent, stop: 1 #111111);
 }
 
 ComboSelector>FixedLineEdit {
@@ -493,11 +512,109 @@ ComboSelector>FixedLineEdit {
 
 ComboSelector>QListWidget {
     border: none;
-    color: black;
+    color: #CCCCCC;
     background-color: transparent;
 }
 
 ComboSelector>QListWidget::item {
     font-size: 15px;
     padding: 3px 3px;
+}
+
+/* QScrollBar */
+
+QScrollBar:vertical {
+    background: transparent;
+    width: 8px;
+    margin: 0px 0px 0px 0px;
+}
+
+QScrollBar::handle:vertical {
+    background: rgba(223, 223, 225, 200);
+    border: 0px;
+    border-radius: 4px;
+    margin: 0px 0px 0px 0px;
+    min-height: 40px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: lightgray;
+}
+
+QScrollBar::handle:vertical:pressed {
+    background: rgba(200, 200, 200, 255);
+}
+
+QScrollBar::sub-page:vertical {
+    background: transparent;
+}
+
+QScrollBar::add-page:vertical {
+    background: transparent;
+}
+
+QScrollBar::up-arrow {
+    background: transparent;
+}
+
+QScrollBar::down-arrow {
+    background: transparent;
+}
+
+QScrollBar::sub-line:vertical {
+    background: transparent;
+    width: 0px;
+}
+
+QScrollBar::add-line:vertical {
+    background: transparent;
+    width: 0px;
+}
+
+QScrollBar:horizontal {
+    background: transparent;
+    height: 8px;
+    margin: 0px 0px 0px 0px;
+}
+
+QScrollBar::handle:horizontal {
+    background: rgba(223, 223, 225, 200);
+    border: 0px;
+    border-radius: 4px;
+    margin: 0px 0px 0px 0px;
+    min-width: 40px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: lightgray;
+}
+
+QScrollBar::handle:horizontal:pressed {
+    background: rgba(200, 200, 200, 255);
+}
+
+QScrollBar::sub-page:horizontal {
+    background: transparent;
+}
+
+QScrollBar::add-page:horizontal {
+    background: transparent;
+}
+
+QScrollBar::left-arrow {
+    background: transparent;
+}
+
+QScrollBar::right-arrow {
+    background: transparent;
+}
+
+QScrollBar::sub-line:horizontal {
+    background: transparent;
+    height: 0px;
+}
+
+QScrollBar::add-line:horizontal {
+    background: transparent;
+    height: 0px;
 }

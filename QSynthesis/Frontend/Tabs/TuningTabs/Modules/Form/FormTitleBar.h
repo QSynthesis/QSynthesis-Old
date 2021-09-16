@@ -10,8 +10,8 @@ class BaseForm;
 
 class FormTitleBar : public QWidget {
     Q_OBJECT
-    Q_PROPERTY(QColor m_topColor READ topColor WRITE setTopColor NOTIFY topColorChanged)
-    Q_PROPERTY(QColor m_fillColor READ fillColor WRITE setFillColor NOTIFY fillColorChanged)
+    Q_PROPERTY(QColor topColor READ topColor WRITE setTopColor NOTIFY colorChanged)
+    Q_PROPERTY(QColor fillColor READ fillColor WRITE setFillColor NOTIFY colorChanged)
 
 public:
     explicit FormTitleBar(BaseForm *parent = nullptr);
@@ -30,6 +30,7 @@ public:
     void showItems();
     void setItemsVisible(bool value);
 
+public:
     QColor topColor() const;
     void setTopColor(const QColor &value);
 
@@ -37,8 +38,7 @@ public:
     void setFillColor(const QColor &value);
 
 signals:
-    void topColorChanged();
-    void fillColorChanged();
+    void colorChanged();
 
 protected:
     struct titleBarItem {

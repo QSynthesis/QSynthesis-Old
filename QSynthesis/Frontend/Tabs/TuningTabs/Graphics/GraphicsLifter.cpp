@@ -1,5 +1,6 @@
 #include "GraphicsLifter.h"
 #include "QUtauConstants.h"
+#include "mainwindow.h"
 
 int GraphicsLifter::Radius = 6;
 
@@ -20,9 +21,20 @@ GraphicsLifter::GraphicsLifter(GraphicsNote *note, LiftersArea *editor, QGraphic
 
     m_activeHColor = QColor(QColorConstants::Svg::pink);
     m_inactiveHColor = Qt::lightGray;
+
+    updateColorTheme();
+    connect(qTheme, &ColorTheme::updated, this, &GraphicsLifter::updateColorTheme);
 }
 
 GraphicsLifter::~GraphicsLifter() {
+}
+
+void GraphicsLifter::updateColorTheme() {
+    m_activeColor = qTheme->lifter_active;
+    m_activeHColor = qTheme->lifter_activeH;
+    m_inactiveColor = qTheme->lifter_inactive;
+    m_inactiveHColor = qTheme->lifter_inactiveH;
+    update();
 }
 
 GraphicsNote *GraphicsLifter::note() const {

@@ -14,7 +14,7 @@ void Mode2Handler::drawVibrato(QPainter *painter) {
         return;
     }
 
-    QColor solidLineColor = m_solid ? m_mode2SolidLineEnabledColor : m_mode2SolidLineDisabledColor;
+    QColor solidLineColor = m_solid ? m_vibratoEnabledColor : m_vibratoDisabledColor;
     QPen solidPen(solidLineColor, 1.5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
 
     int currentWidth = m_editor->ptrs()->currentWidth;
@@ -130,7 +130,7 @@ void Mode2Handler::drawVibratoEditor(QPainter *painter) {
         return;
     }
 
-    QColor vbrLineColor = m_vibratoFrameColor;
+    QColor vbrLineColor = m_vibratoEditorLinesColor;
 
     QPen vbrPen(vbrLineColor, 1.5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     QPainterPath path;

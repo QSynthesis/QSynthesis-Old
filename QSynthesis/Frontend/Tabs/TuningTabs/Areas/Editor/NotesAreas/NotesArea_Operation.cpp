@@ -118,12 +118,14 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
         if (f * f2 > 0) {
             // Add
             insertNotes(indexs, notes);
+            updateNotesStatus(QPoint(indexs.front(), indexs.back() + 1));
         } else {
             // Remove
             removeNotes(indexs);
+            updateNotesStatus(QPoint(indexs.front(), indexs.front()));
         }
 
-        adjustNotes(QPoint(indexs.front(), -1));
+        adjustNotes(QPoint(indexs.front() - 1, -1));
 
         lengthCall();
         break;

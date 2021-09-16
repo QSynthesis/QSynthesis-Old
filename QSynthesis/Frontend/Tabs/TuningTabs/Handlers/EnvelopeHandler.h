@@ -10,10 +10,13 @@ public:
     explicit EnvelopeHandler(GraphicsNote *note, NotesArea *editor);
     ~EnvelopeHandler();
 
+    void updateColorTheme();
+
     const static QList<QControlPoint> defaultEnvelope;
 
     QList<QControlPoint> RelativePoints;
 
+private:
     // GUI Note
     QColor m_envSolidLineEnabledColor;
     QColor m_envSolidLineDisabledColor;

@@ -27,7 +27,6 @@ public:
     double duration() const;
 
     void setWidth(int width);
-    // void setWidth(int width = 0);
 
     QColor offsetColor() const;
     void setOffsetColor(const QColor &offsetColor);
@@ -88,8 +87,6 @@ private:
     GraphicsOtoHandle *btnOffset, *btnConstant, *btnBlank, *btnPreUttr, *btnOverlap;
     QGraphicsRectItem *wavesRect, *offsetRect, *constantRect, *blankRect;
 
-    QColor m_offsetColor, m_constantColor, m_blankColor, m_preUttrColor, m_overlapColor;
-    QColor m_offsetBackColor, m_constantBackColor, m_blankBackColor;
     QColor m_waveformColor,m_frqCurvesColor;
 
     void updateHandles();

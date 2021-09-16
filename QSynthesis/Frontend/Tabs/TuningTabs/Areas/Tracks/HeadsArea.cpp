@@ -4,6 +4,7 @@
 #include "../../TuningGroup.h"
 
 HeadsArea::HeadsArea(TracksInterface *editor, QWidget *parent) : QWidget(parent) {
+    setAttribute(Qt::WA_StyledBackground);
     m_ptrs = editor->ptrs();
 
     mainLayout = new QVBoxLayout(this);

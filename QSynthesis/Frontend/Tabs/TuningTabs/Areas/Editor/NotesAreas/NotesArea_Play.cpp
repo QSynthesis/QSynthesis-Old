@@ -6,8 +6,8 @@ void NotesArea::initPlayModules() {
     playHead = new GraphicsPlayHead();
     addItem(playHead);
 
+    playHead->setPen(Qt::NoPen);
     playHead->setZValue(playHeadZIndex);
-    playHead->setBrush(Qt::black);
 
     playToNote = 0;
     playToPosition = 0;
@@ -19,7 +19,7 @@ void NotesArea::initPlayModules() {
 }
 
 void NotesArea::adjustPlayHead() {
-    playHead->setRect(-0.5, 0, 1, sceneRect().height());
+    playHead->setRect(-1, 0, 2, sceneRect().height());
     if (playHead->isVisible()) {
         advancePlaying(playToPosition);
     }

@@ -30,6 +30,8 @@ public:
     explicit NotesArea(EditorInterface *editor, NotesScrollArea *parent = nullptr);
     virtual ~NotesArea();
 
+    void updateColorTheme();
+
     TuningGroup *ptrs() const;
 
     NotesScrollArea *view() const;
@@ -43,28 +45,6 @@ public:
     const double lyricEditZIndex = 5;
     const double rubberBandZIndex = 6;
     const double playHeadZIndex = 7;
-
-public:
-    QColor timeLineColor() const;
-    void setTimeLineColor(const QColor &timeLineColor);
-
-    QColor sectionLineColor() const;
-    void setSectionLineColor(const QColor &sectionLineColor);
-
-    QColor pitchLineColor() const;
-    void setPitchLineColor(const QColor &pitchLineColor);
-
-    QColor levelLineColor() const;
-    void setLevelLineColor(const QColor &levelLineColor);
-
-    QColor backLowColor() const;
-    void setBackLowColor(const QColor &backLowColor);
-
-    QColor backHighColor() const;
-    void setBackHighColor(const QColor &backHighColor);
-
-    QColor quarterLineColor() const;
-    void setQuarterLineColor(const QColor &quarterLineColor);
 
 private:
     TuningGroup *m_ptrs;
@@ -336,9 +316,6 @@ private:
 
 private:
     void handleSceneRectChanged(const QRectF &rect);
-
-signals:
-    void colorChanged();
 };
 
 #endif // NOTESAREA_H

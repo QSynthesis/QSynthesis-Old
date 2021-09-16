@@ -14,14 +14,11 @@ class GraphicsNote;
 
 class LiftersArea : public GraphicsArea {
     Q_OBJECT
-
-    Q_PROPERTY(QColor timeLineColor READ timeLineColor WRITE setTimeLineColor NOTIFY colorChanged)
-    Q_PROPERTY(
-        QColor sectionLineColor READ sectionLineColor WRITE setSectionLineColor NOTIFY colorChanged)
-    Q_PROPERTY(QColor backColor READ backColor WRITE setBackColor NOTIFY colorChanged)
 public:
     explicit LiftersArea(ParamsInterface *editor, LiftersScrollArea *parent = nullptr);
     ~LiftersArea();
+
+    void updateColorTheme();
 
     TuningGroup *ptrs() const;
 

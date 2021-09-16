@@ -6,7 +6,7 @@ void GraphicsNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
                          QWidget *widget) {
     if (isSelected()) {
         painter->setPen(Qt::NoPen);
-        painter->setBrush(QColor(0, 0, 0, 48));
+        painter->setBrush(m_selectColor);
         painter->drawRoundedRect(rect(), 3, 3);
     }
 

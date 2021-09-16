@@ -85,7 +85,7 @@ void FormTitleBar::setTopColor(const QColor &value) {
     m_topColor = value;
     update();
 
-    emit topColorChanged();
+    emit colorChanged();
 }
 
 QColor FormTitleBar::fillColor() const {
@@ -96,7 +96,7 @@ void FormTitleBar::setFillColor(const QColor &value) {
     m_fillColor = value;
     update();
 
-    emit fillColorChanged();
+    emit colorChanged();
 }
 
 void FormTitleBar::paintEvent(QPaintEvent *event) {

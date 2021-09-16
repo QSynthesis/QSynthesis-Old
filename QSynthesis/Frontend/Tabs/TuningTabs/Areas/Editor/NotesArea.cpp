@@ -2,6 +2,7 @@
 #include "../../Interfaces/EditorInterface.h"
 #include "../../Modules/Scrolls/NotesScrollArea.h"
 #include "../../TuningGroup.h"
+#include "mainwindow.h"
 
 #include <QScrollBar>
 
@@ -34,9 +35,25 @@ NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *parent)
     installEventFilter(this);
 
     connect(this, &QGraphicsScene::sceneRectChanged, this, &NotesArea::handleSceneRectChanged);
+
+    updateColorTheme();
+    connect(qTheme, &ColorTheme::updated, this, &NotesArea::updateColorTheme);
 }
 
 NotesArea::~NotesArea() {
+}
+
+void NotesArea::updateColorTheme() {
+    m_timeLineColor = qTheme->editor_timeLine;
+    m_quarterLineColor = qTheme->editor_quarterLine;
+    m_sectionLineColor = qTheme->editor_sectionLine;
+    m_pitchLineColor = qTheme->editor_pitchLine;
+    m_levelLineColor = qTheme->editor_levelLine;
+    m_backDarkColor = qTheme->editor_backDark;
+    m_backLightColor = qTheme->editor_backLight;
+    playHead->setBrush(qTheme->editor_playHead);
+
+    updateBackground();
 }
 
 NotesScrollArea *NotesArea::view() const {

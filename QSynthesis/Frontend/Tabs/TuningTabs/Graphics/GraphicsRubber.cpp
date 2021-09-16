@@ -1,4 +1,5 @@
 #include "GraphicsRubber.h"
+#include "mainwindow.h"
 
 #include <QDebug>
 #include <QGraphicsScene>
@@ -6,9 +7,18 @@
 GraphicsRubber::GraphicsRubber(QGraphicsItem *parent) : QGraphicsRectItem(parent) {
     init();
     setStartPoint(QPoint(0, 0));
+
+    updateColorTheme();
+    connect(qTheme, &ColorTheme::updated, this, &GraphicsRubber::updateColorTheme);
 }
 
 GraphicsRubber::~GraphicsRubber() {
+}
+
+void GraphicsRubber::updateColorTheme() {
+    m_frameColor = qTheme->rubber_frame;
+    m_fillColor = qTheme->rubber_fill;
+    update();
 }
 
 void GraphicsRubber::init() {

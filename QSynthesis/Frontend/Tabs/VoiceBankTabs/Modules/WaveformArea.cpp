@@ -65,10 +65,10 @@ WaveformArea::WaveformArea(WaveformScrollArea *parent) : GraphicsArea(parent), m
 
     int alpha = 96;
     setOffsetBackColor(
-        QColor(m_offsetColor.red(), m_offsetColor.green(), m_offsetColor.blue(), alpha));
+        QColor(offsetColor().red(), offsetColor().green(), offsetColor().blue(), alpha));
     setConstantBackColor(
-        QColor(m_constantColor.red(), m_constantColor.green(), m_constantColor.blue(), alpha));
-    setBlankBackColor(QColor(m_blankColor.red(), m_blankColor.green(), m_blankColor.blue(), alpha));
+        QColor(constantColor().red(), constantColor().green(), constantColor().blue(), alpha));
+    setBlankBackColor(QColor(blankColor().red(), blankColor().green(), blankColor().blue(), alpha));
 
     updateHandles();
 }
@@ -95,74 +95,67 @@ void WaveformArea::setWidth(int width) {
 }
 
 QColor WaveformArea::offsetColor() const {
-    return m_offsetColor;
+    return btnOffset->lineColor();
 }
 
 void WaveformArea::setOffsetColor(const QColor &offsetColor) {
-    m_offsetColor = offsetColor;
-    btnOffset->setLineColor(m_offsetColor);
+    btnOffset->setLineColor(offsetColor);
 }
 
 QColor WaveformArea::constantColor() const {
-    return m_constantColor;
+    return btnConstant->lineColor();
 }
 
 void WaveformArea::setConstantColor(const QColor &constantColor) {
-    m_constantColor = constantColor;
-    btnConstant->setLineColor(m_constantColor);
+    btnConstant->setLineColor(constantColor);
 }
 
 QColor WaveformArea::blankColor() const {
-    return m_blankColor;
+    return btnBlank->lineColor();
 }
 
 void WaveformArea::setBlankColor(const QColor &blankColor) {
-    m_blankColor = blankColor;
-    btnBlank->setLineColor(m_blankColor);
+    btnBlank->setLineColor(blankColor);
 }
 
 QColor WaveformArea::preUttrColor() const {
-    return m_preUttrColor;
+    return btnBlank->lineColor();
 }
 
 void WaveformArea::setPreUttrColor(const QColor &preUttrColor) {
-    m_preUttrColor = preUttrColor;
-    btnPreUttr->setLineColor(m_preUttrColor);
+    btnPreUttr->setLineColor(preUttrColor);
 }
 
 QColor WaveformArea::overlapColor() const {
-    return m_overlapColor;
+    return btnOverlap->lineColor();
 }
 
 void WaveformArea::setOverlapColor(const QColor &overlapColor) {
-    m_overlapColor = overlapColor;
-    btnOverlap->setLineColor(m_overlapColor);
+    btnOverlap->setLineColor(overlapColor);
 }
+
 QColor WaveformArea::offsetBackColor() const {
-    return m_offsetBackColor;
+    return offsetRect->brush().color();
 }
 
 void WaveformArea::setOffsetBackColor(const QColor &offsetBackColor) {
-    m_offsetBackColor = offsetBackColor;
-    offsetRect->setBrush(m_offsetBackColor);
+    offsetRect->setBrush(offsetBackColor);
 }
 
 QColor WaveformArea::constantBackColor() const {
-    return m_constantBackColor;
+    return constantRect->brush().color();
 }
 
 void WaveformArea::setConstantBackColor(const QColor &constantBackColor) {
-    m_constantBackColor = constantBackColor;
-    constantRect->setBrush(m_constantBackColor);
+    constantRect->setBrush(constantBackColor);
 }
 
 QColor WaveformArea::blankBackColor() const {
-    return m_blankBackColor;
+    return blankRect->brush().color();
 }
 
 void WaveformArea::setBlankBackColor(const QColor &blankBackColor) {
-    m_blankBackColor = blankBackColor;
-    blankRect->setBrush(m_blankBackColor);
+    blankRect->setBrush(blankBackColor);
 }
 
 QColor WaveformArea::waveformColor() const {

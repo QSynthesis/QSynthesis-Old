@@ -13,9 +13,12 @@ public:
     explicit Mode2Handler(GraphicsNote *note, NotesArea *editor);
     ~Mode2Handler();
 
+    void updateColorTheme();
+
     const static QList<QControlPoint> defaultPortamento;
     const static QList<double> defaultVibrato;
 
+private:
     // GUI Note
     QColor m_mode1SolidLineEnabledColor;
     QColor m_mode2SolidLineEnabledColor;
@@ -32,9 +35,9 @@ public:
     QColor m_mode2InvalidLineEnabledColor;
     QColor m_mode2InvalidLineDisabledColor;
 
-    QColor m_vibratoButtonBorderColor;
-    QColor m_vibratoButtonFillColor;
-    QColor m_vibratoFrameColor;
+    QColor m_vibratoEnabledColor;
+    QColor m_vibratoDisabledColor;
+    QColor m_vibratoEditorLinesColor;
 
     // GUI Point
     double m_ringWidth;

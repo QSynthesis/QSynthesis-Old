@@ -61,6 +61,61 @@ void SectionsArea::handleRemoveTempo() {
     }
 }
 
+QColor SectionsArea::lineColor() const {
+    return m_lineColor;
+}
+
+void SectionsArea::setLineColor(const QColor &lineColor) {
+    m_lineColor = lineColor;
+    update();
+
+    emit colorChanged();
+}
+
+QColor SectionsArea::numColor() const {
+    return m_numColor;
+}
+
+void SectionsArea::setNumColor(const QColor &numColor) {
+    m_numColor = numColor;
+    update();
+
+    emit colorChanged();
+}
+
+QColor SectionsArea::beatColor() const {
+    return m_beatColor;
+}
+
+void SectionsArea::setBeatColor(const QColor &beatColor) {
+    m_beatColor = beatColor;
+    update();
+
+    emit colorChanged();
+}
+
+QColor SectionsArea::globalTempoColor() const {
+    return m_globalTempoColor;
+}
+
+void SectionsArea::setGlobalTempoColor(const QColor &globalTempoColor) {
+    m_globalTempoColor = globalTempoColor;
+    update();
+
+    emit colorChanged();
+}
+
+QColor SectionsArea::noteTempoColor() const {
+    return m_noteTempoColor;
+}
+
+void SectionsArea::setNoteTempoColor(const QColor &noteTempoColor) {
+    m_noteTempoColor = noteTempoColor;
+    update();
+
+    emit colorChanged();
+}
+
 void SectionsArea::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);

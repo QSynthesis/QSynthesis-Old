@@ -1,37 +1,5 @@
 #include "../GraphicsLifter.h"
 
-QColor GraphicsLifter::inactiveColor() const {
-    return m_inactiveColor;
-}
-
-void GraphicsLifter::setInactiveColor(const QColor &inactiveColor) {
-    m_inactiveColor = inactiveColor;
-}
-
-QColor GraphicsLifter::activeColor() const {
-    return m_activeColor;
-}
-
-void GraphicsLifter::setActiveColor(const QColor &activeColor) {
-    m_activeColor = activeColor;
-}
-
-QColor GraphicsLifter::inactiveHColor() const {
-    return m_inactiveHColor;
-}
-
-void GraphicsLifter::setInactiveHColor(const QColor &inactiveHColor) {
-    m_inactiveHColor = inactiveHColor;
-}
-
-QColor GraphicsLifter::activeHColor() const {
-    return m_activeHColor;
-}
-
-void GraphicsLifter::setActiveHColor(const QColor &activeHColor) {
-    m_activeHColor = activeHColor;
-}
-
 GraphicsLifter::Props GraphicsLifter::prop() const {
     return m_prop;
 }

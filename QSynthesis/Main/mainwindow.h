@@ -38,6 +38,7 @@
 #define qSetting SettingIniData::instance()
 #define qConfig ConfigData::instance()
 #define qShortcuts ShortcutsData::instance()
+#define qTheme ColorTheme::instance()
 
 class MainWindow : public QMainWindow {
     Q_OBJECT

@@ -6,14 +6,23 @@
 
 #include "Macros.h"
 
-class ColorTheme {
+class NotesArea;
+class Mode2Handler;
+class EnvelopeHandler;
+class GraphicsNote;
+class WaveformArea;
+
+class ColorTheme : public QObject {
+    Q_OBJECT
     Q_SINGLETON(ColorTheme)
 
 public:
-    explicit ColorTheme();
+    explicit ColorTheme(QObject *parent = nullptr);
     virtual ~ColorTheme();
 
     static void previewTheme(int index);
+
+    void update();
 
     // NotesArea
 public:
@@ -24,6 +33,14 @@ public:
     QColor editor_levelLine;
     QColor editor_backDark;
     QColor editor_backLight;
+
+    QColor editor_playHead;
+
+    // LiftersArea
+public:
+    QColor params_timeLine;
+    QColor params_sectionLine;
+    QColor params_back;
 
     // Mode2Handler
 public:
@@ -42,9 +59,33 @@ public:
     QColor pitch_mode2InvalidLineEnabled;
     QColor pitch_mode2InvalidLineDisabled;
 
-    QColor pitch_vibratoButtonBorder;
-    QColor pitch_vibratoButtonFill;
-    QColor pitch_vibratoFrame;
+    QColor vibrato_curvesEnabledColor;
+    QColor vibrato_curvesDisabledColor;
+
+    QColor vibrato_editorLines;
+
+    QColor pitch_pointCore;
+    QColor pitch_pointRing;
+
+    // Vibrato Plane Handle
+public:
+    QColor vbr_planeHandleBorder;
+    QColor vbr_planeHandleFill;
+    QColor vbr_planeHandleText;
+
+    // EnvelopeHandler
+public:
+    QColor env_solidLineEnabled;
+    QColor env_solidLineDisabled;
+
+    QColor env_dashLineEnabled;
+    QColor env_dashLineDisabled;
+
+    QColor env_invalidLineEnabled;
+    QColor env_invalidLineDisabled;
+
+    QColor env_pointCore;
+    QColor env_pointRing;
 
     // GraphicsNote
 public:
@@ -58,6 +99,20 @@ public:
 
     QColor note_unlistedFill;
     QColor note_unlistedLine;
+
+    QColor note_select;
+
+    // GraphicsLifter
+public:
+    QColor lifter_active;
+    QColor lifter_inactive;
+
+    QColor lifter_activeH;
+    QColor lifter_inactiveH;
+
+public:
+    QColor rubber_frame;
+    QColor rubber_fill;
 
     // WaveformArea
 public:
@@ -73,6 +128,9 @@ public:
 
     QColor sample_waveform;
     QColor sample_frqCurves;
+
+signals:
+    void updated();
 };
 
 #endif // COLORTHEME_H

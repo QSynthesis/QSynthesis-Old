@@ -14,6 +14,19 @@ GraphicsNote::~GraphicsNote() {
     m_envelope->deleteLater();
 }
 
+void GraphicsNote::updateColorTheme() {
+    m_lyricColor = qTheme->note_lyric;
+    m_restLineColor = qTheme->note_restLine;
+    m_restFillColor = qTheme->note_restFill;
+    m_listedLineColor = qTheme->note_listedLine;
+    m_listedFillColor = qTheme->note_listedFill;
+    m_unlistedLineColor = qTheme->note_unlistedLine;
+    m_unlistedFillColor = qTheme->note_unlistedFill;
+    m_selectColor = qTheme->note_select;
+
+    update();
+}
+
 void GraphicsNote::init() {
     m_element = GraphicsDragger::Note;
     m_prev = m_next = m_MPrev = m_MNext = nullptr;
@@ -28,11 +41,11 @@ void GraphicsNote::init() {
 
     m_lengthRef = 0;
 
-    m_curves = new Mode2Handler(this, m_editor);
-    m_envelope = new EnvelopeHandler(this, m_editor);
-
     m_lifter = nullptr;
     m_screen = nullptr;
+
+    m_curves = new Mode2Handler(this, m_editor);
+    m_envelope = new EnvelopeHandler(this, m_editor);
 
     m_lyricColor = Qt::black;
     m_restLineColor = QColor(0xCCCCCC);
@@ -43,6 +56,9 @@ void GraphicsNote::init() {
     m_unlistedFillColor = QColor(0x1881C7);
 
     setFlag(ItemIsFocusable);
+
+    updateColorTheme();
+    connect(qTheme, &ColorTheme::updated, this, &GraphicsNote::updateColorTheme);
 }
 
 void GraphicsNote::addLifter() {

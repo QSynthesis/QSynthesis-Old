@@ -27,6 +27,8 @@ public:
     explicit GraphicsNote(NotesArea *editor, QGraphicsItem *parent = nullptr);
     virtual ~GraphicsNote();
 
+    void updateColorTheme();
+
     QLinkNote Note;
 
     friend class DraggerHandler;
@@ -215,28 +217,6 @@ protected:
     virtual void handleSizeChange() override;
 
     // Handler
-public:
-    QColor lyricColor() const;
-    void setLyricColor(const QColor &lyricColor);
-
-    QColor restFillColor() const;
-    void setRestFillColor(const QColor &restFillColor);
-
-    QColor restLineColor() const;
-    void setRestLineColor(const QColor &restLineColor);
-
-    QColor listedFillColor() const;
-    void setListedFillColor(const QColor &listedFillColor);
-
-    QColor listedLineColor() const;
-    void setListedLineColor(const QColor &listedLineColor);
-
-    QColor unlistedFillColor() const;
-    void setUnlistedFillColor(const QColor &unlistedFillColor);
-
-    QColor unlistedLineColor() const;
-    void setUnlistedLineColor(const QColor &unlistedLineColor);
-
 private:
     QColor m_lyricColor;
 
@@ -248,6 +228,8 @@ private:
 
     QColor m_unlistedFillColor;
     QColor m_unlistedLineColor;
+
+    QColor m_selectColor;
 
 public:
     void openContextMenu();

@@ -13,6 +13,8 @@ public:
     explicit GraphicsRubber(QGraphicsItem *parent = nullptr);
     ~GraphicsRubber();
 
+    void updateColorTheme();
+
     void setStartPoint(QPointF Fpos);
     void setEndPoint(QPointF pos);
 
