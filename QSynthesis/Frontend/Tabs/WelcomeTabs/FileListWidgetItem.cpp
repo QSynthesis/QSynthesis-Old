@@ -74,7 +74,7 @@ void FileListWidgetItem::paint(QPainter *painter, const QStyleOptionViewItem &op
         QRect dst = rect;
         QString str = lastOpenTime;
 
-        dateWidth = QFontMetrics(painter->font()).width(str);
+        dateWidth = QFontMetrics(painter->font()).horizontalAdvance(str);
         painter->drawText(dst, Qt::AlignRight | Qt::AlignVCenter, str);
     }
 
@@ -89,7 +89,7 @@ void FileListWidgetItem::paint(QPainter *painter, const QStyleOptionViewItem &op
         QString str = fileName;
         dst.setBottom(rect.top() + rect.height() / 2);
 
-        fileNameWidth = QFontMetrics(painter->font()).width(str);
+        fileNameWidth = QFontMetrics(painter->font()).horizontalAdvance(str);
         if (fileNameWidth > maxLeftWidth) {
             str = QFontMetrics(painter->font()).elidedText(str, Qt::ElideRight, maxLeftWidth);
         }
@@ -104,7 +104,7 @@ void FileListWidgetItem::paint(QPainter *painter, const QStyleOptionViewItem &op
         QString str = fileLocation;
         dst.setTop(rect.top() + rect.height() / 2);
 
-        filePathWidth = QFontMetrics(painter->font()).width(str);
+        filePathWidth = QFontMetrics(painter->font()).horizontalAdvance(str);
         if (filePathWidth > maxLeftWidth) {
             str = QFontMetrics(painter->font()).elidedText(str, Qt::ElideRight, maxLeftWidth);
         }
@@ -129,16 +129,14 @@ void FileListWidgetItem::drawFocus(QPainter *painter, const QStyleOptionViewItem
 
 bool FileListWidgetItem::editorEvent(QEvent *event, QAbstractItemModel *model,
                                      const QStyleOptionViewItem &option, const QModelIndex &index) {
-
     if (event->type() == QEvent::MouseButtonRelease) {
-        QMouseEvent *me = static_cast<QMouseEvent *>(event);
+        QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
 
-        if (me->button() == Qt::RightButton) {
+        if (mouseEvent->button() == Qt::RightButton) {
             emit rightClick(index);
-        } else if (me->button() == Qt::LeftButton) {
+        } else if (mouseEvent->button() == Qt::LeftButton) {
             emit leftClick(index);
         }
     }
-
     return QStyledItemDelegate::editorEvent(event, model, option, index);
 }

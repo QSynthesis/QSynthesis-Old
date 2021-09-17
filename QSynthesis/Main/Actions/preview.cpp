@@ -1,8 +1,8 @@
-#include "Singletons/ColorTheme.h"
+#include "ColorTheme.h"
 #include "mainwindow.h"
 
 void MainWindow::handleOpenThemes() {
-    QStringList list = {"Light (Default)", "Dark (Default)"};
+    QStringList list = {tr("Light (Default)"), tr("Dark (Default)")};
     int index = tabs->useSelector(list, tr("Select color theme (Up/down keys to preview)"),
                                   qSetting->themeIndex, ColorTheme::loadTheme);
 

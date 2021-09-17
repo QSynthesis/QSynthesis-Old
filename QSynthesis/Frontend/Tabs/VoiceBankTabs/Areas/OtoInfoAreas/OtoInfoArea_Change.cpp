@@ -3,7 +3,7 @@
 #include "../OtoInfoArea.h"
 
 void OtoInfoArea::handleNameChanged() {
-    QString name = txtName->text();
+    QString name = lcName->getValue();
 
     InfoTextOperation *io = new InfoTextOperation(InfoTextOperation::Name);
     io->setOrigin(m_name);
@@ -17,7 +17,7 @@ void OtoInfoArea::handleNameChanged() {
 }
 
 void OtoInfoArea::handleAuthorChanged() {
-    QString author = txtAuthor->text();
+    QString author = lcAuthor->getValue();
 
     InfoTextOperation *io = new InfoTextOperation(InfoTextOperation::Author);
     io->setOrigin(m_author);

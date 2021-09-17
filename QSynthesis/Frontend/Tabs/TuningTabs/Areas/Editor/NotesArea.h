@@ -232,6 +232,8 @@ public:
     // Assist
 public:
     double tempoAt(int index) const;
+    int absIndexAtPos(double x) const;
+
     bool getGenonSettings(QString lrc, QGenonSettings *genon, int noteNum) const;
 
     QPointF convertValueToPosition(int tick, int noteNum) const;

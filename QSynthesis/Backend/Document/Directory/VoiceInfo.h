@@ -12,6 +12,8 @@ public:
     explicit VoiceInfo(const QString &dir, QObject *parent = nullptr);
     ~VoiceInfo();
 
+    bool valid() const;
+
 public:
     QTextCodec *codec() const;
     void setCodec(QTextCodec *codec);

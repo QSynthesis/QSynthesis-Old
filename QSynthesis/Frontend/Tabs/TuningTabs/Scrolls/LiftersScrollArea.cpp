@@ -25,7 +25,7 @@ QRectF LiftersScrollArea::viewportRect() const {
 }
 
 bool LiftersScrollArea::eventFilter(QObject *obj, QEvent *event) {
-    if (obj == this && event->type() == QEvent::KeyPress) {
+    if (obj == this && EventHandler::keyIsDown(event)) {
         return true;
     }
     return QGraphicsView::eventFilter(obj, event);

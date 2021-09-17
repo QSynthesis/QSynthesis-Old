@@ -25,12 +25,18 @@ QCheckBox {
 }
 
 QLineEdit, QTextEdit, QPlainTextEdit, QComboBox {
-    border: 1px solid black;
+    border: 1px solid #CCCCCC;
     color: black;
+    background-color: white;
+    padding: 3px 3px;
+}
+
+WaveformScrollArea {
+    border: 1px solid #CCCCCC;
     background-color: white;
 }
 
-QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus, WaveformScrollArea:focus {
     border-color: #167FD2;
 }
 
@@ -135,7 +141,7 @@ TabWidget[type=voice]>QTabBar::tab {
     border: 1px solid lightgrey;
     border-bottom: none;
     color: #333333;
-    padding: 3px 5px;
+    padding: 5px 8px;
     background-color: #ECECEC;
 }
 
@@ -675,4 +681,14 @@ VectorButton {
 QMessageBox {
     background-color: whitesmoke;
     border-radius: 3px;
+}
+
+/* VoiceBankTab */
+
+OtoInfoArea>LineControl>.QLabel {
+    padding: 5px 5px;
+}
+
+OtoInfoArea>LineControl>FixedLineEdit {
+    /* padding: 5px 5px; */
 }

@@ -83,7 +83,6 @@ FixedLineEdit *LineControl::Text() const {
 }
 
 void LineControl::InitLineControl(QString text, QString value) {
-
     pLabel = new QLabel(text, this);
 
     pText = new FixedLineEdit(value, this);

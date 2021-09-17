@@ -104,6 +104,7 @@ SOURCES += \
     Frontend/Singletons/CentralTabWidget.cpp \
     Frontend/Singletons/ColorTheme.cpp \
     Frontend/Singletons/ComboSelector.cpp \
+    Frontend/Singletons/EventHandler.cpp \
     Frontend/Singletons/TempHandler.cpp \
     Frontend/Tabs/BaseTab.cpp \
     Frontend/Tabs/CentralTab.cpp \
@@ -453,6 +454,7 @@ HEADERS += \
     Frontend/Singletons/CentralTabWidget.h \
     Frontend/Singletons/ColorTheme.h \
     Frontend/Singletons/ComboSelector.h \
+    Frontend/Singletons/EventHandler.h \
     Frontend/Singletons/TempHandler.h \
     Frontend/Tabs/BaseTab.h \
     Frontend/Tabs/CentralTab.h \
@@ -603,6 +605,7 @@ INCLUDEPATH += \
     Backend/Document \
     Frontend \
     Frontend/Common \
+    Frontend/Singletons \
     Main \
 
 TRANSLATIONS += \

@@ -80,7 +80,7 @@ void EditorForm::handleMenuBtnClicked() {
     adsorbMenu->addAction(fullAdsorbAction);
     adsorbMenu->addAction(halfAdsorbAction);
     adsorbMenu->addAction(quarterAdsorbAction);
-    adsorbMenu->addAction(sixteenthAdsorbAction);
+    adsorbMenu->addAction(sixthAdsorbAction);
     adsorbMenu->addAction(eighthAdsorbAction);
     adsorbMenu->addAction(twelfthAdsorbAction);
     adsorbMenu->addAction(sixteenthAdsorbAction);

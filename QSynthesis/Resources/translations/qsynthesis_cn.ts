@@ -319,42 +319,42 @@
 <context>
     <name>FileListWidget</name>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="102"/>
+        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="104"/>
         <source>Open(&amp;O)</source>
         <translation type="unfinished">打开(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="103"/>
+        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="105"/>
         <source>Remove from list(&amp;R)</source>
         <translation type="unfinished">从列表中移除(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="107"/>
+        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="109"/>
         <source>Show in Explorer(&amp;S)</source>
         <translation type="unfinished">在文件资源管理器中显示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="109"/>
+        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="111"/>
         <source>Show in Finder(&amp;S)</source>
         <translation type="unfinished">在Finder中显示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="111"/>
+        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="113"/>
         <source>Show in File Manager(&amp;S)</source>
         <translation type="unfinished">在文件管理器中显示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="115"/>
+        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="117"/>
         <source>Open in Explorer(&amp;S)</source>
         <translation type="unfinished">在文件资源管理器中打开(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="117"/>
+        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="119"/>
         <source>Open in Finder(&amp;S)</source>
         <translation type="unfinished">在Finder中打开(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="119"/>
+        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="121"/>
         <source>Open in File Manager(&amp;S)</source>
         <translation type="unfinished">在文件管理器中打开(&amp;S)</translation>
     </message>
@@ -1063,6 +1063,16 @@
         <location filename="../../Main/Actions/voice.cpp" line="12"/>
         <source>Export current settings</source>
         <translation type="unfinished">导出当前设定</translation>
+    </message>
+    <message>
+        <location filename="../../Main/Actions/preview.cpp" line="5"/>
+        <source>Light (Default)</source>
+        <translation type="unfinished">浅色（默认)</translation>
+    </message>
+    <message>
+        <location filename="../../Main/Actions/preview.cpp" line="5"/>
+        <source>Dark (Default)</source>
+        <translation type="unfinished">深色（默认)</translation>
     </message>
     <message>
         <location filename="../../Main/Actions/preview.cpp" line="6"/>

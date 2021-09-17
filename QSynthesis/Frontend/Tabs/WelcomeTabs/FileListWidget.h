@@ -7,6 +7,7 @@
 #include <QListWidget>
 #include <QMenu>
 
+#include "EventHandler.h"
 #include "FileListWidgetItem.h"
 #include "QUtils.h"
 
@@ -63,6 +64,8 @@ private:
 
     void onLeftClick(QModelIndex index);
     void onRightClick(QModelIndex index);
+
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
     void handleOpen();
     void handleDelete();

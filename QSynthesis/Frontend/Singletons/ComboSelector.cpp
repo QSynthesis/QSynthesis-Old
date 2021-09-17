@@ -1,5 +1,6 @@
 #include "ComboSelector.h"
 #include "application.h"
+#include "mainwindow.h"
 
 Q_SINGLETON_DECLARE(ComboSelector)
 
@@ -19,6 +20,7 @@ ComboSelector::ComboSelector(QWidget *parent, const QStringList &list)
 
     setLayout(mainLayout);
 
+    setFocusPolicy(Qt::ClickFocus);
     lineEdit->setFocusPolicy(Qt::ClickFocus);
     listWidget->setFocusPolicy(Qt::ClickFocus);
 
@@ -33,7 +35,7 @@ ComboSelector::ComboSelector(QWidget *parent, const QStringList &list)
             &ComboSelector::handleCurrentTextChanged);
     connect(listWidget, &QListWidget::itemClicked, this, &ComboSelector::handleItemClicked);
 
-    connect(qApp, &Application::signal_mouseRelease, this,
+    connect(qApp, &Application::signal_mousePress, this,
             &ComboSelector::handleGlobalMouseClicked);
 }
 
@@ -86,12 +88,16 @@ QListWidgetItem *ComboSelector::activeItemOf(int index) const {
     return nullptr;
 }
 
+void ComboSelector::focusInEvent(QFocusEvent *event) {
+    lineEdit->setFocus();
+}
+
 bool ComboSelector::eventFilter(QObject *obj, QEvent *event) {
-    if (event->type() == QEvent::KeyPress) {
+    if (EventHandler::keyIsDown(event)) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         int key = keyEvent->key();
         if ((key == Qt::Key_Up || key == Qt::Key_Down)) {
-            if (obj == lineEdit) {
+            if (obj != listWidget) {
                 listWidget->setFocus();
                 QApplication::sendEvent(listWidget, keyEvent);
                 return true;
@@ -108,14 +114,14 @@ bool ComboSelector::eventFilter(QObject *obj, QEvent *event) {
             abandon();
             return true;
         } else {
-            if (obj == listWidget) {
+            if (obj != lineEdit) {
                 lineEdit->setFocus();
                 QApplication::sendEvent(lineEdit, keyEvent);
                 return true;
             }
         }
     }
-    return QWidget::eventFilter(obj, event);
+    return TransparentContainer::eventFilter(obj, event);
 }
 
 void ComboSelector::handleGlobalMouseClicked(QMouseEvent *event) {
@@ -263,7 +269,7 @@ void ComboSelector::setEditText(const QString &text) {
 }
 
 void ComboSelector::setVisible(bool visible) {
-    QWidget::setVisible(visible);
+    TransparentContainer::setVisible(visible);
     if (visible) {
         lineEdit->setFocus();
     }

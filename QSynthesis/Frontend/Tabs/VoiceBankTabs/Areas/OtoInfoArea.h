@@ -7,7 +7,7 @@
 #include "../Modules/ImageLabel.h"
 #include "../VoiceTabs/PrefixMapTab.h"
 #include "../VoiceTabs/TextBoxTab.h"
-#include "Controls/FixedLineEdit.h"
+#include "Controls/LineControl.h"
 #include "TabWidget.h"
 #include "VoiceBankArea.h"
 
@@ -53,12 +53,10 @@ public:
     void locatePrefix(int noteNum);
 
 private:
-    QLabel *lbName;
-    QLabel *lbAuthor;
     ImageLabel *lbImage;
 
-    FixedLineEdit *txtName;
-    FixedLineEdit *txtAuthor;
+    LineControl *lcName;
+    LineControl *lcAuthor;
 
     TabWidget *infoTabs;
     TextBoxTab *readmeTab;

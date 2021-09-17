@@ -18,7 +18,7 @@ class FileListWidgetItem : public QStyledItemDelegate {
     Q_OBJECT
 
 public:
-    FileListWidgetItem(QObject *pParent);
+    explicit FileListWidgetItem(QObject *pParent);
     ~FileListWidgetItem();
 
     friend class FileListWidget;

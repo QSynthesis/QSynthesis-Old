@@ -12,14 +12,11 @@ void OtoInfoArea::initExtern() {
 
 void OtoInfoArea::init() {
     // Labels
-    lbName = new QLabel(tr("Name"), this);
-    lbAuthor = new QLabel(tr("Author"), this);
+    lcName = new LineControl(Qt::Horizontal, tr("Name"), this);
+    lcAuthor = new LineControl(Qt::Horizontal, tr("Author"), this);
+
     lbImage = new ImageLabel(this);
     lbImage->setFixedSize(100, 100);
-
-    // Texts
-    txtName = new FixedLineEdit(this);
-    txtAuthor = new FixedLineEdit(this);
 
     // Tabs
     infoTabs = new TabWidget(this);
@@ -33,17 +30,12 @@ void OtoInfoArea::init() {
     // Top Left Layout
     mainLayout = new QGridLayout(this);
     mainLayout->setMargin(0);
+    mainLayout->setVerticalSpacing(20);
 
     mainLayout->addWidget(lbImage, 0, 0, 2, 1);
-    mainLayout->addWidget(lbName, 0, 1, 1, 1);
-    mainLayout->addWidget(txtName, 0, 2, 1, 1);
-    mainLayout->addWidget(lbAuthor, 1, 1, 1, 1);
-    mainLayout->addWidget(txtAuthor, 1, 2, 1, 1);
-    mainLayout->addWidget(infoTabs, 2, 0, 4, 3);
-
-    mainLayout->setColumnStretch(0, 0);
-    mainLayout->setColumnStretch(1, 0);
-    mainLayout->setColumnStretch(2, 2);
+    mainLayout->addWidget(lcName, 0, 1, 1, 1);
+    mainLayout->addWidget(lcAuthor, 1, 1, 1, 1);
+    mainLayout->addWidget(infoTabs, 2, 0, 1, 2);
 
     setLayout(mainLayout);
 
@@ -51,8 +43,10 @@ void OtoInfoArea::init() {
     connect(lbImage, &ImageLabel::replace, this, &OtoInfoArea::handleReplaceAvatar);
     connect(lbImage, &ImageLabel::remove, this, &OtoInfoArea::handleRemoveAvatar);
 
-    connect(txtName, &FixedLineEdit::editingFinished2, this, &OtoInfoArea::handleNameChanged);
-    connect(txtAuthor, &FixedLineEdit::editingFinished2, this, &OtoInfoArea::handleAuthorChanged);
+    connect(lcName->Text(), &FixedLineEdit::editingFinished2, this,
+            &OtoInfoArea::handleNameChanged);
+    connect(lcAuthor->Text(), &FixedLineEdit::editingFinished2, this,
+            &OtoInfoArea::handleAuthorChanged);
 
     connect(prefixTab, &PrefixMapTab::prefixChanged, this, &OtoInfoArea::handlePrefixChanged);
     connect(prefixTab, &PrefixMapTab::suffixChanged, this, &OtoInfoArea::handleSuffixChanged);
@@ -91,12 +85,12 @@ QString OtoInfoArea::name() const {
 }
 
 void OtoInfoArea::setName(const QString &name) {
-    txtName->blockSignals(true);
+    lcName->Text()->blockSignals(true);
 
     m_name = name;
-    txtName->setText(name);
+    lcName->Text()->setText(name);
 
-    txtName->blockSignals(false);
+    lcName->Text()->blockSignals(false);
 }
 
 QString OtoInfoArea::author() const {
@@ -104,12 +98,12 @@ QString OtoInfoArea::author() const {
 }
 
 void OtoInfoArea::setAuthor(const QString &author) {
-    txtAuthor->blockSignals(true);
+    lcAuthor->Text()->blockSignals(true);
 
     m_author = author;
-    txtAuthor->setText(author);
+    lcAuthor->Text()->setText(author);
 
-    txtAuthor->blockSignals(false);
+    lcAuthor->Text()->blockSignals(false);
 }
 
 QString OtoInfoArea::text() const {

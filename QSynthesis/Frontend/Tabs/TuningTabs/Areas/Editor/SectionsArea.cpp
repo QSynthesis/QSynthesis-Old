@@ -121,6 +121,9 @@ void SectionsArea::paintEvent(QPaintEvent *event) {
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setClipRegion(event->region());
 
+    QRect vision = event->region().boundingRect();
+    NotesArea *notesArea = m_ptrs->notesArea;
+
     QPen pen(m_lineColor, 1, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin);
     QPen pen2(m_numColor, 1, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin);
 
@@ -200,24 +203,54 @@ void SectionsArea::paintEvent(QPaintEvent *event) {
     }
 
     // Draw Tempo
-    const QList<GraphicsNote *> &SNotesList = m_ptrs->notesArea->NotesList;
-    painter.setPen(m_globalTempoColor);
+    const QList<GraphicsNote *> &SNotesList = notesArea->NotesList;
 
-    {
-        QRect rect(0, h, m_ptrs->currentWidth * 4, h);
-        rect.adjust(retract, 0, -retract, 0);
-        painter.drawText(rect, Qt::AlignVCenter | Qt::AlignLeft,
-                         QString::number(m_ptrs->notesArea->globalTempo()));
-        painter.setPen(m_noteTempoColor);
-        for (int i = 0; i < SNotesList.size(); ++i) {
-            GraphicsNote *p = SNotesList.at(i);
-            QRect rect(p->x(), h, p->width(), h);
-            rect.adjust(retract, 0, -retract, 0);
-            if (p->tempoEdited()) {
-                painter.drawText(rect, Qt::AlignVCenter | Qt::AlignLeft,
-                                 QString::number(p->tempo()));
-            }
+    int absIndex = notesArea->absIndexAtPos(vision.x());
+    int index = absIndex;
+    while (index >= 0 && !SNotesList.at(index)->tempoEdited()) {
+        index--;
+    }
+
+    QPen firstPen;
+    if (index < 0) {
+        firstPen.setColor(m_globalTempoColor);
+    } else {
+        firstPen.setColor(m_noteTempoColor);
+    }
+
+    QVector<QPair<double, double>> tempos;
+    tempos.push_back(qMakePair(vision.x(), notesArea->tempoAt(index)));
+
+    for (int i = absIndex + 1; i < SNotesList.size(); ++i) {
+        GraphicsNote *p = SNotesList.at(i);
+        if (p->x() > vision.right()) {
+            break;
         }
+        if (p->tempoEdited()) {
+            tempos.append(qMakePair(p->x(), p->tempo()));
+        }
+    }
+
+    for (int i = 0; i < tempos.size(); ++i) {
+        QPair<double, double> cur = tempos.at(i);
+
+        double curX = cur.first;
+        double nextX = (i == tempos.size() - 1) ? 0 : tempos.at(i + 1).first;
+        QString tempoStr = QString::number(cur.second);
+
+        QRect rect(curX, h, nextX + retract - curX, h);
+        if (nextX == 0) {
+            rect.setWidth(QFontMetrics(painter.font()).horizontalAdvance(tempoStr) + 2 * retract);
+        }
+
+        rect.adjust(retract, 0, -retract, 0);
+
+        if (i == 0) {
+            painter.setPen(firstPen);
+        } else {
+            painter.setPen(QPen(m_noteTempoColor));
+        }
+        painter.drawText(rect, Qt::AlignVCenter | Qt::AlignLeft, tempoStr);
     }
 }
 

@@ -9,7 +9,10 @@ PluginsCollect::PluginsCollect(QString dir, QObject *parent) : DirectoryCollect(
 QList<PluginInfo *> PluginsCollect::dirs() const {
     QList<PluginInfo *> res;
     for (auto it = m_dirs.begin(); it != m_dirs.end(); ++it) {
-        res.append(qobject_cast<PluginInfo *>(*it));
+        PluginInfo *plugin = qobject_cast<PluginInfo *>(*it);
+        if (plugin->valid()) {
+            res.append(plugin);
+        }
     }
     return res;
 }

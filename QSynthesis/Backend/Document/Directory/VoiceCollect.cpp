@@ -9,7 +9,10 @@ VoiceCollect::VoiceCollect(QString dir, QObject *parent) : DirectoryCollect(dir,
 QList<VoiceInfo *> VoiceCollect::dirs() const {
     QList<VoiceInfo *> res;
     for (auto it = m_dirs.begin(); it != m_dirs.end(); ++it) {
-        res.append(qobject_cast<VoiceInfo *>(*it));
+        VoiceInfo *voice = qobject_cast<VoiceInfo *>(*it);
+        if (voice->valid()) {
+            res.append(voice);
+        }
     }
     return res;
 }

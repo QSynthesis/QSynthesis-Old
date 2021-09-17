@@ -215,6 +215,10 @@ bool PluginInfo::allNote() const {
     return m_allNote;
 }
 
+bool PluginInfo::valid() const {
+    return isFileExist(exePath());
+}
+
 QTextCodec *PluginInfo::codeForDefault() {
     return defaultCodec;
 }

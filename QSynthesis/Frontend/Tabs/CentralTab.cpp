@@ -1,5 +1,5 @@
 #include "CentralTab.h"
-#include "Singletons/CentralTabWidget.h"
+#include "CentralTabWidget.h"
 #include "mainwindow.h"
 
 CentralTab::CentralTab(CentralTabWidget *parent) : BaseTab(parent) {

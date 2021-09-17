@@ -166,7 +166,7 @@ CentralTabContent {
 /* Welcome Tab */
 
 WelcomeTabContent>.SwitchButton[type=list] {
-    color: #999999;
+    color: #666666;
     background-color: transparent;
     border-top: none;
     border-left: none;

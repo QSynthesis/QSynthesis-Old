@@ -68,6 +68,7 @@ protected:
     int activeIndexOf(const QListWidgetItem *item) const;
     QListWidgetItem *activeItemOf(int index) const;
 
+    void focusInEvent(QFocusEvent *event) override;
     bool eventFilter(QObject *obj, QEvent *event) override;
 
     void handleGlobalMouseClicked(QMouseEvent *event);

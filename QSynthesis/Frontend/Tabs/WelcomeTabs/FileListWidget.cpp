@@ -20,6 +20,8 @@ void FileListWidget::init() {
 
     connect(delegate, &FileListWidgetItem::leftClick, this, &FileListWidget::onLeftClick);
     connect(delegate, &FileListWidgetItem::rightClick, this, &FileListWidget::onRightClick);
+
+    installEventFilter(this);
 }
 
 FileListWidget::Type FileListWidget::type() const {
@@ -131,7 +133,22 @@ void FileListWidget::onRightClick(QModelIndex index) {
     m_menu->exec(QCursor::pos());
     m_menu->clear();
 
-    setItemSelected(itemFromIndex(index), false);
+    itemFromIndex(index)->setSelected(false);
+}
+
+bool FileListWidget::eventFilter(QObject *obj, QEvent *event) {
+    if (EventHandler::keyIsDown(event)) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        int key = keyEvent->key();
+        if (key == Qt::Key_Enter || key == Qt::Key_Return) {
+            QModelIndex index = currentIndex();
+            if (index.isValid()) {
+                currentFileName = index.data(Qt::UserRole + 2).toString();
+                handleOpen();
+            }
+        }
+    }
+    return QListWidget::eventFilter(obj, event);
 }
 
 void FileListWidget::handleOpen() {

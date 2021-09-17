@@ -2,6 +2,7 @@
 #define LIFTERSSCROLLAREA_H
 
 #include "Common/Graphics/GraphicsLinearView.h"
+#include "EventHandler.h"
 
 class LiftersScrollArea : public GraphicsLinearView {
     Q_OBJECT

@@ -21,6 +21,10 @@ VoiceInfo::VoiceInfo(const QString &dir, QObject *parent) : DirectoryManager(par
 VoiceInfo::~VoiceInfo() {
 }
 
+bool VoiceInfo::valid() const {
+    return isDirExist(m_dirname);
+}
+
 QTextCodec *VoiceInfo::codec() const {
     return m_codec;
 }

@@ -28,9 +28,15 @@ QLineEdit, QTextEdit, QPlainTextEdit, QComboBox {
     border: 1px solid transparent;
     color: #CCCCCC;
     background-color: #3C3C3C;
+    padding: 3px 3px;
 }
 
-QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
+WaveformScrollArea {
+    border: 1px solid transparent;
+    background-color: #3C3C3C;
+}
+
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus, WaveformScrollArea:focus {
     border-color: #167FD2;
 }
 
@@ -136,7 +142,7 @@ TabWidget[type=voice]>QTabBar::tab {
     border-right: 1px solid #404040;
     border-left: 1px solid #404040;
     color: #CCCCCC;
-    padding: 3px 5px;
+    padding: 5px 8px;
     background-color: #2D2D2D;
 }
 
@@ -166,7 +172,7 @@ CentralTabContent {
 /* Welcome Tab */
 
 WelcomeTabContent>.SwitchButton[type=list] {
-    color: #999999;
+    color: #666666;
     background-color: transparent;
     border-top: none;
     border-left: none;
@@ -370,7 +376,7 @@ NotesScrollArea {
     /**/
     qproperty-mode2SolidLineEnabled: #FF4D4D;
     qproperty-mode2SolidLineDisabled: rgba(255, 128, 128, 75%);
-    qproperty-mode2DashLineEnabled:  rgba(255, 77, 77, 75%);
+    qproperty-mode2DashLineEnabled: rgba(255, 77, 77, 75%);
     qproperty-mode2DashLineDisabled: rgba(255, 128, 128, 75%);
     qproperty-mode2InvalidLineEnabled: rgba(255, 77, 77, 25%);
     qproperty-mode2InvalidLineDisabled: rgba(255, 77, 77, 12.5%);
@@ -418,17 +424,17 @@ LiftersScrollArea {
 }
 
 WaveformScrollArea {
-    qproperty-sampleOffsetLine: grey;
+    qproperty-sampleOffsetLine: lightgrey;
     qproperty-sampleConstantLine: pink;
     qproperty-sampleBlankLine: lightblue;
-    qproperty-samplePreUttrLine: red;
-    qproperty-sampleOverlapLine: green;
+    qproperty-samplePreUttrLine: orangered;
+    qproperty-sampleOverlapLine: lightgreen;
     /**/
-    qproperty-sampleOffsetBack: rgba(128, 128, 128, 37.5%);
+    qproperty-sampleOffsetBack: rgba(211, 211, 211, 37.5%);
     qproperty-sampleConstantBack: rgba(255, 192, 203, 37.5%);
     qproperty-sampleBlankBack: rgba(173, 216, 230, 37.5%);
     /**/
-    qproperty-sampleWaveform: rgb(0, 192, 32);
+    qproperty-sampleWaveform: deepskyblue;
     qproperty-sampleFrqCurves: lightblue;
 }
 
@@ -436,7 +442,7 @@ WaveformScrollArea {
 
 TracksInterface>QFrame[type=track-separator] {
     border: none;
-    background: black;
+    background: #121212;
 }
 
 /* TrackHead */
@@ -666,4 +672,14 @@ VectorButton {
 QMessageBox {
     background-color: #252526;
     border-radius: 3px;
+}
+
+/* VoiceBankTab */
+
+OtoInfoArea>LineControl>.QLabel {
+    padding: 5px 5px;
+}
+
+OtoInfoArea>LineControl>FixedLineEdit {
+    /* padding: 5px 5px; */
 }

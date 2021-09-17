@@ -1,4 +1,5 @@
 #include "GraphicsLineEdit.h"
+#include "EventHandler.h"
 
 #include <QApplication>
 #include <QEvent>
@@ -49,7 +50,7 @@ void GraphicsLineEdit::moveCursorToEnd() {
 
 bool GraphicsLineEdit::eventFilter(QObject *obj, QEvent *event) {
     if (obj == this) {
-        if (event->type() == QEvent::KeyPress) {
+        if (EventHandler::keyIsDown(event)) {
             QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
             int key = keyEvent->key();
             if (key == Qt::Key_Return || key == Qt::Key_Enter) {

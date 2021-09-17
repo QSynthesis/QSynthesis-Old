@@ -15,6 +15,13 @@ double NotesArea::tempoAt(int index) const {
     }
 }
 
+int NotesArea::absIndexAtPos(double x) const {
+    if (x < zeroLine()) {
+        return -1;
+    }
+    return findNoteAtPos(x);
+}
+
 bool NotesArea::getGenonSettings(QString lrc, QGenonSettings *genon, int noteNum) const {
     if (!m_ptrs->tab->oto) {
         return false;

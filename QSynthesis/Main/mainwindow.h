@@ -1,6 +1,7 @@
 ﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "CentralTabWidget.h"
 #include "Directory/PluginsCollect.h"
 #include "Directory/VoiceCollect.h"
 #include "Document/QSFileData.h"
@@ -12,7 +13,6 @@
 #include "QSTabs.h"
 #include "QUtauUtils.h"
 #include "QUtils.h"
-#include "Singletons/CentralTabWidget.h"
 #include "VoiceBank/QOtoReference.h"
 
 #include <QAction>
