@@ -37,6 +37,8 @@ EditorForm::EditorForm(TuningTab *parent) : BaseForm(parent) {
     btnEases = new EnvButtonGroup(this);
 
     btnMenu = new VectorButton(true, QSizeF(2, 2), this);
+    btnMenu->setProperty("type", "editor-menu");
+
     btnMenu->setIcons(":/images/NormalMenuBtn.svg");
     btnMenu->setFixedSize(20, 20);
     connect(btnMenu, &VectorButton::clicked, this, &EditorForm::handleMenuBtnClicked);

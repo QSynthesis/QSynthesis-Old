@@ -35,11 +35,14 @@ public:
     void removeTab(int index);
     void removeTab(BaseTab *tab);
 
+    BaseTab *currentTab() const;
     BaseTab *previousTab() const;
 
 protected:
     virtual void addTabCore(int index);
     virtual void removeTabCore(int index);
+
+    virtual void tabIndexChangeCore(int index, bool changed);
 
 private:
     QPointer<BaseTab> m_previousTab, m_currentTab;

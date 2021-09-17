@@ -97,6 +97,10 @@ void TabWidget::removeTab(BaseTab *tab) {
     removeTabCore(index);
 }
 
+BaseTab *TabWidget::currentTab() const {
+    return m_currentTab;
+}
+
 BaseTab *TabWidget::previousTab() const {
     return m_previousTab;
 }
@@ -107,9 +111,13 @@ void TabWidget::addTabCore(int index) {
 void TabWidget::removeTabCore(int index) {
 }
 
+void TabWidget::tabIndexChangeCore(int index, bool changed) {
+}
+
 void TabWidget::handleTabIndexChanged(int index) {
     BaseTab *currentTab = tabAt(index);
     if (m_currentTab == currentTab) {
+        tabIndexChangeCore(index, false);
         return;
     }
 
@@ -123,6 +131,7 @@ void TabWidget::handleTabIndexChanged(int index) {
         m_currentTab->enter();
     }
 
+    tabIndexChangeCore(index, true);
     emit realIndexChanged(index);
 }
 

@@ -523,6 +523,7 @@ BlocksArea {
 
 TrackContent {
     background-color: #EEEEEE;
+    qproperty-midiColor: #0060C0;
 }
 
 /* ParamsDialArea */
@@ -671,9 +672,21 @@ QScrollBar::add-line {
 /* VectorButton */
 
 VectorButton {
-    qproperty-upColor: darkgrey;
-    qproperty-overColor: lightgrey;
-    qproperty-downColor: darkgrey;
+    qproperty-upColor: #666666;
+    qproperty-overColor: #999999;
+    qproperty-downColor: #7F7F7F;
+}
+
+VectorButton[type=tab-close][highlight=false] {
+    qproperty-upColor: #A0A0A0;
+    qproperty-overColor: #CCCCCC;
+    qproperty-downColor: #BABABA;
+}
+
+VectorButton[type=tab-close][highlight=true] {
+    qproperty-upColor: #666666;
+    qproperty-overColor: #999999;
+    qproperty-downColor: #7F7F7F;
 }
 
 /* QMessageBox */

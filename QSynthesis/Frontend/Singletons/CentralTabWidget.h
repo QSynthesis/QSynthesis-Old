@@ -18,6 +18,8 @@ private:
     void addTabCore(int index) override;
     void removeTabCore(int index) override;
 
+    void tabIndexChangeCore(int index, bool changed) override;
+
     QHash<QWidget *, VectorButton *> closeBtns;
 
 private:

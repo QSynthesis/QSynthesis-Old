@@ -18,6 +18,9 @@ CentralTabWidget::~CentralTabWidget() {
 
 void CentralTabWidget::addTabCore(int index) {
     VectorButton *btn = new VectorButton(true, QSizeF(3, 3));
+    btn->setProperty("type", "tab-close");
+    btn->setProperty("highlight", currentIndex() == index);
+
     btn->setIcons(":/images/close-line.svg");
 
     QTabBar *bar = tabBar();
@@ -35,6 +38,28 @@ void CentralTabWidget::addTabCore(int index) {
 
 void CentralTabWidget::removeTabCore(int index) {
     closeBtns.remove(tabAt(index));
+}
+
+void CentralTabWidget::tabIndexChangeCore(int index, bool changed) {
+    BaseTab *cur = currentTab();
+    BaseTab *prev = previousTab();
+
+    if (cur) {
+        auto it = closeBtns.find(cur);
+        if (it != closeBtns.end()) {
+            VectorButton *btn = it.value();
+            btn->setProperty("highlight", true);
+            style()->polish(btn);
+        }
+    }
+    if (prev) {
+        auto it = closeBtns.find(prev);
+        if (it != closeBtns.end()) {
+            VectorButton *btn = it.value();
+            btn->setProperty("highlight", false);
+            style()->polish(btn);
+        }
+    }
 }
 
 void CentralTabWidget::adjustSelector() {

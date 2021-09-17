@@ -15,6 +15,9 @@ PlayerLabel::PlayerLabel(QWidget *parent) : QWidget(parent) {
     btnPlay = new VectorButton(false, playGroupPadding, this);
     btnABPlay = new VectorButton(true, playGroupPadding, this);
 
+    btnPlay->setProperty("type", "sample");
+    btnABPlay->setProperty("type", "sample");
+
     btnPlay->setIcons(":/images/PlayGroupBtn1_Line.svg", ":/images/PlayGroupBtn5_Line.svg");
     btnABPlay->setIcons(":/images/PlayGroupBtn6_Line.svg");
 

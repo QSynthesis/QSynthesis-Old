@@ -15,6 +15,8 @@ TracksInterface::TracksInterface(TracksForm *parent) : BaseInterface(parent) {
     mainLayout->setSpacing(0);
 
     btnMenu = new VectorButton(true, QSizeF(2, 2), this);
+    btnMenu->setProperty("type", "tracks-menu");
+
     btnMenu->setIcons(":/images/NormalMenuBtn.svg");
     btnMenu->setFixedSize(20, 20);
     connect(btnMenu, &VectorButton::clicked, this, &TracksInterface::handleMenuBtnClicked);

@@ -304,10 +304,10 @@ FormTitleBar {
 /* Editor */
 
 SectionsArea {
-    qproperty-noteTempoColor: lightgrey;
+    qproperty-noteTempoColor: #CCCCCC;
     qproperty-globalTempoColor: rgb(255, 129, 150);
-    qproperty-beatColor: lightgrey;
-    qproperty-numColor: lightgrey;
+    qproperty-beatColor: #CCCCCC;
+    qproperty-numColor: #CCCCCC;
     qproperty-lineColor: #999999;
 }
 
@@ -342,7 +342,7 @@ PianoKey {
 }
 
 PianoKey[color=white] {
-    background-color: #B4B4B4;
+    background-color: lightgrey;
 }
 
 PianoKey[color=white]:hover {
@@ -475,15 +475,15 @@ TrackHead>LabelButton {
     color: #999999;
 }
 
-TrackHead>LabelButton[invalid="true"] {
+TrackHead>LabelButton[invalid=true] {
     color: orangered;
 }
 
-TrackHead>LabelButton[invalid="false"]::hover {
+TrackHead>LabelButton[invalid=false]::hover {
     color: white;
 }
 
-TrackHead>LabelButton[invalid="true"]::hover {
+TrackHead>LabelButton[invalid=true]::hover {
     color: red;
 }
 
@@ -514,6 +514,7 @@ BlocksArea {
 
 TrackContent {
     background-color: rgba(255, 255, 255, 10%);
+    qproperty-midiColor: #00AEFF;
 }
 
 /* ParamsDialArea */
@@ -662,9 +663,21 @@ QScrollBar::add-line {
 /* VectorButton */
 
 VectorButton {
-    qproperty-upColor: lightgrey;
+    qproperty-upColor: #808080;
+    qproperty-overColor: #B0B0B0;
+    qproperty-downColor: #9A9A9A;
+}
+
+VectorButton[type=tab-close][highlight=false] {
+    qproperty-upColor: #808080;
+    qproperty-overColor: #B0B0B0;
+    qproperty-downColor: #9A9A9A;
+}
+
+VectorButton[type=tab-close][highlight=true] {
+    qproperty-upColor: #DDDDDD;
     qproperty-overColor: white;
-    qproperty-downColor: lightgrey;
+    qproperty-downColor: #FAFAFA;
 }
 
 /* QMessageBox */

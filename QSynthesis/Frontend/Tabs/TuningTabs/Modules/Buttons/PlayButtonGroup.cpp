@@ -9,6 +9,11 @@ PlayButtonGroup::PlayButtonGroup(QWidget *parent) : QWidget(parent) {
     btnStart = new VectorButton(true, playGroupPadding, this);
     btnEnd = new VectorButton(true, playGroupPadding, this);
 
+    btnPlay->setProperty("type", "title-bar-play");
+    btnStop->setProperty("type", "title-bar-play");
+    btnStart->setProperty("type", "title-bar-play");
+    btnEnd->setProperty("type", "title-bar-play");
+
     btnPlay->setFixedSize(playGroupSize);
     btnStop->setFixedSize(playGroupSize);
     btnStart->setFixedSize(playGroupSize);

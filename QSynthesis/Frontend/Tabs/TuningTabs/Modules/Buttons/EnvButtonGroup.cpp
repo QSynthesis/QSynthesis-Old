@@ -8,6 +8,10 @@ EnvButtonGroup::EnvButtonGroup(QWidget *parent) : QWidget(parent) {
     btnP1P4 = new VectorButton(true, envGroupPadding, this);
     btnReset = new VectorButton(true, envGroupPadding, this);
 
+    btnP2P3->setProperty("type", "title-bar-env");
+    btnP1P4->setProperty("type", "title-bar-env");
+    btnReset->setProperty("type", "title-bar-env");
+
     btnP2P3->setIcons(":/images/EnvGroupBtn2_Line.svg");
     btnP1P4->setIcons(":/images/EnvGroupBtn1_Line.svg");
     btnReset->setIcons(":/images/EnvGroupBtn3_Line.svg");
