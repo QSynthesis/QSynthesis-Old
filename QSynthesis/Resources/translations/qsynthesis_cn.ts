@@ -953,7 +953,7 @@
     <message>
         <location filename="../../Main/Static/data.cpp" line="25"/>
         <source>Voice Configurations(oto.ini);;All Files(*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">音源设定文件(oto.ini);;所有文件(*.*)</translation>
     </message>
     <message>
         <location filename="../../Main/Static/data.cpp" line="26"/>
@@ -969,47 +969,47 @@
         <location filename="../../Main/Static/data.cpp" line="31"/>
         <location filename="../../Main/Static/data.cpp" line="32"/>
         <source>UTAU Sequence Text(*.ust);;All Files(*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">UTAU 序列文本(*.ust);;所有文件(*)</translation>
     </message>
     <message>
         <location filename="../../Main/Static/data.cpp" line="34"/>
         <source>Standard MIDI Files(*.mid);;Synthesizer V Files(*.svp *.s5p);;VOCALOID Files(*.vsqx *.vsq);;All Files(*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">标准Midi文件(*.mid);;Synthesizer V 文件(*.svp *.s5p);;VOCALOID 文件(*.vsqx *.vsq);;所有文件(*)</translation>
     </message>
     <message>
         <location filename="../../Main/Static/data.cpp" line="37"/>
         <source>Standard MIDI Files(*.mid);;UTAU Sequence Text(*.ust);;Synthesizer V Files(*.svp *.s5p);;VOCALOID Files(*.vsqx *.vsq);;All Files(*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">标准Midi文件(*.mid);;UTAU 序列文本(*.ust);;Synthesizer V 文件(*.svp *.s5p);;VOCALOID 文件(*.vsqx *.vsq);;所有文件(*)</translation>
     </message>
     <message>
         <location filename="../../Main/Static/data.cpp" line="40"/>
         <source>Standard MIDI Files(*.mid);;UTAU Sequence Text(*.ust);;Synthesizer V Files(*.svp);;VOCALOID Files(*.vsqx);;All Files(*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">标准Midi文件(*.mid);;UTAU 序列文本(*.ust);;Synthesizer V 文件(*.svp);;VOCALOID 文件(*.vsqx);;所有文件(*)</translation>
     </message>
     <message>
         <location filename="../../Main/Static/data.cpp" line="43"/>
         <source>Standard MIDI Files(*.mid);;Synthesizer V Files(*.svp);;VOCALOID Files(*.vsqx);;All Files(*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">标准Midi文件(*.mid);;Synthesizer V 文件(*.svp);;VOCALOID 文件(*.vsqx);;所有文件(*)</translation>
     </message>
     <message>
         <location filename="../../Main/Static/data.cpp" line="45"/>
         <source>Voice Configurations(oto.ini);;All Files(*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">音源设定文件(oto.ini);;所有文件(*)</translation>
     </message>
     <message>
         <location filename="../../Main/Static/data.cpp" line="46"/>
         <source>Image Files(*.bmp *.jpg *.jpeg *.png *.gif *.webp);;All Files(*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">图片文件(*.bmp *.jpg *.jpeg *.png *.gif *.webp);;All Files(*)</translation>
     </message>
     <message>
         <location filename="../../Main/Static/data.cpp" line="48"/>
         <source>Audio Files(*.wav);;All Files(*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">音频文件(*.wav);;All Files(*)</translation>
     </message>
     <message>
         <location filename="../../Main/Static/data.cpp" line="49"/>
         <source>Executable(*)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">可执行文件(*)</translation>
     </message>
     <message>
         <source>Audio Files(*.bmp *.jpg *.jpeg *.png *.gif *.webp);;All Files(*.*)</source>
@@ -1062,12 +1062,12 @@
     <message>
         <location filename="../../Main/Actions/voice.cpp" line="12"/>
         <source>Export current settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">导出当前设定</translation>
     </message>
     <message>
-        <location filename="../../Main/Actions/common.cpp" line="184"/>
+        <location filename="../../Main/Actions/preview.cpp" line="6"/>
         <source>Select color theme (Up/down keys to preview)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择颜色主题(按上下键预览)</translation>
     </message>
 </context>
 <context>
@@ -1212,12 +1212,12 @@
     <message>
         <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoPlayerArea.cpp" line="67"/>
         <source>Mono</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">单声道</translation>
     </message>
     <message>
         <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoPlayerArea.cpp" line="67"/>
         <source>Stereo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">立体声</translation>
     </message>
 </context>
 <context>
@@ -2471,7 +2471,7 @@
     <message>
         <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="64"/>
         <source>Set Tempo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">设置曲速</translation>
     </message>
     <message>
         <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Unchange.cpp" line="30"/>
@@ -2653,7 +2653,7 @@
     <message>
         <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Play.cpp" line="108"/>
         <source>Audio file format error, please check the file!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">音频格式错误，请检查文件！</translation>
     </message>
 </context>
 <context>
