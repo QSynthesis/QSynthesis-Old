@@ -9,6 +9,7 @@ QString AppPath;
 QString AppFontName;
 
 QString MainTitle;
+QString WindowTitle;
 QString ErrorTitle;
 QString UntitledFileName;
 QString UntitledPrefix;

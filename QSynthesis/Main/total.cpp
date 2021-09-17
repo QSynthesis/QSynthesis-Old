@@ -31,7 +31,8 @@ void removeSingletons() {
 }
 
 void created() {
-    MainTitle = QString("QSynthesis For UTAU v%1").arg(Version);
+    MainTitle = "QSynthesis For UTAU";
+    WindowTitle = MainTitle + QString(" v%1").arg(Version);
     UntitledPrefix = "*";
     AppPath = QDir::currentPath();
 

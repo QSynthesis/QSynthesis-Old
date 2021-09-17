@@ -284,17 +284,17 @@
 <context>
     <name>EnvButtonGroup</name>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.cpp" line="15"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.cpp" line="19"/>
         <source>Envelope crossFade (p2p3)</source>
         <translation type="unfinished">设置音量包络淡化 (p2p3)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.cpp" line="16"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.cpp" line="20"/>
         <source>Envelope crossFade (p1p4)</source>
         <translation type="unfinished">设置音量包络淡化 (p1p4)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.cpp" line="17"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.cpp" line="21"/>
         <source>Reset Envelope</source>
         <translation type="unfinished">重置音量包络</translation>
     </message>
@@ -1202,12 +1202,12 @@
         <translation type="unfinished">作者</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.cpp" line="30"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.cpp" line="27"/>
         <source>Description</source>
         <translation type="unfinished">描述</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.cpp" line="31"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.cpp" line="28"/>
         <source>Pitch</source>
         <translation type="unfinished">音高</translation>
     </message>
@@ -1726,17 +1726,17 @@
         <translation type="obsolete">设置这里的曲速</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="225"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="258"/>
         <source>Set Global Tempo...</source>
         <translation type="unfinished">设置全局曲速...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="226"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="259"/>
         <source>Set Tempo here...</source>
         <translation type="unfinished">设置这里的曲速...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="227"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="260"/>
         <source>Remove Tempo</source>
         <translation type="unfinished">删除曲速</translation>
     </message>
@@ -2656,7 +2656,12 @@
         <translation type="unfinished">无法建立图片文件副本！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Extern.cpp" line="25"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Extern.cpp" line="18"/>
+        <source>Don&apos;t save to current voice folder!</source>
+        <translation type="unfinished">请勿保存在本音源文件夹内！</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Extern.cpp" line="30"/>
         <source>Unable to write file!</source>
         <translation type="unfinished">无法写入文件！</translation>
     </message>

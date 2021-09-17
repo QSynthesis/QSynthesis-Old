@@ -15,6 +15,7 @@ extern QString AppPath;
 extern QString AppFontName;
 
 extern QString MainTitle;
+extern QString WindowTitle;
 extern QString ErrorTitle;
 extern QString UntitledFileName;
 extern QString UntitledPrefix;

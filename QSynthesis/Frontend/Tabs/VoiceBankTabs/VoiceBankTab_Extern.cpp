@@ -14,6 +14,11 @@ void VoiceBankTab::locatePrefix(int noteNum) {
 }
 
 bool VoiceBankTab::exportCurrentSettings(const QString &filename) {
+    if (filename.startsWith(m_filename)) {
+        QMessageBox::warning(this, MainTitle, tr("Don't save to current voice folder!"));
+        return false;
+    }
+
     OtoTableTab *tab = dataArea->currentTab();
 
     QOtoIni otoIni;
@@ -21,7 +26,7 @@ bool VoiceBankTab::exportCurrentSettings(const QString &filename) {
     otoIni.OtoSamples = tab->OtoSamples();
 
     bool res = otoIni.save();
-    if (!res){
+    if (!res) {
         QMessageBox::warning(this, MainTitle, tr("Unable to write file!"));
     }
     return res;
