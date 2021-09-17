@@ -133,6 +133,9 @@ bool TuningTab::saveOrSaveAs(const QString &filename) {
         ustFile.setSectionSettings(orgFile.sectionSettings());
         ustFile.setSectionNotes(orgFile.sectionNotes());
     } else {
+        if (saveAs) {
+            setFilename(filename);
+        }
         deleted = false;
         untitled = false;
         setEdited(false);

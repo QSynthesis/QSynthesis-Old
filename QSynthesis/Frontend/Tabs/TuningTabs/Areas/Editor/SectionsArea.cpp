@@ -207,7 +207,7 @@ void SectionsArea::paintEvent(QPaintEvent *event) {
 
     int absIndex = notesArea->absIndexAtPos(vision.x());
     int index = absIndex;
-    while (index >= 0 && !SNotesList.at(index)->tempoEdited()) {
+    while (index >= 0 && (index >= SNotesList.size() || !SNotesList.at(index)->tempoEdited())) {
         index--;
     }
 
