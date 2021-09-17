@@ -114,10 +114,12 @@ public:
     QColor editorBackDark() const;
     QColor editorBackLight() const;
     QColor editorPlayHead() const;
+
     QColor mode1SolidLineEnabled() const;
     QColor mode1SolidLineDisabled() const;
     QColor mode1DashLineEnabled() const;
     QColor mode1DashLineDisabled() const;
+
     QColor mode2SolidLineEnabled() const;
     QColor mode2SolidLineDisabled() const;
     QColor mode2DashLineEnabled() const;
@@ -126,12 +128,14 @@ public:
     QColor mode2InvalidLineDisabled() const;
     QColor mode2PointCore() const;
     QColor mode2PointRing() const;
+
     QColor vbrCurvesEnabled() const;
     QColor vbrCurvesDisabled() const;
     QColor vbrEditorLines() const;
     QColor vbrPlaneHandleBorder() const;
     QColor vbrPlaneHandleFill() const;
     QColor vbrPlaneHandleText() const;
+
     QColor envSolidLineEnabled() const;
     QColor envSolidLineDisabled() const;
     QColor envDashLineEnabled() const;
@@ -140,6 +144,7 @@ public:
     QColor envInvalidLineDisabled() const;
     QColor envPointCore() const;
     QColor envPointRing() const;
+
     QColor noteLyric() const;
     QColor noteRestFill() const;
     QColor noteRestLine() const;
@@ -148,6 +153,7 @@ public:
     QColor noteUnlistedFill() const;
     QColor noteUnlistedLine() const;
     QColor noteSelect() const;
+
     QColor rubberFrame() const;
     QColor rubberFill() const;
 

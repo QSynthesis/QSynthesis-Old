@@ -13,7 +13,7 @@ void ColorTheme::loadTheme(int index) {
     if (index == 0) {
         qss.setFileName(":/themes/theme-mac.qss");
     } else if (index == 1) {
-        qss.setFileName(":/themes/theme-mac.qss");
+        qss.setFileName(":/themes/theme-mac-dark.qss");
     }
 #else
     if (index == 0) {

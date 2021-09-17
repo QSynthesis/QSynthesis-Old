@@ -209,48 +209,6 @@ WelcomeTabContent>QLabel[type=title] {
     font-weight: bold;
 }
 
-/* Menu Bar */
-
-QMenuBar {
-    background: #3C3C3C;
-    border-bottom: 1px solid rgba(255, 255, 255, 5%);
-}
-
-QMenuBar::item {
-    color: #CCCCCC;
-    padding: 8px 10px;
-}
-
-QMenuBar::item:selected {
-    background: #505050;
-}
-
-QMenu {
-    padding: 5px 5px;
-    background: #252526;
-}
-
-QMenu::item {
-    padding: 6px 30px;
-    background: transparent;
-    color: #CCCCCC;
-}
-
-QMenu::item:selected {
-    color: white;
-    background: #0060C0;
-}
-
-QMenu::item:disabled {
-    color: #666666;
-}
-
-QMenu::separator {
-    height: 1px;
-    background-color: #5B5B5B;
-    margin: 6px 6px 6px 6px;
-}
-
 /* Title Bar */
 
 FormSplitter::handle {

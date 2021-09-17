@@ -12,7 +12,7 @@ LiftersScrollArea::LiftersScrollArea(QWidget *parent) : GraphicsLinearView(Qt::H
 
     installEventFilter(this);
 
-    initDark();
+    initLight();
 }
 
 LiftersScrollArea::~LiftersScrollArea() {

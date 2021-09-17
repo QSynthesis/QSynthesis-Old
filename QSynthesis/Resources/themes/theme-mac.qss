@@ -1,5 +1,9 @@
 /* General */
 
+QWidget:focus {
+    outline: none;
+}
+
 QScrollArea {
     background-color: transparent;
 }
@@ -9,10 +13,14 @@ NoneScrollArea {
 }
 
 QGraphicsView {
-    background-color: white;
+    background-color: transparent;
 }
 
 .QLabel {
+    color: black;
+}
+
+QCheckBox {
     color: black;
 }
 
@@ -26,7 +34,29 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
     border-color: #167FD2;
 }
 
+.QPushButton {
+    border: 1px solid #CCCCCC;
+    background-color: white;
+    color: #2B579A;
+    /* border-radius: 2px; */
+    padding: 5px auto;
+}
+
+.QPushButton:disabled {
+    color: #CCCCCC;
+}
+
+.QPushButton:hover {
+    background-color: #2B579A;
+    color: white;
+}
+
+.QPushButton:pressed {
+    background-color: #002050;
+}
+
 /* Custom Controls */
+
 LineControl>FixedLineEdit[status=normal] {
     background-color: white;
 }
@@ -71,27 +101,27 @@ TabWidget::tab-bar {
 
 /* Main TabWidget */
 
-TabWidget[type=central] {
+CentralTabWidget {
     background-color: #F3F3F3;
 }
 
-TabWidget[type=central]>QTabBar::tab {
+CentralTabWidget>QTabBar::tab {
     border-right: 1px solid #F3F3F3;
     border-left: 1px solid #F3F3F3;
     color: #333333;
-    padding: 8px 15px;
+    padding: 12px 15px;
     background-color: #ECECEC;
 }
 
-TabWidget[type=central]>QTabBar::tab:selected {
+CentralTabWidget>QTabBar::tab:selected {
     background-color: white;
 }
 
-TabWidget[type=central]>QTabBar::tab:!selected:hover {
+CentralTabWidget>QTabBar::tab:!selected:hover {
     background-color: #EFEFEF;
 }
 
-TabWidget[type=central]>QTabBar::scroller {
+CentralTabWidget>QTabBar::scroller {
     width: 40px;
 }
 
@@ -139,7 +169,7 @@ WelcomeTabContent>.SwitchButton[type=list] {
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 4px solid transparent;
+    border-bottom: none;
     font-size: 18px;
     padding: 10px 0;
 }
@@ -150,29 +180,16 @@ WelcomeTabContent>.SwitchButton[type=list]:hover {
 
 WelcomeTabContent>.SwitchButton[type=list]:checked {
     color: black;
-    border-bottom-color: #2B579A;
+}
+
+WelcomeTabContent>.SwitchButtonUnderline[type=list] {
+    qproperty-lineWidth: 4;
+    qproperty-color: #2B579A;
 }
 
 WelcomeTabContent>.QPushButton[type=special] {
-    border: 1px solid #CCCCCC;
-    background-color: white;
-    color: #2B579A;
-    border-radius: 2px;
     padding: 8px 35px;
     font-size: 20px;
-}
-
-WelcomeTabContent>.QPushButton[type=special]:disabled {
-    color: #CCCCCC;
-}
-
-WelcomeTabContent>.QPushButton[type=special]:hover {
-    background-color: #2B579A;
-    color: white;
-}
-
-WelcomeTabContent>.QPushButton[type=special]:pressed {
-    background-color: #002050;
 }
 
 WelcomeTabContent>.FileListWidget {
@@ -191,6 +208,29 @@ WelcomeTabContent>QLabel[type=title] {
 }
 
 /* Title Bar */
+
+FormSplitter::handle {
+    background-color: transparent;
+}
+
+FormTitleBar {
+    qproperty-fillColor: white;
+    qproperty-topColor: lightgrey;
+    qproperty-top: 1;
+    qproperty-contentHeight: 40;
+}
+
+.QSplitter[type=voice-splitter]::handle {
+    background-color: transparent;
+}
+
+.QSplitter[type=voice-splitter]::handle:horizontal {
+    width: 15px;
+}
+
+.QSplitter[type=voice-splitter]::handle:vertical {
+    height: 15px;
+}
 
 .SwitchButton[type=titleBar] {
     color: darkgrey;
@@ -213,10 +253,26 @@ WelcomeTabContent>QLabel[type=title] {
 
 /* Editor */
 
-SectionsArea {}
+SectionsArea {
+    qproperty-noteTempoColor: black;
+    qproperty-globalTempoColor: red;
+    qproperty-beatColor: black;
+    qproperty-numColor: black;
+    qproperty-lineColor: lightgrey;
+}
+
+SectionsLine {
+    qproperty-beatColor: black;
+    qproperty-numColor: black;
+    qproperty-lineColor: lightgrey;
+}
 
 PianoArea {
-    background-color: darkgray;
+    background-color: darkgrey;
+}
+
+PianoArea>QLabel[type=standard] {
+    color: black;
 }
 
 PianoArea>QLabel[type=realtime] {
@@ -261,23 +317,85 @@ NotesArea {
     qproperty-leftRegionColor: rgba(0, 0, 0, 20%);
 }
 
-/* Note */
+/* Graphics */
 
-NoteHandler {
-    qproperty-lyricColor: black;
-    qproperty-restLineColor: #CCCCCC;
-    qproperty-restFillColor: #EEEEEE;
-    qproperty-listedLineColor: #0099FF;
-    qproperty-listedFillColor: #40D9FF;
-    qproperty-unlistedLineColor: #105685;
-    qproperty-unlistedFillColor: #1881C7;
+NotesScrollArea {
+    qproperty-editorQuarterLine: #D4D4D4;
+    qproperty-editorTimeLine: #E2E2E2;
+    qproperty-editorSectionLine: #BFBFBF;
+    qproperty-editorPitchLine: #E6E6E6;
+    qproperty-editorLevelLine: #CCCCCC;
+    qproperty-editorBackDark: #F2F2F2;
+    qproperty-editorBackLight: #FFFFFF;
+    qproperty-editorPlayHead: black;
+    /**/
+    qproperty-mode1SolidLineEnabled: red;
+    qproperty-mode1SolidLineDisabled: rgba(255, 80, 80, 50%);
+    qproperty-mode1DashLineEnabled: rgba(255, 0, 0, 75%);
+    qproperty-mode1DashLineDisabled: rgba(255, 80, 80, 37.5%);
+    /**/
+    qproperty-mode2SolidLineEnabled: red;
+    qproperty-mode2SolidLineDisabled: rgba(255, 80, 80, 50%);
+    qproperty-mode2DashLineEnabled: rgba(255, 0, 0, 75%);
+    qproperty-mode2DashLineDisabled: rgba(255, 80, 80, 50%);
+    qproperty-mode2InvalidLineEnabled: rgba(255, 0, 0, 40%);
+    qproperty-mode2InvalidLineDisabled: rgba(255, 80, 80, 20%);
+    qproperty-mode2PointCore: red;
+    qproperty-mode2PointRing: red;
+    /**/
+    qproperty-vbrCurvesEnabled: red;
+    qproperty-vbrCurvesDisabled: rgba(255, 80, 80, 75%);
+    qproperty-vbrEditorLines: black;
+    qproperty-vbrPlaneHandleBorder: black;
+    qproperty-vbrPlaneHandleFill: white;
+    qproperty-vbrPlaneHandleText: black;
+    /**/
+    qproperty-envSolidLineEnabled: blue;
+    qproperty-envSolidLineDisabled: rgba(50, 50, 255, 37.5%);
+    qproperty-envDashLineEnabled: rgba(0, 0, 255, 75%);
+    qproperty-envDashLineDisabled: rgba(50, 50, 255, 37.5%);
+    qproperty-envInvalidLineEnabled: rgba(0, 0, 255, 25%);
+    qproperty-envInvalidLineDisabled: rgba(0, 0, 255, 12.5%);
+    qproperty-envPointCore: blue;
+    qproperty-envPointRing: blue;
+    /**/
+    qproperty-noteLyric: black;
+    qproperty-noteRestFill: #EEEEEE;
+    qproperty-noteRestLine: #CCCCCC;
+    qproperty-noteListedFill: #40D9FF;
+    qproperty-noteListedLine: #0099FF;
+    qproperty-noteUnlistedFill: #1881C7;
+    qproperty-noteUnlistedLine: #105685;
+    qproperty-noteSelect: rgba(0, 0, 0, 18%);
+    /**/
+    qproperty-rubberFrame: rgba(0, 0, 0, 36%);
+    qproperty-rubberFill: rgba(0, 0, 0, 18%);
 }
 
-/* Frame Selector */
+LiftersScrollArea {
+    qproperty-editorTimeLine: #E2E2E2;
+    qproperty-editorSectionLine: #BFBFBF;
+    qproperty-editorBack: white;
+    /**/
+    qproperty-lifterActive: #79BBEE;
+    qproperty-lifterInactive: grey;
+    qproperty-lifterActiveH: pink;
+    qproperty-lifterInactiveH: lightgrey;
+}
 
-FrameSelector {
-    qproperty-fillColor: rgba(0, 0, 0, 20%);
-    qproperty-frameColor: rgba(0, 0, 0, 60%);
+WaveformScrollArea {
+    qproperty-sampleOffsetLine: grey;
+    qproperty-sampleConstantLine: pink;
+    qproperty-sampleBlankLine: lightblue;
+    qproperty-samplePreUttrLine: red;
+    qproperty-sampleOverlapLine: green;
+    /**/
+    qproperty-sampleOffsetBack: rgba(128, 128, 128, 37.5%);
+    qproperty-sampleConstantBack: rgba(255, 192, 203, 37.5%);
+    qproperty-sampleBlankBack: rgba(173, 216, 230, 37.5%);
+    /**/
+    qproperty-sampleWaveform: rgb(0, 110, 0);
+    qproperty-sampleFrqCurves: blue;
 }
 
 /* TracksInterface */
@@ -289,8 +407,13 @@ TracksInterface>QFrame[type=track-separator] {
 
 /* TrackHead */
 
+HeadsArea {
+    background-color: transparent;
+}
+
 TrackHead {
     background-color: #EEEEEE;
+    qproperty-iconColor: darkgrey;
 }
 
 TrackHead>FixedLineEdit {
@@ -304,7 +427,7 @@ TrackHead>FixedLineEdit:focus {
     background-color: rgba(0, 0, 0, 5%);
 }
 
-TrackHead>QPushButton[type="label"] {
+TrackHead>LabelButton {
     border: none;
     background: transparent;
     text-align: left;
@@ -312,42 +435,52 @@ TrackHead>QPushButton[type="label"] {
     color: #999999;
 }
 
-TrackHead>QPushButton[type="label"][invalid="true"] {
+TrackHead>LabelButton[invalid="true"] {
     color: orangered;
 }
 
-TrackHead>QPushButton[type="label"][invalid="false"]::hover {
+TrackHead>LabelButton[invalid="false"]::hover {
     color: #333333;
 }
 
-TrackHead>QPushButton[type="label"][invalid="true"]::hover {
+TrackHead>LabelButton[invalid="true"]::hover {
     color: red;
 }
 
-TrackHead>QPushButton[type="letter"] {
+TrackHead>TrackButton {
     border: 1px solid #CCCCCC;
     background-color: white;
     color: #2B579A;
     border-radius: 2px;
 }
 
-TrackHead>QPushButton[type="letter"]:disabled {
+TrackHead>TrackButton:disabled {
     color: #CCCCCC;
 }
 
-TrackHead>QPushButton[type="letter"]:hover {
+TrackHead>TrackButton:hover {
     background-color: #2B579A;
     color: white;
 }
 
-TrackHead>QPushButton[type="letter"]:pressed {
+TrackHead>TrackButton:pressed {
     background-color: #002050;
 }
 
 /* TrackContent */
 
+BlocksArea {
+    background-color: transparent;
+}
+
 TrackContent {
     background-color: #EEEEEE;
+}
+
+/* ParamsDialArea */
+
+ParamsDialArea {
+    qproperty-textColor: black;
 }
 
 /* KeyboardTab */
@@ -360,36 +493,6 @@ KeyTableWidget>QTableWidget>QHeaderView::section {
 /* BaseDialog */
 
 BaseDialog {
-    background-color: whitesmoke;
-}
-
-BaseDialog>QPushButton {
-    border: 1px solid darkgray;
-    background-color: white;
-    color: #2B579A;
-    border-radius: 2px;
-}
-
-BaseDialog>QPushButton:disabled {
-    color: #CCCCCC;
-}
-
-BaseDialog>QPushButton:hover {
-    background-color: #2B579A;
-    color: white;
-}
-
-BaseDialog>QPushButton:pressed {
-    background-color: #002050;
-}
-
-ProjectSettingsDialog>QWidget {
-    background-color: white;
-}
-
-/* QMessageBox */
-
-QMessageBox {
     background-color: whitesmoke;
 }
 
@@ -418,3 +521,116 @@ QTableWidget::item::selected {
     color: red;
     background: #EFF4FF;
 } */
+
+ComboSelector {
+    background-color: transparent;
+    qproperty-wallpaper: #F3F3F3;
+    /* border-top: 10px solid qlineargradient(y0:0, y1:1, stop: 0 #ECECEC, stop: 1 transparent); */
+    border-top: none;
+    border-left: 8px solid qlineargradient(x0:0, x1:1, stop: 0 #ECECEC, stop: 1 transparent);
+    border-bottom: 8px solid qlineargradient(y0:0, y1:1, stop: 0 transparent, stop: 1 #ECECEC);
+    border-right: 8px solid qlineargradient(x0:0, x1:1, stop: 0 transparent, stop: 1 #ECECEC);
+}
+
+ComboSelector>FixedLineEdit {
+    font-size: 15px;
+    padding: 3px 3px;
+}
+
+ComboSelector>QListWidget {
+    border: none;
+    color: black;
+    background-color: transparent;
+}
+
+ComboSelector>QListWidget::item {
+    font-size: 15px;
+    padding: 3px 3px;
+}
+
+/* QScrollBar */
+
+QScrollBar {
+    background: transparent;
+    margin: 0px 0px 0px 0px;
+}
+
+QScrollBar:vertical {
+    width: 10px;
+}
+
+QScrollBar:horizontal {
+    height: 10px;
+}
+
+QScrollBar::handle {
+    background: rgba(0, 0, 0, 15%);
+    border: 0px;
+    border-radius: 3px;
+    margin: 0px 0px 0px 0px;
+}
+
+QScrollBar::handle:vertical {
+    min-height: 40px;
+}
+
+QScrollBar::handle:horizontal {
+    min-width: 40px;
+}
+
+QScrollBar::handle:hover {
+    background: rgba(0, 0, 0, 20%);
+}
+
+QScrollBar::handle:pressed {
+    background: rgba(0, 0, 0, 18%);
+}
+
+QScrollBar::sub-page {
+    background: transparent;
+}
+
+QScrollBar::add-page {
+    background: transparent;
+}
+
+QScrollBar::up-arrow {
+    background: transparent;
+}
+
+QScrollBar::down-arrow {
+    background: transparent;
+}
+
+QScrollBar::left-arrow {
+    background: transparent;
+}
+
+QScrollBar::right-arrow {
+    background: transparent;
+}
+
+QScrollBar::sub-line {
+    background: transparent;
+    width: 0px;
+}
+
+QScrollBar::add-line {
+    background: transparent;
+    width: 0px;
+}
+
+/* VectorButton */
+
+VectorButton {
+    qproperty-upColor: darkgrey;
+    qproperty-overColor: lightgrey;
+    qproperty-downColor: darkgrey;
+}
+
+/* QMessageBox */
+
+QMessageBox {
+    background-color: whitesmoke;
+    border-radius: 3px;
+}

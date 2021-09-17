@@ -11,7 +11,7 @@ NotesScrollArea::NotesScrollArea(QWidget *parent) : QGraphicsView(parent) {
     verticalScrollBar()->installEventFilter(this);
     horizontalScrollBar()->installEventFilter(this);
 
-    initDark();
+    initLight();
 }
 
 NotesScrollArea::~NotesScrollArea() {

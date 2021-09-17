@@ -1,6 +1,7 @@
 #include "VibratoPlaneHandle.h"
 #include "../../Areas/Editor/NotesArea.h"
 #include "../../Handlers/Mode2Handler.h"
+#include "../../Scrolls/NotesScrollArea.h"
 #include "../../TuningGroup.h"
 #include "QUtils.h"
 
@@ -13,6 +14,14 @@ VibratoPlaneHandle::VibratoPlaneHandle(NotesArea *editor, Mode2Handler *scope,
 VibratoPlaneHandle::~VibratoPlaneHandle() {
 }
 
+void VibratoPlaneHandle::updateColorTheme() {
+    m_borderColor = qViewIn->vbrPlaneHandleBorder();
+    m_fillColor = qViewIn->vbrPlaneHandleFill();
+    m_textColor = qViewIn->vbrPlaneHandleText();
+
+    update();
+}
+
 void VibratoPlaneHandle::init() {
     m_region = NO_RECT;
 
@@ -20,6 +29,9 @@ void VibratoPlaneHandle::init() {
     m_fillColor = Qt::white;
     m_textColor = Qt::black;
     m_ringWidth = 1.5;
+
+    updateColorTheme();
+    connect(qViewIn, &NotesScrollArea::themeUpdated, this, &VibratoPlaneHandle::updateColorTheme);
 }
 
 double VibratoPlaneHandle::padding() const {

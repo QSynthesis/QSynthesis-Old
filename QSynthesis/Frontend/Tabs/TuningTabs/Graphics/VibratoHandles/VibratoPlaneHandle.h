@@ -12,6 +12,8 @@ public:
                                 QGraphicsItem *parent = nullptr);
     ~VibratoPlaneHandle();
 
+    void updateColorTheme();
+
 private:
     void init();
 
