@@ -12,8 +12,7 @@
 #include "QSTabs.h"
 #include "QUtauUtils.h"
 #include "QUtils.h"
-#include "Singletons/ColorTheme.h"
-#include "Tabs/CentralTabs/CentralTabWidget.h"
+#include "Singletons/CentralTabWidget.h"
 #include "VoiceBank/QOtoReference.h"
 
 #include <QAction>
@@ -38,7 +37,7 @@
 #define qSetting SettingIniData::instance()
 #define qConfig ConfigData::instance()
 #define qShortcuts ShortcutsData::instance()
-#define qTheme ColorTheme::instance()
+#define qSelector ComboSelector::instance()
 
 class MainWindow : public QMainWindow {
     Q_OBJECT

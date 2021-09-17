@@ -1,4 +1,4 @@
-#include "../../../Modules/Scrolls/NotesScrollArea.h"
+#include "../../../Scrolls/NotesScrollArea.h"
 #include "../../../TuningGroup.h"
 #include "../NotesArea.h"
 
@@ -9,7 +9,7 @@ bool NotesArea::isSelecting() const {
 }
 
 void NotesArea::initSelectModules() {
-    m_selector = new GraphicsRubber();
+    m_selector = new GraphicsRubber(this);
     addItem(m_selector);
 
     m_selector->setZValue(rubberBandZIndex);

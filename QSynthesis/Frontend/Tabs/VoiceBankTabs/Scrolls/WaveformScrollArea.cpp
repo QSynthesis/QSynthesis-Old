@@ -1,0 +1,120 @@
+#include "WaveformScrollArea.h"
+
+#include <QEvent>
+
+WaveformScrollArea::WaveformScrollArea(QWidget *parent)
+    : GraphicsLinearView(Qt::Horizontal, parent) {
+    setAlignment(Qt::AlignLeft);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+
+    verticalScrollBar()->installEventFilter(this);
+    horizontalScrollBar()->installEventFilter(this);
+
+    sample.offsetLine = Qt::lightGray;
+    sample.constantLine = (QColorConstants::Svg::pink);
+    sample.blankLine = (QColorConstants::Svg::lightblue);
+    sample.preUttrLine = (Qt::red);
+    sample.overlapLine = (Qt::green);
+
+    sample.waveform = QColor(0, 110, 0);
+    sample.frqCurves = Qt::blue;
+
+    int alpha = 96;
+    sample.offsetBack = (QColor(sample.offsetLine.red(), sample.offsetLine.green(),
+                                sample.offsetLine.blue(), alpha));
+    sample.constantBack = (QColor(sample.constantLine.red(), sample.constantLine.green(),
+                                  sample.constantLine.blue(), alpha));
+    sample.blankBack =
+        (QColor(sample.blankLine.red(), sample.blankLine.green(), sample.blankLine.blue(), alpha));
+}
+
+WaveformScrollArea::~WaveformScrollArea() {
+}
+
+QRectF WaveformScrollArea::viewportRect() const {
+    QRect viewport_rect(0, 0, viewport()->width(), viewport()->height());
+    QRectF visible_scene_rect = mapToScene(viewport_rect).boundingRect();
+    return visible_scene_rect;
+}
+
+bool WaveformScrollArea::eventFilter(QObject *obj, QEvent *event) {
+    if (obj == verticalScrollBar() || obj == horizontalScrollBar()) {
+        if (event->type() == QEvent::Wheel) {
+            return true;
+        }
+    }
+    // pass the event on to the parent class
+    return QGraphicsView::eventFilter(obj, event);
+}
+
+QColor WaveformScrollArea::sampleOffsetLine() const {
+    return sample.offsetLine;
+}
+QColor WaveformScrollArea::sampleConstantLine() const {
+    return sample.constantLine;
+}
+QColor WaveformScrollArea::sampleBlankLine() const {
+    return sample.blankLine;
+}
+QColor WaveformScrollArea::samplePreUttrLine() const {
+    return sample.preUttrLine;
+}
+QColor WaveformScrollArea::sampleOverlapLine() const {
+    return sample.overlapLine;
+}
+QColor WaveformScrollArea::sampleOffsetBack() const {
+    return sample.offsetBack;
+}
+QColor WaveformScrollArea::sampleConstantBack() const {
+    return sample.constantBack;
+}
+QColor WaveformScrollArea::sampleBlankBack() const {
+    return sample.blankBack;
+}
+QColor WaveformScrollArea::sampleWaveform() const {
+    return sample.waveform;
+}
+QColor WaveformScrollArea::sampleFrqCurves() const {
+    return sample.frqCurves;
+}
+
+void WaveformScrollArea::setSampleOffsetLine(const QColor &color) {
+    sample.offsetLine = color;
+    emit themeUpdated();
+}
+void WaveformScrollArea::setSampleConstantLine(const QColor &color) {
+    sample.constantLine = color;
+    emit themeUpdated();
+}
+void WaveformScrollArea::setSampleBlankLine(const QColor &color) {
+    sample.blankLine = color;
+    emit themeUpdated();
+}
+void WaveformScrollArea::setSamplePreUttrLine(const QColor &color) {
+    sample.preUttrLine = color;
+    emit themeUpdated();
+}
+void WaveformScrollArea::setSampleOverlapLine(const QColor &color) {
+    sample.overlapLine = color;
+    emit themeUpdated();
+}
+void WaveformScrollArea::setSampleOffsetBack(const QColor &color) {
+    sample.offsetBack = color;
+    emit themeUpdated();
+}
+void WaveformScrollArea::setSampleConstantBack(const QColor &color) {
+    sample.constantBack = color;
+    emit themeUpdated();
+}
+void WaveformScrollArea::setSampleBlankBack(const QColor &color) {
+    sample.blankBack = color;
+    emit themeUpdated();
+}
+void WaveformScrollArea::setSampleWaveform(const QColor &color) {
+    sample.waveform = color;
+    emit themeUpdated();
+}
+void WaveformScrollArea::setSampleFrqCurves(const QColor &color) {
+    sample.frqCurves = color;
+    emit themeUpdated();
+}

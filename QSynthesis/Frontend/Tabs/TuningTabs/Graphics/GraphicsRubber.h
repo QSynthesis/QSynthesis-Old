@@ -7,10 +7,12 @@
 #include <QPen>
 #include <QTimer>
 
+class NotesArea;
+
 class GraphicsRubber : public QObject, public QGraphicsRectItem {
     Q_OBJECT
 public:
-    explicit GraphicsRubber(QGraphicsItem *parent = nullptr);
+    explicit GraphicsRubber(NotesArea *editor, QGraphicsItem *parent = nullptr);
     ~GraphicsRubber();
 
     void updateColorTheme();
@@ -31,6 +33,8 @@ public:
     void setVertical(bool vertical);
 
 private:
+    NotesArea *m_editor;
+
     QPointF m_start, m_end;
     QTimer *m_timer;
 

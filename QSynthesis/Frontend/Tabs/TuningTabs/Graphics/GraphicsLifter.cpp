@@ -1,4 +1,6 @@
 #include "GraphicsLifter.h"
+#include "../Areas/Params/LiftersArea.h"
+#include "../Scrolls/LiftersScrollArea.h"
 #include "QUtauConstants.h"
 #include "mainwindow.h"
 
@@ -17,17 +19,17 @@ GraphicsLifter::GraphicsLifter(GraphicsNote *note, LiftersArea *editor, QGraphic
     m_values[Velocity] = DEFAULT_VALUE_VELOCITY;
 
     updateColorTheme();
-    connect(qTheme, &ColorTheme::updated, this, &GraphicsLifter::updateColorTheme);
+    connect(qViewIn, &LiftersScrollArea::themeUpdated, this, &GraphicsLifter::updateColorTheme);
 }
 
 GraphicsLifter::~GraphicsLifter() {
 }
 
 void GraphicsLifter::updateColorTheme() {
-    m_activeColor = qTheme->lifter_active;
-    m_activeHColor = qTheme->lifter_activeH;
-    m_inactiveColor = qTheme->lifter_inactive;
-    m_inactiveHColor = qTheme->lifter_inactiveH;
+    m_activeColor = qViewIn->lifterActive();
+    m_activeHColor = qViewIn->lifterActiveH();
+    m_inactiveColor = qViewIn->lifterInactive();
+    m_inactiveHColor = qViewIn->lifterInactiveH();
     update();
 }
 

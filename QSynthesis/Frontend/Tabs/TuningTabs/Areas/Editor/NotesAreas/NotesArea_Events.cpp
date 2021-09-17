@@ -1,5 +1,5 @@
 #include "../../../Forms/EditorForm.h"
-#include "../../../Modules/Scrolls/NotesScrollArea.h"
+#include "../../../Scrolls/NotesScrollArea.h"
 #include "../../../TuningGroup.h"
 #include "../NotesArea.h"
 #include "mainwindow.h"

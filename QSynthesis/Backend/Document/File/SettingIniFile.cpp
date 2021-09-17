@@ -123,6 +123,10 @@ bool SettingIniFile::loadCore(bool *valid) {
         if (paramsForm) {
             m_data.paramsFormVisibility = *paramsForm == "True";
         }
+        QString *themeIndex = guiSection->valueOf(KEY_NAME_THEME_INDEX);
+        if (themeIndex) {
+            m_data.themeIndex = themeIndex->toInt();
+        }
     }
     return true;
 }
@@ -143,11 +147,11 @@ bool SettingIniFile::saveCore() {
                             QDir::toNativeSeparators(tool2File.absoluteFilePath()));
     }
     tempSection.addPair(KEY_NAME_INSERT_IGNORE_RESTS,
-                       m_data.ignoreRestsWhenInsert ? "True" : "False");
+                        m_data.ignoreRestsWhenInsert ? "True" : "False");
     tempSection.addPair(KEY_NAME_INSERT_REPLACE_LYRICS,
-                       m_data.replaceLyricsWhenInsert ? "True" : "False");
+                        m_data.replaceLyricsWhenInsert ? "True" : "False");
     tempSection.addPair(KEY_NAME_INSERT_SEPARATE_CHAR,
-                       m_data.separateCharWhenInsert ? "True" : "False");
+                        m_data.separateCharWhenInsert ? "True" : "False");
     tempSection.addPair(KEY_NAME_LAST_QUANTIZE, QString::number(m_data.lastQuantize));
     setting.addSection(tempSection);
 
@@ -195,6 +199,7 @@ bool SettingIniFile::saveCore() {
                        m_data.editorFormVisibility ? "True" : "False");
     guiSection.addPair(KEY_NAME_PARAMS_FORM_VISIBILITY,
                        m_data.paramsFormVisibility ? "True" : "False");
+    guiSection.addPair(KEY_NAME_THEME_INDEX, QString::number(m_data.themeIndex));
 
     setting.addSection(guiSection);
 

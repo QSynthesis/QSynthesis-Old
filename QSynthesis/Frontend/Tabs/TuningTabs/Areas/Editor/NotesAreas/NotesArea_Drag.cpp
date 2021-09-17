@@ -1,4 +1,4 @@
-#include "../../../Modules/Scrolls/NotesScrollArea.h"
+#include "../../../Scrolls/NotesScrollArea.h"
 #include "../NotesArea.h"
 
 #include <QCursor>

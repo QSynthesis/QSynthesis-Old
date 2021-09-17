@@ -31,6 +31,8 @@ public:
     bool ignoreRestsWhenInsert;
     bool replaceLyricsWhenInsert;
     bool separateCharWhenInsert;
+
+    int themeIndex;
 };
 
 #endif // SETTINGINIDATA_H

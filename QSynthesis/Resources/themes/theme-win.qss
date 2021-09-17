@@ -109,7 +109,7 @@ CentralTabWidget>QTabBar::tab {
     border-right: 1px solid #F3F3F3;
     border-left: 1px solid #F3F3F3;
     color: #333333;
-    padding: 8px 15px;
+    padding: 12px 15px;
     background-color: #ECECEC;
 }
 
@@ -359,23 +359,85 @@ NotesArea {
     qproperty-leftRegionColor: rgba(0, 0, 0, 20%);
 }
 
-/* Note */
+/* Graphics */
 
-NoteHandler {
-    qproperty-lyricColor: black;
-    qproperty-restLineColor: #CCCCCC;
-    qproperty-restFillColor: #EEEEEE;
-    qproperty-listedLineColor: #0099FF;
-    qproperty-listedFillColor: #40D9FF;
-    qproperty-unlistedLineColor: #105685;
-    qproperty-unlistedFillColor: #1881C7;
+NotesScrollArea {
+    qproperty-editorQuarterLine: #D4D4D4;
+    qproperty-editorTimeLine: #E2E2E2;
+    qproperty-editorSectionLine: #BFBFBF;
+    qproperty-editorPitchLine: #E6E6E6;
+    qproperty-editorLevelLine: #CCCCCC;
+    qproperty-editorBackDark: #F2F2F2;
+    qproperty-editorBackLight: #FFFFFF;
+    qproperty-editorPlayHead: black;
+    /**/
+    qproperty-mode1SolidLineEnabled: red;
+    qproperty-mode1SolidLineDisabled: rgba(255, 80, 80, 50%);
+    qproperty-mode1DashLineEnabled: rgba(255, 0, 0, 75%);
+    qproperty-mode1DashLineDisabled: rgba(255, 80, 80, 37.5%);
+    /**/
+    qproperty-mode2SolidLineEnabled: red;
+    qproperty-mode2SolidLineDisabled: rgba(255, 80, 80, 50%);
+    qproperty-mode2DashLineEnabled: rgba(255, 0, 0, 75%);
+    qproperty-mode2DashLineDisabled: rgba(255, 80, 80, 50%);
+    qproperty-mode2InvalidLineEnabled: rgba(255, 0, 0, 40%);
+    qproperty-mode2InvalidLineDisabled: rgba(255, 80, 80, 20%);
+    qproperty-mode2PointCore: red;
+    qproperty-mode2PointRing: red;
+    /**/
+    qproperty-vbrCurvesEnabled: red;
+    qproperty-vbrCurvesDisabled: rgba(255, 80, 80, 75%);
+    qproperty-vbrEditorLines: black;
+    qproperty-vbrPlaneHandleBorder: black;
+    qproperty-vbrPlaneHandleFill: white;
+    qproperty-vbrPlaneHandleText: black;
+    /**/
+    qproperty-envSolidLineEnabled: blue;
+    qproperty-envSolidLineDisabled: rgba(50, 50, 255, 37.5%);
+    qproperty-envDashLineEnabled: rgba(0, 0, 255, 75%);
+    qproperty-envDashLineDisabled: rgba(50, 50, 255, 37.5%);
+    qproperty-envInvalidLineEnabled: rgba(0, 0, 255, 25%);
+    qproperty-envInvalidLineDisabled: rgba(0, 0, 255, 12.5%);
+    qproperty-envPointCore: blue;
+    qproperty-envPointRing: blue;
+    /**/
+    qproperty-noteLyric: black;
+    qproperty-noteRestFill: #EEEEEE;
+    qproperty-noteRestLine: #CCCCCC;
+    qproperty-noteListedFill: #40D9FF;
+    qproperty-noteListedLine: #0099FF;
+    qproperty-noteUnlistedFill: #1881C7;
+    qproperty-noteUnlistedLine: #105685;
+    qproperty-noteSelect: rgba(0, 0, 0, 18%);
+    /**/
+    qproperty-rubberFrame: rgba(0, 0, 0, 36%);
+    qproperty-rubberFill: rgba(0, 0, 0, 18%);
 }
 
-/* Frame Selector */
+LiftersScrollArea {
+    qproperty-editorTimeLine: #E2E2E2;
+    qproperty-editorSectionLine: #BFBFBF;
+    qproperty-editorBack: white;
+    /**/
+    qproperty-lifterActive: #79BBEE;
+    qproperty-lifterInactive: grey;
+    qproperty-lifterActiveH: pink;
+    qproperty-lifterInactiveH: lightgrey;
+}
 
-FrameSelector {
-    qproperty-fillColor: rgba(0, 0, 0, 20%);
-    qproperty-frameColor: rgba(0, 0, 0, 60%);
+WaveformScrollArea {
+    qproperty-sampleOffsetLine: grey;
+    qproperty-sampleConstantLine: pink;
+    qproperty-sampleBlankLine: lightblue;
+    qproperty-samplePreUttrLine: red;
+    qproperty-sampleOverlapLine: green;
+    /**/
+    qproperty-sampleOffsetBack: rgba(128, 128, 128, 37.5%);
+    qproperty-sampleConstantBack: rgba(255, 192, 203, 37.5%);
+    qproperty-sampleBlankBack: rgba(173, 216, 230, 37.5%);
+    /**/
+    qproperty-sampleWaveform: rgb(0, 110, 0);
+    qproperty-sampleFrqCurves: blue;
 }
 
 /* TracksInterface */
@@ -505,7 +567,6 @@ QTableWidget::item::selected {
 ComboSelector {
     background-color: transparent;
     qproperty-wallpaper: #F3F3F3;
-
     /* border-top: 10px solid qlineargradient(y0:0, y1:1, stop: 0 #ECECEC, stop: 1 transparent); */
     border-top: none;
     border-left: 8px solid qlineargradient(x0:0, x1:1, stop: 0 #ECECEC, stop: 1 transparent);

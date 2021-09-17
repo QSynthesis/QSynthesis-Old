@@ -4,8 +4,8 @@
 #include "../Areas/Params/ParamsDialArea.h"
 #include "../Forms/ParamsForm.h"
 #include "../Interfaces/EditorInterface.h"
-#include "../Modules/Scrolls/LiftersScrollArea.h"
-#include "../Modules/Scrolls/NotesScrollArea.h"
+#include "../Scrolls/LiftersScrollArea.h"
+#include "../Scrolls/NotesScrollArea.h"
 #include "../TuningGroup.h"
 #include "mainwindow.h"
 

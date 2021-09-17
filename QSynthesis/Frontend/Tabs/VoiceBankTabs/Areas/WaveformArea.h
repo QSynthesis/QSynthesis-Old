@@ -19,6 +19,8 @@ public:
     explicit WaveformArea(WaveformScrollArea *parent = nullptr);
     ~WaveformArea();
 
+    void updateColorTheme();
+
     const double regionZIndex = 1;
     const double handleZIndex = 2;
 

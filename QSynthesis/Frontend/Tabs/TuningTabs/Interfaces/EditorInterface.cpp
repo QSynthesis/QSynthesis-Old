@@ -3,8 +3,8 @@
 #include "../Areas/Editor/PianoArea.h"
 #include "../Areas/Editor/SectionsArea.h"
 #include "../Forms/EditorForm.h"
-#include "../Modules/Scrolls/NoneScrollArea.h"
-#include "../Modules/Scrolls/NotesScrollArea.h"
+#include "../Scrolls/NoneScrollArea.h"
+#include "../Scrolls/NotesScrollArea.h"
 #include "../TuningGroup.h"
 #include "mainwindow.h"
 

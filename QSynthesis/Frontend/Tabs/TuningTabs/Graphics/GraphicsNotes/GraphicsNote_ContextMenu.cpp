@@ -1,6 +1,6 @@
 #include "../../Areas/Editor/NotesArea.h"
 #include "../../Graphics/GraphicsNote.h"
-#include "../../Modules/Scrolls/NotesScrollArea.h"
+#include "../../Scrolls/NotesScrollArea.h"
 #include "../../TuningGroup.h"
 
 void GraphicsNote::openContextMenu() {

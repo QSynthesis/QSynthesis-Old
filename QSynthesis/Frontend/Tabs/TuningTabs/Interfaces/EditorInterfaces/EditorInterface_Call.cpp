@@ -1,7 +1,7 @@
 #include "../../Areas/Editor/NotesArea.h"
 #include "../../Areas/Editor/PianoArea.h"
 #include "../../Areas/Editor/SectionsArea.h"
-#include "../../Modules/Scrolls/NotesScrollArea.h"
+#include "../../Scrolls/NotesScrollArea.h"
 #include "../../TuningGroup.h"
 #include "../EditorInterface.h"
 

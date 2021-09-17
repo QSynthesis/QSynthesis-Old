@@ -1,5 +1,5 @@
 #include "../../../Forms/EditorForm.h"
-#include "../../../Modules/Scrolls/NotesScrollArea.h"
+#include "../../../Scrolls/NotesScrollArea.h"
 #include "../../../Operations/LengthOperation.h"
 #include "../../../Operations/LyricsOperation.h"
 #include "../../../Operations/SequenceOperation.h"

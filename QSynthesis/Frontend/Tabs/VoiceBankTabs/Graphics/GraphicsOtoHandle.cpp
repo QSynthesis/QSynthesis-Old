@@ -1,5 +1,5 @@
 #include "GraphicsOtoHandle.h"
-#include "../Modules/WaveformArea.h"
+#include "../Areas/WaveformArea.h"
 
 GraphicsOtoHandle::GraphicsOtoHandle(WaveformArea *editor, QGraphicsItem *parent)
     : GraphicsLineHandle(Qt::Horizontal, parent), m_editor(editor) {

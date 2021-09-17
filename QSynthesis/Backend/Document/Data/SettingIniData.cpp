@@ -34,4 +34,6 @@ void SettingIniData::clear() {
     ignoreRestsWhenInsert = true;
     replaceLyricsWhenInsert = true;
     separateCharWhenInsert = false;
+
+    themeIndex = 0;
 }

@@ -1,6 +1,7 @@
 #include "EnvelopeHandler.h"
 #include "../Areas/Editor/NotesArea.h"
 #include "../Graphics/VolumePoint.h"
+#include "../Scrolls/NotesScrollArea.h"
 #include "mainwindow.h"
 
 const QList<QControlPoint> EnvelopeHandler::defaultEnvelope = {
@@ -19,17 +20,14 @@ EnvelopeHandler::~EnvelopeHandler() {
 }
 
 void EnvelopeHandler::updateColorTheme() {
-    m_envSolidLineEnabledColor = qTheme->env_solidLineEnabled;
-    m_envSolidLineDisabledColor = qTheme->env_solidLineDisabled;
-
-    m_envDashLineEnabledColor = qTheme->env_dashLineEnabled;
-    m_envDashLineDisabledColor = qTheme->env_dashLineDisabled;
-
-    m_envInvalidLineEnabledColor = qTheme->env_invalidLineEnabled;
-    m_envInvalidLineDisabledColor = qTheme->env_invalidLineDisabled;
-
-    m_pointColor = qTheme->env_pointCore;
-    m_ringColor = qTheme->env_pointRing;
+    m_envSolidLineEnabledColor = qViewIn->envSolidLineEnabled();
+    m_envSolidLineDisabledColor = qViewIn->envSolidLineDisabled();
+    m_envDashLineEnabledColor = qViewIn->envDashLineEnabled();
+    m_envDashLineDisabledColor = qViewIn->envDashLineDisabled();
+    m_envInvalidLineEnabledColor = qViewIn->envInvalidLineEnabled();
+    m_envInvalidLineDisabledColor = qViewIn->envInvalidLineDisabled();
+    m_pointColor = qViewIn->envPointCore();
+    m_ringColor = qViewIn->envPointRing();
 
     update();
 }
@@ -42,7 +40,7 @@ void EnvelopeHandler::init() {
     m_pointRadius = 3;
 
     updateColorTheme();
-    connect(qTheme, &ColorTheme::updated, this, &EnvelopeHandler::updateColorTheme);
+    connect(qViewIn, &NotesScrollArea::themeUpdated, this, &EnvelopeHandler::updateColorTheme);
 }
 
 GraphicsPoint *EnvelopeHandler::createPointCore() {

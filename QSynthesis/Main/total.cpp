@@ -22,16 +22,12 @@ void initSingletons() {
     SettingIniData::createCase();
     ConfigData::createCase();
     ShortcutsData::createCase();
-
-    ColorTheme::createCase();
 }
 
 void removeSingletons() {
     SettingIniData::destroyCase();
     ConfigData::destroyCase();
     ShortcutsData::destroyCase();
-
-    ColorTheme::destroyCase();
 }
 
 void created() {

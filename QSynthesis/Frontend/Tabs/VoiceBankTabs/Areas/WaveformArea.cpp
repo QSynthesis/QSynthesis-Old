@@ -1,5 +1,5 @@
 #include "WaveformArea.h"
-#include "WaveformScrollArea.h"
+#include "../Scrolls/WaveformScrollArea.h"
 
 #include <cmath>
 
@@ -54,26 +54,30 @@ WaveformArea::WaveformArea(WaveformScrollArea *parent) : GraphicsArea(parent), m
     connect(btnPreUttr, &GraphicsOtoHandle::clicked, this, &WaveformArea::handlePreUttrClicked);
     connect(btnOverlap, &GraphicsOtoHandle::clicked, this, &WaveformArea::handleOverlapClicked);
 
-    setOffsetColor(Qt::lightGray);
-    setConstantColor(QColorConstants::Svg::pink);
-    setBlankColor(QColorConstants::Svg::lightblue);
-    setPreUttrColor(Qt::red);
-    setOverlapColor(Qt::green);
-
-    m_waveformColor = QColor(0, 110, 0);
-    m_frqCurvesColor = Qt::blue;
-
-    int alpha = 96;
-    setOffsetBackColor(
-        QColor(offsetColor().red(), offsetColor().green(), offsetColor().blue(), alpha));
-    setConstantBackColor(
-        QColor(constantColor().red(), constantColor().green(), constantColor().blue(), alpha));
-    setBlankBackColor(QColor(blankColor().red(), blankColor().green(), blankColor().blue(), alpha));
-
     updateHandles();
+
+    updateColorTheme();
+    connect(m_view, &WaveformScrollArea::themeUpdated, this, &WaveformArea::updateColorTheme);
 }
 
 WaveformArea::~WaveformArea() {
+}
+
+void WaveformArea::updateColorTheme() {
+    setOffsetColor(m_view->sampleOffsetLine());
+    setConstantColor(m_view->sampleConstantLine());
+    setBlankColor(m_view->sampleBlankLine());
+    setPreUttrColor(m_view->samplePreUttrLine());
+    setOverlapColor(m_view->sampleOverlapLine());
+
+    m_waveformColor = m_view->sampleWaveform();
+    m_frqCurvesColor = m_view->sampleFrqCurves();
+
+    setOffsetBackColor(m_view->sampleOffsetBack());
+    setConstantBackColor(m_view->sampleConstantBack());
+    setBlankBackColor(m_view->sampleBlankBack());
+
+    update();
 }
 
 void WaveformArea::reset() {

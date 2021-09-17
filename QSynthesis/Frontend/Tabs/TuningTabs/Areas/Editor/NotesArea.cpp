@@ -1,6 +1,6 @@
 #include "NotesArea.h"
 #include "../../Interfaces/EditorInterface.h"
-#include "../../Modules/Scrolls/NotesScrollArea.h"
+#include "../../Scrolls/NotesScrollArea.h"
 #include "../../TuningGroup.h"
 #include "mainwindow.h"
 
@@ -28,21 +28,21 @@ NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *parent)
     connect(this, &QGraphicsScene::sceneRectChanged, this, &NotesArea::handleSceneRectChanged);
 
     updateColorTheme();
-    connect(qTheme, &ColorTheme::updated, this, &NotesArea::updateColorTheme);
+    connect(m_view, &NotesScrollArea::themeUpdated, this, &NotesArea::updateColorTheme);
 }
 
 NotesArea::~NotesArea() {
 }
 
 void NotesArea::updateColorTheme() {
-    m_timeLineColor = qTheme->editor_timeLine;
-    m_quarterLineColor = qTheme->editor_quarterLine;
-    m_sectionLineColor = qTheme->editor_sectionLine;
-    m_pitchLineColor = qTheme->editor_pitchLine;
-    m_levelLineColor = qTheme->editor_levelLine;
-    m_backDarkColor = qTheme->editor_backDark;
-    m_backLightColor = qTheme->editor_backLight;
-    playHead->setBrush(qTheme->editor_playHead);
+    m_timeLineColor = m_view->editorTimeLine();
+    m_quarterLineColor = m_view->editorQuarterLine();
+    m_sectionLineColor = m_view->editorSectionLine();
+    m_pitchLineColor = m_view->editorPitchLine();
+    m_levelLineColor = m_view->editorLevelLine();
+    m_backDarkColor = m_view->editorBackDark();
+    m_backLightColor = m_view->editorBackLight();
+    playHead->setBrush(m_view->editorPlayHead());
 
     updateBackground();
 }

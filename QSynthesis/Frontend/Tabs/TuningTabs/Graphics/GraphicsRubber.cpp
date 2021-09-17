@@ -1,10 +1,13 @@
 #include "GraphicsRubber.h"
+#include "../Areas/Editor/NotesArea.h"
+#include "../Scrolls/NotesScrollArea.h"
 #include "mainwindow.h"
 
 #include <QDebug>
 #include <QGraphicsScene>
 
-GraphicsRubber::GraphicsRubber(QGraphicsItem *parent) : QGraphicsRectItem(parent) {
+GraphicsRubber::GraphicsRubber(NotesArea *editor, QGraphicsItem *parent)
+    : QGraphicsRectItem(parent), m_editor(editor) {
     init();
     setStartPoint(QPoint(0, 0));
 }
@@ -13,8 +16,8 @@ GraphicsRubber::~GraphicsRubber() {
 }
 
 void GraphicsRubber::updateColorTheme() {
-    m_frameColor = qTheme->rubber_frame;
-    m_fillColor = qTheme->rubber_fill;
+    m_frameColor = qViewIn->rubberFrame();
+    m_fillColor = qViewIn->rubberFill();
     update();
 }
 
@@ -26,7 +29,7 @@ void GraphicsRubber::init() {
     connect(m_timer, &QTimer::timeout, this, &GraphicsRubber::onTimer);
 
     updateColorTheme();
-    connect(qTheme, &ColorTheme::updated, this, &GraphicsRubber::updateColorTheme);
+    connect(qViewIn, &NotesScrollArea::themeUpdated, this, &GraphicsRubber::updateColorTheme);
 }
 
 void GraphicsRubber::setStartPoint(QPointF pos) {

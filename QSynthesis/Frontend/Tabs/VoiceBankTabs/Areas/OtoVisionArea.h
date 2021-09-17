@@ -5,10 +5,10 @@
 #include <QHBoxLayout>
 #include <QWidget>
 
-#include "../Modules/WaveformArea.h"
-#include "../Modules/WaveformScrollArea.h"
+#include "../Scrolls/WaveformScrollArea.h"
 #include "QGenonSettings.h"
 #include "VoiceBankArea.h"
+#include "WaveformArea.h"
 
 class OtoOperation;
 

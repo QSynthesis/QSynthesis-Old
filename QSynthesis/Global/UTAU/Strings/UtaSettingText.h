@@ -22,6 +22,7 @@ namespace UtaSettingText {
     const QString KEY_NAME_TRACKS_FORM_VISIBILITY = "TracksFormVisibility";
     const QString KEY_NAME_EDITOR_FORM_VISIBILITY = "EditorFormVisibility";
     const QString KEY_NAME_PARAMS_FORM_VISIBILITY = "ParamsFormVisibility";
+    const QString KEY_NAME_THEME_INDEX= "ThemeIndex";
 
     const QString KEY_PREFIX_PROJECT = "History";
     const QString KEY_PREFIX_VOICE = "Voice";

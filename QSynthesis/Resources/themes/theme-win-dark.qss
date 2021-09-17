@@ -351,23 +351,85 @@ PianoKey[color=black]:hover {
     background-color: #4794CB;
 }
 
-/* Note */
+/* Graphics */
 
-NoteHandler {
-    qproperty-lyricColor: black;
-    qproperty-restLineColor: #CCCCCC;
-    qproperty-restFillColor: #EEEEEE;
-    qproperty-listedLineColor: #0099FF;
-    qproperty-listedFillColor: #40D9FF;
-    qproperty-unlistedLineColor: #105685;
-    qproperty-unlistedFillColor: #1881C7;
+NotesScrollArea {
+    qproperty-editorQuarterLine: #161616;
+    qproperty-editorTimeLine: #1C1C1C;
+    qproperty-editorSectionLine: #101010;
+    qproperty-editorPitchLine: #101010;
+    qproperty-editorLevelLine: #191919;
+    qproperty-editorBackDark: #232323;
+    qproperty-editorBackLight: #2D2D2D;
+    qproperty-editorPlayHead: white;
+    /**/
+    qproperty-mode1SolidLineEnabled: #FF4D4D;
+    qproperty-mode1SolidLineDisabled: #FF8080C0;
+    qproperty-mode1DashLineEnabled: #FF4D4DC0;
+    qproperty-mode1DashLineDisabled: #FF808080;
+    /**/
+    qproperty-mode2SolidLineEnabled: #FF4D4D;
+    qproperty-mode2SolidLineDisabled: #FF8080C0;
+    qproperty-mode2DashLineEnabled: #FF4D4DC0;
+    qproperty-mode2DashLineDisabled: #FF808080;
+    qproperty-mode2InvalidLineEnabled: #FF4D4D48;
+    qproperty-mode2InvalidLineDisabled: #FF4D4D24;
+    qproperty-mode2PointCore: #FF4D4D;
+    qproperty-mode2PointRing: #FF4D4D;
+    /**/
+    qproperty-vbrCurvesEnabled: #FF4D4D;
+    qproperty-vbrCurvesDisabled: #FF8080C0;
+    qproperty-vbrEditorLines: yellow;
+    qproperty-vbrPlaneHandleBorder: yellow;
+    qproperty-vbrPlaneHandleFill: #333333;
+    qproperty-vbrPlaneHandleText: yellow;
+    /**/
+    qproperty-envSolidLineEnabled: rgb(150, 216, 216);
+    qproperty-envSolidLineDisabled: rgba(150, 216, 216, 50%);
+    qproperty-envDashLineEnabled: rgba(150, 216, 216, 75%);
+    qproperty-envDashLineDisabled: rgba(150, 216, 216, 37%);
+    qproperty-envInvalidLineEnabled: rgba(150, 216, 216, 28%);
+    qproperty-envInvalidLineDisabled: rgba(150, 216, 216, 14%);
+    qproperty-envPointCore: rgb(150, 216, 216);
+    qproperty-envPointRing: rgb(150, 216, 216);
+    /**/
+    qproperty-noteLyric: white;
+    qproperty-noteRestFill: #EEEEEE;
+    qproperty-noteRestLine: #CCCCCC;
+    qproperty-noteListedFill: #40D9FF;
+    qproperty-noteListedLine: #0099FF;
+    qproperty-noteUnlistedFill: #1881C7;
+    qproperty-noteUnlistedLine: #105685;
+    qproperty-noteSelect: rgba(255, 255, 255, 18%);
+    /**/
+    qproperty-rubberFrame: rgba(255, 255, 255, 36%);
+    qproperty-rubberFill: rgba(255, 255, 255, 18%);
 }
 
-/* Frame Selector */
+LiftersScrollArea {
+    qproperty-editorTimeLine: #1C1C1C;
+    qproperty-editorSectionLine: #101010;
+    qproperty-editorBack: #2D2D2D;
+    /**/
+    qproperty-lifterActive: #79BBEE;
+    qproperty-lifterInactive: grey;
+    qproperty-lifterActiveH: pink;
+    qproperty-lifterInactiveH: lightgrey;
+}
 
-FrameSelector {
-    qproperty-fillColor: rgba(0, 0, 0, 20%);
-    qproperty-frameColor: rgba(0, 0, 0, 60%);
+WaveformScrollArea {
+    qproperty-sampleOffsetLine: grey;
+    qproperty-sampleConstantLine: pink;
+    qproperty-sampleBlankLine: lightblue;
+    qproperty-samplePreUttrLine: red;
+    qproperty-sampleOverlapLine: green;
+    /**/
+    qproperty-sampleOffsetBack: rgba(128, 128, 128, 37.5%);
+    qproperty-sampleConstantBack: rgba(255, 192, 203, 37.5%);
+    qproperty-sampleBlankBack: rgba(173, 216, 230, 37.5%);
+    /**/
+    qproperty-sampleWaveform: rgb(0, 192, 32);
+    qproperty-sampleFrqCurves: lightblue;
 }
 
 /* TracksInterface */

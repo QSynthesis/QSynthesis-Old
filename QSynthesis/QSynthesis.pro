@@ -101,12 +101,12 @@ SOURCES += \
     Frontend/Dialogs/ScriptPluginDialog.cpp \
     Frontend/Dialogs/SelectsDialog.cpp \
     Frontend/Dialogs/TerminalDialog.cpp \
+    Frontend/Singletons/CentralTabWidget.cpp \
     Frontend/Singletons/ColorTheme.cpp \
+    Frontend/Singletons/ComboSelector.cpp \
     Frontend/Singletons/TempHandler.cpp \
     Frontend/Tabs/BaseTab.cpp \
     Frontend/Tabs/CentralTab.cpp \
-    Frontend/Tabs/CentralTabs/CentralTabWidget.cpp \
-    Frontend/Tabs/CentralTabs/ComboSelector.cpp \
     Frontend/Tabs/KeyboardTab.cpp \
     Frontend/Tabs/KeyboardTabs/KeyLabelContent.cpp \
     Frontend/Tabs/KeyboardTabs/KeyLineEdit.cpp \
@@ -228,9 +228,9 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp \
     Frontend/Tabs/TuningTabs/Modules/Form/FormSplitter.cpp \
     Frontend/Tabs/TuningTabs/Modules/Form/FormTitleBar.cpp \
-    Frontend/Tabs/TuningTabs/Modules/Scrolls/LiftersScrollArea.cpp \
-    Frontend/Tabs/TuningTabs/Modules/Scrolls/NoneScrollArea.cpp \
-    Frontend/Tabs/TuningTabs/Modules/Scrolls/NotesScrollArea.cpp \
+    Frontend/Tabs/TuningTabs/Scrolls/LiftersScrollArea.cpp \
+    Frontend/Tabs/TuningTabs/Scrolls/NoneScrollArea.cpp \
+    Frontend/Tabs/TuningTabs/Scrolls/NotesScrollArea.cpp \
     Frontend/Tabs/TuningTabs/Operations/ImplicitOperation.cpp \
     Frontend/Tabs/TuningTabs/Operations/LengthOperation.cpp \
     Frontend/Tabs/TuningTabs/Operations/LyricsOperation.cpp \
@@ -274,11 +274,10 @@ SOURCES += \
     Frontend/Tabs/VoiceBankTabs/Areas/OtoVisionAreas/OtoVisionArea_Operation.cpp \
     Frontend/Tabs/VoiceBankTabs/Areas/OtoVisionAreas/OtoVisionArea_Scroll.cpp \
     Frontend/Tabs/VoiceBankTabs/Areas/VoiceBankArea.cpp \
+    Frontend/Tabs/VoiceBankTabs/Areas/WaveformArea.cpp \
     Frontend/Tabs/VoiceBankTabs/Graphics/GraphicsOtoHandle.cpp \
     Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp \
     Frontend/Tabs/VoiceBankTabs/Modules/PlayerLabel.cpp \
-    Frontend/Tabs/VoiceBankTabs/Modules/WaveformArea.cpp \
-    Frontend/Tabs/VoiceBankTabs/Modules/WaveformScrollArea.cpp \
     Frontend/Tabs/VoiceBankTabs/Operations/NonOtoOperations/InfoTextOperation.cpp \
     Frontend/Tabs/VoiceBankTabs/Operations/NonOtoOperation.cpp \
     Frontend/Tabs/VoiceBankTabs/Operations/OtoOperation.cpp \
@@ -287,6 +286,7 @@ SOURCES += \
     Frontend/Tabs/VoiceBankTabs/Operations/OtoOperations/OtoMoveOperation.cpp \
     Frontend/Tabs/VoiceBankTabs/Operations/OtoOperations/OtoVariateOperation.cpp \
     Frontend/Tabs/VoiceBankTabs/Operations/VoiceOperation.cpp \
+    Frontend/Tabs/VoiceBankTabs/Scrolls/WaveformScrollArea.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceBankGroup.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Core.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Edit.cpp \
@@ -319,6 +319,7 @@ SOURCES += \
     Global/Utils/Templates.cpp \
     Global/Variables.cpp \
     Main/Actions/common.cpp \
+    Main/Actions/preview.cpp \
     Main/Actions/shortcuts.cpp \
     Main/Actions/special.cpp \
     Main/Actions/tuning.cpp \
@@ -449,12 +450,12 @@ HEADERS += \
     Frontend/Dialogs/TerminalDialog.h \
     Frontend/QSActions.h \
     Frontend/QSTabs.h \
+    Frontend/Singletons/CentralTabWidget.h \
     Frontend/Singletons/ColorTheme.h \
+    Frontend/Singletons/ComboSelector.h \
     Frontend/Singletons/TempHandler.h \
     Frontend/Tabs/BaseTab.h \
     Frontend/Tabs/CentralTab.h \
-    Frontend/Tabs/CentralTabs/CentralTabWidget.h \
-    Frontend/Tabs/CentralTabs/ComboSelector.h \
     Frontend/Tabs/KeyboardTab.h \
     Frontend/Tabs/KeyboardTabs/KeyLabelContent.h \
     Frontend/Tabs/KeyboardTabs/KeyLineEdit.h \
@@ -503,9 +504,9 @@ HEADERS += \
     Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.h \
     Frontend/Tabs/TuningTabs/Modules/Form/FormSplitter.h \
     Frontend/Tabs/TuningTabs/Modules/Form/FormTitleBar.h \
-    Frontend/Tabs/TuningTabs/Modules/Scrolls/LiftersScrollArea.h \
-    Frontend/Tabs/TuningTabs/Modules/Scrolls/NoneScrollArea.h \
-    Frontend/Tabs/TuningTabs/Modules/Scrolls/NotesScrollArea.h \
+    Frontend/Tabs/TuningTabs/Scrolls/LiftersScrollArea.h \
+    Frontend/Tabs/TuningTabs/Scrolls/NoneScrollArea.h \
+    Frontend/Tabs/TuningTabs/Scrolls/NotesScrollArea.h \
     Frontend/Tabs/TuningTabs/Operations/ImplicitOperation.h \
     Frontend/Tabs/TuningTabs/Operations/LengthOperation.h \
     Frontend/Tabs/TuningTabs/Operations/LyricsOperation.h \
@@ -530,11 +531,10 @@ HEADERS += \
     Frontend/Tabs/VoiceBankTabs/Areas/OtoPlayerArea.h \
     Frontend/Tabs/VoiceBankTabs/Areas/OtoVisionArea.h \
     Frontend/Tabs/VoiceBankTabs/Areas/VoiceBankArea.h \
+    Frontend/Tabs/VoiceBankTabs/Areas/WaveformArea.h \
     Frontend/Tabs/VoiceBankTabs/Graphics/GraphicsOtoHandle.h \
     Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.h \
     Frontend/Tabs/VoiceBankTabs/Modules/PlayerLabel.h \
-    Frontend/Tabs/VoiceBankTabs/Modules/WaveformArea.h \
-    Frontend/Tabs/VoiceBankTabs/Modules/WaveformScrollArea.h \
     Frontend/Tabs/VoiceBankTabs/Operations/NonOtoOperations/InfoTextOperation.h \
     Frontend/Tabs/VoiceBankTabs/Operations/NonOtoOperation.h \
     Frontend/Tabs/VoiceBankTabs/Operations/OtoOperation.h \
@@ -543,6 +543,7 @@ HEADERS += \
     Frontend/Tabs/VoiceBankTabs/Operations/OtoOperations/OtoMoveOperation.h \
     Frontend/Tabs/VoiceBankTabs/Operations/OtoOperations/OtoVariateOperation.h \
     Frontend/Tabs/VoiceBankTabs/Operations/VoiceOperation.h \
+    Frontend/Tabs/VoiceBankTabs/Scrolls/WaveformScrollArea.h \
     Frontend/Tabs/VoiceBankTabs/VoiceBankGroup.h \
     Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.h \
     Frontend/Tabs/VoiceBankTabs/VoiceTabs/PrefixMapTab.h \

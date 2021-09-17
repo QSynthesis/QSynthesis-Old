@@ -1,6 +1,7 @@
 #include "GraphicsNote.h"
 #include "../Areas/Editor/NotesArea.h"
 #include "../Areas/Params/LiftersArea.h"
+#include "../Scrolls/NotesScrollArea.h"
 #include "../TuningGroup.h"
 #include "mainwindow.h"
 
@@ -15,14 +16,14 @@ GraphicsNote::~GraphicsNote() {
 }
 
 void GraphicsNote::updateColorTheme() {
-    m_lyricColor = qTheme->note_lyric;
-    m_restLineColor = qTheme->note_restLine;
-    m_restFillColor = qTheme->note_restFill;
-    m_listedLineColor = qTheme->note_listedLine;
-    m_listedFillColor = qTheme->note_listedFill;
-    m_unlistedLineColor = qTheme->note_unlistedLine;
-    m_unlistedFillColor = qTheme->note_unlistedFill;
-    m_selectColor = qTheme->note_select;
+    m_lyricColor = qViewIn->noteLyric();
+    m_restLineColor = qViewIn->noteRestLine();
+    m_restFillColor = qViewIn->noteRestFill();
+    m_listedLineColor = qViewIn->noteListedLine();
+    m_listedFillColor = qViewIn->noteListedFill();
+    m_unlistedLineColor = qViewIn->noteUnlistedLine();
+    m_unlistedFillColor = qViewIn->noteUnlistedFill();
+    m_selectColor = qViewIn->noteSelect();
 
     update();
 }
@@ -50,7 +51,7 @@ void GraphicsNote::init() {
     setFlag(ItemIsFocusable);
 
     updateColorTheme();
-    connect(qTheme, &ColorTheme::updated, this, &GraphicsNote::updateColorTheme);
+    connect(qViewIn, &NotesScrollArea::themeUpdated, this, &GraphicsNote::updateColorTheme);
 }
 
 void GraphicsNote::addLifter() {

@@ -31,7 +31,7 @@ private:
 
 public:
     int useSelector(const QStringList &items, const QString &clues, int current,
-                    void previewFuction(int));
+                    void previewFuction(int) = nullptr);
 
 private:
     void resizeEvent(QResizeEvent *event) override;

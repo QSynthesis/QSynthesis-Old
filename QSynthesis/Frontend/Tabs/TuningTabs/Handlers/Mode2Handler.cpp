@@ -1,4 +1,6 @@
 #include "Mode2Handler.h"
+#include "../Areas/Editor/NotesArea.h"
+#include "../Scrolls/NotesScrollArea.h"
 #include "mainwindow.h"
 
 const QList<QControlPoint> Mode2Handler::defaultPortamento = {QControlPoint(-15, 0),
@@ -17,28 +19,28 @@ Mode2Handler::~Mode2Handler() {
 }
 
 void Mode2Handler::updateColorTheme() {
-    m_mode1SolidLineEnabledColor = qTheme->pitch_mode1SolidLineEnabled;
-    m_mode2SolidLineEnabledColor = qTheme->pitch_mode2SolidLineEnabled;
+    m_mode1SolidLineEnabledColor = qViewIn->mode1SolidLineEnabled();
+    m_mode2SolidLineEnabledColor = qViewIn->mode2SolidLineEnabled();
 
-    m_mode1SolidLineDisabledColor = qTheme->pitch_mode1SolidLineDisabled;
-    m_mode2SolidLineDisabledColor = qTheme->pitch_mode2SolidLineDisabled;
+    m_mode1SolidLineDisabledColor = qViewIn->mode1SolidLineDisabled();
+    m_mode2SolidLineDisabledColor = qViewIn->mode2SolidLineDisabled();
 
-    m_mode1DashLineEnabledColor = qTheme->pitch_mode1DashLineEnabled;
-    m_mode2DashLineEnabledColor = qTheme->pitch_mode2DashLineEnabled;
+    m_mode1DashLineEnabledColor = qViewIn->mode1DashLineEnabled();
+    m_mode2DashLineEnabledColor = qViewIn->mode2DashLineEnabled();
 
-    m_mode1DashLineDisabledColor = qTheme->pitch_mode1DashLineDisabled;
-    m_mode2DashLineDisabledColor = qTheme->pitch_mode2DashLineDisabled;
+    m_mode1DashLineDisabledColor = qViewIn->mode1DashLineDisabled();
+    m_mode2DashLineDisabledColor = qViewIn->mode2DashLineDisabled();
 
-    m_mode2InvalidLineEnabledColor = qTheme->pitch_mode2InvalidLineEnabled;
-    m_mode2InvalidLineDisabledColor = qTheme->pitch_mode2InvalidLineDisabled;
+    m_mode2InvalidLineEnabledColor = qViewIn->mode2InvalidLineEnabled();
+    m_mode2InvalidLineDisabledColor = qViewIn->mode2InvalidLineDisabled();
 
-    m_vibratoEnabledColor = qTheme->vibrato_curvesEnabledColor;
-    m_vibratoDisabledColor = qTheme->vibrato_curvesDisabledColor;
+    m_vibratoEnabledColor = qViewIn->vbrCurvesEnabled();
+    m_vibratoDisabledColor = qViewIn->vbrCurvesDisabled();
 
-    m_vibratoEditorLinesColor = qTheme->vibrato_editorLines;
+    m_vibratoEditorLinesColor = qViewIn->vbrEditorLines();
 
-    m_pointColor = qTheme->pitch_pointCore;
-    m_ringColor = qTheme->pitch_pointRing;
+    m_pointColor = qViewIn->mode2PointCore();
+    m_ringColor = qViewIn->mode2PointRing();
 
     update();
 }
@@ -51,5 +53,5 @@ void Mode2Handler::init() {
     m_pointRadius = 3;
 
     updateColorTheme();
-    connect(qTheme, &ColorTheme::updated, this, &Mode2Handler::updateColorTheme);
+    connect(qViewIn, &NotesScrollArea::themeUpdated, this, &Mode2Handler::updateColorTheme);
 }
