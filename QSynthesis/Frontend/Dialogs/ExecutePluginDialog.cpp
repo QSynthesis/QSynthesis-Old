@@ -44,11 +44,9 @@ void ExecutePluginDialog::init() {
 
 #ifdef Q_OS_WINDOWS
     m_pRender = nullptr;
-#endif
-#ifdef linux
+#elif defined(Q_OS_LINUX)
     m_pTerminal = nullptr;
-#endif
-#ifdef Q_OS_MAC
+#elif defined(Q_OS_MAC)
     m_pTerminal = nullptr;
 #endif
 }
@@ -93,16 +91,14 @@ bool ExecutePluginDialog::runInCmd() {
     timer->start(100);
 
     //------------------------------------------------------------------------
-#endif
-#ifdef linux
+#elif defined(Q_OS_LINUX)
     m_pTerminal = new QProcess(this);
     connect(m_pTerminal, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
             &ExecutePluginDialog::onProcessFinished);
 
     m_pTerminal->setWorkingDirectory(m_workingDir);
     m_pTerminal->start(execPath, {tempPath});
-#endif
-#ifdef Q_OS_MAC
+#elif defined(Q_OS_MAC)
     m_pTerminal = new QProcess(this);
     connect(m_pTerminal, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
             &ExecutePluginDialog::onProcessFinished);
@@ -141,13 +137,12 @@ void ExecutePluginDialog::onPluginExited() {
 }
 
 void ExecutePluginDialog::onProcessFinished(int exitCode, QProcess::ExitStatus exitStatus) {
-#ifdef linux
+#ifdef Q_OS_LINUX
     delete m_pTerminal;
     m_pTerminal = nullptr;
 
     onPluginExited();
-#endif
-#ifdef Q_OS_MAC
+#elif defined(Q_OS_MAC)
     delete m_pTerminal;
     m_pTerminal = nullptr;
 

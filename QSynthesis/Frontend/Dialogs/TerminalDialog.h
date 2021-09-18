@@ -13,10 +13,10 @@
 #include "BaseDialog.h"
 #include "QUtils.h"
 
-#ifdef WIN32
+#ifdef Q_OS_WINDOWS
 #include "Windows.h"
 #endif
-#ifdef linux
+#ifdef Q_OS_LINUX
 #include <unistd.h>
 #endif
 
@@ -47,11 +47,9 @@ protected:
 
 #ifdef WIN32
     PROCESS_INFORMATION *m_pRender;
-#endif
-#ifdef linux
+#elif defined(Q_OS_LINUX)
     QProcess *m_pTerminal;
-#endif
-#ifdef Q_OS_MAC
+#elif defined(Q_OS_MAC)
     QProcess *m_pTerminal;
     QProcess *e_pTerminal;
 #endif

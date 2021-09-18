@@ -48,7 +48,7 @@ void TerminalDialog::init() {
 #ifdef Q_OS_WINDOWS
     m_pRender = nullptr;
 #endif
-#ifdef linux
+#ifdef Q_OS_LINUX
     m_pTerminal = nullptr;
 #endif
 #ifdef Q_OS_MAC
@@ -88,16 +88,14 @@ bool TerminalDialog::runInCmd() {
     timer->start(100);
 
     //------------------------------------------------------------------------
-#endif
-#ifdef linux
+#elif defined(Q_OS_LINUX)
     m_pTerminal = new QProcess(this);
     connect(m_pTerminal, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
             &TerminalDialog::onProcessFinished);
 
     m_pTerminal->setWorkingDirectory(workingDir);
     m_pTerminal->start("/bin/bash", {tempPath});
-#endif
-#ifdef Q_OS_MAC
+#elif defined(Q_OS_MAC)
     qDebug() << workingDir;
     m_pTerminal = new QProcess(this);
     connect(m_pTerminal, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
@@ -109,10 +107,8 @@ bool TerminalDialog::runInCmd() {
     QString script = "tell application \"Terminal\"\n"
                      "   activate\n"
                      "   set W to window 1\n"
-                     "   if busy of W is false then\n"
-                            + cmdStr +
-                     "   else\n"
-                            + cmdInNewWindowStr +
+                     "   if busy of W is false then\n" +
+                     cmdStr + "   else\n" + cmdInNewWindowStr +
                      "   end if\n"
                      "   repeat\n"
                      "       delay 1\n"
@@ -169,13 +165,12 @@ void TerminalDialog::onTimer() {
 }
 
 void TerminalDialog::onProcessFinished(int exitCode, QProcess::ExitStatus exitStatus) {
-#ifdef linux
+#ifdef Q_OS_LINUX
     delete m_pTerminal;
     m_pTerminal = nullptr;
 
     onRenderOver();
-#endif
-#ifdef Q_OS_MAC
+#elif defined(Q_OS_MAC)
     qDebug() << exitStatus << exitCode;
     if (exitStatus == QProcess::ExitStatus::NormalExit) {
         delete m_pTerminal;
@@ -208,16 +203,14 @@ bool TerminalDialog::killProcess() {
         delete m_pRender;
         m_pRender = nullptr;
     }
-#endif
-#ifdef linux
+#elif defined(Q_OS_LINUX)
     if (m_pTerminal) {
         m_pTerminal->terminate();
 
         delete m_pTerminal;
         m_pTerminal = nullptr;
     }
-#endif
-#ifdef Q_OS_MAC
+#elif defined(Q_OS_MAC)
     if (m_pTerminal) {
         m_pTerminal->terminate();
         m_pTerminal->close();

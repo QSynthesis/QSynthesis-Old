@@ -20,8 +20,7 @@ const QString DIR_NAME_PLUGIN = "plugins";
 #ifdef Q_OS_WINDOWS
 const QString FILE_NAME_TEMP_BATCH = "temp.bat";
 const QString FILE_NAME_HELPER_BATCH = "temp_helper.bat";
-#endif
-#if defined(linux) || defined(Q_OS_MAC)
+#elif defined(Q_OS_LINUX) || defined(Q_OS_MAC)
 const QString FILE_NAME_TEMP_BATCH = "temp.sh";
 const QString FILE_NAME_HELPER_BATCH = "temp_helper.sh";
 #endif

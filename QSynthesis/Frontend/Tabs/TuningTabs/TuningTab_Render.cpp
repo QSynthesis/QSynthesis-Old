@@ -175,7 +175,7 @@ bool TuningTab::renderSelection() {
     helperFile.close();
 
 #endif
-#if defined(linux) || defined(Q_OS_MAC)
+#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
     // Generate temp.sh
     QFile tempFile(tempBatPath);
 

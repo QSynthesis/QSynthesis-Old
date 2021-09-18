@@ -3,7 +3,7 @@
 
 #include <QKeyEvent>
 
-#include "../../Controls/FixedLineEdit.h"
+#include "Controls/FixedLineEdit.h"
 
 class KeyLineEdit : public FixedLineEdit {
     Q_OBJECT
