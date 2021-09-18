@@ -31,12 +31,12 @@ QLineEdit, QTextEdit, QPlainTextEdit, QComboBox {
     padding: 3px 3px;
 }
 
-WaveformScrollArea {
+WaveformScrollArea, QTableWidget {
     border: 1px solid transparent;
     background-color: #3C3C3C;
 }
 
-QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus, WaveformScrollArea:focus {
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus, WaveformScrollArea:focus, QTableWidget:focus {
     border-color: #167FD2;
 }
 
@@ -431,7 +431,7 @@ WaveformScrollArea {
     qproperty-sampleOverlapLine: lightgreen;
     /**/
     qproperty-sampleOffsetBack: rgba(211, 211, 211, 37.5%);
-    qproperty-sampleConstantBack: rgba(255, 192, 203, 37.5%);
+    qproperty-sampleConstantBack: rgba(255, 192, 203, 62.5%);
     qproperty-sampleBlankBack: rgba(173, 216, 230, 37.5%);
     /**/
     qproperty-sampleWaveform: deepskyblue;
@@ -538,29 +538,76 @@ BaseDialog {
 
 /* QTableWidget */
 
-/* QTableWidget {
-    background-color: white;
-    color: black
+QTableWidget[type=voice] {
+    /* background: #1E1E1E; */
+    alternate-background-color: #323232;
+    gridline-color: rgba(255, 255, 255, 15%);
 }
 
-QHeaderView {
-    background: transparent;
+/*items*/
+
+QTableWidget[type=voice]::item {
+    color: #DCDCDC;
 }
 
-QHeaderView::section {
-    color: #FFFFFF;
-    background: #60669B;
-    border: none;
+QTableWidget[type=voice]::item:hover {
+    background-color: rgba(255, 255, 255, 30%);
 }
 
-QTableWidget::item {
-    border-bottom: 1px solid #EEF1F7;
+QTableWidget[type=voice]::item:pressed {
+    background-color: rgba(255, 255, 255, 10%);
 }
 
-QTableWidget::item::selected {
-    color: red;
-    background: #EFF4FF;
-} */
+QTableWidget[type=voice]::item:selected {
+    background-color: rgba(255, 255, 255, 20%);
+}
+
+/*corner*/
+
+QTableWidget[type=voice]>QTableCornerButton::section {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 7.5%);
+}
+
+QTableWidget[type=voice]>QTableCornerButton::section:pressed {
+    background-color: rgba(255, 255, 255, 15%);
+}
+
+/*header*/
+
+QTableWidget[type=voice]>QHeaderView {
+    background-color: #323232;
+}
+
+QTableWidget[type=voice]>QHeaderView::section {
+    background-color: transparent;
+    padding: 3px;
+    margin: 0px;
+    color: #DCDCDC;
+    border: 1px solid rgba(255, 255, 255, 7.5%);
+}
+
+QTableWidget[type=voice]>QHeaderView::section:horizontal {
+    border-left-width: 0;
+}
+
+QTableWidget[type=voice]>QHeaderView::section:vertical {
+    border-top-width: 0;
+}
+
+QTableWidget[type=voice]>QTableWidget[type=voice]>QHeaderView::section:hover {
+    background-color: rgba(255, 255, 255, 30%);
+}
+
+QTableWidget[type=voice]>QHeaderView::section:pressed {
+    background-color: rgba(255, 255, 255, 15%);
+}
+
+QTableWidget[type=voice]>QHeaderView::section:checked {
+    background-color: rgba(255, 255, 255, 20%);
+}
+
+/* ComboSelector */
 
 ComboSelector {
     background-color: transparent;
@@ -663,9 +710,9 @@ QScrollBar::add-line {
 /* VectorButton */
 
 VectorButton {
-    qproperty-upColor: #808080;
-    qproperty-overColor: #B0B0B0;
-    qproperty-downColor: #9A9A9A;
+    qproperty-upColor: #CCCCCC;
+    qproperty-overColor: white;
+    qproperty-downColor: #DDDDDD;
 }
 
 VectorButton[type=tab-close][highlight=false] {

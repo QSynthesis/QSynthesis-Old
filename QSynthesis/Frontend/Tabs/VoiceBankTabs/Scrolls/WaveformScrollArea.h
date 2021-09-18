@@ -79,6 +79,7 @@ private:
 
 signals:
     void themeUpdated();
+    void sampleThemeUpdated();
 };
 
 #endif // WAVEFORMSCROLLAREA_H

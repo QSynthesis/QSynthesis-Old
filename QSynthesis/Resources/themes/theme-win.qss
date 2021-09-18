@@ -31,12 +31,12 @@ QLineEdit, QTextEdit, QPlainTextEdit, QComboBox {
     padding: 3px 3px;
 }
 
-WaveformScrollArea {
+WaveformScrollArea, QTableWidget {
     border: 1px solid #CCCCCC;
     background-color: white;
 }
 
-QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus, WaveformScrollArea:focus {
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus, WaveformScrollArea:focus, QTableWidget:focus {
     border-color: #167FD2;
 }
 
@@ -154,6 +154,39 @@ TabWidget[type=voice]>QTabBar::tab:!selected:hover {
 }
 
 TabWidget[type=voice]>QTabBar::scroller {
+    width: 40px;
+}
+
+/* Keyboard TabWidget */
+
+TabWidget[type=keyboard] {
+    background-color: transparent;
+}
+
+TabWidget[type=keyboard]>QTabBar {
+    border: none;
+    font-size: 16px;
+    /* border-bottom: 1px solid darkgrey; */
+}
+
+TabWidget[type=keyboard]>QTabBar::tab {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: darkgrey;
+    padding: 8px 8px;
+    margin-bottom: 25px;
+}
+
+TabWidget[type=keyboard]>QTabBar::tab:selected {
+    color: black;
+    border-bottom-color: black;
+}
+
+TabWidget[type=keyboard]>QTabBar::tab:!selected:hover {
+    color: black;
+}
+
+TabWidget[type=keyboard]>QTabBar::scroller {
     width: 40px;
 }
 
@@ -547,29 +580,76 @@ BaseDialog {
 
 /* QTableWidget */
 
-/* QTableWidget {
-    background-color: white;
-    color: black
+QTableWidget[type=voice] {
+    background: white;
+    alternate-background-color: #F5F5F5;
+    gridline-color: rgba(0, 0, 0, 15%);
 }
 
-QHeaderView {
-    background: transparent;
+/*items*/
+
+QTableWidget[type=voice]::item {
+    color: black;
 }
 
-QHeaderView::section {
-    color: #FFFFFF;
-    background: #60669B;
-    border: none;
+QTableWidget[type=voice]::item:hover {
+    background-color: rgba(0, 0, 0, 20%);
 }
 
-QTableWidget::item {
-    border-bottom: 1px solid #EEF1F7;
+QTableWidget[type=voice]::item:pressed {
+    background-color: rgba(0, 0, 0, 6.67%);
 }
 
-QTableWidget::item::selected {
-    color: red;
-    background: #EFF4FF;
-} */
+QTableWidget[type=voice]::item:selected {
+    background-color: rgba(0, 0, 0, 13.6%);
+}
+
+/*corner*/
+
+QTableWidget[type=voice]>QTableCornerButton::section {
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 5%);
+}
+
+QTableWidget[type=voice]>QTableCornerButton::section:pressed {
+    background-color: rgba(0, 0, 0, 10%);
+}
+
+/*header*/
+
+QTableWidget[type=voice]>QHeaderView {
+    background-color: #F0F0F0;
+}
+
+QTableWidget[type=voice]>QHeaderView::section {
+    background-color: transparent;
+    padding: 3px;
+    margin: 0px;
+    color: black;
+    border: 1px solid rgba(0, 0, 0, 5%);
+}
+
+QTableWidget[type=voice]>QHeaderView::section:horizontal {
+    border-left-width: 0;
+}
+
+QTableWidget[type=voice]>QHeaderView::section:vertical {
+    border-top-width: 0;
+}
+
+QTableWidget[type=voice]>QHeaderView::section:hover {
+    background-color: rgba(0, 0, 0, 20%);
+}
+
+QTableWidget[type=voice]>QHeaderView::section:pressed {
+    background-color: rgba(0, 0, 0, 10%);
+}
+
+QTableWidget[type=voice]>QHeaderView::section:checked {
+    background-color: rgba(0, 0, 0, 13.6%);
+}
+
+/* ComboSelector */
 
 ComboSelector {
     background-color: transparent;

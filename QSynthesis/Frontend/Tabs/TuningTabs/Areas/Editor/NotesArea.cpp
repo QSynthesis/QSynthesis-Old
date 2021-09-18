@@ -28,7 +28,7 @@ NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *parent)
     connect(this, &QGraphicsScene::sceneRectChanged, this, &NotesArea::handleSceneRectChanged);
 
     updateColorTheme();
-    connect(m_view, &NotesScrollArea::themeUpdated, this, &NotesArea::updateColorTheme);
+    connect(m_view, &NotesScrollArea::editorThemeUpdated, this, &NotesArea::updateColorTheme);
 }
 
 NotesArea::~NotesArea() {

@@ -19,7 +19,8 @@ GraphicsLifter::GraphicsLifter(GraphicsNote *note, LiftersArea *editor, QGraphic
     m_values[Velocity] = DEFAULT_VALUE_VELOCITY;
 
     updateColorTheme();
-    connect(qViewIn, &LiftersScrollArea::themeUpdated, this, &GraphicsLifter::updateColorTheme);
+    connect(qViewIn, &LiftersScrollArea::lifterThemeUpdated, this,
+            &GraphicsLifter::updateColorTheme);
 }
 
 GraphicsLifter::~GraphicsLifter() {

@@ -1,26 +1,8 @@
 ﻿#include "KeyboardTab.h"
 #include "mainwindow.h"
 
-#include <QFontDatabase>
-#include <QHeaderView>
-#include <QJsonArray>
-
 KeyboardTab::KeyboardTab(CentralTabWidget *parent) : CentralTab(parent) {
-    m_type = Qs::Keyboard;
-
-    // 新建主容器
-    mainLayout = new QVBoxLayout(this);
-    mainLayout->setMargin(0);
-    setLayout(mainLayout);
-
-    mainWidget = new KeyboardTabContent(this, this);
-    mainLayout->addWidget(mainWidget);
-
-    connect(mainWidget->tableWidget, &KeyTableWidget::keyModified, this,
-            &KeyboardTab::handleKeyModified);
-
-    historyIndex = 0;
-    savedHistoryIndex = 0;
+    initTab();
 }
 
 KeyboardTab::~KeyboardTab() {
@@ -38,20 +20,23 @@ bool KeyboardTab::load() {
     }
 
     keys = cfg.data();
-    mainWidget->tableWidget->load(keys);
     return true;
 }
 
 bool KeyboardTab::save() {
+    ShortcutsData orgKeys = cfg.data();
     cfg.setData(keys);
-    if (!cfg.save()) {
+
+    bool result = cfg.save();
+    if (!result) {
+        cfg.setData(orgKeys);
         QMessageBox::about(this, ErrorTitle, tr("Unable to save file!"));
-        return false;
+    } else {
+        savedHistoryIndex = historyIndex; // Update saved history index
+        setEdited(false);
     }
 
-    savedHistoryIndex = historyIndex; // Update saved history index
-    setEdited(false);
-    return true;
+    return result;
 }
 
 bool KeyboardTab::restore() {
@@ -84,6 +69,11 @@ void KeyboardTab::setFixedname(const QString &value) {
     updateTabName();
 }
 
+void KeyboardTab::handleFileChanged() {
+    savedHistoryIndex = -1;
+    setEdited(true);
+}
+
 void KeyboardTab::updateMenuRoot() {
     tabActions->setNaturalStatus();
     updateMenuCore();
@@ -97,20 +87,5 @@ void KeyboardTab::updateMenuCore() {
     tabActions->redo->setEnabled(!latest());
 }
 
-void KeyboardTab::handleKeyModified(int row, QString key) {
-    KeyOperation *k = new KeyOperation();
-
-    k->setId(row);
-    k->setOrigin(keys.keyForId(row).toString());
-    k->setModified(key);
-
-    keys.setKeyForId(row, QKeySequence(key));
-
-    if (k->differ()) {
-        addHistory(k);
-    }
-}
-
 void KeyboardTab::handleOperation(KeyOperation *k, bool undo) {
-    mainWidget->tableWidget->setKey(k->id(), undo ? k->origin() : k->modified());
 }

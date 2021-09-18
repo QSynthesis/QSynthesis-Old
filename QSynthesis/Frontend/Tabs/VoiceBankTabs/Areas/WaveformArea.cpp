@@ -57,7 +57,7 @@ WaveformArea::WaveformArea(WaveformScrollArea *parent) : GraphicsArea(parent), m
     updateHandles();
 
     updateColorTheme();
-    connect(m_view, &WaveformScrollArea::themeUpdated, this, &WaveformArea::updateColorTheme);
+    connect(m_view, &WaveformScrollArea::sampleThemeUpdated, this, &WaveformArea::updateColorTheme);
 }
 
 WaveformArea::~WaveformArea() {

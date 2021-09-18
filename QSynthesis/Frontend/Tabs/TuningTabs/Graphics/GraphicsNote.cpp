@@ -51,7 +51,7 @@ void GraphicsNote::init() {
     setFlag(ItemIsFocusable);
 
     updateColorTheme();
-    connect(qViewIn, &NotesScrollArea::themeUpdated, this, &GraphicsNote::updateColorTheme);
+    connect(qViewIn, &NotesScrollArea::noteThemeUpdated, this, &GraphicsNote::updateColorTheme);
 }
 
 void GraphicsNote::addLifter() {

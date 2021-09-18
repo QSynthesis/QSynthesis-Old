@@ -80,41 +80,41 @@ QColor WaveformScrollArea::sampleFrqCurves() const {
 
 void WaveformScrollArea::setSampleOffsetLine(const QColor &color) {
     sample.offsetLine = color;
-    emit themeUpdated();
+    emit sampleThemeUpdated();
 }
 void WaveformScrollArea::setSampleConstantLine(const QColor &color) {
     sample.constantLine = color;
-    emit themeUpdated();
+    emit sampleThemeUpdated();
 }
 void WaveformScrollArea::setSampleBlankLine(const QColor &color) {
     sample.blankLine = color;
-    emit themeUpdated();
+    emit sampleThemeUpdated();
 }
 void WaveformScrollArea::setSamplePreUttrLine(const QColor &color) {
     sample.preUttrLine = color;
-    emit themeUpdated();
+    emit sampleThemeUpdated();
 }
 void WaveformScrollArea::setSampleOverlapLine(const QColor &color) {
     sample.overlapLine = color;
-    emit themeUpdated();
+    emit sampleThemeUpdated();
 }
 void WaveformScrollArea::setSampleOffsetBack(const QColor &color) {
     sample.offsetBack = color;
-    emit themeUpdated();
+    emit sampleThemeUpdated();
 }
 void WaveformScrollArea::setSampleConstantBack(const QColor &color) {
     sample.constantBack = color;
-    emit themeUpdated();
+    emit sampleThemeUpdated();
 }
 void WaveformScrollArea::setSampleBlankBack(const QColor &color) {
     sample.blankBack = color;
-    emit themeUpdated();
+    emit sampleThemeUpdated();
 }
 void WaveformScrollArea::setSampleWaveform(const QColor &color) {
     sample.waveform = color;
-    emit themeUpdated();
+    emit sampleThemeUpdated();
 }
 void WaveformScrollArea::setSampleFrqCurves(const QColor &color) {
     sample.frqCurves = color;
-    emit themeUpdated();
+    emit sampleThemeUpdated();
 }

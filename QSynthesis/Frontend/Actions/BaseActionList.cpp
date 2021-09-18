@@ -108,9 +108,10 @@ void BaseActionList::makeCommonDefaultShortcuts() {
     replay->setShortcut(QKeySequence("Shift+F5"));
     stop->setShortcut(QKeySequence("F7"));
 
-    themes->setShortcut(QKeySequence("Ctrl+Shift+T"));
-
     settings->setShortcut(QKeySequence("Ctrl+,"));
+    keyShortcuts->setShortcut(QKeySequence("Ctrl+Shift+K"));
+    themes->setShortcut(QKeySequence("Ctrl+Shift+T"));
+    languages->setShortcut(QKeySequence("Ctrl+Shift+L"));
 }
 
 QList<QAction *> BaseActionList::commonActions() const {

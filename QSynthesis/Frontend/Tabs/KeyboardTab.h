@@ -9,8 +9,7 @@
 
 #include "CentralTab.h"
 #include "File/ShortcutsFile.h"
-#include "KeyboardTabs/KeyboardTabContent.h"
-
+#include "KeyboardTabs/Contents/KeyTableTab.h"
 #include "KeyboardTabs/Operations/KeyOperation.h"
 
 class KeyboardActionList;
@@ -42,6 +41,34 @@ public:
     void setFilename(const QString &value) override;
     void setFixedname(const QString &value) override;
 
+private:
+    void handleFileChanged();
+
+protected:
+    void updateMenuRoot() override;
+    void updateMenuCore() override;
+
+    // Core
+private:
+    void loadCore();
+    void saveCore();
+
+    // Init
+private:
+    void initTab();
+    void initComponents();
+    void initValues();
+
+private:
+    QVBoxLayout *mainLayout;
+    TabWidget *mainWidget;
+
+    KeyTableTab *commonKeyTab;
+    KeyTableTab *projectKeyTab;
+    KeyTableTab *voiceKeyTab;
+
+    // Edit
+public:
     void undo() override;
     void redo() override;
 
@@ -52,14 +79,6 @@ public:
     void addHistory(KeyOperation *k);
     void clearHistory();
 
-protected:
-    void updateMenuRoot() override;
-    void updateMenuCore() override;
-
-private:
-    QVBoxLayout *mainLayout;
-    KeyboardTabContent *mainWidget;
-
 private:
     // Save History for undo and redo
     QVector<KeyOperation *> historyList;
@@ -68,7 +87,6 @@ private:
     int savedHistoryIndex;
 
 public:
-    void handleKeyModified(int row, QString key);
     void handleOperation(KeyOperation *k, bool undo);
 };
 

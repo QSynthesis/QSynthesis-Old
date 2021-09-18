@@ -53,5 +53,5 @@ void Mode2Handler::init() {
     m_pointRadius = 3;
 
     updateColorTheme();
-    connect(qViewIn, &NotesScrollArea::themeUpdated, this, &Mode2Handler::updateColorTheme);
+    connect(qViewIn, &NotesScrollArea::pitchThemeUpdated, this, &Mode2Handler::updateColorTheme);
 }

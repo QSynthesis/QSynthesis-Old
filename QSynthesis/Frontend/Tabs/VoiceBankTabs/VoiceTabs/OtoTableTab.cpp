@@ -15,13 +15,14 @@ void OtoTableTab::init() {
     currentSequence = -1;
     currentIndex = -1;
 
-    m_normalColor = Qt::white;
-    m_emptyColor = Qt::green;
-    m_invalidColor = Qt::red;
+    m_normalColor = QColor(255, 255, 255, 0);
+    m_emptyColor = QColor(0, 255, 0, 32);
+    m_invalidColor = QColor(255, 0, 0, 32);
 
     m_menu = new QMenu(this);
 
     otoTable = new QTableWidget(this);
+    otoTable->setProperty("type", "voice");
     mainLayout = new QVBoxLayout(this);
 
     otoTable->viewport()->installEventFilter(this);
@@ -34,11 +35,13 @@ void OtoTableTab::init() {
     otoTable->setHorizontalHeaderLabels(header);
     // srcTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     otoTable->horizontalHeader()->setDisabled(false);
-    // otoTable->setFocusPolicy(Qt::NoFocus);
+    // otoTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    // otoTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Interactive);
     otoTable->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 
     otoTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     otoTable->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    otoTable->setAlternatingRowColors(true);
 
     mainLayout->addWidget(otoTable);
     mainLayout->setMargin(0);

@@ -165,10 +165,12 @@ public:
     void setEditorBackDark(const QColor &color);
     void setEditorBackLight(const QColor &color);
     void setEditorPlayHead(const QColor &color);
+
     void setMode1SolidLineEnabled(const QColor &color);
     void setMode1SolidLineDisabled(const QColor &color);
     void setMode1DashLineEnabled(const QColor &color);
     void setMode1DashLineDisabled(const QColor &color);
+
     void setMode2SolidLineEnabled(const QColor &color);
     void setMode2SolidLineDisabled(const QColor &color);
     void setMode2DashLineEnabled(const QColor &color);
@@ -177,12 +179,14 @@ public:
     void setMode2InvalidLineDisabled(const QColor &color);
     void setMode2PointCore(const QColor &color);
     void setMode2PointRing(const QColor &color);
+
     void setVbrCurvesEnabled(const QColor &color);
     void setVbrCurvesDisabled(const QColor &color);
     void setVbrEditorLines(const QColor &color);
     void setVbrPlaneHandleBorder(const QColor &color);
     void setVbrPlaneHandleFill(const QColor &color);
     void setVbrPlaneHandleText(const QColor &color);
+
     void setEnvSolidLineEnabled(const QColor &color);
     void setEnvSolidLineDisabled(const QColor &color);
     void setEnvDashLineEnabled(const QColor &color);
@@ -191,6 +195,7 @@ public:
     void setEnvInvalidLineDisabled(const QColor &color);
     void setEnvPointCore(const QColor &color);
     void setEnvPointRing(const QColor &color);
+
     void setNoteLyric(const QColor &color);
     void setNoteRestFill(const QColor &color);
     void setNoteRestLine(const QColor &color);
@@ -199,6 +204,7 @@ public:
     void setNoteUnlistedFill(const QColor &color);
     void setNoteUnlistedLine(const QColor &color);
     void setNoteSelect(const QColor &color);
+
     void setRubberFrame(const QColor &color);
     void setRubberFill(const QColor &color);
 
@@ -284,6 +290,12 @@ private:
 
 signals:
     void themeUpdated();
+    void editorThemeUpdated();
+    void pitchThemeUpdated();
+    void envThemeUpdated();
+    void vbrHandleThemeUpdated();
+    void noteThemeUpdated();
+    void rubberThemeUpdated();
 };
 
 #endif // NOTESSCROLLAREA_H

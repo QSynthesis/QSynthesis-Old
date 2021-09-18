@@ -45,12 +45,17 @@ void PrefixMapTab::selectTone(int noteNum) {
 
 void PrefixMapTab::init() {
     mapTable = new QTableWidget(this);
+    mapTable->setProperty("type", "voice");
     mapTable->setColumnCount(3);
 
     QStringList headerList{tr("Pitch"), tr("Prefix"), tr("Suffix")};
     mapTable->setHorizontalHeaderLabels(headerList);
     // mapTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    mapTable->horizontalHeader()->setDisabled(false);
+    // mapTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     mapTable->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+
+    mapTable->setAlternatingRowColors(true);
 
     mainLayout = new QVBoxLayout(this);
     mainLayout->setMargin(0);

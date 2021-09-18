@@ -294,177 +294,177 @@ QColor NotesScrollArea::rubberFill() const {
 
 void NotesScrollArea::setEditorQuarterLine(const QColor &color) {
     editor.quarterLine = color;
-    emit themeUpdated();
+    emit editorThemeUpdated();
 }
 void NotesScrollArea::setEditorTimeLine(const QColor &color) {
     editor.timeLine = color;
-    emit themeUpdated();
+    emit editorThemeUpdated();
 }
 void NotesScrollArea::setEditorSectionLine(const QColor &color) {
     editor.sectionLine = color;
-    emit themeUpdated();
+    emit editorThemeUpdated();
 }
 void NotesScrollArea::setEditorPitchLine(const QColor &color) {
     editor.pitchLine = color;
-    emit themeUpdated();
+    emit editorThemeUpdated();
 }
 void NotesScrollArea::setEditorLevelLine(const QColor &color) {
     editor.levelLine = color;
-    emit themeUpdated();
+    emit editorThemeUpdated();
 }
 void NotesScrollArea::setEditorBackDark(const QColor &color) {
     editor.backDark = color;
-    emit themeUpdated();
+    emit editorThemeUpdated();
 }
 void NotesScrollArea::setEditorBackLight(const QColor &color) {
     editor.backLight = color;
-    emit themeUpdated();
+    emit editorThemeUpdated();
 }
 void NotesScrollArea::setEditorPlayHead(const QColor &color) {
     editor.playHead = color;
-    emit themeUpdated();
+    emit editorThemeUpdated();
 }
 void NotesScrollArea::setMode1SolidLineEnabled(const QColor &color) {
     mode1.solidLineEnabled = color;
-    emit themeUpdated();
+    emit pitchThemeUpdated();
 }
 void NotesScrollArea::setMode1SolidLineDisabled(const QColor &color) {
     mode1.solidLineDisabled = color;
-    emit themeUpdated();
+    emit pitchThemeUpdated();
 }
 void NotesScrollArea::setMode1DashLineEnabled(const QColor &color) {
     mode1.dashLineEnabled = color;
-    emit themeUpdated();
+    emit pitchThemeUpdated();
 }
 void NotesScrollArea::setMode1DashLineDisabled(const QColor &color) {
     mode1.dashLineDisabled = color;
-    emit themeUpdated();
+    emit pitchThemeUpdated();
 }
 void NotesScrollArea::setMode2SolidLineEnabled(const QColor &color) {
     mode2.solidLineEnabled = color;
-    emit themeUpdated();
+    emit pitchThemeUpdated();
 }
 void NotesScrollArea::setMode2SolidLineDisabled(const QColor &color) {
     mode2.solidLineDisabled = color;
-    emit themeUpdated();
+    emit pitchThemeUpdated();
 }
 void NotesScrollArea::setMode2DashLineEnabled(const QColor &color) {
     mode2.dashLineEnabled = color;
-    emit themeUpdated();
+    emit pitchThemeUpdated();
 }
 void NotesScrollArea::setMode2DashLineDisabled(const QColor &color) {
     mode2.dashLineDisabled = color;
-    emit themeUpdated();
+    emit pitchThemeUpdated();
 }
 void NotesScrollArea::setMode2InvalidLineEnabled(const QColor &color) {
     mode2.invalidLineEnabled = color;
-    emit themeUpdated();
+    emit pitchThemeUpdated();
 }
 void NotesScrollArea::setMode2InvalidLineDisabled(const QColor &color) {
     mode2.invalidLineDisabled = color;
-    emit themeUpdated();
+    emit pitchThemeUpdated();
 }
 void NotesScrollArea::setMode2PointCore(const QColor &color) {
     mode2.pointCore = color;
-    emit themeUpdated();
+    emit pitchThemeUpdated();
 }
 void NotesScrollArea::setMode2PointRing(const QColor &color) {
     mode2.pointRing = color;
-    emit themeUpdated();
+    emit pitchThemeUpdated();
 }
 void NotesScrollArea::setVbrCurvesEnabled(const QColor &color) {
     vbr.curvesEnabled = color;
-    emit themeUpdated();
+    emit pitchThemeUpdated();
 }
 void NotesScrollArea::setVbrCurvesDisabled(const QColor &color) {
     vbr.curvesDisabled = color;
-    emit themeUpdated();
+    emit pitchThemeUpdated();
 }
 void NotesScrollArea::setVbrEditorLines(const QColor &color) {
     vbr.editorLines = color;
-    emit themeUpdated();
+    emit pitchThemeUpdated();
 }
 void NotesScrollArea::setVbrPlaneHandleBorder(const QColor &color) {
     vbr.planeHandleBorder = color;
-    emit themeUpdated();
+    emit vbrHandleThemeUpdated();
 }
 void NotesScrollArea::setVbrPlaneHandleFill(const QColor &color) {
     vbr.planeHandleFill = color;
-    emit themeUpdated();
+    emit vbrHandleThemeUpdated();
 }
 void NotesScrollArea::setVbrPlaneHandleText(const QColor &color) {
     vbr.planeHandleText = color;
-    emit themeUpdated();
+    emit vbrHandleThemeUpdated();
 }
 void NotesScrollArea::setEnvSolidLineEnabled(const QColor &color) {
     env.solidLineEnabled = color;
-    emit themeUpdated();
+    emit envThemeUpdated();
 }
 void NotesScrollArea::setEnvSolidLineDisabled(const QColor &color) {
     env.solidLineDisabled = color;
-    emit themeUpdated();
+    emit envThemeUpdated();
 }
 void NotesScrollArea::setEnvDashLineEnabled(const QColor &color) {
     env.dashLineEnabled = color;
-    emit themeUpdated();
+    emit envThemeUpdated();
 }
 void NotesScrollArea::setEnvDashLineDisabled(const QColor &color) {
     env.dashLineDisabled = color;
-    emit themeUpdated();
+    emit envThemeUpdated();
 }
 void NotesScrollArea::setEnvInvalidLineEnabled(const QColor &color) {
     env.invalidLineEnabled = color;
-    emit themeUpdated();
+    emit envThemeUpdated();
 }
 void NotesScrollArea::setEnvInvalidLineDisabled(const QColor &color) {
     env.invalidLineDisabled = color;
-    emit themeUpdated();
+    emit envThemeUpdated();
 }
 void NotesScrollArea::setEnvPointCore(const QColor &color) {
     env.pointCore = color;
-    emit themeUpdated();
+    emit envThemeUpdated();
 }
 void NotesScrollArea::setEnvPointRing(const QColor &color) {
     env.pointRing = color;
-    emit themeUpdated();
+    emit envThemeUpdated();
 }
 void NotesScrollArea::setNoteLyric(const QColor &color) {
     note.lyric = color;
-    emit themeUpdated();
+    emit noteThemeUpdated();
 }
 void NotesScrollArea::setNoteRestFill(const QColor &color) {
     note.restFill = color;
-    emit themeUpdated();
+    emit noteThemeUpdated();
 }
 void NotesScrollArea::setNoteRestLine(const QColor &color) {
     note.restLine = color;
-    emit themeUpdated();
+    emit noteThemeUpdated();
 }
 void NotesScrollArea::setNoteListedFill(const QColor &color) {
     note.listedFill = color;
-    emit themeUpdated();
+    emit noteThemeUpdated();
 }
 void NotesScrollArea::setNoteListedLine(const QColor &color) {
     note.listedLine = color;
-    emit themeUpdated();
+    emit noteThemeUpdated();
 }
 void NotesScrollArea::setNoteUnlistedFill(const QColor &color) {
     note.unlistedFill = color;
-    emit themeUpdated();
+    emit noteThemeUpdated();
 }
 void NotesScrollArea::setNoteUnlistedLine(const QColor &color) {
     note.unlistedLine = color;
-    emit themeUpdated();
+    emit noteThemeUpdated();
 }
 void NotesScrollArea::setNoteSelect(const QColor &color) {
     note.select = color;
-    emit themeUpdated();
+    emit noteThemeUpdated();
 }
 void NotesScrollArea::setRubberFrame(const QColor &color) {
     rubber.frame = color;
-    emit themeUpdated();
+    emit rubberThemeUpdated();
 }
 void NotesScrollArea::setRubberFill(const QColor &color) {
     rubber.fill = color;
-    emit themeUpdated();
+    emit rubberThemeUpdated();
 }

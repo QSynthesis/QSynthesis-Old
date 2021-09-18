@@ -3,6 +3,7 @@
 
 #include "BaseTab.h"
 
+#include "CentralTabs/CentralTabContent.h"
 #include "QUtils.h"
 
 class CentralTabWidget;
@@ -74,16 +75,6 @@ public:
     virtual void play();
     virtual void replay();
     virtual void stop();
-};
-
-class CentralTabContent : public QWidget {
-    Q_OBJECT
-public:
-    explicit CentralTabContent(QWidget *parent = nullptr) : QWidget(parent) {
-        setAttribute(Qt::WA_StyledBackground);
-    }
-    virtual ~CentralTabContent() {
-    }
 };
 
 #endif // CENTRALTAB_H

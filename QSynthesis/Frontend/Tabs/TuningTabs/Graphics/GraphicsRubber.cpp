@@ -29,7 +29,7 @@ void GraphicsRubber::init() {
     connect(m_timer, &QTimer::timeout, this, &GraphicsRubber::onTimer);
 
     updateColorTheme();
-    connect(qViewIn, &NotesScrollArea::themeUpdated, this, &GraphicsRubber::updateColorTheme);
+    connect(qViewIn, &NotesScrollArea::rubberThemeUpdated, this, &GraphicsRubber::updateColorTheme);
 }
 
 void GraphicsRubber::setStartPoint(QPointF pos) {

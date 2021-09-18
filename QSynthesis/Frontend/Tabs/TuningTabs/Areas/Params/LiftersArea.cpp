@@ -2,8 +2,8 @@
 #include "../../Graphics/GraphicsLifter.h"
 #include "../../Graphics/GraphicsNote.h"
 #include "../../Interfaces/ParamsInterface.h"
-#include "../../TuningGroup.h"
 #include "../../Scrolls/LiftersScrollArea.h"
+#include "../../TuningGroup.h"
 #include "mainwindow.h"
 
 LiftersArea::LiftersArea(ParamsInterface *editor, LiftersScrollArea *parent)
@@ -15,7 +15,7 @@ LiftersArea::LiftersArea(ParamsInterface *editor, LiftersScrollArea *parent)
     connect(this, &QGraphicsScene::sceneRectChanged, this, &LiftersArea::handleSceneRectChanged);
 
     updateColorTheme();
-    connect(m_view, &LiftersScrollArea::themeUpdated, this, &LiftersArea::updateColorTheme);
+    connect(m_view, &LiftersScrollArea::editorThemeUpdated, this, &LiftersArea::updateColorTheme);
 }
 
 LiftersArea::~LiftersArea() {

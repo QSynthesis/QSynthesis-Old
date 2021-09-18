@@ -15,6 +15,7 @@ class OtoTableTab : public BaseTab {
     Q_OBJECT
     Q_PROPERTY(QColor normalColor READ normalColor WRITE setNormalColor NOTIFY colorChanged)
     Q_PROPERTY(QColor emptyColor READ emptyColor WRITE setEmptyColor NOTIFY colorChanged)
+    Q_PROPERTY(QColor invalidColor READ invalidColor WRITE setInvalidColor NOTIFY colorChanged)
 
 public:
     explicit OtoTableTab(TabWidget *parent = nullptr);

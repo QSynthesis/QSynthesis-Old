@@ -40,7 +40,7 @@ void EnvelopeHandler::init() {
     m_pointRadius = 3;
 
     updateColorTheme();
-    connect(qViewIn, &NotesScrollArea::themeUpdated, this, &EnvelopeHandler::updateColorTheme);
+    connect(qViewIn, &NotesScrollArea::envThemeUpdated, this, &EnvelopeHandler::updateColorTheme);
 }
 
 GraphicsPoint *EnvelopeHandler::createPointCore() {

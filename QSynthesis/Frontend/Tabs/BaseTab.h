@@ -15,7 +15,7 @@ class BaseTab : public MoreWidget {
     Q_OBJECT
 
 public:
-    explicit BaseTab(TabWidget *parent);
+    explicit BaseTab(TabWidget *parent = nullptr);
     virtual ~BaseTab();
 
     virtual void enter();

@@ -81,29 +81,29 @@ QColor LiftersScrollArea::lifterInactiveH() const {
 
 void LiftersScrollArea::setEditorTimeLine(const QColor &color) {
     editor.timeLine = color;
-    emit themeUpdated();
+    emit editorThemeUpdated();
 }
 void LiftersScrollArea::setEditorSectionLine(const QColor &color) {
     editor.sectionLine = color;
-    emit themeUpdated();
+    emit editorThemeUpdated();
 }
 void LiftersScrollArea::setEditorBack(const QColor &color) {
     editor.back = color;
-    emit themeUpdated();
+    emit editorThemeUpdated();
 }
 void LiftersScrollArea::setLifterActive(const QColor &color) {
     lifter.active = color;
-    emit themeUpdated();
+    emit lifterThemeUpdated();
 }
 void LiftersScrollArea::setLifterInactive(const QColor &color) {
     lifter.inactive = color;
-    emit themeUpdated();
+    emit lifterThemeUpdated();
 }
 void LiftersScrollArea::setLifterActiveH(const QColor &color) {
     lifter.activeH = color;
-    emit themeUpdated();
+    emit lifterThemeUpdated();
 }
 void LiftersScrollArea::setLifterInactiveH(const QColor &color) {
     lifter.inactiveH = color;
-    emit themeUpdated();
+    emit lifterThemeUpdated();
 }

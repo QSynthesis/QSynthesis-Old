@@ -108,13 +108,14 @@ SOURCES += \
     Frontend/Singletons/TempHandler.cpp \
     Frontend/Tabs/BaseTab.cpp \
     Frontend/Tabs/CentralTab.cpp \
+    Frontend/Tabs/CentralTabs/CentralTabContent.cpp \
     Frontend/Tabs/KeyboardTab.cpp \
-    Frontend/Tabs/KeyboardTabs/KeyLabelContent.cpp \
-    Frontend/Tabs/KeyboardTabs/KeyLineEdit.cpp \
-    Frontend/Tabs/KeyboardTabs/KeyModifyWidget.cpp \
-    Frontend/Tabs/KeyboardTabs/KeyTableWidget.cpp \
-    Frontend/Tabs/KeyboardTabs/KeyboardTabContent.cpp \
+    Frontend/Tabs/KeyboardTabs/Contents/KeyLineEdit.cpp \
+    Frontend/Tabs/KeyboardTabs/Contents/KeyModifyWidget.cpp \
+    Frontend/Tabs/KeyboardTabs/Contents/KeyTableTab.cpp \
+    Frontend/Tabs/KeyboardTabs/KeyboardTab_Core.cpp \
     Frontend/Tabs/KeyboardTabs/KeyboardTab_Edit.cpp \
+    Frontend/Tabs/KeyboardTabs/KeyboardTab_Init.cpp \
     Frontend/Tabs/KeyboardTabs/Operations/KeyOperation.cpp \
     Frontend/Tabs/SettingTab.cpp \
     Frontend/Tabs/SettingTabs/Operations/SettingOperation.cpp \
@@ -252,6 +253,7 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/TuningGroup.cpp \
     Frontend/Tabs/TuningTabs/TuningTab_Core.cpp \
     Frontend/Tabs/TuningTabs/TuningTab_Edit.cpp \
+    Frontend/Tabs/TuningTabs/TuningTab_Init.cpp \
     Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp \
     Frontend/Tabs/TuningTabs/TuningTab_NoteProperty.cpp \
     Frontend/Tabs/TuningTabs/TuningTab_Oto.cpp \
@@ -458,12 +460,11 @@ HEADERS += \
     Frontend/Singletons/TempHandler.h \
     Frontend/Tabs/BaseTab.h \
     Frontend/Tabs/CentralTab.h \
+    Frontend/Tabs/CentralTabs/CentralTabContent.h \
     Frontend/Tabs/KeyboardTab.h \
-    Frontend/Tabs/KeyboardTabs/KeyLabelContent.h \
-    Frontend/Tabs/KeyboardTabs/KeyLineEdit.h \
-    Frontend/Tabs/KeyboardTabs/KeyModifyWidget.h \
-    Frontend/Tabs/KeyboardTabs/KeyTableWidget.h \
-    Frontend/Tabs/KeyboardTabs/KeyboardTabContent.h \
+    Frontend/Tabs/KeyboardTabs/Contents/KeyLineEdit.h \
+    Frontend/Tabs/KeyboardTabs/Contents/KeyModifyWidget.h \
+    Frontend/Tabs/KeyboardTabs/Contents/KeyTableTab.h \
     Frontend/Tabs/KeyboardTabs/Operations/KeyOperation.h \
     Frontend/Tabs/SettingTab.h \
     Frontend/Tabs/SettingTabs/Operations/SettingOperation.h \

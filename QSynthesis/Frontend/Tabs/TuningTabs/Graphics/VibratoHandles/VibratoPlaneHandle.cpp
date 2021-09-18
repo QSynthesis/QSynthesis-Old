@@ -31,7 +31,8 @@ void VibratoPlaneHandle::init() {
     m_ringWidth = 1.5;
 
     updateColorTheme();
-    connect(qViewIn, &NotesScrollArea::themeUpdated, this, &VibratoPlaneHandle::updateColorTheme);
+    connect(qViewIn, &NotesScrollArea::vbrHandleThemeUpdated, this,
+            &VibratoPlaneHandle::updateColorTheme);
 }
 
 double VibratoPlaneHandle::padding() const {

@@ -30,16 +30,24 @@ bool OtoDataArea::addTable(const QString &dirname, const QOtoSampleList &samples
     }
 
     OtoTableTab *tab = new OtoTableTab(otoTabs);
+    it = TableMap.insert(dirname, tab);
 
     QString baseDir = m_ptrs->tab->filename();
     QString tabName = "/";
     if (dirname != baseDir) {
         tabName = PathFindFileName(dirname, baseDir);
-        otoTabs->addTab(tab, tabName);
+
+        auto it2 = it + 1;
+        if (it2 != TableMap.end()) {
+            BaseTab *nextTab = it2.value();
+            int index = otoTabs->indexOf(nextTab);
+            otoTabs->insertTab(index, tab, tabName);
+        } else {
+            otoTabs->addTab(tab, tabName);
+        }
     } else {
         otoTabs->insertTab(0, tab, tabName);
     }
-    TableMap.insert(dirname, tab);
 
     tab->setDirname(dirname);
     tab->setOtoSamples(samples);

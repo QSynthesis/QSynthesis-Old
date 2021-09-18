@@ -35,6 +35,7 @@ public:
     QColor editorTimeLine() const;
     QColor editorSectionLine() const;
     QColor editorBack() const;
+
     QColor lifterActive() const;
     QColor lifterInactive() const;
     QColor lifterActiveH() const;
@@ -43,6 +44,7 @@ public:
     void setEditorTimeLine(const QColor &color);
     void setEditorSectionLine(const QColor &color);
     void setEditorBack(const QColor &color);
+
     void setLifterActive(const QColor &color);
     void setLifterInactive(const QColor &color);
     void setLifterActiveH(const QColor &color);
@@ -67,6 +69,8 @@ private:
 
 signals:
     void themeUpdated();
+    void editorThemeUpdated();
+    void lifterThemeUpdated();
 };
 
 #endif // LIFTERSSCROLLAREA_H
