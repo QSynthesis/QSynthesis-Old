@@ -9,11 +9,7 @@ void MainWindow::fromCommandLine(int argc, char **argv) {
             paths.append(QString::fromLocal8Bit(argv[i])); // Add tabs one by one
         }
 
-        if (paths.size() == 1) {
-            addTuningTab(paths[0]);
-        } else {
-            addMultipleTabs(paths);
-        }
+        addMultipleTabs(paths);
     }
 
     reloadTitle(); // Initialize Window Title
