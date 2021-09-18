@@ -50,6 +50,19 @@ int main(int argc, char **argv, char **envp) {
         system(cmd.c_str());
 
         cout << "Successfully create desktop shortcut." << endl;
+
+        return 0;
+    } else if (argc == 2 && !strcmp(argv[1], "-h")) {
+        cout << "Usage: QSynthesis -d" << endl;
+        cout << "   Or: QSynthesis <filename>" << endl;
+        cout << "   Or: QSynthesis <dirname>" << endl;
+        cout << endl;
+
+        cout << "Option specification:" << endl;
+        cout << "       -d Create desktop shortcut automatically." << endl;
+        cout << "       (Paths in desktop file is based on current directory)" << endl;
+        cout << "       -h Print this message." << endl;
+
         return 0;
     }
 
@@ -68,6 +81,9 @@ int main(int argc, char **argv, char **envp) {
         setenv("PWD", currentDir, 1);
 
         execve(strAppPath.c_str(), newArgv, envp);
+
+        // If error occurs, the following codes will be loaded
+        cout << "Failed to execute application." << endl;
     }
 
     // Parent Process Exit Normally
