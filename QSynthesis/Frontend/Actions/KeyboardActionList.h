@@ -5,6 +5,7 @@
 
 class KeyboardActionList : public BaseActionList {
     Q_OBJECT
+    Q_SINGLETON(KeyboardActionList)
 public:
     KeyboardActionList(QObject *parent = nullptr);
     ~KeyboardActionList();

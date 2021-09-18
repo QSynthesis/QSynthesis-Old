@@ -1,6 +1,9 @@
 #include "SettingActionList.h"
 
+Q_SINGLETON_DECLARE(SettingActionList)
+
 SettingActionList::SettingActionList(QObject *parent) : BaseActionList(parent) {
+    createCasePrivate();
 }
 
 SettingActionList::~SettingActionList() {

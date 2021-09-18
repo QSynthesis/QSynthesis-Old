@@ -67,11 +67,11 @@ void Mode2Handler::drawMode2(QPainter *painter) {
 
         painter->setPen(tooShort ? dashPen : solidPen);
 
-        if (type == sType) { // S型
+        if (type == sJoin) { // S型
             pathCosineTo(path, prev, curr);
-        } else if (type == rType) { // R型
+        } else if (type == rJoin) { // R型
             pathCosineRTo(path, prev, curr);
-        } else if (type == jType) { // J型
+        } else if (type == jJoin) { // J型
             pathCosineJTo(path, prev, curr);
         } else {
             path.lineTo(curr);

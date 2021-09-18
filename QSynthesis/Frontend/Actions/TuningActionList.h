@@ -5,6 +5,7 @@
 
 class TuningActionList : public BaseActionList {
     Q_OBJECT
+    Q_SINGLETON(TuningActionList)
 public:
     TuningActionList(QObject *parent = nullptr);
     ~TuningActionList();

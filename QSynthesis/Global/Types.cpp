@@ -2,7 +2,6 @@
 
 QString Qs::NoteStatusToString(Qs::NoteStatus status) {
     QString name;
-
     switch (status) {
     case Rest:
         name = "rest";
@@ -14,23 +13,21 @@ QString Qs::NoteStatusToString(Qs::NoteStatus status) {
         name = "unlisted";
         break;
     }
-
     return name;
 }
 
 QString Qs::pitchPointToString(const Qs::PitchPoint &oType) {
-
     QString aResult;
     switch (oType) {
-    case sType:
+    case sJoin:
         aResult = "";
         break;
-    case lineType:
+    case linearJoin:
         aResult = "s";
-    case rType:
+    case rJoin:
         aResult = "r";
         break;
-    case jType:
+    case jJoin:
         aResult = "j";
         break;
     }
@@ -42,13 +39,13 @@ Qs::PitchPoint Qs::stringToPitchPoint(const QString &oString) {
     Qs::PitchPoint aResult;
 
     if (oString == "s") {
-        aResult = lineType;
+        aResult = linearJoin;
     } else if (oString == "r") {
-        aResult = rType;
+        aResult = rJoin;
     } else if (oString == "j") {
-        aResult = jType;
+        aResult = jJoin;
     } else {
-        aResult = sType;
+        aResult = sJoin;
     }
 
     return aResult;

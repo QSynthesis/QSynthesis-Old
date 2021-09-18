@@ -5,6 +5,7 @@
 
 class SettingActionList : public BaseActionList {
     Q_OBJECT
+    Q_SINGLETON(SettingActionList)
 public:
     SettingActionList(QObject *parent = nullptr);
     ~SettingActionList();

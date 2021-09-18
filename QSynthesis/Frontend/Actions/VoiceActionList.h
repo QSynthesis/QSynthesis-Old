@@ -5,6 +5,7 @@
 
 class VoiceActionList : public BaseActionList {
     Q_OBJECT
+    Q_SINGLETON(VoiceActionList)
 public:
     VoiceActionList(QObject *parent = nullptr);
     ~VoiceActionList();

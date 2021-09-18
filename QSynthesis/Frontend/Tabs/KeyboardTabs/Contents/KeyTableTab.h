@@ -8,9 +8,12 @@
 #include "Tabs/BaseTab.h"
 
 class KeyTableTab : public BaseTab {
+    Q_OBJECT
 public:
     explicit KeyTableTab(TabWidget *parent = nullptr);
     virtual ~KeyTableTab();
+
+    void addActionData(QAction *action);
 
 private:
     QVBoxLayout *mainLayout;

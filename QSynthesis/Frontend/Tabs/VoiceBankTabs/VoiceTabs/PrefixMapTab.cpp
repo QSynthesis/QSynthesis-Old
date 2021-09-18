@@ -52,6 +52,7 @@ void PrefixMapTab::init() {
     mapTable->setHorizontalHeaderLabels(headerList);
     // mapTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     mapTable->horizontalHeader()->setDisabled(false);
+    mapTable->horizontalHeader()->setHighlightSections(false);
     // mapTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     mapTable->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 

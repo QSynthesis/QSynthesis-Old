@@ -5,6 +5,7 @@
 
 class WelcomeActionList : public BaseActionList {
     Q_OBJECT
+    Q_SINGLETON(WelcomeActionList)
 public:
     WelcomeActionList(QObject *parent = nullptr);
     ~WelcomeActionList();

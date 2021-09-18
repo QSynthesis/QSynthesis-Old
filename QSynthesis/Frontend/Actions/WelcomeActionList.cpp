@@ -1,6 +1,9 @@
 #include "WelcomeActionList.h"
 
+Q_SINGLETON_DECLARE(WelcomeActionList)
+
 WelcomeActionList::WelcomeActionList(QObject *parent) : BaseActionList(parent) {
+    createCasePrivate();
 }
 
 WelcomeActionList::~WelcomeActionList() {

@@ -1,6 +1,9 @@
 #include "TuningActionList.h"
 
+Q_SINGLETON_DECLARE(TuningActionList)
+
 TuningActionList::TuningActionList(QObject *parent) : BaseActionList(parent) {
+    createCasePrivate();
 }
 
 TuningActionList::~TuningActionList() {
@@ -86,6 +89,32 @@ void TuningActionList::updateStrings() {
     pluginMenu->setTitle(tr("Plugins"));
 
     // Help
+
+    // Shortcuts
+    openBuildInMenu->setText(tr("Open build-in tools list"));
+    openPluginMenu->setText(tr("Open plug-in list"));
+    openAliasMenu->setText(tr("Open alias list"));
+    switchTrack->setText(tr("Switch to overview mode"));
+    switchConfig->setText(tr("Switch to configuration mode"));
+    switchNote->setText(tr("Switch to note mode"));
+    switchPitch->setText(tr("Switch to pitch mode"));
+    switchEnvelope->setText(tr("Switch to envelope mode"));
+    switchInt->setText(tr("Switch to intensity mode"));
+    switchMod->setText(tr("Switch to modulation mode"));
+    switchVel->setText(tr("Switch to velocity mode"));
+
+    QString shortcutsType = tr("Shortcut");
+    textToName(openBuildInMenu, shortcutsType);
+    textToName(openPluginMenu, shortcutsType);
+    textToName(openAliasMenu, shortcutsType);
+    textToName(switchTrack, shortcutsType);
+    textToName(switchConfig, shortcutsType);
+    textToName(switchNote, shortcutsType);
+    textToName(switchPitch, shortcutsType);
+    textToName(switchEnvelope, shortcutsType);
+    textToName(switchInt, shortcutsType);
+    textToName(switchMod, shortcutsType);
+    textToName(switchVel, shortcutsType);
 }
 
 void TuningActionList::makeDefaultShortcuts() {

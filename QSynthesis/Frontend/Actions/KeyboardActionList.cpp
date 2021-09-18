@@ -1,6 +1,9 @@
 #include "KeyboardActionList.h"
 
+Q_SINGLETON_DECLARE(KeyboardActionList)
+
 KeyboardActionList::KeyboardActionList(QObject *parent) : BaseActionList(parent) {
+    createCasePrivate();
 }
 
 KeyboardActionList::~KeyboardActionList() {

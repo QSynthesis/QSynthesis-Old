@@ -5,6 +5,8 @@
 #include <QMenu>
 #include <QObject>
 
+#include "Macros.h"
+
 class BaseActionList : public QObject {
     Q_OBJECT
 public:

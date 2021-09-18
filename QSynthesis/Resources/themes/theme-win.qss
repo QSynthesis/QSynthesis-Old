@@ -61,6 +61,11 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus, Wavefor
     background-color: #002050;
 }
 
+.SwitchButton {
+    background-color: transparent;
+    border: none;
+}
+
 /* Custom Controls */
 
 LineControl>FixedLineEdit[status=normal] {
@@ -177,6 +182,19 @@ TabWidget[type=keyboard]>QTabBar::tab {
     margin-bottom: 25px;
 }
 
+TabWidget[type=keyboard]>QTabBar::tab:first {
+    margin-right: 10px;
+}
+
+TabWidget[type=keyboard]>QTabBar::tab:middle {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+TabWidget[type=keyboard]>QTabBar::tab:last {
+    margin-left: 10px;
+}
+
 TabWidget[type=keyboard]>QTabBar::tab:selected {
     color: black;
     border-bottom-color: black;
@@ -188,6 +206,26 @@ TabWidget[type=keyboard]>QTabBar::tab:!selected:hover {
 
 TabWidget[type=keyboard]>QTabBar::scroller {
     width: 40px;
+}
+
+KeyboardTab>.SwitchButton[type=key-table-tab] {
+    color: darkgrey;
+    font-size: 17px;
+    padding: 14px 8px;
+}
+
+KeyboardTab>.SwitchButton[type=key-table-tab]:hover {
+    color: black;
+}
+
+KeyboardTab>.SwitchButton[type=key-table-tab]:checked {
+    color: black;
+}
+
+KeyboardTab>.SwitchButtonUnderline[type=keyboard] {
+    qproperty-lineWidth: 1;
+    qproperty-color: black;
+    background-color: lightgrey;
 }
 
 /* Central Tab */
@@ -204,11 +242,6 @@ CentralTabContent {
 
 WelcomeTabContent>.SwitchButton[type=list] {
     color: darkgrey;
-    background-color: transparent;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
     font-size: 18px;
     padding: 10px 0;
 }
@@ -315,10 +348,6 @@ FormTitleBar {
 
 .SwitchButton[type=titleBar] {
     color: darkgrey;
-    background-color: transparent;
-    border-top: none;
-    border-left: none;
-    border-right: none;
     border-bottom: 1px solid transparent;
     padding: 4px 0;
 }
@@ -565,20 +594,13 @@ ParamsDialArea {
     qproperty-textColor: black;
 }
 
-/* KeyboardTab */
-
-KeyTableWidget>QTableWidget>QHeaderView::section {
-    background-color: #FAFAFA;
-    border: 0px;
-}
-
 /* BaseDialog */
 
 BaseDialog {
     background-color: whitesmoke;
 }
 
-/* QTableWidget */
+/* QTableWidget Voice */
 
 QTableWidget[type=voice] {
     background: white;
@@ -646,6 +668,74 @@ QTableWidget[type=voice]>QHeaderView::section:pressed {
 }
 
 QTableWidget[type=voice]>QHeaderView::section:checked {
+    background-color: rgba(0, 0, 0, 13.6%);
+}
+
+/* QTableWidget Keyboard */
+
+QTableWidget[type=keyboard] {
+    border: none;
+    background: #FFFFFF;
+    alternate-background-color: #F8F8F8;
+    gridline-color: rgba(0, 0, 0, 7.5%);
+}
+
+/*items*/
+
+QTableWidget[type=keyboard]::item {
+    color: #333333;
+}
+
+QTableWidget[type=keyboard]::item:hover {
+    background-color: rgba(0, 0, 0, 20%);
+}
+
+QTableWidget[type=keyboard]::item:pressed {
+    background-color: rgba(0, 0, 0, 7.5%);
+}
+
+QTableWidget[type=keyboard]::item:selected {
+    background-color: rgba(0, 0, 0, 12%);
+}
+
+/*corner*/
+
+QTableWidget[type=keyboard]>QTableCornerButton::section {
+    background-color: #F8F8F8;
+    border: none;
+}
+
+QTableWidget[type=keyboard]>QTableCornerButton::section:pressed {
+    background-color: rgba(0, 0, 0, 10%);
+}
+
+/*header*/
+
+QTableWidget[type=keyboard]>QHeaderView {
+    background-color: #F8F8F8;
+}
+
+QTableWidget[type=keyboard]>QHeaderView::section {
+    background-color: transparent;
+    padding: 3px;
+    margin: 0px;
+    color: #333333;
+    border: none;
+}
+
+QTableWidget[type=keyboard]>QHeaderView::section:horizontal {
+    font-weight: bold;
+}
+
+QTableWidget[type=keyboard]>QHeaderView::section:vertical:hover {
+    background-color: rgba(0, 0, 0, 20%);
+}
+
+QTableWidget[type=keyboard]>QHeaderView::section:vertical:pressed {
+    background-color: rgba(0, 0, 0, 10%);
+}
+
+QTableWidget[type=keyboard]>QHeaderView::section:vertical:checked {
     background-color: rgba(0, 0, 0, 13.6%);
 }
 

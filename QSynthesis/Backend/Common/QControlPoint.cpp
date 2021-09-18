@@ -4,7 +4,7 @@
 QControlPoint::QControlPoint() {
     mX = 0.0;
     mY = 0.0;
-    mP = Qs::sType;
+    mP = Qs::sJoin;
 }
 
 QControlPoint::QControlPoint(const QControlPoint &oPoint) {
@@ -16,7 +16,7 @@ QControlPoint::QControlPoint(const QControlPoint &oPoint) {
 QControlPoint::QControlPoint(double oX, double oY) {
     mX = oX;
     mY = oY;
-    mP = Qs::sType;
+    mP = Qs::sJoin;
 }
 
 QControlPoint::QControlPoint(double oX, double oY, Qs::PitchPoint oP) {

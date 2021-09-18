@@ -50,13 +50,13 @@ double UtaPitchCurves::f_type(const Qs::PitchPoint &ptype, const double &x1, con
     int impact;
 
     switch (ptype) {
-    case lineType:
+    case linearJoin:
         impact = int(f_s(x1, y1, x2, y2, x));
         break;
-    case jType:
+    case jJoin:
         impact = int(f_j(x1, y1, x2, y2, x));
         break;
-    case rType:
+    case rJoin:
         impact = int(f_r(x1, y1, x2, y2, x));
         break;
     default:

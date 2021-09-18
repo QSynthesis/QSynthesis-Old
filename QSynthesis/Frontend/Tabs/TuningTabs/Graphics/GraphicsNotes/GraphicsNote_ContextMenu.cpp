@@ -10,7 +10,7 @@ void GraphicsNote::openContextMenu() {
     QAction *vibratoAction = new QAction(tr("Vibrato"), menu);
     QAction *vibratoEditorAction = new QAction(tr("Vibrato Editor"), menu);
     QAction *propertyAction = new QAction(tr("Note Properties..."), menu);
-    QAction *voiceBankAction = new QAction(tr("Voice Bank Configue"), menu);
+    QAction *voiceBankAction = new QAction(tr("Voice Bank Manage"), menu);
 
     QAction *tempoAction = new QAction(tr("Tempo..."), menu);
     QAction *removeTempoAction = new QAction(tr("Remove Tempo"), menu);

@@ -20,10 +20,13 @@ bool KeyboardTab::load() {
     }
 
     keys = cfg.data();
+    loadCore();
     return true;
 }
 
 bool KeyboardTab::save() {
+    saveCore();
+
     ShortcutsData orgKeys = cfg.data();
     cfg.setData(keys);
 

@@ -8,7 +8,7 @@ struct QGenonSettings {
     QString mFileName;
     QString mAlias;
     double mOffset;
-    double mConstant;
+    double mConstant; // Also signed as Consonant
     double mBlank;
     double mPreUtterance;
     double mVoiceOverlap;
@@ -27,10 +27,11 @@ struct QGenonSettings {
 
     bool valid() const;
 
-    QString frqFile() const;
+    QString frqFile() const; // Resampler Frequency Map File
     bool frqExist() const;
 
-    QString mrqFile() const;
+    QString mrqFile() const; // Moresampler Frequency Map File
+    bool mrqExist() const;
 };
 
 // Fixed Sample Variables

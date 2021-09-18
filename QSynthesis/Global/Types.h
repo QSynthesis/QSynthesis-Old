@@ -115,7 +115,7 @@ namespace Qs {
 
     enum SpecialPos { Leftmost, Middle, Rightmost };
 
-    enum PitchPoint { sType, lineType, rType, jType };
+    enum PitchPoint { sJoin, linearJoin, rJoin, jJoin };
 
     enum EnvelopeBatch { P1P4Fade, P2P3Fade, DefaultEnvelope };
 

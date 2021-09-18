@@ -1,6 +1,9 @@
 #include "VoiceActionList.h"
 
+Q_SINGLETON_DECLARE(VoiceActionList)
+
 VoiceActionList::VoiceActionList(QObject *parent) : BaseActionList(parent) {
+    createCasePrivate();
 }
 
 VoiceActionList::~VoiceActionList() {
@@ -54,7 +57,7 @@ void VoiceActionList::updateStrings() {
     textToName(setConstant, modifyType);
     textToName(setBlank, modifyType);
     textToName(setPreUttr, modifyType);
-    textToName(setBlank, modifyType);
+    textToName(setOverlap, modifyType);
 
     // Preview
 

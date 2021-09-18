@@ -7,6 +7,7 @@
 #include <QPen>
 
 SwitchButtonUnderline::SwitchButtonUnderline(QWidget *parent) : QWidget(parent) {
+    setAttribute(Qt::WA_StyledBackground);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     m_group = nullptr;

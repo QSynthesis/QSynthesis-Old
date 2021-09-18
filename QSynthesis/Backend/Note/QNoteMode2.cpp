@@ -74,7 +74,7 @@ QVector<QControlPoint> QNoteMode2::GetCorrectedPortamento() const {
             aPoint.mY = (aPBYs[i] == NODEF_DOUBLE) ? 0 : aPBYs[i];
         }
         if (aPBMs.size() > i) {
-            aPoint.mP = (aPBMs[i] == NODEF_STRING) ? Qs::sType : Qs::stringToPitchPoint(aPBMs[i]);
+            aPoint.mP = (aPBMs[i] == NODEF_STRING) ? Qs::sJoin : Qs::stringToPitchPoint(aPBMs[i]);
         }
         aPoint.mX += oCorrectedPitch.back().mX;
         oCorrectedPitch.push_back(aPoint);

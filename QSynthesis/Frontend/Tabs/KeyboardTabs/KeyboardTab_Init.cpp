@@ -11,9 +11,44 @@ void KeyboardTab::initTab() {
 }
 
 void KeyboardTab::initComponents() {
-    mainLayout = new QVBoxLayout(this);
-    mainLayout->setMargin(40);
+    // Switch Layout
+    switchLayout = new QHBoxLayout();
+    switchLayout->setSpacing(20);
+    switchLayout->setMargin(0);
 
+    sBtnCommon = new SwitchButton(tr("Common"));
+    sBtnProject = new SwitchButton(tr("Project"));
+    sBtnVoice = new SwitchButton(tr("Voice Bank Manage"));
+
+    sBtnCommon->setProperty("type", "key-table-tab");
+    sBtnProject->setProperty("type", "key-table-tab");
+    sBtnVoice->setProperty("type", "key-table-tab");
+
+    sBtnGroup = new SwitchButtonGroup(this);
+    sBtnGroup->addButton(sBtnCommon);
+    sBtnGroup->addButton(sBtnProject);
+    sBtnGroup->addButton(sBtnVoice);
+
+    sBtnUnderline = new SwitchButtonUnderline();
+    sBtnUnderline->setProperty("type", "keyboard");
+    sBtnUnderline->setGroup(sBtnGroup);
+
+    btnReset = new QPushButton(tr("Reset Current"));
+    btnReset->setObjectName("reset");
+
+    switchLayout->addWidget(sBtnCommon);
+    switchLayout->addWidget(sBtnProject);
+    switchLayout->addWidget(sBtnVoice);
+    switchLayout->addStretch();
+    switchLayout->addWidget(btnReset);
+
+    switchLineLayout = new QVBoxLayout();
+    switchLineLayout->setMargin(0);
+    switchLineLayout->setSpacing(0);
+    switchLineLayout->addLayout(switchLayout);
+    switchLineLayout->addWidget(sBtnUnderline);
+
+    // Main Widget
     mainWidget = new TabWidget(this);
     mainWidget->setProperty("type", "keyboard");
 
@@ -21,12 +56,26 @@ void KeyboardTab::initComponents() {
     projectKeyTab = new KeyTableTab(mainWidget);
     voiceKeyTab = new KeyTableTab(mainWidget);
 
-    mainWidget->addTab(commonKeyTab, tr("Common"));
-    mainWidget->addTab(projectKeyTab, tr("Project"));
-    mainWidget->addTab(voiceKeyTab, tr("Voice Bank Manage"));
+    mainWidget->tabBar()->setVisible(false);
+    mainWidget->addTab(commonKeyTab, "");
+    mainWidget->addTab(projectKeyTab, "");
+    mainWidget->addTab(voiceKeyTab, "");
+
+    // Main Layout
+    mainLayout = new QVBoxLayout(this);
+    mainLayout->setMargin(40);
+
+    mainLayout->addLayout(switchLineLayout);
+    mainLayout->addSpacing(20);
+    mainLayout->addWidget(mainWidget);
 
     setLayout(mainLayout);
-    mainLayout->addWidget(mainWidget);
+
+    connect(sBtnGroup, &SwitchButtonGroup::switched, this, &KeyboardTab::handleSwitched);
+
+    // Init
+    sBtnCommon->setChecked(true);
+    sBtnUnderline->setRealtimeState();
 }
 
 void KeyboardTab::initValues() {
@@ -34,4 +83,9 @@ void KeyboardTab::initValues() {
 
     historyIndex = 0;
     savedHistoryIndex = 0;
+}
+
+void KeyboardTab::handleSwitched() {
+    int index = sBtnGroup->currentIndex();
+    mainWidget->setCurrentIndex(index);
 }

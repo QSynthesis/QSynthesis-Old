@@ -8,6 +8,7 @@
 #include <QVBoxLayout>
 
 #include "CentralTab.h"
+#include "Controls/SwitchButton.h"
 #include "File/ShortcutsFile.h"
 #include "KeyboardTabs/Contents/KeyTableTab.h"
 #include "KeyboardTabs/Operations/KeyOperation.h"
@@ -60,12 +61,25 @@ private:
     void initValues();
 
 private:
+    QHBoxLayout *switchLayout;
+    QVBoxLayout *switchLineLayout;
+
     QVBoxLayout *mainLayout;
     TabWidget *mainWidget;
 
     KeyTableTab *commonKeyTab;
     KeyTableTab *projectKeyTab;
     KeyTableTab *voiceKeyTab;
+
+    SwitchButton *sBtnCommon;
+    SwitchButton *sBtnProject;
+    SwitchButton *sBtnVoice;
+    SwitchButtonGroup *sBtnGroup;
+    SwitchButtonUnderline *sBtnUnderline;
+
+    QPushButton *btnReset;
+
+    void handleSwitched();
 
     // Edit
 public:

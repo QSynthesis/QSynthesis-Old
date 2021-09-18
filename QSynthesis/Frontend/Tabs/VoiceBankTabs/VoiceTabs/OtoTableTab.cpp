@@ -26,17 +26,14 @@ void OtoTableTab::init() {
     mainLayout = new QVBoxLayout(this);
 
     otoTable->viewport()->installEventFilter(this);
-    otoTable->horizontalHeader()->setHighlightSections(false);
 
     otoTable->setColumnCount(8);
     QStringList header{tr("File Name"), tr("Alias"),        tr("Offset"),  tr("Consonant"),
                        tr("Blank"),     tr("PreUtterance"), tr("Overlap"), tr("Frq")};
 
     otoTable->setHorizontalHeaderLabels(header);
-    // srcTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     otoTable->horizontalHeader()->setDisabled(false);
-    // otoTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    // otoTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Interactive);
+    otoTable->horizontalHeader()->setHighlightSections(false);
     otoTable->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 
     otoTable->setSelectionBehavior(QAbstractItemView::SelectRows);

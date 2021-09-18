@@ -70,6 +70,10 @@ QString QGenonSettings::mrqFile() const {
     return info.absolutePath() + Slash + "desc.mrq";
 }
 
+bool QGenonSettings::mrqExist() const {
+    return isFileExist(mrqFile());
+}
+
 QCorrectGenon::QCorrectGenon() {
     PreUtterance = VoiceOverlap = StartPoint = 0;
 }

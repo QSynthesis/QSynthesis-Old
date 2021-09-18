@@ -143,14 +143,14 @@ void NotesArea::changePointFromCursor(GraphicsPoint *p) {
             return;
         }
 
-        if (type == Qs::sType) { // S type
-            type = Qs::lineType;
-        } else if (type == Qs::rType) { // R type
-            type = Qs::jType;
-        } else if (type == Qs::jType) { // J type
-            type = Qs::sType;
+        if (type == Qs::sJoin) { // S type
+            type = Qs::linearJoin;
+        } else if (type == Qs::rJoin) { // R type
+            type = Qs::jJoin;
+        } else if (type == Qs::jJoin) { // J type
+            type = Qs::sJoin;
         } else {
-            type = Qs::rType;
+            type = Qs::rJoin;
         }
 
         p->TPoint.mP = type;

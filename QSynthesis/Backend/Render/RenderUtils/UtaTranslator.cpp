@@ -137,7 +137,7 @@ QVector<QControlPoint> UtaTranslator::defaultPitch(const int &prevNoteNum, const
     QControlPoint second(0, 0);
 
     getCorrectPBSY(prevNoteNum, prevLyric, curNoteNum, first);
-    second.mP = Qs::sType;
+    second.mP = Qs::sJoin;
 
     QVector<QControlPoint> pitch = {first, second};
 
