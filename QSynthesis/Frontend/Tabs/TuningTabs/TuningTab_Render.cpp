@@ -380,12 +380,20 @@ bool TuningTab::renderCore() {
         QMessageBox::warning(this, ErrorTitle, tr("Voice database is not available."));
         return 0;
     }
-    if (!isFileExist(projectInfo->wavtool())) {
-        QMessageBox::warning(this, ErrorTitle, tr("Wavtool is not available."));
+    QFileInfo wavtool(projectInfo->wavtool());
+    if (!wavtool.isFile()) {
+        QMessageBox::warning(this, ErrorTitle, tr("Wavtool doesn't exist."));
+        return 0;
+    } else if (!wavtool.isExecutable()) {
+        QMessageBox::warning(this, ErrorTitle, tr("Wavtool is not executable."));
         return 0;
     }
-    if (!isFileExist(m_ptrs->tracksContent->defaultResampler())) {
-        QMessageBox::warning(this, ErrorTitle, tr("Resampler is not available."));
+    QFileInfo resamp(m_ptrs->tracksContent->defaultResampler());
+    if (!resamp.isFile()) {
+        QMessageBox::warning(this, ErrorTitle, tr("Resampler doesn't exist."));
+        return 0;
+    } else if (!resamp.isExecutable()) {
+        QMessageBox::warning(this, ErrorTitle, tr("Resampler is not executable."));
         return 0;
     }
 
