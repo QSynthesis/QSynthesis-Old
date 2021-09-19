@@ -587,7 +587,7 @@ RC_FILE += \
 unix{
 }
 macx{
-ICON = Resources/platforms/mac/qsynth.icns
+ICON = Resources/platforms/mac/qsynth2.icns
 }
 
 # Default rules for deployment.
