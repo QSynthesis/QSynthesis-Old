@@ -92,6 +92,8 @@ void NotesArea::leaveEvent(QEvent *event) {
         default:
             break;
         }
+    } else if (m_selecting) {
+        stopSelecting();
     }
 }
 
