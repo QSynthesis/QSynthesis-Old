@@ -28,9 +28,15 @@ QLineEdit, QTextEdit, QPlainTextEdit, QComboBox {
     border: 1px solid transparent;
     color: #CCCCCC;
     background-color: #3C3C3C;
+    padding: 3px 3px;
 }
 
-QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
+WaveformScrollArea, QTableWidget {
+    border: 1px solid transparent;
+    background-color: #3C3C3C;
+}
+
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus, WaveformScrollArea:focus, QTableWidget:focus {
     border-color: #167FD2;
 }
 
@@ -52,6 +58,11 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
 
 .QPushButton:pressed {
     color: #EEEEEE;
+}
+
+.SwitchButton {
+    background-color: transparent;
+    border: none;
 }
 
 /* Custom Controls */
@@ -136,7 +147,7 @@ TabWidget[type=voice]>QTabBar::tab {
     border-right: 1px solid #404040;
     border-left: 1px solid #404040;
     color: #CCCCCC;
-    padding: 3px 5px;
+    padding: 5px 8px;
     background-color: #2D2D2D;
 }
 
@@ -153,6 +164,74 @@ TabWidget[type=voice]>QTabBar::scroller {
     width: 40px;
 }
 
+/* Keyboard TabWidget */
+
+TabWidget[type=keyboard] {
+    background-color: transparent;
+}
+
+TabWidget[type=keyboard]>QTabBar {
+    border: none;
+    font-size: 16px;
+    /* border-bottom: 1px solid darkgrey; */
+}
+
+TabWidget[type=keyboard]>QTabBar::tab {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: lightgrey;
+    padding: 8px 8px;
+    margin-bottom: 25px;
+}
+
+TabWidget[type=keyboard]>QTabBar::tab:first {
+    margin-right: 10px;
+}
+
+TabWidget[type=keyboard]>QTabBar::tab:middle {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+TabWidget[type=keyboard]>QTabBar::tab:last {
+    margin-left: 10px;
+}
+
+TabWidget[type=keyboard]>QTabBar::tab:selected {
+    color: white;
+    border-bottom-color: white;
+}
+
+TabWidget[type=keyboard]>QTabBar::tab:!selected:hover {
+    color: white;
+}
+
+TabWidget[type=keyboard]>QTabBar::scroller {
+    width: 40px;
+}
+
+KeyboardTab>.SwitchButton[type=key-table-tab] {
+    color: #898A8B;
+    font-size: 17px;
+    padding: 14px 8px;
+}
+
+KeyboardTab>.SwitchButton[type=key-table-tab]:hover {
+    color: #DCDCDC;
+}
+
+KeyboardTab>.SwitchButton[type=key-table-tab]:checked {
+    color: #DCDCDC;
+}
+
+KeyboardTab>.SwitchButtonUnderline[type=keyboard] {
+    qproperty-lineWidth: 1;
+    qproperty-color: #898A8B;
+    background-color: #333333;
+}
+
+KeyboardTab>.QPushButton#reset {}
+
 /* Central Tab */
 
 CentralTab {
@@ -167,11 +246,6 @@ CentralTabContent {
 
 WelcomeTabContent>.SwitchButton[type=list] {
     color: #666666;
-    background-color: transparent;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
     font-size: 18px;
     padding: 10px 0;
 }
@@ -209,6 +283,48 @@ WelcomeTabContent>QLabel[type=title] {
     font-weight: bold;
 }
 
+/* Menu Bar */
+
+/* QMenuBar {
+    background: #3C3C3C;
+    border-bottom: 1px solid rgba(255, 255, 255, 5%);
+}
+
+QMenuBar::item {
+    color: #CCCCCC;
+    padding: 8px 10px;
+}
+
+QMenuBar::item:selected {
+    background: #505050;
+}
+
+QMenu {
+    padding: 5px 5px;
+    background: #252526;
+}
+
+QMenu::item {
+    padding: 6px 30px;
+    background: transparent;
+    color: #CCCCCC;
+}
+
+QMenu::item:selected {
+    color: white;
+    background: #0060C0;
+}
+
+QMenu::item:disabled {
+    color: #666666;
+}
+
+QMenu::separator {
+    height: 1px;
+    background-color: #5B5B5B;
+    margin: 6px 6px 6px 6px;
+} */
+
 /* Title Bar */
 
 FormSplitter::handle {
@@ -236,10 +352,6 @@ FormTitleBar {
 
 .SwitchButton[type=titleBar] {
     color: #898A8B;
-    background-color: transparent;
-    border-top: none;
-    border-left: none;
-    border-right: none;
     border-bottom: 1px solid transparent;
     padding: 4px 0;
 }
@@ -256,10 +368,10 @@ FormTitleBar {
 /* Editor */
 
 SectionsArea {
-    qproperty-noteTempoColor: lightgrey;
+    qproperty-noteTempoColor: #CCCCCC;
     qproperty-globalTempoColor: rgb(255, 129, 150);
-    qproperty-beatColor: lightgrey;
-    qproperty-numColor: lightgrey;
+    qproperty-beatColor: #CCCCCC;
+    qproperty-numColor: #CCCCCC;
     qproperty-lineColor: #999999;
 }
 
@@ -294,7 +406,7 @@ PianoKey {
 }
 
 PianoKey[color=white] {
-    background-color: #B4B4B4;
+    background-color: lightgrey;
 }
 
 PianoKey[color=white]:hover {
@@ -328,7 +440,7 @@ NotesScrollArea {
     /**/
     qproperty-mode2SolidLineEnabled: #FF4D4D;
     qproperty-mode2SolidLineDisabled: rgba(255, 128, 128, 75%);
-    qproperty-mode2DashLineEnabled:  rgba(255, 77, 77, 75%);
+    qproperty-mode2DashLineEnabled: rgba(255, 77, 77, 75%);
     qproperty-mode2DashLineDisabled: rgba(255, 128, 128, 75%);
     qproperty-mode2InvalidLineEnabled: rgba(255, 77, 77, 25%);
     qproperty-mode2InvalidLineDisabled: rgba(255, 77, 77, 12.5%);
@@ -376,17 +488,17 @@ LiftersScrollArea {
 }
 
 WaveformScrollArea {
-    qproperty-sampleOffsetLine: grey;
+    qproperty-sampleOffsetLine: lightgrey;
     qproperty-sampleConstantLine: pink;
     qproperty-sampleBlankLine: lightblue;
-    qproperty-samplePreUttrLine: red;
-    qproperty-sampleOverlapLine: green;
+    qproperty-samplePreUttrLine: orangered;
+    qproperty-sampleOverlapLine: lightgreen;
     /**/
-    qproperty-sampleOffsetBack: rgba(128, 128, 128, 37.5%);
-    qproperty-sampleConstantBack: rgba(255, 192, 203, 37.5%);
+    qproperty-sampleOffsetBack: rgba(211, 211, 211, 37.5%);
+    qproperty-sampleConstantBack: rgba(255, 192, 203, 62.5%);
     qproperty-sampleBlankBack: rgba(173, 216, 230, 37.5%);
     /**/
-    qproperty-sampleWaveform: rgb(0, 192, 32);
+    qproperty-sampleWaveform: deepskyblue;
     qproperty-sampleFrqCurves: lightblue;
 }
 
@@ -394,7 +506,7 @@ WaveformScrollArea {
 
 TracksInterface>QFrame[type=track-separator] {
     border: none;
-    background: black;
+    background: #121212;
 }
 
 /* TrackHead */
@@ -427,15 +539,15 @@ TrackHead>LabelButton {
     color: #999999;
 }
 
-TrackHead>LabelButton[invalid="true"] {
+TrackHead>LabelButton[invalid=true] {
     color: orangered;
 }
 
-TrackHead>LabelButton[invalid="false"]::hover {
+TrackHead>LabelButton[invalid=false]::hover {
     color: white;
 }
 
-TrackHead>LabelButton[invalid="true"]::hover {
+TrackHead>LabelButton[invalid=true]::hover {
     color: red;
 }
 
@@ -466,6 +578,7 @@ BlocksArea {
 
 TrackContent {
     background-color: rgba(255, 255, 255, 10%);
+    qproperty-midiColor: #00AEFF;
 }
 
 /* ParamsDialArea */
@@ -474,44 +587,152 @@ ParamsDialArea {
     qproperty-textColor: lightgrey;
 }
 
-/* KeyboardTab */
-
-KeyTableWidget>QTableWidget>QHeaderView::section {
-    background-color: #FAFAFA;
-    border: 0px;
-}
-
 /* BaseDialog */
 
 BaseDialog {
     background-color: #252526;
 }
 
-/* QTableWidget */
+/* QTableWidget Voice */
 
-/* QTableWidget {
-    background-color: white;
-    color: black
+QTableWidget[type=voice] {
+    /* background: #1E1E1E; */
+    alternate-background-color: #323232;
+    gridline-color: rgba(255, 255, 255, 15%);
 }
 
-QHeaderView {
-    background: transparent;
+/*items*/
+
+QTableWidget[type=voice]::item {
+    color: #DCDCDC;
 }
 
-QHeaderView::section {
-    color: #FFFFFF;
-    background: #60669B;
+QTableWidget[type=voice]::item:hover {
+    background-color: rgba(255, 255, 255, 30%);
+}
+
+QTableWidget[type=voice]::item:pressed {
+    background-color: rgba(255, 255, 255, 10%);
+}
+
+QTableWidget[type=voice]::item:selected {
+    background-color: rgba(255, 255, 255, 20%);
+}
+
+/*corner*/
+
+QTableWidget[type=voice]>QTableCornerButton::section {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 7.5%);
+}
+
+QTableWidget[type=voice]>QTableCornerButton::section:pressed {
+    background-color: rgba(255, 255, 255, 15%);
+}
+
+/*header*/
+
+QTableWidget[type=voice]>QHeaderView {
+    background-color: #323232;
+}
+
+QTableWidget[type=voice]>QHeaderView::section {
+    background-color: transparent;
+    padding: 3px;
+    margin: 0px;
+    color: #DCDCDC;
+    border: 1px solid rgba(255, 255, 255, 7.5%);
+}
+
+QTableWidget[type=voice]>QHeaderView::section:horizontal {
+    border-left-width: 0;
+}
+
+QTableWidget[type=voice]>QHeaderView::section:vertical {
+    border-top-width: 0;
+}
+
+QTableWidget[type=voice]>QHeaderView::section:hover {
+    background-color: rgba(255, 255, 255, 30%);
+}
+
+QTableWidget[type=voice]>QHeaderView::section:pressed {
+    background-color: rgba(255, 255, 255, 15%);
+}
+
+QTableWidget[type=voice]>QHeaderView::section:checked {
+    background-color: rgba(255, 255, 255, 20%);
+}
+
+/* QTableWidget Keyboard */
+
+QTableWidget[type=keyboard] {
+    border: none;
+    background: #1E1E1E;
+    alternate-background-color: #222222;
+    gridline-color: rgba(255, 255, 255, 7.5%);
+}
+
+/*items*/
+
+QTableWidget[type=keyboard]::item {
+    color: #DCDCDC;
+}
+
+QTableWidget[type=keyboard]::item:hover {
+    background-color: rgba(255, 255, 255, 20%);
+}
+
+QTableWidget[type=keyboard]::item:pressed {
+    background-color: rgba(255, 255, 255, 7.5%);
+}
+
+QTableWidget[type=keyboard]::item:selected {
+    background-color: rgba(255, 255, 255, 12%);
+}
+
+/*corner*/
+
+QTableWidget[type=keyboard]>QTableCornerButton::section {
+    background-color: #222222;
     border: none;
 }
 
-QTableWidget::item {
-    border-bottom: 1px solid #EEF1F7;
+QTableWidget[type=keyboard]>QTableCornerButton::section:pressed {
+    background-color: rgba(255, 255, 255, 10%);
 }
 
-QTableWidget::item::selected {
-    color: red;
-    background: #EFF4FF;
-} */
+/*header*/
+
+QTableWidget[type=keyboard]>QHeaderView {
+    background-color: #222222;
+}
+
+QTableWidget[type=keyboard]>QHeaderView::section {
+    background-color: transparent;
+    padding: 3px;
+    margin: 0px;
+    color: #DCDCDC;
+    border: none;
+}
+
+QTableWidget[type=keyboard]>QHeaderView::section:horizontal {
+    font-weight: bold;
+}
+
+QTableWidget[type=keyboard]>QHeaderView::section:vertical:hover {
+    background-color: rgba(255, 255, 255, 20%);
+}
+
+QTableWidget[type=keyboard]>QHeaderView::section:vertical:pressed {
+    background-color: rgba(255, 255, 255, 10%);
+}
+
+QTableWidget[type=keyboard]>QHeaderView::section:vertical:checked {
+    background-color: rgba(255, 255, 255, 13.6%);
+}
+
+/* ComboSelector */
 
 ComboSelector {
     background-color: transparent;
@@ -614,9 +835,21 @@ QScrollBar::add-line {
 /* VectorButton */
 
 VectorButton {
-    qproperty-upColor: lightgrey;
+    qproperty-upColor: #CCCCCC;
     qproperty-overColor: white;
-    qproperty-downColor: lightgrey;
+    qproperty-downColor: #DDDDDD;
+}
+
+VectorButton[type=tab-close][highlight=false] {
+    qproperty-upColor: #808080;
+    qproperty-overColor: #B0B0B0;
+    qproperty-downColor: #9A9A9A;
+}
+
+VectorButton[type=tab-close][highlight=true] {
+    qproperty-upColor: #DDDDDD;
+    qproperty-overColor: white;
+    qproperty-downColor: #FAFAFA;
 }
 
 /* QMessageBox */
@@ -624,4 +857,14 @@ VectorButton {
 QMessageBox {
     background-color: #252526;
     border-radius: 3px;
+}
+
+/* VoiceBankTab */
+
+OtoInfoArea>LineControl>.QLabel {
+    padding: 5px 5px;
+}
+
+OtoInfoArea>LineControl>FixedLineEdit {
+    /* padding: 5px 5px; */
 }

@@ -25,12 +25,18 @@ QCheckBox {
 }
 
 QLineEdit, QTextEdit, QPlainTextEdit, QComboBox {
-    border: 1px solid black;
+    border: 1px solid #CCCCCC;
     color: black;
+    background-color: white;
+    padding: 3px 3px;
+}
+
+WaveformScrollArea, QTableWidget {
+    border: 1px solid #CCCCCC;
     background-color: white;
 }
 
-QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus, WaveformScrollArea:focus, QTableWidget:focus {
     border-color: #167FD2;
 }
 
@@ -53,6 +59,11 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus {
 
 .QPushButton:pressed {
     background-color: #002050;
+}
+
+.SwitchButton {
+    background-color: transparent;
+    border: none;
 }
 
 /* Custom Controls */
@@ -135,7 +146,7 @@ TabWidget[type=voice]>QTabBar::tab {
     border: 1px solid lightgrey;
     border-bottom: none;
     color: #333333;
-    padding: 3px 5px;
+    padding: 5px 8px;
     background-color: #ECECEC;
 }
 
@@ -151,6 +162,74 @@ TabWidget[type=voice]>QTabBar::scroller {
     width: 40px;
 }
 
+/* Keyboard TabWidget */
+
+TabWidget[type=keyboard] {
+    background-color: transparent;
+}
+
+TabWidget[type=keyboard]>QTabBar {
+    border: none;
+    font-size: 16px;
+    /* border-bottom: 1px solid darkgrey; */
+}
+
+TabWidget[type=keyboard]>QTabBar::tab {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: darkgrey;
+    padding: 8px 8px;
+    margin-bottom: 25px;
+}
+
+TabWidget[type=keyboard]>QTabBar::tab:first {
+    margin-right: 10px;
+}
+
+TabWidget[type=keyboard]>QTabBar::tab:middle {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+TabWidget[type=keyboard]>QTabBar::tab:last {
+    margin-left: 10px;
+}
+
+TabWidget[type=keyboard]>QTabBar::tab:selected {
+    color: black;
+    border-bottom-color: black;
+}
+
+TabWidget[type=keyboard]>QTabBar::tab:!selected:hover {
+    color: black;
+}
+
+TabWidget[type=keyboard]>QTabBar::scroller {
+    width: 40px;
+}
+
+KeyboardTab>.SwitchButton[type=key-table-tab] {
+    color: darkgrey;
+    font-size: 17px;
+    padding: 14px 8px;
+}
+
+KeyboardTab>.SwitchButton[type=key-table-tab]:hover {
+    color: black;
+}
+
+KeyboardTab>.SwitchButton[type=key-table-tab]:checked {
+    color: black;
+}
+
+KeyboardTab>.SwitchButtonUnderline[type=keyboard] {
+    qproperty-lineWidth: 1;
+    qproperty-color: black;
+    background-color: lightgrey;
+}
+
+KeyboardTab>.QPushButton#reset {}
+
 /* Central Tab */
 
 CentralTab {
@@ -165,11 +244,6 @@ CentralTabContent {
 
 WelcomeTabContent>.SwitchButton[type=list] {
     color: darkgrey;
-    background-color: transparent;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
     font-size: 18px;
     padding: 10px 0;
 }
@@ -207,6 +281,48 @@ WelcomeTabContent>QLabel[type=title] {
     font-weight: bold;
 }
 
+/* Menu Bar */
+
+/* QMenuBar {
+    background: #F5F3F1;
+    border-bottom: 1px solid rgba(0, 0, 0, 5%);
+}
+
+QMenuBar::item {
+    color: #333333;
+    padding: 8px 10px;
+}
+
+QMenuBar::item:selected {
+    background: #C6C6C6;
+}
+
+QMenu {
+    padding: 5px 5px;
+    background: white;
+}
+
+QMenu::item {
+    padding: 6px 30px;
+    background: transparent;
+    color: #333333;
+}
+
+QMenu::item:selected {
+    color: white;
+    background: #0060C0;
+}
+
+QMenu::item:disabled {
+    color: #CCCCCC;
+}
+
+QMenu::separator {
+    height: 1px;
+    background-color: #CCCCCC;
+    margin: 6px 6px 6px 6px;
+} */
+
 /* Title Bar */
 
 FormSplitter::handle {
@@ -234,10 +350,6 @@ FormTitleBar {
 
 .SwitchButton[type=titleBar] {
     color: darkgrey;
-    background-color: transparent;
-    border-top: none;
-    border-left: none;
-    border-right: none;
     border-bottom: 1px solid transparent;
     padding: 4px 0;
 }
@@ -475,6 +587,7 @@ BlocksArea {
 
 TrackContent {
     background-color: #EEEEEE;
+    qproperty-midiColor: #0060C0;
 }
 
 /* ParamsDialArea */
@@ -483,44 +596,152 @@ ParamsDialArea {
     qproperty-textColor: black;
 }
 
-/* KeyboardTab */
-
-KeyTableWidget>QTableWidget>QHeaderView::section {
-    background-color: #FAFAFA;
-    border: 0px;
-}
-
 /* BaseDialog */
 
 BaseDialog {
     background-color: whitesmoke;
 }
 
-/* QTableWidget */
+/* QTableWidget Voice */
 
-/* QTableWidget {
-    background-color: white;
-    color: black
+QTableWidget[type=voice] {
+    background: white;
+    alternate-background-color: #F5F5F5;
+    gridline-color: rgba(0, 0, 0, 15%);
 }
 
-QHeaderView {
-    background: transparent;
+/*items*/
+
+QTableWidget[type=voice]::item {
+    color: black;
 }
 
-QHeaderView::section {
-    color: #FFFFFF;
-    background: #60669B;
+QTableWidget[type=voice]::item:hover {
+    background-color: rgba(0, 0, 0, 20%);
+}
+
+QTableWidget[type=voice]::item:pressed {
+    background-color: rgba(0, 0, 0, 6.67%);
+}
+
+QTableWidget[type=voice]::item:selected {
+    background-color: rgba(0, 0, 0, 13.6%);
+}
+
+/*corner*/
+
+QTableWidget[type=voice]>QTableCornerButton::section {
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 5%);
+}
+
+QTableWidget[type=voice]>QTableCornerButton::section:pressed {
+    background-color: rgba(0, 0, 0, 10%);
+}
+
+/*header*/
+
+QTableWidget[type=voice]>QHeaderView {
+    background-color: #F0F0F0;
+}
+
+QTableWidget[type=voice]>QHeaderView::section {
+    background-color: transparent;
+    padding: 3px;
+    margin: 0px;
+    color: black;
+    border: 1px solid rgba(0, 0, 0, 5%);
+}
+
+QTableWidget[type=voice]>QHeaderView::section:horizontal {
+    border-left-width: 0;
+}
+
+QTableWidget[type=voice]>QHeaderView::section:vertical {
+    border-top-width: 0;
+}
+
+QTableWidget[type=voice]>QHeaderView::section:hover {
+    background-color: rgba(0, 0, 0, 20%);
+}
+
+QTableWidget[type=voice]>QHeaderView::section:pressed {
+    background-color: rgba(0, 0, 0, 10%);
+}
+
+QTableWidget[type=voice]>QHeaderView::section:checked {
+    background-color: rgba(0, 0, 0, 13.6%);
+}
+
+/* QTableWidget Keyboard */
+
+QTableWidget[type=keyboard] {
+    border: none;
+    background: #F8F8F8;
+    alternate-background-color: #F4F4F4;
+    gridline-color: rgba(0, 0, 0, 7.5%);
+}
+
+/*items*/
+
+QTableWidget[type=keyboard]::item {
+    color: #333333;
+}
+
+QTableWidget[type=keyboard]::item:hover {
+    background-color: rgba(0, 0, 0, 20%);
+}
+
+QTableWidget[type=keyboard]::item:pressed {
+    background-color: rgba(0, 0, 0, 7.5%);
+}
+
+QTableWidget[type=keyboard]::item:selected {
+    background-color: rgba(0, 0, 0, 12%);
+}
+
+/*corner*/
+
+QTableWidget[type=keyboard]>QTableCornerButton::section {
+    background-color: #F0F0F0;
     border: none;
 }
 
-QTableWidget::item {
-    border-bottom: 1px solid #EEF1F7;
+QTableWidget[type=keyboard]>QTableCornerButton::section:pressed {
+    background-color: rgba(0, 0, 0, 10%);
 }
 
-QTableWidget::item::selected {
-    color: red;
-    background: #EFF4FF;
-} */
+/*header*/
+
+QTableWidget[type=keyboard]>QHeaderView {
+    background-color: #F0F0F0;
+}
+
+QTableWidget[type=keyboard]>QHeaderView::section {
+    background-color: transparent;
+    padding: 3px;
+    margin: 0px;
+    color: #333333;
+    border: none;
+}
+
+QTableWidget[type=keyboard]>QHeaderView::section:horizontal {
+    font-weight: bold;
+}
+
+QTableWidget[type=keyboard]>QHeaderView::section:vertical:hover {
+    background-color: rgba(0, 0, 0, 20%);
+}
+
+QTableWidget[type=keyboard]>QHeaderView::section:vertical:pressed {
+    background-color: rgba(0, 0, 0, 10%);
+}
+
+QTableWidget[type=keyboard]>QHeaderView::section:vertical:checked {
+    background-color: rgba(0, 0, 0, 13.6%);
+}
+
+/* ComboSelector */
 
 ComboSelector {
     background-color: transparent;
@@ -623,9 +844,21 @@ QScrollBar::add-line {
 /* VectorButton */
 
 VectorButton {
-    qproperty-upColor: darkgrey;
-    qproperty-overColor: lightgrey;
-    qproperty-downColor: darkgrey;
+    qproperty-upColor: #666666;
+    qproperty-overColor: #999999;
+    qproperty-downColor: #7F7F7F;
+}
+
+VectorButton[type=tab-close][highlight=false] {
+    qproperty-upColor: #A0A0A0;
+    qproperty-overColor: #CCCCCC;
+    qproperty-downColor: #BABABA;
+}
+
+VectorButton[type=tab-close][highlight=true] {
+    qproperty-upColor: #666666;
+    qproperty-overColor: #999999;
+    qproperty-downColor: #7F7F7F;
 }
 
 /* QMessageBox */
@@ -633,4 +866,14 @@ VectorButton {
 QMessageBox {
     background-color: whitesmoke;
     border-radius: 3px;
+}
+
+/* VoiceBankTab */
+
+OtoInfoArea>LineControl>.QLabel {
+    padding: 5px 5px;
+}
+
+OtoInfoArea>LineControl>FixedLineEdit {
+    /* padding: 5px 5px; */
 }
