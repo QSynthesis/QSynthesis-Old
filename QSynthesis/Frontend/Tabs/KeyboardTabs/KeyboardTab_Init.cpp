@@ -72,6 +72,7 @@ void KeyboardTab::initComponents() {
     setLayout(mainLayout);
 
     connect(sBtnGroup, &SwitchButtonGroup::switched, this, &KeyboardTab::handleSwitched);
+    connect(btnReset, &QPushButton::clicked, this, &KeyboardTab::handleResetCurrent);
 
     // Init
     sBtnCommon->setChecked(true);
@@ -88,4 +89,7 @@ void KeyboardTab::initValues() {
 void KeyboardTab::handleSwitched() {
     int index = sBtnGroup->currentIndex();
     mainWidget->setCurrentIndex(index);
+}
+
+void KeyboardTab::handleResetCurrent() {
 }

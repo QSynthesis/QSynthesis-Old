@@ -7,6 +7,15 @@ GraphicsArea::GraphicsArea(QObject *parent) : QGraphicsScene(parent) {
 GraphicsArea::~GraphicsArea() {
 }
 
+QPointF GraphicsArea::mousePos(int index) const {
+    const QList<QGraphicsView *> views = this->views();
+    if (index >= views.size()) {
+        return QPointF();
+    }
+    QGraphicsView *view = views.at(index);
+    return view->mapToScene(view->mapFromGlobal(QCursor::pos()));
+}
+
 void GraphicsArea::dragEnterEvent(QGraphicsSceneDragDropEvent *event) {
     qRoot->handleGraphicsSceneEvents(event);
 }

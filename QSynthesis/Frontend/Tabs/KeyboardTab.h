@@ -80,6 +80,7 @@ private:
     QPushButton *btnReset;
 
     void handleSwitched();
+    void handleResetCurrent();
 
     // Edit
 public:

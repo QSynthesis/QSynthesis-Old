@@ -558,19 +558,24 @@
         <translation type="unfinished">无法保存文件！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/KeyboardTab_Init.cpp" line="24"/>
+        <location filename="../../Frontend/Tabs/KeyboardTabs/KeyboardTab_Init.cpp" line="19"/>
         <source>Common</source>
         <translation type="unfinished">常规</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/KeyboardTab_Init.cpp" line="25"/>
+        <location filename="../../Frontend/Tabs/KeyboardTabs/KeyboardTab_Init.cpp" line="20"/>
         <source>Project</source>
         <translation type="unfinished">工程</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/KeyboardTab_Init.cpp" line="26"/>
+        <location filename="../../Frontend/Tabs/KeyboardTabs/KeyboardTab_Init.cpp" line="21"/>
         <source>Voice Bank Manage</source>
         <translation type="unfinished">音源管理</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/KeyboardTabs/KeyboardTab_Init.cpp" line="36"/>
+        <source>Reset Current</source>
+        <translation type="unfinished">重置当前页</translation>
     </message>
 </context>
 <context>
@@ -882,8 +887,9 @@
         <translation type="obsolete">关于 QSynthesis</translation>
     </message>
     <message>
+        <location filename="../../Main/Actions/common.cpp" line="192"/>
         <source>About Qt</source>
-        <translation type="obsolete">关于 Qt</translation>
+        <translation type="unfinished">关于 Qt</translation>
     </message>
     <message>
         <location filename="../../Main/Actions/tuning.cpp" line="12"/>
@@ -2178,7 +2184,7 @@
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/TerminalDialog.cpp" line="261"/>
+        <location filename="../../Frontend/Dialogs/TerminalDialog.cpp" line="254"/>
         <source>Fail to stop rendering.</source>
         <translation type="unfinished">停止渲染失败。</translation>
     </message>

@@ -189,5 +189,5 @@ void MainWindow::handleAboutApp() {
 }
 
 void MainWindow::handleAboutQt() {
-    QMessageBox::aboutQt(this);
+    QMessageBox::aboutQt(this, tr("About Qt"));
 }

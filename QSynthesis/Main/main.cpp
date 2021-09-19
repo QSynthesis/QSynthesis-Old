@@ -19,6 +19,14 @@ int main(int argc, char *argv[]) {
         qApp->installTranslator(&t);
     }
 
+#if defined(Q_OS_MAC)
+#else
+    QTranslator t2;
+    if (t2.load(QCoreApplication::applicationDirPath() + "/translations/qt_zh_CN.qm")) {
+        qApp->installTranslator(&t2);
+    }
+#endif
+
     created(); // Create
 
     MainWindow w;

@@ -17,6 +17,7 @@ NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *parent)
     m_envelopesEnabled = false;
 
     m_moving = false;
+    m_selecting = false;
     m_drawingItem = nullptr;
 
     initLyricModules();

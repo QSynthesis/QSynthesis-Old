@@ -5,7 +5,7 @@
 #include <QScrollBar>
 
 bool NotesArea::isSelecting() const {
-    return m_selector->active();
+    return m_selecting;
 }
 
 void NotesArea::initSelectModules() {
@@ -21,7 +21,7 @@ void NotesArea::initSelectModules() {
 
 void NotesArea::startSelecting(bool vertical) {
     m_selector->setVertical(vertical);
-    m_selector->setStartPoint(m_view->mapToScene(m_view->mapFromGlobal(QCursor::pos())));
+    m_selector->setStartPoint(mousePos());
     m_selector->setActive(true); // Start selecting
 
     m_selector->grabMouse();
@@ -33,7 +33,7 @@ void NotesArea::duringSelecting() {
     QPoint scrollCursor = scroll->viewport()->mapFromGlobal(globalCursor);
     QScrollBar *bar;
 
-    m_selector->setEndPoint(m_view->mapToScene(m_view->mapFromGlobal(globalCursor)));
+    m_selector->setEndPoint(mousePos());
 
     int value, toValue;
     int offset;
@@ -74,6 +74,7 @@ void NotesArea::stopSelecting() {
         analyseSelect();
         m_selector->setActive(false); // Stop selecting
     }
+    m_selecting = false;
 }
 
 void NotesArea::analyseSelect() {

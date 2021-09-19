@@ -424,7 +424,7 @@ void WaveformArea::drawFrequencyCurves(QPainter &painter, int W, int H) {
         }
 
         QList<double> x;
-        double dx = W / frq.size();
+        double dx = double(W) / frq.size();
 
         for (int i = 0; i < frq.size(); ++i) {
             x.append(i * dx);

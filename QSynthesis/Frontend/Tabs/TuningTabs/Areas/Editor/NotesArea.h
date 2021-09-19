@@ -283,6 +283,7 @@ public:
     // Select
 private:
     GraphicsRubber *m_selector; // Frame Selector
+    bool m_selecting;
 
     void initSelectModules();
 
@@ -313,6 +314,7 @@ private:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
+    void leaveEvent(QEvent *event);
 
     bool eventFilter(QObject *obj, QEvent *event) override;
 

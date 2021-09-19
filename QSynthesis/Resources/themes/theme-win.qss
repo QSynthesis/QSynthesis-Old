@@ -228,6 +228,8 @@ KeyboardTab>.SwitchButtonUnderline[type=keyboard] {
     background-color: lightgrey;
 }
 
+KeyboardTab>.QPushButton#reset {}
+
 /* Central Tab */
 
 CentralTab {
@@ -675,8 +677,8 @@ QTableWidget[type=voice]>QHeaderView::section:checked {
 
 QTableWidget[type=keyboard] {
     border: none;
-    background: #FFFFFF;
-    alternate-background-color: #F8F8F8;
+    background: #F8F8F8;
+    alternate-background-color: #F4F4F4;
     gridline-color: rgba(0, 0, 0, 7.5%);
 }
 
@@ -701,7 +703,7 @@ QTableWidget[type=keyboard]::item:selected {
 /*corner*/
 
 QTableWidget[type=keyboard]>QTableCornerButton::section {
-    background-color: #F8F8F8;
+    background-color: #F0F0F0;
     border: none;
 }
 
@@ -712,7 +714,7 @@ QTableWidget[type=keyboard]>QTableCornerButton::section:pressed {
 /*header*/
 
 QTableWidget[type=keyboard]>QHeaderView {
-    background-color: #F8F8F8;
+    background-color: #F0F0F0;
 }
 
 QTableWidget[type=keyboard]>QHeaderView::section {

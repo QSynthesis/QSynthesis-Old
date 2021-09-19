@@ -22,16 +22,21 @@ void NotesArea::mousePressEvent(QGraphicsSceneMouseEvent *event) {
             if (c != qConfig->notes.reserveSelect) {
                 qDragOut.removeAll();
             }
-            if (event->buttons() == Qt::LeftButton) {
-                startSelecting();
-            } else if (event->buttons() == Qt::RightButton) {
-                startSelecting(true);
+            if (event->button() == Qt::LeftButton || event->button() == Qt::RightButton) {
+                m_selecting = true;
             }
         }
     }
 }
 
 void NotesArea::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
+    if (m_selecting && !m_selector->active()) {
+        if (event->buttons() & Qt::LeftButton) {
+            startSelecting();
+        } else if (event->buttons() & Qt::RightButton) {
+            startSelecting(true);
+        }
+    }
     return GraphicsArea::mouseMoveEvent(event);
 }
 
@@ -40,6 +45,7 @@ void NotesArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
         m_moving = false;
         m_view->setDragMode(QGraphicsView::NoDrag);
     }
+    m_selecting = false;
     GraphicsArea::mouseReleaseEvent(event);
     statusCall();
 }
@@ -70,6 +76,25 @@ void NotesArea::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
     }
 }
 
+void NotesArea::leaveEvent(QEvent *event) {
+    if (m_drawingItem) {
+        switch (m_drawingItem->element()) {
+        case GraphicsDragger::Note: {
+            GraphicsNote *p = static_cast<GraphicsNote *>(m_drawingItem);
+            p->afterRelease();
+            break;
+        }
+        case GraphicsDragger::Point: {
+            GraphicsPoint *p = static_cast<GraphicsPoint *>(m_drawingItem);
+            p->afterRelease();
+            break;
+        }
+        default:
+            break;
+        }
+    }
+}
+
 bool NotesArea::eventFilter(QObject *obj, QEvent *event) {
     if (obj == m_lyricEdit && EventHandler::keyIsDown(event)) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
@@ -92,21 +117,9 @@ bool NotesArea::eventFilter(QObject *obj, QEvent *event) {
                 qDragOut.removeAll();
             }
         } else if (event->type() == QEvent::Leave) {
-            if (m_drawingItem) {
-                switch (m_drawingItem->element()) {
-                case GraphicsDragger::Note: {
-                    GraphicsNote *p = static_cast<GraphicsNote *>(m_drawingItem);
-                    p->afterRelease();
-                    break;
-                }
-                case GraphicsDragger::Point: {
-                    GraphicsPoint *p = static_cast<GraphicsPoint *>(m_drawingItem);
-                    p->afterRelease();
-                    break;
-                }
-                default:
-                    break;
-                }
+            leaveEvent(event);
+            if (event->isAccepted()) {
+                return true;
             }
         }
     }
