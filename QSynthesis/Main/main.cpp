@@ -14,20 +14,14 @@ int main(int argc, char *argv[]) {
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("GBK"));
 #endif
 
-    QTranslator t;
-    if (t.load(":/translations/qsynthesis_cn.qm")) {
-        qApp->installTranslator(&t);
-    }
+    created(); // Create
 
+    AppAssistant::translate(":/translations/qsynthesis_cn.qm");
 #if defined(Q_OS_MAC)
 #else
-    QTranslator t2;
-    if (t2.load(QCoreApplication::applicationDirPath() + "/translations/qt_zh_CN.qm")) {
-        qApp->installTranslator(&t2);
-    }
+    AppAssistant::translate(QCoreApplication::applicationDirPath() + "/translations/qt_zh_CN.qm");
+    AppAssistant::translate(QCoreApplication::applicationDirPath() + "/translations/qt_help_zh_CN.qm");
 #endif
-
-    created(); // Create
 
     MainWindow w;
     w.initAndShow();

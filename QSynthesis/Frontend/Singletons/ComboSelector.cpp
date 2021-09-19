@@ -93,7 +93,7 @@ void ComboSelector::focusInEvent(QFocusEvent *event) {
 }
 
 bool ComboSelector::eventFilter(QObject *obj, QEvent *event) {
-    if (EventHandler::keyIsDown(event)) {
+    if (AppAssistant::keyIsDown(event)) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         int key = keyEvent->key();
         if ((key == Qt::Key_Up || key == Qt::Key_Down)) {

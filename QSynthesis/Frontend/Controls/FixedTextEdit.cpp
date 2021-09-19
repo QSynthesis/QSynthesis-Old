@@ -1,5 +1,5 @@
 #include "FixedTextEdit.h"
-#include "EventHandler.h"
+#include "AppAssistant.h"
 
 #include <QApplication>
 #include <QEvent>
@@ -29,7 +29,7 @@ QString FixedTextEdit::text() const {
 
 bool FixedTextEdit::eventFilter(QObject *obj, QEvent *event) {
     if (obj == this) {
-        if (EventHandler::keyIsDown(event)) {
+        if (AppAssistant::keyIsDown(event)) {
             QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
             int key = keyEvent->key();
             if ((key == Qt::Key_Return || key == Qt::Key_Enter) &&

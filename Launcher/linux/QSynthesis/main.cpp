@@ -7,7 +7,7 @@
 
 using namespace std;
 
-const char strVersion[] = "0.1.76";
+const char strVersion[] = "0.1.77";
 
 int main(int argc, char **argv, char **envp) {
     // Get Executable Full Path
@@ -40,7 +40,7 @@ int main(int argc, char **argv, char **envp) {
         fs << "Terminal=false" << endl;
         fs << "Exec=\"" << strExePath << "\" %F" << endl;
         fs << "Name=QSynthesis" << endl;
-        fs << "Icon=" << strDirPath << "/app/logo.png" << endl;
+        fs << "Icon=" << strDirPath << "/app/logo" << endl;
         fs << "Comment=\"Cross-platform vocal synthesis frontend\"" << endl;
 
         fs.close();

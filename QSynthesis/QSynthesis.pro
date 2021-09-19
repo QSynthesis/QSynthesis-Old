@@ -101,10 +101,10 @@ SOURCES += \
     Frontend/Dialogs/ScriptPluginDialog.cpp \
     Frontend/Dialogs/SelectsDialog.cpp \
     Frontend/Dialogs/TerminalDialog.cpp \
+    Frontend/Singletons/AppAssistant.cpp \
     Frontend/Singletons/CentralTabWidget.cpp \
     Frontend/Singletons/ColorTheme.cpp \
     Frontend/Singletons/ComboSelector.cpp \
-    Frontend/Singletons/EventHandler.cpp \
     Frontend/Singletons/TempHandler.cpp \
     Frontend/Tabs/BaseTab.cpp \
     Frontend/Tabs/CentralTab.cpp \
@@ -453,10 +453,10 @@ HEADERS += \
     Frontend/Dialogs/TerminalDialog.h \
     Frontend/QSActions.h \
     Frontend/QSTabs.h \
+    Frontend/Singletons/AppAssistant.h \
     Frontend/Singletons/CentralTabWidget.h \
     Frontend/Singletons/ColorTheme.h \
     Frontend/Singletons/ComboSelector.h \
-    Frontend/Singletons/EventHandler.h \
     Frontend/Singletons/TempHandler.h \
     Frontend/Tabs/BaseTab.h \
     Frontend/Tabs/CentralTab.h \

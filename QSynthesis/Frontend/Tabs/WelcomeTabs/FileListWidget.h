@@ -7,7 +7,7 @@
 #include <QListWidget>
 #include <QMenu>
 
-#include "EventHandler.h"
+#include "AppAssistant.h"
 #include "FileListWidgetItem.h"
 #include "QUtils.h"
 

@@ -22,12 +22,14 @@ void initSingletons() {
     SettingIniData::createCase();
     ConfigData::createCase();
     ShortcutsData::createCase();
+    AppAssistant::createCase();
 }
 
 void removeSingletons() {
     SettingIniData::destroyCase();
     ConfigData::destroyCase();
     ShortcutsData::destroyCase();
+    AppAssistant::destroyCase();
 }
 
 void created() {

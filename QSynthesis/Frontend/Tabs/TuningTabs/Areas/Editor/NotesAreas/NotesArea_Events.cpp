@@ -96,7 +96,7 @@ void NotesArea::leaveEvent(QEvent *event) {
 }
 
 bool NotesArea::eventFilter(QObject *obj, QEvent *event) {
-    if (obj == m_lyricEdit && EventHandler::keyIsDown(event)) {
+    if (obj == m_lyricEdit && AppAssistant::keyIsDown(event)) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         int key = keyEvent->key();
         if (key == Qt::Key_Tab) {
@@ -110,7 +110,7 @@ bool NotesArea::eventFilter(QObject *obj, QEvent *event) {
             return true;
         }
     } else if (obj == this) {
-        if (event->type() == EventHandler::keyIsDown(event)) {
+        if (event->type() == AppAssistant::keyIsDown(event)) {
             QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
             int key = keyEvent->key();
             if (key == Qt::Key_Tab) {
