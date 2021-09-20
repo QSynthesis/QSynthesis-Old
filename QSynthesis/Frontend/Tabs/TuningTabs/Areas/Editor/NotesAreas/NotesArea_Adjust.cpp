@@ -64,7 +64,26 @@ QPoint NotesArea::selectRange(QPoint range) {
 
     qDragOut.removeAll();
     for (int i = range.x(); i <= range.y(); ++i) {
-        qDragOut.addOne(NotesList[i]);
+        qDragOut.addOne(NotesList.at(i));
     }
     return range;
+}
+
+QPoint NotesArea::selectSequence(const QList<int> &indexs) {
+    if (indexs.isEmpty()) {
+        return QPoint(-1, -1);
+    }
+    int min = indexs.front();
+    int max = indexs.back();
+
+    qDragOut.removeAll();
+    for (int i = 0; i < indexs.size(); ++i) {
+        int cur = indexs.at(i);
+        if (cur >= 0 && cur < NotesList.size()) {
+            min = (min > cur) ? cur : min;
+            max = (max < cur) ? cur : max;
+            qDragOut.addOne(NotesList.at(cur));
+        }
+    }
+    return QPoint(min, max);
 }

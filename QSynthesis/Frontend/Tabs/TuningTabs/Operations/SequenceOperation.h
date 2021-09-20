@@ -1,4 +1,4 @@
-#ifndef SEQUENCEOPERATION_H
+﻿#ifndef SEQUENCEOPERATION_H
 #define SEQUENCEOPERATION_H
 
 #include "Note/QLinkNote.h"
@@ -14,8 +14,12 @@ public:
 
     virtual bool differ() const override;
 
+    Qs::IgnoreSelection ignore() const;
+    void setIgnore(const Qs::IgnoreSelection &ignore);
+
 private:
     QList<QLinkNote> m_notes;
+    Qs::IgnoreSelection m_ignore;
 };
 
 #endif // SEQUENCEOPERATION_H

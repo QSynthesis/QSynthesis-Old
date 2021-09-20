@@ -596,38 +596,40 @@ BaseDialog {
 /* QTableWidget Voice */
 
 QTableWidget[type=voice] {
-    /* background: #1E1E1E; */
+    background: #383838;
     alternate-background-color: #323232;
     gridline-color: rgba(255, 255, 255, 15%);
+    selection-background-color: transparent;
 }
 
 /*items*/
 
 QTableWidget[type=voice]::item {
     color: #DCDCDC;
+    /* background-color: transparent; */
 }
 
 QTableWidget[type=voice]::item:hover {
-    background-color: rgba(255, 255, 255, 30%);
+    background-color: rgba(255, 255, 255, 15%);
 }
 
 QTableWidget[type=voice]::item:pressed {
-    background-color: rgba(255, 255, 255, 10%);
+    background-color: rgba(255, 255, 255, 7.5%);
 }
 
 QTableWidget[type=voice]::item:selected {
-    background-color: rgba(255, 255, 255, 20%);
+    background-color: rgba(255, 255, 255, 10%);
 }
 
 /*corner*/
 
 QTableWidget[type=voice]>QTableCornerButton::section {
-    background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 7.5%);
+    background-color: #323232;
+    border: 1px solid rgba(255, 255, 255, 5%);
 }
 
 QTableWidget[type=voice]>QTableCornerButton::section:pressed {
-    background-color: rgba(255, 255, 255, 15%);
+    background-color: rgba(255, 255, 255, 10%);
 }
 
 /*header*/
@@ -641,7 +643,7 @@ QTableWidget[type=voice]>QHeaderView::section {
     padding: 3px;
     margin: 0px;
     color: #DCDCDC;
-    border: 1px solid rgba(255, 255, 255, 7.5%);
+    border: 1px solid rgba(255, 255, 255, 5%);
 }
 
 QTableWidget[type=voice]>QHeaderView::section:horizontal {
@@ -653,15 +655,15 @@ QTableWidget[type=voice]>QHeaderView::section:vertical {
 }
 
 QTableWidget[type=voice]>QHeaderView::section:hover {
-    background-color: rgba(255, 255, 255, 30%);
+    background-color: rgba(255, 255, 255, 20%);
 }
 
 QTableWidget[type=voice]>QHeaderView::section:pressed {
-    background-color: rgba(255, 255, 255, 15%);
+    background-color: rgba(255, 255, 255, 10%);
 }
 
 QTableWidget[type=voice]>QHeaderView::section:checked {
-    background-color: rgba(255, 255, 255, 20%);
+    background-color: rgba(255, 255, 255, 15%);
 }
 
 /* QTableWidget Keyboard */
@@ -671,12 +673,14 @@ QTableWidget[type=keyboard] {
     background: #1E1E1E;
     alternate-background-color: #222222;
     gridline-color: rgba(255, 255, 255, 7.5%);
+    selection-background-color: transparent;
 }
 
 /*items*/
 
 QTableWidget[type=keyboard]::item {
     color: #DCDCDC;
+    background-color: transparent;
 }
 
 QTableWidget[type=keyboard]::item:hover {

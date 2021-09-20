@@ -105,6 +105,7 @@ public:
 
     QPoint selectContinuously(bool selectAll = false);
     QPoint selectRange(QPoint range);
+    QPoint selectSequence(const QList<int> &indexs);
 
     // Actions
 public:

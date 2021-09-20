@@ -36,6 +36,7 @@ void NotesArea::pasteNotes(const QList<QLinkNote> &notes) {
     // Adjust vision
     updateNotesStatus(QPoint(indexs.front(), indexs.back() + 1));
     adjustNotes(QPoint(indexs.front() - 1, -1));
+    selectSequence(indexs);
 
     lengthCall();
 }
@@ -83,6 +84,7 @@ void NotesArea::pasteMode2(const QList<QLinkNote> &notes) {
     saveOperation(m); // Save Operation
 
     adjustNotes(QPoint(indexs.front() - 1, indexs.back() + 1));
+    selectSequence(indexs);
 }
 
 void NotesArea::pasteEnvelope(const QList<QLinkNote> &notes) {
@@ -115,4 +117,5 @@ void NotesArea::pasteEnvelope(const QList<QLinkNote> &notes) {
     saveOperation(m); // Save Operation
 
     adjustNotes(QPoint(indexs.front() - 1, indexs.back() + 1));
+    selectSequence(indexs);
 }

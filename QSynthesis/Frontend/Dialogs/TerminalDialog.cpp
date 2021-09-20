@@ -101,20 +101,25 @@ bool TerminalDialog::runInCmd() {
     connect(m_pTerminal, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
             &TerminalDialog::onProcessFinished);
     QString cmdStr =
-        QString("set status to do script \"cd %1 && ./temp.sh && exit\" in W\n").arg(workingDir);
+        QString("set status to do script \"cd %1 && ./temp.sh && exit\" in window 1\n").arg(workingDir);
     QString cmdInNewWindowStr =
         QString("set status to do script \"cd %1 && ./temp.sh && exit\"\n").arg(workingDir);
     QString script = "tell application \"Terminal\"\n"
-                     "   activate\n"
-                     "   set W to window 1\n"
-                     "   if busy of W is false then\n" +
-                     cmdStr + "   else\n" + cmdInNewWindowStr +
+                     "   if (count of windows) is not 0 then\n"
+                     "      if busy of window 1 is false then\n"
+                                + cmdStr +
+                     "      else\n"
+                                + cmdInNewWindowStr +
+                     "      end if\n"
+                     "   else\n"
+                            + cmdInNewWindowStr +
                      "   end if\n"
+                     "   activate\n"
                      "   repeat\n"
                      "       delay 1\n"
                      "       if not busy of status then exit repeat\n"
                      "   end repeat\n"
-                     "   quit W\n"
+                     "   quit window 1\n"
                      "end tell\n";
     QStringList processArguments;
     processArguments << "-l"
@@ -206,6 +211,7 @@ bool TerminalDialog::killProcess() {
 #elif defined(Q_OS_LINUX)
     if (m_pTerminal) {
         m_pTerminal->terminate();
+        m_pTerminal->waitForFinished();
 
         delete m_pTerminal;
         m_pTerminal = nullptr;

@@ -64,11 +64,12 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
 
         // Move Selection
         QPoint range = QPoint(index, index + vc.size() - 1);
+        QPoint orgRange = range;
 
         // Move Notes Core
         moveNotes(range, movement);
+        int newIndex = index + movement;
         if (verticalMove) {
-            int newIndex = index + movement;
             updateNotesStatus(QPoint(newIndex, newIndex + vc.size() - 1));
         }
 
@@ -85,6 +86,7 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
 
         // Adjust vision
         adjustNotes(range);
+        selectRange(orgRange);
 
         lengthCall();
         break;
@@ -103,6 +105,7 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
 
         // Adjust vision
         adjustNotes(QPoint(indexs.front(), -1));
+        selectSequence(indexs);
 
         lengthCall();
         break;
@@ -110,12 +113,15 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
     case NoteOperation::Add:
     case NoteOperation::Remove: {
         SequenceOperation *s = static_cast<SequenceOperation *>(n);
-        const QList<int> &indexs = s->index();
         const QList<QLinkNote> &notes = s->notes();
+        QList<int> indexs = s->index();
+        int ig = s->ignore();
+
         int f = (type == NoteOperation::Add) ? 1 : -1;
         int f2 = undo ? -1 : 1;
+        bool add = f * f2 > 0;
 
-        if (f * f2 > 0) {
+        if (add) {
             // Add
             insertNotes(indexs, notes);
             updateNotesStatus(QPoint(indexs.front(), indexs.back() + 1));
@@ -126,7 +132,15 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
         }
 
         adjustNotes(QPoint(indexs.front() - 1, -1));
-
+        if (add) {
+            if ((ig & Qs::IgnoreFront) && !indexs.isEmpty()) {
+                indexs.pop_front();
+            }
+            if ((ig & Qs::IgnoreBack) && !indexs.isEmpty()) {
+                indexs.pop_back();
+            }
+            selectSequence(indexs);
+        }
         lengthCall();
         break;
     }
@@ -150,6 +164,7 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
 
         // Adjust vision
         adjustNotes(QPoint(indexs.front() - 1, indexs.back() + 1));
+        selectSequence(indexs);
         break;
     }
     case NoteOperation::Mode1:
@@ -171,8 +186,8 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
         }
 
         // Adjust vision
-        qDebug() << indexs;
         adjustNotes(QPoint(indexs.front() - 1, indexs.back() + 1));
+        selectSequence(indexs);
         break;
     }
     case NoteOperation::Lyrics: {
@@ -192,6 +207,7 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
             p->updateNoteStatus();
         }
         adjustNoteComponents(QPoint(indexs.front() - 1, indexs.back() + 1));
+        selectSequence(indexs);
         break;
     }
     case NoteOperation::Intensity:
@@ -260,6 +276,7 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
 
         // Adjust vision
         adjustNotes(QPoint(indexs.front() - 1, indexs.back() + 1));
+        selectSequence(indexs);
         break;
     }
     case NoteOperation::Tempo: {
@@ -278,6 +295,7 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
         updateNoteTimeAfter(index);
 
         adjustNoteComponents(QPoint(index - 1, -1));
+        selectSequence({index});
         break;
     }
     default:

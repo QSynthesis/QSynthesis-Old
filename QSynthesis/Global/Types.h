@@ -113,6 +113,8 @@ namespace Qs {
         Rest,
     };
 
+    enum IgnoreSelection { IgnoreNone = 0, IgnoreFront = 1, IgnoreBack = 2, IgnoreSides = 3 };
+
     enum SpecialPos { Leftmost, Middle, Rightmost };
 
     enum PitchPoint { sJoin, linearJoin, rJoin, jJoin };

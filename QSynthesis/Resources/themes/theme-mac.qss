@@ -281,9 +281,9 @@ WelcomeTabContent>QLabel[type=title] {
     font-weight: bold;
 }
 
-/* Menu Bar */
+/* Menu Bar 
 
-/* QMenuBar {
+QMenuBar {
     background: #F5F3F1;
     border-bottom: 1px solid rgba(0, 0, 0, 5%);
 }
@@ -321,7 +321,7 @@ QMenu::separator {
     height: 1px;
     background-color: #CCCCCC;
     margin: 6px 6px 6px 6px;
-} */
+}
 
 /* Title Bar */
 
@@ -606,32 +606,34 @@ BaseDialog {
 
 QTableWidget[type=voice] {
     background: white;
-    alternate-background-color: #F5F5F5;
+    alternate-background-color: #FAFAFA;
     gridline-color: rgba(0, 0, 0, 15%);
+    selection-background-color: transparent;
 }
 
 /*items*/
 
 QTableWidget[type=voice]::item {
     color: black;
+    /* background-color: transparent; */
 }
 
 QTableWidget[type=voice]::item:hover {
-    background-color: rgba(0, 0, 0, 20%);
+    background-color: rgba(0, 0, 0, 15%);
 }
 
 QTableWidget[type=voice]::item:pressed {
-    background-color: rgba(0, 0, 0, 6.67%);
+    background-color: rgba(0, 0, 0, 7.5%);
 }
 
 QTableWidget[type=voice]::item:selected {
-    background-color: rgba(0, 0, 0, 13.6%);
+    background-color: rgba(0, 0, 0, 10%);
 }
 
 /*corner*/
 
 QTableWidget[type=voice]>QTableCornerButton::section {
-    background-color: transparent;
+    background-color: #F0F0F0;
     border: 1px solid rgba(0, 0, 0, 5%);
 }
 
@@ -670,7 +672,7 @@ QTableWidget[type=voice]>QHeaderView::section:pressed {
 }
 
 QTableWidget[type=voice]>QHeaderView::section:checked {
-    background-color: rgba(0, 0, 0, 13.6%);
+    background-color: rgba(0, 0, 0, 15%);
 }
 
 /* QTableWidget Keyboard */
@@ -680,12 +682,14 @@ QTableWidget[type=keyboard] {
     background: #F8F8F8;
     alternate-background-color: #F4F4F4;
     gridline-color: rgba(0, 0, 0, 7.5%);
+    selection-background-color: transparent;
 }
 
 /*items*/
 
 QTableWidget[type=keyboard]::item {
     color: #333333;
+    background-color: transparent;
 }
 
 QTableWidget[type=keyboard]::item:hover {
@@ -699,6 +703,7 @@ QTableWidget[type=keyboard]::item:pressed {
 QTableWidget[type=keyboard]::item:selected {
     background-color: rgba(0, 0, 0, 12%);
 }
+
 
 /*corner*/
 
