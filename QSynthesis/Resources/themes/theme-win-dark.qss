@@ -599,7 +599,7 @@ QTableWidget[type=voice] {
     background: #383838;
     alternate-background-color: #323232;
     gridline-color: rgba(255, 255, 255, 15%);
-    selection-background-color: rgba(255, 255, 255, 10%);
+    selection-background-color: transparent;
 }
 
 /*items*/
@@ -618,13 +618,13 @@ QTableWidget[type=voice]::item:pressed {
 }
 
 QTableWidget[type=voice]::item:selected {
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 10%);
 }
 
 /*corner*/
 
 QTableWidget[type=voice]>QTableCornerButton::section {
-    background-color: transparent;
+    background-color: #323232;
     border: 1px solid rgba(255, 255, 255, 5%);
 }
 
@@ -673,7 +673,7 @@ QTableWidget[type=keyboard] {
     background: #1E1E1E;
     alternate-background-color: #222222;
     gridline-color: rgba(255, 255, 255, 7.5%);
-    selection-background-color: rgba(255, 255, 255, 12%);
+    selection-background-color: transparent;
 }
 
 /*items*/
@@ -689,6 +689,10 @@ QTableWidget[type=keyboard]::item:hover {
 
 QTableWidget[type=keyboard]::item:pressed {
     background-color: rgba(255, 255, 255, 7.5%);
+}
+
+QTableWidget[type=keyboard]::item:selected {
+    background-color: rgba(255, 255, 255, 12%);
 }
 
 /*corner*/

@@ -103,13 +103,23 @@ void NotesArea::receivePlugin(const PluginTempData &ns, QPoint orgRegion) {
     // New Operation
     SequenceOperation *s = new SequenceOperation(false);
     SequenceOperation *s2 = new SequenceOperation(true);
+    int ig = Qs::IgnoreNone;
+
+    if (ns.hasPrev) {
+        ig |= Qs::IgnoreFront;
+    }
+    if (ns.hasNext) {
+        ig |= Qs::IgnoreBack;
+    }
 
     // Set History Values
     s->setIndex(indexs);
     s->setNotes(notes);
+    s->setIgnore((Qs::IgnoreSelection) ig);
 
     s2->setIndex(newIndexs);
     s2->setNotes(newNotes);
+    s2->setIgnore((Qs::IgnoreSelection) ig);
 
     s->setNext(s2);
 
@@ -123,6 +133,13 @@ void NotesArea::receivePlugin(const PluginTempData &ns, QPoint orgRegion) {
 
     // Adjust vision
     adjustNotes(QPoint(newIndexs.front(), -1));
+    if ((ig & Qs::IgnoreFront) && !newIndexs.isEmpty()) {
+        newIndexs.pop_front();
+    }
+    if ((ig & Qs::IgnoreBack) && !newIndexs.isEmpty()) {
+        newIndexs.pop_back();
+    }
+    selectSequence(newIndexs);
 
     lengthCall();
 }
