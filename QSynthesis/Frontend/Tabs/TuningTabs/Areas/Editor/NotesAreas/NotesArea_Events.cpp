@@ -76,6 +76,12 @@ void NotesArea::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
     }
 }
 
+void NotesArea::focusOutEvent(QFocusEvent *event) {
+    if (isLyricEditing()) {
+        abandonLyric();
+    }
+}
+
 void NotesArea::leaveEvent(QEvent *event) {
     if (m_drawingItem) {
         switch (m_drawingItem->element()) {
@@ -112,6 +118,7 @@ bool NotesArea::eventFilter(QObject *obj, QEvent *event) {
             return true;
         }
     } else if (obj == this) {
+        qDebug() << event;
         if (event->type() == AppAssistant::keyIsDown(event)) {
             QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
             int key = keyEvent->key();

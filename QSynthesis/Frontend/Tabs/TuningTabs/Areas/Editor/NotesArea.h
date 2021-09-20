@@ -316,6 +316,8 @@ private:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
+    void focusOutEvent(QFocusEvent *event) override;
+
     void leaveEvent(QEvent *event);
 
     bool eventFilter(QObject *obj, QEvent *event) override;
