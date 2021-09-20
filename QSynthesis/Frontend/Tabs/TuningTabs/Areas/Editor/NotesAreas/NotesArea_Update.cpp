@@ -2,6 +2,7 @@
 #include "../NotesArea.h"
 
 void NotesArea::updateNoteTickAfter(int index) {
+    int orgIndex = index;
     if (index >= NotesList.size() || NotesList.isEmpty()) {
         return;
     }
@@ -14,7 +15,7 @@ void NotesArea::updateNoteTickAfter(int index) {
     for (GraphicsNote *it = p->next(); it; it = it->next()) {
         it->setTick(it->prev()->tick() + it->prev()->Note.length);
     }
-    updateNoteTimeAfter(index);
+    updateNoteTimeAfter(orgIndex);
 }
 
 void NotesArea::updateNoteTimeAfter(int index) {
@@ -65,6 +66,18 @@ void NotesArea::updateNotesStatus(QPoint range) {
         range.ry() = NotesList.size() - 1;
     }
     for (int i = range.x(); i <= range.y(); ++i) {
-        NotesList[i]->updateNoteStatus();
+        NotesList.at(i)->updateNoteStatus();
+    }
+}
+
+void NotesArea::updateNotesCorrectGeonon(QPoint range) {
+    if (range.x() < 0 || range.x() >= NotesList.size()) {
+        range.rx() = 0;
+    }
+    if (range.y() < 0 || range.y() >= NotesList.size()) {
+        range.ry() = NotesList.size() - 1;
+    }
+    for (int i = range.x(); i <= range.y(); ++i) {
+        NotesList.at(i)->updateCorrectGenon();
     }
 }

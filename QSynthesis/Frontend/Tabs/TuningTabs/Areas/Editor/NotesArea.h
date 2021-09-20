@@ -229,6 +229,7 @@ public:
     int updateNoteTempoAfter(int index, bool br = false); // Return the next tempo-edited index
 
     void updateNotesStatus(QPoint range = QPoint(-1, -1));
+    void updateNotesCorrectGeonon(QPoint range = QPoint(-1, -1));
 
     // Assist
 public:

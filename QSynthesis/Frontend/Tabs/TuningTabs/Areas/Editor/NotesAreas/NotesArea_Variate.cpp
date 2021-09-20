@@ -97,7 +97,7 @@ GraphicsNote *NotesArea::insertNotes(const QList<int> &indexs, const QList<QLink
     if (tempoEditIndex >= 0) {
         updateNoteTempoAfter(tempoEditIndex);
     }
-    updateNoteTickAfter(frontIndex);
+    updateNoteTickAfter(frontIndex - 1);
 
     return frontNote;
 }
