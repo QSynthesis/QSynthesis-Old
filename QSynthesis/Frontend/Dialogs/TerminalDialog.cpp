@@ -206,6 +206,7 @@ bool TerminalDialog::killProcess() {
 #elif defined(Q_OS_LINUX)
     if (m_pTerminal) {
         m_pTerminal->terminate();
+        m_pTerminal->waitForFinished();
 
         delete m_pTerminal;
         m_pTerminal = nullptr;
