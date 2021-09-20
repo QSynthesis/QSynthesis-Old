@@ -18,9 +18,12 @@ int main(int argc, char *argv[]) {
 
     AppAssistant::translate(":/translations/qsynthesis_cn.qm");
 #if defined(Q_OS_MAC)
+    AppAssistant::translate(AppPath + "/translations/qt_zh_CN.qm");
+    AppAssistant::translate(AppPath + "/translations/qt_help_zh_CN.qm");
 #else
     AppAssistant::translate(QCoreApplication::applicationDirPath() + "/translations/qt_zh_CN.qm");
-    AppAssistant::translate(QCoreApplication::applicationDirPath() + "/translations/qt_help_zh_CN.qm");
+    AppAssistant::translate(QCoreApplication::applicationDirPath() +
+                            "/translations/qt_help_zh_CN.qm");
 #endif
 
     MainWindow w;
