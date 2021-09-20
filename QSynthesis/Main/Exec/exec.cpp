@@ -44,6 +44,11 @@ bool MainWindow::execSaveAs(TuningTab *tab) {
         return false;
     }
 
+    // Check Twice
+    if (!path.endsWith(".ust", Qt::CaseInsensitive)) {
+        path.append(".ust");
+    }
+
     // Attempt to cover an opening file
     int existIndex = findTuningTab(path);
     if (existIndex >= 0 && existIndex != tabs->currentIndex()) {
