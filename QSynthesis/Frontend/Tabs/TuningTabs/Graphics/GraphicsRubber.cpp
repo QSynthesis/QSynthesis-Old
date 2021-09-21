@@ -45,6 +45,7 @@ void GraphicsRubber::setEndPoint(QPointF pos) {
     int m_top = qMin(m_start.y(), m_end.y());
     int m_height = qAbs(m_start.y() - m_end.y());
 
+    prepareGeometryChange();
     if (m_vertical) {
         setPos(m_left, 0);
         setRect(0, 0, m_width, scene()->sceneRect().height());

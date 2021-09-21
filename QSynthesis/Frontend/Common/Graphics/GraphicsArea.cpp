@@ -2,6 +2,7 @@
 #include "mainwindow.h"
 
 GraphicsArea::GraphicsArea(QObject *parent) : QGraphicsScene(parent) {
+    // setItemIndexMethod(QGraphicsScene::ItemIndexMethod::NoIndex);
 }
 
 GraphicsArea::~GraphicsArea() {

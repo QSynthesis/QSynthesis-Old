@@ -21,10 +21,12 @@ NotesArea *GraphicsLines::editor() const {
 }
 
 void GraphicsLines::updateLocation() {
+    prepareGeometryChange();
     setPos(m_note->x(), 0);
 }
 
 void GraphicsLines::updateSize() {
+    prepareGeometryChange();
     m_rect.setSize(QSizeF(m_note->width(), m_editor->height()));
     update();
 }

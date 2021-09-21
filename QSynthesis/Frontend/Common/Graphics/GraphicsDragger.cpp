@@ -82,6 +82,7 @@ void GraphicsDragger::setHeight(double h) {
 }
 
 void GraphicsDragger::setLocation(QPointF pos) {
+    prepareGeometryChange();
     setPos(pos);
 }
 
@@ -99,6 +100,7 @@ void GraphicsDragger::setYLocation(double y) {
 
 void GraphicsDragger::setTopLeft(QPointF topLeft) {
     QPointF bottomRight = rect().bottomRight();
+    prepareGeometryChange();
     setRect(topLeft.x(), topLeft.y(), bottomRight.x() - topLeft.x(), bottomRight.y() - topLeft.y());
 }
 
