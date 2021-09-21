@@ -82,7 +82,7 @@ void NotesArea::focusOutEvent(QFocusEvent *event) {
     }
 }
 
-void NotesArea::leaveEvent(QEvent *event) {
+bool NotesArea::leaveEvent(QEvent *event) {
     if (m_drawingItem) {
         switch (m_drawingItem->element()) {
         case GraphicsDragger::Note: {
@@ -101,12 +101,13 @@ void NotesArea::leaveEvent(QEvent *event) {
     } else if (m_selecting) {
         stopSelecting();
     }
+    return false;
 }
 
-bool NotesArea::eventFilter(QObject *obj, QEvent *event) {
-    if (obj == m_lyricEdit && AppAssistant::keyIsDown(event)) {
-        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-        int key = keyEvent->key();
+bool NotesArea::keyDownEvent(QKeyEvent *event) {
+    int key = event->key();
+
+    if (isLyricEditing()) {
         if (key == Qt::Key_Tab) {
             switchLyric();
             return true;
@@ -117,17 +118,37 @@ bool NotesArea::eventFilter(QObject *obj, QEvent *event) {
             editFinish();
             return true;
         }
-    } else if (obj == this) {
-        qDebug() << event;
-        if (event->type() == AppAssistant::keyIsDown(event)) {
+    } else {
+        GraphicsNote *p = static_cast<GraphicsNote *>(qDragOut.leftmost());
+        if (p) {
+            if (key == Qt::Key_Left && p->prev()) {
+                selectNote(p->prev());
+                return true;
+            } else if (key == Qt::Key_Right && p->next()) {
+                selectNote(p->next());
+                return true;
+            } else if (key == Qt::Key_Enter || key == Qt::Key_Return) {
+                if (!isPlaying()) {
+                    editNoteLyric(p);
+                    return true;
+                }
+            } else if (key == Qt::Key_Tab) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool NotesArea::eventFilter(QObject *obj, QEvent *event) {
+    if (obj == this) {
+        if (event->type() == QEvent::KeyPress) {
             QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-            int key = keyEvent->key();
-            if (key == Qt::Key_Tab) {
-                qDragOut.removeAll();
+            if (keyDownEvent(keyEvent)) {
+                return true;
             }
         } else if (event->type() == QEvent::Leave) {
-            leaveEvent(event);
-            if (event->isAccepted()) {
+            if (leaveEvent(event)) {
                 return true;
             }
         }

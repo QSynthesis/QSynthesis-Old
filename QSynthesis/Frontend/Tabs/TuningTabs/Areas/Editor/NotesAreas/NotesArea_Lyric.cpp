@@ -9,7 +9,6 @@ void NotesArea::initLyricModules() {
     m_lyricEdit->setZValue(lyricEditZIndex);
     m_lyricEdit->setDefaultTextColor(Qt::black);
 
-    m_lyricEdit->installEventFilter(this);
     m_lyricEdit->hide();
 
     m_curEditNote = nullptr;
@@ -28,6 +27,7 @@ void NotesArea::setCurEditNote(GraphicsNote *p) {
 }
 
 void NotesArea::editFinish() {
+    qDebug() << "Edit finish";
     if (!m_lyricEdit->isVisible() || !m_curEditNote) {
         return;
     }
@@ -59,6 +59,7 @@ bool NotesArea::isPlaying() const {
 }
 
 void NotesArea::editNoteLyric(GraphicsNote *pNote) {
+    qDebug() << "Edit Note" << pNote->Note.lyric;
     qDragOut.removeAll();
     qDragOut.addOne(pNote);
 

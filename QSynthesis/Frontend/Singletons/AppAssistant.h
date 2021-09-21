@@ -17,28 +17,13 @@ public:
 public:
     static bool keyIsDown(QEvent *event);
 
+public:
+    static bool translate(const QString &filename);
+    static void eliminate();
+
 private:
     static QList<QTranslator *> Translators;
 
-public:
-    static bool translate(const QString &filename) {
-        QTranslator *t = new QTranslator(self);
-        if (t->load(filename)) {
-            qApp->installTranslator(t);
-            Translators.append(t);
-            return true;
-        }
-        delete t;
-        return false;
-    }
-
-    static void eliminate() {
-        for (QTranslator *t : Translators) {
-            qApp->removeTranslator(t);
-            delete t;
-        }
-        Translators.clear();
-    }
 };
 
 #endif // APPASSISTANT_H

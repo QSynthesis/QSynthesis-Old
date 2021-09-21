@@ -21,49 +21,51 @@ int main(int argc, char **argv, char **envp) {
     string strAppPath = strDirPath + "/app/QSynthesis";
 
     // Check Argument
-    if (argc == 2 && !strcmp(argv[1], "-d")) {
-        string filename = strDirPath + "/QSynthesis.desktop";
+    if (argc > 1) {
+        if (!strcmp(argv[1], "-d")) {
+            string filename = strDirPath + "/QSynthesis.desktop";
 
-        // Write .desktop File
-        fstream fs;
-        fs.open(filename, ios::out);
-        if (fs.fail()) {
-            cout << "Failed to create desktop shortcut." << endl;
-            return -1;
+            // Write .desktop File
+            fstream fs;
+            fs.open(filename, ios::out);
+            if (fs.fail()) {
+                cout << "Failed to create desktop shortcut." << endl;
+                return -1;
+            }
+
+            fs << "[Desktop Entry]" << endl;
+            fs << "Categories=Utility;Audio;" << endl;
+            fs << "Encoding=UTF-8" << endl;
+            fs << "Version=" << strVersion << endl;
+            fs << "Type=Application" << endl;
+            fs << "Terminal=false" << endl;
+            fs << "Exec=\"" << strExePath << "\" %F" << endl;
+            fs << "Name=QSynthesis" << endl;
+            fs << "Icon=" << strDirPath << "/app/logo" << endl;
+            fs << "Comment=\"Cross-platform vocal synthesis frontend\"" << endl;
+
+            fs.close();
+
+            // Give Execute Permission
+            string cmd = "chmod +x \"" + filename + "\"";
+            system(cmd.c_str());
+
+            cout << "Successfully create desktop shortcut." << endl;
+
+            return 0;
+        } else if (!strcmp(argv[1], "-h")) {
+            cout << "Usage: QSynthesis -d" << endl;
+            cout << "   Or: QSynthesis <filename>" << endl;
+            cout << "   Or: QSynthesis <dirname>" << endl;
+            cout << endl;
+
+            cout << "Option specification:" << endl;
+            cout << "       -d Create desktop shortcut automatically." << endl;
+            cout << "       (Paths in desktop file is based on current directory)" << endl;
+            cout << "       -h Print this message." << endl;
+
+            return 0;
         }
-
-        fs << "[Desktop Entry]" << endl;
-        fs << "Categories=Utility;Audio;" << endl;
-        fs << "Encoding=UTF-8" << endl;
-        fs << "Version=" << strVersion << endl;
-        fs << "Type=Application" << endl;
-        fs << "Terminal=false" << endl;
-        fs << "Exec=\"" << strExePath << "\" %F" << endl;
-        fs << "Name=QSynthesis" << endl;
-        fs << "Icon=" << strDirPath << "/app/logo" << endl;
-        fs << "Comment=\"Cross-platform vocal synthesis frontend\"" << endl;
-
-        fs.close();
-
-        // Give Execute Permission
-        string cmd = "chmod +x \"" + filename + "\"";
-        system(cmd.c_str());
-
-        cout << "Successfully create desktop shortcut." << endl;
-
-        return 0;
-    } else if (argc == 2 && !strcmp(argv[1], "-h")) {
-        cout << "Usage: QSynthesis -d" << endl;
-        cout << "   Or: QSynthesis <filename>" << endl;
-        cout << "   Or: QSynthesis <dirname>" << endl;
-        cout << endl;
-
-        cout << "Option specification:" << endl;
-        cout << "       -d Create desktop shortcut automatically." << endl;
-        cout << "       (Paths in desktop file is based on current directory)" << endl;
-        cout << "       -h Print this message." << endl;
-
-        return 0;
     }
 
     char **newArgv = new char *[argc];

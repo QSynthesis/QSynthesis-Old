@@ -318,7 +318,8 @@ private:
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
     void focusOutEvent(QFocusEvent *event) override;
 
-    void leaveEvent(QEvent *event);
+    bool leaveEvent(QEvent *event);
+    bool keyDownEvent(QKeyEvent *event);
 
     bool eventFilter(QObject *obj, QEvent *event) override;
 

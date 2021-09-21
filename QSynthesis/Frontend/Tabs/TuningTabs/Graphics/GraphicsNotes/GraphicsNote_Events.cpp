@@ -57,27 +57,6 @@ void GraphicsNote::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
     }
 }
 
-void GraphicsNote::keyPressEvent(QKeyEvent *event) {
-    int key = event->key();
-    if (isSelected()) {
-        if (key == Qt::Key_Left && m_prev) {
-            m_editor->selectNote(m_prev);
-            return;
-        } else if (key == Qt::Key_Right && m_next) {
-            m_editor->selectNote(m_next);
-            return;
-        } else if (key == Qt::Key_Enter || key == Qt::Key_Return) {
-            if (!m_editor->isPlaying()) {
-                m_editor->editNoteLyric(this);
-            }
-            return;
-        } else if (key == Qt::Key_Tab) {
-            return;
-        }
-    }
-    return GraphicsDragger::keyPressEvent(event);
-}
-
 void GraphicsNote::focusInEvent(QFocusEvent *event) {
     return GraphicsDragger::focusInEvent(event);
 }

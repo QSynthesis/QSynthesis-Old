@@ -72,6 +72,7 @@ void GraphicsNote::addScreen() {
 
 void GraphicsNote::removeScreen() {
     m_editor->removeItem(m_screen);
+    delete m_screen;
     m_screen = nullptr;
 }
 

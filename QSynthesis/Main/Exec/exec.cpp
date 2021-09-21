@@ -39,7 +39,8 @@ bool MainWindow::execSave(CentralTab *tab) {
 
 bool MainWindow::execSaveAs(TuningTab *tab) {
     QString filename = tab->fullFileName();
-    QString path = QFileDialog::getSaveFileName(this, tr("Save As"), filename, saveFilterString);
+    QString path =
+        QFileDialog::getSaveFileName(this, tr("Save As"), filename, saveFilterString, nullptr);
     if (path.isEmpty()) {
         return false;
     }
