@@ -66,6 +66,7 @@ double GraphicsDragger::left() const {
 }
 
 void GraphicsDragger::setSize(QSizeF size) {
+    prepareGeometryChange();
     setRect(rect().x(), rect().y(), size.width(), size.height());
 }
 
