@@ -110,9 +110,11 @@ SOURCES += \
     Frontend/Tabs/CentralTab.cpp \
     Frontend/Tabs/CentralTabs/CentralTabContent.cpp \
     Frontend/Tabs/KeyboardTab.cpp \
-    Frontend/Tabs/KeyboardTabs/Contents/KeyLineEdit.cpp \
-    Frontend/Tabs/KeyboardTabs/Contents/KeyModifyWidget.cpp \
+    Frontend/Tabs/KeyboardTabs/Contents/KeyModifyDialog.cpp \
     Frontend/Tabs/KeyboardTabs/Contents/KeyTableTab.cpp \
+    Frontend/Tabs/KeyboardTabs/Contents/KeyTableTabs/KeyTableTab_ContextMenu.cpp \
+    Frontend/Tabs/KeyboardTabs/Contents/KeyTableTabs/KeyTableTab_Core.cpp \
+    Frontend/Tabs/KeyboardTabs/Contents/KeyTableTabs/KeyTableTab_Operation.cpp \
     Frontend/Tabs/KeyboardTabs/KeyboardTab_Core.cpp \
     Frontend/Tabs/KeyboardTabs/KeyboardTab_Edit.cpp \
     Frontend/Tabs/KeyboardTabs/KeyboardTab_Init.cpp \
@@ -298,7 +300,7 @@ SOURCES += \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Play.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Unchange.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp \
-    Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_Menu.cpp \
+    Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_Properties.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_Row.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_Set.cpp \
@@ -462,8 +464,7 @@ HEADERS += \
     Frontend/Tabs/CentralTab.h \
     Frontend/Tabs/CentralTabs/CentralTabContent.h \
     Frontend/Tabs/KeyboardTab.h \
-    Frontend/Tabs/KeyboardTabs/Contents/KeyLineEdit.h \
-    Frontend/Tabs/KeyboardTabs/Contents/KeyModifyWidget.h \
+    Frontend/Tabs/KeyboardTabs/Contents/KeyModifyDialog.h \
     Frontend/Tabs/KeyboardTabs/Contents/KeyTableTab.h \
     Frontend/Tabs/KeyboardTabs/Operations/KeyOperation.h \
     Frontend/Tabs/SettingTab.h \

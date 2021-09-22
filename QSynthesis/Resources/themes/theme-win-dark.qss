@@ -232,6 +232,10 @@ KeyboardTab>.SwitchButtonUnderline[type=keyboard] {
 
 KeyboardTab>.QPushButton#reset {}
 
+KeyModifyDialog {
+    background-color: #252526;
+}
+
 /* Central Tab */
 
 CentralTab {

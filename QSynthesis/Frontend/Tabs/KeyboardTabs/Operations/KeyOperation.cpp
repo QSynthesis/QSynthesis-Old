@@ -1,14 +1,22 @@
 #include "KeyOperation.h"
 
 KeyOperation::KeyOperation() {
+    m_next = nullptr;
 }
 
-int KeyOperation::id() const {
-    return m_id;
+KeyOperation::~KeyOperation() {
+    if (m_next) {
+        delete m_next;
+        m_next = nullptr;
+    }
 }
 
-void KeyOperation::setId(int id) {
-    m_id = id;
+QPair<int, int> KeyOperation::index() const {
+    return m_index;
+}
+
+void KeyOperation::setIndex(const QPair<int, int> &index) {
+    m_index = index;
 }
 
 QString KeyOperation::origin() const {
@@ -25,6 +33,10 @@ QString KeyOperation::modified() const {
 
 void KeyOperation::setModified(const QString &modified) {
     m_modified = modified;
+}
+
+KeyOperation *KeyOperation::next() const {
+    return static_cast<KeyOperation *>(m_next);
 }
 
 bool KeyOperation::differ() const {

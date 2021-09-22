@@ -38,7 +38,8 @@ TracksForm::TracksForm(TuningTab *parent) : BaseForm(parent) {
     m_ptrs->tracksContent = content;
 
     // Set First Status
-    btnTracks->setChecked(true);
+    btnsGroup->setCurrentIndex(0);
+    handleSwitchChanged();
 }
 
 TuningGroup *TracksForm::ptrs() const {

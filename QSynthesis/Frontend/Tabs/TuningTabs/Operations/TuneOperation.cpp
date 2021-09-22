@@ -1,6 +1,6 @@
 #include "TuneOperation.h"
 
-TuneOperation::TuneOperation() : m_type(Unknown), m_next(nullptr) {
+TuneOperation::TuneOperation() : m_type(Unknown) {
 }
 
 TuneOperation::~TuneOperation() {
@@ -11,9 +11,5 @@ TuneOperation::Type TuneOperation::type() const {
 }
 
 TuneOperation *TuneOperation::next() const {
-    return m_next;
-}
-
-void TuneOperation::setNext(TuneOperation *next) {
-    m_next = next;
+    return static_cast<TuneOperation *>(m_next);
 }

@@ -18,11 +18,7 @@ void MainWindow::reloadMenu() {
 }
 
 void MainWindow::reloadShortcuts() {
-    welcomeActions->makeCommonDefaultShortcuts();
-
-    welcomeActions->makeDefaultShortcuts();
-    tuningActions->makeDefaultShortcuts();
-    voiceActions->makeDefaultShortcuts();
-    settingActions->makeDefaultShortcuts();
-    keyboardActions->makeDefaultShortcuts();
+    welcomeActions->setCommonShortcuts(qShortcuts->commonShortcuts);
+    tuningActions->setShortcuts(qShortcuts->projectShortcuts);
+    voiceActions->setShortcuts(qShortcuts->voiceShortcuts);
 }

@@ -176,7 +176,7 @@ void GraphicsNote::afterRelease() {
             m_next->adjustComponents();
         }
     } else {
-        m_editor->statusCall();
+        m_editor->callForChange();
     }
 
     qDragIn.stretching = Qs::NoStretch;

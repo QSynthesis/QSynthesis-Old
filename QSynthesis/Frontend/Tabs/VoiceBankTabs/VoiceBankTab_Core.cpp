@@ -28,8 +28,8 @@ bool VoiceBankTab::save() {
         QMessageBox::warning(this, MainTitle, tr("Unable to modify files!"));
     } else {
         updateOtoReferences();
-        setEdited(false);
         savedHistoryIndex = historyIndex; // Update saved history index
+        setEdited(false);
     }
 
     updateTabName();
@@ -37,6 +37,7 @@ bool VoiceBankTab::save() {
 }
 
 bool VoiceBankTab::restore() {
+    clearHistory();
     if (!voicebank.restore()) {
         QMessageBox::warning(this, MainTitle, tr("Unable to restore voice database!"));
         return false;
@@ -46,7 +47,6 @@ bool VoiceBankTab::restore() {
     dataArea->removeAll();
 
     loadCore();
-
     setEdited(false);
     return true;
 }

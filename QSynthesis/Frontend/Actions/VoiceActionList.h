@@ -10,6 +10,9 @@ public:
     VoiceActionList(QObject *parent = nullptr);
     ~VoiceActionList();
 
+private:
+    VoiceActionList(Qs::VariableSource source);
+
 public:
     // File
     QAction *exportCurrent;
@@ -44,7 +47,10 @@ public:
 
     void updateStrings() override;
     void makeDefaultShortcuts() override;
-    QList<QAction *> actions() const override;
+
+    static QList<QKeySequence> defaultShortcuts();
+
+    QList<QAction **> actionsRef() override;
 };
 
 #endif // VOICEACTIONLIST_H

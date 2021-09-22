@@ -85,15 +85,14 @@ WelcomeTabContent::WelcomeTabContent(WelcomeTab *tab, QWidget *parent)
     connect(btnNew, &QPushButton::clicked, this, &WelcomeTabContent::onNewBtnClicked);
     connect(btnOpen, &QPushButton::clicked, this, &WelcomeTabContent::onOpenBtnClicked);
 
-    connect(sBtnFiles, &SwitchButton::clicked, this, &WelcomeTabContent::onFilesBtnClicked);
-    connect(sBtnFolders, &SwitchButton::clicked, this, &WelcomeTabContent::onFoldersBtnClicked);
-    connect(sBtnTemplates, &SwitchButton::clicked, this, &WelcomeTabContent::onTemplatesBtnClicked);
+    connect(sBtnGroup, &SwitchButtonGroup::switched, this, &WelcomeTabContent::handleSwitched);
 
     connect(filesList, &FileListWidget::propertyChanged, this, &WelcomeTabContent::refresh);
 
     // Init
-    sBtnFiles->setChecked(true);
+    sBtnGroup->setCurrentIndex(0);
     sBtnUnderline->setRealtimeState();
+    handleSwitched();
 }
 
 void WelcomeTabContent::refresh() {
@@ -174,15 +173,7 @@ void WelcomeTabContent::onOpenBtnClicked() {
     m_tab->tabActions->openFile->trigger();
 }
 
-void WelcomeTabContent::onFilesBtnClicked() {
-    refresh();
-}
-
-void WelcomeTabContent::onFoldersBtnClicked() {
-    refresh();
-}
-
-void WelcomeTabContent::onTemplatesBtnClicked() {
+void WelcomeTabContent::handleSwitched() {
     refresh();
 }
 

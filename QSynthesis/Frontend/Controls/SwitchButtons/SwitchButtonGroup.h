@@ -17,6 +17,7 @@ public:
     void setCurrentIndex(int index);
 
     SwitchButton *currentButton();
+    SwitchButton *buttonAt(int index);
 
 private:
     void updateSelected(bool checked);
@@ -27,6 +28,7 @@ private:
 
 signals:
     void switched();
+    void switchRequested(bool &accepted);
     void oneDoubleClicked();
 };
 

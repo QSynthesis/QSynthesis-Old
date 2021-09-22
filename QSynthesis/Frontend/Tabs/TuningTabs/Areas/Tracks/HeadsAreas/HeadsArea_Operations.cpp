@@ -4,10 +4,10 @@
 #include "../HeadsArea.h"
 
 void HeadsArea::saveOperation(TrackOperation *t) {
-    if (t->differ()) {
+    t = static_cast<TrackOperation *>(t->simplify(t));
+    if (t) {
         m_ptrs->tab->addHistory(t);
     } else {
-        delete t;
         qDebug() << "[Track Operation] Addition Refused";
     }
 }

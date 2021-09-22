@@ -71,15 +71,16 @@ private:
     QColor m_backLightColor;
 
 public:
-    void saveOperation(NoteOperation *n, QString desc = "");  // Out
+    void saveOperation(NoteOperation *n);  // Out
     bool handleOperation(NoteOperation *o, bool undo = true); // In
 
+private:
     void executeOperation(NoteOperation *n, bool undo);
 
     // Call
 public:
-    void statusCall();
-    void lengthCall();
+    void callForChange();
+    void callForLengthen();
 
     double globalTempo() const;
     void setGlobalTempo(double globalTempo);

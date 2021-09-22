@@ -40,10 +40,10 @@ void ProjectInfoHandler::modifyValues(const QString &wavtool, const QString &out
 }
 
 void ProjectInfoHandler::saveOperation(ProjectOperation *p) {
-    if (p->differ()) {
+    p = static_cast<ProjectOperation *>(p->simplify(p));
+    if (p) {
         m_tab->addHistory(p);
     } else {
-        delete p;
         qDebug() << "[Project Info] Addition Refused";
     }
 }

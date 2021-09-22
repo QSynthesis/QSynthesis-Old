@@ -77,6 +77,7 @@ void TuningTab::initValues() {
 
     untitled = false;
     deleted = false;
+    externModified = false;
 
     historyIndex = 0;
     savedHistoryIndex = 0;

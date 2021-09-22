@@ -8,6 +8,17 @@ ShortcutsFile::ShortcutsFile(const QString &filename, QObject *parent) : FileMan
     setFilename(filename);
 }
 
+ShortcutsFile::~ShortcutsFile() {
+}
+
+void ShortcutsFile::setData(const ShortcutsData &data) {
+    m_data = data;
+}
+
+ShortcutsData ShortcutsFile::data() const {
+    return m_data;
+}
+
 bool ShortcutsFile::loadCore(bool *valid) {
     QFile file(m_filename);
     QByteArray bytes;
@@ -54,63 +65,94 @@ bool ShortcutsFile::saveCore() {
 }
 
 void ShortcutsFile::resetCore() {
-    m_data = ShortcutsData();
-}
-
-void ShortcutsFile::setData(const ShortcutsData &data) {
-    m_data = data;
-}
-
-ShortcutsData ShortcutsFile::data() const {
-    return m_data;
+    m_data = ShortcutsData::getDefault();
 }
 
 QJsonObject ShortcutsFile::toJson(const ShortcutsData &keys) {
-    const ShortcutsData defaultKeys;
-    QJsonObject data, obj;
-    QJsonArray arr;
+    const QList<QKeySequence> &commonKeys = keys.commonShortcuts;
+    const QList<QKeySequence> &projectKeys = keys.projectShortcuts;
+    const QList<QKeySequence> &voiceKeys = keys.voiceShortcuts;
 
-    for (int i = ShortcutsData::idStart(); i < ShortcutsData::idEnd(); ++i) {
-        obj = toKeyObject(i, keys.keyForId(i), defaultKeys.keyForId(i));
-        arr.append(obj);
+    QJsonObject obj;
+
+    QJsonArray commonArr;
+    for (auto it = commonKeys.begin(); it != commonKeys.end(); ++it) {
+        commonArr.append(it->toString());
     }
 
-    data["commands"] = arr;
-    return data;
+    QJsonArray projectArr;
+    for (auto it = projectKeys.begin(); it != projectKeys.end(); ++it) {
+        projectArr.append(it->toString());
+    }
+
+    QJsonArray voiceArr;
+    for (auto it = voiceKeys.begin(); it != voiceKeys.end(); ++it) {
+        voiceArr.append(it->toString());
+    }
+
+    obj.insert("common", commonArr);
+    obj.insert("project", projectArr);
+    obj.insert("voice", voiceArr);
+
+    return obj;
 }
 
 ShortcutsData ShortcutsFile::fromJson(const QJsonObject &obj) {
-    ShortcutsData keys;
-    QJsonArray arr;
+    ShortcutsData data = ShortcutsData::getDefault();
 
-    QJsonValue valCmds = obj.value("commands");
-    if (valCmds.isArray()) {
-        arr = valCmds.toArray();
-    } else {
-        return keys;
-    }
-
-    for (auto it = arr.begin(); it != arr.end(); ++it) {
-        QJsonValue val = *it;
-        if (!val.isObject()) {
-            continue;
+    QJsonValue valCommon = obj.value("common");
+    if (valCommon.isArray()) {
+        QList<QKeySequence> commonKeys;
+        QJsonArray commonArr = valCommon.toArray();
+        for (auto it = commonArr.begin(); it != commonArr.end(); ++it) {
+            if (it->isString()) {
+                QKeySequence key((it->toString()));
+                commonKeys.append(key);
+            }
         }
-        QJsonObject obj = val.toObject();
-        int id = obj.value("id").toInt();
-        QString key = obj.value("key").toString();
-
-        keys.setKeyForId(id, QKeySequence(key));
+        if (commonKeys.size() == data.commonShortcuts.size()) {
+            data.commonShortcuts = commonKeys;
+        }
+    } else {
+        return ShortcutsData::getDefault();
     }
 
-    return keys;
-}
+    QJsonValue valProject = obj.value("project");
+    if (valProject.isArray()) {
+        QList<QKeySequence> projectKeys;
+        QJsonArray projectArr = valProject.toArray();
+        for (auto it = projectArr.begin(); it != projectArr.end(); ++it) {
+            if (it->isString()) {
+                QKeySequence key((it->toString()));
+                projectKeys.append(key);
+            }
+        }
+        if (projectKeys.size() == data.projectShortcuts.size()) {
+            data.projectShortcuts = projectKeys;
+        }
+    } else {
+        return ShortcutsData::getDefault();
+    }
 
-QJsonObject ShortcutsFile::toKeyObject(int id, const QKeySequence &key, const QKeySequence &def) {
-    QJsonObject obj;
+    QJsonValue valVoice = obj.value("voice");
+    if (valVoice.isArray()) {
+        QList<QKeySequence> voiceKeys;
+        QJsonArray voiceArr = valVoice.toArray();
+        for (auto it = voiceArr.begin(); it != voiceArr.end(); ++it) {
+            if (it->isString()) {
+                QKeySequence key((it->toString()));
+                voiceKeys.append(key);
+            }
+        }
+        if (voiceKeys.size() == data.voiceShortcuts.size()) {
+            data.voiceShortcuts = voiceKeys;
+        }
+    } else {
+        return ShortcutsData::getDefault();
+    }
 
-    obj["id"] = id;
-    obj["key"] = key.toString();
-    obj["default"] = key == def;
-
-    return obj;
+    if (!ShortcutsData::checkNoConflict(data)) {
+        return ShortcutsData::getDefault();
+    }
+    return data;
 }

@@ -29,6 +29,13 @@ public:                                                                         
         return self;                                                                               \
     }                                                                                              \
                                                                                                    \
+    T *createCasePrior() {                                                                         \
+        if (!self) {                                                                               \
+            self = this;                                                                           \
+        }                                                                                          \
+        return this;                                                                               \
+    }                                                                                              \
+                                                                                                   \
 public:                                                                                            \
     static T *instance() {                                                                         \
         return self;                                                                               \

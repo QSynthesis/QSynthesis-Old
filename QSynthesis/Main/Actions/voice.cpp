@@ -17,21 +17,57 @@ void MainWindow::handleExportCurrent() {
 }
 
 void MainWindow::handleMoveUpSample() {
+    CentralTab *tab = currentTab();
+    VoiceBankTab *tab1;
+    if (tab->tabType() == Qs::Folder) {
+        tab1 = qobject_cast<VoiceBankTab *>(tab);
+        tab1->moveUp();
+    }
 }
 
 void MainWindow::handleMoveDownSample() {
+    CentralTab *tab = currentTab();
+    VoiceBankTab *tab1;
+    if (tab->tabType() == Qs::Folder) {
+        tab1 = qobject_cast<VoiceBankTab *>(tab);
+        tab1->moveDown();
+    }
 }
 
 void MainWindow::handleMoveTopSample() {
+    CentralTab *tab = currentTab();
+    VoiceBankTab *tab1;
+    if (tab->tabType() == Qs::Folder) {
+        tab1 = qobject_cast<VoiceBankTab *>(tab);
+        tab1->moveTop();
+    }
 }
 
 void MainWindow::handleMoveBottomSample() {
+    CentralTab *tab = currentTab();
+    VoiceBankTab *tab1;
+    if (tab->tabType() == Qs::Folder) {
+        tab1 = qobject_cast<VoiceBankTab *>(tab);
+        tab1->moveBottom();
+    }
 }
 
 void MainWindow::handleDuplicateSample() {
+    CentralTab *tab = currentTab();
+    VoiceBankTab *tab1;
+    if (tab->tabType() == Qs::Folder) {
+        tab1 = qobject_cast<VoiceBankTab *>(tab);
+        tab1->duplicate();
+    }
 }
 
 void MainWindow::handleRemoveSample() {
+    CentralTab *tab = currentTab();
+    VoiceBankTab *tab1;
+    if (tab->tabType() == Qs::Folder) {
+        tab1 = qobject_cast<VoiceBankTab *>(tab);
+        tab1->remove();
+    }
 }
 
 void MainWindow::handleGenerateFrq() {

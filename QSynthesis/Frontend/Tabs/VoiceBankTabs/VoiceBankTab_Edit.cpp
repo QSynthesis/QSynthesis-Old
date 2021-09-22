@@ -53,9 +53,11 @@ void VoiceBankTab::redo() {
 }
 
 void VoiceBankTab::selectAll() {
+    dataArea->currentTab()->selectAll();
 }
 
 void VoiceBankTab::deselect() {
+    dataArea->currentTab()->selectNone();
 }
 
 bool VoiceBankTab::earliest() {
@@ -79,6 +81,7 @@ void VoiceBankTab::addHistory(VoiceOperation *s) {
     historyList.append(s);
     historyIndex++;
 
+    handleSavedStateChanged();
     setEdited(savedHistoryIndex != historyIndex);
 }
 
@@ -88,5 +91,5 @@ void VoiceBankTab::clearHistory() {
     }
     historyList.clear();
     historyIndex = 0;
-    savedHistoryIndex = -1;
+    savedHistoryIndex = 0;
 }

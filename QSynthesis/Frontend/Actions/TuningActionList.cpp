@@ -6,14 +6,16 @@ TuningActionList::TuningActionList(QObject *parent) : BaseActionList(parent) {
     createCasePrivate();
 }
 
-TuningActionList::~TuningActionList() {
+TuningActionList::TuningActionList(Qs::VariableSource source) {
+    assert(source == Qs::Default);
 }
 
+TuningActionList::~TuningActionList() {
+}
 void TuningActionList::setNaturalStatus() {
     setCommonActionsEnabled(true);
     setActionsEnabled(true);
 }
-
 void TuningActionList::updateStrings() {
     // File
     appendFile->setText(tr("Append..."));
@@ -145,14 +147,37 @@ void TuningActionList::makeDefaultShortcuts() {
     switchVel->setShortcut(QKeySequence("D"));
 }
 
-QList<QAction *> TuningActionList::actions() const {
+QList<QKeySequence> TuningActionList::defaultShortcuts() {
+    TuningActionList actionList(Qs::Default);
+    QList<QAction **> actionsRef = actionList.actionsRef();
+    QList<QKeySequence> shortcuts;
+
+    // Create
+    for (auto it = actionsRef.begin(); it != actionsRef.end(); ++it) {
+        QAction **ref = *it;
+        *ref = new QAction();
+    }
+    // Set
+    actionList.makeDefaultShortcuts();
+    // Export
+    shortcuts = actionList.shortcuts();
+    // Destroy
+    for (auto it = actionsRef.begin(); it != actionsRef.end(); ++it) {
+        QAction **ref = *it;
+        delete *ref;
+    }
+
+    return shortcuts;
+}
+
+QList<QAction **> TuningActionList::actionsRef() {
     return {
-        appendFile,   exportSelection, exportTrack,    copy,           cut,
-        paste,        remove,          insertLyrics,   findReplace,    transpose,
-        octaveUp,     octaveDown,      removeRest,     insertRest,     noteProperty,
-        moveStart,    moveEnd,         removeCache,    exportAudio,    lyricConfig,
-        prefixConfig, openBuildInMenu, openPluginMenu, openAliasMenu,  switchTrack,
-        switchConfig, switchNote,      switchPitch,    switchEnvelope, switchInt,
-        switchMod,    switchVel,
+        &appendFile,   &exportSelection, &exportTrack,    &copy,           &cut,
+        &paste,        &remove,          &insertLyrics,   &findReplace,    &transpose,
+        &octaveUp,     &octaveDown,      &removeRest,     &insertRest,     &noteProperty,
+        &moveStart,    &moveEnd,         &removeCache,    &exportAudio,    &lyricConfig,
+        &prefixConfig, &openBuildInMenu, &openPluginMenu, &openAliasMenu,  &switchTrack,
+        &switchConfig, &switchNote,      &switchPitch,    &switchEnvelope, &switchInt,
+        &switchMod,    &switchVel,
     };
 }

@@ -166,5 +166,5 @@ void TuningTab::clearHistory() {
     }
     historyList.clear();
     historyIndex = 0;
-    savedHistoryIndex = -1;
+    savedHistoryIndex = 0;
 }

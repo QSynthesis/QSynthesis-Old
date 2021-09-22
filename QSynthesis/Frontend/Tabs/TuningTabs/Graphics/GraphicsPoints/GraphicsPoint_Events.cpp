@@ -125,7 +125,7 @@ void GraphicsPoint::afterRelease() {
         qDragIn.endInvolve(this);
         qDragIn.removeAllT(); // Remove all involved notes
     } else {
-        m_editor->statusCall();
+        m_editor->callForChange();
     }
 }
 

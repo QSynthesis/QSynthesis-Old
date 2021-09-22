@@ -4,12 +4,12 @@
 #include "../OtoInfoArea.h"
 
 void OtoInfoArea::saveOperation(NonOtoOperation *no) {
-    if (no->differ()) {
+    no = static_cast<NonOtoOperation *>(no->simplify(no));
+    if (no) {
         m_ptrs->tab->addHistory(no);
     } else {
         qDebug() << "[NonOtoOperation]"
                  << "Addition Refused";
-        delete no;
     }
 }
 

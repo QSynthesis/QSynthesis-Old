@@ -16,6 +16,9 @@ public:
 
 public:
     static bool keyIsDown(QEvent *event);
+    static bool isSpecialKey(Qt::Key key);
+    static bool isModifierKey(Qt::Key key);
+    static bool isSpecialShortcut(QKeySequence shortcut);
 
 public:
     static bool translate(const QString &filename);
@@ -23,7 +26,6 @@ public:
 
 private:
     static QList<QTranslator *> Translators;
-
 };
 
 #endif // APPASSISTANT_H

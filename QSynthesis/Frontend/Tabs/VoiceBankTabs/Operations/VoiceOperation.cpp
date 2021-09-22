@@ -15,9 +15,5 @@ bool VoiceOperation::differ() const {
 }
 
 VoiceOperation *VoiceOperation::next() const {
-    return m_next;
-}
-
-void VoiceOperation::setNext(VoiceOperation *next) {
-    m_next = next;
+    return static_cast<VoiceOperation *>(m_next);
 }

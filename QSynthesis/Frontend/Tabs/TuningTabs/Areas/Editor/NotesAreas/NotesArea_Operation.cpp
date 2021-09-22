@@ -11,14 +11,13 @@
 #include "../../../TuningGroup.h"
 #include "../NotesArea.h"
 
-void NotesArea::saveOperation(NoteOperation *n, QString desc) {
-    if (n->differ()) {
-        n->setDesc(desc);
+void NotesArea::saveOperation(NoteOperation *n) {
+    n = static_cast<NoteOperation *>(n->simplify(n));
+    if (n) {
         m_ptrs->tab->addHistory(n);
     } else {
         qDebug() << "[NoteOperation]"
                  << "Addition Refused";
-        delete n;
     }
 }
 
@@ -88,7 +87,7 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
         adjustNotes(range);
         selectRange(orgRange);
 
-        lengthCall();
+        callForLengthen();
         break;
     }
     case NoteOperation::Length: {
@@ -107,7 +106,7 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
         adjustNotes(QPoint(indexs.front(), -1));
         selectSequence(indexs);
 
-        lengthCall();
+        callForLengthen();
         break;
     }
     case NoteOperation::Add:
@@ -141,7 +140,7 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
             }
             selectSequence(indexs);
         }
-        lengthCall();
+        callForLengthen();
         break;
     }
     case NoteOperation::Mode2:
@@ -307,11 +306,11 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
     }
 }
 
-void NotesArea::statusCall() {
+void NotesArea::callForChange() {
     m_ptrs->tab->change();
 }
 
-void NotesArea::lengthCall() {
+void NotesArea::callForLengthen() {
     m_ptrs->editorContent->adjustCanvas(totalLength());
     m_ptrs->tracksContent->adjustDefaultTrack();
 }

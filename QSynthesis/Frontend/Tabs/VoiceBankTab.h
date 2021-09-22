@@ -123,6 +123,13 @@ public:
     void setPreUttrByCursor();
     void setOverlapByCursor();
 
+    void moveUp();
+    void moveDown();
+    void moveTop();
+    void moveBottom();
+    void remove();
+    void duplicate();
+
     // Main Menu Edit
 public:
     void undo() override;

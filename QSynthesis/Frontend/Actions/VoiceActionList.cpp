@@ -9,6 +9,10 @@ VoiceActionList::VoiceActionList(QObject *parent) : BaseActionList(parent) {
 VoiceActionList::~VoiceActionList() {
 }
 
+VoiceActionList::VoiceActionList(Qs::VariableSource source) {
+    assert(source == Qs::Default);
+}
+
 void VoiceActionList::setNaturalStatus() {
     setCommonActionsEnabled(true);
     setActionsEnabled(true);
@@ -78,10 +82,33 @@ void VoiceActionList::makeDefaultShortcuts() {
     setBlank->setShortcut(QKeySequence("F5"));
 }
 
-QList<QAction *> VoiceActionList::actions() const {
+QList<QKeySequence> VoiceActionList::defaultShortcuts() {
+    VoiceActionList actionList(Qs::Default);
+    QList<QAction **> actionsRef = actionList.actionsRef();
+    QList<QKeySequence> shortcuts;
+
+    // Create
+    for (auto it = actionsRef.begin(); it != actionsRef.end(); ++it) {
+        QAction **ref = *it;
+        *ref = new QAction();
+    }
+    // Set
+    actionList.makeDefaultShortcuts();
+    // Export
+    shortcuts = actionList.shortcuts();
+    // Destroy
+    for (auto it = actionsRef.begin(); it != actionsRef.end(); ++it) {
+        QAction **ref = *it;
+        delete *ref;
+    }
+
+    return shortcuts;
+}
+
+QList<QAction **> VoiceActionList::actionsRef() {
     return {
-        exportCurrent, moveUp,     moveDown,    moveTop,     moveBottom,
-        duplicate,     remove,     generateFrq, modifyAlias, removeInvalid,
-        setOffset,     setOverlap, setPreUttr,  setConstant, setBlank,
+        &exportCurrent, &moveUp,     &moveDown,    &moveTop,     &moveBottom,
+        &duplicate,     &remove,     &generateFrq, &modifyAlias, &removeInvalid,
+        &setOffset,     &setOverlap, &setPreUttr,  &setConstant, &setBlank,
     };
 }

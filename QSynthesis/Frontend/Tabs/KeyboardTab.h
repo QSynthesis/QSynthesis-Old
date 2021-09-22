@@ -54,6 +54,8 @@ private:
     void loadCore();
     void saveCore();
 
+    bool checkNoConflict();
+
     // Init
 private:
     void initTab();
@@ -79,13 +81,23 @@ private:
 
     QPushButton *btnReset;
 
+    KeyTableTab *keyTabAt(int index) const;
+    KeyTableTab *currentKeyTab() const;
+
+    void handleSwitchRequested(bool &accepted);
     void handleSwitched();
     void handleResetCurrent();
+
+    void handleTabIndexChanged(int index);
 
     // Edit
 public:
     void undo() override;
     void redo() override;
+    void selectAll() override;
+    void deselect() override;
+
+    void reset() override;
 
     bool earliest() const;
     bool latest() const;
@@ -101,8 +113,8 @@ private:
 
     int savedHistoryIndex;
 
-public:
-    void handleOperation(KeyOperation *k, bool undo);
+private:
+    bool externModified;
 };
 
 #endif // KEYBOARDTAB_H

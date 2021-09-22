@@ -19,6 +19,8 @@ void initLocale() {
 }
 
 void initSingletons() {
+    ShortcutsData::createDefault();
+
     SettingIniData::createCase();
     ConfigData::createCase();
     ShortcutsData::createCase();
@@ -26,6 +28,8 @@ void initSingletons() {
 }
 
 void removeSingletons() {
+    ShortcutsData::removeDefault();
+
     SettingIniData::destroyCase();
     ConfigData::destroyCase();
     ShortcutsData::destroyCase();

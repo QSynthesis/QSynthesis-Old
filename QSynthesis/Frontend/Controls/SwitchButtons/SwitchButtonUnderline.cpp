@@ -91,6 +91,8 @@ void SwitchButtonUnderline::setRealtimeState() {
     m_leftAnimation->stop();
     m_rightAnimation->stop();
 
+    setButton(m_group->currentButton());
+
     QPair<int, int> target = getTarget(m_btn);
     m_left = target.first;
     m_right = target.second;

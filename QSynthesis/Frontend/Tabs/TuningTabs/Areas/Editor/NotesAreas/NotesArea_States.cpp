@@ -13,7 +13,7 @@ void NotesArea::setNotesEnabled(bool enabled) {
     for (int i = 0; i < NotesList.size(); ++i) {
         NotesList.at(i)->setMovable(enabled);
     }
-    statusCall();
+    callForChange();
 }
 
 void NotesArea::setPitchesEnabled(bool enabled) {
@@ -21,7 +21,7 @@ void NotesArea::setPitchesEnabled(bool enabled) {
     for (int i = 0; i < NotesList.size(); ++i) {
         NotesList.at(i)->curves()->setSolid(enabled);
     }
-    statusCall();
+    callForChange();
 }
 
 void NotesArea::setEnvelopesEnabled(bool enabled) {
@@ -29,5 +29,5 @@ void NotesArea::setEnvelopesEnabled(bool enabled) {
     for (int i = 0; i < NotesList.size(); ++i) {
         NotesList.at(i)->envelope()->setSolid(enabled);
     }
-    statusCall();
+    callForChange();
 }

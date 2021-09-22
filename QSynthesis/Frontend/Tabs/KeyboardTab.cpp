@@ -13,10 +13,8 @@ bool KeyboardTab::load() {
     bool valid = true;
     bool success = cfg.load(&valid);
 
+    // Always success
     if (success && valid) {
-    } else {
-        QMessageBox::about(this, ErrorTitle, tr("Unable to load configuration file!"));
-        return false;
     }
 
     keys = cfg.data();
@@ -25,6 +23,10 @@ bool KeyboardTab::load() {
 }
 
 bool KeyboardTab::save() {
+    if (!checkNoConflict()) {
+        return false;
+    }
+
     saveCore();
 
     ShortcutsData orgKeys = cfg.data();
@@ -35,6 +37,7 @@ bool KeyboardTab::save() {
         cfg.setData(orgKeys);
         QMessageBox::about(this, ErrorTitle, tr("Unable to save file!"));
     } else {
+        externModified = false;
         savedHistoryIndex = historyIndex; // Update saved history index
         setEdited(false);
     }
@@ -43,7 +46,13 @@ bool KeyboardTab::save() {
 }
 
 bool KeyboardTab::restore() {
-    return false;
+    clearHistory();
+    if (externModified) {
+        savedHistoryIndex = -1;
+    }
+    setEdited(savedHistoryIndex != historyIndex);
+    loadCore();
+    return true;
 }
 
 void KeyboardTab::awake() {
@@ -73,6 +82,7 @@ void KeyboardTab::setFixedname(const QString &value) {
 }
 
 void KeyboardTab::handleFileChanged() {
+    externModified = true;
     savedHistoryIndex = -1;
     setEdited(true);
 }
@@ -88,7 +98,8 @@ void KeyboardTab::updateMenuCore() {
 
     tabActions->undo->setEnabled(!earliest());
     tabActions->redo->setEnabled(!latest());
-}
 
-void KeyboardTab::handleOperation(KeyOperation *k, bool undo) {
+    bool empty = currentKeyTab()->selectedRanges().isEmpty();
+    tabActions->deselect->setEnabled(!empty);
+    tabActions->reset->setEnabled(!empty);
 }

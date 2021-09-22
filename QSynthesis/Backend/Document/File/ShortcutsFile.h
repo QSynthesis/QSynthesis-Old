@@ -18,6 +18,7 @@ class ShortcutsFile : public FileManager {
 public:
     explicit ShortcutsFile(QObject *parent = nullptr);
     explicit ShortcutsFile(const QString &filename, QObject *parent = nullptr);
+    ~ShortcutsFile();
 
     void setData(const ShortcutsData &data);
     ShortcutsData data() const;
@@ -34,7 +35,6 @@ private:
 private:
     static QJsonObject toJson(const ShortcutsData &keys);
     static ShortcutsData fromJson(const QJsonObject &obj);
-    static QJsonObject toKeyObject(int id, const QKeySequence &key, const QKeySequence &def);
 };
 
 #endif // SHORTCUTSFILE_H

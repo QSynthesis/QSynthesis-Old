@@ -6,6 +6,7 @@
 #include <QObject>
 
 #include "Macros.h"
+#include "Types.h"
 
 class BaseActionList : public QObject {
     Q_OBJECT
@@ -59,11 +60,16 @@ public:
 public:
     void updateCommonStrings();
     void makeCommonDefaultShortcuts();
+
+    static QList<QKeySequence> commonDefaultShortcuts();
+
     QList<QAction *> commonActions() const;
+    QList<QAction **> commonActionsRef();
 
     void setCommonActionsEnabled(bool enabled);
 
     QStringList commonNames() const;
+
     QList<QKeySequence> commonShortcuts() const;
     void setCommonShortcuts(const QList<QKeySequence> &keys) const;
 
@@ -72,8 +78,9 @@ public:
 
     virtual void updateStrings();
     virtual void makeDefaultShortcuts();
-    virtual QList<QAction *> actions() const;
+    virtual QList<QAction **> actionsRef();
 
+    QList<QAction *> actions() const;
     void setActionsEnabled(bool enabled);
 
     QStringList names() const;

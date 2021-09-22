@@ -43,7 +43,8 @@ ParamsForm::ParamsForm(TuningTab *parent) : BaseForm(parent) {
     m_ptrs->paramsContent = content;
 
     // Set First Status
-    btnInt->setChecked(true);
+    btnsGroup->setCurrentIndex(0);
+    handleSwitchChanged();
 }
 
 TuningGroup *ParamsForm::ptrs() const {

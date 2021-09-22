@@ -91,6 +91,7 @@ void TuningTab::updateTabName() {
 void TuningTab::handleFileChanged() {
     savedHistoryIndex = -1;
     if (isFileExist(m_filename)) {
+        externModified = true;
         setEdited(true);
     } else {
         setDeleted(true);

@@ -8,7 +8,11 @@ class TuningActionList : public BaseActionList {
     Q_SINGLETON(TuningActionList)
 public:
     TuningActionList(QObject *parent = nullptr);
+
     ~TuningActionList();
+
+private:
+    TuningActionList(Qs::VariableSource source);
 
 public:
     // File
@@ -74,7 +78,9 @@ public:
     void updateStrings() override;
     void makeDefaultShortcuts() override;
 
-    QList<QAction *> actions() const override;
+    static QList<QKeySequence> defaultShortcuts();
+
+    QList<QAction **> actionsRef() override;
 };
 
 #endif // TUNINGACTIONLIST_H

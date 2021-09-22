@@ -16,11 +16,9 @@ public:
     virtual bool differ() const;
 
     VoiceOperation *next() const;
-    void setNext(VoiceOperation *next);
 
 protected:
     Type m_type;
-    VoiceOperation *m_next;
 };
 
 #endif // VOICEOPERATION_H

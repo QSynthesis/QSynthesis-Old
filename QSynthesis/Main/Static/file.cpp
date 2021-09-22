@@ -34,12 +34,11 @@ void MainWindow::initShortcutsData() {
     QString filename = keyboardConfigPath();
     ShortcutsFile reader(filename);
     bool valid = false;
-    if (!reader.load(&valid) || !valid) {
-        if (!reader.save()) {
-            exitOnNoIOPermission();
-        }
+    if (reader.load(&valid) && valid) {
+        *qShortcuts = reader.data();
+    } else {
+        *qShortcuts = ShortcutsData::getDefault();
     }
-    *qShortcuts = reader.data();
 }
 
 void MainWindow::initConfigData() {

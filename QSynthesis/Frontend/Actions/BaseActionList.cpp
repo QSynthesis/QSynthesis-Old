@@ -114,12 +114,45 @@ void BaseActionList::makeCommonDefaultShortcuts() {
     languages->setShortcut(QKeySequence("Ctrl+Shift+L"));
 }
 
+QList<QKeySequence> BaseActionList::commonDefaultShortcuts() {
+    BaseActionList actionList;
+    QList<QAction **> actionsRef = actionList.commonActionsRef();
+    QList<QKeySequence> shortcuts;
+
+    // Create
+    for (auto it = actionsRef.begin(); it != actionsRef.end(); ++it) {
+        QAction **ref = *it;
+        *ref = new QAction();
+    }
+    // Set
+    actionList.makeCommonDefaultShortcuts();
+    // Export
+    shortcuts = actionList.commonShortcuts();
+    // Destroy
+    for (auto it = actionsRef.begin(); it != actionsRef.end(); ++it) {
+        QAction **ref = *it;
+        delete *ref;
+    }
+
+    return shortcuts;
+}
+
 QList<QAction *> BaseActionList::commonActions() const {
+    const QList<QAction **> actionsRef = ((BaseActionList *) this)->commonActionsRef();
+    QList<QAction *> actions;
+    for (auto it = actionsRef.begin(); it != actionsRef.end(); ++it) {
+        actions.append(**it);
+    }
+    return actions;
+}
+
+QList<QAction **> BaseActionList::commonActionsRef() {
     return {
-        newFile,    importFile,   openFile,    openFolder, saveFile,     saveAsFile, restoreFile,
-        switchFile, closeFile,    undo,        redo,       selectAll,    deselect,   reset,
-        playPause,  replay,       stop,        settings,   keyShortcuts, themes,     languages,
-        welcome,    instructions, checkUpdate, aboutApp,   aboutQt,
+        &newFile,      &importFile, &openFile,  &openFolder, &saveFile,     &saveAsFile,
+        &restoreFile,  &switchFile, &closeFile, &undo,       &redo,         &selectAll,
+        &deselect,     &reset,      &playPause, &replay,     &stop,         &settings,
+        &keyShortcuts, &themes,     &languages, &welcome,    &instructions, &checkUpdate,
+        &aboutApp,     &aboutQt,
     };
 }
 
@@ -167,6 +200,15 @@ void BaseActionList::makeDefaultShortcuts() {
 }
 
 QList<QAction *> BaseActionList::actions() const {
+    const QList<QAction **> actionsRef = ((BaseActionList *) this)->actionsRef();
+    QList<QAction *> actions;
+    for (auto it = actionsRef.begin(); it != actionsRef.end(); ++it) {
+        actions.append(*(*it));
+    }
+    return actions;
+}
+
+QList<QAction **> BaseActionList::actionsRef() {
     return {};
 }
 

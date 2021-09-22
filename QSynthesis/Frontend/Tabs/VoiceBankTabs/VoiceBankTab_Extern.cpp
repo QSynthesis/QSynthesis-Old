@@ -51,3 +51,27 @@ void VoiceBankTab::setPreUttrByCursor() {
 void VoiceBankTab::setOverlapByCursor() {
     visionArea->setOverlapByCursor();
 }
+
+void VoiceBankTab::moveUp() {
+    dataArea->currentTab()->moveUp();
+}
+
+void VoiceBankTab::moveDown() {
+    dataArea->currentTab()->moveDown();
+}
+
+void VoiceBankTab::moveTop() {
+    dataArea->currentTab()->moveTop();
+}
+
+void VoiceBankTab::moveBottom() {
+    dataArea->currentTab()->moveBottom();
+}
+
+void VoiceBankTab::remove() {
+    dataArea->currentTab()->remove();
+}
+
+void VoiceBankTab::duplicate() {
+    dataArea->currentTab()->duplicate();
+}

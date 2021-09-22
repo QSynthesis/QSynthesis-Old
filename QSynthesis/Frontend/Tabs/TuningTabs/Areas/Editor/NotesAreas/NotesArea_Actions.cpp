@@ -30,7 +30,7 @@ void NotesArea::inputNotes(const QList<QLinkNote> &notes) {
     insertNotes({}, notes);
     adjustNotes();
 
-    lengthCall();
+    callForLengthen();
 }
 
 void NotesArea::preparePlugin(PluginTempData &ns, bool all) {
@@ -121,7 +121,7 @@ void NotesArea::receivePlugin(const PluginTempData &ns, QPoint orgRegion) {
     s2->setNotes(newNotes);
     s2->setIgnore((Qs::IgnoreSelection) ig);
 
-    s->setNext(s2);
+    s->setTail(s2);
 
     // Save Operation
     saveOperation(s);
@@ -141,7 +141,7 @@ void NotesArea::receivePlugin(const PluginTempData &ns, QPoint orgRegion) {
     }
     selectSequence(newIndexs);
 
-    lengthCall();
+    callForLengthen();
 }
 
 void NotesArea::removeSelectedNotes() {
@@ -179,7 +179,7 @@ void NotesArea::removeSelectedNotes() {
     // Adjust vision
     adjustNotes(QPoint(indexs.front(), -1));
 
-    lengthCall();
+    callForLengthen();
 }
 
 void NotesArea::removeSelectedPoints() {
@@ -277,7 +277,7 @@ void NotesArea::shiftSelectedNotes(int offset) {
     // Adjust vision
     adjustNotes(QPoint(aIndex, bIndex + 1));
 
-    lengthCall();
+    callForLengthen();
 }
 
 void NotesArea::modifySelectedNotes(const NoteProperties &orgValues,
@@ -331,7 +331,7 @@ void NotesArea::modifySelectedNotes(const NoteProperties &orgValues,
         l->setIndex(indexs);
 
         if (n) {
-            n->setNext(l);
+            n->setTail(l);
         } else {
             n = l;
         }
@@ -357,7 +357,7 @@ void NotesArea::modifySelectedNotes(const NoteProperties &orgValues,
         l->setIndex(indexs);
 
         if (n) {
-            n->setNext(l);
+            n->setTail(l);
         } else {
             n = l;
         }
@@ -382,7 +382,7 @@ void NotesArea::modifySelectedNotes(const NoteProperties &orgValues,
         l->setIndex(indexs);
 
         if (n) {
-            n->setNext(l);
+            n->setTail(l);
         } else {
             n = l;
         }
@@ -408,7 +408,7 @@ void NotesArea::modifySelectedNotes(const NoteProperties &orgValues,
         l->setIndex(indexs);
 
         if (n) {
-            n->setNext(l);
+            n->setTail(l);
         } else {
             n = l;
         }
@@ -433,7 +433,7 @@ void NotesArea::modifySelectedNotes(const NoteProperties &orgValues,
         l->setIndex(indexs);
 
         if (n) {
-            n->setNext(l);
+            n->setTail(l);
         } else {
             n = l;
         }
@@ -458,7 +458,7 @@ void NotesArea::modifySelectedNotes(const NoteProperties &orgValues,
         l->setIndex(indexs);
 
         if (n) {
-            n->setNext(l);
+            n->setTail(l);
         } else {
             n = l;
         }
@@ -483,7 +483,7 @@ void NotesArea::modifySelectedNotes(const NoteProperties &orgValues,
         l->setIndex(indexs);
 
         if (n) {
-            n->setNext(l);
+            n->setTail(l);
         } else {
             n = l;
         }
@@ -507,5 +507,5 @@ void NotesArea::modifySelectedNotes(const NoteProperties &orgValues,
     // Adjust vision
     adjustNotes(QPoint(indexs.front() - 1, -1));
 
-    lengthCall();
+    callForLengthen();
 }

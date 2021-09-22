@@ -21,6 +21,8 @@ void OtoDataArea::init() {
 
     mainLayout->addWidget(otoTabs);
     setLayout(mainLayout);
+
+    connect(otoTabs, &TabWidget::currentChanged, this, &OtoDataArea::handleTabIndexChanged);
 }
 
 bool OtoDataArea::addTable(const QString &dirname, const QOtoSampleList &samples) {
@@ -58,6 +60,7 @@ bool OtoDataArea::addTable(const QString &dirname, const QOtoSampleList &samples
     connect(tab, &OtoTableTab::sampleAdded, this, &OtoDataArea::handleSampleAdded);
     connect(tab, &OtoTableTab::sampleRemoved, this, &OtoDataArea::handleSampleRemoved);
     connect(tab, &OtoTableTab::currentChanged, this, &OtoDataArea::handleCurrentChanged);
+    connect(tab, &OtoTableTab::selectionChanged, this, &OtoDataArea::handleSelectionChanged);
     return true;
 }
 

@@ -45,6 +45,13 @@ public:
     // From update
     void refresh();
 
+    int selectedRow() const;
+    bool isSelectionSingle() const;
+
+    bool isCurrentTop() const;
+    bool isCurrentBottom() const;
+    bool isCurrentValid() const;
+
 public:
     QColor normalColor() const;
     void setNormalColor(const QColor &normalColor);
@@ -61,12 +68,17 @@ private:
     void insertRow(int row, const QStringList &list);
     void removeRow(int row);
 
-    void selectNone();
-    void selectRow(int row);
-
     void swapRow(int row1, int row2);
     void moveRow(int from, int to);
 
+public:
+    void selectAll();
+    void selectNone();
+    void selectRow(int row);
+
+    QList<QTableWidgetSelectionRange> selectedRanges() const;
+
+private:
     int findFirstRow(const QString &filename) const;
 
     QGenonSettings getGenonSettings(int row) const;
@@ -82,20 +94,21 @@ private:
 
     void openContextMenu();
 
-    void handlePlayTriggered();
-    void handleMoveUpTriggered();
-    void handleMoveDownTriggered();
-    void handleMoveTopTriggered();
-    void handleMoveBottomTriggered();
-    void handleDuplicateTriggered();
-    void handleRemoveTriggered();
-    void handleRevealTriggered();
+public:
+    void play();
+    void moveUp();
+    void moveDown();
+    void moveTop();
+    void moveBottom();
+    void duplicate();
+    void remove();
+    void reveal();
 
 private:
     QMenu *m_menu;
 
     QVBoxLayout *mainLayout;
-    QTableWidget *otoTable;
+    QTableWidget *table;
     QOtoSampleList otoSamples;
 
     QString m_dirname;
@@ -120,15 +133,16 @@ private:
     void sendNoneToVision();
 
     void handleCellChanged(int row, int column);
-    void handleCurrentChanged(int currentRow, int currentColumn, int previousRow,
-                              int previousColumn);
     void handleCellDoubleClicked(int row, int column);
+    void handleSelectionChanged();
 
 private:
     bool eventFilter(QObject *obj, QEvent *event) override;
 
 signals:
     void colorChanged();
+
+    void selectionChanged();
 
     void sampleChanged(const QGenonSettings &origin, const QGenonSettings &modified, int index);
     void sampleMoved(const QGenonSettings &sample, int index, int movement);

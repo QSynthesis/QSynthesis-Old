@@ -1,7 +1,7 @@
 #include "../OtoTableTab.h"
 
 void OtoTableTab::setSample(const QOtoSample &sample) {
-    otoTable->blockSignals(true);
+    table->blockSignals(true);
 
     int sequence = otoSamples.findAuto(sample);
 
@@ -9,7 +9,7 @@ void OtoTableTab::setSample(const QOtoSample &sample) {
     QString base = PathFindFileName(filename);
     int row = findFirstRow(filename);
 
-    while (row < otoTable->rowCount() && fileNameAtRow(row) == base) {
+    while (row < table->rowCount() && fileNameAtRow(row) == base) {
         removeRow(row);
     }
 
@@ -26,7 +26,7 @@ void OtoTableTab::setSample(const QOtoSample &sample) {
         }
     }
 
-    otoTable->blockSignals(false);
+    table->blockSignals(false);
 }
 
 void OtoTableTab::moveSample(int row, int sequence, int index, int movement) {
@@ -36,11 +36,12 @@ void OtoTableTab::moveSample(int row, int sequence, int index, int movement) {
     otoSamples[sequence].move(index, targetIndex);
 
     // Swap at frontend
-    otoTable->blockSignals(true);
+    table->blockSignals(true);
     moveRow(row, targetRow);
+    selectNone();
     selectRow(targetRow);
     sendCurrentToVision(targetRow, sequence, targetIndex);
-    otoTable->blockSignals(false);
+    table->blockSignals(false);
 }
 
 void OtoTableTab::moveSample(const QGenonSettings &genon, int index, int movement) {
@@ -65,11 +66,12 @@ void OtoTableTab::changeSample(const QGenonSettings &genon, int index) {
 
     int targetRow = row + index;
     // Change frontend value
-    otoTable->blockSignals(true);
+    table->blockSignals(true);
     setGenonSettings(targetRow, genon);
+    selectNone();
     selectRow(targetRow);
     sendCurrentToVision(targetRow, sequence, index);
-    otoTable->blockSignals(false);
+    table->blockSignals(false);
 
     updateRowStatus(targetRow);
 }
@@ -96,11 +98,12 @@ void OtoTableTab::addSample(const QGenonSettings &genon, int index) {
     }
 
     // Change frontend value
-    otoTable->blockSignals(true);
+    table->blockSignals(true);
     insertRow(targetRow, genon);
+    selectNone();
     selectRow(targetRow);
     sendCurrentToVision(targetRow, sequence, index);
-    otoTable->blockSignals(false);
+    table->blockSignals(false);
 }
 
 void OtoTableTab::removeSample(const QGenonSettings &genon, int index) {
@@ -124,27 +127,27 @@ void OtoTableTab::removeSample(const QGenonSettings &genon, int index) {
     targetRow += index;
 
     // Change frontend value
-    otoTable->blockSignals(true);
+    table->blockSignals(true);
     removeRow(targetRow);
     selectNone();
     sendNoneToVision();
-    otoTable->blockSignals(false);
+    table->blockSignals(false);
 }
 
 bool OtoTableTab::selectSample(const QGenonSettings &genon) {
     QString filename = genon.mFileName;
     int sequence = otoSamples.findAuto(filename);
 
-    otoTable->setFocus();
+    table->setFocus();
 
     if (sequence >= 0) {
         const QOtoSample &sample = otoSamples.at(sequence);
         int index = sample.indexOf(genon);
-        qDebug() << index;
         if (index >= 0) {
             int row = findFirstRow(filename);
             row += index;
-            if (row < otoTable->rowCount()) {
+            if (row < table->rowCount()) {
+                selectNone();
                 selectRow(row);
                 return true;
             }

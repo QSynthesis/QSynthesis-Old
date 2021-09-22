@@ -1,4 +1,6 @@
 #include "../KeyboardTab.h"
+#include "Actions/TuningActionList.h"
+#include "Actions/VoiceActionList.h"
 #include "TabWidget.h"
 
 void KeyboardTab::initTab() {
@@ -16,9 +18,9 @@ void KeyboardTab::initComponents() {
     switchLayout->setSpacing(20);
     switchLayout->setMargin(0);
 
-    sBtnCommon = new SwitchButton(tr("Common"));
+    sBtnCommon = new SwitchButton(tr("General"));
     sBtnProject = new SwitchButton(tr("Project"));
-    sBtnVoice = new SwitchButton(tr("Voice Bank Manage"));
+    sBtnVoice = new SwitchButton(tr("Voice Manage"));
 
     sBtnCommon->setProperty("type", "key-table-tab");
     sBtnProject->setProperty("type", "key-table-tab");
@@ -52,9 +54,13 @@ void KeyboardTab::initComponents() {
     mainWidget = new TabWidget(this);
     mainWidget->setProperty("type", "keyboard");
 
-    commonKeyTab = new KeyTableTab(mainWidget);
-    projectKeyTab = new KeyTableTab(mainWidget);
-    voiceKeyTab = new KeyTableTab(mainWidget);
+    commonKeyTab = new KeyTableTab(this, mainWidget);
+    projectKeyTab = new KeyTableTab(this, mainWidget);
+    voiceKeyTab = new KeyTableTab(this, mainWidget);
+
+    commonKeyTab->setDefaultShortcuts(BaseActionList::commonDefaultShortcuts());
+    projectKeyTab->setDefaultShortcuts(TuningActionList::defaultShortcuts());
+    voiceKeyTab->setDefaultShortcuts(VoiceActionList::defaultShortcuts());
 
     mainWidget->tabBar()->setVisible(false);
     mainWidget->addTab(commonKeyTab, "");
@@ -71,25 +77,55 @@ void KeyboardTab::initComponents() {
 
     setLayout(mainLayout);
 
+    connect(sBtnGroup, &SwitchButtonGroup::switchRequested, this,
+            &KeyboardTab::handleSwitchRequested);
     connect(sBtnGroup, &SwitchButtonGroup::switched, this, &KeyboardTab::handleSwitched);
     connect(btnReset, &QPushButton::clicked, this, &KeyboardTab::handleResetCurrent);
 
+    connect(mainWidget, &TabWidget::currentChanged, this, &KeyboardTab::handleTabIndexChanged);
+
     // Init
-    sBtnCommon->setChecked(true);
+    sBtnGroup->setCurrentIndex(0);
     sBtnUnderline->setRealtimeState();
+    handleSwitched();
 }
 
 void KeyboardTab::initValues() {
     tabActions = nullptr;
 
+    externModified = false;
+
     historyIndex = 0;
     savedHistoryIndex = 0;
 }
 
+KeyTableTab *KeyboardTab::keyTabAt(int index) const {
+    return qobject_cast<KeyTableTab *>(mainWidget->tabAt(index));
+}
+
+KeyTableTab *KeyboardTab::currentKeyTab() const {
+    return keyTabAt(mainWidget->currentIndex());
+}
+
+void KeyboardTab::handleSwitchRequested(bool &accepted) {
+    //  accepted = false;
+}
+
 void KeyboardTab::handleSwitched() {
     int index = sBtnGroup->currentIndex();
-    mainWidget->setCurrentIndex(index);
+    if (index != mainWidget->currentIndex()) {
+        mainWidget->setCurrentIndex(index);
+    }
 }
 
 void KeyboardTab::handleResetCurrent() {
+    currentKeyTab()->resetAllShortcuts();
+}
+
+void KeyboardTab::handleTabIndexChanged(int index) {
+    SwitchButton *btn = sBtnGroup->buttonAt(index);
+    if (!btn->isChecked()) {
+        btn->setChecked(true);
+    }
+    updateMenuCore();
 }

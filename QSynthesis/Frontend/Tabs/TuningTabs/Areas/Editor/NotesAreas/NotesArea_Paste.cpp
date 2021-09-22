@@ -38,7 +38,7 @@ void NotesArea::pasteNotes(const QList<QLinkNote> &notes) {
     adjustNotes(QPoint(indexs.front() - 1, -1));
     selectSequence(indexs);
 
-    lengthCall();
+    callForLengthen();
 }
 
 void NotesArea::pasteMode2(const QList<QLinkNote> &notes) {
@@ -79,7 +79,7 @@ void NotesArea::pasteMode2(const QList<QLinkNote> &notes) {
     n->setOrigin(orgDoubles);
     n->setModified(newDoubles);
 
-    m->setNext(n);
+    m->setTail(n);
 
     saveOperation(m); // Save Operation
 

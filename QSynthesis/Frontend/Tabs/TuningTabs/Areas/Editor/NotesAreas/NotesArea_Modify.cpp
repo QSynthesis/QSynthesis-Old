@@ -169,7 +169,7 @@ void NotesArea::removeRestLessThan(int len) {
     l->setOrigin(orgLens);
     l->setModified(newLens);
 
-    l->setNext(s); // Length change should be put first
+    l->setTail(s); // Length change should be put first
 
     // Save Operation
     saveOperation(l);

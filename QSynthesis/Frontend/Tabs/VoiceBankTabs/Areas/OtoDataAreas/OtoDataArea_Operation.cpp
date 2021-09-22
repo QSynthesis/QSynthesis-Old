@@ -5,12 +5,12 @@
 #include "../OtoDataArea.h"
 
 void OtoDataArea::saveOperation(OtoOperation *o) {
-    if (o->differ()) {
+    o = static_cast<OtoOperation *>(o->simplify(o));
+    if (o) {
         m_ptrs->tab->addHistory(o);
     } else {
         qDebug() << "[NonOtoOperation]"
                  << "Addition Refused";
-        delete o;
     }
 }
 
@@ -119,4 +119,12 @@ void OtoDataArea::handleSampleRemoved(const QGenonSettings &sample, int index) {
 
 void OtoDataArea::handleCurrentChanged(const QGenonSettings &genon, int index) {
     m_ptrs->visionArea->setSampleAndIndex(genon, index);
+}
+
+void OtoDataArea::handleSelectionChanged() {
+    m_ptrs->tab->change();
+}
+
+void OtoDataArea::handleTabIndexChanged(int index) {
+    m_ptrs->tab->change();
 }

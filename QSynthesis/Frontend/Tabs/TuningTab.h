@@ -204,6 +204,7 @@ private:
 protected:
     bool untitled;
     bool deleted;
+    bool externModified;
 
     // Render
 private:

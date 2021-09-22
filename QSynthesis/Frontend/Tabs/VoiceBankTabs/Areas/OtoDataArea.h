@@ -47,6 +47,9 @@ private:
     void handleSampleRemoved(const QGenonSettings &sample, int index);
     void handleCurrentChanged(const QGenonSettings &genon, int index);
 
+    void handleSelectionChanged();
+    void handleTabIndexChanged(int index);
+
 private:
     void init();
 };

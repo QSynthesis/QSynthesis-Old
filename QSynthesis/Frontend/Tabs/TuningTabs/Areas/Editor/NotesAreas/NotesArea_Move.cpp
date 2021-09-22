@@ -196,7 +196,7 @@ void NotesArea::endMove(GraphicsNote *p) {
 
                 qDragOut.removeAllT();
                 removeNote(index + 1);
-                l->setNext(s);
+                l->setTail(s);
                 pNext = nullptr;
             }
         }
@@ -273,7 +273,7 @@ void NotesArea::endMove(GraphicsNote *p) {
         }
         adjustNoteComponents();
     }
-    lengthCall();
+    callForLengthen();
 }
 
 void NotesArea::afterDraw(GraphicsNote *p) {
@@ -303,7 +303,7 @@ void NotesArea::afterDraw(GraphicsNote *p) {
     p->setMovable(m_notesEnabled);
     p->updateNeighborCorrectGenons(true);
 
-    lengthCall();
+    callForLengthen();
 
     m_drawingItem = nullptr;
 }
@@ -428,5 +428,5 @@ void NotesArea::afterModifyLifters(GraphicsLifter::Props prop) {
     // Adjust vision
     adjustNotes(QPoint(indexs.front() - 1, indexs.back() + 1));
 
-    lengthCall();
+    callForLengthen();
 }

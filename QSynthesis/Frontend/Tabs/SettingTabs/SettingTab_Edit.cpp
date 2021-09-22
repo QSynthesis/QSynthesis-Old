@@ -239,5 +239,6 @@ void SettingTab::addHistory(SettingOperation *s) {
     historyList.append(s);
     historyIndex++;
 
+    handleSavedStateChanged();
     setEdited(savedHistoryIndex != historyIndex);
 }

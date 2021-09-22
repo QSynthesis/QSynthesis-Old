@@ -56,10 +56,25 @@ SwitchButton *SwitchButtonGroup::currentButton() {
     return m_current;
 }
 
+SwitchButton *SwitchButtonGroup::buttonAt(int index) {
+    if (index < 0 || index >= btns.size()) {
+        return nullptr;
+    }
+    return btns.at(index);
+}
+
 void SwitchButtonGroup::updateSelected(bool checked) {
     SwitchButton *btn = qobject_cast<SwitchButton *>(sender());
-    setCurrentIndex(btns.indexOf(btn));
-    emit switched();
+
+    bool accepted = true;
+    emit switchRequested(accepted);
+
+    if (accepted) {
+        setCurrentIndex(btns.indexOf(btn));
+        emit switched();
+    } else {
+        setCurrentIndex(currentIndex());
+    }
 }
 
 void SwitchButtonGroup::onOneDoubleClicked() {

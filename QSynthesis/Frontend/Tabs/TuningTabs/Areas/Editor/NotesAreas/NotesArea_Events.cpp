@@ -47,7 +47,7 @@ void NotesArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     }
     m_selecting = false;
     GraphicsArea::mouseReleaseEvent(event);
-    statusCall();
+    callForChange();
 }
 
 void NotesArea::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {

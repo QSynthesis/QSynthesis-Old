@@ -54,6 +54,38 @@ void VoiceBankTab::updateMenuCore() {
 
     tabActions->undo->setEnabled(!earliest());
     tabActions->redo->setEnabled(!latest());
+
+    OtoTableTab *curTab = dataArea->currentTab();
+    if (curTab) {
+        bool empty = curTab->selectedRanges().isEmpty();
+        bool isTop = curTab->isCurrentTop();
+        bool isBottom = curTab->isCurrentBottom();
+        bool isValid = curTab->isCurrentValid();
+        bool isSingle = curTab->isSelectionSingle();
+
+        tabActions->deselect->setEnabled(!empty);
+        tabActions->reset->setEnabled(!empty);
+
+        tabActions->moveUp->setEnabled(isSingle && !isTop);
+        tabActions->moveTop->setEnabled(isSingle && !isTop);
+        tabActions->moveDown->setEnabled(isSingle && !isBottom);
+        tabActions->moveBottom->setEnabled(isSingle && !isBottom);
+        tabActions->duplicate->setEnabled(isSingle);
+        tabActions->remove->setEnabled(isSingle && !(isTop && isBottom && isValid));
+    } else {
+        tabActions->deselect->setEnabled(false);
+        tabActions->reset->setEnabled(false);
+
+        tabActions->moveUp->setEnabled(false);
+        tabActions->moveTop->setEnabled(false);
+        tabActions->moveDown->setEnabled(false);
+        tabActions->moveBottom->setEnabled(false);
+        tabActions->remove->setEnabled(false);
+    }
+
+    tabActions->generateFrq->setEnabled(false);
+    tabActions->modifyAlias->setEnabled(false);
+    tabActions->removeInvalid->setEnabled(false);
 }
 
 void VoiceBankTab::updateTabName() {

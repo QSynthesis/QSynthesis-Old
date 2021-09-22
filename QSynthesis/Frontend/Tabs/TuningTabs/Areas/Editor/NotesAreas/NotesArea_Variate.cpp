@@ -142,12 +142,12 @@ void NotesArea::removeNotes(const QList<int> &indexs) {
     updateNoteTempoAfter(indexs.front() - 1);
     updateNoteTickAfter(indexs.front() - 1);
 
-    lengthCall();
+    callForLengthen();
 }
 
 void NotesArea::clearNotes() {
     removeAllNotes();
-    lengthCall();
+    callForLengthen();
 }
 
 void NotesArea::removeAllNotes() {

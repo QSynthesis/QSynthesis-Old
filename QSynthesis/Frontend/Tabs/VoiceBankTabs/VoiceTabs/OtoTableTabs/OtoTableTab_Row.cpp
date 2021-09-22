@@ -1,7 +1,7 @@
 #include "../OtoTableTab.h"
 
 void OtoTableTab::addRow(const QGenonSettings &genon) {
-    insertRow(otoTable->rowCount(), genon);
+    insertRow(table->rowCount(), genon);
 }
 
 void OtoTableTab::insertRow(int row, const QGenonSettings &genon) {
@@ -25,49 +25,34 @@ void OtoTableTab::insertRow(int row, const QGenonSettings &genon) {
 }
 
 void OtoTableTab::insertRow(int row, const QStringList &list) {
-    otoTable->insertRow(row);
+    table->insertRow(row);
 
     QTableWidgetItem *item = new QTableWidgetItem(list.at(0));
     item->setFlags(item->flags() & (~Qt::ItemIsEditable));
-    otoTable->setItem(row, 0, item);
+    table->setItem(row, 0, item);
 
-    otoTable->setItem(row, 1, new QTableWidgetItem(list.at(1)));
-    otoTable->setItem(row, 2, new QTableWidgetItem(list.at(2)));
-    otoTable->setItem(row, 3, new QTableWidgetItem(list.at(3)));
-    otoTable->setItem(row, 4, new QTableWidgetItem(list.at(4)));
-    otoTable->setItem(row, 5, new QTableWidgetItem(list.at(5)));
-    otoTable->setItem(row, 6, new QTableWidgetItem(list.at(6)));
+    table->setItem(row, 1, new QTableWidgetItem(list.at(1)));
+    table->setItem(row, 2, new QTableWidgetItem(list.at(2)));
+    table->setItem(row, 3, new QTableWidgetItem(list.at(3)));
+    table->setItem(row, 4, new QTableWidgetItem(list.at(4)));
+    table->setItem(row, 5, new QTableWidgetItem(list.at(5)));
+    table->setItem(row, 6, new QTableWidgetItem(list.at(6)));
 
     QTableWidgetItem *item1 = new QTableWidgetItem(list.at(7));
     item1->setFlags(item->flags() & (~Qt::ItemIsEditable));
-    otoTable->setItem(row, 7, item1);
+    table->setItem(row, 7, item1);
 }
 
 void OtoTableTab::removeRow(int row) {
-    otoTable->removeRow(row);
-}
-
-void OtoTableTab::selectNone() {
-    QTableWidgetSelectionRange all(0, 0, otoTable->rowCount() - 1, otoTable->columnCount() - 1);
-    otoTable->setRangeSelected(all, false);
-}
-
-void OtoTableTab::selectRow(int row) {
-    QTableWidgetItem *item = otoTable->item(row, 0);
-    otoTable->scrollToItem(item);
-
-    selectNone();
-    QTableWidgetSelectionRange range(row, 0, row, otoTable->columnCount() - 1);
-    otoTable->setCurrentItem(item);
-    otoTable->setRangeSelected(range, true);
+    table->removeRow(row);
 }
 
 void OtoTableTab::swapRow(int row1, int row2) {
     QString temp;
-    for (int i = 0; i < otoTable->columnCount(); ++i) {
-        temp = otoTable->item(row1, i)->text();
-        otoTable->item(row1, i)->setText(otoTable->item(row2, i)->text());
-        otoTable->item(row2, i)->setText(temp);
+    for (int i = 0; i < table->columnCount(); ++i) {
+        temp = table->item(row1, i)->text();
+        table->item(row1, i)->setText(table->item(row2, i)->text());
+        table->item(row2, i)->setText(temp);
     }
 }
 
@@ -75,4 +60,28 @@ void OtoTableTab::moveRow(int from, int to) {
     QGenonSettings genon = getGenonSettings(from);
     removeRow(from);
     insertRow(to, genon);
+}
+
+void OtoTableTab::selectAll() {
+    table->selectAll();
+}
+
+void OtoTableTab::selectNone() {
+    const QList<QTableWidgetSelectionRange> &ranges = table->selectedRanges();
+    for (int i = 0; i < ranges.size(); ++i) {
+        table->setRangeSelected(ranges.at(i), false);
+    }
+}
+
+void OtoTableTab::selectRow(int row) {
+    QTableWidgetItem *item = table->item(row, 0);
+    table->scrollToItem(item);
+
+    QTableWidgetSelectionRange range(row, 0, row, table->columnCount() - 1);
+    table->setCurrentItem(item);
+    table->setRangeSelected(range, true);
+}
+
+QList<QTableWidgetSelectionRange> OtoTableTab::selectedRanges() const {
+    return table->selectedRanges();
 }

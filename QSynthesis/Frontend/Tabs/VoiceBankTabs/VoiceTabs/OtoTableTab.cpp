@@ -21,35 +21,34 @@ void OtoTableTab::init() {
 
     m_menu = new QMenu(this);
 
-    otoTable = new QTableWidget(this);
-    otoTable->setProperty("type", "voice");
+    table = new QTableWidget(this);
+    table->viewport()->installEventFilter(this);
+
+    table->setProperty("type", "voice");
     mainLayout = new QVBoxLayout(this);
 
-    otoTable->viewport()->installEventFilter(this);
-
-    otoTable->setColumnCount(8);
+    table->setColumnCount(8);
     QStringList header{tr("File Name"), tr("Alias"),        tr("Offset"),  tr("Consonant"),
                        tr("Blank"),     tr("PreUtterance"), tr("Overlap"), tr("Frq")};
 
-    otoTable->setHorizontalHeaderLabels(header);
-    otoTable->horizontalHeader()->setDisabled(false);
-    otoTable->horizontalHeader()->setHighlightSections(false);
-    otoTable->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    table->setHorizontalHeaderLabels(header);
+    table->horizontalHeader()->setDisabled(false);
+    table->horizontalHeader()->setHighlightSections(false);
+    table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 
-    otoTable->setSelectionBehavior(QAbstractItemView::SelectRows);
-    otoTable->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    otoTable->setAlternatingRowColors(true);
+    table->setSelectionBehavior(QAbstractItemView::SelectRows);
+    table->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    table->setAlternatingRowColors(true);
 
-    mainLayout->addWidget(otoTable);
+    mainLayout->addWidget(table);
     mainLayout->setMargin(0);
     setLayout(mainLayout);
 
     setContextMenuPolicy(Qt::CustomContextMenu);
 
-    connect(otoTable, &QTableWidget::cellChanged, this, &OtoTableTab::handleCellChanged);
-    connect(otoTable, &QTableWidget::currentCellChanged, this, &OtoTableTab::handleCurrentChanged);
-    connect(otoTable, &QTableWidget::cellDoubleClicked, this,
-            &OtoTableTab::handleCellDoubleClicked);
+    connect(table, &QTableWidget::cellChanged, this, &OtoTableTab::handleCellChanged);
+    connect(table, &QTableWidget::cellDoubleClicked, this, &OtoTableTab::handleCellDoubleClicked);
+    connect(table, &QTableWidget::itemSelectionChanged, this, &OtoTableTab::handleSelectionChanged);
 }
 
 int OtoTableTab::findFirstRow(const QString &filename) const {
@@ -57,7 +56,7 @@ int OtoTableTab::findFirstRow(const QString &filename) const {
     // Binary Search
     int i, j, mid;
     i = 0;
-    j = otoTable->rowCount() - 1;
+    j = table->rowCount() - 1;
     while (i <= j) {
         mid = i + (j - i) / 2;
         if (fileNameAtRow(mid).toLower() < key.toLower()) {
@@ -73,29 +72,29 @@ QGenonSettings OtoTableTab::getGenonSettings(int row) const {
     QGenonSettings genon;
 
     genon.mFileName = m_dirname + Slash + fileNameAtRow(row);
-    genon.mAlias = otoTable->item(row, 1)->text();
-    genon.mOffset = otoTable->item(row, 2)->text().toDouble();
-    genon.mConstant = otoTable->item(row, 3)->text().toDouble();
-    genon.mBlank = otoTable->item(row, 4)->text().toDouble();
-    genon.mPreUtterance = otoTable->item(row, 5)->text().toDouble();
-    genon.mVoiceOverlap = otoTable->item(row, 6)->text().toDouble();
+    genon.mAlias = table->item(row, 1)->text();
+    genon.mOffset = table->item(row, 2)->text().toDouble();
+    genon.mConstant = table->item(row, 3)->text().toDouble();
+    genon.mBlank = table->item(row, 4)->text().toDouble();
+    genon.mPreUtterance = table->item(row, 5)->text().toDouble();
+    genon.mVoiceOverlap = table->item(row, 6)->text().toDouble();
 
     return genon;
 }
 
 void OtoTableTab::setGenonSettings(int row, const QGenonSettings &genon) {
-    otoTable->item(row, 0)->setText(PathFindFileName(genon.mFileName));
-    otoTable->item(row, 1)->setText(genon.mAlias);
-    otoTable->item(row, 2)->setText(QString::number(genon.mOffset));
-    otoTable->item(row, 3)->setText(QString::number(genon.mConstant));
-    otoTable->item(row, 4)->setText(QString::number(genon.mBlank));
-    otoTable->item(row, 5)->setText(QString::number(genon.mPreUtterance));
-    otoTable->item(row, 6)->setText(QString::number(genon.mVoiceOverlap));
-    otoTable->item(row, 7)->setText(genon.frqExist() ? "TRUE" : "FALSE");
+    table->item(row, 0)->setText(PathFindFileName(genon.mFileName));
+    table->item(row, 1)->setText(genon.mAlias);
+    table->item(row, 2)->setText(QString::number(genon.mOffset));
+    table->item(row, 3)->setText(QString::number(genon.mConstant));
+    table->item(row, 4)->setText(QString::number(genon.mBlank));
+    table->item(row, 5)->setText(QString::number(genon.mPreUtterance));
+    table->item(row, 6)->setText(QString::number(genon.mVoiceOverlap));
+    table->item(row, 7)->setText(genon.frqExist() ? "TRUE" : "FALSE");
 }
 
 void OtoTableTab::updateRowStatus(int row) {
-    otoTable->blockSignals(true);
+    table->blockSignals(true);
     QGenonSettings genon = getGenonSettings(row);
     if (!genon.valid()) {
         turnLineToInvalid(row);
@@ -104,33 +103,33 @@ void OtoTableTab::updateRowStatus(int row) {
     } else {
         turnLineToNormal(row);
     }
-    otoTable->item(row, 7)->setText(genon.frqExist() ? "TRUE" : "FALSE");
-    otoTable->blockSignals(false);
+    table->item(row, 7)->setText(genon.frqExist() ? "TRUE" : "FALSE");
+    table->blockSignals(false);
 }
 
 void OtoTableTab::turnLineToEmpty(int row) {
     // qDebug() << "Line " << row << ": to be green";
     for (int column = 0; column < 8; ++column) {
-        otoTable->item(row, column)->setBackground(m_emptyColor);
+        table->item(row, column)->setBackground(m_emptyColor);
     }
 }
 
 void OtoTableTab::turnLineToInvalid(int row) {
     // qDebug() << "Line " << row << ": to be red";
     for (int column = 0; column < 8; ++column) {
-        otoTable->item(row, column)->setBackground(m_invalidColor);
+        table->item(row, column)->setBackground(m_invalidColor);
     }
 }
 
 void OtoTableTab::turnLineToNormal(int row) {
     // qDebug() << "Line " << row << ": to be white";
     for (int column = 0; column < 8; ++column) {
-        otoTable->item(row, column)->setBackground(m_normalColor);
+        table->item(row, column)->setBackground(m_normalColor);
     }
 }
 
 QString OtoTableTab::fileNameAtRow(int row) const {
-    return otoTable->item(row, 0)->text();
+    return table->item(row, 0)->text();
 }
 
 void OtoTableTab::sendCurrentToVision(int row, int sequence, int index) {
@@ -173,7 +172,7 @@ void OtoTableTab::handleCellChanged(int row, int column) {
 
     // Numerical judge
     if (column >= 2 && column <= 6) {
-        QString text = otoTable->item(row, column)->text();
+        QString text = table->item(row, column)->text();
         double value;
         bool isNum;
 
@@ -181,27 +180,27 @@ void OtoTableTab::handleCellChanged(int row, int column) {
         if (!isNum) {
             qDebug() << "[Oto Change] Not a number";
             // Change back
-            otoTable->blockSignals(true);
+            table->blockSignals(true);
             switch (column) {
             case 2:
-                otoTable->item(row, column)->setText(QString::number(originGenon.mOffset));
+                table->item(row, column)->setText(QString::number(originGenon.mOffset));
                 break;
             case 3:
-                otoTable->item(row, column)->setText(QString::number(originGenon.mConstant));
+                table->item(row, column)->setText(QString::number(originGenon.mConstant));
                 break;
             case 4:
-                otoTable->item(row, column)->setText(QString::number(originGenon.mBlank));
+                table->item(row, column)->setText(QString::number(originGenon.mBlank));
                 break;
             case 5:
-                otoTable->item(row, column)->setText(QString::number(originGenon.mPreUtterance));
+                table->item(row, column)->setText(QString::number(originGenon.mPreUtterance));
                 break;
             case 6:
-                otoTable->item(row, column)->setText(QString::number(originGenon.mVoiceOverlap));
+                table->item(row, column)->setText(QString::number(originGenon.mVoiceOverlap));
                 break;
             default:
                 break;
             }
-            otoTable->blockSignals(false);
+            table->blockSignals(false);
             return;
         }
     }
@@ -215,27 +214,38 @@ void OtoTableTab::handleCellChanged(int row, int column) {
     emit sampleChanged(origin, genon, index);
 }
 
-void OtoTableTab::handleCurrentChanged(int currentRow, int currentColumn, int previousRow,
-                                       int previousColumn) {
-    QGenonSettings genon = getGenonSettings(currentRow);
-    int sequence = otoSamples.findAuto(genon.mFileName);
-    int firstRow = findFirstRow(genon.mFileName);
-    int index = currentRow - firstRow;
-
-    sendCurrentToVision(currentRow, sequence, index);
-}
-
 void OtoTableTab::handleCellDoubleClicked(int row, int column) {
     if (column == 0) {
         playSound(row);
     }
 }
 
+void OtoTableTab::handleSelectionChanged() {
+    int currentRow = selectedRow();
+    if (currentRow < 0 || currentRow >= table->rowCount()) {
+        sendNoneToVision();
+    } else {
+        QGenonSettings genon = getGenonSettings(currentRow);
+        int sequence = otoSamples.findAuto(genon.mFileName);
+        int firstRow = findFirstRow(genon.mFileName);
+        int index = currentRow - firstRow;
+
+        sendCurrentToVision(currentRow, sequence, index);
+    }
+    emit selectionChanged();
+}
+
 bool OtoTableTab::eventFilter(QObject *obj, QEvent *event) {
-    if (obj == otoTable->viewport() && event->type() == QEvent::MouseButtonRelease) {
+    if (obj == table->viewport() && event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
         if (mouseEvent->button() == Qt::RightButton) {
-            openContextMenu();
+            int row = table->rowAt(mouseEvent->pos().y());
+            if (row >= 0 && row < table->rowCount()) {
+                selectNone();
+                selectRow(row);
+                openContextMenu();
+                return true;
+            }
         }
     }
     return BaseTab::eventFilter(obj, event);
@@ -244,7 +254,7 @@ bool OtoTableTab::eventFilter(QObject *obj, QEvent *event) {
 void OtoTableTab::setOtoSamples(const QOtoSampleList &otoSamples) {
     this->otoSamples = otoSamples;
 
-    otoTable->blockSignals(true);
+    table->blockSignals(true);
     for (auto it = otoSamples.begin(); it != otoSamples.end(); ++it) {
         const QOtoSample &sample = *it;
         for (int i = 0; i < sample.size(); ++i) {
@@ -253,11 +263,11 @@ void OtoTableTab::setOtoSamples(const QOtoSampleList &otoSamples) {
         }
         validCache.insert(sample.filename(), qMakePair(sample.valid(), sample.frqExist()));
     }
-    otoTable->blockSignals(false);
+    table->blockSignals(false);
 }
 
 void OtoTableTab::setCurrentSample(const QGenonSettings &genon) {
-    if (currentRow < 0 || currentRow >= otoTable->rowCount()) {
+    if (currentRow < 0 || currentRow >= table->rowCount()) {
         return;
     }
     if (currentSequence < 0 || currentSequence >= otoSamples.size()) {
@@ -271,10 +281,10 @@ void OtoTableTab::setCurrentSample(const QGenonSettings &genon) {
     sample[currentIndex] = genon;
 
     // Reload frontend
-    otoTable->blockSignals(true);
+    table->blockSignals(true);
     setGenonSettings(currentRow, genon);
-    otoTable->selectRow(currentRow);
-    otoTable->blockSignals(false);
+    table->selectRow(currentRow);
+    table->blockSignals(false);
 
     updateRowStatus(currentRow);
 }
@@ -300,13 +310,13 @@ void OtoTableTab::refresh() {
         if (toRefresh) {
             int firstRow = findFirstRow(genon.mFileName);
             int row = firstRow;
-            while (row < otoTable->rowCount() && fileNameAtRow(row) == fileNameAtRow(firstRow)) {
+            while (row < table->rowCount() && fileNameAtRow(row) == fileNameAtRow(firstRow)) {
                 updateRowStatus(row);
                 row++;
             }
         }
     }
-    otoTable->blockSignals(true);
+    table->blockSignals(true);
     for (QFileInfo &info : waveInfos) {
         QString path = info.absoluteFilePath();
         int targetPosition = 0;
@@ -322,7 +332,61 @@ void OtoTableTab::refresh() {
             insertRow(row, genon);
         }
     }
-    otoTable->blockSignals(false);
+    table->blockSignals(false);
     selectNone();
     sendNoneToVision();
+}
+
+int OtoTableTab::selectedRow() const {
+    if (table->selectedRanges().isEmpty()) {
+        return -1;
+    }
+    return table->currentRow();
+}
+
+bool OtoTableTab::isSelectionSingle() const {
+    const QList<QTableWidgetSelectionRange> &ranges = table->selectedRanges();
+    if (ranges.size() == 1) {
+        const QTableWidgetSelectionRange &range = ranges.front();
+        if (range.topRow() == range.bottomRow()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool OtoTableTab::isCurrentTop() const {
+    bool isTop = false;
+
+    int row = selectedRow();
+    if (row < 0 || row >= table->rowCount()) {
+        return true;
+    }
+
+    if (row == 0 || fileNameAtRow(row) != fileNameAtRow(row - 1)) {
+        isTop = true;
+    }
+    return isTop;
+}
+
+bool OtoTableTab::isCurrentBottom() const {
+    bool isBottom = false;
+
+    int row = selectedRow();
+    if (row < 0 || row >= table->rowCount()) {
+        return true;
+    }
+
+    if (row == table->rowCount() - 1 || fileNameAtRow(row) != fileNameAtRow(row + 1)) {
+        isBottom = true;
+    }
+    return isBottom;
+}
+
+bool OtoTableTab::isCurrentValid() const {
+    int row = selectedRow();
+    if (row < 0 || row >= table->rowCount()) {
+        return false;
+    }
+    return getGenonSettings(row).valid();
 }

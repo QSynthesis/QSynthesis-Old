@@ -113,6 +113,8 @@ namespace Qs {
         Rest,
     };
 
+    enum VariableSource { User, Default };
+
     enum IgnoreSelection { IgnoreNone = 0, IgnoreFront = 1, IgnoreBack = 2, IgnoreSides = 3 };
 
     enum SpecialPos { Leftmost, Middle, Rightmost };

@@ -46,10 +46,7 @@ private:
     void onNewBtnClicked();
     void onOpenBtnClicked();
 
-    void onFilesBtnClicked();
-    void onFoldersBtnClicked();
-    void onTemplatesBtnClicked();
-
+    void handleSwitched();
     void refreshWidget();
 
 signals:

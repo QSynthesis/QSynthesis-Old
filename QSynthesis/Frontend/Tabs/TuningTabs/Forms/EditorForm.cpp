@@ -71,7 +71,8 @@ EditorForm::EditorForm(TuningTab *parent) : BaseForm(parent) {
     m_ptrs->editorContent = content;
 
     // Set First Status
-    btnNote->setChecked(true);
+    btnsGroup->setCurrentIndex(0);
+    handleSwitchChanged();
 }
 
 TuningGroup *EditorForm::ptrs() const {

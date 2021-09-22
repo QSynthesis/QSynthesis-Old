@@ -5,6 +5,7 @@
 #include <QObject>
 
 #include "Macros.h"
+#include "Types.h"
 
 class ShortcutsData {
     Q_SINGLETON(ShortcutsData)
@@ -13,74 +14,22 @@ public:
     ShortcutsData();
     virtual ~ShortcutsData();
 
-    QKeySequence newFileShortcut;
-    QKeySequence importFileShortcut;
-    QKeySequence openFileShortcut;
-    QKeySequence openFolderFileShortcut;
-    QKeySequence saveFileShortcut;
-    QKeySequence saveAsFileShortcut;
-    QKeySequence restoreFileShortcut;
-    QKeySequence appendFileShortcut;
-    QKeySequence exportSelectionShortcut;
-    QKeySequence exportTotalShortcut;
-    QKeySequence closeFileShortcut;
+    QList<QKeySequence> commonShortcuts;
+    QList<QKeySequence> projectShortcuts;
+    QList<QKeySequence> voiceShortcuts;
 
-    QKeySequence undoEditShortcut;
-    QKeySequence redoEditShortcut;
-    QKeySequence copyEditAction;
-    QKeySequence cutEditShortcut;
-    QKeySequence pasteEditShortcut;
-    QKeySequence deleteEditShortcut;
-    QKeySequence selectAllEditShortcut;
-    QKeySequence deselectEditShortcut;
+private:
+    ShortcutsData(Qs::VariableSource source);
 
-    QKeySequence lyricModifyShortcut;
-    QKeySequence findModifyShortcut;
-    QKeySequence pitchModifyShortcut;
-    QKeySequence octaveUpModifyShortcut;
-    QKeySequence octaveDownModifyShortcut;
-    QKeySequence restRemoveModifyShortcut;
-    QKeySequence restInsertModifyShortcut;
+    static ShortcutsData *defaultData;
 
-    QKeySequence offsetModifyShortcut;
-    QKeySequence overlapModifyShortcut;
-    QKeySequence preUttrModifyShortcut;
-    QKeySequence constantModifyShortcut;
-    QKeySequence blankModifyShortcut;
+public:
+    static void createDefault();
+    static ShortcutsData getDefault();
+    static void removeDefault();
 
-    QKeySequence playPreviewShortcut;
-    QKeySequence replayPreviewShortcut;
-    QKeySequence stopPreviewShortcut;
-    QKeySequence moveToStartPreviewShortcut;
-    QKeySequence moveToEndPreviewShortcut;
-    QKeySequence removeCachePreviewShortcut;
-    QKeySequence exportPreviewShortcut;
-
-    QKeySequence voiceBankToolShortcut;
-    QKeySequence prefixMapToolShortcut;
-    QKeySequence propertiesToolShortcut;
-    QKeySequence settingsToolShortcut;
-    QKeySequence keyboardToolShortcut;
-    QKeySequence themeToolShortcut;
-    QKeySequence languageToolShortcut;
-
-    QKeySequence welcomeHelpShortcut;
-    QKeySequence instructHelpShortcut;
-    QKeySequence checkUpdateShortcut;
-    QKeySequence aboutQtHelpShortcut;
-    QKeySequence aboutAppHelpShortcut;
-
-    QKeySequence aliasShortcut;
-    QKeySequence buildInShortcut;
-    QKeySequence pluginsShortcut;
-
-    static QString nameForId(int id);
-
-    static int idStart();
-    static int idEnd();
-
-    QKeySequence keyForId(int id) const;
-    void setKeyForId(int id, const QKeySequence &key);
+    static bool checkNoConflict(const ShortcutsData &sd, QPair<int, int> *first = nullptr,
+                                QPair<int, int> *second = nullptr);
 };
 
 #endif // SHORTCUTSDATA_H

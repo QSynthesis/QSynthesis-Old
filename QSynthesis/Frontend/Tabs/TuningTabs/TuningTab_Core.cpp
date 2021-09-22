@@ -36,7 +36,10 @@ bool TuningTab::saveAs(const QString &filename) {
 
 bool TuningTab::restore() {
     clearHistory();
-    setEdited(false);
+    if (externModified) {
+        savedHistoryIndex = -1;
+    }
+    setEdited(savedHistoryIndex != historyIndex);
     loadCore();
     return true;
 }
@@ -138,8 +141,9 @@ bool TuningTab::saveOrSaveAs(const QString &filename) {
         }
         deleted = false;
         untitled = false;
-        setEdited(false);
+        externModified = false;
         savedHistoryIndex = historyIndex; // Update saved history index
+        setEdited(false);
     }
 
     return aResult;

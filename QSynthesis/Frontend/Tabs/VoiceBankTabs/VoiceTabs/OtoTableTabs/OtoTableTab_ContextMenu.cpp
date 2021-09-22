@@ -4,12 +4,10 @@
 #include <QMenu>
 
 void OtoTableTab::openContextMenu() {
-    int row = otoTable->currentRow();
-    if (row < 0 || row >= otoTable->rowCount()) {
+    int row = selectedRow();
+    if (row < 0 || row >= table->rowCount()) {
         return;
     }
-
-    QGenonSettings genon = getGenonSettings(row);
 
     QAction *playAction = new QAction(tr("Play"), m_menu);
     QAction *moveUpAction = new QAction(tr("Move up"), m_menu);
@@ -27,14 +25,14 @@ void OtoTableTab::openContextMenu() {
     QAction *revealAction = new QAction(tr("Show in File Manager(&S)"), m_menu);
 #endif
 
-    connect(playAction, &QAction::triggered, this, &OtoTableTab::handlePlayTriggered);
-    connect(moveUpAction, &QAction::triggered, this, &OtoTableTab::handleMoveUpTriggered);
-    connect(moveDownAction, &QAction::triggered, this, &OtoTableTab::handleMoveDownTriggered);
-    connect(moveTopAction, &QAction::triggered, this, &OtoTableTab::handleMoveTopTriggered);
-    connect(moveBottomAction, &QAction::triggered, this, &OtoTableTab::handleMoveBottomTriggered);
-    connect(duplicateAction, &QAction::triggered, this, &OtoTableTab::handleDuplicateTriggered);
-    connect(removeAction, &QAction::triggered, this, &OtoTableTab::handleRemoveTriggered);
-    connect(revealAction, &QAction::triggered, this, &OtoTableTab::handleRevealTriggered);
+    connect(playAction, &QAction::triggered, this, &OtoTableTab::play);
+    connect(moveUpAction, &QAction::triggered, this, &OtoTableTab::moveUp);
+    connect(moveDownAction, &QAction::triggered, this, &OtoTableTab::moveDown);
+    connect(moveTopAction, &QAction::triggered, this, &OtoTableTab::moveTop);
+    connect(moveBottomAction, &QAction::triggered, this, &OtoTableTab::moveBottom);
+    connect(duplicateAction, &QAction::triggered, this, &OtoTableTab::duplicate);
+    connect(removeAction, &QAction::triggered, this, &OtoTableTab::remove);
+    connect(revealAction, &QAction::triggered, this, &OtoTableTab::reveal);
 
     m_menu->addAction(playAction);
     m_menu->addAction(revealAction);
@@ -47,23 +45,22 @@ void OtoTableTab::openContextMenu() {
     m_menu->addAction(duplicateAction);
     m_menu->addAction(removeAction);
 
-    bool isTop = false;
-    bool isBottom = false;
+    bool isTop = isCurrentTop();
+    bool isBottom = isCurrentBottom();
+    bool isValid = isCurrentValid();
 
-    if (row == 0 || fileNameAtRow(row) != fileNameAtRow(row - 1)) {
+    if (isTop) {
         moveUpAction->setEnabled(false);
         moveTopAction->setEnabled(false);
-        isTop = true;
     }
-    if (row == otoTable->rowCount() - 1 || fileNameAtRow(row) != fileNameAtRow(row + 1)) {
+    if (isBottom) {
         moveDownAction->setEnabled(false);
         moveBottomAction->setEnabled(false);
-        isBottom = true;
     }
-    if (isTop && isBottom && genon.valid()) {
+    if (isTop && isBottom && isValid) {
         removeAction->setEnabled(false);
     }
-    if (!genon.valid()) {
+    if (!isValid) {
         playAction->setEnabled(false);
         revealAction->setEnabled(false);
     }
@@ -72,17 +69,17 @@ void OtoTableTab::openContextMenu() {
     m_menu->clear();
 }
 
-void OtoTableTab::handlePlayTriggered() {
-    int row = otoTable->currentRow();
-    if (row < 0 || row >= otoTable->rowCount()) {
+void OtoTableTab::play() {
+    int row = selectedRow();
+    if (row < 0 || row >= table->rowCount()) {
         return;
     }
     playSound(row);
 }
 
-void OtoTableTab::handleMoveUpTriggered() {
-    int row = otoTable->currentRow();
-    if (row < 0 || row >= otoTable->rowCount()) {
+void OtoTableTab::moveUp() {
+    int row = selectedRow();
+    if (row < 0 || row >= table->rowCount()) {
         return;
     }
     QGenonSettings genon = getGenonSettings(row);
@@ -95,9 +92,9 @@ void OtoTableTab::handleMoveUpTriggered() {
     emit sampleMoved(genon, index, -1);
 }
 
-void OtoTableTab::handleMoveDownTriggered() {
-    int row = otoTable->currentRow();
-    if (row < 0 || row >= otoTable->rowCount()) {
+void OtoTableTab::moveDown() {
+    int row = selectedRow();
+    if (row < 0 || row >= table->rowCount()) {
         return;
     }
     QGenonSettings genon = getGenonSettings(row);
@@ -110,9 +107,9 @@ void OtoTableTab::handleMoveDownTriggered() {
     emit sampleMoved(genon, index, 1);
 }
 
-void OtoTableTab::handleMoveTopTriggered() {
-    int row = otoTable->currentRow();
-    if (row < 0 || row >= otoTable->rowCount()) {
+void OtoTableTab::moveTop() {
+    int row = selectedRow();
+    if (row < 0 || row >= table->rowCount()) {
         return;
     }
     QGenonSettings genon = getGenonSettings(row);
@@ -126,9 +123,9 @@ void OtoTableTab::handleMoveTopTriggered() {
     emit sampleMoved(genon, index, movement);
 }
 
-void OtoTableTab::handleMoveBottomTriggered() {
-    int row = otoTable->currentRow();
-    if (row < 0 || row >= otoTable->rowCount()) {
+void OtoTableTab::moveBottom() {
+    int row = selectedRow();
+    if (row < 0 || row >= table->rowCount()) {
         return;
     }
     QGenonSettings genon = getGenonSettings(row);
@@ -142,9 +139,9 @@ void OtoTableTab::handleMoveBottomTriggered() {
     emit sampleMoved(genon, index, movement);
 }
 
-void OtoTableTab::handleDuplicateTriggered() {
-    int row = otoTable->currentRow();
-    if (row < 0 || row >= otoTable->rowCount()) {
+void OtoTableTab::duplicate() {
+    int row = selectedRow();
+    if (row < 0 || row >= table->rowCount()) {
         return;
     }
     QGenonSettings genon = getGenonSettings(row);
@@ -155,17 +152,19 @@ void OtoTableTab::handleDuplicateTriggered() {
     genon = otoSamples.at(sequence).at(index);
     otoSamples[sequence].insert(index + 1, genon);
 
-    otoTable->blockSignals(true);
+    table->blockSignals(true);
     insertRow(row + 1, genon);
+
+    selectNone();
     selectRow(row + 1);
-    otoTable->blockSignals(false);
+    table->blockSignals(false);
 
     emit sampleAdded(genon, index + 1);
 }
 
-void OtoTableTab::handleRemoveTriggered() {
-    int row = otoTable->currentRow();
-    if (row < 0 || row >= otoTable->rowCount()) {
+void OtoTableTab::remove() {
+    int row = selectedRow();
+    if (row < 0 || row >= table->rowCount()) {
         return;
     }
     QGenonSettings genon = getGenonSettings(row);
@@ -183,18 +182,18 @@ void OtoTableTab::handleRemoveTriggered() {
         otoSamples[sequence].removeAt(index);
     }
 
-    otoTable->blockSignals(true);
+    table->blockSignals(true);
     removeRow(row);
     selectNone();
     sendNoneToVision();
-    otoTable->blockSignals(false);
+    table->blockSignals(false);
 
     emit sampleRemoved(genon, index);
 }
 
-void OtoTableTab::handleRevealTriggered() {
-    int row = otoTable->currentRow();
-    if (row < 0 || row >= otoTable->rowCount()) {
+void OtoTableTab::reveal() {
+    int row = selectedRow();
+    if (row < 0 || row >= table->rowCount()) {
         return;
     }
     QGenonSettings genon = getGenonSettings(row);

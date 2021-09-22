@@ -2,23 +2,47 @@
 #include "mainwindow.h"
 
 void KeyboardTab::undo() {
+    bool success = true;
     if (!earliest()) {
-        KeyOperation *k = historyList[historyIndex - 1];
-        handleOperation(k, true);
-        historyIndex--;
+        KeyOperation *k = historyList.at(historyIndex - 1);
+        int tabIndex = k->index().first;
+        if (keyTabAt(tabIndex)->handleOperation(k)) {
+            mainWidget->setCurrentIndex(tabIndex);
+            success = true;
+        }
+        if (success) {
+            historyIndex--;
+            setEdited(savedHistoryIndex != historyIndex);
+        }
     }
-    setEdited(savedHistoryIndex != historyIndex);
-    updateMenuCore();
 }
 
 void KeyboardTab::redo() {
+    bool success = true;
     if (!latest()) {
-        KeyOperation *k = historyList[historyIndex];
-        handleOperation(k, false);
-        historyIndex++;
+        KeyOperation *k = historyList.at(historyIndex);
+        int tabIndex = k->index().first;
+        if (qobject_cast<KeyTableTab *>(mainWidget->tabAt(tabIndex))->handleOperation(k, false)) {
+            mainWidget->setCurrentIndex(tabIndex);
+            success = true;
+        }
+        if (success) {
+            historyIndex++;
+            setEdited(savedHistoryIndex != historyIndex);
+        }
     }
-    setEdited(savedHistoryIndex != historyIndex);
-    updateMenuCore();
+}
+
+void KeyboardTab::selectAll() {
+    currentKeyTab()->selectAll();
+}
+
+void KeyboardTab::deselect() {
+    currentKeyTab()->selectNone();
+}
+
+void KeyboardTab::reset() {
+    currentKeyTab()->resetSelectedShortcuts();
 }
 
 bool KeyboardTab::earliest() const {
@@ -42,6 +66,7 @@ void KeyboardTab::addHistory(KeyOperation *k) {
     historyList.append(k);
     historyIndex++;
 
+    handleSavedStateChanged();
     setEdited(savedHistoryIndex != historyIndex);
 }
 
@@ -51,5 +76,5 @@ void KeyboardTab::clearHistory() {
     }
     historyList.clear();
     historyIndex = 0;
-    savedHistoryIndex = -1;
+    savedHistoryIndex = 0;
 }
