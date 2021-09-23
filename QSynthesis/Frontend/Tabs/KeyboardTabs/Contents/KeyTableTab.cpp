@@ -34,8 +34,6 @@ KeyTableTab::KeyTableTab(KeyboardTab *tab, TabWidget *parent) : BaseTab(parent),
     mainLayout->addWidget(table);
     setLayout(mainLayout);
 
-    m_menu = new QMenu(this);
-
     connect(table, &QTableWidget::cellDoubleClicked, this, &KeyTableTab::handleCellDoubleClicked);
     connect(table, &QTableWidget::itemSelectionChanged, this, &KeyTableTab::handleSelectionChanged);
 }

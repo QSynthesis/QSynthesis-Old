@@ -53,12 +53,9 @@ signals:
     void propertyChanged();
 
 private:
-    QMenu *m_menu;
     Type m_type;
 
     FileListWidgetItem *delegate;
-
-    QString currentFileName;
 
     void init();
 
@@ -67,9 +64,9 @@ private:
 
     bool eventFilter(QObject *obj, QEvent *event) override;
 
-    void handleOpen();
-    void handleDelete();
-    void handleReveal();
+    void handleOpen(const QString &filename);
+    void handleRemove(const QString &filename);
+    void handleReveal(const QString &filename);
 };
 
 #endif // FILELISTWIDGET_H

@@ -215,9 +215,6 @@ void TrackHead::init() {
 
     setLayout(trackLayout);
 
-    // Init menu
-    m_menu = new QMenu(this);
-
     connect(&m_voiceInfo, &VoiceInfo::charTxtChanged, this, &TrackHead::handleVoiceInfoChanged);
 }
 
@@ -240,74 +237,80 @@ void TrackHead::onLineEditFinished() {
 }
 
 void TrackHead::onLabelBtnClicked() {
+    TemporaryMenu *menu = new TemporaryMenu(this);
+    QStringList list;
+    QString revealStr;
+
+    const QList<VoiceInfo *> dirs = voice->dirs();
+    int selectionCount = 0;
+
     if (m_mode == 1) {
-        const QList<VoiceInfo *> dirs = voice->dirs();
+        // Cross-platform file manager name
+#if defined(Q_OS_WINDOWS)
+        revealStr = tr("Open in Explorer(&S)");
+#elif defined(Q_OS_MAC)
+        revealStr = tr("Open in Finder(&S)");
+#else
+        revealStr = tr("Open in File Manager(&S)");
+#endif
+        // Add Voice
+        selectionCount = dirs.size();
         if (dirs.isEmpty()) {
-            QAction *action = new QAction(tr("Null"), m_menu);
-            m_menu->addAction(action);
+            QString nullStr = tr("Null");
+            list.append(nullStr);
         } else {
             for (int i = 0; i < dirs.size(); ++i) {
                 VoiceInfo *voice = dirs.at(i);
-                QAction *action = new QAction(voice->title(), m_menu);
-                action->setData(voice->dirname());
-                action->setCheckable(true);
-
                 if (isSameFile(voice->dirname(), m_voice)) {
-                    action->setChecked(true);
+                    menu->setCheckedAt(i, true);
+                } else {
+                    menu->setCheckedAt(i, false);
                 }
-
-                connect(action, &QAction::triggered, this, &TrackHead::onVoiceActionTriggered);
-                m_menu->addAction(action);
+                list.append(voice->title());
             }
         }
-        m_menu->addSeparator();
 
-#if defined(Q_OS_WINDOWS)
-        QAction *openAction = new QAction(tr("Open in Explorer"), m_menu);
-#elif defined(Q_OS_MAC)
-        QAction *openAction = new QAction(tr("Open in Finder"), m_menu);
-#else
-        QAction *openAction = new QAction(tr("Open in File manager"), m_menu);
-#endif
-        connect(openAction, &QAction::triggered, this, &TrackHead::onRevealActionTriggered);
-        m_menu->addAction(openAction);
-
-        QAction *action = new QAction(tr("Browse..."), m_menu);
-        connect(action, &QAction::triggered, this, &TrackHead::onBrowseActionTriggered);
-        m_menu->addAction(action);
     } else {
-        m_menu->addSeparator();
-
+        // Cross-platform file manager name
 #if defined(Q_OS_WINDOWS)
-        QAction *openAction = new QAction(tr("Show in Explorer"), m_menu);
+        revealStr = tr("Show in Explorer(&S)");
 #elif defined(Q_OS_MAC)
-        QAction *openAction = new QAction(tr("Show in Finder"), m_menu);
+        revealStr = tr("Show in Finder(&S)");
 #else
-        QAction *openAction = new QAction(tr("Show in File manager"), m_menu);
+        revealStr = tr("Show in File Manager(&S)");
 #endif
-        connect(openAction, &QAction::triggered, this, &TrackHead::onRevealActionTriggered);
-        m_menu->addAction(openAction);
-
-        QAction *action = new QAction(tr("Browse..."), m_menu);
-        connect(action, &QAction::triggered, this, &TrackHead::onBrowseActionTriggered);
-        m_menu->addAction(action);
     }
+    list << "" << revealStr << tr("Browse");
+    menu->setTexts(list);
 
-    m_menu->exec(QCursor::pos());
-    m_menu->clear();
+    int index = menu->start();
+    menu->deleteLater();
+
+    if (index >= 0 && index < selectionCount) {
+        if (m_mode == 1) {
+            setVoiceDir(dirs.at(index)->dirname());
+        } else {
+            // setResampler()
+        }
+    } else {
+        int last = list.size() - index - 1;
+        switch (last) {
+        case 1:
+            reveal();
+            break;
+        case 0:
+            browse();
+            break;
+        default:
+            break;
+        }
+    }
 }
 
-void TrackHead::onVoiceActionTriggered() {
-    QAction *action = qobject_cast<QAction *>(sender());
-    QString path = action->data().toString();
-    setVoiceDir(path);
-}
-
-void TrackHead::onBrowseActionTriggered() {
+void TrackHead::browse() {
     if (m_mode == 1) {
         QString path = QFileDialog::getExistingDirectory(this, tr("Open Voice Bank"));
         if (!path.isEmpty()) {
-            QString org = m_voice;
             m_parent->ptrs()->tab->switchToOtoReferenceMap(path);
             setVoiceDir(path);
         }
@@ -320,7 +323,7 @@ void TrackHead::onBrowseActionTriggered() {
     }
 }
 
-void TrackHead::onRevealActionTriggered() {
+void TrackHead::reveal() {
     if (m_mode == 1) {
         RevealFile(m_voice.isEmpty() ? voiceProfile() : m_voice);
     } else {
@@ -334,7 +337,6 @@ void TrackHead::loadVoiceInfo() {
     if (m_voiceInfo.load()) {
         m_voiceTitle = m_voiceInfo.title();
     }
-
     if (m_mode == 1) {
         updateStatus();
     }

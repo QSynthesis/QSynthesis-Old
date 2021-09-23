@@ -81,8 +81,6 @@ private:
     FixedLineEdit *lbNameFlags;
     LabelButton *btnVoiceRes;
 
-    QMenu *m_menu;
-
     void init();
 
     void reloadIcons();
@@ -90,9 +88,8 @@ private:
     void onLineEditFinished();
     void onLabelBtnClicked();
 
-    void onVoiceActionTriggered();
-    void onBrowseActionTriggered();
-    void onRevealActionTriggered();
+    void browse();
+    void reveal();
 
 private:
     VoiceInfo m_voiceInfo;

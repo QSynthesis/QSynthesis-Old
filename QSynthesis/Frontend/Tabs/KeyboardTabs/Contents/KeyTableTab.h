@@ -47,8 +47,6 @@ private:
     QVBoxLayout *mainLayout;
     QTableWidget *table;
 
-    QMenu *m_menu;
-
     QList<QKeySequence> m_defaultShortcuts;
 
 public:

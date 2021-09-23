@@ -51,15 +51,7 @@ public:
     void setLineColor(const QColor &lineColor);
 
 private:
-    void handleModifyGlobalTempo();
-    void handleModifyTempo();
-    void handleRemoveTempo();
-
-private:
     TuningGroup *m_ptrs;
-
-    QMenu *m_menu;
-    GraphicsNote *currentNote;
 
     QPoint m_beat; // 分子
 

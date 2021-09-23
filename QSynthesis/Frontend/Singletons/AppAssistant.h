@@ -16,6 +16,7 @@ public:
 
 public:
     static bool keyIsDown(QEvent *event);
+    static bool isUnusableKey(Qt::Key key);
     static bool isSpecialKey(Qt::Key key);
     static bool isModifierKey(Qt::Key key);
     static bool isSpecialShortcut(QKeySequence shortcut);

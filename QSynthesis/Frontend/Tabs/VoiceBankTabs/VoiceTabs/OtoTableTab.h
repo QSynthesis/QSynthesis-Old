@@ -105,8 +105,6 @@ public:
     void reveal();
 
 private:
-    QMenu *m_menu;
-
     QVBoxLayout *mainLayout;
     QTableWidget *table;
     QOtoSampleList otoSamples;

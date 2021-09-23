@@ -169,8 +169,10 @@ void TuningTab::modifyAlias() {
     lrc = lrc.mid(0, 1);
     QStringList alias = oto->findAliasStartsWith(lrc);
 
-    m_tempMenu->setTexts(alias);
-    int index = m_tempMenu->start();
+    TemporaryMenu *menu = new TemporaryMenu(this);
+    menu->setTexts(alias);
+    int index = menu->start();
+    menu->deleteLater();
     if (index >= 0) {
         m_ptrs->notesArea->replaceSelectedLyrics({alias.at(index)}, true);
     }

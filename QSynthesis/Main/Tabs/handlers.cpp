@@ -64,3 +64,77 @@ void MainWindow::handleTabIndexChanged(int index) {
 void MainWindow::handleTabNameChanged(int index, const QString &newName) {
     reloadTitle();
 }
+
+void MainWindow::handleTabPressed(int index, Qt::MouseButton button) {
+    if (button == Qt::RightButton) {
+        CentralTab *tab = tabAt(index);
+        if (!tab) {
+            return;
+        }
+        QStringList list{tr("Close"), tr("Close Others"), tr("Close Saved"), tr("Close All")};
+
+        if (tab->tabType() == Qs::Tuning) {
+            QString revealStr;
+#if defined(Q_OS_WINDOWS)
+            revealStr = tr("Show in Explorer(&S)");
+#elif defined(Q_OS_MAC)
+            revealStr = tr("Show in Finder(&S)");
+#else
+            revealStr = tr("Show in File Manager(&S)");
+#endif
+            list << "" << revealStr;
+        } else if (tab->tabType() == Qs::Folder) {
+            QString revealStr;
+#if defined(Q_OS_WINDOWS)
+            revealStr = tr("Open in Explorer(&S)");
+#elif defined(Q_OS_MAC)
+            revealStr = tr("Open in Finder(&S)");
+#else
+            revealStr = tr("Open in File Manager(&S)");
+#endif
+            list << "" << revealStr;
+        }
+
+        TemporaryMenu *menu = new TemporaryMenu(list, this);
+        int action = menu->start();
+        menu->deleteLater();
+
+        switch (action) {
+        case 0:
+            handleTabCloseRequent(index);
+            break;
+        case 1:
+            for (int i = tabs->count() - 1; i >= 0; --i) {
+                if (i == index) {
+                    continue;
+                }
+                if (!handleTabCloseRequent(i)) {
+                    break;
+                }
+            }
+            break;
+        case 2:
+            for (int i = tabs->count() - 1; i >= 0; --i) {
+                if (tabAt(i)->isEdited()) {
+                    continue;
+                }
+                if (!handleTabCloseRequent(i)) {
+                    break;
+                }
+            }
+            break;
+        case 3:
+            for (int i = tabs->count() - 1; i >= 0; --i) {
+                if (!handleTabCloseRequent(i)) {
+                    break;
+                }
+            }
+            break;
+        case 4:
+            RevealFile(tabAt(index)->filename());
+            break;
+        default:
+            break;
+        }
+    }
+}

@@ -11,6 +11,12 @@ namespace Qs {
         RollDown,
     };
 
+    enum CheckStatus {
+        Unchecked,
+        Checked,
+        Uncheckable,
+    };
+
     enum DirRelation {
         SubDir,
         ParentDir,

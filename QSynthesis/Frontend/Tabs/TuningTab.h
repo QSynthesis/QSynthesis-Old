@@ -127,8 +127,6 @@ private:
     TracksForm *tracksForm;
     EditorForm *editorForm;
 
-    TemporaryMenu *m_tempMenu;
-
     TuningGroup *m_ptrs;
 
     // Modify

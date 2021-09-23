@@ -17,13 +17,9 @@ public:
 private:
     void mouseReleaseEvent(QMouseEvent *event) override;
 
-    void handleRevealClicked();
-    void handleReplaceClicked();
-    void handleRemoveClicked();
+    void handleReplace();
 
 private:
-    QMenu *m_menu;
-
     void init();
 
 signals:

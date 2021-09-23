@@ -4,54 +4,57 @@
 #include "../../TuningGroup.h"
 
 void GraphicsNote::openContextMenu() {
-    QMenu *menu = m_editor->view()->viewMenu;
+    QStringList list{
+        tr("Portamento"),
+        tr("Vibrato"),
+        tr("Vibrato Editor"),
+        "",
+        tr("Tempo..."),
+        tr("Remove Tempo"),
+        "",
+        tr("Note Properties..."),
+        tr("Voice Bank Manage"),
+    };
 
-    QAction *portamentoAction = new QAction(tr("Portamento"), menu);
-    QAction *vibratoAction = new QAction(tr("Vibrato"), menu);
-    QAction *vibratoEditorAction = new QAction(tr("Vibrato Editor"), menu);
-    QAction *propertyAction = new QAction(tr("Note Properties..."), menu);
-    QAction *voiceBankAction = new QAction(tr("Voice Bank Manage"), menu);
+    TemporaryMenu *menu = new TemporaryMenu(list, m_editor->view());
 
-    QAction *tempoAction = new QAction(tr("Tempo..."), menu);
-    QAction *removeTempoAction = new QAction(tr("Remove Tempo"), menu);
+    menu->setCheckedAt(0, !m_curves->Points.isEmpty());
+    menu->setCheckedAt(1, !m_curves->Vibrato.isEmpty());
+    menu->setCheckedAt(2, m_curves->hasVBREditor());
+    menu->setEnabledAt(2, !m_curves->Vibrato.isEmpty() && m_curves->solid());
+    menu->setEnabledAt(4, tempoEdited());
 
-    menu->addAction(portamentoAction);
-    menu->addAction(vibratoAction);
-    menu->addAction(vibratoEditorAction);
-    menu->addSeparator();
-    menu->addAction(tempoAction);
-    menu->addAction(removeTempoAction);
-    menu->addSeparator();
-    menu->addAction(propertyAction);
-    menu->addAction(voiceBankAction);
+    int index = menu->start();
+    menu->deleteLater();
 
-    portamentoAction->setCheckable(true);
-    vibratoAction->setCheckable(true);
-    vibratoEditorAction->setCheckable(true);
-
-    connect(portamentoAction, &QAction::triggered, this, &GraphicsNote::handlePortamentoTriggered);
-    connect(vibratoAction, &QAction::triggered, this, &GraphicsNote::handleVibratoTriggered);
-    connect(vibratoEditorAction, &QAction::triggered, this,
-            &GraphicsNote::handleVibratoEditorTriggered);
-    connect(propertyAction, &QAction::triggered, this, &GraphicsNote::handlePropertyTriggered);
-    connect(voiceBankAction, &QAction::triggered, this, &GraphicsNote::handleLyricConfigTriggered);
-
-    connect(tempoAction, &QAction::triggered, this, &GraphicsNote::handleTempoTriggered);
-    connect(removeTempoAction, &QAction::triggered, this,
-            &GraphicsNote::handleRemoveTempoTriggered);
-
-    portamentoAction->setChecked(!m_curves->Points.isEmpty());
-    vibratoAction->setChecked(!m_curves->Vibrato.isEmpty());
-    vibratoEditorAction->setChecked(m_curves->hasVBREditor());
-    vibratoEditorAction->setEnabled(!m_curves->Vibrato.isEmpty() &&
-                                    m_curves->solid());
-    removeTempoAction->setEnabled(tempoEdited());
-
-    menu->exec(QCursor::pos());
-    menu->clear();
+    switch (index) {
+    case 0:
+        switchPortamento();
+        break;
+    case 1:
+        switchVibrato();
+        break;
+    case 2:
+        reverseVibratoEditor();
+        break;
+    case 3:
+        openTempoEdit();
+        break;
+    case 4:
+        removeTempo();
+        break;
+    case 5:
+        openProperty();
+        break;
+    case 6:
+        configueLyric();
+        break;
+    default:
+        break;
+    }
 }
 
-void GraphicsNote::handlePortamentoTriggered(bool checked) {
+void GraphicsNote::switchPortamento() {
     Mode2Handler *curves = m_curves;
     if (curves->Points.isEmpty()) {
         m_editor->addPortamento(this);
@@ -60,7 +63,7 @@ void GraphicsNote::handlePortamentoTriggered(bool checked) {
     }
 }
 
-void GraphicsNote::handleVibratoTriggered(bool checked) {
+void GraphicsNote::switchVibrato() {
     Mode2Handler *curves = m_curves;
     if (curves->Vibrato.isEmpty()) {
         m_editor->addVibrato(this);
@@ -72,7 +75,7 @@ void GraphicsNote::handleVibratoTriggered(bool checked) {
     }
 }
 
-void GraphicsNote::handleVibratoEditorTriggered(bool checked) {
+void GraphicsNote::reverseVibratoEditor() {
     if (m_curves->Vibrato.isEmpty()) {
         return;
     }
@@ -83,21 +86,21 @@ void GraphicsNote::handleVibratoEditorTriggered(bool checked) {
     }
 }
 
-void GraphicsNote::handlePropertyTriggered() {
+void GraphicsNote::openProperty() {
     m_editor->ptrs()->tab->showNoteProperty();
 }
 
-void GraphicsNote::handleLyricConfigTriggered() {
+void GraphicsNote::configueLyric() {
     m_editor->ptrs()->tab->configueLyric();
 }
 
-void GraphicsNote::handleTempoTriggered() {
+void GraphicsNote::openTempoEdit() {
     qDragIn.removeAll();
     qDragIn.addOne(this);
     qTabIn->showTempoEdit();
 }
 
-void GraphicsNote::handleRemoveTempoTriggered() {
+void GraphicsNote::removeTempo() {
     qDragIn.removeAll();
     qDragIn.addOne(this);
     qTabIn->showTempoEdit(true);

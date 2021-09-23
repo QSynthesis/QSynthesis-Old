@@ -95,8 +95,6 @@ public:
 
     QRectF viewportRect() const;
 
-    QMenu *viewMenu;
-
 private:
     bool eventFilter(QObject *obj, QEvent *event) override;
 

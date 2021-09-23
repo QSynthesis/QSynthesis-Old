@@ -1,4 +1,5 @@
 #include "../OtoTableTab.h"
+#include "Templates/TemporaryMenu.h"
 
 #include <QAction>
 #include <QMenu>
@@ -9,64 +10,78 @@ void OtoTableTab::openContextMenu() {
         return;
     }
 
-    QAction *playAction = new QAction(tr("Play"), m_menu);
-    QAction *moveUpAction = new QAction(tr("Move up"), m_menu);
-    QAction *moveDownAction = new QAction(tr("Move down"), m_menu);
-    QAction *moveTopAction = new QAction(tr("Move to top"), m_menu);
-    QAction *moveBottomAction = new QAction(tr("Move to bottom"), m_menu);
-    QAction *duplicateAction = new QAction(tr("Duplicate"), m_menu);
-    QAction *removeAction = new QAction(tr("Remove"), m_menu);
-
+    QString revealStr;
 #if defined(Q_OS_WINDOWS)
-    QAction *revealAction = new QAction(tr("Show in Explorer(&S)"), m_menu);
+    revealStr = tr("Show in Explorer(&S)");
 #elif defined(Q_OS_MAC)
-    QAction *revealAction = new QAction(tr("Show in Finder(&S)"), m_menu);
+    revealStr = tr("Show in Finder(&S)");
 #else
-    QAction *revealAction = new QAction(tr("Show in File Manager(&S)"), m_menu);
+    revealStr = tr("Show in File Manager(&S)");
 #endif
 
-    connect(playAction, &QAction::triggered, this, &OtoTableTab::play);
-    connect(moveUpAction, &QAction::triggered, this, &OtoTableTab::moveUp);
-    connect(moveDownAction, &QAction::triggered, this, &OtoTableTab::moveDown);
-    connect(moveTopAction, &QAction::triggered, this, &OtoTableTab::moveTop);
-    connect(moveBottomAction, &QAction::triggered, this, &OtoTableTab::moveBottom);
-    connect(duplicateAction, &QAction::triggered, this, &OtoTableTab::duplicate);
-    connect(removeAction, &QAction::triggered, this, &OtoTableTab::remove);
-    connect(revealAction, &QAction::triggered, this, &OtoTableTab::reveal);
-
-    m_menu->addAction(playAction);
-    m_menu->addAction(revealAction);
-    m_menu->addSeparator();
-    m_menu->addAction(moveUpAction);
-    m_menu->addAction(moveDownAction);
-    m_menu->addAction(moveTopAction);
-    m_menu->addAction(moveBottomAction);
-    m_menu->addSeparator();
-    m_menu->addAction(duplicateAction);
-    m_menu->addAction(removeAction);
+    QStringList list{tr("Play"),
+                     revealStr,
+                     "",
+                     tr("Move up"),
+                     tr("Move down"),
+                     tr("Move to top"),
+                     tr("Move to bottom"),
+                     "",
+                     tr("Duplicate"),
+                     tr("Remove")};
+    TemporaryMenu *menu = new TemporaryMenu(list, this);
 
     bool isTop = isCurrentTop();
     bool isBottom = isCurrentBottom();
     bool isValid = isCurrentValid();
 
     if (isTop) {
-        moveUpAction->setEnabled(false);
-        moveTopAction->setEnabled(false);
+        menu->setEnabledAt(2, false);
+        menu->setEnabledAt(4, false);
     }
     if (isBottom) {
-        moveDownAction->setEnabled(false);
-        moveBottomAction->setEnabled(false);
+        menu->setEnabledAt(3, false);
+        menu->setEnabledAt(5, false);
     }
     if (isTop && isBottom && isValid) {
-        removeAction->setEnabled(false);
+        menu->setEnabledAt(7, false);
     }
     if (!isValid) {
-        playAction->setEnabled(false);
-        revealAction->setEnabled(false);
+        menu->setEnabledAt(0, false);
+        menu->setEnabledAt(1, false);
     }
 
-    m_menu->exec(QCursor::pos());
-    m_menu->clear();
+    int index = menu->start();
+    menu->deleteLater();
+
+    switch (index) {
+    case 0:
+        playSound(row);
+        break;
+    case 1:
+        reveal();
+        break;
+    case 2:
+        moveUp();
+        break;
+    case 3:
+        moveDown();
+        break;
+    case 4:
+        moveTop();
+        break;
+    case 5:
+        moveBottom();
+        break;
+    case 6:
+        duplicate();
+        break;
+    case 7:
+        remove();
+        break;
+    default:
+        break;
+    }
 }
 
 void OtoTableTab::play() {

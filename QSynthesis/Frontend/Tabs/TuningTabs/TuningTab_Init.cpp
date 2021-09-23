@@ -53,8 +53,6 @@ void TuningTab::initComponents() {
     m_ptrs->editorShell = editorForm;
     m_ptrs->paramsShell = paramsForm;
 
-    m_tempMenu = new TemporaryMenu(this);
-
     // First Status
     bool visibilities[3] = {qSetting->tracksFormVisibility, qSetting->editorFormVisibility,
                             qSetting->paramsFormVisibility};

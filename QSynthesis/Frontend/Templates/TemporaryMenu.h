@@ -4,6 +4,8 @@
 #include <QAction>
 #include <QMenu>
 
+#include "Types.h"
+
 class TemporaryMenu : public QMenu {
     Q_OBJECT
 public:
@@ -16,10 +18,24 @@ public:
 
     QStringList texts() const;
     void setTexts(const QStringList &texts);
-    void clearTexts();
+
+    void setCheckedAt(int index, bool checked);
+    void setEnabledAt(int index, bool enabled);
+    void setVisibleAt(int index, bool visible);
+
+    bool checkable() const;
+    void setCheckable(bool checkable);
+
+    void clearContents();
 
 private:
     QStringList m_texts;
+
+    QMap<int, bool> m_checks;
+    QMap<int, bool> m_enables;
+    QMap<int, bool> m_visibilities;
+
+    bool m_checkable;
 
     void prepare();
 };

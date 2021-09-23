@@ -14,6 +14,7 @@ void MainWindow::initTabs() {
     connect(tabs, &CentralTabWidget::titleChanged, this, &MainWindow::handleTabNameChanged);
     connect(tabs, &CentralTabWidget::tabCloseRequested, this, &MainWindow::handleTabCloseRequent);
     connect(tabs, &CentralTabWidget::realIndexChanged, this, &MainWindow::handleTabIndexChanged);
+    connect(tabs, &CentralTabWidget::tabPressed, this, &MainWindow::handleTabPressed);
 }
 
 int MainWindow::findTuningTab(const QString &filename) {

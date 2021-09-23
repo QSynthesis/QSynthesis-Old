@@ -229,19 +229,18 @@ private:
 
     QColor m_selectColor;
 
-public:
+private:
     void openContextMenu();
 
-private:
-    void handlePortamentoTriggered(bool checked);
-    void handleVibratoTriggered(bool checked);
-    void handleVibratoEditorTriggered(bool checked);
-    void handlePropertyTriggered();
-    void handleLyricConfigTriggered();
-
 public:
-    void handleTempoTriggered();
-    void handleRemoveTempoTriggered();
+    void switchPortamento();
+    void switchVibrato();
+    void reverseVibratoEditor();
+    void openProperty();
+    void configueLyric();
+
+    void openTempoEdit();
+    void removeTempo();
 
 signals:
     void colorChanged();

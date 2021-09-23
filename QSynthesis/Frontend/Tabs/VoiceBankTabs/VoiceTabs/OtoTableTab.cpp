@@ -19,8 +19,6 @@ void OtoTableTab::init() {
     m_emptyColor = QColor(0, 255, 0, 32);
     m_invalidColor = QColor(255, 0, 0, 32);
 
-    m_menu = new QMenu(this);
-
     table = new QTableWidget(this);
     table->viewport()->installEventFilter(this);
 

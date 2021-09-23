@@ -6,8 +6,6 @@
 NotesScrollArea::NotesScrollArea(QWidget *parent) : QGraphicsView(parent) {
     setRenderHint(QPainter::Antialiasing);
 
-    viewMenu = new QMenu(this);
-
     verticalScrollBar()->installEventFilter(this);
     horizontalScrollBar()->installEventFilter(this);
 

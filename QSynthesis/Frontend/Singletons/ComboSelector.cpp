@@ -35,8 +35,7 @@ ComboSelector::ComboSelector(QWidget *parent, const QStringList &list)
             &ComboSelector::handleCurrentTextChanged);
     connect(listWidget, &QListWidget::itemClicked, this, &ComboSelector::handleItemClicked);
 
-    connect(qApp, &Application::signal_mousePress, this,
-            &ComboSelector::handleGlobalMouseClicked);
+    connect(qApp, &Application::signal_mousePress, this, &ComboSelector::handleGlobalMouseClicked);
 }
 
 ComboSelector::~ComboSelector() {
@@ -270,6 +269,7 @@ void ComboSelector::setEditText(const QString &text) {
 
 void ComboSelector::setVisible(bool visible) {
     TransparentContainer::setVisible(visible);
+    setEnabled(visible);
     if (visible) {
         lineEdit->setFocus();
     }

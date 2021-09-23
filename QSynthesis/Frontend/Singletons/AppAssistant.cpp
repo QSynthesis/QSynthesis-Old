@@ -15,8 +15,13 @@ bool AppAssistant::keyIsDown(QEvent *event) {
     return types.contains(event->type());
 }
 
-bool AppAssistant::isSpecialKey(Qt::Key key) {
+bool AppAssistant::isUnusableKey(Qt::Key key) {
     QList<Qt::Key> keys{Qt::Key_CapsLock, Qt::Key_NumLock, Qt::Key_ScrollLock};
+    return keys.contains(key);
+}
+
+bool AppAssistant::isSpecialKey(Qt::Key key) {
+    QList<Qt::Key> keys{Qt::Key_Tab, Qt::Key_Escape, Qt::Key_Return, Qt::Key_Enter};
     return keys.contains(key);
 }
 

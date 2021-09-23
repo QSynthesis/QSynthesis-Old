@@ -10,8 +10,6 @@ FileListWidget::~FileListWidget() {
 
 void FileListWidget::init() {
     m_type = Files;
-    currentFileName = "";
-    m_menu = new QMenu(this);
 
     delegate = new FileListWidgetItem(this);
     setItemDelegate(delegate);
@@ -90,48 +88,49 @@ void FileListWidget::setDateColor(const QColor &value) {
 }
 
 void FileListWidget::onLeftClick(QModelIndex index) {
-    currentFileName = index.data(Qt::UserRole + 2).toString();
-    handleOpen();
+    handleOpen(index.data(Qt::UserRole + 2).toString());
 }
 
 void FileListWidget::onRightClick(QModelIndex index) {
-    currentFileName = index.data(Qt::UserRole + 2).toString();
+    QString filename = index.data(Qt::UserRole + 2).toString();
 
-    QAction *openAction = new QAction(m_menu);
-    QAction *deleteAction = new QAction(m_menu);
-    QAction *revealAction = new QAction(m_menu);
-
-    openAction->setText(tr("Open(&O)"));
-    deleteAction->setText(tr("Remove from list(&R)"));
-
+    QString revealStr;
     if (m_type == Files) {
 #if defined(Q_OS_WINDOWS)
-        revealAction->setText(tr("Show in Explorer(&S)"));
+        revealStr = tr("Show in Explorer(&S)");
 #elif defined(Q_OS_MAC)
-        revealAction->setText(tr("Show in Finder(&S)"));
+        revealStr = tr("Show in Finder(&S)");
 #else
-        revealAction->setText(tr("Show in File Manager(&S)"));
+        revealStr = tr("Show in File Manager(&S)");
 #endif
     } else {
 #if defined(Q_OS_WINDOWS)
-        revealAction->setText(tr("Open in Explorer(&S)"));
+        revealStr = tr("Open in Explorer(&S)");
 #elif defined(Q_OS_MAC)
-        revealAction->setText(tr("Open in Finder(&S)"));
+        revealStr = tr("Open in Finder(&S)");
 #else
-        revealAction->setText(tr("Open in File Manager(&S)"));
+        revealStr = tr("Open in File Manager(&S)");
 #endif
     }
 
-    connect(openAction, &QAction::triggered, this, &FileListWidget::handleOpen);
-    connect(deleteAction, &QAction::triggered, this, &FileListWidget::handleDelete);
-    connect(revealAction, &QAction::triggered, this, &FileListWidget::handleReveal);
+    QStringList list{tr("Open(&O)"), tr("Remove from list(&R)"), revealStr};
+    TemporaryMenu *menu = new TemporaryMenu(list, this);
+    int action = menu->start();
+    menu->deleteLater();
 
-    m_menu->addAction(openAction);
-    m_menu->addAction(deleteAction);
-    m_menu->addAction(revealAction);
-
-    m_menu->exec(QCursor::pos());
-    m_menu->clear();
+    switch (action) {
+    case 0:
+        handleOpen(filename);
+        break;
+    case 1:
+        handleRemove(filename);
+        break;
+    case 2:
+        handleReveal(filename);
+        break;
+    default:
+        break;
+    }
 
     itemFromIndex(index)->setSelected(false);
 }
@@ -143,32 +142,27 @@ bool FileListWidget::eventFilter(QObject *obj, QEvent *event) {
         if (key == Qt::Key_Enter || key == Qt::Key_Return) {
             QModelIndex index = currentIndex();
             if (index.isValid()) {
-                currentFileName = index.data(Qt::UserRole + 2).toString();
-                handleOpen();
+                handleOpen(index.data(Qt::UserRole + 2).toString());
             }
         }
     }
     return QListWidget::eventFilter(obj, event);
 }
 
-void FileListWidget::handleOpen() {
-    if (m_type == Files) {
-        qRoot->addTuningTab(currentFileName, false);
-    } else {
-        qRoot->addVoiceBankTab(currentFileName);
-    }
+void FileListWidget::handleOpen(const QString &filename) {
+    qRoot->addMultipleTabs({filename}, false);
 }
 
-void FileListWidget::handleDelete() {
+void FileListWidget::handleRemove(const QString &filename) {
     removeItemWidget(selectedItems()[0]);
     if (m_type == Files) {
-        qSetting->projects.remove(currentFileName);
+        qSetting->projects.remove(filename);
     } else {
-        qSetting->folders.remove(currentFileName);
+        qSetting->folders.remove(filename);
     }
     qRoot->reloadRecentMenu();
 }
 
-void FileListWidget::handleReveal() {
-    RevealFile(currentFileName);
+void FileListWidget::handleReveal(const QString &filename) {
+    RevealFile(filename);
 }

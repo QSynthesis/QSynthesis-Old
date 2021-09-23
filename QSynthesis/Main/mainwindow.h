@@ -75,7 +75,8 @@ public:
     SettingTab *addSettingTab();   // Open setting tab
 
     TuningTab *addEmptyTab(const SectionNotes &oNotes = SectionNotes()); // Open empty ust project
-    bool addMultipleTabs(const QStringList &filenames); // Open multiple projects or folders
+    bool addMultipleTabs(const QStringList &filenames,
+                         bool noCloseIfInvalid = true); // Open multiple projects or folders
 
     TuningTab *addTuningTab(const QString &filename,
                             bool noCloseIfInvalid = true); // Open project
@@ -123,6 +124,7 @@ private:
     bool handleTabCloseRequent(int index);
     void handleTabIndexChanged(int index);
     void handleTabNameChanged(int index, const QString &newName);
+    void handleTabPressed(int index, Qt::MouseButton button);
 
     // Menu
 private:

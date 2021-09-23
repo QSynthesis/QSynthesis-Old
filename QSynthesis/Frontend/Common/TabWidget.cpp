@@ -7,6 +7,8 @@ TabWidget::TabWidget(QWidget *parent) : QTabWidget(parent) {
     m_previousTab = nullptr;
     m_currentTab = nullptr;
 
+    tabBar()->installEventFilter(this);
+
     connect(this, &QTabWidget::currentChanged, this, &TabWidget::handleTabIndexChanged);
 }
 
@@ -144,4 +146,17 @@ void TabWidget::handleTabNameChanged(const QString &newName) {
         setTabText(index, newName);
         emit titleChanged(index, newName);
     }
+}
+
+bool TabWidget::eventFilter(QObject *obj, QEvent *event) {
+    if (obj == tabBar()) {
+        if (event->type() == QEvent::MouseButtonPress) {
+            QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
+            emit tabPressed(tabBar()->tabAt(mouseEvent->pos()), mouseEvent->button());
+        } else if (event->type() == QEvent::MouseButtonRelease) {
+            QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
+            emit tabReleased(tabBar()->tabAt(mouseEvent->pos()), mouseEvent->button());
+        }
+    }
+    return QTabWidget::eventFilter(obj, event);
 }

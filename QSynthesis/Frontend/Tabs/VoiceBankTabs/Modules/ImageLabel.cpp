@@ -1,4 +1,5 @@
 #include "ImageLabel.h"
+#include "Templates/TemporaryMenu.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
@@ -13,38 +14,39 @@ ImageLabel::~ImageLabel() {
 }
 
 void ImageLabel::init() {
-    m_menu = new QMenu(this);
 }
 
 void ImageLabel::mouseReleaseEvent(QMouseEvent *event) {
 #if defined(Q_OS_WINDOWS)
-    QAction *revealAction = new QAction(tr("Show in Explorer"), m_menu);
+    QString revealStr = tr("Show in Explorer(&S)");
 #elif defined(Q_OS_MAC)
-    QAction *revealAction = new QAction(tr("Show in Finder"), m_menu);
+    QString revealStr = tr("Show in Finder(&S)");
 #else
-    QAction *revealAction = new QAction(tr("Show in File manager"), m_menu);
+    QString revealStr = tr("Show in File Manager(&S)");
 #endif
-    QAction *replaceAction = new QAction(tr("Replace..."), m_menu);
-    QAction *removeAction = new QAction(tr("Remove"), m_menu);
 
-    connect(revealAction, &QAction::triggered, this, &ImageLabel::handleRevealClicked);
-    connect(replaceAction, &QAction::triggered, this, &ImageLabel::handleReplaceClicked);
-    connect(removeAction, &QAction::triggered, this, &ImageLabel::handleRemoveClicked);
+    QStringList list{revealStr, "", tr("Replace..."), tr("Remove")};
+    TemporaryMenu *menu = new TemporaryMenu(list, this);
 
-    m_menu->addAction(revealAction);
-    m_menu->addSeparator();
-    m_menu->addAction(replaceAction);
-    m_menu->addAction(removeAction);
+    int index = menu->start();
+    menu->deleteLater();
 
-    m_menu->exec(QCursor::pos());
-    m_menu->clear();
+    switch (index) {
+    case 0:
+        emit reveal();
+        break;
+    case 1:
+        handleReplace();
+        break;
+    case 2:
+        emit remove();
+        break;
+    default:
+        break;
+    }
 }
 
-void ImageLabel::handleRevealClicked() {
-    emit reveal();
-}
-
-void ImageLabel::handleReplaceClicked() {
+void ImageLabel::handleReplace() {
     QString path = QFileDialog::getOpenFileName(this, tr("Open File"), ".", imageFilterString);
     if (path.isEmpty()) {
         return;
@@ -58,8 +60,4 @@ void ImageLabel::handleReplaceClicked() {
     }
 
     emit replace(path);
-}
-
-void ImageLabel::handleRemoveClicked() {
-    emit remove();
 }

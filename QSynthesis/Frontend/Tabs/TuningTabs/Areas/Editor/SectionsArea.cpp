@@ -15,9 +15,6 @@ SectionsArea::SectionsArea(EditorInterface *editor, QWidget *parent) : MoreWidge
 
     m_noteTempoColor = Qt::red;
     m_globalTempoColor = Qt::black;
-
-    m_menu = new QMenu(this);
-    currentNote = nullptr;
 }
 
 SectionsArea::~SectionsArea() {
@@ -42,23 +39,6 @@ void SectionsArea::setBeat(int num, int den) {
 
 void SectionsArea::adjustWidth() {
     setFixedWidth((m_ptrs->currentSections + 1) * 4 * m_ptrs->currentWidth);
-}
-
-void SectionsArea::handleModifyGlobalTempo() {
-    qDragOut.removeAll();
-    m_ptrs->tab->showTempoEdit();
-}
-
-void SectionsArea::handleModifyTempo() {
-    if (currentNote) {
-        currentNote->handleTempoTriggered();
-    }
-}
-
-void SectionsArea::handleRemoveTempo() {
-    if (currentNote) {
-        currentNote->handleRemoveTempoTriggered();
-    }
 }
 
 QColor SectionsArea::lineColor() const {
@@ -255,18 +235,6 @@ void SectionsArea::paintEvent(QPaintEvent *event) {
 }
 
 void SectionsArea::contextMenuEvent(QContextMenuEvent *event) {
-    QAction *globalTempoAction = new QAction(tr("Set Global Tempo..."), m_menu);
-    QAction *tempoAction = new QAction(tr("Set Tempo here..."), m_menu);
-    QAction *removeTempoAction = new QAction(tr("Remove Tempo"), m_menu);
-
-    m_menu->addAction(globalTempoAction);
-    m_menu->addAction(tempoAction);
-    m_menu->addAction(removeTempoAction);
-
-    connect(globalTempoAction, &QAction::triggered, this, &SectionsArea::handleModifyGlobalTempo);
-    connect(tempoAction, &QAction::triggered, this, &SectionsArea::handleModifyTempo);
-    connect(removeTempoAction, &QAction::triggered, this, &SectionsArea::handleRemoveTempo);
-
     const QList<GraphicsNote *> &SNotesList = m_ptrs->notesArea->NotesList;
     int x = event->pos().x();
     GraphicsNote *p = nullptr;
@@ -279,20 +247,36 @@ void SectionsArea::contextMenuEvent(QContextMenuEvent *event) {
         return;
     }
 
+    QStringList list{tr("Set Global Tempo..."), tr("Set Tempo here..."), tr("Remove Tempo")};
+    TemporaryMenu *menu = new TemporaryMenu(list, this);
+
     if (p) {
-        globalTempoAction->setVisible(false);
-        tempoAction->setVisible(true);
-        removeTempoAction->setVisible(true);
-        removeTempoAction->setEnabled(p->tempoEdited());
+        menu->setVisibleAt(0, false);
+        menu->setEnabledAt(2, p->tempoEdited());
     } else {
-        globalTempoAction->setVisible(true);
-        tempoAction->setVisible(false);
-        removeTempoAction->setVisible(false);
+        menu->setVisibleAt(1, false);
+        menu->setVisibleAt(2, false);
     }
-    currentNote = p;
 
-    m_menu->exec(QCursor::pos());
-    event->accept();
+    int index = menu->start();
+    menu->deleteLater();
 
-    m_menu->clear();
+    switch (index) {
+    case 0:
+        qDragOut.removeAll();
+        m_ptrs->tab->showTempoEdit();
+        break;
+    case 1:
+        if (p) {
+            p->openTempoEdit();
+        }
+        break;
+    case 2:
+        if (p) {
+            p->removeTempo();
+        }
+        break;
+    default:
+        break;
+    }
 }

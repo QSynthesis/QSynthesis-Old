@@ -155,7 +155,7 @@ TuningTab *MainWindow::addTuningTab(const QString &filename, bool noCloseIfInval
     return tab;
 }
 
-bool MainWindow::addMultipleTabs(const QStringList &filenames) {
+bool MainWindow::addMultipleTabs(const QStringList &filenames, bool noCloseIfInvalid) {
     bool flag = false;
 
     for (auto it = filenames.begin(); it != filenames.end(); ++it) {
@@ -163,7 +163,7 @@ bool MainWindow::addMultipleTabs(const QStringList &filenames) {
         if (isDirExist(filename)) {
             flag |= !!addVoiceBankTab(filename, false);
         } else {
-            flag |= !!addTuningTab(filename, tabs->count() == 0);
+            flag |= !!addTuningTab(filename, noCloseIfInvalid ? (tabs->count() == 0) : false);
         }
     }
     return flag;

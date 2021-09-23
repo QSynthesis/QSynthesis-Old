@@ -50,9 +50,15 @@ private:
     void handleTabIndexChanged(int index);
     void handleTabNameChanged(const QString &newName);
 
+private:
+    bool eventFilter(QObject *obj, QEvent *event) override;
+
 signals:
     void titleChanged(int index, const QString &title);
     void realIndexChanged(int index);
+
+    void tabPressed(int index, Qt::MouseButton button);
+    void tabReleased(int index, Qt::MouseButton button);
 };
 
 #endif // TABWIDGET_H

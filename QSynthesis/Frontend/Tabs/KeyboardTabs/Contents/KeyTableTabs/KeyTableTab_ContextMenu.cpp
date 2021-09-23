@@ -5,20 +5,24 @@
 #include <QAction>
 
 void KeyTableTab::openContextMenu() {
-    QAction *modifyAction = new QAction(tr("Modify key bind"), m_menu);
-    QAction *removeAction = new QAction(tr("Remove key bind"), m_menu);
-    QAction *resetAction = new QAction(tr("Reset key bind"), m_menu);
+    QStringList list{tr("Modify key bind"), tr("Remove key bind"), tr("Reset key bind")};
+    TemporaryMenu *menu = new TemporaryMenu(list, this);
+    int index = menu->start();
+    menu->deleteLater();
 
-    connect(modifyAction, &QAction::triggered, this, &KeyTableTab::handleModifyKeyBind);
-    connect(removeAction, &QAction::triggered, this, &KeyTableTab::handleRemoveKeyBind);
-    connect(resetAction, &QAction::triggered, this, &KeyTableTab::handleResetKeyBind);
-
-    m_menu->addAction(modifyAction);
-    m_menu->addAction(removeAction);
-    m_menu->addAction(resetAction);
-
-    m_menu->exec(QCursor::pos());
-    m_menu->clear();
+    switch (index) {
+    case 0:
+        handleModifyKeyBind();
+        break;
+    case 1:
+        handleRemoveKeyBind();
+        break;
+    case 2:
+        handleResetKeyBind();
+        break;
+    default:
+        break;
+    }
 }
 
 void KeyTableTab::handleModifyKeyBind() {
@@ -37,11 +41,11 @@ void KeyTableTab::handleModifyKeyBind() {
         return;
     }
 
-    if (key == 0) {
+    if (modifiers == 0 && AppAssistant::isSpecialKey(static_cast<Qt::Key>(key))) {
         return;
     }
 
-    QKeySequence shortcut(key + modifiers);
+    QKeySequence shortcut(modifiers + key);
     saveShortcutCore(row, shortcut.toString());
 }
 

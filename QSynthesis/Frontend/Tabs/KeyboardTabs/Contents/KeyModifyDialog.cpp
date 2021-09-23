@@ -55,17 +55,19 @@ bool KeyModifyDialog::keyDownEvent(QKeyEvent *event) {
     Qt::KeyboardModifiers modifiers = event->modifiers();
 
     // Function keys
-    if (key == Qt::Key_Enter || key == Qt::Key_Return) {
-        accept();
-        return normalRes;
-    }
-    if (key == Qt::Key_Escape) {
-        reject();
-        return normalRes;
+    if (modifiers == 0) {
+        if (key == Qt::Key_Enter || key == Qt::Key_Return) {
+            accept();
+            return normalRes;
+        }
+        if (key == Qt::Key_Escape) {
+            reject();
+            return normalRes;
+        }
     }
 
     // Exclude special keys
-    if (AppAssistant::isSpecialKey(key) || key == Qt::Key_unknown) {
+    if (AppAssistant::isUnusableKey(key) || key == Qt::Key_unknown) {
         return normalRes;
     }
     if (key == Qt::Key_Backspace) {
