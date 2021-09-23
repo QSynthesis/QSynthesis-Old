@@ -87,16 +87,13 @@ public:
     void removeTab(int index);
 
     inline CentralTab *currentTab() {
-        BaseTab *w = tabs->currentWidget();
-        return qobject_cast<CentralTab *>(w);
+        return tabs->currentTab();
     }
     inline CentralTab *previousTab() {
-        BaseTab *w = tabs->previousTab();
-        return qobject_cast<CentralTab *>(w);
+        return tabs->previousTab();
     }
     inline CentralTab *tabAt(int index) {
-        BaseTab *w = tabs->tabAt(index);
-        return qobject_cast<CentralTab *>(w);
+        return tabs->tabAt(index);
     }
 
 private:

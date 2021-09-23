@@ -103,6 +103,8 @@ SOURCES += \
     Frontend/Dialogs/TerminalDialog.cpp \
     Frontend/Singletons/AppAssistant.cpp \
     Frontend/Singletons/CentralTabWidget.cpp \
+    Frontend/Singletons/CentralTabWidget.cpp \
+    Frontend/Singletons/CentralTabWidgets/CentralTabWidget_Base.cpp \
     Frontend/Singletons/ColorTheme.cpp \
     Frontend/Singletons/ComboSelector.cpp \
     Frontend/Singletons/TempHandler.cpp \

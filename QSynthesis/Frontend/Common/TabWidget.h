@@ -50,7 +50,6 @@ private:
     void handleTabIndexChanged(int index);
     void handleTabNameChanged(const QString &newName);
 
-private:
     bool eventFilter(QObject *obj, QEvent *event) override;
 
 signals:

@@ -24,7 +24,7 @@ void CentralTabWidget::addTabCore(int index) {
     btn->setIcons(":/images/close-line.svg");
 
     QTabBar *bar = tabBar();
-    BaseTab *tab = tabAt(index);
+    CentralTab *tab = tabAt(index);
 
     closeBtns.insert(tab, btn);
 
@@ -41,8 +41,8 @@ void CentralTabWidget::removeTabCore(int index) {
 }
 
 void CentralTabWidget::tabIndexChangeCore(int index, bool changed) {
-    BaseTab *cur = currentTab();
-    BaseTab *prev = previousTab();
+    CentralTab *cur = currentTab();
+    CentralTab *prev = previousTab();
 
     if (cur) {
         auto it = closeBtns.find(cur);
@@ -68,15 +68,6 @@ void CentralTabWidget::adjustSelector() {
         selector->resize(width() / 2, height() / 2);
         selector->move((width() - selector->width()) / 2, 0);
     }
-}
-
-void CentralTabWidget::handleSelectorIndexChanged(int index) {
-}
-
-void CentralTabWidget::handleSelectorActivated(int index) {
-}
-
-void CentralTabWidget::handleSelectorAbandoned() {
 }
 
 int CentralTabWidget::useSelector(const QStringList &items, const QString &clues, int current,

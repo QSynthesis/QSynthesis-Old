@@ -62,7 +62,7 @@ void MainWindow::handleSwitchFile() {
     qDebug() << "[Action]"
              << "Switch";
 
-    BaseTab *prevTab = previousTab();
+    CentralTab *prevTab = previousTab();
     if (prevTab) {
         tabs->setCurrentWidget(prevTab);
     }

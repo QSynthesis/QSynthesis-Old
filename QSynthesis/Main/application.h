@@ -1,6 +1,9 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
+#ifdef qApp
+#undef qApp
+#endif
 #define qApp (qobject_cast<Application *>(QCoreApplication::instance()))
 
 #include <QApplication>
