@@ -52,6 +52,9 @@ void Mode2Handler::init() {
     m_pointPadding = 2;
     m_pointRadius = 3;
 
+    m_solid = m_editor->pitchesEnabled();
+    m_visible = m_editor->pitchesVisible();
+
     updateColorTheme();
     connect(qViewIn, &NotesScrollArea::pitchThemeUpdated, this, &Mode2Handler::updateColorTheme);
 }

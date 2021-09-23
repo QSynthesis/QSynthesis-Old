@@ -58,6 +58,7 @@ public:
     GraphicsPoint *lastPoint() const;  // Return the rightmost point (NULL if no points)
 
     bool solid() const;
+    bool visible() const;
 
     // States
 public:
@@ -67,6 +68,7 @@ public:
     QPoint selectContinuously(bool selectAll = false);
 
     virtual void setSolid(bool solid);
+    virtual void setVisible(bool visible);
 
     virtual void adjustGeometry();
     virtual void adjustPoints();
@@ -107,6 +109,7 @@ protected:
     NotesArea *m_editor;
 
     bool m_solid;
+    bool m_visible;
 
     QRectF m_geometry;
     QRectF m_activeScope;

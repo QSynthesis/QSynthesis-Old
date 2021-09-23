@@ -226,59 +226,84 @@
         <translation type="unfinished">音量包络</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="8"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="10"/>
         <source>Quantization</source>
         <translation type="unfinished">量化</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="10"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="11"/>
+        <source>State</source>
+        <translation type="unfinished">状态</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="13"/>
         <source>Quarter</source>
         <translation type="unfinished">四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="11"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="14"/>
         <source>1/2 Quarter</source>
         <translation type="unfinished">1/2 个四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="12"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="15"/>
         <source>1/4 Quarter</source>
         <translation type="unfinished">1/4 个四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="13"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="16"/>
         <source>1/6 Quarter</source>
         <translation type="unfinished">1/6 个四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="14"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="17"/>
         <source>1/8 Quarter</source>
         <translation type="unfinished">1/8 个四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="15"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="18"/>
         <source>1/12 Quarter</source>
         <translation type="unfinished">1/12 个四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="16"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="19"/>
         <source>1/16 Quarter</source>
         <translation type="unfinished">1/16 个四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="17"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="20"/>
         <source>1/24 Quarter</source>
         <translation type="unfinished">1/24 个四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="18"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="21"/>
         <source>1/32 Quarter</source>
         <translation type="unfinished">1/32 个四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="19"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="22"/>
         <source>None</source>
         <translation type="unfinished">无</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="24"/>
+        <source>Display note block</source>
+        <translation type="unfinished">显示音符矩形</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="25"/>
+        <source>Display pitch curves</source>
+        <translation type="unfinished">显示音高曲线</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="26"/>
+        <source>Display envelope</source>
+        <translation type="unfinished">显示音量包络</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="27"/>
+        <source>Display parameters</source>
+        <translation type="unfinished">显示参数</translation>
     </message>
 </context>
 <context>
@@ -1383,57 +1408,57 @@
 <context>
     <name>OtoTableTab</name>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="31"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="29"/>
         <source>File Name</source>
         <translation type="unfinished">文件名</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="31"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="29"/>
         <source>Alias</source>
         <translation type="unfinished">辅助记号</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="31"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="29"/>
         <source>Offset</source>
         <translation type="unfinished">偏移</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="31"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="29"/>
         <source>Consonant</source>
         <translation type="unfinished">辅音</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="32"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="30"/>
         <source>Blank</source>
         <translation type="unfinished">空白</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="32"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="30"/>
         <source>PreUtterance</source>
         <translation type="unfinished">先行声音</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="32"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="30"/>
         <source>Overlap</source>
         <translation type="unfinished">重叠</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="32"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="30"/>
         <source>Frq</source>
         <translation type="unfinished">Frq</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="12"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="22"/>
         <source>Play</source>
         <translation type="unfinished">播放</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="13"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="25"/>
         <source>Move up</source>
         <translation type="unfinished">上移一级</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="14"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="26"/>
         <source>Move down</source>
         <translation type="unfinished">下移一级</translation>
     </message>
@@ -1446,37 +1471,37 @@
         <translation type="obsolete">移动到底层</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="15"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="27"/>
         <source>Move to top</source>
         <translation type="unfinished">移动到顶层</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="16"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="28"/>
         <source>Move to bottom</source>
         <translation type="unfinished">移动到底层</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="17"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="30"/>
         <source>Duplicate</source>
         <translation type="unfinished">建立副本</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="18"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="31"/>
         <source>Remove</source>
         <translation type="unfinished">删除</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="21"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="15"/>
         <source>Show in Explorer(&amp;S)</source>
         <translation type="unfinished">在文件资源管理器中显示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="23"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="17"/>
         <source>Show in Finder(&amp;S)</source>
         <translation type="unfinished">在Finder中显示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="25"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="19"/>
         <source>Show in File Manager(&amp;S)</source>
         <translation type="unfinished">在文件管理器中显示(&amp;S)</translation>
     </message>
@@ -2473,17 +2498,17 @@
         <translation type="unfinished">设置曲速</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Unchange.cpp" line="30"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Unchange.cpp" line="33"/>
         <source>No audio files have been generated recently.</source>
         <translation type="unfinished">最近没有生成音频文件。</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Unchange.cpp" line="34"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Unchange.cpp" line="37"/>
         <source>Export wave file</source>
         <translation type="unfinished">导出Wave文件</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Unchange.cpp" line="40"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Unchange.cpp" line="43"/>
         <source>Unable to copy file, please check permissions!</source>
         <translation type="unfinished">无法复制文件，请检查权限！</translation>
     </message>

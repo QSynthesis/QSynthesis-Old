@@ -62,6 +62,11 @@ private:
     bool m_pitchesEnabled;
     bool m_envelopesEnabled;
 
+    bool m_notesVisible;
+    bool m_pitchesVisible;
+    bool m_envelopesVisible;
+    bool m_paramsVisible;
+
     QColor m_quarterLineColor;
     QColor m_timeLineColor;
     QColor m_sectionLineColor;
@@ -219,9 +224,23 @@ public:
     bool isLyricEditing() const;
     bool isPlaying() const;
 
+    bool notesEnabled() const;
+    bool pitchesEnabled() const;
+    bool envelopesEnabled() const;
+
+    bool notesVisible() const;
+    bool pitchesVisible() const;
+    bool envelopesVisible() const;
+    bool paramsVisible() const;
+
     void setNotesEnabled(bool enabled);
     void setPitchesEnabled(bool enabled);
     void setEnvelopesEnabled(bool enabled);
+
+    void setNotesVisible(bool visible);
+    void setPitchesVisible(bool visible);
+    void setEnvelopesVisible(bool visible);
+    void setParamsVisible(bool visible);
 
     // Update
 public:

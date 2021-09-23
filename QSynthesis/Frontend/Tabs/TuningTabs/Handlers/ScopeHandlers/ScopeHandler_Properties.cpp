@@ -56,3 +56,7 @@ GraphicsPoint *ScopeHandler::lastPoint() const {
 bool ScopeHandler::solid() const {
     return m_solid;
 }
+
+bool ScopeHandler::visible() const {
+    return m_visible;
+}

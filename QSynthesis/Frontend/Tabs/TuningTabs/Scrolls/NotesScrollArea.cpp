@@ -51,6 +51,8 @@ void NotesScrollArea::initLight() {
     note.unlistedLine = QColor(0x105685);
     note.unlistedFill = QColor(0x1881C7);
     note.select = QColor(0, 0, 0, 48);
+    note.lyricBlock = Qt::white;
+    note.params = Qt::darkGray;
 
     // GraphicsRubber
     rubber.frame = Qt::black;
@@ -114,6 +116,8 @@ void NotesScrollArea::initDark() {
     note.unlistedLine = QColor(0x105685);
     note.unlistedFill = QColor(0x1881C7);
     note.select = QColor(255, 255, 255, 48);
+    note.lyricBlock = Qt::white;
+    note.params = Qt::lightGray;
 
     // GraphicsRubber
     rubber.frame = QColor(255, 255, 255, 96);
@@ -282,6 +286,12 @@ QColor NotesScrollArea::noteUnlistedLine() const {
 }
 QColor NotesScrollArea::noteSelect() const {
     return note.select;
+}
+QColor NotesScrollArea::noteLyricBlock() const {
+    return note.lyricBlock;
+}
+QColor NotesScrollArea::noteParams() const {
+    return note.params;
 }
 QColor NotesScrollArea::rubberFrame() const {
     return rubber.frame;
@@ -456,6 +466,14 @@ void NotesScrollArea::setNoteUnlistedLine(const QColor &color) {
 }
 void NotesScrollArea::setNoteSelect(const QColor &color) {
     note.select = color;
+    emit noteThemeUpdated();
+}
+void NotesScrollArea::setNoteLyricBlock(const QColor &color) {
+    note.lyricBlock = color;
+    emit noteThemeUpdated();
+}
+void NotesScrollArea::setNoteParams(const QColor &color) {
+    note.params = color;
     emit noteThemeUpdated();
 }
 void NotesScrollArea::setRubberFrame(const QColor &color) {

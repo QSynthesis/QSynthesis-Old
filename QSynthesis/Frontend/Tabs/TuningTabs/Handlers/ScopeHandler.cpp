@@ -16,6 +16,7 @@ ScopeHandler::~ScopeHandler() {
 
 void ScopeHandler::init() {
     m_solid = true;
+    m_visible = true;
     m_moving = false;
 }
 

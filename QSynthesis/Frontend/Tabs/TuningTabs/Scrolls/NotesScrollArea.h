@@ -86,6 +86,10 @@ class NotesScrollArea : public QGraphicsView {
     Q_PROPERTY(
         QColor noteUnlistedLine READ noteUnlistedLine WRITE setNoteUnlistedLine NOTIFY themeUpdated)
     Q_PROPERTY(QColor noteSelect READ noteSelect WRITE setNoteSelect NOTIFY themeUpdated)
+    Q_PROPERTY(
+        QColor noteLyricBlock READ noteLyricBlock WRITE setNoteLyricBlock NOTIFY themeUpdated)
+    Q_PROPERTY(
+        QColor noteParams READ noteParams WRITE setNoteParams NOTIFY themeUpdated)
     Q_PROPERTY(QColor rubberFrame READ rubberFrame WRITE setRubberFrame NOTIFY themeUpdated)
     Q_PROPERTY(QColor rubberFill READ rubberFill WRITE setRubberFill NOTIFY themeUpdated)
 
@@ -151,6 +155,8 @@ public:
     QColor noteUnlistedFill() const;
     QColor noteUnlistedLine() const;
     QColor noteSelect() const;
+    QColor noteLyricBlock() const;
+    QColor noteParams() const;
 
     QColor rubberFrame() const;
     QColor rubberFill() const;
@@ -202,6 +208,8 @@ public:
     void setNoteUnlistedFill(const QColor &color);
     void setNoteUnlistedLine(const QColor &color);
     void setNoteSelect(const QColor &color);
+    void setNoteLyricBlock(const QColor &color);
+    void setNoteParams(const QColor &color);
 
     void setRubberFrame(const QColor &color);
     void setRubberFill(const QColor &color);
@@ -271,6 +279,8 @@ private:
         QColor unlistedFill;
         QColor unlistedLine;
         QColor select;
+        QColor lyricBlock;
+        QColor params;
     };
 
     struct RubberBand {

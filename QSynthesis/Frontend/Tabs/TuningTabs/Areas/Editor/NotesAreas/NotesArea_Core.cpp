@@ -16,11 +16,6 @@ GraphicsNote *NotesArea::createNoteCore(const QLinkNote &note) {
     p->addScreen(); // Add Screen
     p->addLifter(); // Add Lifter
 
-    // Set Status
-    p->setMovable(m_notesEnabled);
-    p->curves()->setSolid(m_pitchesEnabled);
-    p->envelope()->setSolid(m_envelopesEnabled);
-
     // Init
     p->Note = note;
     p->updateNoteStatus();

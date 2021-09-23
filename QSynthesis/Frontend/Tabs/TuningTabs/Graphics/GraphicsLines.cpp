@@ -41,11 +41,21 @@ QPainterPath GraphicsLines::shape() const {
 
 void GraphicsLines::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                           QWidget *widget) {
-    m_note->curves()->drawMode1(painter);
-    m_note->curves()->drawMode2(painter);
-    m_note->curves()->drawVibrato(painter);
-    m_note->curves()->drawVibratoEditor(painter);
-    m_note->envelope()->drawEnvelope(painter);
+    Mode2Handler *curves = m_note->curves();
+    EnvelopeHandler *envelope = m_note->envelope();
+
+    if (curves->visible()) {
+        curves->drawMode1(painter);
+        curves->drawMode2(painter);
+        curves->drawVibrato(painter);
+    }
+    curves->drawVibratoEditor(painter);
+    if (envelope->visible()) {
+        envelope->drawEnvelope(painter);
+    }
+    if (m_note->display()) {
+        m_note->drawParams(painter);
+    }
 }
 
 QRectF GraphicsLines::boundingRect() const {

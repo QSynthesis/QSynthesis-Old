@@ -8,6 +8,24 @@ void GraphicsNote::setMovable(bool movable) {
     m_movable = movable;
 }
 
+bool GraphicsNote::display() const {
+    return m_display;
+}
+
+void GraphicsNote::setDisplay(bool display) {
+    m_display = display;
+    m_screen->update();
+}
+
+bool GraphicsNote::block() const {
+    return m_block;
+}
+
+void GraphicsNote::setBlock(bool block) {
+    m_block = block;
+    update();
+}
+
 bool GraphicsNote::stretch() const {
     return m_stretch;
 }

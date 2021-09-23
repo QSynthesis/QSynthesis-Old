@@ -24,6 +24,8 @@ void GraphicsNote::updateColorTheme() {
     m_unlistedLineColor = qViewIn->noteUnlistedLine();
     m_unlistedFillColor = qViewIn->noteUnlistedFill();
     m_selectColor = qViewIn->noteSelect();
+    m_lyricBlockColor = qViewIn->noteLyricBlock();
+    m_paramsColor = qViewIn->noteParams();
 
     update();
 }
@@ -32,7 +34,10 @@ void GraphicsNote::init() {
     m_element = GraphicsDragger::Note;
     m_prev = m_next = m_MPrev = m_MNext = nullptr;
 
-    m_movable = true;
+    m_movable = m_editor->notesEnabled();
+    m_block = m_editor->notesVisible();
+    m_display = m_editor->paramsVisible();
+
     m_stretch = false;
     m_drawing = false;
 

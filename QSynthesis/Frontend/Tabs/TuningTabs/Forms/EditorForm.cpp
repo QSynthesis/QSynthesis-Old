@@ -65,7 +65,7 @@ EditorForm::EditorForm(TuningTab *parent) : BaseForm(parent) {
     connect(btnEases, &EnvButtonGroup::p1p4, this, &EditorForm::onEnvP1P4);
     connect(btnEases, &EnvButtonGroup::reset, this, &EditorForm::onEnvReset);
 
-    m_menu = new QMenu(this);
+    initMenu();
 
     // Pointers
     m_ptrs->editorContent = content;

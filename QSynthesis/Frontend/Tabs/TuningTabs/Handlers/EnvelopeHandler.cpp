@@ -39,6 +39,9 @@ void EnvelopeHandler::init() {
     m_pointPadding = 2;
     m_pointRadius = 3;
 
+    m_solid = m_editor->envelopesEnabled();
+    m_visible = m_editor->envelopesVisible();
+
     updateColorTheme();
     connect(qViewIn, &NotesScrollArea::envThemeUpdated, this, &EnvelopeHandler::updateColorTheme);
 }

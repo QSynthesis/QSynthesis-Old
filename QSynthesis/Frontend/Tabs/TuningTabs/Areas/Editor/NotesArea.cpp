@@ -16,6 +16,11 @@ NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *parent)
     m_pitchesEnabled = false;
     m_envelopesEnabled = false;
 
+    m_notesVisible = false;
+    m_pitchesVisible = true;
+    m_envelopesVisible = true;
+    m_paramsVisible = true;
+
     m_moving = false;
     m_selecting = false;
     m_drawingItem = nullptr;

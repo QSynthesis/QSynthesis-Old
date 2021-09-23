@@ -81,6 +81,12 @@ public:
     bool movable() const;
     void setMovable(bool movable);
 
+    bool block() const;
+    void setBlock(bool block);
+
+    bool display() const;
+    void setDisplay(bool display);
+
     bool stretch() const;
     void setStretch(bool stretch);
 
@@ -159,6 +165,9 @@ private:
     Qs::NoteStatus m_status;
 
     bool m_movable;
+    bool m_block;
+    bool m_display;
+
     bool m_stretch;
     bool m_drawing;
 
@@ -194,6 +203,7 @@ private:
 
 public:
     void drawNote(QPainter *painter);
+    void drawParams(QPainter *painter);
 
 public:
     void afterPress();
@@ -228,6 +238,9 @@ private:
     QColor m_unlistedLineColor;
 
     QColor m_selectColor;
+    QColor m_lyricBlockColor;
+
+    QColor m_paramsColor;
 
 private:
     void openContextMenu();

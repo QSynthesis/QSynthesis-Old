@@ -37,10 +37,30 @@ private:
 
     QMenu *m_menu;
 
+    QMenu *adsorbMenu;
+    QMenu *stateMenu;
+
+    QAction *fullAdsorbAction;
+    QAction *halfAdsorbAction;
+    QAction *quarterAdsorbAction;
+    QAction *sixthAdsorbAction;
+    QAction *eighthAdsorbAction;
+    QAction *twelfthAdsorbAction;
+    QAction *sixteenthAdsorbAction;
+    QAction *twentyForthAdsorbAction;
+    QAction *thirtySecondAdsorbAction;
+    QAction *noAdsorbAction;
+    QAction *noteVisibleAction;
+    QAction *pitchVisibleAction;
+    QAction *envelopeVisibleAction;
+    QAction *paramsVisibleAction;
+
 public:
     void updatePlayStatus(bool playing);
-
     void setLengthUnit(int n);
+
+private:
+    void initMenu();
 
 private:
     void handleSwitchChanged();
@@ -67,6 +87,11 @@ private:
     void handleTwentyForthAdsorb();
     void handleThirtySecondAdsorb();
     void handleNoneAdsorb();
+
+    void handleSwitchNoteVisibility();
+    void handleSwitchPitchVisibility();
+    void handleSwitchEnvelopeVisibility();
+    void handleSwitchParamsVisibility();
 
 signals:
 };

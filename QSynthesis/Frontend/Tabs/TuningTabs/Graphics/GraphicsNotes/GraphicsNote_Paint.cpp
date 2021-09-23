@@ -4,19 +4,14 @@
 
 void GraphicsNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                          QWidget *widget) {
-    if (isSelected()) {
-        painter->setPen(Qt::NoPen);
-        painter->setBrush(m_selectColor);
-        painter->drawRoundedRect(rect(), 3, 3);
-    }
-
     drawNote(painter);
 }
 
 void GraphicsNote::drawNote(QPainter *painter) {
     QRectF rect = this->rect();
+    bool selected = isSelected();
 
-    double padding = 0.25;
+    double padding = 0.5;
     double innerPadding = 2;
     double border = rect.height() / 15;
 
@@ -33,31 +28,58 @@ void GraphicsNote::drawNote(QPainter *painter) {
     QRectF textRect(originRect);
     textRect.setX(entityRect.x() + 5 + m_editor->ptrs()->currentWidth / 128.0);
 
+    if (!m_block) {
+        // Draw Back
+        if (selected) {
+            painter->setPen(Qt::NoPen);
+            painter->setBrush(m_selectColor);
+            painter->drawRoundedRect(rect, 3, 3);
+        }
+        entityRect.setTop(entityRect.top() + entityRect.height() * 0.85);
+    }
+
+    // Draw Entity
     painter->setBrush(lineColor);
     painter->setPen(Qt::NoPen);
-
-    entityRect.setTop(entityRect.top() + entityRect.height() * 0.85);
     painter->drawRoundedRect(entityRect, border * 1.5, border * 1.5);
 
-    if (isSelected()) {
+    // Draw Line
+    if (selected) {
         painter->setBrush(fillColor);
         QRectF innerRect(entityRect.left() + innerPadding, entityRect.top() + innerPadding,
                          entityRect.width() - 2 * innerPadding,
                          entityRect.height() - 2 * innerPadding);
 
         painter->drawRoundedRect(innerRect, border * 1.5, border * 1.5);
-
-        //        painter->setPen(Qt::NoPen);
-        //        painter->setBrush(m_backColor);
-        //        painter->drawRoundedRect(originRect, border * 1.5, border * 1.5);
     }
 
     if (m_editor->curEditNote() != this) {
-        painter->setPen(m_lyricColor);
+        painter->setPen(m_block ? m_lyricBlockColor : m_lyricColor);
         painter->setBrush(Qt::NoBrush);
         painter->setFont(uiFont());
 
         QString str0 = Note.lyric;
         painter->drawText(textRect, Qt::AlignVCenter, str0, &entityRect);
     }
+}
+
+void GraphicsNote::drawParams(QPainter *painter) {
+    double mod = modulation();
+
+    QString strMod = (mod == 0) ? "" : ("Mod " + QString::number(mod));
+    QString strFlags = Note.flags;
+
+    QString strPara =
+        strMod.isEmpty() ? strFlags : (strMod + (strFlags.isEmpty() ? "" : " / ") + strFlags);
+
+    int f = (y() + height() * 1.5 >= m_screen->boundingRect().height()) ? -1 : 1;
+
+    QRectF entityRect(0, y() + f * height(), width(), height());
+    QRectF textRect(entityRect);
+    textRect.setX(entityRect.x() + 5 + m_editor->ptrs()->currentWidth / 128.0);
+
+    painter->setPen(m_paramsColor);
+    painter->setBrush(Qt::transparent);
+    painter->setFont(uiFont());
+    painter->drawText(textRect, Qt::AlignVCenter, strPara, &entityRect);
 }

@@ -3,10 +3,13 @@
 #include "Forms/EditorForm.h"
 #include "Forms/ParamsForm.h"
 #include "Forms/TracksForm.h"
+#include "Scrolls/LiftersScrollArea.h"
+#include "Scrolls/NotesScrollArea.h"
 #include "TuningGroup.h"
 #include "mainwindow.h"
 
 #include <QFileDialog>
+#include <QScrollBar>
 
 void TuningTab::moveToStart() {
     m_ptrs->notesArea->moveToStart();
@@ -119,6 +122,9 @@ void TuningTab::handleFormStatusChanged() {
     qSetting->tracksFormVisibility = tracksForm->unfolded();
     qSetting->editorFormVisibility = editorForm->unfolded();
     qSetting->paramsFormVisibility = paramsForm->unfolded();
+
+    m_ptrs->liftersScroll->horizontalScrollBar()->setValue(
+        m_ptrs->notesScroll->horizontalScrollBar()->value());
 }
 
 bool TuningTab::isFree() const {

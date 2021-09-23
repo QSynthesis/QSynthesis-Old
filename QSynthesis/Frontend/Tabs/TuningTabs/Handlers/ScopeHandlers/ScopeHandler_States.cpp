@@ -5,7 +5,6 @@
 
 void ScopeHandler::update() {
     m_note->update();
-
     if (screen()) {
         screen()->update();
     }
@@ -42,6 +41,11 @@ QPoint ScopeHandler::selectContinuously(bool selectAll) {
 void ScopeHandler::setSolid(bool solid) {
     m_solid = solid;
     setPointsVisible(solid);
+    update();
+}
+
+void ScopeHandler::setVisible(bool visible) {
+    m_visible = visible;
     update();
 }
 

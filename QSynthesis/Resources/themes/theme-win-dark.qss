@@ -475,6 +475,8 @@ NotesScrollArea {
     qproperty-noteUnlistedFill: #1881C7;
     qproperty-noteUnlistedLine: #105685;
     qproperty-noteSelect: rgba(255, 255, 255, 18%);
+    qproperty-noteLyricBlock: black;
+    qproperty-noteParams: lightgrey;
     /**/
     qproperty-rubberFrame: rgba(255, 255, 255, 36%);
     qproperty-rubberFill: rgba(255, 255, 255, 18%);
