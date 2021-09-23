@@ -12,7 +12,7 @@ public:
     explicit QOtoLevel(const QString &dir, QOtoLevel *parent = nullptr);
     ~QOtoLevel();
 
-    QOtoLevel *root();
+    QOtoLevel *root() const;
     QList<QOtoLevel *> dirs() const;
 
     void setOtoData(const QOtoSampleList &otoData);

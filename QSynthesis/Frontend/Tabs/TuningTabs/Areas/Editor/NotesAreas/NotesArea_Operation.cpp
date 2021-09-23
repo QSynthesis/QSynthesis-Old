@@ -63,7 +63,13 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
 
         // Move Selection
         QPoint range = QPoint(index, index + vc.size() - 1);
-        QPoint orgRange = range;
+        QList<int> rangeToSelect;
+
+        for (int i = 0; i < vc.size(); ++i) {
+            if (movement != 0 || vc.at(i) != 0) {
+                rangeToSelect.append(range.x() + i);
+            }
+        }
 
         // Move Notes Core
         moveNotes(range, movement);
@@ -85,7 +91,7 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
 
         // Adjust vision
         adjustNotes(range);
-        selectRange(orgRange);
+        selectSequence(rangeToSelect);
 
         callForLengthen();
         break;
@@ -279,7 +285,6 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
         break;
     }
     case NoteOperation::Tempo: {
-        qDebug() << "Tempo";
         TempoOperation *t = static_cast<TempoOperation *>(n);
         int index = t->index();
         if (index < 0) {

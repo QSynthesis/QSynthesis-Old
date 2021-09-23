@@ -200,7 +200,7 @@ void BaseActionList::makeDefaultShortcuts() {
 }
 
 QList<QAction *> BaseActionList::actions() const {
-    const QList<QAction **> actionsRef = ((BaseActionList *) this)->actionsRef();
+    const QList<QAction **> &actionsRef = const_cast<BaseActionList *>(this)->actionsRef();
     QList<QAction *> actions;
     for (auto it = actionsRef.begin(); it != actionsRef.end(); ++it) {
         actions.append(*(*it));

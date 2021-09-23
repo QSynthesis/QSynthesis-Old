@@ -31,10 +31,10 @@ void QOtoLevel::init() {
     }
 }
 
-QOtoLevel *QOtoLevel::root() {
+QOtoLevel *QOtoLevel::root() const {
     QOtoLevel *upper = qobject_cast<QOtoLevel *>(parent());
     if (!upper) {
-        return this;
+        return const_cast<QOtoLevel *>(this);
     }
     return upper->root();
 }

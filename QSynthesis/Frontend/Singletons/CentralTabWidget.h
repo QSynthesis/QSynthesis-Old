@@ -6,7 +6,6 @@
 #include "Tabs/CentralTab.h"
 
 class VectorButton;
-class CentralTab;
 
 class CentralTabWidget : public TabWidget {
     Q_OBJECT
