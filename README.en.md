@@ -54,11 +54,11 @@ There are many available engines, you can copy UTAU's own resampler.exe and wavt
 
 ### MacOS & Linux
 
-The macres (tn_fnds) release, which has been adapted across platforms, is available on the following page.
+The release of macres (tn_fnds), which has been adapted across platforms, is available on the following page.
 
 The release of world4utau, which has been adapted across platforms, is available on the following page.
 
-A released version of wavtool-yawu is available from the following page.
+The release of wavtool-yawu is available from the following page.
 
 ## Contribution
 
