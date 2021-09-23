@@ -231,7 +231,7 @@ KeyboardTab>.SwitchButtonUnderline[type=keyboard] {
 KeyboardTab>.QPushButton#reset {}
 
 KeyModifyDialog {
-    background-color: whitesmoke;
+    background-color: rgb(235, 235, 235);
 }
 
 /* Central Tab */
@@ -623,11 +623,11 @@ QTableWidget[type=voice]::item {
 }
 
 QTableWidget[type=voice]::item:hover {
-    background-color: rgba(0, 0, 0, 15%);
+    background-color: rgba(0, 0, 0, 10%);
 }
 
 QTableWidget[type=voice]::item:pressed {
-    background-color: rgba(0, 0, 0, 7.5%);
+    background-color: rgba(0, 0, 0, 5%);
 }
 
 QTableWidget[type=voice]::item:selected {
@@ -668,7 +668,7 @@ QTableWidget[type=voice]>QHeaderView::section:vertical {
 }
 
 QTableWidget[type=voice]>QHeaderView::section:hover {
-    background-color: rgba(0, 0, 0, 20%);
+    background-color: rgba(0, 0, 0, 12.5%);
 }
 
 QTableWidget[type=voice]>QHeaderView::section:pressed {
@@ -684,8 +684,8 @@ QTableWidget[type=voice]>QHeaderView::section:checked {
 QTableWidget[type=keyboard] {
     border: none;
     background: #F8F8F8;
-    alternate-background-color: #F4F4F4;
-    gridline-color: rgba(0, 0, 0, 7.5%);
+    alternate-background-color: #F6F6F6;
+    gridline-color: rgba(0, 0, 0, 5%);
     selection-background-color: transparent;
 }
 
@@ -697,7 +697,7 @@ QTableWidget[type=keyboard]::item {
 }
 
 QTableWidget[type=keyboard]::item:hover {
-    background-color: rgba(0, 0, 0, 20%);
+    background-color: rgba(0, 0, 0, 10%);
 }
 
 QTableWidget[type=keyboard]::item:pressed {
@@ -739,7 +739,7 @@ QTableWidget[type=keyboard]>QHeaderView::section:horizontal {
 }
 
 QTableWidget[type=keyboard]>QHeaderView::section:vertical:hover {
-    background-color: rgba(0, 0, 0, 20%);
+    background-color: rgba(0, 0, 0, 12.5%);
 }
 
 QTableWidget[type=keyboard]>QHeaderView::section:vertical:pressed {
@@ -747,7 +747,7 @@ QTableWidget[type=keyboard]>QHeaderView::section:vertical:pressed {
 }
 
 QTableWidget[type=keyboard]>QHeaderView::section:vertical:checked {
-    background-color: rgba(0, 0, 0, 13.6%);
+    background-color: rgba(0, 0, 0, 15%);
 }
 
 /* ComboSelector */

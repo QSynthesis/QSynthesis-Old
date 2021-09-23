@@ -52,9 +52,13 @@ void TuningTab::configueLyric() {
     if (!isFreeButPlaying()) {
         return;
     }
+    QString dir = oto->voiceDir();
+    if (!isDirExist(dir)) {
+        return;
+    }
     forcePausePlaying();
 
-    VoiceBankTab *tab = qRoot->addVoiceBankTab(oto->voiceDir());
+    VoiceBankTab *tab = qRoot->addVoiceBankTab(dir);
     if (!tab) {
         return;
     }
@@ -72,9 +76,13 @@ void TuningTab::configuePrefix() {
     if (!isFreeButPlaying()) {
         return;
     }
+    QString dir = oto->voiceDir();
+    if (!isDirExist(dir)) {
+        return;
+    }
     forcePausePlaying();
 
-    VoiceBankTab *tab = qRoot->addVoiceBankTab(oto->voiceDir());
+    VoiceBankTab *tab = qRoot->addVoiceBankTab(dir);
     if (!tab) {
         return;
     }

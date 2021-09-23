@@ -126,5 +126,9 @@ void OtoDataArea::handleSelectionChanged() {
 }
 
 void OtoDataArea::handleTabIndexChanged(int index) {
+    OtoTableTab *prev = qobject_cast<OtoTableTab *>(otoTabs->previousTab());
+    if (prev) {
+        prev->selectNone();
+    }
     m_ptrs->tab->change();
 }
