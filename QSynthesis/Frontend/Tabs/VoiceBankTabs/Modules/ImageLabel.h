@@ -14,6 +14,9 @@ public:
     ImageLabel(QWidget *parent = nullptr);
     ~ImageLabel();
 
+    Qt::MouseButtons menuButtons() const;
+    void setMenuButtons(const Qt::MouseButtons &menuButtons);
+
 private:
     void mouseReleaseEvent(QMouseEvent *event) override;
 
@@ -21,6 +24,9 @@ private:
 
 private:
     void init();
+
+private:
+    Qt::MouseButtons m_menuButtons;
 
 signals:
     void reveal();

@@ -31,12 +31,12 @@ QLineEdit, QTextEdit, QPlainTextEdit, QComboBox {
     padding: 3px 3px;
 }
 
-WaveformScrollArea, QTableWidget {
+WaveformScrollArea, QTableWidget, ImageScrollArea {
     border: 1px solid transparent;
     background-color: #3C3C3C;
 }
 
-QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus, WaveformScrollArea:focus, QTableWidget:focus {
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus, WaveformScrollArea:focus, QTableWidget:focus, ImageScrollArea:focus {
     border-color: #167FD2;
 }
 
@@ -877,4 +877,9 @@ OtoInfoArea>LineControl>.QLabel {
 
 OtoInfoArea>LineControl>FixedLineEdit {
     /* padding: 5px 5px; */
+}
+
+ImageLabel {
+    background-color: transparent;
+    color: #CCCCCC;
 }

@@ -28,6 +28,7 @@ public:
 
     QString voiceDir() const;
     QString prefixMapPath() const;
+    QString spritePath() const;
 
 public:
     bool findSample(const QString &oLyric, QGenonSettings *oGenon, int oNoteNum = 0) const;
@@ -44,6 +45,7 @@ private:
 
 private:
     QString m_voiceDir;
+    QString m_spritePath;
 
     QMap<int, QString> prefixMap;
     QMap<int, QString> suffixMap;

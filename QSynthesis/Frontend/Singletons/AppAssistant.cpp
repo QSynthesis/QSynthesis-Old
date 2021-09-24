@@ -16,7 +16,7 @@ bool AppAssistant::keyIsDown(QEvent *event) {
 }
 
 bool AppAssistant::isUnusableKey(Qt::Key key) {
-    QList<Qt::Key> keys{Qt::Key_CapsLock, Qt::Key_NumLock, Qt::Key_ScrollLock};
+    QList<Qt::Key> keys{Qt::Key_CapsLock, Qt::Key_NumLock, Qt::Key_ScrollLock, Qt::Key_Meta};
     return keys.contains(key);
 }
 

@@ -14,9 +14,22 @@ ImageLabel::~ImageLabel() {
 }
 
 void ImageLabel::init() {
+    m_menuButtons = Qt::RightButton;
+}
+
+Qt::MouseButtons ImageLabel::menuButtons() const {
+    return m_menuButtons;
+}
+
+void ImageLabel::setMenuButtons(const Qt::MouseButtons &menuButtons) {
+    m_menuButtons = menuButtons;
 }
 
 void ImageLabel::mouseReleaseEvent(QMouseEvent *event) {
+    if (!(event->button() & m_menuButtons)) {
+        return;
+    }
+
 #if defined(Q_OS_WINDOWS)
     QString revealStr = tr("Show in Explorer(&S)");
 #elif defined(Q_OS_MAC)

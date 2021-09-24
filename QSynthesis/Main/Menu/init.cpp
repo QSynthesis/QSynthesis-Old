@@ -32,463 +32,232 @@ void MainWindow::initActionLists() {
     keyboardActions = new KeyboardActionList(this);
     settingActions = new SettingActionList(this);
 
-    // Set Common
+    // Set Common Actions
     {
-        QAction *newFile = new QAction(this);
-        QAction *importFile = new QAction(this);
-        QAction *openFile = new QAction(this);
-        QAction *openFolder = new QAction(this);
-        QAction *saveFile = new QAction(this);
-        QAction *saveAsFile = new QAction(this);
-        QAction *restoreFile = new QAction(this);
-        QAction *switchFile = new QAction(this);
-        QAction *closeFile = new QAction(this);
-
         QMenu *recentMenu = new QMenu(this);
-
-        QAction *undo = new QAction(this);
-        QAction *redo = new QAction(this);
-        QAction *selectAll = new QAction(this);
-        QAction *deselect = new QAction(this);
-
-        QAction *reset = new QAction(this);
-        QAction *playPause = new QAction(this);
-        QAction *replay = new QAction(this);
-        QAction *stop = new QAction(this);
-
-        QAction *settings = new QAction(this);
-        QAction *keyShortcuts = new QAction(this);
-        QAction *themes = new QAction(this);
-        QAction *languages = new QAction(this);
-
         QMenu *preferenceMenu = new QMenu(this);
-        preferenceMenu->addActions({settings, keyShortcuts, themes, languages});
 
-        QAction *welcome = new QAction(this);
-        QAction *instructions = new QAction(this);
-        QAction *checkUpdate = new QAction(this);
-        QAction *aboutApp = new QAction(this);
-        QAction *aboutQt = new QAction(this);
+        QList<void (MainWindow::*)()> handlers{
+            &MainWindow::handleNewFile,
+            &MainWindow::handleImportFile,
+            &MainWindow::handleOpenFile,
+            &MainWindow::handleOpenFolder,
+            &MainWindow::handleSaveFile,
+            &MainWindow::handleSaveAsFile,
+            &MainWindow::handleRestoreFile,
+            &MainWindow::handleSwitchFile,
+            &MainWindow::handleCloseFile,
+            &MainWindow::handleUndo,
+            &MainWindow::handleRedo,
+            &MainWindow::handleSelectAll,
+            &MainWindow::handleDeselect,
+            &MainWindow::handleReset,
+            &MainWindow::handlePlayPause,
+            &MainWindow::handleReplay,
+            &MainWindow::handleStop,
+            &MainWindow::handleOpenSettings,
+            &MainWindow::handleOpenKeyShortcuts,
+            &MainWindow::handleOpenThemes,
+            &MainWindow::handleOpenLanguages,
+            &MainWindow::handleOpenWelcome,
+            &MainWindow::handleInstructions,
+            &MainWindow::handleCheckUpdate,
+            &MainWindow::handleAboutApp,
+            &MainWindow::handleAboutQt,
+        };
 
+        QList<QAction **> commonActionsRef = welcomeActions->commonActionsRef();
         {
-            welcomeActions->newFile = newFile;
-            welcomeActions->importFile = importFile;
-            welcomeActions->openFile = openFile;
-            welcomeActions->openFolder = openFolder;
-            welcomeActions->saveFile = saveFile;
-            welcomeActions->saveAsFile = saveAsFile;
-            welcomeActions->restoreFile = restoreFile;
-            welcomeActions->switchFile = switchFile;
-            welcomeActions->closeFile = closeFile;
-
+            auto it0 = handlers.begin();
+            for (auto it = commonActionsRef.begin(); it != commonActionsRef.end(); ++it, ++it0) {
+                QAction *&action = **it;
+                action = new QAction(this);
+                connect(action, &QAction::triggered, this, *it0);
+            }
+            preferenceMenu->addActions({welcomeActions->settings, welcomeActions->keyShortcuts,
+                                        welcomeActions->themes, welcomeActions->languages});
             welcomeActions->recentMenu = recentMenu;
-
-            welcomeActions->undo = undo;
-            welcomeActions->redo = redo;
-            welcomeActions->selectAll = selectAll;
-            welcomeActions->deselect = deselect;
-
-            welcomeActions->reset = reset;
-
-            welcomeActions->playPause = playPause;
-            welcomeActions->replay = replay;
-            welcomeActions->stop = stop;
-
-            welcomeActions->settings = settings;
-            welcomeActions->keyShortcuts = keyShortcuts;
-            welcomeActions->themes = themes;
-            welcomeActions->languages = languages;
             welcomeActions->preferenceMenu = preferenceMenu;
-
-            welcomeActions->welcome = welcome;
-            welcomeActions->instructions = instructions;
-            welcomeActions->checkUpdate = checkUpdate;
-            welcomeActions->aboutApp = aboutApp;
-            welcomeActions->aboutQt = aboutQt;
         }
+        QList<QAction **> tCommonActionsRef = tuningActions->commonActionsRef();
         {
-            tuningActions->newFile = newFile;
-            tuningActions->importFile = importFile;
-            tuningActions->openFile = openFile;
-            tuningActions->openFolder = openFolder;
-            tuningActions->saveFile = saveFile;
-            tuningActions->saveAsFile = saveAsFile;
-            tuningActions->restoreFile = restoreFile;
-            tuningActions->switchFile = switchFile;
-            tuningActions->closeFile = closeFile;
-
+            auto it0 = commonActionsRef.begin();
+            for (auto it = tCommonActionsRef.begin(); it != tCommonActionsRef.end(); ++it, ++it0) {
+                *(*it) = *(*it0);
+            }
             tuningActions->recentMenu = recentMenu;
-
-            tuningActions->undo = undo;
-            tuningActions->redo = redo;
-            tuningActions->selectAll = selectAll;
-            tuningActions->deselect = deselect;
-
-            tuningActions->reset = reset;
-
-            tuningActions->playPause = playPause;
-            tuningActions->replay = replay;
-            tuningActions->stop = stop;
-
-            tuningActions->settings = settings;
-            tuningActions->keyShortcuts = keyShortcuts;
-            tuningActions->themes = themes;
-            tuningActions->languages = languages;
             tuningActions->preferenceMenu = preferenceMenu;
-
-            tuningActions->welcome = welcome;
-            tuningActions->instructions = instructions;
-            tuningActions->checkUpdate = checkUpdate;
-            tuningActions->aboutApp = aboutApp;
-            tuningActions->aboutQt = aboutQt;
         }
-        {
-            voiceActions->newFile = newFile;
-            voiceActions->importFile = importFile;
-            voiceActions->openFile = openFile;
-            voiceActions->openFolder = openFolder;
-            voiceActions->saveFile = saveFile;
-            voiceActions->saveAsFile = saveAsFile;
-            voiceActions->restoreFile = restoreFile;
-            voiceActions->switchFile = switchFile;
-            voiceActions->closeFile = closeFile;
 
+        QList<QAction **> vCommonActionsRef = voiceActions->commonActionsRef();
+        {
+            auto it0 = commonActionsRef.begin();
+            for (auto it = vCommonActionsRef.begin(); it != vCommonActionsRef.end(); ++it, ++it0) {
+                *(*it) = *(*it0);
+            }
             voiceActions->recentMenu = recentMenu;
-
-            voiceActions->undo = undo;
-            voiceActions->redo = redo;
-            voiceActions->selectAll = selectAll;
-            voiceActions->deselect = deselect;
-
-            voiceActions->reset = reset;
-
-            voiceActions->playPause = playPause;
-            voiceActions->replay = replay;
-            voiceActions->stop = stop;
-
-            voiceActions->settings = settings;
-            voiceActions->keyShortcuts = keyShortcuts;
-            voiceActions->themes = themes;
-            voiceActions->languages = languages;
             voiceActions->preferenceMenu = preferenceMenu;
-
-            voiceActions->welcome = welcome;
-            voiceActions->instructions = instructions;
-            voiceActions->checkUpdate = checkUpdate;
-            voiceActions->aboutApp = aboutApp;
-            voiceActions->aboutQt = aboutQt;
         }
-        {
-            keyboardActions->newFile = newFile;
-            keyboardActions->importFile = importFile;
-            keyboardActions->openFile = openFile;
-            keyboardActions->openFolder = openFolder;
-            keyboardActions->saveFile = saveFile;
-            keyboardActions->saveAsFile = saveAsFile;
-            keyboardActions->restoreFile = restoreFile;
-            keyboardActions->switchFile = switchFile;
-            keyboardActions->closeFile = closeFile;
 
+        QList<QAction **> kCommonActionsRef = keyboardActions->commonActionsRef();
+        {
+            auto it0 = commonActionsRef.begin();
+            for (auto it = kCommonActionsRef.begin(); it != kCommonActionsRef.end(); ++it, ++it0) {
+                *(*it) = *(*it0);
+            }
             keyboardActions->recentMenu = recentMenu;
-
-            keyboardActions->undo = undo;
-            keyboardActions->redo = redo;
-            keyboardActions->selectAll = selectAll;
-            keyboardActions->deselect = deselect;
-
-            keyboardActions->reset = reset;
-
-            keyboardActions->playPause = playPause;
-            keyboardActions->replay = replay;
-            keyboardActions->stop = stop;
-
-            keyboardActions->settings = settings;
-            keyboardActions->keyShortcuts = keyShortcuts;
-            keyboardActions->themes = themes;
-            keyboardActions->languages = languages;
             keyboardActions->preferenceMenu = preferenceMenu;
-
-            keyboardActions->welcome = welcome;
-            keyboardActions->instructions = instructions;
-            keyboardActions->checkUpdate = checkUpdate;
-            keyboardActions->aboutApp = aboutApp;
-            keyboardActions->aboutQt = aboutQt;
         }
+
+        QList<QAction **> sCommonActionsRef = settingActions->commonActionsRef();
         {
-            settingActions->newFile = newFile;
-            settingActions->importFile = importFile;
-            settingActions->openFile = openFile;
-            settingActions->openFolder = openFolder;
-            settingActions->saveFile = saveFile;
-            settingActions->saveAsFile = saveAsFile;
-            settingActions->restoreFile = restoreFile;
-            settingActions->switchFile = switchFile;
-            settingActions->closeFile = closeFile;
-
+            auto it0 = commonActionsRef.begin();
+            for (auto it = sCommonActionsRef.begin(); it != sCommonActionsRef.end(); ++it, ++it0) {
+                *(*it) = *(*it0);
+            }
             settingActions->recentMenu = recentMenu;
-
-            settingActions->undo = undo;
-            settingActions->redo = redo;
-            settingActions->selectAll = selectAll;
-            settingActions->deselect = deselect;
-
-            settingActions->reset = reset;
-
-            settingActions->playPause = playPause;
-            settingActions->replay = replay;
-            settingActions->stop = stop;
-
-            settingActions->settings = settings;
-            settingActions->keyShortcuts = keyShortcuts;
-            settingActions->themes = themes;
-            settingActions->languages = languages;
             settingActions->preferenceMenu = preferenceMenu;
-
-            settingActions->welcome = welcome;
-            settingActions->instructions = instructions;
-            settingActions->checkUpdate = checkUpdate;
-            settingActions->aboutApp = aboutApp;
-            settingActions->aboutQt = aboutQt;
         }
-
-        connect(newFile, &QAction::triggered, this, &MainWindow::handleNewFile);
-        connect(importFile, &QAction::triggered, this, &MainWindow::handleImportFile);
-        connect(openFile, &QAction::triggered, this, &MainWindow::handleOpenFile);
-        connect(openFolder, &QAction::triggered, this, &MainWindow::handleOpenFolder);
-        connect(saveFile, &QAction::triggered, this, &MainWindow::handleSaveFile);
-        connect(saveAsFile, &QAction::triggered, this, &MainWindow::handleSaveAsFile);
-        connect(restoreFile, &QAction::triggered, this, &MainWindow::handleRestoreFile);
-        connect(switchFile, &QAction::triggered, this, &MainWindow::handleSwitchFile);
-        connect(closeFile, &QAction::triggered, this, &MainWindow::handleCloseFile);
-
-        connect(undo, &QAction::triggered, this, &MainWindow::handleUndo);
-        connect(redo, &QAction::triggered, this, &MainWindow::handleRedo);
-        connect(selectAll, &QAction::triggered, this, &MainWindow::handleSelectAll);
-        connect(deselect, &QAction::triggered, this, &MainWindow::handleDeselect);
-
-        connect(reset, &QAction::triggered, this, &MainWindow::handleReset);
-
-        connect(playPause, &QAction::triggered, this, &MainWindow::handlePlayPause);
-        connect(replay, &QAction::triggered, this, &MainWindow::handleReplay);
-        connect(stop, &QAction::triggered, this, &MainWindow::handleStop);
-
-        connect(settings, &QAction::triggered, this, &MainWindow::handleOpenSettings);
-        connect(keyShortcuts, &QAction::triggered, this, &MainWindow::handleOpenKeyShortcuts);
-        connect(themes, &QAction::triggered, this, &MainWindow::handleOpenThemes);
-        connect(languages, &QAction::triggered, this, &MainWindow::handleOpenLanguages);
-
-        connect(welcome, &QAction::triggered, this, &MainWindow::handleOpenWelcome);
-        connect(instructions, &QAction::triggered, this, &MainWindow::handleInstructions);
-        connect(checkUpdate, &QAction::triggered, this, &MainWindow::handleCheckUpdate);
-        connect(aboutApp, &QAction::triggered, this, &MainWindow::handleAboutApp);
-        connect(aboutQt, &QAction::triggered, this, &MainWindow::handleAboutQt);
     }
 
     // Set Tuning Actions
     {
-        QAction *appendFile = new QAction(this);
-        QAction *exportSelection = new QAction(this);
-        QAction *exportTrack = new QAction(this);
-
         QMenu *exportMenu = new QMenu(this);
-        exportMenu->addActions({exportSelection, exportTrack});
-
-        QAction *copy = new QAction(this);
-        QAction *cut = new QAction(this);
-        QAction *paste = new QAction(this);
-        QAction *remove = new QAction(this);
-
-        QAction *insertLyrics = new QAction(this);
-        QAction *findReplace = new QAction(this);
-        QAction *transpose = new QAction(this);
-        QAction *octaveUp = new QAction(this);
-        QAction *octaveDown = new QAction(this);
-        QAction *removeRest = new QAction(this);
-        QAction *insertRest = new QAction(this);
-        QAction *p2p3Fade = new QAction(this);
-        QAction *p1p4Fade = new QAction(this);
-        QAction *resetEnvelope = new QAction(this);
-        QAction *noteProperty = new QAction(this);
-
-        QAction *moveStart = new QAction(this);
-        QAction *moveEnd = new QAction(this);
-        QAction *removeCache = new QAction(this);
-        QAction *exportAudio = new QAction(this);
-
-        QAction *lyricConfig = new QAction(this);
-        QAction *prefixConfig = new QAction(this);
-
         QMenu *buildInMenu = new QMenu(this);
         QMenu *pluginMenu = new QMenu(this);
 
-        QAction *openBuildInMenu = new QAction(this);
-        QAction *openPluginMenu = new QAction(this);
-        QAction *openAliasMenu = new QAction(this);
+        QMenu *adsorbMenu = new QMenu(this);
+        QMenu *stateMenu = new QMenu(this);
 
-        QAction *switchTrack = new QAction(this);
-        QAction *switchConfig = new QAction(this);
+        QMenu *tracksMenu = new QMenu(this);
+        QMenu *editorMenu = new QMenu(this);
 
-        QAction *switchNote = new QAction(this);
-        QAction *switchPitch = new QAction(this);
-        QAction *switchEnvelope = new QAction(this);
+        QList<void (MainWindow::*)()> handlers{
+            &MainWindow::handleAppendFile,
+            &MainWindow::handleExportSelection,
+            &MainWindow::handleExportTrack,
 
-        QAction *switchInt = new QAction(this);
-        QAction *switchMod = new QAction(this);
-        QAction *switchVel = new QAction(this);
+            &MainWindow::handleCopyNotes,
+            &MainWindow::handleCutNotes,
+            &MainWindow::handlePasteNotes,
+            &MainWindow::handleRemoveNotes,
+            &MainWindow::handleInsertLyrics,
 
-        tuningActions->appendFile = appendFile;
-        tuningActions->exportSelection = exportSelection;
-        tuningActions->exportTrack = exportTrack;
+            &MainWindow::handleFindReplace,
+            &MainWindow::handleTranspose,
+            &MainWindow::handleOctaveUp,
+            &MainWindow::handleOctaveDown,
+            &MainWindow::handleRemoveRest,
+            &MainWindow::handleInsertRest,
+            &MainWindow::handleP2P3Fade,
+            &MainWindow::handleP1P4Fade,
+            &MainWindow::handleResetEnvelope,
+            &MainWindow::handleNoteProperty,
+
+            &MainWindow::handleMoveToStart,
+            &MainWindow::handleMoveToEnd,
+            &MainWindow::handleRemoveCache,
+            &MainWindow::handleExportAudio,
+            &MainWindow::handleLyricConfig,
+            &MainWindow::handlePrefixConfig,
+
+            &MainWindow::handleOpenBuildInMenu,
+            &MainWindow::handleOpenPluginMenu,
+            &MainWindow::handleOpenAliasMenu,
+
+            &MainWindow::handleSwitchTrack,
+            &MainWindow::handleSwitchConfig,
+            &MainWindow::handleSwitchNote,
+            &MainWindow::handleSwitchPitch,
+            &MainWindow::handleSwitchEnvelope,
+            &MainWindow::handleSwitchInt,
+            &MainWindow::handleSwitchMod,
+            &MainWindow::handleSwitchVel,
+
+            &MainWindow::handleOpenProjectSettings,
+            &MainWindow::handleOpenCharsetSettings,
+
+            &MainWindow::handleFullAdsorb,
+            &MainWindow::handleHalfAdsorb,
+            &MainWindow::handleQuarterAdsorb,
+            &MainWindow::handleSixthAdsorb,
+            &MainWindow::handleEighthAdsorb,
+            &MainWindow::handleTwelfthAdsorb,
+            &MainWindow::handleSixteenthAdsorb,
+            &MainWindow::handleTwentyForthAdsorb,
+            &MainWindow::handleThirtySecondAdsorb,
+            &MainWindow::handleNoneAdsorb,
+
+            &MainWindow::handleSwitchNoteVisibility,
+            &MainWindow::handleSwitchPitchVisibility,
+            &MainWindow::handleSwitchEnvelopeVisibility,
+            &MainWindow::handleSwitchParamsVisibility,
+        };
+
+        QList<QAction **> actionsRef = tuningActions->actionsRef();
+        auto it0 = handlers.begin();
+        for (auto it = actionsRef.begin(); it != actionsRef.end(); ++it, ++it0) {
+            QAction *&action = **it;
+            action = new QAction(this);
+            connect(action, &QAction::triggered, this, *it0);
+        }
+
+        exportMenu->addActions({tuningActions->exportSelection, tuningActions->exportTrack});
+        adsorbMenu->addActions(
+            {tuningActions->fullAdsorb, tuningActions->halfAdsorb,
+             tuningActions->quarterAdsorb, tuningActions->sixthAdsorb,
+             tuningActions->eighthAdsorb, tuningActions->twelfthAdsorb,
+             tuningActions->sixteenthAdsorb, tuningActions->twentyForthAdsorb,
+             tuningActions->thirtySecondAdsorb, tuningActions->noAdsorb});
+        stateMenu->addActions({tuningActions->switchNoteState, tuningActions->switchPitchState,
+                               tuningActions->switchEnvelopeState,
+                               tuningActions->switchParamsState});
+
+        tracksMenu->addAction(tuningActions->openProjectSettings);
+        tracksMenu->addAction(tuningActions->openCharsetSettings);
+
+        editorMenu->addMenu(adsorbMenu);
+        editorMenu->addMenu(stateMenu);
 
         tuningActions->exportMenu = exportMenu;
-
-        tuningActions->copy = copy;
-        tuningActions->cut = cut;
-        tuningActions->paste = paste;
-        tuningActions->remove = remove;
-
-        tuningActions->insertLyrics = insertLyrics;
-        tuningActions->findReplace = findReplace;
-        tuningActions->transpose = transpose;
-        tuningActions->octaveUp = octaveUp;
-        tuningActions->octaveDown = octaveDown;
-        tuningActions->removeRest = removeRest;
-        tuningActions->insertRest = insertRest;
-        tuningActions->p2p3Fade = p2p3Fade;
-        tuningActions->p1p4Fade = p1p4Fade;
-        tuningActions->resetEnvelope = resetEnvelope;
-        tuningActions->noteProperty = noteProperty;
-
-        tuningActions->moveStart = moveStart;
-        tuningActions->moveEnd = moveEnd;
-        tuningActions->removeCache = removeCache;
-        tuningActions->exportAudio = exportAudio;
-
-        tuningActions->lyricConfig = lyricConfig;
-        tuningActions->prefixConfig = prefixConfig;
-
         tuningActions->buildInMenu = buildInMenu;
         tuningActions->pluginMenu = pluginMenu;
+        tuningActions->adsorbMenu = adsorbMenu;
+        tuningActions->stateMenu = stateMenu;
 
-        tuningActions->openBuildInMenu = openBuildInMenu;
-        tuningActions->openPluginMenu = openPluginMenu;
-        tuningActions->openAliasMenu = openAliasMenu;
+        tuningActions->tracksMenu = tracksMenu;
+        tuningActions->editorMenu = editorMenu;
 
-        tuningActions->switchTrack = switchTrack;
-        tuningActions->switchConfig = switchConfig;
+        tracksMenu->setVisible(false);
+        editorMenu->setVisible(false);
 
-        tuningActions->switchNote = switchNote;
-        tuningActions->switchPitch = switchPitch;
-        tuningActions->switchEnvelope = switchEnvelope;
-
-        tuningActions->switchInt = switchInt;
-        tuningActions->switchMod = switchMod;
-        tuningActions->switchVel = switchVel;
-
-        connect(appendFile, &QAction::triggered, this, &MainWindow::handleAppendFile);
-        connect(exportSelection, &QAction::triggered, this, &MainWindow::handleExportSelection);
-        connect(exportTrack, &QAction::triggered, this, &MainWindow::handleExportTrack);
-
-        connect(copy, &QAction::triggered, this, &MainWindow::handleCopyNotes);
-        connect(cut, &QAction::triggered, this, &MainWindow::handleCutNotes);
-        connect(paste, &QAction::triggered, this, &MainWindow::handlePasteNotes);
-        connect(remove, &QAction::triggered, this, &MainWindow::handleRemoveNotes);
-
-        connect(insertLyrics, &QAction::triggered, this, &MainWindow::handleInsertLyrics);
-        connect(findReplace, &QAction::triggered, this, &MainWindow::handleFindReplace);
-        connect(transpose, &QAction::triggered, this, &MainWindow::handleTranspose);
-        connect(octaveUp, &QAction::triggered, this, &MainWindow::handleOctaveUp);
-        connect(octaveDown, &QAction::triggered, this, &MainWindow::handleOctaveDown);
-        connect(removeRest, &QAction::triggered, this, &MainWindow::handleRemoveRest);
-        connect(insertRest, &QAction::triggered, this, &MainWindow::handleInsertRest);
-        connect(p2p3Fade, &QAction::triggered, this, &MainWindow::handleP2P3Fade);
-        connect(p1p4Fade, &QAction::triggered, this, &MainWindow::handleP1P4Fade);
-        connect(resetEnvelope, &QAction::triggered, this, &MainWindow::handleResetEnvelope);
-        connect(noteProperty, &QAction::triggered, this, &MainWindow::handleNoteProperty);
-
-        connect(moveStart, &QAction::triggered, this, &MainWindow::handleMoveToStart);
-        connect(moveEnd, &QAction::triggered, this, &MainWindow::handleMoveToEnd);
-        connect(removeCache, &QAction::triggered, this, &MainWindow::handleRemoveCache);
-        connect(exportAudio, &QAction::triggered, this, &MainWindow::handleExportAudio);
-
-        connect(lyricConfig, &QAction::triggered, this, &MainWindow::handleLyricConfig);
-        connect(prefixConfig, &QAction::triggered, this, &MainWindow::handlePrefixConfig);
-
-        connect(openBuildInMenu, &QAction::triggered, this, &MainWindow::handleOpenBuildInMenu);
-        connect(openPluginMenu, &QAction::triggered, this, &MainWindow::handleOpenPluginMenu);
-        connect(openAliasMenu, &QAction::triggered, this, &MainWindow::handleOpenAliasMenu);
-
-        connect(switchTrack, &QAction::triggered, this, &MainWindow::handleSwitchTrack);
-        connect(switchConfig, &QAction::triggered, this, &MainWindow::handleSwitchConfig);
-
-        connect(switchNote, &QAction::triggered, this, &MainWindow::handleSwitchNote);
-        connect(switchPitch, &QAction::triggered, this, &MainWindow::handleSwitchPitch);
-        connect(switchEnvelope, &QAction::triggered, this, &MainWindow::handleSwitchEnvelope);
-
-        connect(switchInt, &QAction::triggered, this, &MainWindow::handleSwitchInt);
-        connect(switchMod, &QAction::triggered, this, &MainWindow::handleSwitchMod);
-        connect(switchVel, &QAction::triggered, this, &MainWindow::handleSwitchVel);
+        menuBar()->addMenu(tracksMenu);
+        menuBar()->addMenu(editorMenu);
     }
 
     // Set Voice Actions
     {
-        QAction *exportCurrent = new QAction(this);
-
-        QAction *moveUp = new QAction(this);
-        QAction *moveDown = new QAction(this);
-        QAction *moveTop = new QAction(this);
-        QAction *moveBottom = new QAction(this);
-        QAction *duplicate = new QAction(this);
-        QAction *remove = new QAction(this);
-
-        QAction *generateFrq = new QAction(this);
-        QAction *modifyAlias = new QAction(this);
-        QAction *removeInvalid = new QAction(this);
-        QAction *setOffset = new QAction(this);
-        QAction *setOverlap = new QAction(this);
-        QAction *setPreUttr = new QAction(this);
-        QAction *setConstant = new QAction(this);
-        QAction *setBlank = new QAction(this);
-
         QMenu *buildInMenu = new QMenu(this);
+        QList<void (MainWindow::*)()> handlers{
+            &MainWindow::handleExportCurrent,    &MainWindow::handleMoveUpSample,
+            &MainWindow::handleMoveDownSample,   &MainWindow::handleMoveTopSample,
+            &MainWindow::handleMoveBottomSample, &MainWindow::handleDuplicateSample,
+            &MainWindow::handleRemoveSample,     &MainWindow::handleGenerateFrq,
+            &MainWindow::handleModifyAlias,      &MainWindow::handleRemoveInvalidSamples,
+            &MainWindow::handleSetOffset,        &MainWindow::handleSetOverlap,
+            &MainWindow::handleSetPreUttr,       &MainWindow::handleSetConstant,
+            &MainWindow::handleSetBlank,
+        };
 
-        voiceActions->exportCurrent = exportCurrent;
-
-        voiceActions->moveUp = moveUp;
-        voiceActions->moveDown = moveDown;
-        voiceActions->moveTop = moveTop;
-        voiceActions->moveBottom = moveBottom;
-        voiceActions->duplicate = duplicate;
-        voiceActions->remove = remove;
-
-        voiceActions->generateFrq = generateFrq;
-        voiceActions->modifyAlias = modifyAlias;
-        voiceActions->removeInvalid = removeInvalid;
-        voiceActions->setOffset = setOffset;
-        voiceActions->setOverlap = setOverlap;
-        voiceActions->setPreUttr = setPreUttr;
-        voiceActions->setConstant = setConstant;
-        voiceActions->setBlank = setBlank;
+        QList<QAction **> actionsRef = voiceActions->actionsRef();
+        auto it0 = handlers.begin();
+        for (auto it = actionsRef.begin(); it != actionsRef.end(); ++it, ++it0) {
+            QAction *&action = **it;
+            action = new QAction(this);
+            connect(action, &QAction::triggered, this, *it0);
+        }
 
         voiceActions->buildInMenu = buildInMenu;
-
-        connect(exportCurrent, &QAction::triggered, this, &MainWindow::handleExportCurrent);
-
-        connect(moveUp, &QAction::triggered, this, &MainWindow::handleMoveUpSample);
-        connect(moveDown, &QAction::triggered, this, &MainWindow::handleMoveDownSample);
-        connect(moveTop, &QAction::triggered, this, &MainWindow::handleMoveTopSample);
-        connect(moveBottom, &QAction::triggered, this, &MainWindow::handleMoveBottomSample);
-        connect(duplicate, &QAction::triggered, this, &MainWindow::handleDuplicateSample);
-        connect(remove, &QAction::triggered, this, &MainWindow::handleRemoveSample);
-
-        connect(generateFrq, &QAction::triggered, this, &MainWindow::handleGenerateFrq);
-        connect(modifyAlias, &QAction::triggered, this, &MainWindow::handleModifyAlias);
-        connect(removeInvalid, &QAction::triggered, this, &MainWindow::handleRemoveInvalidSamples);
-        connect(setOffset, &QAction::triggered, this, &MainWindow::handleSetOffset);
-        connect(setOverlap, &QAction::triggered, this, &MainWindow::handleSetOverlap);
-        connect(setPreUttr, &QAction::triggered, this, &MainWindow::handleSetPreUttr);
-        connect(setConstant, &QAction::triggered, this, &MainWindow::handleSetConstant);
-        connect(setBlank, &QAction::triggered, this, &MainWindow::handleSetBlank);
     }
 }
 
@@ -698,9 +467,9 @@ void MainWindow::setCurrentActions(Qs::MainTabs type) {
         helpMenu->addAction(tuningActions->aboutQt);
 
         // Shortcuts
-        addAction(tuningActions->openBuildInMenu);
-        addAction(tuningActions->openPluginMenu);
-        addAction(tuningActions->openAliasMenu);
+        addAction(tuningActions->openBuildInList);
+        addAction(tuningActions->openPluginList);
+        addAction(tuningActions->openAliasList);
 
         addAction(tuningActions->switchTrack);
         addAction(tuningActions->switchConfig);

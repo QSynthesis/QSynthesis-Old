@@ -83,7 +83,8 @@ void VoiceBankTab::loadCore() {
     // Char Text
     infoArea->setName(voicebank.name());
     infoArea->setAuthor(voicebank.author());
-    infoArea->setAvatar(m_filename + Slash + voicebank.image());
+    infoArea->setAvatar(m_filename + Slash + voicebank.avatar());
+    infoArea->setSprite(m_filename + Slash + voicebank.sprite());
 
     // Readme Text
     infoArea->setText(voicebank.ReadmeTxt.text());
@@ -101,23 +102,37 @@ void VoiceBankTab::loadCore() {
 }
 
 bool VoiceBankTab::saveCore() {
-    QString imagePath = infoArea->avatar();
-    QString newPath = imagePath;
+    QString avatarPath = infoArea->avatar();
+    QString newAvatarPath = avatarPath;
     // Not in voice bank
-    if (!imagePath.isEmpty() && !imagePath.startsWith(m_filename)) {
-        newPath = m_filename + Slash + PathFindFileName(imagePath);
-        if (!infoArea->image().save(newPath)) {
+    if (!avatarPath.isEmpty() && !avatarPath.startsWith(m_filename)) {
+        newAvatarPath = m_filename + Slash + PathFindFileName(avatarPath);
+        if (!infoArea->avatarImage().save(newAvatarPath)) {
             QMessageBox::information(this, MainTitle,
                                      tr("Unable to copy the image to voice bank directory!"));
             return false;
         }
-        infoArea->setAvatar(newPath);
+        infoArea->setAvatar(newAvatarPath);
+    }
+
+    QString spritePath = infoArea->sprite();
+    QString newSpritePath = spritePath;
+    // Not in voice bank
+    if (!spritePath.isEmpty() && !spritePath.startsWith(m_filename)) {
+        newSpritePath = m_filename + Slash + PathFindFileName(spritePath);
+        if (!infoArea->spriteImage().save(newSpritePath)) {
+            QMessageBox::information(this, MainTitle,
+                                     tr("Unable to copy the image to voice bank directory!"));
+            return false;
+        }
+        infoArea->setSprite(newSpritePath);
     }
 
     // Char Text
     voicebank.setName(infoArea->name());
     voicebank.setAuthor(infoArea->author());
-    voicebank.setImage(PathFindFileName(newPath, m_filename));
+    voicebank.setAvatar(PathFindFileName(newAvatarPath, m_filename));
+    voicebank.setSprite(PathFindFileName(newSpritePath, m_filename));
 
     // Readme Text
     voicebank.ReadmeTxt.setText(infoArea->text());

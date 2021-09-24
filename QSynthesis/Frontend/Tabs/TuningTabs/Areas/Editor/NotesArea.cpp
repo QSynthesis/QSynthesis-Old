@@ -21,15 +21,18 @@ NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *parent)
     m_envelopesVisible = true;
     m_paramsVisible = true;
 
+    m_spriteVisible = true;
+
     m_moving = false;
     m_selecting = false;
     m_drawingItem = nullptr;
 
+    initSpriteModules();
     initLyricModules();
     initSelectModules();
     initPlayModules();
 
-    installEventFilter(this);
+    // installEventFilter(this);
 
     connect(this, &QGraphicsScene::sceneRectChanged, this, &NotesArea::handleSceneRectChanged);
 

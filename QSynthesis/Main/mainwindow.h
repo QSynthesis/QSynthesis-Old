@@ -216,6 +216,25 @@ private:
     void handleSwitchMod();
     void handleSwitchVel();
 
+    void handleOpenProjectSettings();
+    void handleOpenCharsetSettings();
+
+    void handleFullAdsorb();
+    void handleHalfAdsorb();
+    void handleQuarterAdsorb();
+    void handleSixthAdsorb();
+    void handleEighthAdsorb();
+    void handleTwelfthAdsorb();
+    void handleSixteenthAdsorb();
+    void handleTwentyForthAdsorb();
+    void handleThirtySecondAdsorb();
+    void handleNoneAdsorb();
+
+    void handleSwitchNoteVisibility();
+    void handleSwitchPitchVisibility();
+    void handleSwitchEnvelopeVisibility();
+    void handleSwitchParamsVisibility();
+
     // Voice Bank
     void handleExportCurrent();
 

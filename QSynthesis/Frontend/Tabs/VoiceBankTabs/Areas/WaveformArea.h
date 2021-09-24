@@ -94,9 +94,6 @@ private:
     void updateHandles();
     void updateRegionBack();
 
-    void paintEvent(QPaintEvent *event);
-    void resizeEvent(QResizeEvent *event);
-
     void drawSingleChannel(QPainter &painter, int W, int H);
     void drawDoubleChannel(QPainter &painter, int W, int H);
     void drawFrequencyCurves(QPainter &painter, int W, int H);

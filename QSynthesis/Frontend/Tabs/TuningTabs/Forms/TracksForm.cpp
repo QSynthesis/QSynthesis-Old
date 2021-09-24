@@ -14,7 +14,7 @@ TracksForm::TracksForm(TuningTab *parent) : BaseForm(parent) {
     content = new TracksInterface(this);
     setWidget(content);
 
-    btnTracks = new SwitchButton(tr("Tracks"), titleBar());
+    btnTracks = new SwitchButton(tr("Overview"), titleBar());
     btnConfig = new SwitchButton(tr("Configuration"), titleBar());
 
     btnTracks->setProperty("type", "titleBar");

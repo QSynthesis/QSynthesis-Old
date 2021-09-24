@@ -82,7 +82,43 @@ void NotesArea::focusOutEvent(QFocusEvent *event) {
     }
 }
 
-bool NotesArea::leaveEvent(QEvent *event) {
+void NotesArea::keyPressEvent(QKeyEvent *event) {
+    int key = event->key();
+
+    if (isLyricEditing()) {
+        if (key == Qt::Key_Tab) {
+            switchLyric();
+            return;
+        } else if (key == Qt::Key_Escape) {
+            abandonLyric();
+            return;
+        } else if (key == Qt::Key_Enter || key == Qt::Key_Return) {
+            editFinish();
+            return;
+        }
+    } else {
+        GraphicsNote *p = static_cast<GraphicsNote *>(qDragOut.leftmost());
+        if (p) {
+            if (key == Qt::Key_Left && p->prev()) {
+                selectNote(p->prev());
+                return;
+            } else if (key == Qt::Key_Right && p->next()) {
+                selectNote(p->next());
+                return;
+            } else if (key == Qt::Key_Enter || key == Qt::Key_Return) {
+                if (!isPlaying()) {
+                    editNoteLyric(p);
+                    return;
+                }
+            } else if (key == Qt::Key_Tab) {
+                return;
+            }
+        }
+    }
+    return GraphicsArea::keyPressEvent(event);
+}
+
+void NotesArea::leaveEvent(QEvent *event) {
     if (m_drawingItem) {
         switch (m_drawingItem->element()) {
         case GraphicsDragger::Note: {
@@ -101,57 +137,16 @@ bool NotesArea::leaveEvent(QEvent *event) {
     } else if (m_selecting) {
         stopSelecting();
     }
-    return false;
 }
 
-bool NotesArea::keyDownEvent(QKeyEvent *event) {
-    int key = event->key();
+void NotesArea::moveEvent(QGraphicsSceneMoveEvent *event) {
+    updateSprite();
+}
 
-    if (isLyricEditing()) {
-        if (key == Qt::Key_Tab) {
-            switchLyric();
-            return true;
-        } else if (key == Qt::Key_Escape) {
-            abandonLyric();
-            return true;
-        } else if (key == Qt::Key_Enter || key == Qt::Key_Return) {
-            editFinish();
-            return true;
-        }
-    } else {
-        GraphicsNote *p = static_cast<GraphicsNote *>(qDragOut.leftmost());
-        if (p) {
-            if (key == Qt::Key_Left && p->prev()) {
-                selectNote(p->prev());
-                return true;
-            } else if (key == Qt::Key_Right && p->next()) {
-                selectNote(p->next());
-                return true;
-            } else if (key == Qt::Key_Enter || key == Qt::Key_Return) {
-                if (!isPlaying()) {
-                    editNoteLyric(p);
-                    return true;
-                }
-            } else if (key == Qt::Key_Tab) {
-                return true;
-            }
-        }
-    }
-    return false;
+void NotesArea::resizeEvent(QGraphicsSceneResizeEvent *event) {
+    updateSprite();
 }
 
 bool NotesArea::eventFilter(QObject *obj, QEvent *event) {
-    if (obj == this) {
-        if (event->type() == QEvent::KeyPress) {
-            QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-            if (keyDownEvent(keyEvent)) {
-                return true;
-            }
-        } else if (event->type() == QEvent::Leave) {
-            if (leaveEvent(event)) {
-                return true;
-            }
-        }
-    }
     return GraphicsArea::eventFilter(obj, event);
 }

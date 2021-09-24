@@ -186,6 +186,17 @@ void MainWindow::handleCheckUpdate() {
 }
 
 void MainWindow::handleAboutApp() {
+    QFile file(":/texts/about.html");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        return;
+    }
+    QTextStream in(&file);
+    in.setCodec(QTextCodec::codecForName("UTF-8"));
+
+    QString text = in.readAll();
+    file.close();
+
+    QMessageBox::about(this, tr("About QSynthesis"), text);
 }
 
 void MainWindow::handleAboutQt() {

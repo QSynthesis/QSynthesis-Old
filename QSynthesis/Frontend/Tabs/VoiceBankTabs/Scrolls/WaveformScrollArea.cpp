@@ -44,7 +44,7 @@ bool WaveformScrollArea::eventFilter(QObject *obj, QEvent *event) {
         }
     }
     // pass the event on to the parent class
-    return QGraphicsView::eventFilter(obj, event);
+    return GraphicsLinearView::eventFilter(obj, event);
 }
 
 QColor WaveformScrollArea::sampleOffsetLine() const {

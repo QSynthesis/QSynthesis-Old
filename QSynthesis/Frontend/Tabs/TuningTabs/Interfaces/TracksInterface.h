@@ -58,8 +58,6 @@ private:
 
     VectorButton *btnMenu;
 
-    QMenu *m_menu;
-
     void handleHorizontalMove(int value);
     void handleVerticalMove(int value);
 
@@ -69,8 +67,6 @@ private:
     void handleFlagsChanged(int index, QString newVal);
 
     void handleMenuBtnClicked();
-    void handleConfigTriggered();
-    void handleCharsetTriggered();
 };
 
 #endif // TRACKSINTERFACE_H

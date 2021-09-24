@@ -7,6 +7,7 @@
 
 class NotesArea;
 class ScopeHandler;
+class GraphicsNote;
 
 class GraphicsPoint : public GraphicsDragger {
 public:
@@ -33,6 +34,7 @@ public:
     double absoulteY() const;
 
     ScopeHandler *scope() const;
+    GraphicsNote *note() const;
 
 public:
     void setHovered(bool hovered);

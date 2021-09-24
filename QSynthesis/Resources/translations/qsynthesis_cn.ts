@@ -226,84 +226,68 @@
         <translation type="unfinished">音量包络</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="10"/>
         <source>Quantization</source>
-        <translation type="unfinished">量化</translation>
+        <translation type="obsolete">量化</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="11"/>
         <source>State</source>
-        <translation type="unfinished">状态</translation>
+        <translation type="obsolete">状态</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="13"/>
         <source>Quarter</source>
-        <translation type="unfinished">四分音符</translation>
+        <translation type="obsolete">四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="14"/>
         <source>1/2 Quarter</source>
-        <translation type="unfinished">1/2 个四分音符</translation>
+        <translation type="obsolete">1/2 个四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="15"/>
         <source>1/4 Quarter</source>
-        <translation type="unfinished">1/4 个四分音符</translation>
+        <translation type="obsolete">1/4 个四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="16"/>
         <source>1/6 Quarter</source>
-        <translation type="unfinished">1/6 个四分音符</translation>
+        <translation type="obsolete">1/6 个四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="17"/>
         <source>1/8 Quarter</source>
-        <translation type="unfinished">1/8 个四分音符</translation>
+        <translation type="obsolete">1/8 个四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="18"/>
         <source>1/12 Quarter</source>
-        <translation type="unfinished">1/12 个四分音符</translation>
+        <translation type="obsolete">1/12 个四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="19"/>
         <source>1/16 Quarter</source>
-        <translation type="unfinished">1/16 个四分音符</translation>
+        <translation type="obsolete">1/16 个四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="20"/>
         <source>1/24 Quarter</source>
-        <translation type="unfinished">1/24 个四分音符</translation>
+        <translation type="obsolete">1/24 个四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="21"/>
         <source>1/32 Quarter</source>
-        <translation type="unfinished">1/32 个四分音符</translation>
+        <translation type="obsolete">1/32 个四分音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="22"/>
         <source>None</source>
-        <translation type="unfinished">无</translation>
+        <translation type="obsolete">无</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="24"/>
         <source>Display note block</source>
-        <translation type="unfinished">显示音符矩形</translation>
+        <translation type="obsolete">显示音符矩形</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="25"/>
         <source>Display pitch curves</source>
-        <translation type="unfinished">显示音高曲线</translation>
+        <translation type="obsolete">显示音高曲线</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="26"/>
         <source>Display envelope</source>
-        <translation type="unfinished">显示音量包络</translation>
+        <translation type="obsolete">显示音量包络</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForms/EditorForm_ContextMenu.cpp" line="27"/>
         <source>Display parameters</source>
-        <translation type="unfinished">显示参数</translation>
+        <translation type="obsolete">显示参数</translation>
     </message>
 </context>
 <context>
@@ -441,7 +425,7 @@
         <translation type="obsolete">在文件管理器中显示</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="28"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="41"/>
         <source>Replace...</source>
         <translation type="unfinished">替换...</translation>
     </message>
@@ -450,32 +434,32 @@
         <translation type="obsolete">替换</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="21"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="34"/>
         <source>Show in Explorer(&amp;S)</source>
         <translation type="unfinished">在文件资源管理器中显示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="23"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="36"/>
         <source>Show in Finder(&amp;S)</source>
         <translation type="unfinished">在Finder中显示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="25"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="38"/>
         <source>Show in File Manager(&amp;S)</source>
         <translation type="unfinished">在文件管理器中显示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="28"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="41"/>
         <source>Remove</source>
         <translation type="unfinished">移除</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="50"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="63"/>
         <source>Open File</source>
         <translation type="unfinished">打开文件</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="58"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="71"/>
         <source>This file is not a valid image file!</source>
         <translation type="unfinished">这不是合法的图片文件！</translation>
     </message>
@@ -569,12 +553,12 @@
         <translation type="unfinished">键绑定</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/Contents/KeyTableTab.cpp" line="127"/>
+        <location filename="../../Frontend/Tabs/KeyboardTabs/Contents/KeyTableTab.cpp" line="130"/>
         <source>Default</source>
         <translation type="unfinished">默认</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/Contents/KeyTableTab.cpp" line="127"/>
+        <location filename="../../Frontend/Tabs/KeyboardTabs/Contents/KeyTableTab.cpp" line="130"/>
         <source>User</source>
         <translation type="unfinished">用户</translation>
     </message>
@@ -980,11 +964,12 @@
         <translation type="obsolete">检查更新</translation>
     </message>
     <message>
+        <location filename="../../Main/Actions/common.cpp" line="199"/>
         <source>About QSynthesis</source>
-        <translation type="obsolete">关于 QSynthesis</translation>
+        <translation type="unfinished">关于 QSynthesis</translation>
     </message>
     <message>
-        <location filename="../../Main/Actions/common.cpp" line="192"/>
+        <location filename="../../Main/Actions/common.cpp" line="203"/>
         <source>About Qt</source>
         <translation type="unfinished">关于 Qt</translation>
     </message>
@@ -1377,14 +1362,24 @@
         <translation type="unfinished">作者</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.cpp" line="27"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.cpp" line="29"/>
         <source>Description</source>
         <translation type="unfinished">描述</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.cpp" line="28"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.cpp" line="30"/>
         <source>Pitch</source>
         <translation type="unfinished">音高</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.cpp" line="31"/>
+        <source>Foreground</source>
+        <translation type="unfinished">前景</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoAreas/OtoInfoArea_Avatar.cpp" line="58"/>
+        <source>Null</source>
+        <translation type="unfinished">无</translation>
     </message>
 </context>
 <context>
@@ -1653,17 +1648,17 @@
         <translation type="obsolete">设置这里的曲速</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="250"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="246"/>
         <source>Set Global Tempo...</source>
         <translation type="unfinished">设置全局曲速...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="250"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="246"/>
         <source>Set Tempo here...</source>
         <translation type="unfinished">设置这里的曲速...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="250"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="246"/>
         <source>Remove Tempo</source>
         <translation type="unfinished">删除曲速</translation>
     </message>
@@ -2199,8 +2194,12 @@
 <context>
     <name>TracksForm</name>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/TracksForm.cpp" line="17"/>
         <source>Tracks</source>
+        <translation type="obsolete">概览</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Tabs/TuningTabs/Forms/TracksForm.cpp" line="17"/>
+        <source>Overview</source>
         <translation type="unfinished">概览</translation>
     </message>
     <message>
@@ -2212,237 +2211,338 @@
 <context>
     <name>TracksInterface</name>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Interfaces/TrackInterfaces/TracksInterface_ContextMenu.cpp" line="6"/>
         <source>Project Settings...</source>
-        <translation type="unfinished">工程设置...</translation>
+        <translation type="obsolete">工程设置...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Interfaces/TrackInterfaces/TracksInterface_ContextMenu.cpp" line="7"/>
         <source>Charset...</source>
-        <translation type="unfinished">字符集...</translation>
+        <translation type="obsolete">字符集...</translation>
     </message>
 </context>
 <context>
     <name>TuningActionList</name>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="21"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="37"/>
         <source>Append...</source>
         <translation type="unfinished">追加导入...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="22"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="38"/>
         <source>Export selection...</source>
         <translation type="unfinished">导出选区...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="23"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="39"/>
         <source>Export entire track...</source>
         <translation type="unfinished">导出整个音轨...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="25"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="41"/>
         <source>File</source>
         <translation type="unfinished">文件</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="30"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="46"/>
         <source>Export</source>
         <translation type="unfinished">导出</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="33"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="49"/>
         <source>Copy</source>
         <translation type="unfinished">复制</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="34"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="50"/>
         <source>Cut</source>
         <translation type="unfinished">剪切</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="35"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="51"/>
         <source>Paste</source>
         <translation type="unfinished">粘贴</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="36"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="52"/>
         <source>Delete</source>
         <translation type="unfinished">删除</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="38"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="54"/>
         <source>Edit</source>
         <translation type="unfinished">编辑</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="45"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="61"/>
         <source>Insert lyrics...</source>
         <translation type="unfinished">插入歌词...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="46"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="62"/>
         <source>Find/replace</source>
         <translation type="unfinished">查找/替换</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="47"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="63"/>
         <source>Transpose...</source>
         <translation type="unfinished">变调...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="48"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="64"/>
         <source>Shift up by an octave</source>
         <translation type="unfinished">升高八度</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="49"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="65"/>
         <source>Shift down by an octave</source>
         <translation type="unfinished">降低八度</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="50"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="66"/>
         <source>Remove rest...</source>
         <translation type="unfinished">删除休止符...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="51"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="67"/>
         <source>Insert rest</source>
         <translation type="unfinished">插入休止符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="52"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="68"/>
         <source>Envelope crossFade (p2p3)</source>
         <translation type="unfinished">设置音量包络淡化 (p2p3)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="53"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="69"/>
         <source>Envelope crossFade (p1p4)</source>
         <translation type="unfinished">设置音量包络淡化 (p1p4)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="54"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="70"/>
         <source>Reset Envelope</source>
         <translation type="unfinished">重置音量包络</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="55"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="71"/>
         <source>Note properties...</source>
         <translation type="unfinished">音符属性...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="57"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="73"/>
         <source>Modify</source>
         <translation type="unfinished">修改</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="71"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="87"/>
         <source>Move to start</source>
         <translation type="unfinished">移动到开始</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="72"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="88"/>
         <source>Move to end</source>
         <translation type="unfinished">移动到结束</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="73"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="89"/>
         <source>Remove cache</source>
         <translation type="unfinished">删除缓存</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="74"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="90"/>
         <source>Export recent audio</source>
         <translation type="unfinished">导出最近的音频</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="76"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="92"/>
         <source>Preview</source>
         <translation type="unfinished">预览</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="83"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="99"/>
         <source>Voice bank configue</source>
         <translation type="unfinished">音源管理</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="84"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="100"/>
         <source>Prefix map configue</source>
         <translation type="unfinished">前缀后缀表</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="86"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="102"/>
         <source>Tools</source>
         <translation type="unfinished">工具</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="90"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="106"/>
         <source>Build-in tools</source>
         <translation type="unfinished">内置工具</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="91"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="107"/>
         <source>Plugins</source>
         <translation type="unfinished">插件</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="96"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="112"/>
         <source>Open build-in tools list</source>
         <translation type="unfinished">打开内置工具列表</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="97"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="113"/>
         <source>Open plug-in list</source>
         <translation type="unfinished">打开插件列表</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="98"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="114"/>
         <source>Open alias list</source>
         <translation type="unfinished">打开辅助记号列表</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="99"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="115"/>
         <source>Switch to overview mode</source>
         <translation type="unfinished">切换到概览模式</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="100"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="116"/>
         <source>Switch to configuration mode</source>
         <translation type="unfinished">切换到配置模式</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="101"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="117"/>
         <source>Switch to note mode</source>
         <translation type="unfinished">切换到音符模式</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="102"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="118"/>
         <source>Switch to pitch mode</source>
         <translation type="unfinished">切换到音高模式</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="103"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="119"/>
         <source>Switch to envelope mode</source>
         <translation type="unfinished">切换到音量包络模式</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="104"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="120"/>
         <source>Switch to intensity mode</source>
         <translation type="unfinished">切换到音量模式</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="105"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="121"/>
         <source>Switch to modulation mode</source>
         <translation type="unfinished">切换到移调模式</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="106"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="122"/>
         <source>Switch to velocity mode</source>
         <translation type="unfinished">切换到辅音速度模式</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="108"/>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="124"/>
         <source>Shortcut</source>
         <translation type="unfinished">快捷键</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="138"/>
+        <source>Project Settings...</source>
+        <translation type="unfinished">工程设置...</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="139"/>
+        <source>Charset...</source>
+        <translation type="unfinished">字符集...</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="141"/>
+        <source>Global</source>
+        <translation type="unfinished">全局</translation>
+    </message>
+    <message>
+        <source>Tracks</source>
+        <translation type="obsolete">音轨</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="146"/>
+        <source>Quantization</source>
+        <translation type="unfinished">量化</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="147"/>
+        <source>State</source>
+        <translation type="unfinished">状态</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="149"/>
+        <source>Quarter</source>
+        <translation type="unfinished">四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="150"/>
+        <source>1/2 Quarter</source>
+        <translation type="unfinished">1/2 个四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="151"/>
+        <source>1/4 Quarter</source>
+        <translation type="unfinished">1/4 个四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="152"/>
+        <source>1/6 Quarter</source>
+        <translation type="unfinished">1/6 个四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="153"/>
+        <source>1/8 Quarter</source>
+        <translation type="unfinished">1/8 个四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="154"/>
+        <source>1/12 Quarter</source>
+        <translation type="unfinished">1/12 个四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="155"/>
+        <source>1/16 Quarter</source>
+        <translation type="unfinished">1/16 个四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="156"/>
+        <source>1/24 Quarter</source>
+        <translation type="unfinished">1/24 个四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="157"/>
+        <source>1/32 Quarter</source>
+        <translation type="unfinished">1/32 个四分音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="158"/>
+        <source>None</source>
+        <translation type="unfinished">无</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="160"/>
+        <source>Display note block</source>
+        <translation type="unfinished">显示音符矩形</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="161"/>
+        <source>Display pitch curves</source>
+        <translation type="unfinished">显示音高曲线</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="162"/>
+        <source>Display envelope</source>
+        <translation type="unfinished">显示音量包络</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Actions/TuningActionList.cpp" line="163"/>
+        <source>Display parameters</source>
+        <translation type="unfinished">显示参数</translation>
+    </message>
+    <message>
+        <source>Piano Roll</source>
+        <translation type="obsolete">钢琴卷帘</translation>
     </message>
 </context>
 <context>
@@ -2463,37 +2563,37 @@
         <translation type="unfinished">无法写入文件！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="109"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="103"/>
         <source>Remove Rests</source>
         <translation type="unfinished">删除休止符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="109"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="103"/>
         <source>Remove rests shorter than...</source>
         <translation type="unfinished">删除指定长度以下的休止符...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="144"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="138"/>
         <source>Transpose</source>
         <translation type="unfinished">变调</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="144"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="138"/>
         <source>Pitch Shift(semitones)</source>
         <translation type="unfinished">音阶移动（半音程）</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="57"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="58"/>
         <source>Beats per minute (10~512)...</source>
         <translation type="unfinished">每分钟的节拍数（10~512)...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="61"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="62"/>
         <source>Set Global Tempo</source>
         <translation type="unfinished">设置全局曲速</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="64"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="65"/>
         <source>Set Tempo</source>
         <translation type="unfinished">设置曲速</translation>
     </message>
@@ -2683,7 +2783,8 @@
         <translation type="unfinished">无法恢复音源！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Core.cpp" line="111"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Core.cpp" line="112"/>
+        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Core.cpp" line="125"/>
         <source>Unable to copy the image to voice bank directory!</source>
         <translation type="unfinished">无法建立图片文件副本！</translation>
     </message>

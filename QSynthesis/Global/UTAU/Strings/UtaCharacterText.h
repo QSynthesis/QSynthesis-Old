@@ -8,6 +8,7 @@ namespace UtaCharacterText {
     const QString KEY_NAME_CHAR_NAME = "name";
     const QString KEY_NAME_CHAR_IMAGE = "image";
     const QString KEY_NAME_CHAR_AUTHOR = "author";
+    const QString KEY_NAME_CHAR_FOREGROUND = "foreground";
 
 } // namespace UtaCharacterText
 

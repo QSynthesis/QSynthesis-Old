@@ -68,8 +68,12 @@ QString VoiceInfo::author() const {
     return m_author;
 }
 
-QString VoiceInfo::image() const {
-    return m_image;
+QString VoiceInfo::avatar() const {
+    return m_avatar;
+}
+
+QString VoiceInfo::sprite() const {
+    return m_sprite;
 }
 
 void VoiceInfo::setName(const QString &name) {
@@ -80,14 +84,19 @@ void VoiceInfo::setAuthor(const QString &author) {
     m_author = author;
 }
 
-void VoiceInfo::setImage(const QString &image) {
-    m_image = image;
+void VoiceInfo::setAvatar(const QString &avatar) {
+    m_avatar = avatar;
+}
+
+void VoiceInfo::setSprite(const QString &sprite) {
+    m_sprite = sprite;
 }
 
 void VoiceInfo::resetCore() {
     m_name = "";
     m_author = "";
-    m_image = "";
+    m_avatar = "";
+    m_sprite = "";
 }
 
 void VoiceInfo::prepareCore() {
@@ -119,13 +128,17 @@ bool VoiceInfo::loadCharTxt() {
     if (nameValue) {
         m_name = *nameValue;
     }
-    QString *imageValue = section.valueOf(KEY_NAME_CHAR_IMAGE);
-    if (imageValue) {
-        m_image = *imageValue;
+    QString *avatarValue = section.valueOf(KEY_NAME_CHAR_IMAGE);
+    if (avatarValue) {
+        m_avatar = QDir::fromNativeSeparators(*avatarValue);
     }
     QString *authorValue = section.valueOf(KEY_NAME_CHAR_AUTHOR);
     if (authorValue) {
         m_author = *authorValue;
+    }
+    QString *spriteValue = section.valueOf(KEY_NAME_CHAR_FOREGROUND);
+    if (spriteValue) {
+        m_sprite = QDir::fromNativeSeparators(*spriteValue);
     }
     m_custom = section.unformattedLines();
 
@@ -137,11 +150,14 @@ bool VoiceInfo::saveCharTxt() {
     if (!m_name.isEmpty()) {
         section.addPair(KEY_NAME_CHAR_NAME, m_name);
     }
-    if (!m_image.isEmpty()) {
-        section.addPair(KEY_NAME_CHAR_IMAGE, QDir::toNativeSeparators(m_image));
+    if (!m_avatar.isEmpty()) {
+        section.addPair(KEY_NAME_CHAR_IMAGE, QDir::toNativeSeparators(m_avatar));
     }
     if (!m_author.isEmpty()) {
         section.addPair(KEY_NAME_CHAR_AUTHOR, m_author);
+    }
+    if (!m_sprite.isEmpty()) {
+        section.addPair(KEY_NAME_CHAR_FOREGROUND, QDir::toNativeSeparators(m_sprite));
     }
     section.setUnformattedLines(m_custom);
 

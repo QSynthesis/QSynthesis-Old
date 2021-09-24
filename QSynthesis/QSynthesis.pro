@@ -62,6 +62,7 @@ SOURCES += \
     Frontend/Actions/VoiceActionList.cpp \
     Frontend/Actions/WelcomeActionList.cpp \
     Frontend/Common/Graphics/GraphicsArea.cpp \
+    Frontend/Common/Graphics/GraphicsBaseView.cpp \
     Frontend/Common/Graphics/GraphicsDragger.cpp \
     Frontend/Common/Graphics/GraphicsHandle.cpp \
     Frontend/Common/Graphics/GraphicsLineEdit.cpp \
@@ -144,6 +145,7 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Properties.cpp \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Render.cpp \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Select.cpp \
+    Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Sprite.cpp \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_States.cpp \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Update.cpp \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Variate.cpp \
@@ -190,6 +192,7 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsPoints/GraphicsPoint_Link.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsPoints/GraphicsPoint_Properties.cpp \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsRubber.cpp \
+    Frontend/Tabs/TuningTabs/Graphics/GraphicsSprite.cpp \
     Frontend/Tabs/TuningTabs/Graphics/VibratoHandles/VibratoBaseHandle.cpp \
     Frontend/Tabs/TuningTabs/Graphics/VibratoHandles/VibratoLineHandle.cpp \
     Frontend/Tabs/TuningTabs/Graphics/VibratoHandles/VibratoPlaneHandle.cpp \
@@ -254,6 +257,7 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/Operations/TrackOperations/TrackSwitchOperation.cpp \
     Frontend/Tabs/TuningTabs/Operations/TuneOperation.cpp \
     Frontend/Tabs/TuningTabs/ProjectInfoHandler.cpp \
+    Frontend/Tabs/TuningTabs/Scrolls/NotesScrollAreas/NotesScrollArea_Colors.cpp \
     Frontend/Tabs/TuningTabs/TuningGroup.cpp \
     Frontend/Tabs/TuningTabs/TuningTab_Core.cpp \
     Frontend/Tabs/TuningTabs/TuningTab_Edit.cpp \
@@ -293,6 +297,7 @@ SOURCES += \
     Frontend/Tabs/VoiceBankTabs/Operations/OtoOperations/OtoMoveOperation.cpp \
     Frontend/Tabs/VoiceBankTabs/Operations/OtoOperations/OtoVariateOperation.cpp \
     Frontend/Tabs/VoiceBankTabs/Operations/VoiceOperation.cpp \
+    Frontend/Tabs/VoiceBankTabs/Scrolls/ImageScrollArea.cpp \
     Frontend/Tabs/VoiceBankTabs/Scrolls/WaveformScrollArea.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceBankGroup.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Core.cpp \
@@ -301,6 +306,7 @@ SOURCES += \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Oto.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Play.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Unchange.cpp \
+    Frontend/Tabs/VoiceBankTabs/VoiceTabs/ImageTab.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_Properties.cpp \
@@ -326,6 +332,7 @@ SOURCES += \
     Global/Utils/Templates.cpp \
     Global/Variables.cpp \
     Main/Actions/common.cpp \
+    Main/Actions/editor.cpp \
     Main/Actions/preview.cpp \
     Main/Actions/shortcuts.cpp \
     Main/Actions/special.cpp \
@@ -416,6 +423,7 @@ HEADERS += \
     Frontend/Actions/VoiceActionList.h \
     Frontend/Actions/WelcomeActionList.h \
     Frontend/Common/Graphics/GraphicsArea.h \
+    Frontend/Common/Graphics/GraphicsBaseView.h \
     Frontend/Common/Graphics/GraphicsDragger.h \
     Frontend/Common/Graphics/GraphicsHandle.h \
     Frontend/Common/Graphics/GraphicsLineEdit.h \
@@ -489,6 +497,7 @@ HEADERS += \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsPlayHead.h \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsPoint.h \
     Frontend/Tabs/TuningTabs/Graphics/GraphicsRubber.h \
+    Frontend/Tabs/TuningTabs/Graphics/GraphicsSprite.h \
     Frontend/Tabs/TuningTabs/Graphics/VibratoHandles/VibratoBaseHandle.h \
     Frontend/Tabs/TuningTabs/Graphics/VibratoHandles/VibratoLineHandle.h \
     Frontend/Tabs/TuningTabs/Graphics/VibratoHandles/VibratoPlaneHandle.h \
@@ -549,8 +558,10 @@ HEADERS += \
     Frontend/Tabs/VoiceBankTabs/Operations/OtoOperations/OtoMoveOperation.h \
     Frontend/Tabs/VoiceBankTabs/Operations/OtoOperations/OtoVariateOperation.h \
     Frontend/Tabs/VoiceBankTabs/Operations/VoiceOperation.h \
+    Frontend/Tabs/VoiceBankTabs/Scrolls/ImageScrollArea.h \
     Frontend/Tabs/VoiceBankTabs/Scrolls/WaveformScrollArea.h \
     Frontend/Tabs/VoiceBankTabs/VoiceBankGroup.h \
+    Frontend/Tabs/VoiceBankTabs/VoiceTabs/ImageTab.h \
     Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.h \
     Frontend/Tabs/VoiceBankTabs/VoiceTabs/PrefixMapTab.h \
     Frontend/Tabs/VoiceBankTabs/VoiceTabs/TextBoxTab.h \

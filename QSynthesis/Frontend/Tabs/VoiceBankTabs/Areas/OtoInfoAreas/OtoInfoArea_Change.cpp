@@ -82,3 +82,13 @@ void OtoInfoArea::handleAvatarChanged(QString modified, QString origin) {
     // Save Opeartion
     saveOperation(io);
 }
+
+void OtoInfoArea::handleSpriteChanged(QString modified, QString origin) {
+    InfoTextOperation *io = new InfoTextOperation(InfoTextOperation::Sprite);
+
+    io->setOrigin(origin);
+    io->setModified(modified);
+
+    // Save Opeartion
+    saveOperation(io);
+}

@@ -1,11 +1,11 @@
 #ifndef NOTESSCROLLAREA_H
 #define NOTESSCROLLAREA_H
 
-#include <QDebug>
-#include <QGraphicsView>
 #include <QMenu>
 
-class NotesScrollArea : public QGraphicsView {
+#include "Graphics/GraphicsBaseView.h"
+
+class NotesScrollArea : public GraphicsBaseView {
     Q_OBJECT
 
     Q_PROPERTY(QColor editorQuarterLine READ editorQuarterLine WRITE setEditorQuarterLine NOTIFY
@@ -88,16 +88,13 @@ class NotesScrollArea : public QGraphicsView {
     Q_PROPERTY(QColor noteSelect READ noteSelect WRITE setNoteSelect NOTIFY themeUpdated)
     Q_PROPERTY(
         QColor noteLyricBlock READ noteLyricBlock WRITE setNoteLyricBlock NOTIFY themeUpdated)
-    Q_PROPERTY(
-        QColor noteParams READ noteParams WRITE setNoteParams NOTIFY themeUpdated)
+    Q_PROPERTY(QColor noteParams READ noteParams WRITE setNoteParams NOTIFY themeUpdated)
     Q_PROPERTY(QColor rubberFrame READ rubberFrame WRITE setRubberFrame NOTIFY themeUpdated)
     Q_PROPERTY(QColor rubberFill READ rubberFill WRITE setRubberFill NOTIFY themeUpdated)
 
 public:
     explicit NotesScrollArea(QWidget *parent = nullptr);
     virtual ~NotesScrollArea();
-
-    QRectF viewportRect() const;
 
 private:
     bool eventFilter(QObject *obj, QEvent *event) override;

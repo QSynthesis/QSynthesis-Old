@@ -5,7 +5,7 @@
 
 class InfoTextOperation : public NonOtoOperation {
 public:
-    enum Property { Readme, Name, Author, Avatar };
+    enum Property { Readme, Name, Author, Avatar, Sprite };
 
 public:
     InfoTextOperation();

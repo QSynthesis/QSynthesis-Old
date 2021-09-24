@@ -57,9 +57,9 @@ public:
     // Help
 
     // Shortcuts
-    QAction *openBuildInMenu;
-    QAction *openPluginMenu;
-    QAction *openAliasMenu;
+    QAction *openBuildInList;
+    QAction *openPluginList;
+    QAction *openAliasList;
 
     QAction *switchTrack;
     QAction *switchConfig;
@@ -71,6 +71,34 @@ public:
     QAction *switchInt;
     QAction *switchMod;
     QAction *switchVel;
+
+    // Tracks
+    QMenu *tracksMenu;
+
+    QAction *openProjectSettings;
+    QAction *openCharsetSettings;
+
+    // Editor
+    QMenu *editorMenu;
+
+    QMenu *adsorbMenu;
+    QMenu *stateMenu;
+
+    QAction *fullAdsorb;
+    QAction *halfAdsorb;
+    QAction *quarterAdsorb;
+    QAction *sixthAdsorb;
+    QAction *eighthAdsorb;
+    QAction *twelfthAdsorb;
+    QAction *sixteenthAdsorb;
+    QAction *twentyForthAdsorb;
+    QAction *thirtySecondAdsorb;
+    QAction *noAdsorb;
+
+    QAction *switchNoteState;
+    QAction *switchPitchState;
+    QAction *switchEnvelopeState;
+    QAction *switchParamsState;
 
 public:
     void setNaturalStatus() override;

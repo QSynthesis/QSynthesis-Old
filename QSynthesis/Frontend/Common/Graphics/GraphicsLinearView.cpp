@@ -1,7 +1,8 @@
 #include "GraphicsLinearView.h"
+#include "GraphicsArea.h"
 
 GraphicsLinearView::GraphicsLinearView(Qt::Orientation orient, QWidget *parent)
-    : QGraphicsView(parent), m_orient(orient) {
+    : GraphicsBaseView(parent), m_orient(orient) {
     if (orient == Qt::Horizontal) {
         setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         verticalScrollBar()->setEnabled(false);
@@ -19,7 +20,7 @@ Qt::Orientation GraphicsLinearView::orient() const {
 }
 
 void GraphicsLinearView::resizeEvent(QResizeEvent *event) {
-    QGraphicsScene *s = scene();
+    GraphicsArea *s = scene();
     if (!s) {
         return;
     }
@@ -34,5 +35,5 @@ void GraphicsLinearView::resizeEvent(QResizeEvent *event) {
             s->setSceneRect(QRectF(0, 0, viewport()->width(), s->height()));
         }
     }
-    QGraphicsView::resizeEvent(event);
+    GraphicsBaseView::resizeEvent(event);
 }

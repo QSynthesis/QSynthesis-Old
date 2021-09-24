@@ -18,9 +18,11 @@ void TuningTab::switchToOtoReferenceMap(const QString &voiceDir) {
         QOtoReference::addReference(voiceDir, oto);
         connect(oto, &QOtoReference::refresh, this, &TuningTab::handleOtoRefreshed);
     }
+    handleOtoRefreshed();
 }
 
 void TuningTab::handleOtoRefreshed() {
     m_ptrs->notesArea->updateNotesStatus();
     m_ptrs->notesArea->adjustNoteComponents();
+    m_ptrs->notesArea->reloadSprite();
 }

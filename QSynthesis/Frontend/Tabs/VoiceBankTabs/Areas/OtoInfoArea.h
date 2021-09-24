@@ -5,6 +5,7 @@
 #include <QWidget>
 
 #include "../Modules/ImageLabel.h"
+#include "../VoiceTabs/ImageTab.h"
 #include "../VoiceTabs/PrefixMapTab.h"
 #include "../VoiceTabs/TextBoxTab.h"
 #include "Controls/LineControl.h"
@@ -44,10 +45,14 @@ public:
     void setText(const QString &text);
 
     QString avatar() const;
+    QPixmap avatarImage() const;
     bool setAvatar(const QString &path);
     void resetAvatar();
 
-    QPixmap image() const;
+    QString sprite() const;
+    QPixmap spriteImage() const;
+    bool setSprite(const QString &path);
+    void resetSprite();
 
 public:
     void locatePrefix(int noteNum);
@@ -59,8 +64,10 @@ private:
     LineControl *lcAuthor;
 
     TabWidget *infoTabs;
+
     TextBoxTab *readmeTab;
     PrefixMapTab *prefixTab;
+    ImageTab *imageTab;
 
     QGridLayout *mainLayout;
 
@@ -74,11 +81,18 @@ private:
     QString m_text;
 
     QString m_avatar;
-    QPixmap m_image;
+    QPixmap m_avatarImg;
+
+    QString m_sprite;
+    QPixmap m_spriteImg;
 
     void handleRevealAvatar();
     void handleReplaceAvatar(QString path);
     void handleRemoveAvatar();
+
+    void handleRevealSprite();
+    void handleReplaceSprite(QString path);
+    void handleRemoveSprite();
 
     void handleNameChanged();
     void handleAuthorChanged();
@@ -88,6 +102,7 @@ private:
     void handleTextChanged(QString text);
 
     void handleAvatarChanged(QString modified, QString origin);
+    void handleSpriteChanged(QString modified, QString origin);
 };
 
 #endif // OTOINFOAREA_H

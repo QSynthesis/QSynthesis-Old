@@ -21,11 +21,14 @@ void OtoInfoArea::init() {
     // Tabs
     infoTabs = new TabWidget(this);
     infoTabs->setProperty("type", "voice");
+
     readmeTab = new TextBoxTab(infoTabs);
     prefixTab = new PrefixMapTab(infoTabs);
+    imageTab = new ImageTab(infoTabs);
 
     infoTabs->addTab(readmeTab, tr("Description"));
     infoTabs->addTab(prefixTab, tr("Pitch"));
+    infoTabs->addTab(imageTab, tr("Foreground"));
 
     // Top Left Layout
     mainLayout = new QGridLayout(this);
@@ -43,6 +46,10 @@ void OtoInfoArea::init() {
     connect(lbImage, &ImageLabel::replace, this, &OtoInfoArea::handleReplaceAvatar);
     connect(lbImage, &ImageLabel::remove, this, &OtoInfoArea::handleRemoveAvatar);
 
+    connect(imageTab->content(), &ImageLabel::reveal, this, &OtoInfoArea::handleRevealSprite);
+    connect(imageTab->content(), &ImageLabel::replace, this, &OtoInfoArea::handleReplaceSprite);
+    connect(imageTab->content(), &ImageLabel::remove, this, &OtoInfoArea::handleRemoveSprite);
+
     connect(lcName->Text(), &FixedLineEdit::editingFinished2, this,
             &OtoInfoArea::handleNameChanged);
     connect(lcAuthor->Text(), &FixedLineEdit::editingFinished2, this,
@@ -54,6 +61,7 @@ void OtoInfoArea::init() {
     connect(readmeTab, &TextBoxTab::textChanged, this, &OtoInfoArea::handleTextChanged);
 
     resetAvatar();
+    resetSprite();
 }
 
 QMap<int, QString> OtoInfoArea::prefixMap() const {

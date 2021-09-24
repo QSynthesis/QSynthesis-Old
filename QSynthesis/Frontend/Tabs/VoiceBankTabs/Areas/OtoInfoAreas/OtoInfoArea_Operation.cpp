@@ -26,6 +26,8 @@ bool OtoInfoArea::handleOperation(NonOtoOperation *no, bool undo) {
             m_suffixMap[noteNum] = value;
             prefixTab->setSuffix(noteNum, value);
         }
+        infoTabs->setCurrentWidget(prefixTab);
+        locatePrefix(noteNum);
         break;
     }
     case NonOtoOperation::InfoText: {
@@ -34,6 +36,7 @@ bool OtoInfoArea::handleOperation(NonOtoOperation *no, bool undo) {
         switch (io->property()) {
         case InfoTextOperation::Readme:
             setText(value);
+            infoTabs->setCurrentWidget(readmeTab);
             break;
         case InfoTextOperation::Name:
             setName(value);
@@ -48,6 +51,15 @@ bool OtoInfoArea::handleOperation(NonOtoOperation *no, bool undo) {
                 // QMessageBox::warning(nullptr, MainTitle, tr("This avatar file is
                 // deleted.")); return false;
             }
+            break;
+        case InfoTextOperation::Sprite:
+            if (value.isEmpty()) {
+                resetSprite();
+            } else if (!setSprite(value)) {
+                // QMessageBox::warning(nullptr, MainTitle, tr("This avatar file is
+                // deleted.")); return false;
+            }
+            infoTabs->setCurrentWidget(imageTab);
             break;
         }
         break;

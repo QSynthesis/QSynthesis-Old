@@ -36,18 +36,9 @@ GraphicsPoint *NotesArea::insertPointFromCursor(QPointF pos) {
     Qt::KeyboardModifiers c = QApplication::keyboardModifiers();
 
     // Find the note nearest to the cursor
-    int i = 0;
-    bool flag = false;
-    while (i < NotesList.size()) {
-        if (NotesList[i]->x() < pos.x() && NotesList[i]->x() + NotesList[i]->width() > pos.x()) {
-            flag = true;
-            break;
-        }
-        ++i;
-    }
-
-    if (flag) {
-        cur = NotesList[i];
+    int index = findNoteAtPosAbs(pos.x());
+    if (index >= 0 && index < NotesList.size()) {
+        cur = NotesList[index];
         next = cur->next();
     } else {
         return nullptr;
@@ -108,6 +99,7 @@ void NotesArea::prepareDrawPoint(QGraphicsSceneMouseEvent *event) {
     if (!p) {
         return;
     }
+
     p->setDrawing(true);
     p->grabMouse();
     p->afterPress();

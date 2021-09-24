@@ -86,6 +86,7 @@ void GraphicsPoint::afterPress() {
             qDragIn.addOne(this);
         }
     }
+    qDragIn.addOne(note());
 }
 
 void GraphicsPoint::afterMove(QPointF pos) {
@@ -112,7 +113,6 @@ void GraphicsPoint::afterRelease() {
         // Release the mouse
         if (m_drawing) {
             // Born
-            qDebug() << "Release mouse from SimplePoint";
             this->ungrabMouse();
             setDrawing(false);
             m_editor->afterDraw(this);

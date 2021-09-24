@@ -16,9 +16,15 @@ QOtoReference::~QOtoReference() {
 
 bool QOtoReference::fromFiles(const QString &voiceDir) {
     m_voiceDir = voiceDir;
+
+    m_spritePath.clear();
     if (!(loadPrefixMap() && loadOtoIni())) {
         m_voiceDir.clear();
         return false;
+    }
+    VoiceInfo info(voiceDir);
+    if (info.load()) {
+        m_spritePath = info.sprite();
     }
     return true;
 }
@@ -34,6 +40,7 @@ bool QOtoReference::fromMemory(const QVoiceBank &voicebank) {
         registerSamples(level->otoData());
     }
 
+    m_spritePath = voicebank.sprite();
     return true;
 }
 
@@ -44,6 +51,7 @@ void QOtoReference::sendRefresh() {
 void QOtoReference::clearData() {
     clearOtoIni();
     clearPrefixMap();
+    m_spritePath.clear();
 }
 
 bool QOtoReference::findSample(const QString &oLyric, QGenonSettings *oGenon, int oNoteNum) const {
@@ -169,6 +177,10 @@ QString QOtoReference::prefixMapPath() const {
     return m_voiceDir + Slash + FILE_NAME_PREFIX_MAP;
 }
 
+QString QOtoReference::spritePath() const {
+    return m_voiceDir + Slash + m_spritePath;
+}
+
 bool QOtoReference::addReference(QString voiceDir, QOtoReference *&oto) {
     // Search
     QMap<QString, QPair<int, QOtoReference *>>::iterator it = otoRefMap.find(voiceDir);
@@ -223,7 +235,6 @@ bool QOtoReference::refreshReference(QString voiceDir, const QVoiceBank &voiceba
     if (it == otoRefMap.end()) {
         return false;
     }
-
     // Refresh
     QOtoReference *ref = it.value().second;
     if (!ref->fromMemory(voicebank)) {

@@ -21,9 +21,12 @@ KeyTableTab::KeyTableTab(KeyboardTab *tab, TabWidget *parent) : BaseTab(parent),
     table->setHorizontalHeaderLabels(header);
     table->horizontalHeader()->setDisabled(true);
     table->horizontalHeader()->setHighlightSections(false);
-    table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     table->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     table->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+
+    table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    //    table->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Interactive);
+    //    table->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Interactive);
 
     table->setSelectionBehavior(QAbstractItemView::SelectRows);
     table->setSelectionMode(QAbstractItemView::ExtendedSelection);

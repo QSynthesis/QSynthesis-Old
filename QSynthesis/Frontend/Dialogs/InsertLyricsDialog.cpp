@@ -80,7 +80,9 @@ void InsertLyricsDialog::init() {
     setDefaultLyrics();
 
     tcLyrics->Text()->setFocus();
-    tcLyrics->moveCursorToEnd();
+    // tcLyrics->moveCursorToEnd();
+    tcLyrics->Text()->selectAll();
+
     btnOK->setDefault(true);
 }
 

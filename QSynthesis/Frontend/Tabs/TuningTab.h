@@ -103,6 +103,7 @@ private:
     // Project Settings
 public:
     void showProjectSettings();
+    void showCharsetSettings();
 
 private:
     ProjectInfoHandler *projectInfo;
@@ -137,7 +138,6 @@ public:
     void showLyricInsertion();
 
     void showTempoEdit(bool remove = false);
-    void showProjectCharset();
 
     void insertRest();
     void removeRest();
@@ -172,6 +172,13 @@ public:
 
     bool isFree() const;
     bool isFreeButPlaying() const;
+
+    void setLengthUnit(int n);
+
+    void switchNoteVisibility();
+    void switchPitchVisibility();
+    void switchEnvelopeVisibility();
+    void switchParamsVisibility();
 
 public:
     // Edit

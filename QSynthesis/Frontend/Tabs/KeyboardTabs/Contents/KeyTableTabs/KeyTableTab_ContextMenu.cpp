@@ -45,6 +45,10 @@ void KeyTableTab::handleModifyKeyBind() {
         return;
     }
 
+    if (key == 0) {
+        return;
+    }
+
     QKeySequence shortcut(modifiers + key);
     saveShortcutCore(row, shortcut.toString());
 }

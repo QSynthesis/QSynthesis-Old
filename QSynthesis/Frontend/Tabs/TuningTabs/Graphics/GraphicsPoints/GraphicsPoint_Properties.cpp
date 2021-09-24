@@ -54,6 +54,10 @@ ScopeHandler *GraphicsPoint::scope() const {
     return m_scope;
 }
 
+GraphicsNote *GraphicsPoint::note() const {
+    return m_scope->note();
+}
+
 void GraphicsPoint::setHovered(bool hovered) {
     m_hovered = hovered;
     update();

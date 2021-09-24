@@ -8,7 +8,7 @@
 #include <QSlider>
 #include <QWidget>
 
-#include "FixedLineEdit.h"
+#include "FixedTextEdit.h"
 #include "QUtils.h"
 
 class TextControl : public QWidget {
@@ -38,7 +38,7 @@ private:
     void onModifyAction();
     void onTextChanged(QString s);
 
-    QPlainTextEdit *pText;
+    FixedTextEdit *pText;
     QLabel *pLabel;
     QVBoxLayout *pLayout;
 };

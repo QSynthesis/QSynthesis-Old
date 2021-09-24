@@ -18,17 +18,11 @@ LiftersScrollArea::LiftersScrollArea(QWidget *parent) : GraphicsLinearView(Qt::H
 LiftersScrollArea::~LiftersScrollArea() {
 }
 
-QRectF LiftersScrollArea::viewportRect() const {
-    QRect viewport_rect(0, 0, viewport()->width(), viewport()->height());
-    QRectF visible_scene_rect = mapToScene(viewport_rect).boundingRect();
-    return visible_scene_rect;
-}
-
 bool LiftersScrollArea::eventFilter(QObject *obj, QEvent *event) {
     if (obj == this && AppAssistant::keyIsDown(event)) {
         return true;
     }
-    return QGraphicsView::eventFilter(obj, event);
+    return GraphicsLinearView::eventFilter(obj, event);
 }
 
 void LiftersScrollArea::initLight() {

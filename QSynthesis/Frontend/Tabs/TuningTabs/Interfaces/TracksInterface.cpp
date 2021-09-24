@@ -68,8 +68,6 @@ TracksInterface::TracksInterface(TracksForm *parent) : BaseInterface(parent) {
     connect(lefts, &HeadsArea::nameChanged, this, &TracksInterface::handleNameChanged);
     connect(lefts, &HeadsArea::flagsChanged, this, &TracksInterface::handleFlagsChanged);
 
-    m_menu = new QMenu(this);
-
     sections->setFixedHeight(24);
     sectionsScroll->setFixedHeight(sections->height());
 

@@ -45,9 +45,8 @@ void TextControl::moveCursorToEnd() {
 }
 
 void TextControl::InitTextControl(QString text, QString value) {
-
     pLabel = new QLabel(text, this);
-    pText = new QPlainTextEdit(value, this);
+    pText = new FixedTextEdit(value, this);
 
     pLabel->adjustSize();
     pText->adjustSize();

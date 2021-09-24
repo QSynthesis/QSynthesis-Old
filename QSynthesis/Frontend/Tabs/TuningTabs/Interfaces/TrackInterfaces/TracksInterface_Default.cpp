@@ -40,8 +40,6 @@ QString TracksInterface::defaultVoiceDir() const {
 void TracksInterface::handleVoiceChanged(int index, QString newVal) {
     if (index == 0) {
         m_ptrs->tab->switchToOtoReferenceMap(newVal);
-        m_ptrs->notesArea->updateNotesStatus();
-        m_ptrs->notesArea->adjustNoteComponents();
     }
 }
 

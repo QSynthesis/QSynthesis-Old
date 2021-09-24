@@ -251,5 +251,5 @@ void BaseActionList::textToName(QAction *action, const QString &menu) {
     if (text.endsWith("...")) {
         text = text.mid(0, text.size() - 3);
     }
-    action->setData(menu + " - " + text);
+    action->setData(menu + nameConnector + text);
 }

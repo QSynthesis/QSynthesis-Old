@@ -88,6 +88,8 @@ public:
     void setShortcuts(const QList<QKeySequence> &keys);
 
 protected:
+    const QString nameConnector = " - ";
+
     void textToName(QAction *action, const QString &menu);
 };
 

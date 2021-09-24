@@ -31,5 +31,6 @@
         <file>images/EnvGroupBtn2_Line.svg</file>
         <file>images/EnvGroupBtn3_Line.svg</file>
         <file>themes/theme-mac-dark.qss</file>
+        <file>texts/about.html</file>
     </qresource>
 </RCC>

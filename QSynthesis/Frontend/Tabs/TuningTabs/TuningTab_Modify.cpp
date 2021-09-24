@@ -3,6 +3,7 @@
 #include "Dialogs/InputDialog.h"
 #include "Dialogs/InsertLyricsDialog.h"
 #include "Dialogs/ProjectSettingsDialog.h"
+#include "Forms/EditorForm.h"
 #include "Graphics/GraphicsNote.h"
 #include "Operations/ProjectOperation.h"
 #include "ProjectInfoHandler.h"
@@ -79,13 +80,6 @@ void TuningTab::showTempoEdit(bool remove) {
 
     m_ptrs->notesArea->modifySelectedTempo(tempo);
     change();
-}
-
-void TuningTab::showProjectCharset() {
-    if (!isFreeButPlaying()) {
-        return;
-    }
-    forcePausePlaying();
 }
 
 void TuningTab::insertRest() {

@@ -185,7 +185,7 @@ void SectionsArea::paintEvent(QPaintEvent *event) {
     // Draw Tempo
     const QList<GraphicsNote *> &SNotesList = notesArea->NotesList;
 
-    int absIndex = notesArea->absIndexAtPos(vision.x());
+    int absIndex = notesArea->findNoteAtPosAbs(vision.x());
     int index = absIndex;
     while (index >= 0 && (index >= SNotesList.size() || !SNotesList.at(index)->tempoEdited())) {
         index--;
@@ -237,31 +237,28 @@ void SectionsArea::paintEvent(QPaintEvent *event) {
 void SectionsArea::contextMenuEvent(QContextMenuEvent *event) {
     const QList<GraphicsNote *> &SNotesList = m_ptrs->notesArea->NotesList;
     int x = event->pos().x();
-    GraphicsNote *p = nullptr;
 
-    if (SNotesList.isEmpty() || x < SNotesList.front()->x()) {
-    } else if (x < SNotesList.back()->x() + SNotesList.back()->width()) {
-        int pos = m_ptrs->notesArea->findNoteAtPos(x);
-        p = SNotesList[pos];
-    } else {
+    int index = m_ptrs->notesArea->findNoteAtPosAbs(x);
+    if (index >= SNotesList.size()) {
         return;
     }
 
     QStringList list{tr("Set Global Tempo..."), tr("Set Tempo here..."), tr("Remove Tempo")};
     TemporaryMenu *menu = new TemporaryMenu(list, this);
 
+    GraphicsNote *p = index >= 0 ? SNotesList.at(index) : nullptr;
     if (p) {
         menu->setVisibleAt(0, false);
-        menu->setEnabledAt(2, p->tempoEdited());
+        menu->setEnabledAt(2, SNotesList.at(index)->tempoEdited());
     } else {
         menu->setVisibleAt(1, false);
         menu->setVisibleAt(2, false);
     }
 
-    int index = menu->start();
+    int action = menu->start();
     menu->deleteLater();
 
-    switch (index) {
+    switch (action) {
     case 0:
         qDragOut.removeAll();
         m_ptrs->tab->showTempoEdit();

@@ -135,3 +135,23 @@ bool TuningTab::isFreeButPlaying() const {
     return !m_ptrs->notesArea->isLyricEditing() && !m_ptrs->notesArea->isSelecting() &&
            !qDragOut.dragging;
 }
+
+void TuningTab::setLengthUnit(int n) {
+    m_ptrs->editorShell->setLengthUnit(n);
+}
+
+void TuningTab::switchNoteVisibility() {
+    m_ptrs->notesArea->setNotesVisible(!m_ptrs->notesArea->notesVisible());
+}
+
+void TuningTab::switchPitchVisibility() {
+    m_ptrs->notesArea->setPitchesVisible(!m_ptrs->notesArea->pitchesVisible());
+}
+
+void TuningTab::switchEnvelopeVisibility() {
+    m_ptrs->notesArea->setEnvelopesVisible(!m_ptrs->notesArea->envelopesVisible());
+}
+
+void TuningTab::switchParamsVisibility() {
+    m_ptrs->notesArea->setParamsVisible(!m_ptrs->notesArea->paramsVisible());
+}

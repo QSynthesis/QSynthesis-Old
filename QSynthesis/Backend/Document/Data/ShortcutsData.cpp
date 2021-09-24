@@ -79,7 +79,7 @@ bool ShortcutsData::checkNoConflict(const ShortcutsData &sd, QPair<int, int> *fi
         if (it1 != map1.end()) {
             if (first) {
                 first->first = 1;
-                first->second = it.value();
+                first->second = it1.value();
             }
             if (second) {
                 second->first = 1;
@@ -112,7 +112,7 @@ bool ShortcutsData::checkNoConflict(const ShortcutsData &sd, QPair<int, int> *fi
         if (it1 != map1.end()) {
             if (first) {
                 first->first = 2;
-                first->second = it.value();
+                first->second = it1.value();
             }
             if (second) {
                 second->first = 2;

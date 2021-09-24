@@ -22,12 +22,13 @@ public:
     QString name() const;
     QString title() const;
     QString author() const;
-    QString image() const;
+    QString avatar() const;
+    QString sprite() const;
 
     void setName(const QString &name);
     void setAuthor(const QString &author);
-
-    void setImage(const QString &image);
+    void setAvatar(const QString &avatar);
+    void setSprite(const QString &sprite);
 
 protected:
     virtual bool loadCore() override;
@@ -46,7 +47,8 @@ protected:
 
     QString m_name;
     QString m_author;
-    QString m_image;
+    QString m_avatar;
+    QString m_sprite;
 
     QStringList m_custom; // Other information which can't be edited
 

@@ -10,6 +10,7 @@
 #include "../../Graphics/GraphicsPlayHead.h"
 #include "../../Graphics/GraphicsPoint.h"
 #include "../../Graphics/GraphicsRubber.h"
+#include "../../Graphics/GraphicsSprite.h"
 #include "Graphics/GraphicsArea.h"
 #include "Graphics/GraphicsLineEdit.h"
 #include "Note/QLinkNote.h"
@@ -38,13 +39,14 @@ public:
 
     ItemList<GraphicsNote> NotesList;
 
-    const double noteZIndex = 1;
-    const double pointZIndex = 2;
-    const double linesZIndex = 3;
-    const double vibratoZIndex = 4;
-    const double lyricEditZIndex = 5;
-    const double rubberBandZIndex = 6;
-    const double playHeadZIndex = 7;
+    const double spriteZIndex = 1;
+    const double noteZIndex = 2;
+    const double pointZIndex = 3;
+    const double linesZIndex = 4;
+    const double vibratoZIndex = 5;
+    const double lyricEditZIndex = 6;
+    const double rubberBandZIndex = 7;
+    const double playHeadZIndex = 8;
 
 private:
     TuningGroup *m_ptrs;
@@ -67,6 +69,8 @@ private:
     bool m_envelopesVisible;
     bool m_paramsVisible;
 
+    bool m_spriteVisible;
+
     QColor m_quarterLineColor;
     QColor m_timeLineColor;
     QColor m_sectionLineColor;
@@ -76,7 +80,7 @@ private:
     QColor m_backLightColor;
 
 public:
-    void saveOperation(NoteOperation *n);  // Out
+    void saveOperation(NoteOperation *n);                     // Out
     bool handleOperation(NoteOperation *o, bool undo = true); // In
 
 private:
@@ -233,6 +237,8 @@ public:
     bool envelopesVisible() const;
     bool paramsVisible() const;
 
+    bool spriteVisible() const;
+
     void setNotesEnabled(bool enabled);
     void setPitchesEnabled(bool enabled);
     void setEnvelopesEnabled(bool enabled);
@@ -241,6 +247,8 @@ public:
     void setPitchesVisible(bool visible);
     void setEnvelopesVisible(bool visible);
     void setParamsVisible(bool visible);
+
+    void setSpriteVisible(bool visible);
 
     // Update
 public:
@@ -254,7 +262,6 @@ public:
     // Assist
 public:
     double tempoAt(int index) const;
-    int absIndexAtPos(double x) const;
 
     bool getGenonSettings(QString lrc, QGenonSettings *genon, int noteNum) const;
 
@@ -266,6 +273,7 @@ public:
 
     int findNoteAtPos(double x) const;
     int findNoteAtTick(int x) const;
+    int findNoteAtPosAbs(double x) const;
 
     QRectF viewportRect() const;
 
@@ -330,6 +338,17 @@ public:
 
     void jumpPlaying(double x);
 
+    // Sprite
+private:
+    GraphicsSprite *sprite;
+
+    void initSpriteModules();
+    void updateSprite();
+    void updateSpriteVisibility();
+
+public:
+    void reloadSprite();
+
     // Events
 private:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
@@ -338,8 +357,11 @@ private:
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
     void focusOutEvent(QFocusEvent *event) override;
 
-    bool leaveEvent(QEvent *event);
-    bool keyDownEvent(QKeyEvent *event);
+    void keyPressEvent(QKeyEvent *event) override;
+    void leaveEvent(QEvent *event) override;
+
+    void moveEvent(QGraphicsSceneMoveEvent *event) override;
+    void resizeEvent(QGraphicsSceneResizeEvent *event) override;
 
     bool eventFilter(QObject *obj, QEvent *event) override;
 

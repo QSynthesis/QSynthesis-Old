@@ -28,6 +28,13 @@ void TuningTab::showProjectSettings() {
     projectInfo->modifyValues(wavtool, outfile);
 }
 
+void TuningTab::showCharsetSettings() {
+    if (!isFreeButPlaying()) {
+        return;
+    }
+    forcePausePlaying();
+}
+
 SectionSettings TuningTab::currentSettings() const {
     SectionSettings sectionSettings;
     // Save from object

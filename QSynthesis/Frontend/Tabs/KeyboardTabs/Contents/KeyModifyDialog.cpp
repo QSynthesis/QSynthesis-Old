@@ -54,8 +54,10 @@ bool KeyModifyDialog::keyDownEvent(QKeyEvent *event) {
     Qt::Key key = (Qt::Key) event->key();
     Qt::KeyboardModifiers modifiers = event->modifiers();
 
+    modifiers &= ~Qt::MetaModifier;
+
     // Function keys
-    if (modifiers == 0) {
+    if (modifiers == 0 || modifiers == Qt::KeypadModifier) {
         if (key == Qt::Key_Enter || key == Qt::Key_Return) {
             accept();
             return normalRes;
@@ -64,15 +66,15 @@ bool KeyModifyDialog::keyDownEvent(QKeyEvent *event) {
             reject();
             return normalRes;
         }
+        if (key == Qt::Key_Backspace) {
+            m_tempKey = Qt::Key_unknown;
+            setText("");
+            return normalRes;
+        }
     }
 
     // Exclude special keys
     if (AppAssistant::isUnusableKey(key) || key == Qt::Key_unknown) {
-        return normalRes;
-    }
-    if (key == Qt::Key_Backspace) {
-        m_tempKey = Qt::Key_unknown;
-        setText("");
         return normalRes;
     }
 
@@ -95,7 +97,7 @@ bool KeyModifyDialog::keyDownEvent(QKeyEvent *event) {
     m_keyBind = keyBind;
     m_modifiers = modifiers;
 
-    setText(QKeySequence(keyBind + modifiers).toString());
+    setText(QKeySequence(keyBind + modifiers).toString(QKeySequence::NativeText));
     return normalRes;
 }
 

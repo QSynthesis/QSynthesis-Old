@@ -15,13 +15,6 @@ double NotesArea::tempoAt(int index) const {
     }
 }
 
-int NotesArea::absIndexAtPos(double x) const {
-    if (x < zeroLine()) {
-        return -1;
-    }
-    return findNoteAtPos(x);
-}
-
 bool NotesArea::getGenonSettings(QString lrc, QGenonSettings *genon, int noteNum) const {
     if (!m_ptrs->tab->oto) {
         return false;
@@ -80,6 +73,16 @@ int NotesArea::findNoteAtPos(double x) const {
     }
 
     return i;
+}
+
+int NotesArea::findNoteAtPosAbs(double x) const {
+    if (x < zeroLine() || NotesList.isEmpty()) {
+        return -1;
+    }
+    if (x > NotesList.back()->tailPos().x()) {
+        return NotesList.size();
+    }
+    return findNoteAtPos(x);
 }
 
 int NotesArea::findNoteAtTick(int x) const {

@@ -8,20 +8,24 @@ bool NotesArea::isMoving() const {
     return m_moving;
 }
 
-bool NotesArea::paramsVisible() const {
-    return m_paramsVisible;
-}
-
-bool NotesArea::envelopesVisible() const {
-    return m_envelopesVisible;
+bool NotesArea::notesVisible() const {
+    return m_notesVisible;
 }
 
 bool NotesArea::pitchesVisible() const {
     return m_pitchesVisible;
 }
 
-bool NotesArea::notesVisible() const {
-    return m_notesVisible;
+bool NotesArea::envelopesVisible() const {
+    return m_envelopesVisible;
+}
+
+bool NotesArea::paramsVisible() const {
+    return m_paramsVisible;
+}
+
+bool NotesArea::spriteVisible() const {
+    return m_spriteVisible;
 }
 
 bool NotesArea::envelopesEnabled() const {
@@ -86,4 +90,9 @@ void NotesArea::setParamsVisible(bool visible) {
     for (int i = 0; i < NotesList.size(); ++i) {
         NotesList.at(i)->setDisplay(visible);
     }
+}
+
+void NotesArea::setSpriteVisible(bool visible) {
+    m_spriteVisible = visible;
+    updateSprite();
 }

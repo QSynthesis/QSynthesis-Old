@@ -1,10 +1,11 @@
 #ifndef GRAPHICSLINEARVIEW_H
 #define GRAPHICSLINEARVIEW_H
 
-#include <QGraphicsView>
 #include <QScrollBar>
 
-class GraphicsLinearView : public QGraphicsView {
+#include "Graphics/GraphicsBaseView.h"
+
+class GraphicsLinearView : public GraphicsBaseView {
     Q_OBJECT
 public:
     explicit GraphicsLinearView(Qt::Orientation orient, QWidget *parent = nullptr);

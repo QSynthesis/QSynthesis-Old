@@ -15,6 +15,22 @@ TuningActionList::~TuningActionList() {
 void TuningActionList::setNaturalStatus() {
     setCommonActionsEnabled(true);
     setActionsEnabled(true);
+
+    fullAdsorb->setCheckable(true);
+    halfAdsorb->setCheckable(true);
+    quarterAdsorb->setCheckable(true);
+    sixthAdsorb->setCheckable(true);
+    eighthAdsorb->setCheckable(true);
+    twelfthAdsorb->setCheckable(true);
+    sixteenthAdsorb->setCheckable(true);
+    twentyForthAdsorb->setCheckable(true);
+    thirtySecondAdsorb->setCheckable(true);
+    noAdsorb->setCheckable(true);
+
+    switchNoteState->setCheckable(true);
+    switchPitchState->setCheckable(true);
+    switchEnvelopeState->setCheckable(true);
+    switchParamsState->setCheckable(true);
 }
 void TuningActionList::updateStrings() {
     // File
@@ -93,9 +109,9 @@ void TuningActionList::updateStrings() {
     // Help
 
     // Shortcuts
-    openBuildInMenu->setText(tr("Open build-in tools list"));
-    openPluginMenu->setText(tr("Open plug-in list"));
-    openAliasMenu->setText(tr("Open alias list"));
+    openBuildInList->setText(tr("Open build-in tools list"));
+    openPluginList->setText(tr("Open plug-in list"));
+    openAliasList->setText(tr("Open alias list"));
     switchTrack->setText(tr("Switch to overview mode"));
     switchConfig->setText(tr("Switch to configuration mode"));
     switchNote->setText(tr("Switch to note mode"));
@@ -106,9 +122,9 @@ void TuningActionList::updateStrings() {
     switchVel->setText(tr("Switch to velocity mode"));
 
     QString shortcutsType = tr("Shortcut");
-    textToName(openBuildInMenu, shortcutsType);
-    textToName(openPluginMenu, shortcutsType);
-    textToName(openAliasMenu, shortcutsType);
+    textToName(openBuildInList, shortcutsType);
+    textToName(openPluginList, shortcutsType);
+    textToName(openAliasList, shortcutsType);
     textToName(switchTrack, shortcutsType);
     textToName(switchConfig, shortcutsType);
     textToName(switchNote, shortcutsType);
@@ -117,6 +133,52 @@ void TuningActionList::updateStrings() {
     textToName(switchInt, shortcutsType);
     textToName(switchMod, shortcutsType);
     textToName(switchVel, shortcutsType);
+
+    // Tracks
+    openProjectSettings->setText(tr("Project Settings..."));
+    openCharsetSettings->setText(tr("Charset..."));
+
+    QString tracksType = tr("Global");
+    textToName(openProjectSettings, tracksType);
+    textToName(openCharsetSettings, tracksType);
+
+    // Editor
+    adsorbMenu->setTitle(tr("Quantization"));
+    stateMenu->setTitle(tr("State"));
+
+    fullAdsorb->setText(tr("Quarter"));
+    halfAdsorb->setText(tr("1/2 Quarter"));
+    quarterAdsorb->setText(tr("1/4 Quarter"));
+    sixthAdsorb->setText(tr("1/6 Quarter"));
+    eighthAdsorb->setText(tr("1/8 Quarter"));
+    twelfthAdsorb->setText(tr("1/12 Quarter"));
+    sixteenthAdsorb->setText(tr("1/16 Quarter"));
+    twentyForthAdsorb->setText(tr("1/24 Quarter"));
+    thirtySecondAdsorb->setText(tr("1/32 Quarter"));
+    noAdsorb->setText(tr("None"));
+
+    switchNoteState->setText(tr("Display note block"));
+    switchPitchState->setText(tr("Display pitch curves"));
+    switchEnvelopeState->setText(tr("Display envelope"));
+    switchParamsState->setText(tr("Display parameters"));
+
+    QString adsorbType = adsorbMenu->title();
+    textToName(fullAdsorb, adsorbType);
+    textToName(halfAdsorb, adsorbType);
+    textToName(quarterAdsorb, adsorbType);
+    textToName(sixthAdsorb, adsorbType);
+    textToName(eighthAdsorb, adsorbType);
+    textToName(twelfthAdsorb, adsorbType);
+    textToName(sixteenthAdsorb, adsorbType);
+    textToName(twentyForthAdsorb, adsorbType);
+    textToName(thirtySecondAdsorb, adsorbType);
+    textToName(noAdsorb, adsorbType);
+
+    QString stateType = stateMenu->title();
+    textToName(switchNoteState, stateType);
+    textToName(switchPitchState, stateType);
+    textToName(switchEnvelopeState, stateType);
+    textToName(switchParamsState, stateType);
 }
 
 void TuningActionList::makeDefaultShortcuts() {
@@ -134,9 +196,9 @@ void TuningActionList::makeDefaultShortcuts() {
 
     lyricConfig->setShortcut(QKeySequence("Ctrl+G"));
 
-    openAliasMenu->setShortcut(QKeySequence("V"));
-    openBuildInMenu->setShortcut(QKeySequence("B"));
-    openPluginMenu->setShortcut(QKeySequence("N"));
+    openAliasList->setShortcut(QKeySequence("V"));
+    openBuildInList->setShortcut(QKeySequence("B"));
+    openPluginList->setShortcut(QKeySequence("N"));
 
     switchNote->setShortcut(QKeySequence("Q"));
     switchPitch->setShortcut(QKeySequence("W"));
@@ -145,6 +207,9 @@ void TuningActionList::makeDefaultShortcuts() {
     switchInt->setShortcut(QKeySequence("A"));
     switchMod->setShortcut(QKeySequence("S"));
     switchVel->setShortcut(QKeySequence("D"));
+
+    switchNoteState->setShortcut(QKeySequence("X"));
+    switchParamsState->setShortcut(QKeySequence("Z"));
 }
 
 QList<QKeySequence> TuningActionList::defaultShortcuts() {
@@ -171,13 +236,55 @@ QList<QKeySequence> TuningActionList::defaultShortcuts() {
 }
 
 QList<QAction **> TuningActionList::actionsRef() {
-    return {
-        &appendFile,   &exportSelection, &exportTrack,    &copy,           &cut,
-        &paste,        &remove,          &insertLyrics,   &findReplace,    &transpose,
-        &octaveUp,     &octaveDown,      &removeRest,     &insertRest,     &noteProperty,
-        &moveStart,    &moveEnd,         &removeCache,    &exportAudio,    &lyricConfig,
-        &prefixConfig, &openBuildInMenu, &openPluginMenu, &openAliasMenu,  &switchTrack,
-        &switchConfig, &switchNote,      &switchPitch,    &switchEnvelope, &switchInt,
-        &switchMod,    &switchVel,
-    };
+    return {&appendFile,
+            &exportSelection,
+            &exportTrack,
+            &copy,
+            &cut,
+            &paste,
+            &remove,
+            &insertLyrics,
+            &findReplace,
+            &transpose,
+            &octaveUp,
+            &octaveDown,
+            &removeRest,
+            &insertRest,
+            &p2p3Fade,
+            &p1p4Fade,
+            &resetEnvelope,
+            &noteProperty,
+            &moveStart,
+            &moveEnd,
+            &removeCache,
+            &exportAudio,
+            &lyricConfig,
+            &prefixConfig,
+            &openBuildInList,
+            &openPluginList,
+            &openAliasList,
+            &switchTrack,
+            &switchConfig,
+            &switchNote,
+            &switchPitch,
+            &switchEnvelope,
+            &switchInt,
+            &switchMod,
+            &switchVel,
+            &openProjectSettings,
+            &openCharsetSettings,
+            &fullAdsorb,
+            &halfAdsorb,
+            &quarterAdsorb,
+            &sixthAdsorb,
+            &eighthAdsorb,
+            &twelfthAdsorb,
+            &sixteenthAdsorb,
+            &twentyForthAdsorb,
+            &thirtySecondAdsorb,
+            &noAdsorb,
+            &switchNoteState,
+            &switchPitchState,
+            &switchEnvelopeState,
+            &switchParamsState};
 }
