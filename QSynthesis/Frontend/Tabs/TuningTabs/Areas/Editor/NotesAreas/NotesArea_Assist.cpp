@@ -109,5 +109,5 @@ int NotesArea::findNoteAtTick(int x) const {
 }
 
 QRectF NotesArea::viewportRect() const {
-    return m_view->viewportRect();
+    return view()->viewportRect();
 }

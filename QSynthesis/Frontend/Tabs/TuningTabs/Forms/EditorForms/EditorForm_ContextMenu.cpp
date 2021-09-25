@@ -27,10 +27,3 @@ void EditorForm::handleMenuBtnClicked() {
 
     m_ptrs->tab->tabActions->editorMenu->exec(QCursor::pos());
 }
-
-void EditorForm::setLengthUnit(int n) {
-    m_ptrs->currentAdsorb = n;
-    m_ptrs->notesArea->updateBackground();
-
-    qSetting->lastQuantize = n;
-}

@@ -1,4 +1,5 @@
 #include "../../../Interfaces/TracksInterface.h"
+#include "../../../Scrolls/NotesScrollArea.h"
 #include "../../../TuningGroup.h"
 #include "../NotesArea.h"
 
@@ -21,21 +22,20 @@ void NotesArea::initPlayModules() {
 void NotesArea::adjustPlayHead() {
     playHead->setRect(-1, 0, 2, sceneRect().height());
     if (playHead->isVisible()) {
-        advancePlaying(playToPosition);
+        advancePlayHead();
     }
 }
 
-void NotesArea::advancePlaying(qint64 position) {
+void NotesArea::advancePlayHead() {
     double unit_w = m_ptrs->currentWidth;
 
     // position /= 1000; // USec -> MSec
 
     int start = m_renderRange.x();
     int end = m_renderRange.y();
-    double startTime = NotesList[start]->time();
+    double startTime = NotesList.at(start)->time();
 
-    playToPosition = position;
-    position -= NotesList[start]->correctGenon().PreUtterance;
+    qint64 position = playToPosition - NotesList.at(start)->correctGenon().PreUtterance;
 
     int realPos = position;
     if (position < 0) {
@@ -51,7 +51,7 @@ void NotesArea::advancePlaying(qint64 position) {
     }
 
     // 调整范围
-    while (playToNote <= end && NotesList[playToNote]->endTime() - startTime < position) {
+    while (playToNote <= end && NotesList.at(playToNote)->endTime() - startTime < position) {
         playToNote++;
     }
 
@@ -62,7 +62,7 @@ void NotesArea::advancePlaying(qint64 position) {
         return;
     }
 
-    while (playToNote >= start && NotesList[playToNote]->time() - startTime > position) {
+    while (playToNote >= start && NotesList.at(playToNote)->time() - startTime > position) {
         playToNote--;
     }
 
@@ -74,18 +74,42 @@ void NotesArea::advancePlaying(qint64 position) {
 
     // 减掉第一个音符的先行声音
     double unit = 120.0 / tempoAt(realPos < 0 ? (playToNote - 1) : playToNote) / 0.96;
-    double ticks = (realPos + startTime - NotesList[playToNote]->time()) / unit / 480 * unit_w;
+    double ticks = (realPos + startTime - NotesList.at(playToNote)->time()) / unit / 480 * unit_w;
 
     if (!playHead->isVisible()) {
         playHead->show();
     }
 
-    playHead->setPos(NotesList[playToNote]->x() + ticks, playHead->y());
+    GraphicsNote *p = NotesList.at(playToNote);
+    playHead->setPos(p->x() + ticks, playHead->y());
 
     if (m_playHeadOnCenter) {
-        showOnCenter(playHead);
+        setVisionFitToItem(playHead, Qt::AnchorHorizontalCenter);
     } else {
-        showOnStage(playHead);
+        QRectF vp = viewportRect();
+        if (playHead->left() < vp.left() || playHead->right() > vp.right()) {
+            setVisionFitToItem(playHead, Qt::AnchorLeft);
+        }
+    }
+}
+
+void NotesArea::advancePlaying(qint64 position) {
+    playToPosition = position;
+    advancePlayHead();
+    if (!playHead->isVisible()) {
+        return;
+    }
+
+    QRectF viewportRect = m_view->viewportRect();
+    GraphicsNote *p = NotesList.at(playToNote);
+
+    int y1 = p->y();
+    int y2 = y1 + p->height();
+
+    if (y1 < viewportRect.top()) {
+        setVisionFitToItem(p, Qt::AnchorTop, true);
+    } else if (y2 > viewportRect.bottom()) {
+        setVisionFitToItem(p, Qt::AnchorBottom, true);
     }
 }
 

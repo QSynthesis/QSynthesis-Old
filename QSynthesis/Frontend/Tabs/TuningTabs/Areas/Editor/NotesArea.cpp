@@ -6,8 +6,7 @@
 
 #include <QScrollBar>
 
-NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *parent)
-    : GraphicsArea(parent), m_view(parent) {
+NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *view) : GraphicsArea(view) {
     m_ptrs = editor->ptrs();
 
     m_globalTempo = DEFAULT_VALUE_TEMPO;
@@ -16,21 +15,20 @@ NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *parent)
     m_pitchesEnabled = false;
     m_envelopesEnabled = false;
 
-    m_notesVisible = false;
-    m_pitchesVisible = true;
-    m_envelopesVisible = true;
-    m_paramsVisible = true;
+    m_notesVisible = qSetting->noteVisibility;
+    m_pitchesVisible = qSetting->pitchVisibility;
+    m_envelopesVisible = qSetting->envelopeVisibility;
+    m_paramsVisible = qSetting->paramsVisibility;
 
-    m_spriteVisible = true;
-    m_spritePosition = Qt::BottomRightCorner;
+    m_playHeadOnCenter = qSetting->playHeadCenter;
 
-    m_playHeadOnCenter = false;
+    m_spriteVisible = qSetting->spriteVisibility;
+    m_spritePosition = qSetting->spritePosition;
 
     m_moving = false;
     m_selecting = false;
     m_drawingItem = nullptr;
 
-    initSpriteModules();
     initLyricModules();
     initSelectModules();
     initPlayModules();
@@ -38,32 +36,34 @@ NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *parent)
     connect(this, &QGraphicsScene::sceneRectChanged, this, &NotesArea::handleSceneRectChanged);
 
     updateColorTheme();
-    connect(m_view, &NotesScrollArea::editorThemeUpdated, this, &NotesArea::updateColorTheme);
+    connect(view, &NotesScrollArea::editorThemeUpdated, this, &NotesArea::updateColorTheme);
 
-    setSpriteAlpha(0.3);
+    initSpriteModules();
+    setSpriteAlpha(qSetting->spriteOpacity);
 }
 
 NotesArea::~NotesArea() {
 }
 
+NotesScrollArea *NotesArea::view() const {
+    return qobject_cast<NotesScrollArea *>(m_view);
+}
+
 void NotesArea::updateColorTheme() {
-    m_timeLineColor = m_view->editorTimeLine();
-    m_quarterLineColor = m_view->editorQuarterLine();
-    m_sectionLineColor = m_view->editorSectionLine();
-    m_pitchLineColor = m_view->editorPitchLine();
-    m_levelLineColor = m_view->editorLevelLine();
-    m_backDarkColor = m_view->editorBackDark();
-    m_backLightColor = m_view->editorBackLight();
-    playHead->setBrush(m_view->editorPlayHead());
+    m_timeLineColor = view()->editorTimeLine();
+    m_quarterLineColor = view()->editorQuarterLine();
+    m_sectionLineColor = view()->editorSectionLine();
+    m_pitchLineColor = view()->editorPitchLine();
+    m_levelLineColor = view()->editorLevelLine();
+    m_backDarkColor = view()->editorBackDark();
+    m_backLightColor = view()->editorBackLight();
+    playHead->setBrush(view()->editorPlayHead());
 
     updateBackground();
 }
 
-NotesScrollArea *NotesArea::view() const {
-    return m_view;
-}
-
 void NotesArea::adjustSize() {
+    m_view->stopTween();
     setSceneRect(QRectF(0, 0, m_ptrs->currentWidth * 4 * (m_ptrs->currentSections + 1),
                         m_ptrs->currentHeight * 84));
     adjustNotes();
@@ -133,56 +133,47 @@ void NotesArea::handleSceneRectChanged(const QRectF &rect) {
     updateBackground();
 }
 
-void NotesArea::centralizeVision(GraphicsNote *p) {
-    centralizeVisionCore(p->y());
+void NotesArea::centralizeVision(GraphicsNote *p, bool animate) {
+    setVisionFitToPos(p->y(), Qt::AnchorVerticalCenter, animate);
 }
 
-void NotesArea::centralizeVision(int index) {
+void NotesArea::centralizeVision(int index, bool animate) {
     if (index >= NotesList.size() || index < 0) {
-        centralizeVisionCore(46 * m_ptrs->currentHeight); // Centralize C4
+        // Centralize C4
+        setVisionFitToPos(46 * m_ptrs->currentHeight, Qt::AnchorVerticalCenter, animate);
         return;
     }
-    centralizeVision(NotesList.at(index));
+    centralizeVision(NotesList.at(index), animate);
 }
 
-void NotesArea::showOnStage(QGraphicsRectItem *w, bool right) {
-    QScrollBar *bar = m_view->horizontalScrollBar();
-    QPoint q = m_view->mapFromScene(w->pos());
-
-    if (q.x() < 0) {
-        bar->setValue(w->x());
-    } else if (q.x() + w->rect().width() > m_view->viewport()->width()) {
-        if (right) {
-            bar->setValue(w->x() + w->rect().width() - m_view->viewport()->width());
-        } else {
-            bar->setValue(w->x());
-        }
+void NotesArea::selectNote(GraphicsNote *p, bool single) {
+    if (single) {
+        qDragOut.removeAll();
+        qDragOut.addOne(p);
     }
-}
-
-void NotesArea::showOnCenter(QGraphicsRectItem *w) {
-    QScrollBar *bar = m_view->horizontalScrollBar();
-
-    int vw = m_view->viewport()->width();
-    bar->setValue(w->x() + w->rect().width() / 2 - vw / 2);
-}
-
-void NotesArea::selectNote(GraphicsNote *p) {
-    qDragOut.removeAll();
-    qDragOut.addOne(p);
-    showOnStage(p, true);
+    QRectF vp = viewportRect();
+    if (p->width() < vp.width()) {
+        setVisionFitToItem(p, Qt::Horizontal | Qt::Vertical, true);
+    } else if (p->x() < vp.left() || p->x() > vp.right()) {
+        setVisionFitToItem(p, Qt::AnchorLeft, true);
+        setVisionFitToItem(p, Qt::Vertical, true);
+    }
 }
 
 void NotesArea::moveToStart() {
     if (NotesList.isEmpty()) {
         return;
     }
-    showOnStage(NotesList.front());
+    GraphicsNote *p = NotesList.front();
+    setVisionFitToItem(p, Qt::AnchorLeft, true);
+    setVisionFitToItem(p, Qt::Vertical, true);
 }
 
 void NotesArea::moveToEnd() {
     if (NotesList.isEmpty()) {
         return;
     }
-    showOnStage(NotesList.back(), true);
+    GraphicsNote *p = NotesList.back();
+    setVisionFitToItem(p, Qt::AnchorRight, true);
+    setVisionFitToItem(p, Qt::Vertical, true);
 }

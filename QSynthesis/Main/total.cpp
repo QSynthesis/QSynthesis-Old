@@ -13,6 +13,7 @@ void initLocale() {
 
     SequenceTextFile::setCodeForDefault(gbk); // *.ust
     QOtoIni::setCodeForDefault(gbk);          // oto.ini
+    QPrefixMap::setCodeForDefault(gbk);       // prefix.map
     VoiceInfo::setCodeForDefault(gbk);        // character.txt
     PluginInfo::setCodeForDefault(gbk);       // plugin.txt
     QReadmeText::setCodeForDefault(gbk);      // readme.txt

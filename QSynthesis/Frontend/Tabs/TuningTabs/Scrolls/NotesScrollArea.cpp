@@ -7,6 +7,7 @@
 NotesScrollArea::NotesScrollArea(QWidget *parent) : GraphicsBaseView(parent) {
     setRenderHint(QPainter::Antialiasing);
 
+    installEventFilter(this);
     verticalScrollBar()->installEventFilter(this);
     horizontalScrollBar()->installEventFilter(this);
 
@@ -89,6 +90,10 @@ void NotesScrollArea::keyPressEvent(QKeyEvent *event) {
         }
     }
     return GraphicsBaseView::keyPressEvent(event);
+}
+
+void NotesScrollArea::keyReleaseEvent(QKeyEvent *event) {
+    return GraphicsBaseView::keyReleaseEvent(event);
 }
 
 void NotesScrollArea::resizeEvent(QResizeEvent *event) {

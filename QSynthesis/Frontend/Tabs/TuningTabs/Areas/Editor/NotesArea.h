@@ -28,14 +28,14 @@ class NotesArea : public GraphicsArea {
     Q_OBJECT
 
 public:
-    explicit NotesArea(EditorInterface *editor, NotesScrollArea *parent = nullptr);
+    explicit NotesArea(EditorInterface *editor, NotesScrollArea *view = nullptr);
     virtual ~NotesArea();
+
+    NotesScrollArea *view() const;
 
     void updateColorTheme();
 
     TuningGroup *ptrs() const;
-
-    NotesScrollArea *view() const;
 
     ItemList<GraphicsNote> NotesList;
 
@@ -50,8 +50,6 @@ public:
 
 private:
     TuningGroup *m_ptrs;
-
-    NotesScrollArea *m_view;
 
     bool m_moving;
 
@@ -101,13 +99,10 @@ public:
     void adjustSize();
     void updateBackground();
 
-    void centralizeVision(GraphicsNote *p); // Move vision to fit note
-    void centralizeVision(int index);
+    void centralizeVision(GraphicsNote *p, bool animate = false); // Move vision to fit note
+    void centralizeVision(int index, bool animate = false);
 
-    void showOnStage(QGraphicsRectItem *w, bool right = false);
-    void showOnCenter(QGraphicsRectItem *w);
-
-    void selectNote(GraphicsNote *p);
+    void selectNote(GraphicsNote *p, bool single = true);
 
     void moveToStart();
     void moveToEnd();
@@ -293,8 +288,6 @@ private:
     GraphicsNote *createNoteCore(const QLinkNote &note);
     void removeNoteCore(GraphicsNote *p);
 
-    void centralizeVisionCore(int y);
-
     void savePointsCore(const ItemList<ScopeHandler> &list, bool mode2);
     void saveScatterCore(const ItemList<Mode2Handler> &list, bool vbr);
 
@@ -341,7 +334,9 @@ private:
     qint64 playToPosition;
 
     void initPlayModules();
+
     void adjustPlayHead();
+    void advancePlayHead();
 
 public:
     void advancePlaying(qint64 position);

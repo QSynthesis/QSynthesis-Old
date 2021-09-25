@@ -32,6 +32,17 @@ public:
     bool replaceLyricsWhenInsert;
     bool separateCharWhenInsert;
 
+    bool noteVisibility;
+    bool pitchVisibility;
+    bool envelopeVisibility;
+    bool paramsVisibility;
+
+    bool playHeadCenter;
+
+    bool spriteVisibility;
+    double spriteOpacity;
+    Qt::Corner spritePosition;
+
     int themeIndex;
 };
 

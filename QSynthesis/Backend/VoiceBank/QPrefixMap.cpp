@@ -1,11 +1,14 @@
 ﻿#include "QPrefixMap.h"
 #include "QUtauConstants.h"
+#include "Utils/CharsetHandler.h"
 
 QPrefixMap::QPrefixMap(QObject *parent) : FileManager(parent) {
+    m_codec = defaultCodec;
     reset();
 }
 
 QPrefixMap::QPrefixMap(const QString &filename, QObject *parent) : FileManager(parent) {
+    m_codec = defaultCodec;
     setFilename(filename);
 }
 
@@ -60,7 +63,18 @@ bool QPrefixMap::loadCore(bool *valid) {
     int min = TONE_NUMBER_BASE;
     int max = min + (TONE_OCTAVE_MAX - TONE_OCTAVE_MIN + 1) * TONE_OCTAVE_STEPS - 1;
 
-    QTextStream in(&file);
+    QByteArray data = file.readAll();
+
+    // Detect Code
+    QString charset = CharsetHandler::detectCharset(data);
+    QTextStream in(&data);
+
+    if (!charset.isEmpty()) {
+        m_codec = QTextCodec::codecForName(charset.toLatin1());
+    }
+
+    in.setCodec(m_codec);
+
     QString line;
     QVector<QString> lineStrings;
 
@@ -98,6 +112,8 @@ bool QPrefixMap::saveCore() {
     }
 
     QTextStream out(&file);
+    out.setCodec(m_codec);
+
     for (auto it = PrefixMap.begin(); it != PrefixMap.end(); ++it) {
         int key = it.key();
         out << tone_number_to_tone_name(key) << '\t';
@@ -116,4 +132,12 @@ void QPrefixMap::resetCore() {
         PrefixMap[i] = "";
         SuffixMap[i] = "";
     }
+}
+
+QTextCodec *QPrefixMap::codeForDefault() {
+    return defaultCodec;
+}
+
+void QPrefixMap::setCodeForDefault(QTextCodec *codec) {
+    defaultCodec = codec;
 }

@@ -39,24 +39,14 @@ bool SettingIniFile::loadCore(bool *valid) {
         if (tool2) {
             m_data.tool2Path = QDir::fromNativeSeparators(*tool2);
         }
-        QString *ignoreRestString = tempSection->valueOf(KEY_NAME_INSERT_IGNORE_RESTS);
-        if (ignoreRestString) {
-            m_data.ignoreRestsWhenInsert = *ignoreRestString == "True";
-        }
-        QString *replaceLyricsString = tempSection->valueOf(KEY_NAME_INSERT_REPLACE_LYRICS);
-        if (replaceLyricsString) {
-            m_data.replaceLyricsWhenInsert = *replaceLyricsString == "True";
-        }
-        QString *splitCharString = tempSection->valueOf(KEY_NAME_INSERT_SEPARATE_CHAR);
-        if (ignoreRestString) {
-            m_data.separateCharWhenInsert = *splitCharString == "True";
-        }
-        QString *lastQuantizeString = tempSection->valueOf(KEY_NAME_LAST_QUANTIZE);
-        if (lastQuantizeString) {
-            QSet<int> values{0, 1, 2, 4, 6, 8, 16, 24, 32};
-            int num = lastQuantizeString->toInt();
-            if (values.contains(num)) {
-                m_data.lastQuantize = num;
+        QString *insertLyric = tempSection->valueOf(KEY_NAME_INSERT_LYRICS_STATE);
+        if (insertLyric) {
+            bool isNum;
+            int code = insertLyric->toInt(&isNum);
+            if (isNum) {
+                m_data.ignoreRestsWhenInsert = code & 0x1;
+                m_data.replaceLyricsWhenInsert = code & 0x2;
+                m_data.separateCharWhenInsert = code & 0x4;
             }
         }
     }
@@ -111,17 +101,52 @@ bool SettingIniFile::loadCore(bool *valid) {
                 m_data.windowMaximized = list[4].toInt();
             }
         }
-        QString *tracksFromV = guiSection->valueOf(KEY_NAME_TRACKS_FORM_VISIBILITY);
-        if (tracksFromV) {
-            m_data.tracksFormVisibility = *tracksFromV == "True";
+        QString *lastQuantizeString = tempSection->valueOf(KEY_NAME_LAST_QUANTIZE);
+        if (lastQuantizeString) {
+            QSet<int> values{0, 1, 2, 4, 6, 8, 16, 24, 32};
+            int num = lastQuantizeString->toInt();
+            if (values.contains(num)) {
+                m_data.lastQuantize = num;
+            }
         }
-        QString *editorFormV = guiSection->valueOf(KEY_NAME_EDITOR_FORM_VISIBILITY);
-        if (editorFormV) {
-            m_data.editorFormVisibility = *editorFormV == "True";
+        QString *formsVisible = guiSection->valueOf(KEY_NAME_FORMS_VISIBILITY);
+        if (formsVisible) {
+            bool isNum;
+            int code = formsVisible->toInt(&isNum);
+            if (isNum) {
+                m_data.tracksFormVisibility = code & 0x1;
+                m_data.editorFormVisibility = code & 0x2;
+                m_data.paramsFormVisibility = code & 0x4;
+            }
         }
-        QString *paramsForm = guiSection->valueOf(KEY_NAME_PARAMS_FORM_VISIBILITY);
-        if (paramsForm) {
-            m_data.paramsFormVisibility = *paramsForm == "True";
+        QString *elementsState = guiSection->valueOf(KEY_NAME_ELEMENTS_STATE);
+        if (elementsState) {
+            bool isNum;
+            int code = elementsState->toInt(&isNum);
+            if (isNum) {
+                m_data.noteVisibility = code & 0x1;
+                m_data.pitchVisibility = code & 0x2;
+                m_data.envelopeVisibility = code & 0x4;
+                m_data.paramsVisibility = code & 0x8;
+            }
+        }
+        QString *playHeadState = guiSection->valueOf(KEY_NAME_PLAYHEAD_STATE);
+        if (playHeadState) {
+            bool isNum;
+            int code = playHeadState->toInt(&isNum);
+            if (isNum) {
+                m_data.playHeadCenter = code == 1;
+            }
+        }
+        QString *foregroundState = guiSection->valueOf(KEY_NAME_FOREGROUND_STATE);
+        if (foregroundState) {
+            bool isNum;
+            int code = foregroundState->toInt(&isNum);
+            if (isNum) {
+                m_data.spriteOpacity = double(code & 0x7F) / 100;
+                m_data.spriteVisibility = (code >> 7) & 0x1;
+                m_data.spritePosition = static_cast<Qt::Corner>(code >> 8);
+            }
         }
         QString *themeIndex = guiSection->valueOf(KEY_NAME_THEME_INDEX);
         if (themeIndex) {
@@ -146,13 +171,9 @@ bool SettingIniFile::saveCore() {
         tempSection.addPair(KEY_NAME_TOOL2_PATH,
                             QDir::toNativeSeparators(tool2File.absoluteFilePath()));
     }
-    tempSection.addPair(KEY_NAME_INSERT_IGNORE_RESTS,
-                        m_data.ignoreRestsWhenInsert ? "True" : "False");
-    tempSection.addPair(KEY_NAME_INSERT_REPLACE_LYRICS,
-                        m_data.replaceLyricsWhenInsert ? "True" : "False");
-    tempSection.addPair(KEY_NAME_INSERT_SEPARATE_CHAR,
-                        m_data.separateCharWhenInsert ? "True" : "False");
-    tempSection.addPair(KEY_NAME_LAST_QUANTIZE, QString::number(m_data.lastQuantize));
+    tempSection.addPair(KEY_NAME_INSERT_LYRICS_STATE, m_data.ignoreRestsWhenInsert +
+                                                          (m_data.replaceLyricsWhenInsert << 1) +
+                                                          (m_data.separateCharWhenInsert << 2));
     setting.addSection(tempSection);
 
     // Projects
@@ -193,13 +214,18 @@ bool SettingIniFile::saveCore() {
            << m_data.windowMaximized;
 
     guiSection.addPair(KEY_NAME_MAINWINDOW, windowString);
-    guiSection.addPair(KEY_NAME_TRACKS_FORM_VISIBILITY,
-                       m_data.tracksFormVisibility ? "True" : "False");
-    guiSection.addPair(KEY_NAME_EDITOR_FORM_VISIBILITY,
-                       m_data.editorFormVisibility ? "True" : "False");
-    guiSection.addPair(KEY_NAME_PARAMS_FORM_VISIBILITY,
-                       m_data.paramsFormVisibility ? "True" : "False");
-    guiSection.addPair(KEY_NAME_THEME_INDEX, QString::number(m_data.themeIndex));
+    tempSection.addPair(KEY_NAME_LAST_QUANTIZE, m_data.lastQuantize);
+    guiSection.addPair(KEY_NAME_FORMS_VISIBILITY, m_data.tracksFormVisibility +
+                                                      (m_data.editorFormVisibility << 1) +
+                                                      (m_data.paramsFormVisibility << 2));
+    guiSection.addPair(KEY_NAME_ELEMENTS_STATE,
+                       m_data.noteVisibility + (m_data.pitchVisibility << 1) +
+                           (m_data.envelopeVisibility << 2) + (m_data.paramsFormVisibility << 3));
+    guiSection.addPair(KEY_NAME_PLAYHEAD_STATE, m_data.playHeadCenter ? 1 : 0);
+    guiSection.addPair(KEY_NAME_FOREGROUND_STATE, int(m_data.spriteOpacity * 100) +
+                                                      (m_data.spriteVisibility << 7) +
+                                                      (m_data.spritePosition << 8));
+    guiSection.addPair(KEY_NAME_THEME_INDEX, m_data.themeIndex);
 
     setting.addSection(guiSection);
 

@@ -549,13 +549,29 @@ void PluginHandler::writeSectionNote(int num, const QLinkNote &oNote,
 void PluginHandler::writeSectionSettings(QTextStream &oStream) {
     writeSectionName(SECTION_NAME_SETTING, oStream);
 
-    if (data.project != NODEF_STRING) {
+    if (data.project != NODEF_STRING && isFileExist(data.project)) {
         oStream << KEY_NAME_PROJECT << "=" << QDir::toNativeSeparators(data.project) << Qt::endl;
     }
 
     oStream << KEY_NAME_TEMPO + "=" << data.sectionSettings.globalTempo << Qt::endl;
-    oStream << KEY_NAME_VOICE_DIR << "=" << data.sectionSettings.voiceDirectory << Qt::endl;
-    oStream << KEY_NAME_CACHE_DIR << "=" << data.sectionSettings.cacheDirectory << Qt::endl;
+    oStream << KEY_NAME_VOICE_DIR << "="
+            << QDir::toNativeSeparators(data.sectionSettings.voiceDirectory) << Qt::endl;
+    oStream << KEY_NAME_CACHE_DIR << "="
+            << QDir::toNativeSeparators(data.sectionSettings.cacheDirectory) << Qt::endl;
+
+    // Extended from UTAU
+    if (data.sectionSettings.wavtoolPath != NODEF_STRING &&
+        isFileExist(data.sectionSettings.wavtoolPath)) {
+        oStream << KEY_NAME_TOOL1 << "="
+                << QDir::toNativeSeparators(data.sectionSettings.wavtoolPath) << Qt::endl;
+    }
+
+    // Extended from UTAU
+    if (data.sectionSettings.resamplerPath != NODEF_STRING &&
+        isFileExist(data.sectionSettings.resamplerPath)) {
+        oStream << KEY_NAME_TOOL2 << "="
+                << QDir::toNativeSeparators(data.sectionSettings.resamplerPath) << Qt::endl;
+    }
 
     if (data.sectionSettings.isMode2) {
         oStream << KEY_NAME_MODE2 << "=" << VALUE_MODE2_ON << Qt::endl;

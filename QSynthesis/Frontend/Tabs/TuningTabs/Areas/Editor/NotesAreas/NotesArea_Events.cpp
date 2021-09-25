@@ -19,7 +19,7 @@ void NotesArea::mousePressEvent(QGraphicsSceneMouseEvent *event) {
             m_moving = true;
             m_view->setDragMode(QGraphicsView::ScrollHandDrag);
         } else {
-            if (c != qConfig->notes.reserveSelect) {
+            if (c != qConfig->notes.reserveSelect && c != qConfig->notes.continuousSelect) {
                 qDragOut.removeAll();
             }
             if (event->button() == Qt::LeftButton || event->button() == Qt::RightButton) {
@@ -115,7 +115,6 @@ void NotesArea::keyPressEvent(QKeyEvent *event) {
             }
         }
     }
-    qDebug() << event;
     return GraphicsArea::keyPressEvent(event);
 }
 

@@ -116,6 +116,7 @@ private:
     void handleAdjusterCloseRequested();
 
     void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;
 
     bool eventFilter(QObject *obj, QEvent *event) override;

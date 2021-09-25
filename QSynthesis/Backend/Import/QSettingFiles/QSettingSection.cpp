@@ -125,6 +125,14 @@ bool QSettingSection::addPair(const QString &key, const QString &value) {
     return true;
 }
 
+bool QSettingSection::addPair(const QString &key, int value) {
+    return addPair(key, QString::number(value));
+}
+
+bool QSettingSection::addPair(const QString &key, double value) {
+    return addPair(key, QString::number(value));
+}
+
 bool QSettingSection::removePair(const QString &key) {
     auto it = map.find(key);
     if (it == map.end()) {

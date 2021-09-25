@@ -28,6 +28,8 @@ public:
     bool isEmpty() const;
 
     bool addPair(const QString &key, const QString &value);
+    bool addPair(const QString &key, int value);
+    bool addPair(const QString &key, double value);
     bool removePair(const QString &key);
 
     void clear();

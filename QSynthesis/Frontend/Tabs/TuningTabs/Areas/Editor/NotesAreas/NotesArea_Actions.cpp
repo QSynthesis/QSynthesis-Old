@@ -52,6 +52,9 @@ void NotesArea::preparePlugin(PluginTempData &ns, bool all) {
     notes.clear();
     readonlys.clear();
 
+    // Set global tempo of region
+    ns.sectionSettings.globalTempo = tempoAt(start);
+
     for (int i = start; i < end; ++i) {
         GraphicsNote *p = NotesList.at(i);
         notes.append(p->Note);

@@ -19,6 +19,8 @@ public:
     explicit WaveformArea(WaveformScrollArea *parent = nullptr);
     ~WaveformArea();
 
+    WaveformScrollArea *view() const;
+
     void updateColorTheme();
 
     const double regionZIndex = 1;
@@ -78,8 +80,6 @@ public:
     QWaveInfo waveInfo() const;
 
 private:
-    WaveformScrollArea *m_view;
-
     QWaveInfo m_wavefile;
     QFrequencyFile m_frqfile;
 

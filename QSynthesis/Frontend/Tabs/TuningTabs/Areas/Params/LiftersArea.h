@@ -15,14 +15,14 @@ class GraphicsNote;
 class LiftersArea : public GraphicsArea {
     Q_OBJECT
 public:
-    explicit LiftersArea(ParamsInterface *editor, LiftersScrollArea *parent = nullptr);
+    explicit LiftersArea(ParamsInterface *editor, LiftersScrollArea *view = nullptr);
     ~LiftersArea();
+
+    LiftersScrollArea *view() const;
 
     void updateColorTheme();
 
     TuningGroup *ptrs() const;
-
-    LiftersScrollArea *view() const;
 
     ItemList<GraphicsLifter> LiftersList;
 
@@ -53,8 +53,6 @@ private:
 
 private:
     TuningGroup *m_ptrs;
-
-    LiftersScrollArea *m_view;
 
     Qs::Panels::Params m_prop;
 

@@ -3,6 +3,7 @@
 #include "../../../Handlers/Mode2Handler.h"
 #include "../../../TuningGroup.h"
 #include "../NotesArea.h"
+#include "mainwindow.h"
 
 bool NotesArea::isMoving() const {
     return m_moving;
@@ -65,6 +66,7 @@ void NotesArea::setNotesVisible(bool visible) {
     for (int i = 0; i < NotesList.size(); ++i) {
         NotesList.at(i)->setBlock(visible);
     }
+    qSetting->noteVisibility = visible;
 }
 
 void NotesArea::setPitchesVisible(bool visible) {
@@ -72,6 +74,7 @@ void NotesArea::setPitchesVisible(bool visible) {
     for (int i = 0; i < NotesList.size(); ++i) {
         NotesList.at(i)->curves()->setVisible(visible);
     }
+    qSetting->pitchVisibility = visible;
 }
 
 void NotesArea::setEnvelopesVisible(bool visible) {
@@ -79,6 +82,7 @@ void NotesArea::setEnvelopesVisible(bool visible) {
     for (int i = 0; i < NotesList.size(); ++i) {
         NotesList.at(i)->envelope()->setVisible(visible);
     }
+    qSetting->envelopeVisibility = visible;
 }
 
 void NotesArea::setParamsVisible(bool visible) {
@@ -86,6 +90,7 @@ void NotesArea::setParamsVisible(bool visible) {
     for (int i = 0; i < NotesList.size(); ++i) {
         NotesList.at(i)->setDisplay(visible);
     }
+    qSetting->paramsVisibility = visible;
 }
 
 bool NotesArea::playHeadOnCenter() const {
@@ -94,6 +99,7 @@ bool NotesArea::playHeadOnCenter() const {
 
 void NotesArea::setPlayHeadOnCenter(bool playHeadOnCenter) {
     m_playHeadOnCenter = playHeadOnCenter;
+    qSetting->playHeadCenter = playHeadOnCenter;
 }
 
 bool NotesArea::spriteVisible() const {
@@ -103,6 +109,7 @@ bool NotesArea::spriteVisible() const {
 void NotesArea::setSpriteVisible(bool visible) {
     m_spriteVisible = visible;
     updateSprite();
+    qSetting->spriteVisibility = visible;
 }
 double NotesArea::spriteAlpha() const {
     return sprite->opacity();
@@ -110,6 +117,7 @@ double NotesArea::spriteAlpha() const {
 
 void NotesArea::setSpriteAlpha(double alpha) {
     sprite->setOpacity(alpha);
+    qSetting->spriteOpacity = alpha;
 }
 
 Qt::Corner NotesArea::spritePosition() const {
@@ -119,4 +127,5 @@ Qt::Corner NotesArea::spritePosition() const {
 void NotesArea::setSpritePosition(Qt::Corner position) {
     m_spritePosition = position;
     updateSprite();
+    qSetting->spritePosition = position;
 }

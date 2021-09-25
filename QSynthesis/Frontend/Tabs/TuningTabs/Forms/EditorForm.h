@@ -37,7 +37,6 @@ private:
 
 public:
     void updatePlayStatus(bool playing);
-    void setLengthUnit(int n);
 
 private:
     void handleSwitchChanged();
@@ -53,22 +52,6 @@ private:
     void onEnvReset();
 
     void handleMenuBtnClicked();
-
-    void handleFullAdsorb();
-    void handleHalfAdsorb();
-    void handleQuarterAdsorb();
-    void handleSixthAdsorb();
-    void handleEighthAdsorb();
-    void handleTwelfthAdsorb();
-    void handleSixteenthAdsorb();
-    void handleTwentyForthAdsorb();
-    void handleThirtySecondAdsorb();
-    void handleNoneAdsorb();
-
-    void handleSwitchNoteVisibility();
-    void handleSwitchPitchVisibility();
-    void handleSwitchEnvelopeVisibility();
-    void handleSwitchParamsVisibility();
 
 signals:
 };

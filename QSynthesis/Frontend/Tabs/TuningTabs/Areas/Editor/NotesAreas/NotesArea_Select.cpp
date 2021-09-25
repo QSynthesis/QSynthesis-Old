@@ -28,7 +28,7 @@ void NotesArea::startSelecting(bool vertical) {
 }
 
 void NotesArea::duringSelecting() {
-    NotesScrollArea *scroll = m_view;
+    NotesScrollArea *scroll = view();
     QPoint globalCursor = QCursor::pos();
     QPoint scrollCursor = scroll->viewport()->mapFromGlobal(globalCursor);
     QScrollBar *bar;

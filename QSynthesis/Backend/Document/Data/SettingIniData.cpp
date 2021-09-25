@@ -35,5 +35,16 @@ void SettingIniData::clear() {
     replaceLyricsWhenInsert = true;
     separateCharWhenInsert = false;
 
+    noteVisibility = false;
+    pitchVisibility = true;
+    envelopeVisibility = true;
+    paramsVisibility = true;
+
+    playHeadCenter = false;
+
+    spriteVisibility = false;
+    spriteOpacity = 30;
+    spritePosition = Qt::BottomRightCorner;
+
     themeIndex = 0;
 }

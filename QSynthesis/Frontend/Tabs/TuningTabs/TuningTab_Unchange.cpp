@@ -137,7 +137,9 @@ bool TuningTab::isFreeButPlaying() const {
 }
 
 void TuningTab::setLengthUnit(int n) {
-    m_ptrs->editorShell->setLengthUnit(n);
+    m_ptrs->currentAdsorb = n;
+    m_ptrs->notesArea->updateBackground();
+    qSetting->lastQuantize = n;
 }
 
 void TuningTab::switchNoteVisibility() {

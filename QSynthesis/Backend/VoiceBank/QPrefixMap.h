@@ -27,6 +27,16 @@ private:
     bool saveCore() override;
 
     void resetCore() override;
+
+private:
+    QTextCodec *m_codec;
+
+private:
+    static QTextCodec *defaultCodec;
+
+public:
+    static QTextCodec *codeForDefault();
+    static void setCodeForDefault(QTextCodec *codec);
 };
 
 #endif // QPREFIXMAP_H

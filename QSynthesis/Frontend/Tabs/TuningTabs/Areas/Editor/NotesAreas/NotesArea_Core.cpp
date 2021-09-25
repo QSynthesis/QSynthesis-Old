@@ -1,7 +1,7 @@
 #include "../../../Forms/EditorForm.h"
-#include "../../../Scrolls/NotesScrollArea.h"
 #include "../../../Operations/PointsOperation.h"
 #include "../../../Operations/ScatterOperation.h"
+#include "../../../Scrolls/NotesScrollArea.h"
 #include "../../../TuningGroup.h"
 #include "../NotesArea.h"
 
@@ -45,10 +45,6 @@ void NotesArea::removeNoteCore(GraphicsNote *p) {
 
     removeItem(p);
     delete p;
-}
-
-void NotesArea::centralizeVisionCore(int y) {
-    m_view->verticalScrollBar()->setValue(y - m_ptrs->notesScroll->height() / 2);
 }
 
 void NotesArea::savePointsCore(const ItemList<ScopeHandler> &list, bool mode2) {

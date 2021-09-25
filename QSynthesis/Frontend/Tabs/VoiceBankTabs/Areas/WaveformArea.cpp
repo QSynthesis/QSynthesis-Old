@@ -3,7 +3,7 @@
 
 #include <cmath>
 
-WaveformArea::WaveformArea(WaveformScrollArea *parent) : GraphicsArea(parent), m_view(parent) {
+WaveformArea::WaveformArea(WaveformScrollArea *parent) : GraphicsArea(parent) {
     m_index = -1;
 
     connect(this, &QGraphicsScene::sceneRectChanged, this, &WaveformArea::handleSceneRectChanged);
@@ -57,25 +57,29 @@ WaveformArea::WaveformArea(WaveformScrollArea *parent) : GraphicsArea(parent), m
     updateHandles();
 
     updateColorTheme();
-    connect(m_view, &WaveformScrollArea::sampleThemeUpdated, this, &WaveformArea::updateColorTheme);
+    connect(view(), &WaveformScrollArea::sampleThemeUpdated, this, &WaveformArea::updateColorTheme);
 }
 
 WaveformArea::~WaveformArea() {
 }
 
+WaveformScrollArea *WaveformArea::view() const {
+    return qobject_cast<WaveformScrollArea *>(m_view);
+}
+
 void WaveformArea::updateColorTheme() {
-    setOffsetColor(m_view->sampleOffsetLine());
-    setConstantColor(m_view->sampleConstantLine());
-    setBlankColor(m_view->sampleBlankLine());
-    setPreUttrColor(m_view->samplePreUttrLine());
-    setOverlapColor(m_view->sampleOverlapLine());
+    setOffsetColor(view()->sampleOffsetLine());
+    setConstantColor(view()->sampleConstantLine());
+    setBlankColor(view()->sampleBlankLine());
+    setPreUttrColor(view()->samplePreUttrLine());
+    setOverlapColor(view()->sampleOverlapLine());
 
-    m_waveformColor = m_view->sampleWaveform();
-    m_frqCurvesColor = m_view->sampleFrqCurves();
+    m_waveformColor = view()->sampleWaveform();
+    m_frqCurvesColor = view()->sampleFrqCurves();
 
-    setOffsetBackColor(m_view->sampleOffsetBack());
-    setConstantBackColor(m_view->sampleConstantBack());
-    setBlankBackColor(m_view->sampleBlankBack());
+    setOffsetBackColor(view()->sampleOffsetBack());
+    setConstantBackColor(view()->sampleConstantBack());
+    setBlankBackColor(view()->sampleBlankBack());
 
     update();
 }
@@ -262,7 +266,7 @@ void WaveformArea::setOverlapByCursor() {
 }
 
 QPointF WaveformArea::cursorPos() const {
-    return m_view->mapToScene(m_view->mapFromGlobal(QCursor::pos()));
+    return view()->mapToScene(view()->mapFromGlobal(QCursor::pos()));
 }
 
 bool WaveformArea::containsCursor() const {
@@ -617,7 +621,7 @@ void WaveformArea::drawBackground(QPainter *painter, const QRectF &rect) {
     int W = width();
     int H = height();
 
-    QRect clipRect = m_view->viewportRect().toRect();
+    QRect clipRect = view()->viewportRect().toRect();
     int sceneWidth = sceneRect().width();
     if (sceneWidth < clipRect.width()) {
         clipRect.setWidth(sceneWidth);

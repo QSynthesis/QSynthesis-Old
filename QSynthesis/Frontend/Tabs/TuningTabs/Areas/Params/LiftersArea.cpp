@@ -6,8 +6,7 @@
 #include "../../TuningGroup.h"
 #include "mainwindow.h"
 
-LiftersArea::LiftersArea(ParamsInterface *editor, LiftersScrollArea *parent)
-    : GraphicsArea(parent), m_view(parent) {
+LiftersArea::LiftersArea(ParamsInterface *editor, LiftersScrollArea *view) : GraphicsArea(view) {
     m_ptrs = editor->ptrs();
 
     m_standardHeight = 0;
@@ -15,26 +14,26 @@ LiftersArea::LiftersArea(ParamsInterface *editor, LiftersScrollArea *parent)
     connect(this, &QGraphicsScene::sceneRectChanged, this, &LiftersArea::handleSceneRectChanged);
 
     updateColorTheme();
-    connect(m_view, &LiftersScrollArea::editorThemeUpdated, this, &LiftersArea::updateColorTheme);
+    connect(view, &LiftersScrollArea::editorThemeUpdated, this, &LiftersArea::updateColorTheme);
 }
 
 LiftersArea::~LiftersArea() {
 }
 
+LiftersScrollArea *LiftersArea::view() const {
+    return qobject_cast<LiftersScrollArea *>(m_view);
+}
+
 void LiftersArea::updateColorTheme() {
-    m_timeLineColor = m_view->editorTimeLine();
-    m_sectionLineColor = m_view->editorSectionLine();
-    m_backColor = m_view->editorBack();
+    m_timeLineColor = view()->editorTimeLine();
+    m_sectionLineColor = view()->editorSectionLine();
+    m_backColor = view()->editorBack();
 
     updateBackground();
 }
 
 TuningGroup *LiftersArea::ptrs() const {
     return m_ptrs;
-}
-
-LiftersScrollArea *LiftersArea::view() const {
-    return m_view;
 }
 
 Qs::Panels::Params LiftersArea::prop() const {

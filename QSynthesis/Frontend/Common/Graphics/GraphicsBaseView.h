@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QGraphicsView>
+#include <QPropertyAnimation>
 
 class GraphicsArea;
 
@@ -13,11 +14,26 @@ public:
     explicit GraphicsBaseView(QGraphicsScene *scene, QWidget *parent = nullptr);
     ~GraphicsBaseView();
 
+private:
+    void init();
+
+public:
     QRectF viewportRect() const;
     GraphicsArea *scene() const;
 
+    void horizontalTween(int value);
+    void verticalTween(int value);
+
+    void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
+
+    void stopTween();
+
 private:
     QRectF m_orgViewportRect;
+
+    QPropertyAnimation *m_horizontalAnimation;
+    QPropertyAnimation *m_verticalAnimation;
 
     bool viewportEvent(QEvent *event) override;
 };
