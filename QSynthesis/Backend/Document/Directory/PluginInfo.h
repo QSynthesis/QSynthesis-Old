@@ -6,14 +6,11 @@
 
 class PluginInfo : public DirectoryManager {
     Q_OBJECT
+    Q_CHARSET
 public:
     explicit PluginInfo(QObject *parent = nullptr);
     explicit PluginInfo(const QString &dir, QObject *parent = nullptr);
     virtual ~PluginInfo();
-
-public:
-    QTextCodec *codec() const;
-    void setCodec(QTextCodec *codec);
 
 public:
     bool useShell() const;
@@ -45,8 +42,6 @@ protected:
     bool savePluginTxt();
 
 protected:
-    QTextCodec *m_codec;
-
     NormalFile pluginTxt;
 
     bool m_useShell;
@@ -67,13 +62,6 @@ private:
 
 signals:
     void pluginTxtChanged();
-
-private:
-    static QTextCodec *defaultCodec;
-
-public:
-    static QTextCodec *codeForDefault();
-    static void setCodeForDefault(QTextCodec *codec);
 };
 
 #endif // PLUGININFO_H

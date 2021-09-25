@@ -6,7 +6,7 @@
 
 using namespace UtaCharacterText;
 
-QTextCodec *VoiceInfo::defaultCodec = nullptr;
+Q_CHARSET_DECLARE(VoiceInfo)
 
 VoiceInfo::VoiceInfo(QObject *parent) : DirectoryManager(parent) {
     init();
@@ -23,14 +23,6 @@ VoiceInfo::~VoiceInfo() {
 
 bool VoiceInfo::valid() const {
     return isDirExist(m_dirname);
-}
-
-QTextCodec *VoiceInfo::codec() const {
-    return m_codec;
-}
-
-void VoiceInfo::setCodec(QTextCodec *codec) {
-    m_codec = codec;
 }
 
 void VoiceInfo::init() {
@@ -183,12 +175,4 @@ void VoiceInfo::handleCharTxtChanged() {
         loadCharTxt();
     }
     emit charTxtChanged();
-}
-
-QTextCodec *VoiceInfo::codeForDefault() {
-    return defaultCodec;
-}
-
-void VoiceInfo::setCodeForDefault(QTextCodec *codec) {
-    defaultCodec = codec;
 }

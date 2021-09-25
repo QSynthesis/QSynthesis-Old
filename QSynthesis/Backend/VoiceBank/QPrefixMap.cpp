@@ -2,6 +2,8 @@
 #include "QUtauConstants.h"
 #include "Utils/CharsetHandler.h"
 
+Q_CHARSET_DECLARE(QPrefixMap)
+
 QPrefixMap::QPrefixMap(QObject *parent) : FileManager(parent) {
     m_codec = defaultCodec;
     reset();
@@ -132,12 +134,4 @@ void QPrefixMap::resetCore() {
         PrefixMap[i] = "";
         SuffixMap[i] = "";
     }
-}
-
-QTextCodec *QPrefixMap::codeForDefault() {
-    return defaultCodec;
-}
-
-void QPrefixMap::setCodeForDefault(QTextCodec *codec) {
-    defaultCodec = codec;
 }

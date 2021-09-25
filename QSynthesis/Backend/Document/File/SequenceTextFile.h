@@ -3,6 +3,7 @@
 
 #include "Data/SequenceTextData.h"
 #include "FileManager.h"
+#include "Macros.h"
 #include "Note/QLinkNote.h"
 #include "Note/QNoteEnvelope.h"
 #include "Note/QNoteMode2.h"
@@ -12,13 +13,11 @@
 
 class SequenceTextFile : public FileManager {
     Q_OBJECT
+    Q_CHARSET
 public:
     explicit SequenceTextFile(QObject *parent = nullptr);
     explicit SequenceTextFile(const QString &filename, QObject *parent = nullptr);
     ~SequenceTextFile();
-
-    QTextCodec *codec() const;
-    void setCodec(QTextCodec *codec);
 
     SectionVersion sectionVersion() const;
     SectionVersion &sectionVersion();
@@ -51,8 +50,6 @@ private:
     // Notes
     QVector<QLinkNote> m_sectionNotes;
 
-    QTextCodec *m_codec;
-
     bool parseSectionName(const QString &name, QString &result);
     bool parseSectionNote(const QStringList &sectionList, QLinkNote &note);
     bool parseSectionVersion(const QStringList &sectionList, SectionVersion &version);
@@ -64,13 +61,6 @@ private:
     void writeSectionNote(int num, const QLinkNote &note, QTextStream &out);
     void writeSectionVersion(QTextStream &out);
     void writeSectionSettings(QTextStream &out);
-
-private:
-    static QTextCodec *defaultCodec;
-
-public:
-    static QTextCodec *codeForDefault();
-    static void setCodeForDefault(QTextCodec *codec);
 };
 
 #endif // SEQUENCETEXTFILE_H

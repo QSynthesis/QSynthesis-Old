@@ -3,6 +3,8 @@
 
 #include "NormalFile.h"
 
+#define Q_CHARSET_PRIVATE
+
 class PlainTextFile : public NormalFile {
     Q_OBJECT
 public:

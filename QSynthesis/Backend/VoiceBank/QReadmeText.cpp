@@ -1,6 +1,6 @@
 #include "QReadmeText.h"
 
-QTextCodec *QReadmeText::defaultCodec = nullptr;
+Q_CHARSET_DECLARE(QReadmeText)
 
 QReadmeText::QReadmeText(QObject *parent) : PlainTextFile(parent) {
     m_codec = defaultCodec;
@@ -12,12 +12,4 @@ QReadmeText::QReadmeText(const QString &filename, QObject *parent)
 }
 
 QReadmeText::~QReadmeText() {
-}
-
-QTextCodec *QReadmeText::codeForDefault() {
-    return defaultCodec;
-}
-
-void QReadmeText::setCodeForDefault(QTextCodec *codec) {
-    defaultCodec = codec;
 }

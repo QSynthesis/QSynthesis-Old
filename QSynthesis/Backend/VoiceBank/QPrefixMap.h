@@ -1,16 +1,18 @@
 ﻿#ifndef QPREFIXMAP_H
 #define QPREFIXMAP_H
 
-#include "File/FileManager.h"
-#include "QUtauUtils.h"
-
 #include <QFile>
 #include <QMap>
 #include <QObject>
 #include <QTextStream>
 
+#include "File/FileManager.h"
+#include "Macros.h"
+#include "QUtauUtils.h"
+
 class QPrefixMap : public FileManager {
     Q_OBJECT
+    Q_CHARSET
 public:
     explicit QPrefixMap(QObject *parent = nullptr);
     explicit QPrefixMap(const QString &filename, QObject *parent = nullptr);
@@ -27,16 +29,6 @@ private:
     bool saveCore() override;
 
     void resetCore() override;
-
-private:
-    QTextCodec *m_codec;
-
-private:
-    static QTextCodec *defaultCodec;
-
-public:
-    static QTextCodec *codeForDefault();
-    static void setCodeForDefault(QTextCodec *codec);
 };
 
 #endif // QPREFIXMAP_H

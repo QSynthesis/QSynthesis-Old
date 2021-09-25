@@ -7,16 +7,13 @@
 // Brief Information of Voice Database
 class VoiceInfo : public DirectoryManager {
     Q_OBJECT
+    Q_CHARSET
 public:
     explicit VoiceInfo(QObject *parent = nullptr);
     explicit VoiceInfo(const QString &dir, QObject *parent = nullptr);
     ~VoiceInfo();
 
     bool valid() const;
-
-public:
-    QTextCodec *codec() const;
-    void setCodec(QTextCodec *codec);
 
 public:
     QString name() const;
@@ -41,8 +38,6 @@ protected:
     bool saveCharTxt();
 
 protected:
-    QTextCodec *m_codec;
-
     NormalFile charTxt;
 
     QString m_name;
@@ -60,13 +55,6 @@ private:
 
 signals:
     void charTxtChanged();
-
-private:
-    static QTextCodec *defaultCodec;
-
-public:
-    static QTextCodec *codeForDefault();
-    static void setCodeForDefault(QTextCodec *codec);
 };
 
 #endif // VOICEINFO_H

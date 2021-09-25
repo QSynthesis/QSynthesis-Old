@@ -3,7 +3,7 @@
 #include "QUtils.h"
 #include "Utils/CharsetHandler.h"
 
-QTextCodec *QOtoIni::defaultCodec = nullptr;
+Q_CHARSET_DECLARE(QOtoIni)
 
 QOtoIni::QOtoIni(QObject *parent) : FileManager(parent) {
     m_codec = defaultCodec;
@@ -130,12 +130,4 @@ bool QOtoIni::saveCore() {
 
 void QOtoIni::resetCore() {
     OtoSamples.clear();
-}
-
-QTextCodec *QOtoIni::codeForDefault() {
-    return defaultCodec;
-}
-
-void QOtoIni::setCodeForDefault(QTextCodec *codec) {
-    defaultCodec = codec;
 }

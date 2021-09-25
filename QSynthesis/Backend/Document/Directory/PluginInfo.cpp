@@ -7,7 +7,7 @@
 
 using namespace UtaPluginText;
 
-QTextCodec *PluginInfo::defaultCodec = nullptr;
+Q_CHARSET_DECLARE(PluginInfo)
 
 PluginInfo::PluginInfo(QObject *parent) : DirectoryManager(parent) {
     init();
@@ -20,14 +20,6 @@ PluginInfo::PluginInfo(const QString &dir, QObject *parent) : DirectoryManager(p
 }
 
 PluginInfo::~PluginInfo() {
-}
-
-QTextCodec *PluginInfo::codec() const {
-    return m_codec;
-}
-
-void PluginInfo::setCodec(QTextCodec *codec) {
-    m_codec = codec;
 }
 
 void PluginInfo::init() {
@@ -217,12 +209,4 @@ bool PluginInfo::allNote() const {
 
 bool PluginInfo::valid() const {
     return isFileExist(exePath());
-}
-
-QTextCodec *PluginInfo::codeForDefault() {
-    return defaultCodec;
-}
-
-void PluginInfo::setCodeForDefault(QTextCodec *codec) {
-    defaultCodec = codec;
 }

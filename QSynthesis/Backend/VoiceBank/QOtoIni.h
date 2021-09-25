@@ -2,10 +2,12 @@
 #define QOTOINI_H
 
 #include "File/FileManager.h"
+#include "Macros.h"
 #include "QOtoSampleList.h"
 
 class QOtoIni : public FileManager {
     Q_OBJECT
+    Q_CHARSET
 public:
     explicit QOtoIni(QObject *parent = nullptr);
     explicit QOtoIni(const QString &filename, QObject *parent = nullptr);
@@ -18,16 +20,6 @@ private:
     bool saveCore() override;
 
     void resetCore() override;
-
-private:
-    QTextCodec *m_codec;
-
-private:
-    static QTextCodec *defaultCodec;
-
-public:
-    static QTextCodec *codeForDefault();
-    static void setCodeForDefault(QTextCodec *codec);
 };
 
 #endif // QOTOINI_H

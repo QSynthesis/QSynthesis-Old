@@ -6,7 +6,7 @@
 
 using namespace UtaProjectText;
 
-QTextCodec *SequenceTextFile::defaultCodec = nullptr;
+Q_CHARSET_DECLARE(SequenceTextFile)
 
 // Project File Reader
 SequenceTextFile::SequenceTextFile(QObject *parent) : FileManager(parent) {
@@ -20,14 +20,6 @@ SequenceTextFile::SequenceTextFile(const QString &filename, QObject *parent) : F
 }
 
 SequenceTextFile::~SequenceTextFile() {
-}
-
-QTextCodec *SequenceTextFile::codec() const {
-    return m_codec;
-}
-
-void SequenceTextFile::setCodec(QTextCodec *codec) {
-    m_codec = codec;
 }
 
 bool SequenceTextFile::loadCore(bool *valid) {
@@ -578,12 +570,4 @@ void SequenceTextFile::writeSectionSettings(QTextStream &oStream) {
     if (!m_sectionSettings.globalFlags.isEmpty()) {
         oStream << KEY_NAME_FLAGS << "=" << m_sectionSettings.globalFlags << Qt::endl;
     }
-}
-
-QTextCodec *SequenceTextFile::codeForDefault() {
-    return defaultCodec;
-}
-
-void SequenceTextFile::setCodeForDefault(QTextCodec *codec) {
-    defaultCodec = codec;
 }
