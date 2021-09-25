@@ -114,8 +114,8 @@ void SlideLineControl::InitSlideControl(QString text, double value) {
 
     setLayout(pLayout);
 
-    connect(pText, SIGNAL(textChanged(QString)), this, SLOT(onTextChanged(QString)));
-    connect(pSlider, SIGNAL(valueChanged(int)), this, SLOT(onSliderChanged(int)));
+    connect(pText, &FixedLineEdit::textChanged, this, &SlideLineControl::handleTextChanged);
+    connect(pSlider, &QSlider::valueChanged, this, &SlideLineControl::handleSliderChanged);
 
     pText->setPlaceholderText(placeholderModified);
     m_unmodified = false;
@@ -143,18 +143,19 @@ void SlideLineControl::setPlaceholder(QString modi, QString unmo) {
     }
 }
 
-void SlideLineControl::onSliderChanged(int n) {
+void SlideLineControl::handleSliderChanged(int n) {
     onModifyAction();
 
-    if (isTextEditing) {
-        return;
+    if (!isTextEditing) {
+        isSliderMoving = true;
+        pText->setText(QString::number(n / pow(10, pValidator->decimals())));
+        isSliderMoving = false;
     }
-    isSliderMoving = true;
-    pText->setText(QString::number(double(n) / pow(10, pValidator->decimals())));
-    isSliderMoving = false;
+
+    emit valueChanged(getValue());
 }
 
-void SlideLineControl::onTextChanged(QString s) {
+void SlideLineControl::handleTextChanged(const QString &s) {
     onModifyAction();
 
     if (isSliderMoving) {
@@ -164,8 +165,7 @@ void SlideLineControl::onTextChanged(QString s) {
 
     if (n > maximum) {
         n = maximum;
-        s = QString::number(n);
-        pText->setText(s);
+        pText->setText(QString::number(n));
     }
 
     isTextEditing = true;
@@ -180,6 +180,10 @@ void SlideLineControl::setProportion(int a, int b) {
 
 void SlideLineControl::setMargin(int n) {
     pLayout->setMargin(n);
+}
+
+void SlideLineControl::setSpacing(int n) {
+    pLayout->setHorizontalSpacing(n);
 }
 
 void SlideLineControl::setUnmodified(bool value) {

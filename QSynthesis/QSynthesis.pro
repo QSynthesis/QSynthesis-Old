@@ -231,6 +231,8 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.cpp \
     Frontend/Tabs/TuningTabs/Modules/Buttons/PlayButtonGroup.cpp \
     Frontend/Tabs/TuningTabs/Modules/Buttons/TrackButton.cpp \
+    Frontend/Tabs/TuningTabs/Modules/Editor/FindReplaceDialog.cpp \
+    Frontend/Tabs/TuningTabs/Modules/Editor/SpriteAdjustDialog.cpp \
     Frontend/Tabs/TuningTabs/Modules/Elements/PianoKey.cpp \
     Frontend/Tabs/TuningTabs/Modules/Elements/SectionsLine.cpp \
     Frontend/Tabs/TuningTabs/Modules/Elements/TrackContent.cpp \
@@ -513,6 +515,8 @@ HEADERS += \
     Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.h \
     Frontend/Tabs/TuningTabs/Modules/Buttons/PlayButtonGroup.h \
     Frontend/Tabs/TuningTabs/Modules/Buttons/TrackButton.h \
+    Frontend/Tabs/TuningTabs/Modules/Editor/FindReplaceDialog.h \
+    Frontend/Tabs/TuningTabs/Modules/Editor/SpriteAdjustDialog.h \
     Frontend/Tabs/TuningTabs/Modules/Elements/PianoKey.h \
     Frontend/Tabs/TuningTabs/Modules/Elements/SectionsLine.h \
     Frontend/Tabs/TuningTabs/Modules/Elements/TrackContent.h \

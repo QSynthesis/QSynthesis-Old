@@ -93,8 +93,10 @@ void SlideControl::InitSlideControl(QString text, double value) {
 
     setLayout(pLayout);
 
-    connect(pSpinBox, SIGNAL(valueChanged(double)), this, SLOT(onTextChanged(double)));
-    connect(pSlider, SIGNAL(valueChanged(int)), this, SLOT(onSliderChanged(int)));
+    connect(pSpinBox, QOverload<double>::of(&FixedSpinBox::valueChanged), this,
+            &SlideControl::handleSpinBoxChanged);
+    connect(pSlider, &QSlider::valueChanged, this, &SlideControl::handleSliderChanged);
+
     m_unmodified = false;
 }
 
@@ -104,12 +106,14 @@ void SlideControl::onModifyAction() {
     }
 }
 
-void SlideControl::onSliderChanged(int n) {
+void SlideControl::handleSliderChanged(int n) {
     onModifyAction();
     pSpinBox->setValue(double(n) / pow(10, pSpinBox->decimals()));
+
+    emit valueChanged(getValue());
 }
 
-void SlideControl::onTextChanged(double n) {
+void SlideControl::handleSpinBoxChanged(double n) {
     onModifyAction();
     pSlider->setValue(n * pow(10, pSpinBox->decimals()));
 }
@@ -121,6 +125,10 @@ void SlideControl::setProportion(int a, int b) {
 
 void SlideControl::setMargin(int n) {
     pLayout->setMargin(n);
+}
+
+void SlideControl::setSpacing(int n) {
+    pLayout->setHorizontalSpacing(n);
 }
 
 void SlideControl::setUnmodified(bool value) {

@@ -43,6 +43,10 @@ void LineControl::setMargin(int n) {
     pLayout->setMargin(n);
 }
 
+void LineControl::setSpacing(int n) {
+    pLayout->setMargin(n);
+}
+
 void LineControl::setUnmodified(bool value) {
     if (value) {
         pText->setProperty("status", "unmodified");

@@ -122,15 +122,16 @@ void MainWindow::initActionLists() {
 
     // Set Tuning Actions
     {
+        QMenu *tracksMenu = new QMenu(this);
+        QMenu *editorMenu = new QMenu(this);
+
         QMenu *exportMenu = new QMenu(this);
         QMenu *buildInMenu = new QMenu(this);
         QMenu *pluginMenu = new QMenu(this);
 
         QMenu *adsorbMenu = new QMenu(this);
         QMenu *stateMenu = new QMenu(this);
-
-        QMenu *tracksMenu = new QMenu(this);
-        QMenu *editorMenu = new QMenu(this);
+        QMenu *playHeadMenu = new QMenu(this);
 
         QList<void (MainWindow::*)()> handlers{
             &MainWindow::handleAppendFile,
@@ -192,6 +193,11 @@ void MainWindow::initActionLists() {
             &MainWindow::handleSwitchPitchVisibility,
             &MainWindow::handleSwitchEnvelopeVisibility,
             &MainWindow::handleSwitchParamsVisibility,
+
+            &MainWindow::handlePlayHeadDisplay,
+            &MainWindow::handlePlayHeadCenter,
+
+            &MainWindow::handleShowSpriteAdjust,
         };
 
         QList<QAction **> actionsRef = tuningActions->actionsRef();
@@ -203,27 +209,32 @@ void MainWindow::initActionLists() {
         }
 
         exportMenu->addActions({tuningActions->exportSelection, tuningActions->exportTrack});
-        adsorbMenu->addActions(
-            {tuningActions->fullAdsorb, tuningActions->halfAdsorb,
-             tuningActions->quarterAdsorb, tuningActions->sixthAdsorb,
-             tuningActions->eighthAdsorb, tuningActions->twelfthAdsorb,
-             tuningActions->sixteenthAdsorb, tuningActions->twentyForthAdsorb,
-             tuningActions->thirtySecondAdsorb, tuningActions->noAdsorb});
+
+        adsorbMenu->addActions({tuningActions->fullAdsorb, tuningActions->halfAdsorb,
+                                tuningActions->quarterAdsorb, tuningActions->sixthAdsorb,
+                                tuningActions->eighthAdsorb, tuningActions->twelfthAdsorb,
+                                tuningActions->sixteenthAdsorb, tuningActions->twentyForthAdsorb,
+                                tuningActions->thirtySecondAdsorb, tuningActions->noAdsorb});
         stateMenu->addActions({tuningActions->switchNoteState, tuningActions->switchPitchState,
                                tuningActions->switchEnvelopeState,
                                tuningActions->switchParamsState});
+        playHeadMenu->addActions({tuningActions->playHeadDisplay, tuningActions->playHeadCenter});
 
         tracksMenu->addAction(tuningActions->openProjectSettings);
         tracksMenu->addAction(tuningActions->openCharsetSettings);
 
         editorMenu->addMenu(adsorbMenu);
         editorMenu->addMenu(stateMenu);
+        editorMenu->addMenu(playHeadMenu);
+        editorMenu->addAction(tuningActions->showSpriteAdjust);
 
         tuningActions->exportMenu = exportMenu;
         tuningActions->buildInMenu = buildInMenu;
         tuningActions->pluginMenu = pluginMenu;
+
         tuningActions->adsorbMenu = adsorbMenu;
         tuningActions->stateMenu = stateMenu;
+        tuningActions->playHeadMenu = playHeadMenu;
 
         tuningActions->tracksMenu = tracksMenu;
         tuningActions->editorMenu = editorMenu;

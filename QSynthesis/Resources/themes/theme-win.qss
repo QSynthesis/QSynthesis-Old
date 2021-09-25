@@ -753,7 +753,7 @@ QTableWidget[type=keyboard]>QHeaderView::section:vertical:checked {
 
 /* ComboSelector */
 
-ComboSelector {
+ComboSelector, SpriteAdjustDialog {
     background-color: transparent;
     qproperty-wallpaper: #F3F3F3;
     /* border-top: 10px solid qlineargradient(y0:0, y1:1, stop: 0 #ECECEC, stop: 1 transparent); */
@@ -891,4 +891,42 @@ OtoInfoArea>LineControl>FixedLineEdit {
 ImageLabel {
     background-color: transparent;
     color: #333333;
+}
+
+/* QSlider */
+
+QSlider::groove:horizontal {
+    border: none;
+    border-radius: 3px;
+    height: 10px;
+}
+
+QSlider::sub-page:horizontal {
+    background: #0b6fbb;
+    border: none;
+    margin: 6px 0;
+}
+
+QSlider::add-page:horizontal {
+    background: darkgrey;
+    border: none;
+    margin: 6px 0;
+}
+
+QSlider::handle:horizontal {
+    background-color: #167FD2;
+    border: 3px solid#167FD2;
+    width: 2px;
+    margin: -4px 0;
+    border-radius: 4px;
+}
+
+QSlider::handle:horizontal:hover {
+    border-color: black;
+    background-color: black;
+}
+
+QSlider::handle:horizontal:pressed {
+    border-color: #333333;
+    background-color: #333333;
 }

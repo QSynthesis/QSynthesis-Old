@@ -11,10 +11,7 @@ void NotesArea::initSpriteModules() {
 }
 
 void NotesArea::updateSprite() {
-    if (sprite->pixmap().isNull()) {
-        return;
-    }
-    if (!m_spriteVisible) {
+    if (!m_spriteVisible || sprite->pixmap().isNull()) {
         if (sprite->isVisible()) {
             sprite->hide();
         }
@@ -33,9 +30,22 @@ void NotesArea::updateSprite() {
     sprite->setScale(scale);
 
     QSizeF realSize = size * scale;
-    sprite->setPos(rect.x() + rect.width() - realSize.width(),
-                   rect.y() + rect.height() - realSize.height());
-    sprite->setOpacity(0.3);
+
+    switch (m_spritePosition) {
+    case Qt::TopLeftCorner:
+        sprite->setPos(rect.x(), rect.y());
+        break;
+    case Qt::TopRightCorner:
+        sprite->setPos(rect.x() + rect.width() - realSize.width(), rect.y());
+        break;
+    case Qt::BottomLeftCorner:
+        sprite->setPos(rect.x(), rect.y() + rect.height() - realSize.height());
+        break;
+    default:
+        sprite->setPos(rect.x() + rect.width() - realSize.width(),
+                       rect.y() + rect.height() - realSize.height());
+        break;
+    }
 }
 
 void NotesArea::reloadSprite() {

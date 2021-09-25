@@ -82,7 +82,11 @@ void NotesArea::advancePlaying(qint64 position) {
 
     playHead->setPos(NotesList[playToNote]->x() + ticks, playHead->y());
 
-    showOnStage(playHead);
+    if (m_playHeadOnCenter) {
+        showOnCenter(playHead);
+    } else {
+        showOnStage(playHead);
+    }
 }
 
 void NotesArea::stopPlaying() {

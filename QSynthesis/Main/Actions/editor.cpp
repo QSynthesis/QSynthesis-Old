@@ -118,3 +118,27 @@ void MainWindow::handleSwitchParamsVisibility() {
         tab1->switchParamsVisibility();
     }
 }
+
+void MainWindow::handlePlayHeadDisplay() {
+    CentralTab *tab = currentTab();
+    if (tab->tabType() == Qs::Tuning) {
+        TuningTab *tab1 = qobject_cast<TuningTab *>(tab);
+        tab1->showPlayHeadOnly();
+    }
+}
+
+void MainWindow::handlePlayHeadCenter() {
+    CentralTab *tab = currentTab();
+    if (tab->tabType() == Qs::Tuning) {
+        TuningTab *tab1 = qobject_cast<TuningTab *>(tab);
+        tab1->showPlayHeadCenter();
+    }
+}
+
+void MainWindow::handleShowSpriteAdjust() {
+    CentralTab *tab = currentTab();
+    if (tab->tabType() == Qs::Tuning) {
+        TuningTab *tab1 = qobject_cast<TuningTab *>(tab);
+        tab1->showSpriteAdjust();
+    }
+}

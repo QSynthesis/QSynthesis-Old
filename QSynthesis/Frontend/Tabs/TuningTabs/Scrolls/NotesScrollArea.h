@@ -3,7 +3,10 @@
 
 #include <QMenu>
 
+#include "../Modules/Editor/SpriteAdjustDialog.h"
 #include "Graphics/GraphicsBaseView.h"
+
+class NotesArea;
 
 class NotesScrollArea : public GraphicsBaseView {
     Q_OBJECT
@@ -96,7 +99,25 @@ public:
     explicit NotesScrollArea(QWidget *parent = nullptr);
     virtual ~NotesScrollArea();
 
+public:
+    void setAdjusterVisible(bool visible);
+    bool adjusterVisible() const;
+
+    NotesArea *scene() const;
+
 private:
+    SpriteAdjustDialog *adjuster;
+
+    void adjustModules();
+
+    void handleVisibilityChanged(bool visible);
+    void handleAlphaChanged(int alpha);
+    void handleCornerChanged(Qt::Corner corner);
+    void handleAdjusterCloseRequested();
+
+    void keyPressEvent(QKeyEvent *event) override;
+    void resizeEvent(QResizeEvent *event) override;
+
     bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:

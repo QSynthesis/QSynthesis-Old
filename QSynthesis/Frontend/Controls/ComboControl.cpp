@@ -46,6 +46,10 @@ void ComboControl::setMargin(int n) {
     pLayout->setMargin(n);
 }
 
+void ComboControl::setSpacing(int n) {
+    pLayout->setSpacing(n);
+}
+
 void ComboControl::setUnmodified(bool value) {
     if (value) {
         pCombo->setProperty("status", "normal");

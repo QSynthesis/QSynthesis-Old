@@ -293,7 +293,7 @@ void TrackHead::onLabelBtnClicked() {
             // setResampler()
         }
     } else {
-        int last = list.size() - index - 1;
+        int last = list.size() - 1 - index - 1;
         switch (last) {
         case 1:
             reveal();

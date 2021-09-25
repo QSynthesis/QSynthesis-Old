@@ -22,6 +22,9 @@ NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *parent)
     m_paramsVisible = true;
 
     m_spriteVisible = true;
+    m_spritePosition = Qt::BottomRightCorner;
+
+    m_playHeadOnCenter = false;
 
     m_moving = false;
     m_selecting = false;
@@ -32,12 +35,12 @@ NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *parent)
     initSelectModules();
     initPlayModules();
 
-    // installEventFilter(this);
-
     connect(this, &QGraphicsScene::sceneRectChanged, this, &NotesArea::handleSceneRectChanged);
 
     updateColorTheme();
     connect(m_view, &NotesScrollArea::editorThemeUpdated, this, &NotesArea::updateColorTheme);
+
+    setSpriteAlpha(0.3);
 }
 
 NotesArea::~NotesArea() {

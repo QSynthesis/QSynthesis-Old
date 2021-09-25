@@ -70,6 +70,9 @@ private:
     bool m_paramsVisible;
 
     bool m_spriteVisible;
+    Qt::Corner m_spritePosition;
+
+    bool m_playHeadOnCenter;
 
     QColor m_quarterLineColor;
     QColor m_timeLineColor;
@@ -237,8 +240,6 @@ public:
     bool envelopesVisible() const;
     bool paramsVisible() const;
 
-    bool spriteVisible() const;
-
     void setNotesEnabled(bool enabled);
     void setPitchesEnabled(bool enabled);
     void setEnvelopesEnabled(bool enabled);
@@ -248,7 +249,17 @@ public:
     void setEnvelopesVisible(bool visible);
     void setParamsVisible(bool visible);
 
+    bool playHeadOnCenter() const;
+    void setPlayHeadOnCenter(bool playHeadOnCenter);
+
+    bool spriteVisible() const;
     void setSpriteVisible(bool visible);
+
+    double spriteAlpha() const;
+    void setSpriteAlpha(double alpha);
+
+    Qt::Corner spritePosition() const;
+    void setSpritePosition(Qt::Corner position);
 
     // Update
 public:

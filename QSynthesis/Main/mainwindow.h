@@ -235,6 +235,11 @@ private:
     void handleSwitchEnvelopeVisibility();
     void handleSwitchParamsVisibility();
 
+    void handlePlayHeadDisplay();
+    void handlePlayHeadCenter();
+
+    void handleShowSpriteAdjust();
+
     // Voice Bank
     void handleExportCurrent();
 

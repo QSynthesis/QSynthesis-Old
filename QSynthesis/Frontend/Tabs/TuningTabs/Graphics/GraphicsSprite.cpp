@@ -3,8 +3,6 @@
 GraphicsSprite::GraphicsSprite(NotesArea *editor, QGraphicsItem *parent)
     : QGraphicsPixmapItem(parent), m_editor(editor) {
     setTransformationMode(Qt::SmoothTransformation);
-    setFlag(QGraphicsItem::ItemSendsGeometryChanges);
-    setFlag(QGraphicsItem::ItemSendsScenePositionChanges);
 }
 
 GraphicsSprite::~GraphicsSprite() {

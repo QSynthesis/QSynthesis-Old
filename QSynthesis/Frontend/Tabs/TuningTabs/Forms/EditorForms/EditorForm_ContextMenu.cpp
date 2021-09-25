@@ -19,9 +19,11 @@ void EditorForm::handleMenuBtnClicked() {
 
     m_ptrs->tab->tabActions->switchNoteState->setChecked(m_ptrs->notesArea->notesVisible());
     m_ptrs->tab->tabActions->switchPitchState->setChecked(m_ptrs->notesArea->pitchesVisible());
-    m_ptrs->tab->tabActions->switchEnvelopeState->setChecked(
-        m_ptrs->notesArea->envelopesVisible());
+    m_ptrs->tab->tabActions->switchEnvelopeState->setChecked(m_ptrs->notesArea->envelopesVisible());
     m_ptrs->tab->tabActions->switchParamsState->setChecked(m_ptrs->notesArea->paramsVisible());
+
+    m_ptrs->tab->tabActions->playHeadDisplay->setChecked(!m_ptrs->notesArea->playHeadOnCenter());
+    m_ptrs->tab->tabActions->playHeadCenter->setChecked(m_ptrs->notesArea->playHeadOnCenter());
 
     m_ptrs->tab->tabActions->editorMenu->exec(QCursor::pos());
 }

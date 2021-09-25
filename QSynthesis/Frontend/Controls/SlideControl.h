@@ -7,8 +7,8 @@
 #include <QSlider>
 #include <QWidget>
 
-#include "QUtils.h"
 #include "FixedSpinBox.h"
+#include "QUtils.h"
 
 class SlideControl : public QWidget {
     Q_OBJECT
@@ -32,6 +32,8 @@ public:
     void setProportion(int a, int b);
     void setMargin(int n);
 
+    void setSpacing(int n);
+
     void setUnmodified(bool value);
     bool unmodified() const;
 
@@ -49,9 +51,12 @@ private:
 
     bool m_unmodified;
 
-public slots:
-    void onSliderChanged(int n);
-    void onTextChanged(double n);
+private:
+    void handleSliderChanged(int n);
+    void handleSpinBoxChanged(double n);
+
+signals:
+    void valueChanged(double value);
 };
 
 #endif // SLIDECONTROL_H

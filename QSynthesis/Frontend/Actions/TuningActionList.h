@@ -83,6 +83,7 @@ public:
 
     QMenu *adsorbMenu;
     QMenu *stateMenu;
+    QMenu *playHeadMenu;
 
     QAction *fullAdsorb;
     QAction *halfAdsorb;
@@ -99,6 +100,11 @@ public:
     QAction *switchPitchState;
     QAction *switchEnvelopeState;
     QAction *switchParamsState;
+
+    QAction *playHeadDisplay;
+    QAction *playHeadCenter;
+
+    QAction *showSpriteAdjust;
 
 public:
     void setNaturalStatus() override;

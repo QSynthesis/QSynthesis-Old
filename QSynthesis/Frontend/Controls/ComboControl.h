@@ -23,6 +23,8 @@ public:
     void setProportion(int a, int b);
     void setMargin(int n);
 
+    void setSpacing(int n);
+
     void setUnmodified(bool value);
     bool unmodified() const;
 

@@ -155,3 +155,15 @@ void TuningTab::switchEnvelopeVisibility() {
 void TuningTab::switchParamsVisibility() {
     m_ptrs->notesArea->setParamsVisible(!m_ptrs->notesArea->paramsVisible());
 }
+
+void TuningTab::showPlayHeadOnly() {
+    m_ptrs->notesArea->setPlayHeadOnCenter(false);
+}
+
+void TuningTab::showPlayHeadCenter() {
+    m_ptrs->notesArea->setPlayHeadOnCenter(true);
+}
+
+void TuningTab::showSpriteAdjust() {
+    m_ptrs->notesScroll->setAdjusterVisible(!m_ptrs->notesScroll->adjusterVisible());
+}

@@ -45,7 +45,7 @@ void KeyTableTab::handleModifyKeyBind() {
         return;
     }
 
-    if (key == 0) {
+    if (modifiers != 0 && key == 0) {
         return;
     }
 

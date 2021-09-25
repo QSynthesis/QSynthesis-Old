@@ -31,6 +31,9 @@ void TuningActionList::setNaturalStatus() {
     switchPitchState->setCheckable(true);
     switchEnvelopeState->setCheckable(true);
     switchParamsState->setCheckable(true);
+
+    playHeadDisplay->setCheckable(true);
+    playHeadCenter->setCheckable(true);
 }
 void TuningActionList::updateStrings() {
     // File
@@ -145,6 +148,7 @@ void TuningActionList::updateStrings() {
     // Editor
     adsorbMenu->setTitle(tr("Quantization"));
     stateMenu->setTitle(tr("State"));
+    playHeadMenu->setTitle(tr("Playhead"));
 
     fullAdsorb->setText(tr("Quarter"));
     halfAdsorb->setText(tr("1/2 Quarter"));
@@ -162,7 +166,14 @@ void TuningActionList::updateStrings() {
     switchEnvelopeState->setText(tr("Display envelope"));
     switchParamsState->setText(tr("Display parameters"));
 
-    QString adsorbType = adsorbMenu->title();
+    playHeadDisplay->setText(tr("Page display"));
+    playHeadCenter->setText(tr("Slide display"));
+
+    showSpriteAdjust->setText(tr("Adjust foreground"));
+
+    QString editorType = tr("Piano Roll");
+
+    QString adsorbType = editorType + nameConnector + adsorbMenu->title();
     textToName(fullAdsorb, adsorbType);
     textToName(halfAdsorb, adsorbType);
     textToName(quarterAdsorb, adsorbType);
@@ -174,11 +185,17 @@ void TuningActionList::updateStrings() {
     textToName(thirtySecondAdsorb, adsorbType);
     textToName(noAdsorb, adsorbType);
 
-    QString stateType = stateMenu->title();
+    QString stateType = editorType + nameConnector + stateMenu->title();
     textToName(switchNoteState, stateType);
     textToName(switchPitchState, stateType);
     textToName(switchEnvelopeState, stateType);
     textToName(switchParamsState, stateType);
+
+    QString playHeadType = editorType + nameConnector + playHeadMenu->title();
+    textToName(playHeadDisplay, playHeadType);
+    textToName(playHeadCenter, playHeadType);
+
+    textToName(showSpriteAdjust, editorType);
 }
 
 void TuningActionList::makeDefaultShortcuts() {
@@ -236,55 +253,60 @@ QList<QKeySequence> TuningActionList::defaultShortcuts() {
 }
 
 QList<QAction **> TuningActionList::actionsRef() {
-    return {&appendFile,
-            &exportSelection,
-            &exportTrack,
-            &copy,
-            &cut,
-            &paste,
-            &remove,
-            &insertLyrics,
-            &findReplace,
-            &transpose,
-            &octaveUp,
-            &octaveDown,
-            &removeRest,
-            &insertRest,
-            &p2p3Fade,
-            &p1p4Fade,
-            &resetEnvelope,
-            &noteProperty,
-            &moveStart,
-            &moveEnd,
-            &removeCache,
-            &exportAudio,
-            &lyricConfig,
-            &prefixConfig,
-            &openBuildInList,
-            &openPluginList,
-            &openAliasList,
-            &switchTrack,
-            &switchConfig,
-            &switchNote,
-            &switchPitch,
-            &switchEnvelope,
-            &switchInt,
-            &switchMod,
-            &switchVel,
-            &openProjectSettings,
-            &openCharsetSettings,
-            &fullAdsorb,
-            &halfAdsorb,
-            &quarterAdsorb,
-            &sixthAdsorb,
-            &eighthAdsorb,
-            &twelfthAdsorb,
-            &sixteenthAdsorb,
-            &twentyForthAdsorb,
-            &thirtySecondAdsorb,
-            &noAdsorb,
-            &switchNoteState,
-            &switchPitchState,
-            &switchEnvelopeState,
-            &switchParamsState};
+    return {
+        &appendFile,
+        &exportSelection,
+        &exportTrack,
+        &copy,
+        &cut,
+        &paste,
+        &remove,
+        &insertLyrics,
+        &findReplace,
+        &transpose,
+        &octaveUp,
+        &octaveDown,
+        &removeRest,
+        &insertRest,
+        &p2p3Fade,
+        &p1p4Fade,
+        &resetEnvelope,
+        &noteProperty,
+        &moveStart,
+        &moveEnd,
+        &removeCache,
+        &exportAudio,
+        &lyricConfig,
+        &prefixConfig,
+        &openBuildInList,
+        &openPluginList,
+        &openAliasList,
+        &switchTrack,
+        &switchConfig,
+        &switchNote,
+        &switchPitch,
+        &switchEnvelope,
+        &switchInt,
+        &switchMod,
+        &switchVel,
+        &openProjectSettings,
+        &openCharsetSettings,
+        &fullAdsorb,
+        &halfAdsorb,
+        &quarterAdsorb,
+        &sixthAdsorb,
+        &eighthAdsorb,
+        &twelfthAdsorb,
+        &sixteenthAdsorb,
+        &twentyForthAdsorb,
+        &thirtySecondAdsorb,
+        &noAdsorb,
+        &switchNoteState,
+        &switchPitchState,
+        &switchEnvelopeState,
+        &switchParamsState,
+        &playHeadDisplay,
+        &playHeadCenter,
+        &showSpriteAdjust,
+    };
 }

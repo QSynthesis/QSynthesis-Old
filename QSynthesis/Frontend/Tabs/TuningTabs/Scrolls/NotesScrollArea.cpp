@@ -1,4 +1,5 @@
 #include "NotesScrollArea.h"
+#include "../Areas/Editor/NotesArea.h"
 
 #include <QEvent>
 #include <QScrollBar>
@@ -10,9 +11,90 @@ NotesScrollArea::NotesScrollArea(QWidget *parent) : GraphicsBaseView(parent) {
     horizontalScrollBar()->installEventFilter(this);
 
     initLight();
+
+    adjuster = new SpriteAdjustDialog(this);
+
+    connect(adjuster, &SpriteAdjustDialog::visibilityChanged, this,
+            &NotesScrollArea::handleVisibilityChanged);
+    connect(adjuster, &SpriteAdjustDialog::alphaChanged, this,
+            &NotesScrollArea::handleAlphaChanged);
+    connect(adjuster, &SpriteAdjustDialog::cornerChanged, this,
+            &NotesScrollArea::handleCornerChanged);
+    connect(adjuster, &SpriteAdjustDialog::closeRequested, this,
+            &NotesScrollArea::handleAdjusterCloseRequested);
+
+    adjuster->hide();
+    adjustModules();
 }
 
 NotesScrollArea::~NotesScrollArea() {
+}
+
+void NotesScrollArea::setAdjusterVisible(bool visible) {
+    if (visible) {
+        adjuster->setVisibility(scene() ? scene()->spriteVisible() : false);
+        adjuster->setAlpha(scene() ? int(scene()->spriteAlpha() * 100) : 0);
+        adjuster->setCorner(scene() ? scene()->spritePosition() : Qt::BottomRightCorner);
+
+        adjuster->setEnabled(true);
+        adjuster->setFocus();
+    } else {
+        adjuster->setEnabled(false);
+    }
+    adjuster->setVisible(visible);
+    adjustModules();
+}
+
+bool NotesScrollArea::adjusterVisible() const {
+    return adjuster->isVisible();
+}
+
+NotesArea *NotesScrollArea::scene() const {
+    return qobject_cast<NotesArea *>(GraphicsBaseView::scene());
+}
+
+void NotesScrollArea::adjustModules() {
+    if (adjuster->isVisible()) {
+        adjuster->move(20, 0);
+    }
+}
+
+void NotesScrollArea::handleVisibilityChanged(bool visible) {
+    if (scene()) {
+        scene()->setSpriteVisible(visible);
+    }
+}
+
+void NotesScrollArea::handleAlphaChanged(int alpha) {
+    if (scene()) {
+        scene()->setSpriteAlpha(double(alpha) / 100);
+    }
+}
+
+void NotesScrollArea::handleCornerChanged(Qt::Corner corner) {
+    if (scene()) {
+        scene()->setSpritePosition(corner);
+    }
+}
+
+void NotesScrollArea::handleAdjusterCloseRequested() {
+    setAdjusterVisible(false);
+}
+
+void NotesScrollArea::keyPressEvent(QKeyEvent *event) {
+    if (event->key() == Qt::Key_Escape) {
+        if (adjuster->isVisible()) {
+            setAdjusterVisible(false);
+            return;
+        }
+    }
+    return GraphicsBaseView::keyPressEvent(event);
+}
+
+void NotesScrollArea::resizeEvent(QResizeEvent *event) {
+    if (event->oldSize().width() != event->size().width()) {
+        adjustModules();
+    }
 }
 
 bool NotesScrollArea::eventFilter(QObject *obj, QEvent *event) {

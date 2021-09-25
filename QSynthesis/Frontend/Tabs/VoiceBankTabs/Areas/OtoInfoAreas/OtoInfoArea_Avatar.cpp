@@ -39,7 +39,7 @@ QPixmap OtoInfoArea::spriteImage() const {
 
 bool OtoInfoArea::setSprite(const QString &path) {
     if (!isFileExist(path) || !m_spriteImg.load(path)) {
-        resetAvatar();
+        resetSprite();
         return false;
     }
 

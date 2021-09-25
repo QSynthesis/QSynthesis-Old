@@ -2,6 +2,7 @@
 
 bool MainWindow::handleTabCloseRequent(int index) {
     CentralTab *tab = tabAt(index);
+    tabs->setCurrentIndex(index);
 
     bool accept = true;
     QString title;

@@ -24,10 +24,6 @@ bool NotesArea::paramsVisible() const {
     return m_paramsVisible;
 }
 
-bool NotesArea::spriteVisible() const {
-    return m_spriteVisible;
-}
-
 bool NotesArea::envelopesEnabled() const {
     return m_envelopesEnabled;
 }
@@ -92,7 +88,35 @@ void NotesArea::setParamsVisible(bool visible) {
     }
 }
 
+bool NotesArea::playHeadOnCenter() const {
+    return m_playHeadOnCenter;
+}
+
+void NotesArea::setPlayHeadOnCenter(bool playHeadOnCenter) {
+    m_playHeadOnCenter = playHeadOnCenter;
+}
+
+bool NotesArea::spriteVisible() const {
+    return m_spriteVisible;
+}
+
 void NotesArea::setSpriteVisible(bool visible) {
     m_spriteVisible = visible;
+    updateSprite();
+}
+double NotesArea::spriteAlpha() const {
+    return sprite->opacity();
+}
+
+void NotesArea::setSpriteAlpha(double alpha) {
+    sprite->setOpacity(alpha);
+}
+
+Qt::Corner NotesArea::spritePosition() const {
+    return m_spritePosition;
+}
+
+void NotesArea::setSpritePosition(Qt::Corner position) {
+    m_spritePosition = position;
     updateSprite();
 }

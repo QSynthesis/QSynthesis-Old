@@ -180,6 +180,11 @@ public:
     void switchEnvelopeVisibility();
     void switchParamsVisibility();
 
+    void showPlayHeadOnly();
+    void showPlayHeadCenter();
+
+    void showSpriteAdjust();
+
 public:
     // Edit
     void undo() override;

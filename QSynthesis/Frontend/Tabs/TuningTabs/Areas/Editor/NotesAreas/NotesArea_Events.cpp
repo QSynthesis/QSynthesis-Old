@@ -115,6 +115,7 @@ void NotesArea::keyPressEvent(QKeyEvent *event) {
             }
         }
     }
+    qDebug() << event;
     return GraphicsArea::keyPressEvent(event);
 }
 
