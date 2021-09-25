@@ -43,13 +43,20 @@ QRectF WaveformScrollArea::viewportRect() const {
 void WaveformScrollArea::wheelEvent(QWheelEvent *event) {
     Qt::KeyboardModifiers c = event->modifiers();
     QPoint delta = event->angleDelta();
+    bool isTouch = event->source() == Qt::MouseEventSynthesizedBySystem;
+
     if (c & Qt::AltModifier) {
         return;
     }
-    if (c == qConfig->wave.moveVertically) {
-        event->setModifiers(Qt::NoModifier);
-        QApplication::sendEvent(verticalScrollBar(), event);
+    if (c == Qt::NoModifier) {
+        if (isTouch) {
+            return GraphicsBaseView::wheelEvent(event);
+        }
     } else if (c == qConfig->wave.moveHorizontally) {
+        event->setModifiers(Qt::NoModifier);
+        if (isTouch) {
+            return GraphicsBaseView::wheelEvent(event);
+        }
         event->setModifiers(Qt::NoModifier);
         QApplication::sendEvent(horizontalScrollBar(), event);
     } else if (c == qConfig->wave.zoomHorizontally) {

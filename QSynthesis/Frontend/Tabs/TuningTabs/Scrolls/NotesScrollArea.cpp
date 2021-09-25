@@ -104,13 +104,27 @@ void NotesScrollArea::resizeEvent(QResizeEvent *event) {
 void NotesScrollArea::wheelEvent(QWheelEvent *event) {
     Qt::KeyboardModifiers c = event->modifiers();
     QPoint delta = event->angleDelta();
+    bool isTouch = event->source() == Qt::MouseEventSynthesizedBySystem;
+
     if (c & Qt::AltModifier) {
         return;
     }
-    if (c == qConfig->notes.moveVertically) {
+    if (c == Qt::NoModifier) {
+        if (isTouch) {
+            return GraphicsBaseView::wheelEvent(event);
+        }
+    } else if (c == qConfig->notes.moveVertically) {
+        event->setModifiers(Qt::NoModifier);
+        if (isTouch) {
+            return GraphicsBaseView::wheelEvent(event);
+        }
         event->setModifiers(Qt::NoModifier);
         QApplication::sendEvent(verticalScrollBar(), event);
     } else if (c == qConfig->notes.moveHorizontally) {
+        event->setModifiers(Qt::NoModifier);
+        if (isTouch) {
+            return GraphicsBaseView::wheelEvent(event);
+        }
         event->setModifiers(Qt::NoModifier);
         QApplication::sendEvent(horizontalScrollBar(), event);
     } else if (c == qConfig->notes.zoomHorizontally) {
