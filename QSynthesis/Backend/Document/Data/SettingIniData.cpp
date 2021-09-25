@@ -43,7 +43,7 @@ void SettingIniData::clear() {
     playHeadCenter = false;
 
     spriteVisibility = false;
-    spriteOpacity = 30;
+    spriteOpacity = 0.3;
     spritePosition = Qt::BottomRightCorner;
 
     themeIndex = 0;
