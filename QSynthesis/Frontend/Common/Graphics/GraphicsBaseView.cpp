@@ -102,3 +102,7 @@ bool GraphicsBaseView::viewportEvent(QEvent *event) {
     m_orgViewportRect = rect;
     return QGraphicsView::viewportEvent(event);
 }
+
+void GraphicsBaseView::hideEvent(QHideEvent *event) {
+    // stopTween();
+}

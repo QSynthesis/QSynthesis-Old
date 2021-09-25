@@ -24,7 +24,7 @@ public:
     virtual ~LiftersScrollArea();
 
 private:
-    bool eventFilter(QObject *obj, QEvent *event) override;
+    void wheelEvent(QWheelEvent *event) override;
 
     void initLight();
     void initDark();

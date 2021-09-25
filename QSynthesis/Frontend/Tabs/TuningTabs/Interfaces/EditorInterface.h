@@ -59,6 +59,9 @@ private:
 private:
     void handleHorizontalMove(int value);
     void handleVerticalMove(int value);
+
+    void handleHorizontalZoom(int delta);
+    void handleVerticalZoom(int delta);
 };
 
 #endif // EDITORINTERFACE_H

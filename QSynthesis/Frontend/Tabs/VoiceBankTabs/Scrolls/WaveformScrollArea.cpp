@@ -1,6 +1,9 @@
 #include "WaveformScrollArea.h"
+#include "mainwindow.h"
 
+#include <QApplication>
 #include <QEvent>
+#include <QWheelEvent>
 
 WaveformScrollArea::WaveformScrollArea(QWidget *parent)
     : GraphicsLinearView(Qt::Horizontal, parent) {
@@ -37,14 +40,21 @@ QRectF WaveformScrollArea::viewportRect() const {
     return visible_scene_rect;
 }
 
-bool WaveformScrollArea::eventFilter(QObject *obj, QEvent *event) {
-    if (obj == verticalScrollBar() || obj == horizontalScrollBar()) {
-        if (event->type() == QEvent::Wheel) {
-            return true;
-        }
+void WaveformScrollArea::wheelEvent(QWheelEvent *event) {
+    Qt::KeyboardModifiers c = event->modifiers();
+    QPoint delta = event->angleDelta();
+    if (c & Qt::AltModifier) {
+        return;
     }
-    // pass the event on to the parent class
-    return GraphicsLinearView::eventFilter(obj, event);
+    if (c == qConfig->wave.moveVertically) {
+        event->setModifiers(Qt::NoModifier);
+        QApplication::sendEvent(verticalScrollBar(), event);
+    } else if (c == qConfig->wave.moveHorizontally) {
+        event->setModifiers(Qt::NoModifier);
+        QApplication::sendEvent(horizontalScrollBar(), event);
+    } else if (c == qConfig->wave.zoomHorizontally) {
+        emit horizontalZoomRequested(qAbs(delta.x()) > qAbs(delta.y()) ? delta.x() : delta.y());
+    }
 }
 
 QColor WaveformScrollArea::sampleOffsetLine() const {

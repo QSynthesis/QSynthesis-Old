@@ -83,10 +83,10 @@ void NotesArea::advancePlayHead() {
     GraphicsNote *p = NotesList.at(playToNote);
     playHead->setPos(p->x() + ticks, playHead->y());
 
+    QRectF vp = viewportRect();
     if (m_playHeadOnCenter) {
         setVisionFitToItem(playHead, Qt::AnchorHorizontalCenter);
     } else {
-        QRectF vp = viewportRect();
         if (playHead->left() < vp.left() || playHead->right() > vp.right()) {
             setVisionFitToItem(playHead, Qt::AnchorLeft);
         }

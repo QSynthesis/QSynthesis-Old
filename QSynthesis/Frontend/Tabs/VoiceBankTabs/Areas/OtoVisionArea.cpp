@@ -53,6 +53,9 @@ void OtoVisionArea::init() {
     connect(vision, &WaveformArea::editing, this, &OtoVisionArea::handleEditing);
     connect(vision, &WaveformArea::editOver, this, &OtoVisionArea::handleEditOver);
 
+    connect(scroll, &WaveformScrollArea::horizontalZoomRequested, this,
+            &OtoVisionArea::handleHorizontalZoom);
+
     limitWidth();
 
     m_ptrs->otoVision = vision;
@@ -67,55 +70,6 @@ void OtoVisionArea::limitWidth() {
         scroll->horizontalScrollBar()->setValue(0);
         vision->setWidth(minWidth());
     }
-}
-
-void OtoVisionArea::wheelEvent(QWheelEvent *event) {
-    if (editing()) {
-        return;
-    }
-
-    Qt::KeyboardModifiers c = event->modifiers(); // 当前辅助组合键
-    QPoint delta = event->angleDelta();           // 滚轮移动方向
-
-    if (delta.isNull()) {
-        return;
-    }
-
-    if (delta.x() * delta.y() == 0) {
-        delta.ry() = delta.x() + delta.y();
-        delta.rx() = 0;
-    }
-
-#ifdef Q_OS_MAC
-    if (c == Qt::NoModifier) {
-        delta = -delta;
-        if (delta.x() != 0) {
-            moveHorizontally(delta.x());
-        }
-    } else {
-        if (delta.x() * delta.y() == 0) {
-            delta.ry() = delta.x() + delta.y();
-            delta.rx() = 0;
-        }
-        if (c == qConfig->wave.zoomHorizontally) {
-            zoomHorizontally(delta.y() * 2);
-        } else if (c == qConfig->wave.moveHorizontally) {
-            scroll->horizontalScrollBar()->triggerAction(
-                delta.y() < 0 ? QAbstractSlider::SliderSingleStepAdd
-                              : QAbstractSlider::SliderSingleStepSub);
-        }
-    }
-#else
-    if (delta.x() == 0) {
-        if (c == qConfig->wave.zoomHorizontally) {
-            zoomHorizontally(delta.y() * 2);
-        } else if (c == qConfig->wave.moveHorizontally) {
-            scroll->horizontalScrollBar()->triggerAction(
-                delta.y() < 0 ? QAbstractSlider::SliderSingleStepAdd
-                              : QAbstractSlider::SliderSingleStepSub);
-        }
-    }
-#endif
 }
 
 void OtoVisionArea::resizeEvent(QResizeEvent *event) {

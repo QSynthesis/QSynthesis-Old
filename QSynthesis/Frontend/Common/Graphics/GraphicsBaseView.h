@@ -36,6 +36,7 @@ private:
     QPropertyAnimation *m_verticalAnimation;
 
     bool viewportEvent(QEvent *event) override;
+    void hideEvent(QHideEvent *event) override;
 };
 
 #endif // GRAPHICSBASEVIEW_H

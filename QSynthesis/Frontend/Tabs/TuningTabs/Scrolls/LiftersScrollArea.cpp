@@ -18,11 +18,7 @@ LiftersScrollArea::LiftersScrollArea(QWidget *parent) : GraphicsLinearView(Qt::H
 LiftersScrollArea::~LiftersScrollArea() {
 }
 
-bool LiftersScrollArea::eventFilter(QObject *obj, QEvent *event) {
-    if (obj == this && AppAssistant::keyIsDown(event)) {
-        return true;
-    }
-    return GraphicsLinearView::eventFilter(obj, event);
+void LiftersScrollArea::wheelEvent(QWheelEvent *event) {
 }
 
 void LiftersScrollArea::initLight() {

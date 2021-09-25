@@ -18,6 +18,11 @@ SpriteAdjustDialog::SpriteAdjustDialog(QWidget *parent) : TransparentContainer(p
     cbBottomLeft = new QCheckBox(tr("Bottom left"));
     cbBottomRight = new QCheckBox(tr("Bottom right"));
 
+    cbTopLeft->setAutoExclusive(true);
+    cbTopRight->setAutoExclusive(true);
+    cbBottomLeft->setAutoExclusive(true);
+    cbBottomRight->setAutoExclusive(true);
+
     connect(cbVisible, &QCheckBox::clicked, this, &SpriteAdjustDialog::handleVisibilityClicked);
 
     connect(scAlpha, &SlideLineControl::valueChanged, this,
@@ -84,11 +89,6 @@ void SpriteAdjustDialog::handleVisibilityClicked() {
 }
 
 void SpriteAdjustDialog::handleCornerClicked() {
-    QCheckBox *cbCurrent = qobject_cast<QCheckBox *>(sender());
-    cbTopLeft->setChecked(cbTopLeft == cbCurrent);
-    cbTopRight->setChecked(cbTopRight == cbCurrent);
-    cbBottomLeft->setChecked(cbBottomLeft == cbCurrent);
-    cbBottomRight->setChecked(cbBottomRight == cbCurrent);
     emit cornerChanged(corner());
 }
 

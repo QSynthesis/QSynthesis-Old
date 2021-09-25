@@ -34,7 +34,7 @@ public:
     QRectF viewportRect() const;
 
 private:
-    bool eventFilter(QObject *obj, QEvent *event);
+    void wheelEvent(QWheelEvent *event) override;
 
 public:
     QColor sampleOffsetLine() const;
@@ -80,6 +80,8 @@ private:
 signals:
     void themeUpdated();
     void sampleThemeUpdated();
+
+    void horizontalZoomRequested(int delta);
 };
 
 #endif // WAVEFORMSCROLLAREA_H

@@ -1,5 +1,6 @@
 #include "NotesScrollArea.h"
 #include "../Areas/Editor/NotesArea.h"
+#include "mainwindow.h"
 
 #include <QEvent>
 #include <QScrollBar>
@@ -8,8 +9,6 @@ NotesScrollArea::NotesScrollArea(QWidget *parent) : GraphicsBaseView(parent) {
     setRenderHint(QPainter::Antialiasing);
 
     installEventFilter(this);
-    verticalScrollBar()->installEventFilter(this);
-    horizontalScrollBar()->installEventFilter(this);
 
     initLight();
 
@@ -102,14 +101,23 @@ void NotesScrollArea::resizeEvent(QResizeEvent *event) {
     }
 }
 
-bool NotesScrollArea::eventFilter(QObject *obj, QEvent *event) {
-    if (obj == verticalScrollBar() || obj == horizontalScrollBar()) {
-        if (event->type() == QEvent::Wheel) {
-            return true;
-        }
+void NotesScrollArea::wheelEvent(QWheelEvent *event) {
+    Qt::KeyboardModifiers c = event->modifiers();
+    QPoint delta = event->angleDelta();
+    if (c & Qt::AltModifier) {
+        return;
     }
-    // pass the event on to the parent class
-    return GraphicsBaseView::eventFilter(obj, event);
+    if (c == qConfig->notes.moveVertically) {
+        event->setModifiers(Qt::NoModifier);
+        QApplication::sendEvent(verticalScrollBar(), event);
+    } else if (c == qConfig->notes.moveHorizontally) {
+        event->setModifiers(Qt::NoModifier);
+        QApplication::sendEvent(horizontalScrollBar(), event);
+    } else if (c == qConfig->notes.zoomHorizontally) {
+        emit horizontalZoomRequested(qAbs(delta.x()) > qAbs(delta.y()) ? delta.x() : delta.y());
+    } else if (c == qConfig->notes.zoomVertically) {
+        emit verticalZoomRequested(qAbs(delta.x()) > qAbs(delta.y()) ? delta.x() : delta.y());
+    }
 }
 
 void NotesScrollArea::initLight() {

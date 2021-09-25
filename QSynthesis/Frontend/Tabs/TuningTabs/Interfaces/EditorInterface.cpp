@@ -58,6 +58,10 @@ EditorInterface::EditorInterface(EditorForm *parent) : BaseInterface(parent) {
             &EditorInterface::handleHorizontalMove);
     connect(notesScroll->verticalScrollBar(), &QScrollBar::valueChanged, this,
             &EditorInterface::handleVerticalMove);
+    connect(notesScroll, &NotesScrollArea::horizontalZoomRequested, this,
+            &EditorInterface::handleHorizontalZoom);
+    connect(notesScroll, &NotesScrollArea::verticalZoomRequested, this,
+            &EditorInterface::handleVerticalZoom);
 
     installEventFilter(this);
 
@@ -91,64 +95,7 @@ TuningGroup *EditorInterface::ptrs() const {
 }
 
 void EditorInterface::wheelEvent(QWheelEvent *event) {
-    Qt::KeyboardModifiers c = event->modifiers();
-    QPoint delta = event->angleDelta();
-
-    if (delta.isNull()) {
-        return;
-    }
-
-    if (delta.x() * delta.y() == 0) {
-        delta.ry() = delta.x() + delta.y();
-        delta.rx() = 0;
-    }
-
-#ifdef Q_OS_MAC
-    if (c == Qt::NoModifier) {
-        delta = -delta;
-        if (delta.x() != 0) {
-            moveHorizontally(delta.x());
-        }
-        if (delta.y() != 0) {
-            moveVertically(delta.y());
-        }
-    } else {
-        if (delta.x() * delta.y() == 0) {
-            delta.ry() = delta.x() + delta.y();
-            delta.rx() = 0;
-        }
-        if (c == qConfig->notes.zoomHorizontally) {
-            zoomHorizontally(delta.y());
-        } else if (c == qConfig->notes.zoomVertically) {
-            zoomVertically(delta.y());
-        } else if (c == qConfig->notes.moveHorizontally) {
-            notesScroll->horizontalScrollBar()->triggerAction(
-                delta.y() < 0 ? QAbstractSlider::SliderSingleStepAdd
-                              : QAbstractSlider::SliderSingleStepSub);
-        } else if (c == qConfig->notes.moveVertically) {
-            notesScroll->verticalScrollBar()->triggerAction(
-                delta.y() < 0 ? QAbstractSlider::SliderSingleStepAdd
-                              : QAbstractSlider::SliderSingleStepSub);
-        }
-    }
-#else
-    if (delta.x() == 0) {
-        if (c == qConfig->notes.zoomHorizontally) {
-            zoomHorizontally(delta.y());
-        } else if (c == qConfig->notes.zoomVertically) {
-            zoomVertically(delta.y());
-        } else if (c == qConfig->notes.moveHorizontally) {
-            notesScroll->horizontalScrollBar()->triggerAction(
-                delta.y() < 0 ? QAbstractSlider::SliderSingleStepAdd
-                              : QAbstractSlider::SliderSingleStepSub);
-
-        } else if (c == qConfig->notes.moveVertically) {
-            notesScroll->verticalScrollBar()->triggerAction(
-                delta.y() < 0 ? QAbstractSlider::SliderSingleStepAdd
-                              : QAbstractSlider::SliderSingleStepSub);
-        }
-    }
-#endif
+    m_ptrs->notesScroll->wheelEvent(event);
 }
 
 bool EditorInterface::eventFilter(QObject *obj, QEvent *event) {
@@ -163,4 +110,12 @@ void EditorInterface::handleHorizontalMove(int value) {
 void EditorInterface::handleVerticalMove(int value) {
     // notesArea->update();
     pianoScroll->setValueY(value);
+}
+
+void EditorInterface::handleHorizontalZoom(int delta) {
+    zoomHorizontally(delta);
+}
+
+void EditorInterface::handleVerticalZoom(int delta) {
+    zoomVertically(delta);
 }

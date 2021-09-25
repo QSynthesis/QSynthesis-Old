@@ -99,6 +99,8 @@ public:
     explicit NotesScrollArea(QWidget *parent = nullptr);
     virtual ~NotesScrollArea();
 
+    friend class EditorInterface;
+
 public:
     void setAdjusterVisible(bool visible);
     bool adjusterVisible() const;
@@ -119,7 +121,7 @@ private:
     void keyReleaseEvent(QKeyEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;
 
-    bool eventFilter(QObject *obj, QEvent *event) override;
+    void wheelEvent(QWheelEvent *event) override;
 
 private:
     void initLight();
@@ -323,6 +325,9 @@ signals:
     void vbrHandleThemeUpdated();
     void noteThemeUpdated();
     void rubberThemeUpdated();
+
+    void horizontalZoomRequested(int delta);
+    void verticalZoomRequested(int delta);
 };
 
 #endif // NOTESSCROLLAREA_H

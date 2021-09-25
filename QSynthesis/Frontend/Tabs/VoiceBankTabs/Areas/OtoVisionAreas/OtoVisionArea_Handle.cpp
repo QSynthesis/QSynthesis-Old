@@ -1,7 +1,7 @@
 #include "../../Operations/OtoOperations/OtoChangeOperation.h"
 #include "../../VoiceBankGroup.h"
-#include "../OtoVisionArea.h"
 #include "../OtoPlayerArea.h"
+#include "../OtoVisionArea.h"
 
 void OtoVisionArea::handleEditing() {
     m_editing = true;
@@ -23,4 +23,8 @@ void OtoVisionArea::handleEditOver(const QGenonSettings &orgSample) {
     oc->setModified(modified);
 
     saveOperation(oc);
+}
+
+void OtoVisionArea::handleHorizontalZoom(int delta) {
+    zoomHorizontally(delta);
 }

@@ -51,9 +51,10 @@ private:
     void handleEditing();
     void handleEditOver(const QGenonSettings &orgSample);
 
+    void handleHorizontalZoom(int delta);
+
 private:
     // Events
-    void wheelEvent(QWheelEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;
 
 signals:
