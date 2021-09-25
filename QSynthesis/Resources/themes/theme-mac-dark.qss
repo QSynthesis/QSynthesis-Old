@@ -31,12 +31,12 @@ QLineEdit, QTextEdit, QPlainTextEdit, QComboBox {
     padding: 3px 3px;
 }
 
-WaveformScrollArea, QTableWidget {
+WaveformScrollArea, QTableWidget, ImageScrollArea {
     border: 1px solid transparent;
     background-color: #3C3C3C;
 }
 
-QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus, WaveformScrollArea:focus, QTableWidget:focus {
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus, WaveformScrollArea:focus, QTableWidget:focus, ImageScrollArea:focus {
     border-color: #167FD2;
 }
 
@@ -475,6 +475,8 @@ NotesScrollArea {
     qproperty-noteUnlistedFill: #1881C7;
     qproperty-noteUnlistedLine: #105685;
     qproperty-noteSelect: rgba(255, 255, 255, 18%);
+    qproperty-noteLyricBlock: black;
+    qproperty-noteParams: lightgrey;
     /**/
     qproperty-rubberFrame: rgba(255, 255, 255, 36%);
     qproperty-rubberFill: rgba(255, 255, 255, 18%);
@@ -614,11 +616,11 @@ QTableWidget[type=voice]::item {
 }
 
 QTableWidget[type=voice]::item:hover {
-    background-color: rgba(255, 255, 255, 15%);
+    background-color: rgba(255, 255, 255, 7.5%);
 }
 
 QTableWidget[type=voice]::item:pressed {
-    background-color: rgba(255, 255, 255, 7.5%);
+    background-color: rgba(255, 255, 255, 5%);
 }
 
 QTableWidget[type=voice]::item:selected {
@@ -659,7 +661,7 @@ QTableWidget[type=voice]>QHeaderView::section:vertical {
 }
 
 QTableWidget[type=voice]>QHeaderView::section:hover {
-    background-color: rgba(255, 255, 255, 20%);
+    background-color: rgba(255, 255, 255, 12.5%);
 }
 
 QTableWidget[type=voice]>QHeaderView::section:pressed {
@@ -688,15 +690,15 @@ QTableWidget[type=keyboard]::item {
 }
 
 QTableWidget[type=keyboard]::item:hover {
-    background-color: rgba(255, 255, 255, 20%);
-}
-
-QTableWidget[type=keyboard]::item:pressed {
     background-color: rgba(255, 255, 255, 7.5%);
 }
 
+QTableWidget[type=keyboard]::item:pressed {
+    background-color: rgba(255, 255, 255, 5%);
+}
+
 QTableWidget[type=keyboard]::item:selected {
-    background-color: rgba(255, 255, 255, 12%);
+    background-color: rgba(255, 255, 255, 10%);
 }
 
 /*corner*/
@@ -729,7 +731,7 @@ QTableWidget[type=keyboard]>QHeaderView::section:horizontal {
 }
 
 QTableWidget[type=keyboard]>QHeaderView::section:vertical:hover {
-    background-color: rgba(255, 255, 255, 20%);
+    background-color: rgba(255, 255, 255, 12.5%);
 }
 
 QTableWidget[type=keyboard]>QHeaderView::section:vertical:pressed {
@@ -737,12 +739,12 @@ QTableWidget[type=keyboard]>QHeaderView::section:vertical:pressed {
 }
 
 QTableWidget[type=keyboard]>QHeaderView::section:vertical:checked {
-    background-color: rgba(255, 255, 255, 13.6%);
+    background-color: rgba(255, 255, 255, 15%);
 }
 
 /* ComboSelector */
 
-ComboSelector {
+ComboSelector, SpriteAdjustDialog {
     background-color: transparent;
     qproperty-wallpaper: #252526;
     /* border-top: 10px solid qlineargradient(y0:0, y1:1, stop: 0 #ECECEC, stop: 1 transparent); */
@@ -875,4 +877,53 @@ OtoInfoArea>LineControl>.QLabel {
 
 OtoInfoArea>LineControl>FixedLineEdit {
     /* padding: 5px 5px; */
+}
+
+ImageLabel {
+    background-color: transparent;
+    color: #CCCCCC;
+}
+
+/* QSlider */
+
+QSlider::groove:horizontal {
+    border: none;
+    border-radius: 3px;
+    height: 10px;
+}
+
+QSlider::sub-page:horizontal {
+    background: #0096db;
+    border: none;
+    margin: 6px 0;
+}
+
+QSlider::add-page:horizontal {
+    background: rgb(255, 255, 255);
+    border: none;
+    margin: 6px 0;
+}
+
+QSlider::handle:horizontal {
+    background-color: #00AEFF;
+    border: 3px solid #00AEFF;
+    width: 2px;
+    margin: -4px 0;
+    border-radius: 4px;
+}
+
+QSlider::handle:horizontal:hover {
+    border-color: white;
+    background-color: white;
+}
+
+QSlider::handle:horizontal:pressed {
+    border-color: whitesmoke;
+    background-color: whitesmoke;
+}
+
+/* QCheckBox */
+
+QCheckBox::indicator {
+    color: white;
 }

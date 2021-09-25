@@ -31,12 +31,12 @@ QLineEdit, QTextEdit, QPlainTextEdit, QComboBox {
     padding: 3px 3px;
 }
 
-WaveformScrollArea, QTableWidget {
+WaveformScrollArea, QTableWidget, ImageScrollArea {
     border: 1px solid #CCCCCC;
     background-color: white;
 }
 
-QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus, WaveformScrollArea:focus, QTableWidget:focus {
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus, QComboBox:focus, WaveformScrollArea:focus, QTableWidget:focus, ImageScrollArea:focus {
     border-color: #167FD2;
 }
 
@@ -231,7 +231,7 @@ KeyboardTab>.SwitchButtonUnderline[type=keyboard] {
 KeyboardTab>.QPushButton#reset {}
 
 KeyModifyDialog {
-    background-color: whitesmoke;
+    background-color: rgb(235, 235, 235);
 }
 
 /* Central Tab */
@@ -483,6 +483,8 @@ NotesScrollArea {
     qproperty-noteUnlistedFill: #1881C7;
     qproperty-noteUnlistedLine: #105685;
     qproperty-noteSelect: rgba(0, 0, 0, 18%);
+    qproperty-noteLyricBlock: black;
+    qproperty-noteParams: #666666;
     /**/
     qproperty-rubberFrame: rgba(0, 0, 0, 36%);
     qproperty-rubberFill: rgba(0, 0, 0, 18%);
@@ -623,11 +625,11 @@ QTableWidget[type=voice]::item {
 }
 
 QTableWidget[type=voice]::item:hover {
-    background-color: rgba(0, 0, 0, 15%);
+    background-color: rgba(0, 0, 0, 10%);
 }
 
 QTableWidget[type=voice]::item:pressed {
-    background-color: rgba(0, 0, 0, 7.5%);
+    background-color: rgba(0, 0, 0, 5%);
 }
 
 QTableWidget[type=voice]::item:selected {
@@ -668,7 +670,7 @@ QTableWidget[type=voice]>QHeaderView::section:vertical {
 }
 
 QTableWidget[type=voice]>QHeaderView::section:hover {
-    background-color: rgba(0, 0, 0, 20%);
+    background-color: rgba(0, 0, 0, 12.5%);
 }
 
 QTableWidget[type=voice]>QHeaderView::section:pressed {
@@ -684,8 +686,8 @@ QTableWidget[type=voice]>QHeaderView::section:checked {
 QTableWidget[type=keyboard] {
     border: none;
     background: #F8F8F8;
-    alternate-background-color: #F4F4F4;
-    gridline-color: rgba(0, 0, 0, 7.5%);
+    alternate-background-color: #F6F6F6;
+    gridline-color: rgba(0, 0, 0, 5%);
     selection-background-color: transparent;
 }
 
@@ -697,7 +699,7 @@ QTableWidget[type=keyboard]::item {
 }
 
 QTableWidget[type=keyboard]::item:hover {
-    background-color: rgba(0, 0, 0, 20%);
+    background-color: rgba(0, 0, 0, 10%);
 }
 
 QTableWidget[type=keyboard]::item:pressed {
@@ -707,7 +709,6 @@ QTableWidget[type=keyboard]::item:pressed {
 QTableWidget[type=keyboard]::item:selected {
     background-color: rgba(0, 0, 0, 12%);
 }
-
 
 /*corner*/
 
@@ -739,7 +740,7 @@ QTableWidget[type=keyboard]>QHeaderView::section:horizontal {
 }
 
 QTableWidget[type=keyboard]>QHeaderView::section:vertical:hover {
-    background-color: rgba(0, 0, 0, 20%);
+    background-color: rgba(0, 0, 0, 12.5%);
 }
 
 QTableWidget[type=keyboard]>QHeaderView::section:vertical:pressed {
@@ -747,12 +748,12 @@ QTableWidget[type=keyboard]>QHeaderView::section:vertical:pressed {
 }
 
 QTableWidget[type=keyboard]>QHeaderView::section:vertical:checked {
-    background-color: rgba(0, 0, 0, 13.6%);
+    background-color: rgba(0, 0, 0, 15%);
 }
 
 /* ComboSelector */
 
-ComboSelector {
+ComboSelector, SpriteAdjustDialog {
     background-color: transparent;
     qproperty-wallpaper: #F3F3F3;
     /* border-top: 10px solid qlineargradient(y0:0, y1:1, stop: 0 #ECECEC, stop: 1 transparent); */
@@ -885,4 +886,47 @@ OtoInfoArea>LineControl>.QLabel {
 
 OtoInfoArea>LineControl>FixedLineEdit {
     /* padding: 5px 5px; */
+}
+
+ImageLabel {
+    background-color: transparent;
+    color: #333333;
+}
+
+/* QSlider */
+
+QSlider::groove:horizontal {
+    border: none;
+    border-radius: 3px;
+    height: 10px;
+}
+
+QSlider::sub-page:horizontal {
+    background: #0b6fbb;
+    border: none;
+    margin: 6px 0;
+}
+
+QSlider::add-page:horizontal {
+    background: darkgrey;
+    border: none;
+    margin: 6px 0;
+}
+
+QSlider::handle:horizontal {
+    background-color: #167FD2;
+    border: 3px solid#167FD2;
+    width: 2px;
+    margin: -4px 0;
+    border-radius: 4px;
+}
+
+QSlider::handle:horizontal:hover {
+    border-color: black;
+    background-color: black;
+}
+
+QSlider::handle:horizontal:pressed {
+    border-color: #333333;
+    background-color: #333333;
 }
