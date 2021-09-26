@@ -49,9 +49,7 @@ void WaveformScrollArea::wheelEvent(QWheelEvent *event) {
         return;
     }
     if (c == Qt::NoModifier) {
-        if (isTouch) {
-            return GraphicsBaseView::wheelEvent(event);
-        }
+        return GraphicsBaseView::wheelEvent(event);
     } else if (c == qConfig->wave.moveHorizontally) {
         event->setModifiers(Qt::NoModifier);
         if (isTouch) {

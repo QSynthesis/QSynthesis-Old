@@ -110,9 +110,7 @@ void NotesScrollArea::wheelEvent(QWheelEvent *event) {
         return;
     }
     if (c == Qt::NoModifier) {
-        if (isTouch) {
-            return GraphicsBaseView::wheelEvent(event);
-        }
+        return GraphicsBaseView::wheelEvent(event);
     } else if (c == qConfig->notes.moveVertically) {
         event->setModifiers(Qt::NoModifier);
         if (isTouch) {
