@@ -103,6 +103,8 @@ SOURCES += \
     Frontend/Dialogs/SelectsDialog.cpp \
     Frontend/Dialogs/TerminalDialog.cpp \
     Frontend/Singletons/AppAssistant.cpp \
+    Frontend/Singletons/AppAssistants/AppAssistant_Keys.cpp \
+    Frontend/Singletons/AppAssistants/AppAssistant_Strings.cpp \
     Frontend/Singletons/CentralTabWidget.cpp \
     Frontend/Singletons/CentralTabWidgets/CentralTabWidget_Base.cpp \
     Frontend/Singletons/CentralTabWidgets/CentralTabWidget_Features.cpp \

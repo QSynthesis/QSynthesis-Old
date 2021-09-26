@@ -123,7 +123,7 @@ void NotesScrollArea::wheelEvent(QWheelEvent *event) {
         if (isTouch) {
             return GraphicsBaseView::wheelEvent(event);
         }
-        event->setModifiers(Qt::NoModifier);
+        event->setModifiers(Qt::AltModifier);
         QApplication::sendEvent(horizontalScrollBar(), event);
     } else if (c == qConfig->notes.zoomHorizontally) {
         emit horizontalZoomRequested(qAbs(delta.x()) > qAbs(delta.y()) ? delta.x() : delta.y());

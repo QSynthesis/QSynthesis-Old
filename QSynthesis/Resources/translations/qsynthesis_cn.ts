@@ -2,6 +2,17 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>AppAssistant</name>
+    <message>
+        <source>Scroll Here</source>
+        <translation type="obsolete">滚动到这里</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="obsolete">是</translation>
+    </message>
+</context>
+<context>
     <name>BackstageDialog</name>
     <message>
         <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="51"/>
@@ -781,7 +792,7 @@
         <translation type="obsolete">追加导入...</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="74"/>
+        <location filename="../../Main/Tabs/handlers.cpp" line="85"/>
         <source>Close</source>
         <translation type="unfinished">关闭</translation>
     </message>
@@ -1160,62 +1171,85 @@
         <translation type="unfinished">键盘映射</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="13"/>
+        <location filename="../../Main/Tabs/handlers.cpp" line="14"/>
         <source>You have not saved the file, do you want to save it?</source>
         <translation type="unfinished">是否将更改保存到文件中？</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="17"/>
+        <location filename="../../Main/Tabs/handlers.cpp" line="18"/>
         <source>You have not saved the directory, do you want to save it?</source>
         <translation type="unfinished">是否将更改保存到目录中？</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="22"/>
+        <location filename="../../Main/Tabs/handlers.cpp" line="23"/>
         <source>You have not saved the configuration, do you want to save it?</source>
         <translation type="unfinished">是否将更改保存到配置中？</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="74"/>
+        <source>Yes</source>
+        <translation type="obsolete">是</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="obsolete">否</translation>
+    </message>
+    <message>
+        <location filename="../../Main/Tabs/handlers.cpp" line="36"/>
+        <source>Save(&amp;S)</source>
+        <translation type="unfinished">保存(&amp;S)</translation>
+    </message>
+    <message>
+        <location filename="../../Main/Tabs/handlers.cpp" line="37"/>
+        <source>Don&apos;t save(&amp;N)</source>
+        <translation type="unfinished">不保存(&amp;N)</translation>
+    </message>
+    <message>
+        <location filename="../../Main/Tabs/handlers.cpp" line="38"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+    <message>
+        <location filename="../../Main/Tabs/handlers.cpp" line="85"/>
         <source>Close Others</source>
         <translation type="unfinished">关闭其他</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="74"/>
+        <location filename="../../Main/Tabs/handlers.cpp" line="85"/>
         <source>Close Saved</source>
         <translation type="unfinished">关闭已保存</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="74"/>
+        <location filename="../../Main/Tabs/handlers.cpp" line="85"/>
         <source>Close All</source>
         <translation type="unfinished">关闭所有</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="79"/>
+        <location filename="../../Main/Tabs/handlers.cpp" line="90"/>
         <source>Show in Explorer(&amp;S)</source>
         <translation type="unfinished">在文件资源管理器中显示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="81"/>
+        <location filename="../../Main/Tabs/handlers.cpp" line="92"/>
         <source>Show in Finder(&amp;S)</source>
         <translation type="unfinished">在Finder中显示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="83"/>
+        <location filename="../../Main/Tabs/handlers.cpp" line="94"/>
         <source>Show in File Manager(&amp;S)</source>
         <translation type="unfinished">在文件管理器中显示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="89"/>
+        <location filename="../../Main/Tabs/handlers.cpp" line="100"/>
         <source>Open in Explorer(&amp;S)</source>
         <translation type="unfinished">在文件资源管理器中打开(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="91"/>
+        <location filename="../../Main/Tabs/handlers.cpp" line="102"/>
         <source>Open in Finder(&amp;S)</source>
         <translation type="unfinished">在Finder中打开(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="93"/>
+        <location filename="../../Main/Tabs/handlers.cpp" line="104"/>
         <source>Open in File Manager(&amp;S)</source>
         <translation type="unfinished">在文件管理器中打开(&amp;S)</translation>
     </message>

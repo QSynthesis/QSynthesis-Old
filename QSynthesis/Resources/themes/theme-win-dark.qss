@@ -869,6 +869,8 @@ QMessageBox {
     border-radius: 3px;
 }
 
+QMessageBox>QDialogButtonBox>.QPushButton {}
+
 /* VoiceBankTab */
 
 OtoInfoArea>LineControl>.QLabel {

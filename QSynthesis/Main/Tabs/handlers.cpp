@@ -27,9 +27,20 @@ bool MainWindow::handleTabCloseRequent(int index) {
     }
 
     if (!accept) {
-        QMessageBox::StandardButton result = QMessageBox::question(
-            this, MainTitle, title, QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel,
-            QMessageBox::Yes);
+        QMessageBox msgbox(this);
+        msgbox.setText(title);
+        msgbox.setWindowTitle(MainTitle);
+        msgbox.setIcon(QMessageBox::Question);
+        msgbox.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+        msgbox.setDefaultButton(QMessageBox::Yes);
+
+        msgbox.button(QMessageBox::Yes)->setText(tr("Save(&S)"));
+        msgbox.button(QMessageBox::No)->setText(tr("Don't save(&N)"));
+        msgbox.button(QMessageBox::Cancel)->setText(tr("Cancel"));
+
+        QMessageBox::StandardButton result =
+            static_cast<QMessageBox::StandardButton>(msgbox.exec());
+
         switch (result) {
         case QMessageBox::Yes:
             accept = execSave(tab);

@@ -14,6 +14,7 @@ public:
     explicit AppAssistant(QObject *parent = nullptr);
     ~AppAssistant();
 
+    // Keys
 public:
     static bool keyIsDown(QEvent *event);
     static bool isUnusableKey(Qt::Key key);
@@ -21,6 +22,7 @@ public:
     static bool isModifierKey(Qt::Key key);
     static bool isSpecialShortcut(QKeySequence shortcut);
 
+    // Translators
 public:
     static bool translate(const QString &filename);
     static void eliminate();
