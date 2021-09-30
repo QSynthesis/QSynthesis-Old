@@ -623,6 +623,14 @@ else:macx {
     ICON = Resources/platforms/mac/qsynth2.icns
 }
 else:unix {
+    CONFIG(release, debug|release) {
+        LIBS += -L$$PWD/Libraries/linux/ -lefsw-static-release
+        PRE_TARGETDEPS += $$PWD/Libraries/linux/libefsw-static-release.a
+    }
+    else:CONFIG(debug, debug|release) {
+        LIBS += -L$$PWD/Libraries/linux/ -lefsw-static-debug
+        PRE_TARGETDEPS += $$PWD/Libraries/linux/libefsw-static-debug.a
+    }
 }
 
 # Default rules for deployment.
