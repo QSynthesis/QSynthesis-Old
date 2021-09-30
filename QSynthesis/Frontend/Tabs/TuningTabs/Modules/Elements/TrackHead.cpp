@@ -1,10 +1,12 @@
 #include "TrackHead.h"
 #include "../../Areas/Tracks/BlocksArea.h"
 #include "../../Areas/Tracks/HeadsArea.h"
-#include "Directory/VoiceInfo.h"
-
 #include "../../TuningGroup.h"
-#include "mainwindow.h"
+#include "Managers/VoiceManager.h"
+#include "QUtils.h"
+
+#include <QFileDialog>
+#include <QStyle>
 
 TrackHead::TrackHead(HeadsArea *parent) : MoreWidget(parent), m_parent(parent) {
     init();
@@ -214,8 +216,6 @@ void TrackHead::init() {
     trackLayout->addLayout(buttonLayout);
 
     setLayout(trackLayout);
-
-    connect(&m_voiceInfo, &VoiceInfo::charTxtChanged, this, &TrackHead::handleVoiceInfoChanged);
 }
 
 void TrackHead::reloadIcons() {
@@ -241,7 +241,7 @@ void TrackHead::onLabelBtnClicked() {
     QStringList list;
     QString revealStr;
 
-    const QList<VoiceInfo *> dirs = voice->dirs();
+    const QList<VoiceInfo> &dirs = qVoice->voices();
     int selectionCount = 0;
 
     if (m_mode == 1) {
@@ -260,13 +260,13 @@ void TrackHead::onLabelBtnClicked() {
             list.append(nullStr);
         } else {
             for (int i = 0; i < dirs.size(); ++i) {
-                VoiceInfo *voice = dirs.at(i);
-                if (isSameFile(voice->dirname(), m_voice)) {
+                const VoiceInfo &voice = dirs.at(i);
+                if (isSameFile(voice.dirname(), m_voice)) {
                     menu->setCheckedAt(i, true);
                 } else {
                     menu->setCheckedAt(i, false);
                 }
-                list.append(voice->title());
+                list.append(voice.title());
             }
         }
 
@@ -288,7 +288,7 @@ void TrackHead::onLabelBtnClicked() {
 
     if (index >= 0 && index < selectionCount) {
         if (m_mode == 1) {
-            setVoiceDir(dirs.at(index)->dirname());
+            setVoiceDir(dirs.at(index).dirname());
         } else {
             // setResampler()
         }

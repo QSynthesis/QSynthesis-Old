@@ -1,6 +1,7 @@
 #include "../KeyTableTab.h"
+#include "Singletons/AppAssistant.h"
 #include "Tabs/KeyboardTab.h"
-#include "mainwindow.h"
+#include "Templates/TemporaryMenu.h"
 
 #include <QAction>
 

@@ -1,3 +1,4 @@
+#include "QSTabs.h"
 #include "mainwindow.h"
 
 bool MainWindow::handleTabCloseRequent(int index) {

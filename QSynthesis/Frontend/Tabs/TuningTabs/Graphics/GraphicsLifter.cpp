@@ -2,7 +2,6 @@
 #include "../Areas/Params/LiftersArea.h"
 #include "../Scrolls/LiftersScrollArea.h"
 #include "QUtauConstants.h"
-#include "mainwindow.h"
 
 int GraphicsLifter::Radius = 6;
 

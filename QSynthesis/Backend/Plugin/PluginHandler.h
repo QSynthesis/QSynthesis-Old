@@ -8,8 +8,8 @@
 #include <QVector>
 
 #include "../Note/QLinkNote.h"
-#include "Data/SequenceTextData.h"
-#include "Directory/PluginInfo.h"
+#include "Document/PluginInfo.h"
+#include "Document/SequenceTextFiles/SequenceTextData.h"
 #include "PluginTempData.h"
 
 class PluginHandler : public QObject {

@@ -6,7 +6,6 @@
 #include "../Scrolls/NoneScrollArea.h"
 #include "../Scrolls/NotesScrollArea.h"
 #include "../TuningGroup.h"
-#include "mainwindow.h"
 
 #include <QDynamicPropertyChangeEvent>
 #include <QPushButton>

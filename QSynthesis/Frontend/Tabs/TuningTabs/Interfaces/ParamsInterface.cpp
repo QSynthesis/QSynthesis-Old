@@ -7,7 +7,7 @@
 #include "../Scrolls/LiftersScrollArea.h"
 #include "../Scrolls/NotesScrollArea.h"
 #include "../TuningGroup.h"
-#include "mainwindow.h"
+#include "Document/ConfigFile.h"
 
 #include <QScrollBar>
 
@@ -62,7 +62,7 @@ TuningGroup *ParamsInterface::ptrs() const {
 
 void ParamsInterface::wheelEvent(QWheelEvent *event) {
     Qt::KeyboardModifiers c = event->modifiers();
-    if (c != qConfig->notes.zoomHorizontally && c != qConfig->notes.moveHorizontally) {
+    if (c != qConfig->zoomH && c != qConfig->moveH) {
         return;
     }
     QApplication::sendEvent(m_ptrs->editorContent, event);

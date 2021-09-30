@@ -2,7 +2,6 @@
 #include "../Areas/Editor/NotesArea.h"
 #include "../Graphics/VolumePoint.h"
 #include "../Scrolls/NotesScrollArea.h"
-#include "mainwindow.h"
 
 const QList<QControlPoint> EnvelopeHandler::defaultEnvelope = {
     QControlPoint(0, 0), QControlPoint(5, 100), QControlPoint(35, 100), QControlPoint(0, 0)};

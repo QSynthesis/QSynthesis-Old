@@ -7,13 +7,14 @@
 #include <QTableWidget>
 #include <QVBoxLayout>
 
+#include "Actions/KeyboardActionList.h"
 #include "CentralTab.h"
 #include "Controls/SwitchButton.h"
-#include "File/ShortcutsFile.h"
+#include "Document/ShortcutsFile.h"
 #include "KeyboardTabs/Contents/KeyTableTab.h"
 #include "KeyboardTabs/Operations/KeyOperation.h"
-
-class KeyboardActionList;
+#include "MiniSystem/MiniSystemNotifier.h"
+#include "TabWidget.h"
 
 // Keyboard Mapping Tab Class
 class KeyboardTab : public CentralTab {
@@ -25,8 +26,10 @@ public:
 
     KeyboardActionList *tabActions;
 
-    ShortcutsFile cfg;
-    ShortcutsData keys;
+    ShortcutsFile keys;
+
+private:
+    MiniSystemNotifier *notifier;
 
 public:
     bool load() override;
@@ -43,7 +46,7 @@ public:
     void setFixedname(const QString &value) override;
 
 private:
-    void handleFileChanged();
+    void handleFileChanged(const QStringList &files);
 
 protected:
     void updateMenuRoot() override;
@@ -53,6 +56,7 @@ protected:
 private:
     void loadCore();
     void saveCore();
+    void exitCore();
 
     bool checkNoConflict();
 

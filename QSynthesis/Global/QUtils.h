@@ -3,6 +3,7 @@
 
 #include <QApplication>
 #include <QColor>
+#include <QDateTime>
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
@@ -36,6 +37,8 @@ QString PathFindSuffix(QString s);
 
 QString PathFindUpper(QString s);
 
+QString PathFindNextLevel(QString s, QString folder);
+
 bool isPathRelative(QString fullPath); // If path is a relative path
 
 bool isDirExist(QString fullPath); // If the folder exists
@@ -61,6 +64,10 @@ void RemoveFilesWithPrefix(QString strDir, QString prefix);
 QDateTime GetFileLastModifyTime(QString filename);
 
 bool isNumber(QString s, bool considerDot, bool considerNeg);
+
+QList<int> toIntList(const QStringList &list);
+
+QList<double> toDoubleList(const QStringList &list);
 
 bool equalDouble(double a, double b);
 

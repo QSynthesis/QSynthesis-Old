@@ -155,32 +155,25 @@ QString tone_number_to_tone_name(int oNameIndex, int oOctaveIndex) {
     return aToneName;
 }
 
-int find_file(const QString &oBaseFolder, const QString &oLeaf, QStringList *oFiles) {
-    if (oBaseFolder.isEmpty() || oLeaf.isEmpty()) {
-        return 0;
+QStringList findRecursiveDirs(const QString &oBaseFolder) {
+    QDir aDir;
+    aDir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
+    aDir.setPath(oBaseFolder);
+
+    if (!aDir.exists()) {
+        return {};
     }
 
-    QDir aDir;
-    QStringList aFilters;
-    QString aPath;
-
-    aFilters << oLeaf;
-    aDir.setPath(oBaseFolder);
-    aDir.setNameFilters(aFilters);
-
     QDirIterator iter(aDir, QDirIterator::Subdirectories);
+    QStringList res;
 
     while (iter.hasNext()) {
         iter.next();
         QFileInfo aInfo = iter.fileInfo();
-        if (aInfo.isFile()) {
-            aPath = aInfo.absoluteFilePath();
-            aPath = QDir::toNativeSeparators(aPath); // 适配分隔符
-            (*oFiles).append(aPath);
-        }
+        res.append(aInfo.absoluteFilePath());
     }
 
-    return oFiles->size();
+    return res;
 }
 
 bool isRestNoteLyric(const QString &oLyric) {

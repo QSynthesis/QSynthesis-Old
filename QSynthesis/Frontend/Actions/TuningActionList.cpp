@@ -7,7 +7,7 @@ TuningActionList::TuningActionList(QObject *parent) : BaseActionList(parent) {
 }
 
 TuningActionList::TuningActionList(Qs::VariableSource source) {
-    assert(source == Qs::Default);
+    Q_ASSERT(source == Qs::Default);
 }
 
 TuningActionList::~TuningActionList() {

@@ -1,5 +1,4 @@
 #include "BaseDialog.h"
-#include "mainwindow.h"
 
 #include <QCloseEvent>
 

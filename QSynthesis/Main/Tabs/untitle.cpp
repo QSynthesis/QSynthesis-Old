@@ -1,3 +1,4 @@
+#include "Tabs/TuningTab.h"
 #include "mainwindow.h"
 
 QString MainWindow::incUntitled() {

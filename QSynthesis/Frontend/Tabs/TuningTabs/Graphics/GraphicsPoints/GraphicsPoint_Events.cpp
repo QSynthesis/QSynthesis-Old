@@ -2,7 +2,7 @@
 #include "../../Handlers/Mode2Handler.h"
 #include "../../TuningGroup.h"
 #include "../GraphicsPoint.h"
-#include "mainwindow.h"
+#include "Document/ConfigFile.h"
 
 void GraphicsPoint::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     qDragIn.filter(m_element); // Deselect all draggers other than point
@@ -66,14 +66,14 @@ void GraphicsPoint::afterPress() {
     bool selected = isSelected();
 
     // Shift
-    if (c == qConfig->notes.continuousSelect) {
+    if (c == qConfig->selectC) {
         qDragIn.addOne(this);
         m_scope->selectContinuously();
         return;
     }
 
     // Ctrl
-    if (c == qConfig->notes.reserveSelect) {
+    if (c == qConfig->selectR) {
         // Add or Remove
         if (selected) {
             qDragIn.removeOne(this);

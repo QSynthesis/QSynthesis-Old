@@ -89,7 +89,6 @@ void OtoTableTab::addSample(const QGenonSettings &genon, int index) {
         QOtoSample sample(filename);
         sample.append(genon);
         otoSamples.insert(targetIndex, sample);
-        validCache.insert(sample.filename(), qMakePair(sample.valid(), sample.frqExist()));
     } else {
         // Change backend value
         QOtoSample &sample = otoSamples[sequence];
@@ -119,7 +118,6 @@ void OtoTableTab::removeSample(const QGenonSettings &genon, int index) {
     }
     // Change backend value
     if (otoSamples[sequence].size() == 1) {
-        validCache.remove(otoSamples[sequence].filename());
         otoSamples.removeAt(sequence);
     } else {
         otoSamples[sequence].removeAt(index);

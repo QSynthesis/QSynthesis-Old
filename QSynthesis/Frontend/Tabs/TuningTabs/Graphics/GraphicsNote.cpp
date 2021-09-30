@@ -3,7 +3,6 @@
 #include "../Areas/Params/LiftersArea.h"
 #include "../Scrolls/NotesScrollArea.h"
 #include "../TuningGroup.h"
-#include "mainwindow.h"
 
 GraphicsNote::GraphicsNote(NotesArea *editor, QGraphicsItem *parent)
     : GraphicsDragger(parent), m_editor(editor) {

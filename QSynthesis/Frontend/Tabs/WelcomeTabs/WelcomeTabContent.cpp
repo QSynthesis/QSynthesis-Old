@@ -1,5 +1,7 @@
 #include "WelcomeTabContent.h"
-#include "mainwindow.h"
+#include "../WelcomeTab.h"
+#include "Document/SettingIniFile.h"
+#include "Document/VoiceInfo.h"
 
 WelcomeTabContent::WelcomeTabContent(WelcomeTab *tab, QWidget *parent)
     : CentralTabContent(parent), m_tab(tab) {

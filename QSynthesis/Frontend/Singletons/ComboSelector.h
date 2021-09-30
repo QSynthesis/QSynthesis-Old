@@ -16,6 +16,8 @@
 #include "Customs/TransparentContainer.h"
 #include "Macros.h"
 
+#define qSelector ComboSelector::instance()
+
 class ComboSelector : public TransparentContainer {
     Q_OBJECT
     Q_SINGLETON(ComboSelector)

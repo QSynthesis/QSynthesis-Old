@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QProcess>
+#include <QPushButton>
 #include <QTimer>
 #include <QWidget>
 

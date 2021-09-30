@@ -6,7 +6,6 @@
 #include "Operations/TrackOperation.h"
 #include "ProjectInfoHandler.h"
 #include "TuningGroup.h"
-#include "mainwindow.h"
 
 void TuningTab::undo() {
     bool success = true;

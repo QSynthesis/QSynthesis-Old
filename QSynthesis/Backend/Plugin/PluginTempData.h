@@ -3,9 +3,8 @@
 
 #include <QObject>
 
-#include "Data/SequenceTextData.h"
-
 #include "../Note/QLinkNote.h"
+#include "Document/SequenceTextFiles/SequenceTextData.h"
 
 struct NoteReadonlys {
     double preuttr;

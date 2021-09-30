@@ -1,6 +1,7 @@
 #include "ComboSelector.h"
 #include "application.h"
-#include "mainwindow.h"
+
+#include "Singletons/AppAssistant.h"
 
 Q_SINGLETON_DECLARE(ComboSelector)
 

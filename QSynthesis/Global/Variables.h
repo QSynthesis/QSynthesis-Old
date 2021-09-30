@@ -4,10 +4,6 @@
 #include <QApplication>
 #include <QString>
 
-class PluginsCollect;
-class VoiceCollect;
-class NormalFileCollect;
-
 extern QString Version;
 extern QString TempDirName;
 
@@ -21,11 +17,6 @@ extern QString UntitledFileName;
 extern QString UntitledPrefix;
 extern QString DeletedPrefix;
 
-extern PluginsCollect *plugins;
-extern VoiceCollect *voice;
-extern NormalFileCollect *themes;
-extern NormalFileCollect *languages;
-
 extern QString openFilterString;
 extern QString saveFilterString;
 extern QString importFilterString;
@@ -36,8 +27,6 @@ extern QString exportOtoIniFilterString;
 extern QString imageFilterString;
 extern QString audioFilterString;
 extern QString toolsFilterString;
-
-extern QString tempDirectoryName;
 
 QString voiceProfile();
 QString pluginsProfile();

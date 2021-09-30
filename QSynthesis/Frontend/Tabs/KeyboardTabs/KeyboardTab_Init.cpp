@@ -6,7 +6,8 @@
 void KeyboardTab::initTab() {
     m_type = Qs::Keyboard;
 
-    connect(&cfg, &ShortcutsFile::changed, this, &KeyboardTab::handleFileChanged);
+    notifier = MiniSystem::instance()->createNotifier(m_filename, MiniSystem::File);
+    connect(notifier, &MiniSystemNotifier::fileChanged, this, &KeyboardTab::handleFileChanged);
 
     initValues();
     initComponents();
@@ -108,7 +109,7 @@ KeyTableTab *KeyboardTab::currentKeyTab() const {
 }
 
 void KeyboardTab::handleSwitchRequested(bool &accepted) {
-    //  accepted = false;
+    Q_UNUSED(accepted)
 }
 
 void KeyboardTab::handleSwitched() {

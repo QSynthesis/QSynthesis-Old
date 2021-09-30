@@ -1,9 +1,7 @@
 #include "../../Areas/Editor/NotesArea.h"
 #include "../../TuningGroup.h"
 #include "../EditorForm.h"
-#include "Actions/TuningActionList.h"
 #include "Templates/TemporaryMenu.h"
-#include "mainwindow.h"
 
 void EditorForm::handleMenuBtnClicked() {
     m_ptrs->tab->tabActions->fullAdsorb->setChecked(m_ptrs->currentAdsorb == 1);

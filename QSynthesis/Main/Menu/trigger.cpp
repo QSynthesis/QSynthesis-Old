@@ -1,3 +1,7 @@
+#include "Document/SettingIniFile.h"
+#include "Managers/PluginManager.h"
+#include "QSActions.h"
+#include "QSTabs.h"
 #include "mainwindow.h"
 
 void MainWindow::handleOpenRecentFile() {
@@ -18,10 +22,10 @@ void MainWindow::handleClearRecentMenu() {
 }
 
 void MainWindow::handleExecutePlugin() {
-    QList<PluginInfo *> dirs = plugins->dirs();
+    const QList<PluginInfo> &dirs = qPlugins->plugins();
     QAction *action = qobject_cast<QAction *>(sender());
     int index = action->data().toInt();
-    PluginInfo *plugin = dirs.at(index);
+    const PluginInfo &plugin = dirs.at(index);
 
     qDebug() << "[Action]"
              << "Run plugin at" << index;
@@ -29,7 +33,7 @@ void MainWindow::handleExecutePlugin() {
     CentralTab *tab = currentTab();
     if (tab->tabType() == Qs::Tuning) {
         TuningTab *tab1 = qobject_cast<TuningTab *>(tab);
-        tab1->handleRunPlugin(*plugin);
+        tab1->handleRunPlugin(plugin);
     }
 }
 

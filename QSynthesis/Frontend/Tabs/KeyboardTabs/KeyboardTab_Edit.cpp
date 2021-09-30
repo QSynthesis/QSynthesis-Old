@@ -1,5 +1,4 @@
 #include "../KeyboardTab.h"
-#include "mainwindow.h"
 
 void KeyboardTab::undo() {
     bool success = true;

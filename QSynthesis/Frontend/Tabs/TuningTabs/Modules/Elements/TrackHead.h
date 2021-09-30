@@ -12,7 +12,7 @@
 
 #include "../Buttons/TrackButton.h"
 #include "Controls/FixedLineEdit.h"
-#include "Directory/VoiceInfo.h"
+#include "Document/VoiceInfo.h"
 #include "MoreWidget.h"
 #include "QUtils.h"
 #include "Templates/LabelButton.h"

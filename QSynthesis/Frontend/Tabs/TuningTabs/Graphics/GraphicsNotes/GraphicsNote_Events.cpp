@@ -1,7 +1,7 @@
 #include "../../Areas/Editor/NotesArea.h"
 #include "../../TuningGroup.h"
 #include "../GraphicsNote.h"
-#include "mainwindow.h"
+#include "Document/ConfigFile.h"
 
 void GraphicsNote::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     qDragIn.filter(m_element); // Deselect all draggers other than note
@@ -73,7 +73,7 @@ void GraphicsNote::afterPress() {
             qDragIn.removeAll();
             qDragIn.addOne(this);
             // Before stretching
-            if (c == qConfig->notes.relativeStretch) {
+            if (c == qConfig->stretchR) {
                 qDragIn.stretching = Qs::RelativeStretch;
             } else {
                 qDragIn.stretching = Qs::AbsoluteStretch;
@@ -83,14 +83,14 @@ void GraphicsNote::afterPress() {
     }
     bool selected = isSelected();
     // Shift
-    if (c == qConfig->notes.continuousSelect) {
+    if (c == qConfig->selectC) {
         qDragIn.addOne(this);
         m_editor->selectContinuously();
         return;
     }
 
     // Ctrl
-    if (c == qConfig->notes.reserveSelect) {
+    if (c == qConfig->selectR) {
         // Add or Remove
         if (selected) {
             qDragIn.removeOne(this);

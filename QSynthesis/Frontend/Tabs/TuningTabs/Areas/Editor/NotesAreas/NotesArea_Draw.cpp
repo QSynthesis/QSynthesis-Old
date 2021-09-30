@@ -5,7 +5,8 @@
 
 GraphicsNote *NotesArea::insertNoteFromCursor(QPointF pos) {
     int index = findNoteAtPos(pos.x());
-    int len = 480 / m_ptrs->currentAdsorb;
+    int curAdsorb = m_ptrs->currentAdsorb;
+    int len = (curAdsorb == 0) ? 15 : 480 / curAdsorb;
     QPair<int, int> notePos = convertPositionToValue(pos);
 
     QLinkNote note(notePos.second, len);
@@ -179,8 +180,6 @@ void NotesArea::addPortamento(GraphicsNote *p) {
 
 void NotesArea::removePortamento(GraphicsNote *p) {
     ItemList<ScopeHandler> list;
-
-    qDebug() << qDragOut.selectedNotes.size();
     for (int i = 0; i < qDragOut.selectedNotes.size(); ++i) {
         GraphicsNote *c = qDragOut.selectedNotes.at(i);
         Mode2Handler *s = c->curves();
@@ -196,7 +195,6 @@ void NotesArea::removePortamento(GraphicsNote *p) {
 
 void NotesArea::addVibrato(GraphicsNote *p) {
     ItemList<Mode2Handler> list;
-
     for (int i = 0; i < qDragOut.selectedNotes.size(); ++i) {
         GraphicsNote *c = qDragOut.selectedNotes.at(i);
         Mode2Handler *s = c->curves();
@@ -213,7 +211,6 @@ void NotesArea::addVibrato(GraphicsNote *p) {
 
 void NotesArea::removeVibrato(GraphicsNote *p) {
     ItemList<Mode2Handler> list;
-
     for (int i = 0; i < qDragOut.selectedNotes.size(); ++i) {
         GraphicsNote *c = qDragOut.selectedNotes.at(i);
         Mode2Handler *s = c->curves();

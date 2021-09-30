@@ -3,7 +3,6 @@
 #include "Areas/Tracks/HeadsArea.h"
 #include "ProjectInfoHandler.h"
 #include "TuningGroup.h"
-#include "mainwindow.h"
 
 void TuningTab::switchToOtoReferenceMap(const QString &voiceDir) {
     if (oto) {

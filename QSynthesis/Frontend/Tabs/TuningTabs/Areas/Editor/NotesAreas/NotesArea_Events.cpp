@@ -2,7 +2,7 @@
 #include "../../../Scrolls/NotesScrollArea.h"
 #include "../../../TuningGroup.h"
 #include "../NotesArea.h"
-#include "mainwindow.h"
+#include "Document/ConfigFile.h"
 
 void NotesArea::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     QGraphicsItem *curItem = itemAt(event->scenePos(), QTransform());
@@ -15,11 +15,11 @@ void NotesArea::mousePressEvent(QGraphicsSceneMouseEvent *event) {
         return GraphicsArea::mousePressEvent(event);
     } else {
         Qt::KeyboardModifiers c = QApplication::keyboardModifiers();
-        if (c == qConfig->notes.sceneDragging) {
+        if (c == qConfig->sceneDrag) {
             m_moving = true;
             m_view->setDragMode(QGraphicsView::ScrollHandDrag);
         } else {
-            if (c != qConfig->notes.reserveSelect && c != qConfig->notes.continuousSelect) {
+            if (c != qConfig->selectR && c != qConfig->selectC) {
                 qDragOut.removeAll();
             }
             if (event->button() == Qt::LeftButton || event->button() == Qt::RightButton) {

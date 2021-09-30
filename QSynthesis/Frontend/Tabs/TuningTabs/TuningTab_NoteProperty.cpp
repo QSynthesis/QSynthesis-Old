@@ -3,7 +3,6 @@
 #include "Backend/Note/QLinkNote.h"
 #include "Dialogs/NotePropertiesDialog.h"
 #include "TuningGroup.h"
-#include "mainwindow.h"
 
 void TuningTab::showNoteProperty() {
     if (m_ptrs->draggers.selectedNotes.isEmpty()) {

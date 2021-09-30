@@ -20,8 +20,7 @@ int main(int argc, char *argv[]) {
 #if defined(Q_OS_MAC)
     AppAssistant::translate(AppPath + "/translations/qt_zh_CN.qm");
 #else
-    qDebug() << AppAssistant::translate(QCoreApplication::applicationDirPath() +
-                                        "/translations/qt_zh_CN.qm");
+    AppAssistant::translate(QCoreApplication::applicationDirPath() + "/translations/qt_zh_CN.qm");
 #endif
 
     MainWindow w;
@@ -30,7 +29,7 @@ int main(int argc, char *argv[]) {
 
     int code = a.exec();
 
-    w.quitWindow();
+    w.freeAndQuit();
 
     destroyed(); // Destroy
 

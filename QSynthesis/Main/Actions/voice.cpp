@@ -1,3 +1,4 @@
+#include "Tabs/VoiceBankTab.h"
 #include "mainwindow.h"
 
 void MainWindow::handleExportCurrent() {

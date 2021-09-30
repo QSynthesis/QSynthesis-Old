@@ -149,29 +149,40 @@ bool GraphicsArea::event(QEvent *event) {
 }
 
 void GraphicsArea::moveEvent(QGraphicsSceneMoveEvent *event) {
+    Q_UNUSED(event)
 }
 
 void GraphicsArea::resizeEvent(QGraphicsSceneResizeEvent *event) {
+    Q_UNUSED(event)
 }
 
 void GraphicsArea::enterEvent(QEnterEvent *event) {
+    Q_UNUSED(event)
 }
 
 void GraphicsArea::leaveEvent(QEvent *event) {
+    Q_UNUSED(event)
 }
 
 void GraphicsArea::dragEnterEvent(QGraphicsSceneDragDropEvent *event) {
-    qRoot->handleGraphicsSceneEvents(event);
+    QDragEnterEvent e(event->pos().toPoint(), event->possibleActions(), event->mimeData(),
+                      event->buttons(), event->modifiers());
+    QApplication::sendEvent(qRoot, &e);
 }
 
 void GraphicsArea::dragMoveEvent(QGraphicsSceneDragDropEvent *event) {
-    qRoot->handleGraphicsSceneEvents(event);
+    QDragMoveEvent e(event->pos().toPoint(), event->possibleActions(), event->mimeData(),
+                     event->buttons(), event->modifiers());
+    QApplication::sendEvent(qRoot, &e);
 }
 
 void GraphicsArea::dragLeaveEvent(QGraphicsSceneDragDropEvent *event) {
-    qRoot->handleGraphicsSceneEvents(event);
+    QDragLeaveEvent e;
+    QApplication::sendEvent(qRoot, &e);
 }
 
 void GraphicsArea::dropEvent(QGraphicsSceneDragDropEvent *event) {
-    qRoot->handleGraphicsSceneEvents(event);
+    QDropEvent e(event->pos().toPoint(), event->possibleActions(), event->mimeData(),
+                 event->buttons(), event->modifiers());
+    QApplication::sendEvent(qRoot, &e);
 }

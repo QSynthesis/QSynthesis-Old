@@ -1,4 +1,16 @@
 #include "total.h"
+#include "Document/ConfigFile.h"
+#include "Document/PluginInfo.h"
+#include "Document/SequenceTextFile.h"
+#include "Document/SettingIniFile.h"
+#include "Document/ShortcutsFile.h"
+#include "Document/VoiceInfo.h"
+#include "Managers/MemoryManager.h"
+#include "Managers/PluginManager.h"
+#include "Managers/VoiceManager.h"
+#include "VoiceBank/QOtoIni.h"
+#include "VoiceBank/QPrefixMap.h"
+#include "VoiceBank/QReadmeText.h"
 
 void initLocale() {
     QTextCodec *loc;
@@ -20,21 +32,46 @@ void initLocale() {
 }
 
 void initSingletons() {
-    ShortcutsData::createDefault();
+    MiniSystem::createCase();
 
-    SettingIniData::createCase();
-    ConfigData::createCase();
-    ShortcutsData::createCase();
+    ShortcutsFile::createDefault();
+
+    SettingIniFile::createCase();
+    ConfigFile::createCase();
+    ShortcutsFile::createCase();
     AppAssistant::createCase();
+
+    PluginManager::createCase();
+    VoiceManager::createCase();
+    MemoryManager::createCase();
+}
+
+void initFonts() {
+    QString fonts = fontsProfile();
+#ifdef Q_OS_MAC
+    AppFontName = qApp->font().family();
+#else
+    QFontDatabase::addApplicationFont(fonts + Slash + "msyh.ttc");
+    QFontDatabase::addApplicationFont(fonts + Slash + "msyhbd.ttc");
+    QFontDatabase::addApplicationFont(fonts + Slash + "msyhl.ttc");
+    AppFontName = "Microsoft YaHei UI";
+    qApp->setFont(mainFont());
+#endif
 }
 
 void removeSingletons() {
-    ShortcutsData::removeDefault();
+    PluginManager::destroyCase();
+    VoiceManager::destroyCase();
+    MemoryManager::destroyCase();
 
-    SettingIniData::destroyCase();
-    ConfigData::destroyCase();
-    ShortcutsData::destroyCase();
+    SettingIniFile::destroyCase();
+    ConfigFile::destroyCase();
+    ShortcutsFile::destroyCase();
     AppAssistant::destroyCase();
+
+    ShortcutsFile::removeDefault();
+
+    MiniSystem::destroyCase();
 }
 
 void created() {
@@ -43,25 +80,11 @@ void created() {
     UntitledPrefix = "*";
     AppPath = QDir::currentPath();
 
+    initFonts();
     initLocale();
     initSingletons();
-
-    MainWindow::checkWorkingDir();
-    MainWindow::checkTemporaryDir();
-
-    MainWindow::initConfigData();
-    MainWindow::initShortcutsData();
-    MainWindow::initSettingIni();
-
-    MainWindow::initVoice();
-    MainWindow::initPlugins();
-    MainWindow::initThemes();
-    MainWindow::initLanguages();
 }
 
 void destroyed() {
-    MainWindow::exitPreparation();
-    MainWindow::saveSettingIni();
-
     removeSingletons();
 }

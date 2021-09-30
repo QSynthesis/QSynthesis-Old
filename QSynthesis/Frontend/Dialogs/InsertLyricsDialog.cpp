@@ -1,6 +1,7 @@
 #include "InsertLyricsDialog.h"
+#include "Document/SettingIniFile.h"
 #include "QUtauUtils.h"
-#include "mainwindow.h"
+#include "QUtils.h"
 
 InsertLyricsDialog::InsertLyricsDialog(QStringList &lyrics, QWidget *parent)
     : BaseDialog(parent), orgLyrics(lyrics) {

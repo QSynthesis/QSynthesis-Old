@@ -25,7 +25,7 @@ int tone_name_to_tone_number(const QString &oToneName);
 QString tone_number_to_tone_name(int oToneNumber);
 QString tone_number_to_tone_name(int oNameIndex, int oOctaveIndex);
 
-int find_file(const QString &oBaseFolder, const QString &oLeaf, QStringList *oFiles);
+QStringList findRecursiveDirs(const QString &oBaseFolder);
 
 bool isRestNoteLyric(const QString &oLyric);
 

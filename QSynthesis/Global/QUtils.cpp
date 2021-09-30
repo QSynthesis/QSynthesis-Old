@@ -1,5 +1,4 @@
 ﻿#include "QUtils.h"
-#include "mainwindow.h"
 
 QFont mainFont(int pixelSize, int weight, bool italic) {
     QFont font;
@@ -38,6 +37,21 @@ QString PathFindFileName(QString s, QString folder) {
 QString PathFindUpper(QString s) {
     QFileInfo file(s);
     return file.absolutePath();
+}
+
+QString PathFindNextLevel(QString s, QString folder) {
+    if (!s.startsWith(folder)) {
+        return "";
+    }
+    QString suffix = s.mid(folder.size());
+    if (suffix.startsWith(Slash)) {
+        suffix = suffix.mid(1);
+    }
+    int slashIndex = suffix.indexOf(Slash);
+    if (slashIndex < 0) {
+        return suffix;
+    }
+    return suffix.mid(0, slashIndex);
 }
 
 QString PathFindSuffix(QString s) {
@@ -192,6 +206,32 @@ bool isNumber(QString s, bool considerDot, bool considerNeg) {
     return flag;
 }
 
+QList<int> toIntList(const QStringList &list) {
+    QList<int> res;
+    for (auto it = list.begin(); it != list.end(); ++it) {
+        bool isNum;
+        int num = it->toInt(&isNum);
+        if (!isNum) {
+            return {};
+        }
+        res.append(num);
+    }
+    return res;
+}
+
+QList<double> toDoubleList(const QStringList &list) {
+    QList<double> res;
+    for (auto it = list.begin(); it != list.end(); ++it) {
+        bool isNum;
+        int num = it->toDouble(&isNum);
+        if (!isNum) {
+            return {};
+        }
+        res.append(num);
+    }
+    return res;
+}
+
 bool equalDouble(double a, double b) {
     return QString::number(a) == QString::number(b);
 }
@@ -222,7 +262,8 @@ void RevealFile(QString filename) {
                           .arg(filename);
         QProcess::execute(QLatin1String("/usr/bin/osascript"), scriptArgs);
         scriptArgs.clear();
-        scriptArgs << QLatin1String("-e") << QLatin1String("tell application \"Finder\" to activate");
+        scriptArgs << QLatin1String("-e")
+                   << QLatin1String("tell application \"Finder\" to activate");
         QProcess::execute("/usr/bin/osascript", scriptArgs);
     }
 #else

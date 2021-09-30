@@ -4,7 +4,6 @@
 #include "Interfaces/TracksInterface.h"
 #include "ProjectInfoHandler.h"
 #include "TuningGroup.h"
-#include "mainwindow.h"
 
 void TuningTab::initPlayer() {
     m_player = new QMediaPlayer(this);

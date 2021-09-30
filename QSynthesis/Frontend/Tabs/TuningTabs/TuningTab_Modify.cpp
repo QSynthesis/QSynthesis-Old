@@ -1,5 +1,6 @@
 #include "../TuningTab.h"
 #include "Areas/Editor/NotesArea.h"
+#include "CentralTabWidget.h"
 #include "Dialogs/InputDialog.h"
 #include "Dialogs/InsertLyricsDialog.h"
 #include "Dialogs/ProjectSettingsDialog.h"
@@ -8,7 +9,6 @@
 #include "Operations/ProjectOperation.h"
 #include "ProjectInfoHandler.h"
 #include "TuningGroup.h"
-#include "mainwindow.h"
 
 void TuningTab::showLyricInsertion() {
     if (!isFreeButPlaying()) {
@@ -151,7 +151,7 @@ void TuningTab::transpose(int offset) {
     change();
 }
 
-void TuningTab::modifyAlias() {
+void TuningTab::selectAlias() {
     QList<QLinkNote> notes = m_ptrs->notesArea->selectedNotes();
     if (notes.size() != 1) {
         return;
@@ -163,11 +163,18 @@ void TuningTab::modifyAlias() {
     lrc = lrc.mid(0, 1);
     QStringList alias = oto->findAliasStartsWith(lrc);
 
-    TemporaryMenu *menu = new TemporaryMenu(this);
-    menu->setTexts(alias);
-    int index = menu->start();
-    menu->deleteLater();
+    int index = 0;
+    if (alias.size() < 30) {
+        TemporaryMenu *menu = new TemporaryMenu(this);
+        menu->setTexts(alias);
+        index = menu->start();
+        menu->deleteLater();
+    } else {
+        index = qMainTabs->useSelector(alias, tr("Select Alias"), -1);
+    }
+
     if (index >= 0) {
         m_ptrs->notesArea->replaceSelectedLyrics({alias.at(index)}, true);
     }
 }
+

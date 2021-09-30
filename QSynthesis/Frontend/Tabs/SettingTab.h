@@ -21,12 +21,11 @@
 
 #include <QDebug>
 
+#include "Actions/SettingActionList.h"
 #include "CentralTab.h"
 #include "Customs/LinearScrollArea.h"
 #include "QUtils.h"
 #include "SettingTabs/Operations/SettingOperation.h"
-
-class SettingActionList;
 
 // Setting Tab Class
 class SettingTab : public CentralTab {

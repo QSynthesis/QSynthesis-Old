@@ -1,7 +1,7 @@
 #ifndef QPRESAMPFILE_H
 #define QPRESAMPFILE_H
 
-#include "QSettingFile.h"
+#include "Files/QSettingFile.h"
 
 // Reference: https://sp.ch.nicovideo.jp/delta_kimigatame/blomaga/ar483589
 

@@ -1,34 +1,56 @@
 ﻿#include "mainwindow.h"
+#include "Document/SettingIniFile.h"
+
+Q_SINGLETON_DECLARE(MainWindow)
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     createCasePrivate();
 
     setAcceptDrops(true); // Accept Drops
+
+    // Components
     initValues();
-}
-
-void MainWindow::initAndShow() {
-    reloadBackendStrings();
-
     initMenuBar();
     initActionLists();
+    initTabs();
 
-    initTabs(); // Initialize Tab Manager
-    initStyleSheet();
-
-    reloadRecentMenu(); // load recent menu
-    reloadMenu();       // load menu strings
-    reloadPlugins();    // load plugins
-    reloadShortcuts();  // load shortcuts
-
-    connect(voice, &VoiceCollect::changed, this, &MainWindow::reloadVoice);
-    connect(plugins, &PluginsCollect::changed, this, &MainWindow::reloadPlugins);
-
-    initWindow();
+    // Temporary Settings
+    initSettingIni();
 }
 
 MainWindow::~MainWindow() {
     qDebug() << "[Destruct] MainWindow";
+}
+
+void MainWindow::initAndShow() {
+    // Modules
+    initModules();
+
+    initConfig();
+    initShortcuts();
+
+    initMemory(); // Check If Last Crushed
+
+    // Start
+    reloadBackendStrings();
+
+    reloadRecentMenu(); // load recent menu
+    reloadMenu();       // load menu strings
+    reloadShortcuts();  // load shortcuts
+
+    reloadPlugins();
+    reloadVoice();
+    reloadThemes();
+    reloadLanguages();
+
+    initWindow();
+}
+
+void MainWindow::freeAndQuit() {
+    quitWindow();
+
+    // Modules
+    freeModules();
 }
 
 void MainWindow::initWindow() {
@@ -52,6 +74,8 @@ void MainWindow::initWindow() {
 void MainWindow::quitWindow() {
     qSetting->windowRect = geometry();
     qSetting->windowMaximized = windowState() == Qt::WindowMaximized;
+
+    saveSettingIni();
 }
 
 void MainWindow::initValues() {

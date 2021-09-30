@@ -1,6 +1,5 @@
 #include "../KeyTableTab.h"
 #include "Tabs/KeyboardTab.h"
-#include "mainwindow.h"
 
 #include <QAction>
 

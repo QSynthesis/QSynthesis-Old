@@ -1,10 +1,12 @@
 #include "../TuningTab.h"
 #include "Areas/Editor/NotesArea.h"
+#include "Document/SettingIniFile.h"
 #include "Forms/EditorForm.h"
 #include "Forms/ParamsForm.h"
 #include "Forms/TracksForm.h"
 #include "Scrolls/LiftersScrollArea.h"
 #include "Scrolls/NotesScrollArea.h"
+#include "Tabs/VoiceBankTab.h"
 #include "TuningGroup.h"
 #include "mainwindow.h"
 

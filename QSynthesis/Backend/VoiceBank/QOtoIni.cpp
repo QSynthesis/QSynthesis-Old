@@ -1,34 +1,35 @@
 #include "QOtoIni.h"
+#include "Files/NormalFile.h"
+#include "QUtauStrings.h"
 #include "QUtauUtils.h"
 #include "QUtils.h"
 #include "Utils/CharsetHandler.h"
 
 Q_CHARSET_DECLARE(QOtoIni)
 
-QOtoIni::QOtoIni(QObject *parent) : FileManager(parent) {
+QOtoIni::QOtoIni() : BaseDirInfo(Qs::Default) {
     m_codec = defaultCodec;
     reset();
 }
 
-QOtoIni::QOtoIni(const QString &filename, QObject *parent) : FileManager(parent) {
+QOtoIni::QOtoIni(const QString &filename) : BaseDirInfo(Qs::Default) {
     m_codec = defaultCodec;
-    setFilename(filename);
+    setDirname(filename);
 }
 
 QOtoIni::~QOtoIni() {
 }
 
-bool QOtoIni::loadCore(bool *valid) {
-    QFile file(m_filename);
-
+bool QOtoIni::fromLocalFile(const QString &filename) {
+    NormalFile file(filename);
     if (!file.exists()) {
         return true;
     }
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    if (!file.load()) {
         return false;
     }
 
-    QByteArray data = file.readAll();
+    QByteArray data = file.data();
 
     // Detect Code
     QString charset = CharsetHandler::detectCharset(data);
@@ -44,12 +45,10 @@ bool QOtoIni::loadCore(bool *valid) {
 
     // Load oto
     QString alias;
-    QString filename;
+    QString fileName;
     QString fileBody;
     QVector<QString> namesStrs;
     QVector<QString> settingsStrs;
-
-    QString dirname = PathFindUpper(m_filename);
 
     while (!in.atEnd()) {
         line = in.readLine();
@@ -67,14 +66,14 @@ bool QOtoIni::loadCore(bool *valid) {
             alias = "";
         }
 
-        filename = namesStrs[0];
-        fileBody = filename.mid(0, namesStrs[0].lastIndexOf("."));
+        fileName = namesStrs[0];
+        fileBody = fileName.mid(0, namesStrs[0].lastIndexOf("."));
         settingsStrs.resize(6);
 
         QGenonSettings aGenon;
-        QString absoluteFileName = filename;
-        if (isPathRelative(filename)) {
-            absoluteFileName = dirname + Slash + filename;
+        QString absoluteFileName = fileName;
+        if (isPathRelative(fileName)) {
+            absoluteFileName = dirname() + Slash + fileName;
         }
         aGenon.mFileName = absoluteFileName;
         aGenon.mAlias = alias;
@@ -87,12 +86,11 @@ bool QOtoIni::loadCore(bool *valid) {
         OtoSamples.insertAuto(aGenon);
     }
 
-    file.close();
     return true;
 }
 
-bool QOtoIni::saveCore() {
-    QFile file(m_filename);
+bool QOtoIni::toLocalFile(const QString &filename) {
+    NormalFile file(filename);
 
     // Delete when empty
     if (OtoSamples.isEmpty()) {
@@ -103,11 +101,8 @@ bool QOtoIni::saveCore() {
         }
     }
 
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
-        return false;
-    }
-
-    QTextStream out(&file);
+    QByteArray data;
+    QTextStream out(&data);
     out.setCodec(m_codec);
 
     for (auto it = OtoSamples.begin(); it != OtoSamples.end(); ++it) {
@@ -124,10 +119,22 @@ bool QOtoIni::saveCore() {
         }
     }
 
-    file.close();
-    return true;
+    file.setData(data);
+    return file.save();
+}
+
+bool QOtoIni::loadCore(bool *valid) {
+    return fromLocalFile(filename());
+}
+
+bool QOtoIni::saveCore() {
+    return toLocalFile(filename());
 }
 
 void QOtoIni::resetCore() {
     OtoSamples.clear();
+}
+
+QString QOtoIni::infoFilename() const {
+    return FILE_NAME_OTO_INI;
 }

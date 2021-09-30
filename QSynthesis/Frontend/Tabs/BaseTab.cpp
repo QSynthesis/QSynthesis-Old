@@ -1,5 +1,5 @@
 ﻿#include "BaseTab.h"
-#include "mainwindow.h"
+#include "TabWidget.h"
 
 BaseTab::BaseTab(TabWidget *parent) : MoreWidget(parent), m_parent(parent) {
     m_active = false;

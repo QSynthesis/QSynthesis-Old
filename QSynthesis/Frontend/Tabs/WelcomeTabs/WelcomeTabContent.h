@@ -1,6 +1,7 @@
 #ifndef WELCOMETABCONTENT_H
 #define WELCOMETABCONTENT_H
 
+#include <QDateTime>
 #include <QDesktopServices>
 #include <QLabel>
 #include <QLayout>

@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 
-QSharedMemory MainWindow::sharedMemory;
-
 void MainWindow::reloadBackendStrings() {
     ErrorTitle = tr("Error");
     UntitledFileName = tr("Untitled");

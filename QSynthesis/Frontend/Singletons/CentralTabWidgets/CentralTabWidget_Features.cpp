@@ -5,7 +5,9 @@ int CentralTabWidget::useSelector(const QStringList &items, const QString &clues
     selector->setEditText("");
     selector->setItems(items);
     selector->setClues(clues);
-    selector->setCurrentIndex(current);
+    if (current >= 0 && current < items.size()) {
+        selector->setCurrentIndex(current);
+    }
 
     int result = -1;
     QEventLoop loop;

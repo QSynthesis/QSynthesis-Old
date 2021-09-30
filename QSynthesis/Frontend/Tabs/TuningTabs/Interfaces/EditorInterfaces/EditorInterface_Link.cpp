@@ -24,8 +24,11 @@ void EditorInterface::zoomHorizontally(int delta) {
         fromX = notesScroll->width();
     }
 
+    if (qAbs(delta) > 12) {
+        delta = qAbs(delta) / delta * 12;
+    }
     int fromW = m_ptrs->currentWidth;
-    int toW = m_ptrs->currentWidth + delta / 12;
+    int toW = m_ptrs->currentWidth + delta;
 
     if (toW < 12) {
         toW = 12;
@@ -67,8 +70,11 @@ void EditorInterface::zoomVertically(int delta) {
         fromY = notesScroll->height();
     }
 
+    if (qAbs(delta) > 4) {
+        delta = qAbs(delta) / delta * 4;
+    }
     int fromH = m_ptrs->currentHeight;
-    int toH = m_ptrs->currentHeight + delta / 12;
+    int toH = m_ptrs->currentHeight + delta;
 
     if (toH < 12) {
         toH = 12;

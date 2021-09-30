@@ -1,4 +1,6 @@
 #include "FileListWidget.h"
+#include "Document/SettingIniFile.h"
+#include "Templates/TemporaryMenu.h"
 #include "mainwindow.h"
 
 FileListWidget::FileListWidget(QWidget *parent) : QListWidget(parent) {

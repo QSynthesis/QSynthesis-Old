@@ -3,7 +3,7 @@
 #include "../../../Handlers/Mode2Handler.h"
 #include "../../../TuningGroup.h"
 #include "../NotesArea.h"
-#include "mainwindow.h"
+#include "Document/SettingIniFile.h"
 
 bool NotesArea::isMoving() const {
     return m_moving;

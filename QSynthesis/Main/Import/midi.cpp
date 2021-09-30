@@ -1,4 +1,5 @@
 #include "Dialogs/SelectsDialog.h"
+#include "Import/QMidiFile.h"
 #include "mainwindow.h"
 
 bool MainWindow::parseMidiFile(const QString &filename, SectionNotes &oNotes) {

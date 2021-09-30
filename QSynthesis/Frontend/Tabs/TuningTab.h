@@ -2,16 +2,20 @@
 #define TUNINGTAB_H
 
 #include <QClipboard>
+#include <QJsonDocument>
 #include <QMediaPlayer>
 #include <QMessageBox>
+#include <QMimeData>
 #include <QObject>
 #include <QSplitter>
 #include <QVBoxLayout>
 #include <QWidget>
 
+#include "Actions/TuningActionList.h"
 #include "CentralTab.h"
-#include "Directory/PluginInfo.h"
-#include "File/SequenceTextFile.h"
+#include "Document/PluginInfo.h"
+#include "Document/SequenceTextFile.h"
+#include "Global/MiniSystem/MiniSystemNotifier.h"
 #include "Render/RenderArgs.h"
 #include "Templates/TemporaryMenu.h"
 #include "VoiceBank/QOtoReference.h"
@@ -23,7 +27,6 @@ class EditorForm;
 class ParamsForm;
 class TracksForm;
 class FormSplitter;
-class TuningActionList;
 
 class ProjectInfoHandler;
 
@@ -38,6 +41,9 @@ public:
 
     SequenceTextFile ustFile;
     QOtoReference *oto;
+
+private:
+    MiniSystemNotifier *notifier;
 
 public:
     bool load() override; // All load function will be called only once
@@ -57,8 +63,22 @@ public:
     void setFilename(const QString &value) override;
     TuningGroup *ptrs() const;
 
+protected:
+    void setEdited(bool value) override; // Set the status of edited
+
+    void setTabName(const QString &value) override;
+    void updateTabName() override;
+
+    void updateMenuRoot() override;
+    void updateStatusRoot() override;
+    void updateMenuCore() override;
+
+    void updatePasteMenu();
+
+    void handleSavedStateChanged() override;
+
 private:
-    void handleFileChanged();
+    void handleFileChanged(const QStringList &files);
 
     // Proeperties
 public:
@@ -76,20 +96,6 @@ public:
     QString relativeCacheDir() const;
 
     QString tempAudioFile() const;
-
-protected:
-    void setEdited(bool value) override; // Set the status of edited
-
-    void setTabName(const QString &value) override;
-    void updateTabName() override;
-
-    void updateMenuRoot() override;
-    void updateStatusRoot() override;
-    void updateMenuCore() override;
-
-    void updatePasteMenu();
-
-    void handleSavedStateChanged() override;
 
     // Core
 private:
@@ -147,10 +153,12 @@ public:
     void resetEnvelope();
 
     void transpose(int offset = 0);
-    void modifyAlias();
+
+    void selectAlias();
 
     // Plugin
 public:
+    void selectPlugin();
     void handleRunPlugin(const PluginInfo &plugin);
 
     // Unchange

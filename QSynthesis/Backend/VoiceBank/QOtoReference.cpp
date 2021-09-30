@@ -34,10 +34,9 @@ bool QOtoReference::fromMemory(const QVoiceBank &voicebank) {
     suffixMap = voicebank.PrefixMap.SuffixMap;
 
     clearOtoIni();
-    const QMap<QString, QOtoLevel *> &map = voicebank.OtoLevels;
+    const QMap<QString, QOtoIni> &map = voicebank.OtoInis;
     for (auto it = map.begin(); it != map.end(); ++it) {
-        QOtoLevel *level = it.value();
-        registerSamples(level->otoData());
+        registerSamples(it->OtoSamples);
     }
 
     m_spritePath = voicebank.sprite();
@@ -97,20 +96,19 @@ QStringList QOtoReference::findAliasStartsWith(const QString &prefix) const {
 }
 
 bool QOtoReference::loadOtoIni() {
-    QStringList aOtoInis;
     bool result = true;
 
-    find_file(m_voiceDir, FILE_NAME_OTO_INI, &aOtoInis);
+    QStringList dirs = findRecursiveDirs(m_voiceDir);
+    dirs.prepend(m_voiceDir);
 
     clearOtoIni();
-    for (auto it = aOtoInis.begin(); it != aOtoInis.end(); ++it) {
-        QString filename = *it;
-        QOtoIni file(filename);
-        if (!file.load()) {
+    for (auto it = dirs.begin(); it != dirs.end(); ++it) {
+        QOtoIni oto(*it);
+        if (!oto.load()) {
             result = false;
             break;
         }
-        registerSamples(file.OtoSamples);
+        registerSamples(oto.OtoSamples);
     }
 
     if (!result) {
@@ -120,7 +118,7 @@ bool QOtoReference::loadOtoIni() {
 }
 
 bool QOtoReference::loadPrefixMap() {
-    QPrefixMap file(prefixMapPath());
+    QPrefixMap file(m_voiceDir);
     clearPrefixMap();
     if (!file.load()) {
         return false;

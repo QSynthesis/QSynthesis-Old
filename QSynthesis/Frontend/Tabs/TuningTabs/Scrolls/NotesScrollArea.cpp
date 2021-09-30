@@ -1,6 +1,6 @@
 #include "NotesScrollArea.h"
 #include "../Areas/Editor/NotesArea.h"
-#include "mainwindow.h"
+#include "Document/ConfigFile.h"
 
 #include <QEvent>
 #include <QScrollBar>
@@ -111,23 +111,23 @@ void NotesScrollArea::wheelEvent(QWheelEvent *event) {
     }
     if (c == Qt::NoModifier) {
         return GraphicsBaseView::wheelEvent(event);
-    } else if (c == qConfig->notes.moveVertically) {
+    } else if (c == qConfig->moveV) {
         event->setModifiers(Qt::NoModifier);
         if (isTouch) {
             return GraphicsBaseView::wheelEvent(event);
         }
         event->setModifiers(Qt::NoModifier);
         QApplication::sendEvent(verticalScrollBar(), event);
-    } else if (c == qConfig->notes.moveHorizontally) {
+    } else if (c == qConfig->moveH) {
         event->setModifiers(Qt::NoModifier);
         if (isTouch) {
             return GraphicsBaseView::wheelEvent(event);
         }
         event->setModifiers(Qt::AltModifier);
         QApplication::sendEvent(horizontalScrollBar(), event);
-    } else if (c == qConfig->notes.zoomHorizontally) {
+    } else if (c == qConfig->zoomH) {
         emit horizontalZoomRequested(qAbs(delta.x()) > qAbs(delta.y()) ? delta.x() : delta.y());
-    } else if (c == qConfig->notes.zoomVertically) {
+    } else if (c == qConfig->zoomV) {
         emit verticalZoomRequested(qAbs(delta.x()) > qAbs(delta.y()) ? delta.x() : delta.y());
     }
 }

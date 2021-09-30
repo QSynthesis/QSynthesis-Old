@@ -2,9 +2,11 @@
 #define GRAPHICSAREA_H
 
 #include <QEnterEvent>
+#include <QGraphicsItem>
 #include <QGraphicsScene>
 #include <QGraphicsSceneMoveEvent>
 #include <QGraphicsSceneResizeEvent>
+#include <QScrollBar>
 
 class GraphicsBaseView;
 

@@ -1,7 +1,6 @@
 #include "GraphicsRubber.h"
 #include "../Areas/Editor/NotesArea.h"
 #include "../Scrolls/NotesScrollArea.h"
-#include "mainwindow.h"
 
 #include <QDebug>
 #include <QGraphicsScene>

@@ -1,5 +1,8 @@
 #include "ProjectSettingsDialog.h"
-#include "mainwindow.h"
+#include "Document/SettingIniFile.h"
+
+#include <QFileDialog>
+#include <QMessageBox>
 
 ProjectSettingsDialog::ProjectSettingsDialog(QString &wavtool, QString &outfile, QString &cache,
                                              QWidget *parent)
@@ -82,7 +85,7 @@ void ProjectSettingsDialog::onOKClicked() {
     QFileInfo file(temp);
 
     if (!file.isFile()) {
-        QMessageBox::warning(nullptr, MainTitle, tr("Wavtool doesn't esist!"));
+        QMessageBox::warning(this, MainTitle, tr("Wavtool doesn't esist!"));
         return;
     }
 

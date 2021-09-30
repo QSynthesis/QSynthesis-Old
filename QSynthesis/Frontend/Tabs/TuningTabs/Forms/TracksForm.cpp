@@ -2,7 +2,6 @@
 #include "../../TuningTab.h"
 #include "../Interfaces/TracksInterface.h"
 #include "../TuningGroup.h"
-#include "mainwindow.h"
 
 using namespace Qs::Panels;
 

@@ -4,7 +4,6 @@
 #include "Interfaces/TracksInterface.h"
 #include "ProjectInfoHandler.h"
 #include "TuningGroup.h"
-#include "mainwindow.h"
 
 bool TuningTab::load() {
     bool aResult;
@@ -21,6 +20,9 @@ bool TuningTab::load() {
             QMessageBox::warning(this, MainTitle, tr("Invalid format!"));
         }
         ustFile.reset();
+    } else {
+        notifier = qSystem->createNotifier(m_filename, MiniSystem::File);
+        connect(notifier, &MiniSystemNotifier::fileChanged, this, &TuningTab::handleFileChanged);
     }
     loadCore();
     return aResult;
@@ -31,7 +33,13 @@ bool TuningTab::save() {
 }
 
 bool TuningTab::saveAs(const QString &filename) {
-    return saveOrSaveAs(filename);
+    bool res = saveOrSaveAs(filename);
+    if (res) {
+        qSystem->removeNotifier(notifier);
+        notifier = qSystem->createNotifier(m_filename, MiniSystem::File);
+        connect(notifier, &MiniSystemNotifier::fileChanged, this, &TuningTab::handleFileChanged);
+    }
+    return res;
 }
 
 bool TuningTab::restore() {
@@ -106,6 +114,7 @@ void TuningTab::exitCore() {
     if (edited) {
         removeAllCaches();
     }
+    qSystem->removeNotifier(notifier);
 }
 
 bool TuningTab::saveOrSaveAs(const QString &filename) {
@@ -122,7 +131,9 @@ bool TuningTab::saveOrSaveAs(const QString &filename) {
     }
     saveCore(); // Replace
 
+    notifier ? notifier->blockSignals(true) : true;
     bool aResult = ustFile.save();
+    notifier ? notifier->blockSignals(true) : false;
 
     if (!aResult) {
         // No permission granted to write file

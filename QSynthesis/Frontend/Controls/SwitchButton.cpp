@@ -1,5 +1,4 @@
 #include "SwitchButton.h"
-#include "mainwindow.h"
 
 SwitchButton::SwitchButton(QWidget *parent) : QPushButton(parent) {
     init();
@@ -10,7 +9,7 @@ SwitchButton::SwitchButton(QString text, QWidget *parent) : QPushButton(text, pa
 }
 
 int SwitchButton::textWidth() const {
-    return QFontMetrics(font()).width(text());
+    return QFontMetrics(font()).horizontalAdvance(text());
 }
 
 int SwitchButton::textHeight() const {

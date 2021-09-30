@@ -119,8 +119,6 @@ private:
     int currentSequence; // Index at samples list
     int currentIndex;    // Index at sample
 
-    QMap<QString, QPair<bool, bool>> validCache;
-
     void init();
 
     QString fileNameAtRow(int row) const;

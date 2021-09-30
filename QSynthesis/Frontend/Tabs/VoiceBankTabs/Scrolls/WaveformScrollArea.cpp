@@ -1,5 +1,5 @@
 #include "WaveformScrollArea.h"
-#include "mainwindow.h"
+#include "Document/ConfigFile.h"
 
 #include <QApplication>
 #include <QEvent>
@@ -50,14 +50,14 @@ void WaveformScrollArea::wheelEvent(QWheelEvent *event) {
     }
     if (c == Qt::NoModifier) {
         return GraphicsBaseView::wheelEvent(event);
-    } else if (c == qConfig->wave.moveHorizontally) {
+    } else if (c == qConfig->moveH) {
         event->setModifiers(Qt::AltModifier);
         if (isTouch) {
             return GraphicsBaseView::wheelEvent(event);
         }
         event->setModifiers(Qt::NoModifier);
         QApplication::sendEvent(horizontalScrollBar(), event);
-    } else if (c == qConfig->wave.zoomHorizontally) {
+    } else if (c == qConfig->zoomH) {
         emit horizontalZoomRequested(qAbs(delta.x()) > qAbs(delta.y()) ? delta.x() : delta.y());
     }
 }

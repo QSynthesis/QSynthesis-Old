@@ -33,14 +33,18 @@ void KeyboardTab::saveCore() {
     keys.voiceShortcuts = voiceKeyTab->currentShortcuts();
 }
 
+void KeyboardTab::exitCore() {
+    qSystem->removeNotifier(notifier);
+}
+
 bool KeyboardTab::checkNoConflict() {
-    ShortcutsData data;
+    ShortcutsFile data;
     data.commonShortcuts = commonKeyTab->currentShortcuts();
     data.projectShortcuts = projectKeyTab->currentShortcuts();
     data.voiceShortcuts = voiceKeyTab->currentShortcuts();
 
     QPair<int, int> first, second;
-    bool res = ShortcutsData::checkNoConflict(data, &first, &second);
+    bool res = ShortcutsFile::checkNoConflict(data, &first, &second);
 
     if (res) {
         return true;

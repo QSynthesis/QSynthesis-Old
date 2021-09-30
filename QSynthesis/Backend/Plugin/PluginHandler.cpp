@@ -4,6 +4,7 @@
 #include "QUtauConstants.h"
 #include "QUtauStrings.h"
 #include "QUtauUtils.h"
+#include "QUtils.h"
 #include "Strings/UtaProjectText.h"
 
 #include "Dialogs/ExecutePluginDialog.h"

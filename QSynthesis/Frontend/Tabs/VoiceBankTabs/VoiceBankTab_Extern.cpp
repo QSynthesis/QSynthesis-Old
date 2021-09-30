@@ -22,10 +22,9 @@ bool VoiceBankTab::exportCurrentSettings(const QString &filename) {
     OtoTableTab *tab = dataArea->currentTab();
 
     QOtoIni otoIni;
-    otoIni.setFilename(filename);
     otoIni.OtoSamples = tab->OtoSamples();
 
-    bool res = otoIni.save();
+    bool res = otoIni.toLocalFile(filename);
     if (!res) {
         QMessageBox::warning(this, MainTitle, tr("Unable to write file!"));
     }

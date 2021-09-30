@@ -1,7 +1,6 @@
 #include "Mode2Handler.h"
 #include "../Areas/Editor/NotesArea.h"
 #include "../Scrolls/NotesScrollArea.h"
-#include "mainwindow.h"
 
 const QList<QControlPoint> Mode2Handler::defaultPortamento = {QControlPoint(-15, 0),
                                                               QControlPoint(15, 0)};

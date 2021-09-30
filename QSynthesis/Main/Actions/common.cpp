@@ -1,4 +1,5 @@
-#include "Singletons/ColorTheme.h"
+#include "Managers/ColorTheme.h"
+#include "QSTabs.h"
 #include "mainwindow.h"
 
 void MainWindow::handleNewFile() {

@@ -1,14 +1,14 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
+#include <QApplication>
+#include <QDebug>
+#include <QMouseEvent>
+
 #ifdef qApp
 #undef qApp
 #endif
 #define qApp (qobject_cast<Application *>(QCoreApplication::instance()))
-
-#include <QApplication>
-#include <QDebug>
-#include <QMouseEvent>
 
 class Application : public QApplication {
     Q_OBJECT

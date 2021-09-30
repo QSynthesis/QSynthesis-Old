@@ -1,23 +1,22 @@
 ﻿#include "KeyboardTab.h"
-#include "mainwindow.h"
 
 KeyboardTab::KeyboardTab(CentralTabWidget *parent) : CentralTab(parent) {
     initTab();
 }
 
 KeyboardTab::~KeyboardTab() {
+    exitCore();
     clearHistory();
 }
 
 bool KeyboardTab::load() {
     bool valid = true;
-    bool success = cfg.load(&valid);
+    bool success = keys.load(&valid);
 
     // Always success
     if (success && valid) {
     }
 
-    keys = cfg.data();
     loadCore();
     return true;
 }
@@ -27,14 +26,22 @@ bool KeyboardTab::save() {
         return false;
     }
 
+    ShortcutsFile orgKeys;
+    orgKeys.commonShortcuts = keys.commonShortcuts;
+    orgKeys.projectShortcuts = keys.projectShortcuts;
+    orgKeys.voiceShortcuts = keys.voiceShortcuts;
+
     saveCore();
 
-    ShortcutsData orgKeys = cfg.data();
-    cfg.setData(keys);
+    notifier ? notifier->blockSignals(true) : true;
+    bool result = keys.save();
+    notifier ? notifier->blockSignals(true) : true;
 
-    bool result = cfg.save();
     if (!result) {
-        cfg.setData(orgKeys);
+        keys.commonShortcuts = orgKeys.commonShortcuts;
+        keys.projectShortcuts = orgKeys.projectShortcuts;
+        keys.voiceShortcuts = orgKeys.voiceShortcuts;
+
         QMessageBox::about(this, ErrorTitle, tr("Unable to save file!"));
     } else {
         externModified = false;
@@ -73,7 +80,7 @@ void KeyboardTab::leave() {
 
 void KeyboardTab::setFilename(const QString &value) {
     CentralTab::setFilename(value);
-    cfg.setFilename(m_filename);
+    keys.setFilename(m_filename);
 }
 
 void KeyboardTab::setFixedname(const QString &value) {
@@ -81,7 +88,7 @@ void KeyboardTab::setFixedname(const QString &value) {
     updateTabName();
 }
 
-void KeyboardTab::handleFileChanged() {
+void KeyboardTab::handleFileChanged(const QStringList &files) {
     externModified = true;
     savedHistoryIndex = -1;
     setEdited(true);

@@ -1,9 +1,11 @@
-﻿/*
+﻿#ifndef QMIDIFILE_H
+#define QMIDIFILE_H
+
+/*
  * Copyright 2003-2012 by David G. Slomin
  * Copyright 2012-2015 Augustin Cavalier <waddlesplash>
  * All rights reserved. Distributed under the terms of the MIT license.
  */
-#pragma once
 
 #include <QList>
 #include <QMap>
@@ -249,3 +251,5 @@ private:
     int fFileFormat;
     bool disableSort;
 };
+
+#endif // QMIDIFILE_H

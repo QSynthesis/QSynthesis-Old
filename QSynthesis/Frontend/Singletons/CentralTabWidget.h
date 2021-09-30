@@ -7,6 +7,8 @@
 
 class VectorButton;
 
+#define qMainTabs CentralTabWidget::instance()
+
 class CentralTabWidget : public TabWidget {
     Q_OBJECT
     Q_SINGLETON(CentralTabWidget)

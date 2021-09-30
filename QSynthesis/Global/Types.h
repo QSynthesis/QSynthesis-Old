@@ -105,7 +105,7 @@ namespace Qs {
         NoStretch,
         AbsoluteStretch,
         RelativeStretch,
-        ReserveStretch,
+        PatchStretch,
     };
 
     enum PianoKeyColor {

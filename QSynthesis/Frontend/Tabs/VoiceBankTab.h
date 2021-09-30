@@ -11,7 +11,9 @@
 #include <QTimer>
 #include <QVBoxLayout>
 
+#include "Actions/VoiceActionList.h"
 #include "CentralTab.h"
+#include "MiniSystem/MiniSystemNotifier.h"
 #include "QUtauUtils.h"
 #include "Utils/FileNameSet.h"
 #include "VoiceBank/QVoiceBank.h"
@@ -22,7 +24,6 @@
 #include "VoiceBankTabs/Operations/VoiceOperation.h"
 
 class QOtoReference;
-class VoiceActionList;
 
 // Voice Database Tab Class
 class VoiceBankTab : public CentralTab {
@@ -32,6 +33,9 @@ public:
     ~VoiceBankTab();
 
     VoiceActionList *tabActions;
+
+private:
+    MiniSystemNotifier *notifier;
 
 public:
     bool load() override;
@@ -54,6 +58,11 @@ protected:
     void updateStatusRoot() override;
     void updateMenuCore() override;
 
+    void handleSavedStateChanged() override;
+
+private:
+    void handleFileChanged(const QStringList &files);
+
 private:
     void loadCore();
     bool saveCore();
@@ -63,26 +72,8 @@ private:
     void initComponents();
     void initValues();
 
-    void initTimer();
-    void onOtoTimer();
-    void handleBlocks();
-
 private:
     QVoiceBank voicebank;
-
-    FileNameSet otoBlock;
-    QTimer *otoTimer;
-
-    // Respond at real time
-    void handleCharTxtChanged();
-    void handlePrefixMapChanged();
-    void handleReadmeTxtChanged();
-    void handleOtoFileChanged(QString path);
-
-    void handleOtoDirChanged(QString path);
-
-    // Respond when window is active
-    void handleOtoDirChangedCore(QString path);
 
     // Frontend
 private:

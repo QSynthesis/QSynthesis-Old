@@ -11,9 +11,11 @@ bool VoiceBankTab::load() {
         QMessageBox::warning(this, MainTitle, tr("Unable to open folder!"));
         voicebank.reset();
     } else {
-        loadCore();
+        notifier = qSystem->createNotifier(m_filename, MiniSystem::File);
+        connect(notifier, &MiniSystemNotifier::fileChanged, this, &VoiceBankTab::handleFileChanged);
     }
 
+    loadCore();
     updateTabName();
     return aResult;
 }
@@ -53,29 +55,18 @@ bool VoiceBankTab::restore() {
 
 void VoiceBankTab::awake() {
     CentralTab::awake();
-
-    handleBlocks();
 }
 
 void VoiceBankTab::sleep() {
     CentralTab::sleep();
-
-    if (otoTimer->isActive()) {
-        otoTimer->stop();
-    }
 }
 
 void VoiceBankTab::enter() {
     CentralTab::enter();
-    handleBlocks();
 }
 
 void VoiceBankTab::leave() {
     CentralTab::leave();
-
-    if (otoTimer->isActive()) {
-        otoTimer->stop();
-    }
     forcePausePlaying();
 }
 
@@ -87,17 +78,16 @@ void VoiceBankTab::loadCore() {
     infoArea->setSprite(m_filename + Slash + voicebank.sprite());
 
     // Readme Text
-    infoArea->setText(voicebank.ReadmeTxt.text());
+    infoArea->setText(voicebank.ReadmeTxt.Text);
 
     // Prefix Map
     infoArea->setPrefixMap(voicebank.PrefixMap.PrefixMap);
     infoArea->setSuffixMap(voicebank.PrefixMap.SuffixMap);
 
     // Oto
-    const QMap<QString, QOtoLevel *> &map = voicebank.OtoLevels;
+    auto &map = voicebank.OtoInis;
     for (auto it = map.begin(); it != map.end(); ++it) {
-        QOtoLevel *level = it.value();
-        dataArea->addTable(level->dirname(), level->otoData());
+        dataArea->addTable(it->dirname(), it->OtoSamples);
     }
 }
 
@@ -135,19 +125,19 @@ bool VoiceBankTab::saveCore() {
     voicebank.setSprite(PathFindFileName(newSpritePath, m_filename));
 
     // Readme Text
-    voicebank.ReadmeTxt.setText(infoArea->text());
+    voicebank.ReadmeTxt.Text = infoArea->text();
 
     // Prefix Map
     voicebank.PrefixMap.PrefixMap = infoArea->prefixMap();
     voicebank.PrefixMap.SuffixMap = infoArea->suffixMap();
 
     // Oto
-    const QMap<QString, OtoTableTab *> &map = dataArea->TableMap;
+    auto &map = dataArea->TableMap;
     for (auto it = map.begin(); it != map.end(); ++it) {
         OtoTableTab *tab = it.value();
-        auto it2 = voicebank.OtoLevels.find(tab->dirname());
-        if (it2 != voicebank.OtoLevels.end()) {
-            it2.value()->setOtoData(tab->OtoSamples());
+        auto it2 = voicebank.OtoInis.find(tab->dirname());
+        if (it2 != voicebank.OtoInis.end()) {
+            it2->OtoSamples = tab->OtoSamples();
         }
     }
     return true;

@@ -1,6 +1,5 @@
 #include "CentralTab.h"
 #include "CentralTabWidget.h"
-#include "mainwindow.h"
 
 CentralTab::CentralTab(CentralTabWidget *parent) : BaseTab(parent) {
     m_filename = "";

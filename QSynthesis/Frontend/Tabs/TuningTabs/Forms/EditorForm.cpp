@@ -3,7 +3,6 @@
 #include "../Areas/Editor/NotesArea.h"
 #include "../Interfaces/EditorInterface.h"
 #include "../TuningGroup.h"
-#include "mainwindow.h"
 
 using namespace Qs::Panels;
 

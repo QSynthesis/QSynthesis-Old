@@ -1,3 +1,5 @@
+#include "Document/SettingIniFile.h"
+#include "QSTabs.h"
 #include "mainwindow.h"
 
 bool MainWindow::execOpen() {

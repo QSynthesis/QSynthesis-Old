@@ -24,6 +24,7 @@ public:                                                                         
         self = nullptr;                                                                            \
     }                                                                                              \
                                                                                                    \
+private:                                                                                           \
     T *createCasePrivate() {                                                                       \
         Q_ASSERT(!self);                                                                           \
         self = this;                                                                               \
@@ -45,15 +46,15 @@ public:                                                                         
 #define Q_SINGLETON_DECLARE(T) T *T::self = nullptr;
 
 // Default Codec
-#ifndef Q_CHARSET_PRIVATE
-#define Q_CHARSET                                                                                  \
+#define Q_CHARSET_INSTANCE                                                                         \
 protected:                                                                                         \
     QTextCodec *m_codec;                                                                           \
                                                                                                    \
 public:                                                                                            \
     QTextCodec *codec() const;                                                                     \
-    void setCodec(QTextCodec *codec);                                                              \
-                                                                                                   \
+    void setCodec(QTextCodec *codec);
+
+#define Q_CHARSET_STATIC                                                                           \
 private:                                                                                           \
     static QTextCodec *defaultCodec;                                                               \
                                                                                                    \
@@ -61,34 +62,16 @@ public:                                                                         
     static QTextCodec *codeForDefault();                                                           \
     static void setCodeForDefault(QTextCodec *codec);
 
-#define Q_CHARSET_DECLARE(T)                                                                       \
-    QTextCodec *T::defaultCodec = nullptr;                                                         \
-                                                                                                   \
+#define Q_CHARSET_INSTANCE_DECLARE(T)                                                              \
     QTextCodec *T::codec() const {                                                                 \
         return m_codec;                                                                            \
     }                                                                                              \
                                                                                                    \
     void T::setCodec(QTextCodec *codec) {                                                          \
         m_codec = codec;                                                                           \
-    }                                                                                              \
-                                                                                                   \
-    QTextCodec *T::codeForDefault() {                                                              \
-        return defaultCodec;                                                                       \
-    }                                                                                              \
-                                                                                                   \
-    void T::setCodeForDefault(QTextCodec *codec) {                                                 \
-        defaultCodec = codec;                                                                      \
     }
-#else
-#define Q_CHARSET                                                                                  \
-private:                                                                                           \
-    static QTextCodec *defaultCodec;                                                               \
-                                                                                                   \
-public:                                                                                            \
-    static QTextCodec *codeForDefault();                                                           \
-    static void setCodeForDefault(QTextCodec *codec);
 
-#define Q_CHARSET_DECLARE(T)                                                                       \
+#define Q_CHARSET_STATIC_DECLARE(T)                                                                \
     QTextCodec *T::defaultCodec = nullptr;                                                         \
                                                                                                    \
     QTextCodec *T::codeForDefault() {                                                              \
@@ -98,6 +81,13 @@ public:                                                                         
     void T::setCodeForDefault(QTextCodec *codec) {                                                 \
         defaultCodec = codec;                                                                      \
     }
-#endif
+
+#define Q_CHARSET                                                                                  \
+    Q_CHARSET_INSTANCE                                                                             \
+    Q_CHARSET_STATIC
+
+#define Q_CHARSET_DECLARE(T)                                                                       \
+    Q_CHARSET_INSTANCE_DECLARE(T)                                                                  \
+    Q_CHARSET_STATIC_DECLARE(T)
 
 #endif // MACROS_H

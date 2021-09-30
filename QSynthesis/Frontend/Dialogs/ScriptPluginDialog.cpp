@@ -1,5 +1,5 @@
 #include "ScriptPluginDialog.h"
-#include "mainwindow.h"
+#include "QUtils.h"
 
 ScriptPluginDialog::ScriptPluginDialog(QString tmpFile, QString exeFile, QString workingDir,
                                        QWidget *parent)

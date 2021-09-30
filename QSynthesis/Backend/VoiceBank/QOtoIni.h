@@ -1,25 +1,31 @@
 #ifndef QOTOINI_H
 #define QOTOINI_H
 
-#include "File/FileManager.h"
+#include "Files/BaseDirInfo.h"
 #include "Macros.h"
 #include "QOtoSampleList.h"
 
-class QOtoIni : public FileManager {
-    Q_OBJECT
+class QOtoIni : public BaseDirInfo {
     Q_CHARSET
 public:
-    explicit QOtoIni(QObject *parent = nullptr);
-    explicit QOtoIni(const QString &filename, QObject *parent = nullptr);
+    QOtoIni();
+    QOtoIni(const QString &dirname);
     ~QOtoIni();
 
     QOtoSampleList OtoSamples;
 
-private:
+public:
+    bool fromLocalFile(const QString &filename);
+    bool toLocalFile(const QString &filename);
+
+protected:
     bool loadCore(bool *valid) override;
     bool saveCore() override;
 
     void resetCore() override;
+
+private:
+    QString infoFilename() const override;
 };
 
 #endif // QOTOINI_H

@@ -1,20 +1,6 @@
 ﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "CentralTabWidget.h"
-#include "Directory/PluginsCollect.h"
-#include "Directory/VoiceCollect.h"
-#include "Document/QSFileData.h"
-#include "File/NormalFileCollect.h"
-#include "File/SettingIniFile.h"
-#include "Import/QMidiFile.h"
-#include "Plugin/PluginHandler.h"
-#include "QSActions.h"
-#include "QSTabs.h"
-#include "QUtauUtils.h"
-#include "QUtils.h"
-#include "VoiceBank/QOtoReference.h"
-
 #include <QAction>
 #include <QActionGroup>
 #include <QDateTime>
@@ -25,6 +11,7 @@
 #include <QDropEvent>
 #include <QFileDialog>
 #include <QFileSystemWatcher>
+#include <QGraphicsSceneEvent>
 #include <QMainWindow>
 #include <QMenuBar>
 #include <QMessageBox>
@@ -33,11 +20,24 @@
 #include <QSharedMemory>
 #include <QTranslator>
 
+#include "CentralTabWidget.h"
+#include "Document/SequenceTextFiles/SequenceTextData.h"
+#include "QUtauUtils.h"
+#include "QUtils.h"
+
+class WelcomeTab;
+class TuningTab;
+class VoiceBankTab;
+class KeyboardTab;
+class SettingTab;
+
+class WelcomeActionList;
+class TuningActionList;
+class VoiceActionList;
+class KeyboardActionList;
+class SettingActionList;
+
 #define qRoot MainWindow::instance()
-#define qSetting SettingIniData::instance()
-#define qConfig ConfigData::instance()
-#define qShortcuts ShortcutsData::instance()
-#define qSelector ComboSelector::instance()
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -50,11 +50,12 @@ public:
     // Construct
 public:
     void initAndShow();
+    void freeAndQuit();
 
+private:
     void initWindow();
     void quitWindow();
 
-private:
     void initValues();
 
     // Import
@@ -269,6 +270,7 @@ private:
 public:
     void reloadMenu();
     void reloadShortcuts();
+    void reloadConfig();
 
     // Exec
 public:
@@ -283,21 +285,14 @@ private:
     bool execImport();
 
     // Refresh
-public:
-    // Methods called when file system changed
-    void reloadConfig();
-    void reloadVoice();
-    void reloadPlugins();
-
+private:
     // Methods called when tab changed
     void reloadTitle();
 
+public:
     // Methods called when welcome tab changed
     void clearRecentMenu();
     void reloadRecentMenu();
-
-private:
-    void initStyleSheet();
 
     // Events
 private:
@@ -310,41 +305,33 @@ private:
     void changeEvent(QEvent *event) override;
     void closeEvent(QCloseEvent *event) override;
 
-    bool eventFilter(QObject *obj, QEvent *event) override;
+    // Modules
+private:
+    void initModules();
+    void freeModules();
 
-public:
-    void handleGraphicsSceneEvents(QGraphicsSceneEvent *event);
+    void initConfig();
+    void initShortcuts();
+    void initSettingIni();
 
-    // Static
-public:
-    static void initSettingIni();
-    static void saveSettingIni();
+    void saveSettingIni();
 
-    static void initShortcutsData();
-    static void initConfigData();
+    void reloadVoice();
+    void reloadPlugins();
+    void reloadThemes();
+    void reloadLanguages();
 
-    static void initVoice();
-    static void initPlugins();
-
-    static void initThemes();
-    static void initLanguages();
+    void initMemory();
 
 public:
     // File Filters
     static void reloadBackendStrings();
 
-public:
-    static QSharedMemory sharedMemory;
-
     static void exitOnNoIOPermission();
-    static void exitOnVoiceDirMissing();
-    static void exitOnPluginsDirMissing();
-    static void exitOnConfigDirMissing();
 
-    static void checkWorkingDir();
-    static void checkTemporaryDir();
-
-    static void exitPreparation();
+signals:
+    void awake();
+    void sleep();
 };
 
 #endif // MAINWINDOW_H

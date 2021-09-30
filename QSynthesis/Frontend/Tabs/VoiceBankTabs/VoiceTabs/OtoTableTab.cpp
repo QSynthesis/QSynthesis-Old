@@ -259,7 +259,6 @@ void OtoTableTab::setOtoSamples(const QOtoSampleList &otoSamples) {
             QGenonSettings genon = sample.at(i);
             addRow(genon);
         }
-        validCache.insert(sample.filename(), qMakePair(sample.valid(), sample.frqExist()));
     }
     table->blockSignals(false);
 }
@@ -292,28 +291,6 @@ void OtoTableTab::refresh() {
     QFileInfoList waveInfos =
         dir.entryInfoList({"*.wav"}, QDir::NoDotAndDotDot | QDir::Files, QDir::Time);
 
-    for (auto it = validCache.begin(); it != validCache.end(); ++it) {
-        QGenonSettings genon(it.key());
-        bool toRefresh = false;
-        // Update Cache
-        if ((genon.valid() != it.value().first)) {
-            toRefresh = true;
-            it.value().first = genon.valid();
-        }
-        if ((genon.frqExist() != it.value().second)) {
-            toRefresh = true;
-            it.value().second = genon.frqExist();
-        }
-        // Refresh
-        if (toRefresh) {
-            int firstRow = findFirstRow(genon.mFileName);
-            int row = firstRow;
-            while (row < table->rowCount() && fileNameAtRow(row) == fileNameAtRow(firstRow)) {
-                updateRowStatus(row);
-                row++;
-            }
-        }
-    }
     table->blockSignals(true);
     for (QFileInfo &info : waveInfos) {
         QString path = info.absoluteFilePath();

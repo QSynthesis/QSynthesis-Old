@@ -1,5 +1,4 @@
 #include "TabWidget.h"
-#include "mainwindow.h"
 
 TabWidget::TabWidget(QWidget *parent) : QTabWidget(parent) {
     setAttribute(Qt::WA_StyledBackground);

@@ -4,7 +4,7 @@
 #include "../../Interfaces/ParamsInterface.h"
 #include "../../Scrolls/LiftersScrollArea.h"
 #include "../../TuningGroup.h"
-#include "mainwindow.h"
+#include "Document/SettingIniFile.h"
 
 LiftersArea::LiftersArea(ParamsInterface *editor, LiftersScrollArea *view) : GraphicsArea(view) {
     m_ptrs = editor->ptrs();

@@ -2,7 +2,7 @@
 #include "../../Interfaces/EditorInterface.h"
 #include "../../Scrolls/NotesScrollArea.h"
 #include "../../TuningGroup.h"
-#include "mainwindow.h"
+#include "Document/SettingIniFile.h"
 
 #include <QScrollBar>
 

@@ -470,7 +470,7 @@ void NotesArea::modifySelectedNotes(const NoteProperties &orgValues,
     // Flags
     if (orgValues.flags != newValues.flags) {
         QStringList orgs, news;
-        ImplicitOperation *l = new ImplicitOperation(NoteOperation::VoiceOverlap);
+        ImplicitOperation *l = new ImplicitOperation(NoteOperation::Flags);
         QString newVal = newValues.flags;
 
         for (int i = 0; i < indexs.size(); ++i) {

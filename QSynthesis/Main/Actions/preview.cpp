@@ -1,4 +1,5 @@
-#include "ColorTheme.h"
+#include "Document/SettingIniFile.h"
+#include "Managers/ColorTheme.h"
 #include "mainwindow.h"
 
 void MainWindow::handleOpenThemes() {

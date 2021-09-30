@@ -9,36 +9,34 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Backend/Common/Files/BaseDirInfo.cpp \
+    Backend/Common/Files/BaseFile.cpp \
+    Backend/Common/Files/NormalFile.cpp \
+    Backend/Common/Files/QSettingFile.cpp \
+    Backend/Common/Files/QSettingFiles/QSettingSection.cpp \
     Backend/Common/QControlPoint.cpp \
     Backend/Common/QGenonSettings.cpp \
     Backend/Common/QOtoSample.cpp \
     Backend/Common/QOtoSampleList.cpp \
-    Backend/Document/Data/ConfigData.cpp \
-    Backend/Document/Data/SequenceTextData.cpp \
-    Backend/Document/Data/SettingIniData.cpp \
-    Backend/Document/Data/ShortcutsData.cpp \
-    Backend/Document/Directory/DirectoryCollect.cpp \
-    Backend/Document/Directory/DirectoryManager.cpp \
-    Backend/Document/Directory/PluginInfo.cpp \
-    Backend/Document/Directory/PluginsCollect.cpp \
-    Backend/Document/Directory/VoiceCollect.cpp \
-    Backend/Document/Directory/VoiceInfo.cpp \
-    Backend/Document/File/FileCollect.cpp \
-    Backend/Document/File/FileManager.cpp \
-    Backend/Document/File/NormalFile.cpp \
-    Backend/Document/File/NormalFileCollect.cpp \
-    Backend/Document/File/PlainTextFile.cpp \
-    Backend/Document/File/SequenceTextFile.cpp \
-    Backend/Document/File/SettingIniFile.cpp \
-    Backend/Document/File/ShortcutsFile.cpp \
+    Backend/Document/ConfigFile.cpp \
+    Backend/Document/PluginInfo.cpp \
+    Backend/Document/SequenceTextFile.cpp \
+    Backend/Document/SequenceTextFiles/SectionNotes.cpp \
+    Backend/Document/SequenceTextFiles/SectionSettings.cpp \
+    Backend/Document/SequenceTextFiles/SectionVersion.cpp \
+    Backend/Document/SettingIniFile.cpp \
+    Backend/Document/ShortcutsFile.cpp \
+    Backend/Document/VoiceInfo.cpp \
     Backend/Import/QFrequencyFile.cpp \
     Backend/Import/QMidiFile.cpp \
     Backend/Import/QPresampFile.cpp \
-    Backend/Import/QSettingFile.cpp \
-    Backend/Import/QSettingFiles/QSettingSection.cpp \
     Backend/Import/QSynthVFile.cpp \
     Backend/Import/QVocaloidFile.cpp \
     Backend/Import/QWaveInfo.cpp \
+    Backend/Managers/ColorTheme.cpp \
+    Backend/Managers/MemoryManager.cpp \
+    Backend/Managers/PluginManager.cpp \
+    Backend/Managers/VoiceManager.cpp \
     Backend/Note/QLinkNote.cpp \
     Backend/Note/QNoteEnvelope.cpp \
     Backend/Note/QNoteMode2.cpp \
@@ -50,7 +48,6 @@ SOURCES += \
     Backend/Render/ResamplerArgs.cpp \
     Backend/Render/WavtoolArgs.cpp \
     Backend/VoiceBank/QOtoIni.cpp \
-    Backend/VoiceBank/QOtoLevel.cpp \
     Backend/VoiceBank/QOtoReference.cpp \
     Backend/VoiceBank/QPrefixMap.cpp \
     Backend/VoiceBank/QReadmeText.cpp \
@@ -108,9 +105,7 @@ SOURCES += \
     Frontend/Singletons/CentralTabWidget.cpp \
     Frontend/Singletons/CentralTabWidgets/CentralTabWidget_Base.cpp \
     Frontend/Singletons/CentralTabWidgets/CentralTabWidget_Features.cpp \
-    Frontend/Singletons/ColorTheme.cpp \
     Frontend/Singletons/ComboSelector.cpp \
-    Frontend/Singletons/TempHandler.cpp \
     Frontend/Tabs/BaseTab.cpp \
     Frontend/Tabs/CentralTab.cpp \
     Frontend/Tabs/CentralTabs/CentralTabContent.cpp \
@@ -307,6 +302,7 @@ SOURCES += \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Core.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Edit.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Extern.cpp \
+    Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Init.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Oto.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Play.cpp \
     Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Unchange.cpp \
@@ -327,6 +323,9 @@ SOURCES += \
     Frontend/Templates/VectorButton.cpp \
     Global/Macros.cpp \
     Global/Methods.cpp \
+    Global/MiniSystem/MiniSystem.cpp \
+    Global/MiniSystem/MiniSystemNotifier.cpp \
+    Global/MiniSystem/MiniSystemWatcher.cpp \
     Global/QUtils.cpp \
     Global/Types.cpp \
     Global/UTAU/QUtauUtils.cpp \
@@ -353,15 +352,13 @@ SOURCES += \
     Main/Menu/init.cpp \
     Main/Menu/reload.cpp \
     Main/Menu/trigger.cpp \
-    Main/Modules/stylesheet.cpp \
-    Main/Refresh/files.cpp \
+    Main/Modules/filedata.cpp \
+    Main/Modules/managers.cpp \
+    Main/Modules/memory.cpp \
     Main/Refresh/recent.cpp \
     Main/Refresh/status.cpp \
     Main/Static/abnormal.cpp \
     Main/Static/data.cpp \
-    Main/Static/file.cpp \
-    Main/Static/flow.cpp \
-    Main/Static/instance.cpp \
     Main/Tabs/change.cpp \
     Main/Tabs/core.cpp \
     Main/Tabs/handlers.cpp \
@@ -373,37 +370,35 @@ SOURCES += \
     Main/total.cpp
 
 HEADERS += \
+    Backend/Common/Files/BaseDirInfo.h \
+    Backend/Common/Files/BaseFile.h \
+    Backend/Common/Files/NormalFile.h \
+    Backend/Common/Files/QSettingFile.h \
+    Backend/Common/Files/QSettingFiles/QSettingSection.h \
     Backend/Common/QControlPoint.h \
     Backend/Common/QGenonSettings.h \
     Backend/Common/QOtoSample.h \
     Backend/Common/QOtoSampleList.h \
-    Backend/Document/Data/ConfigData.h \
-    Backend/Document/Data/SequenceTextData.h \
-    Backend/Document/Data/SettingIniData.h \
-    Backend/Document/Data/ShortcutsData.h \
-    Backend/Document/Directory/DirectoryCollect.h \
-    Backend/Document/Directory/DirectoryManager.h \
-    Backend/Document/Directory/PluginInfo.h \
-    Backend/Document/Directory/PluginsCollect.h \
-    Backend/Document/Directory/VoiceCollect.h \
-    Backend/Document/Directory/VoiceInfo.h \
-    Backend/Document/File/FileCollect.h \
-    Backend/Document/File/FileManager.h \
-    Backend/Document/File/NormalFile.h \
-    Backend/Document/File/NormalFileCollect.h \
-    Backend/Document/File/PlainTextFile.h \
-    Backend/Document/File/SequenceTextFile.h \
-    Backend/Document/File/SettingIniFile.h \
-    Backend/Document/File/ShortcutsFile.h \
-    Backend/Document/QSFileData.h \
+    Backend/Document/ConfigFile.h \
+    Backend/Document/PluginInfo.h \
+    Backend/Document/SequenceTextFile.h \
+    Backend/Document/SequenceTextFiles/SectionNotes.h \
+    Backend/Document/SequenceTextFiles/SectionSettings.h \
+    Backend/Document/SequenceTextFiles/SectionVersion.h \
+    Backend/Document/SequenceTextFiles/SequenceTextData.h \
+    Backend/Document/SettingIniFile.h \
+    Backend/Document/ShortcutsFile.h \
+    Backend/Document/VoiceInfo.h \
     Backend/Import/QFrequencyFile.h \
     Backend/Import/QMidiFile.h \
     Backend/Import/QPresampFile.h \
-    Backend/Import/QSettingFile.h \
-    Backend/Import/QSettingFiles/QSettingSection.h \
     Backend/Import/QSynthVFile.h \
     Backend/Import/QVocaloidFile.h \
     Backend/Import/QWaveInfo.h \
+    Backend/Managers/ColorTheme.h \
+    Backend/Managers/MemoryManager.h \
+    Backend/Managers/PluginManager.h \
+    Backend/Managers/VoiceManager.h \
     Backend/Note/QLinkNote.h \
     Backend/Note/QNoteEnvelope.h \
     Backend/Note/QNoteMode2.h \
@@ -415,7 +410,6 @@ HEADERS += \
     Backend/Render/ResamplerArgs.h \
     Backend/Render/WavtoolArgs.h \
     Backend/VoiceBank/QOtoIni.h \
-    Backend/VoiceBank/QOtoLevel.h \
     Backend/VoiceBank/QOtoReference.h \
     Backend/VoiceBank/QPrefixMap.h \
     Backend/VoiceBank/QReadmeText.h \
@@ -471,9 +465,7 @@ HEADERS += \
     Frontend/QSTabs.h \
     Frontend/Singletons/AppAssistant.h \
     Frontend/Singletons/CentralTabWidget.h \
-    Frontend/Singletons/ColorTheme.h \
     Frontend/Singletons/ComboSelector.h \
-    Frontend/Singletons/TempHandler.h \
     Frontend/Tabs/BaseTab.h \
     Frontend/Tabs/CentralTab.h \
     Frontend/Tabs/CentralTabs/CentralTabContent.h \
@@ -580,6 +572,10 @@ HEADERS += \
     Frontend/Templates/VectorButton.h \
     Global/Macros.h \
     Global/Methods.h \
+    Global/MiniSystem/MiniSystem.h \
+    Global/MiniSystem/MiniSystemNotifier.h \
+    Global/MiniSystem/MiniSystemWatcher.h \
+    Global/MiniSystem/efsw/efsw.hpp \
     Global/QUtils.h \
     Global/Types.h \
     Global/UTAU/QUtauConstants.h \
@@ -600,14 +596,33 @@ HEADERS += \
     Main/resources.h \
     Main/total.h
 
-win32{
-RC_FILE += \
+win32 {
+    RC_FILE += \
     Resources/platforms/win/res.rc
+
+    win32-msvc {
+        message("msvc")
+        CONFIG(release, debug|release) {
+            LIBS += -L$$PWD/Libraries/windows/msvc2019_64 -lefsw
+        }
+        else:CONFIG(debug, debug|release) {
+            LIBS += -L$$PWD/Libraries/windows/msvc2019_64 -lefsw-debug
+        }
+    }
+    win32-g++ {
+        message("g++")
+        CONFIG(release, debug|release) {
+            LIBS += -L$$PWD/Libraries/windows/mingw81_64 -lefsw
+        }
+        else:CONFIG(debug, debug|release) {
+            LIBS += -L$$PWD/Libraries/windows/mingw81_64 -lefsw-debug
+        }
+    }
 }
-unix{
+else:macx {
+    ICON = Resources/platforms/mac/qsynth2.icns
 }
-macx{
-ICON = Resources/platforms/mac/qsynth2.icns
+else:unix {
 }
 
 # Default rules for deployment.

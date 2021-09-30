@@ -64,22 +64,22 @@ MoreSize GraphicsNote::limitSize(MoreSize s) {
 
     s.setHeight(height());
 
-    if (curAdsorb != 0) {
-        double width32 = double(curWidth) / curAdsorb;
-        int ratio = round(s.width() / width32);
-
-        if (ratio < 1) {
-            ratio = 1;
-        }
-
-        double toW = width32 * ratio;
-        int toL = 480 / curAdsorb * ratio;
-
-        s.setWidth(toW);
-        s.setLength(toL);
-    } else {
-        s.setLength(s.width() / curWidth * 480);
+    if (curAdsorb == 0) {
+        curAdsorb = 480;
     }
+
+    double width32 = double(curWidth) / curAdsorb;
+    int ratio = round(s.width() / width32);
+
+    if (ratio < 1) {
+        ratio = 1;
+    }
+
+    double toW = width32 * ratio;
+    int toL = 480 / curAdsorb * ratio;
+
+    s.setWidth(toW);
+    s.setLength(toL);
 
     if (s.width() < minimum) {
         s.setWidth(minimum);
@@ -104,7 +104,7 @@ void GraphicsNote::linkStretch(QPointF pos) {
     m_moving = true;
 
     MoreSize s = limitSize(MoreSize(m_windowSize.width() + relative_pos.x(),
-                                       m_windowSize.height() + relative_pos.y(), Note.length));
+                                    m_windowSize.height() + relative_pos.y(), Note.length));
     setSize(s);
     m_lengthRef = s.length();
 

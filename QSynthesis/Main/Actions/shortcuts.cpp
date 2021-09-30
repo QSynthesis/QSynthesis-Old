@@ -1,3 +1,5 @@
+#include "Tabs/TuningTab.h"
+#include "Tabs/VoiceBankTab.h"
 #include "mainwindow.h"
 
 void MainWindow::handleOpenBuildInMenu() {
@@ -31,7 +33,7 @@ void MainWindow::handleOpenAliasMenu() {
     CentralTab *tab = currentTab();
     if (tab->tabType() == Qs::Tuning) {
         TuningTab *tab1 = qobject_cast<TuningTab *>(tab);
-        tab1->modifyAlias();
+        tab1->selectAlias();
     }
 }
 

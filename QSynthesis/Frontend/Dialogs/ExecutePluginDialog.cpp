@@ -1,5 +1,5 @@
 #include "ExecutePluginDialog.h"
-#include "mainwindow.h"
+#include "QUtils.h"
 
 ExecutePluginDialog::ExecutePluginDialog(QString tmpFile, QString exeFile, QString workingDir,
                                          QWidget *parent)

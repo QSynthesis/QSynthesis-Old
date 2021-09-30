@@ -15,11 +15,6 @@ QString UntitledFileName;
 QString UntitledPrefix;
 QString DeletedPrefix;
 
-PluginsCollect *plugins = nullptr;
-VoiceCollect *voice = nullptr;
-NormalFileCollect *themes = nullptr;
-NormalFileCollect *languages = nullptr;
-
 QString openFilterString;
 QString saveFilterString;
 QString importFilterString;
@@ -30,8 +25,6 @@ QString exportOtoIniFilterString;
 QString imageFilterString;
 QString audioFilterString;
 QString toolsFilterString;
-
-QString tempDirectoryName;
 
 QString voiceProfile() {
     return AppPath + Slash + DIR_NAME_VOICE;

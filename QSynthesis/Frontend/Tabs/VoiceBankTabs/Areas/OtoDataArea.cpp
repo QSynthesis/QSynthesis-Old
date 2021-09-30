@@ -1,6 +1,5 @@
 #include "OtoDataArea.h"
 #include "../VoiceBankGroup.h"
-#include "VoiceBank/QOtoLevel.h"
 
 OtoDataArea::OtoDataArea(VoiceBankTab *tab, QWidget *parent) : VoiceBankArea(tab, parent) {
     init();

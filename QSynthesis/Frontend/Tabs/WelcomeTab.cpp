@@ -1,5 +1,4 @@
 ﻿#include "WelcomeTab.h"
-#include "mainwindow.h"
 
 WelcomeTab::WelcomeTab(CentralTabWidget *parent) : CentralTab(parent) {
     m_type = Qs::Welcome;

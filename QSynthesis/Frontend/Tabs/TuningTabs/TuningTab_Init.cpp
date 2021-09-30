@@ -1,7 +1,9 @@
 #include "../TuningTab.h"
+#include "Document/SettingIniFile.h"
 #include "Forms/EditorForm.h"
 #include "Forms/ParamsForm.h"
 #include "Forms/TracksForm.h"
+#include "Managers/MemoryManager.h"
 #include "Modules/Form/FormSplitter.h"
 #include "ProjectInfoHandler.h"
 #include "TuningGroup.h"
@@ -14,7 +16,7 @@ void TuningTab::initTab() {
     m_ptrs->currentAdsorb = qSetting->lastQuantize;
 
     projectInfo = new ProjectInfoHandler(this);
-    connect(&ustFile, &SequenceTextFile::changed, this, &TuningTab::handleFileChanged);
+    notifier = nullptr;
 
     initValues();
     initComponents();
@@ -82,8 +84,8 @@ void TuningTab::initValues() {
 }
 
 void TuningTab::initWorkingDir() {
-    m_workingDir =
-        tempDirectoryName + Slash + QDateTime ::currentDateTime().toString("MM-dd-hh-mm-ss-zzz");
+    m_workingDir = MemoryManager::tempDir() + Slash +
+                   QDateTime ::currentDateTime().toString("MM-dd-hh-mm-ss-zzz");
 
     QDir dir;
     if (dir.exists(m_workingDir)) {

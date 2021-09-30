@@ -1,12 +1,13 @@
 #ifndef QVOICEBANK_H
 #define QVOICEBANK_H
 
-#include "Directory/VoiceInfo.h"
-#include "QOtoLevel.h"
+#include "Document/VoiceInfo.h"
+#include "QOtoIni.h"
+#include "QOtoSampleList.h"
 #include "QPrefixMap.h"
 #include "QReadmeText.h"
 
-class QVoiceBank : public VoiceInfo {
+class QVoiceBank : public QObject, public VoiceInfo {
     Q_OBJECT
 public:
     explicit QVoiceBank(QObject *parent = nullptr);
@@ -18,48 +19,23 @@ public:
 
     QReadmeText ReadmeTxt;
     QPrefixMap PrefixMap;
-    QOtoLevel OtoRoot;
-
-    QMap<QString, QOtoLevel *> OtoLevels;
+    QMap<QString, QOtoIni> OtoInis;
 
 protected:
-    QMap<QString, QOtoSampleList> OtoCache;
+    bool loadCore(bool *valid) override;
+    bool saveCore() override;
 
-    virtual bool loadCore();
-    virtual bool saveCore();
-
-    virtual void resetCore();
-    virtual void prepareCore();
+    void resetCore() override;
+    void prepareCore() override;
 
 private:
     void init();
 
-    void handleReadmeTxtChanged();
-    void handlePrefixMapChanged();
-
-    void handleLevelCreated(QOtoLevel *level, bool init);
-    void handleLevelDestroyed(QOtoLevel *level, bool init);
-
-    void handleLevelChanged(QOtoLevel *level);
-    void handleLevelOtoIniChanged(QOtoLevel *level);
-
 private:
-    void loadOtoCache(QOtoLevel *level);
-
     bool loadOto();
     bool saveOto();
     bool restoreOto();
     void clearOto();
-
-signals:
-    void readmeTxtChanged();
-    void prefixMapChanged();
-
-    void otoDirCreated(QString path);
-    void otoDirDestroyed(QString path);
-
-    void otoDirChanged(QString path);
-    void otoFileChanged(QString path);
 };
 
 #endif // QVOICEBANK_H

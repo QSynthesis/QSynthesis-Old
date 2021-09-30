@@ -6,7 +6,8 @@
 #include "TuningTabs/Modules/Form/FormSplitter.h"
 #include "TuningTabs/ProjectInfoHandler.h"
 #include "TuningTabs/TuningGroup.h"
-#include "mainwindow.h"
+
+#include <QMimeData>
 
 TuningGroup *TuningTab::ptrs() const {
     return m_ptrs;
@@ -20,6 +21,11 @@ TuningTab::~TuningTab() {
     exitCore();
     clearHistory();
     DestroyDir(m_workingDir);
+}
+
+void TuningTab::setFilename(const QString &value) {
+    CentralTab::setFilename(value);
+    updateTabName();
 }
 
 void TuningTab::setEdited(bool value) {
@@ -37,9 +43,8 @@ void TuningTab::setTabName(const QString &value) {
     CentralTab::setTabName(filename);
 }
 
-void TuningTab::setFilename(const QString &value) {
-    CentralTab::setFilename(value);
-    updateTabName();
+void TuningTab::updateTabName() {
+    setTabName(PathFindFileName(m_filename));
 }
 
 void TuningTab::updateMenuRoot() {
@@ -84,16 +89,14 @@ void TuningTab::handleSavedStateChanged() {
     setPlayable(false);
 }
 
-void TuningTab::updateTabName() {
-    setTabName(PathFindFileName(m_filename));
-}
-
-void TuningTab::handleFileChanged() {
+void TuningTab::handleFileChanged(const QStringList &files) {
     savedHistoryIndex = -1;
     if (isFileExist(m_filename)) {
         externModified = true;
         setEdited(true);
     } else {
         setDeleted(true);
+        qSystem->removeNotifier(notifier);
+        notifier = nullptr;
     }
 }

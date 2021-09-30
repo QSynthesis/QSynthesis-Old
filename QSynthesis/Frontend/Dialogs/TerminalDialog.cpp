@@ -1,5 +1,5 @@
 #include "TerminalDialog.h"
-#include "mainwindow.h"
+#include "QUtauStrings.h"
 
 TerminalDialog::TerminalDialog(QString dir, QWidget *parent)
     : BaseDialog(parent), m_workingDir(dir), m_batchFile(FILE_NAME_TEMP_BATCH) {

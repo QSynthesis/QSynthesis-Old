@@ -1,23 +1,25 @@
 ﻿#include "QPrefixMap.h"
+#include "Files/NormalFile.h"
 #include "QUtauConstants.h"
+#include "QUtauStrings.h"
 #include "Utils/CharsetHandler.h"
 
 Q_CHARSET_DECLARE(QPrefixMap)
 
-QPrefixMap::QPrefixMap(QObject *parent) : FileManager(parent) {
+QPrefixMap::QPrefixMap() : BaseDirInfo(Qs::Default) {
     m_codec = defaultCodec;
     reset();
 }
 
-QPrefixMap::QPrefixMap(const QString &filename, QObject *parent) : FileManager(parent) {
+QPrefixMap::QPrefixMap(const QString &filename) : BaseDirInfo(Qs::Default) {
     m_codec = defaultCodec;
-    setFilename(filename);
+    setDirname(filename);
 }
 
 QPrefixMap::~QPrefixMap() {
 }
 
-QString QPrefixMap::PrefixedLyric(int oNoteNum, const QString &oLyric) const {
+QString QPrefixMap::prefixedLyric(int oNoteNum, const QString &oLyric) const {
     QMap<int, QString>::const_iterator p;
     QString aPrefixedLyric = oLyric;
 
@@ -52,20 +54,19 @@ bool QPrefixMap::isEmpty() const {
     return res;
 }
 
-bool QPrefixMap::loadCore(bool *valid) {
-    QFile file(m_filename);
-
+bool QPrefixMap::fromLocalFile(const QString &filename) {
+    NormalFile file(filename);
     if (!file.exists()) {
         return true;
     }
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    if (!file.load()) {
         return false;
     }
 
     int min = TONE_NUMBER_BASE;
     int max = min + (TONE_OCTAVE_MAX - TONE_OCTAVE_MIN + 1) * TONE_OCTAVE_STEPS - 1;
 
-    QByteArray data = file.readAll();
+    QByteArray data = file.data();
 
     // Detect Code
     QString charset = CharsetHandler::detectCharset(data);
@@ -93,12 +94,11 @@ bool QPrefixMap::loadCore(bool *valid) {
             }
         }
     }
-    file.close();
     return true;
 }
 
-bool QPrefixMap::saveCore() {
-    QFile file(m_filename);
+bool QPrefixMap::toLocalFile(const QString &filename) {
+    NormalFile file(filename);
 
     // Delete when empty
     if (isEmpty()) {
@@ -109,11 +109,8 @@ bool QPrefixMap::saveCore() {
         }
     }
 
-    if (!file.open(QFile::WriteOnly | QFile::Truncate | QFile::Text)) {
-        return false;
-    }
-
-    QTextStream out(&file);
+    QByteArray data;
+    QTextStream out(&data);
     out.setCodec(m_codec);
 
     for (auto it = PrefixMap.begin(); it != PrefixMap.end(); ++it) {
@@ -123,8 +120,16 @@ bool QPrefixMap::saveCore() {
         out << SuffixMap[key] << Qt::endl;
     }
 
-    file.close();
-    return true;
+    file.setData(data);
+    return file.save();
+}
+
+bool QPrefixMap::loadCore(bool *valid) {
+    return fromLocalFile(filename());
+}
+
+bool QPrefixMap::saveCore() {
+    return toLocalFile(filename());
 }
 
 void QPrefixMap::resetCore() {
@@ -134,4 +139,8 @@ void QPrefixMap::resetCore() {
         PrefixMap[i] = "";
         SuffixMap[i] = "";
     }
+}
+
+QString QPrefixMap::infoFilename() const {
+    return FILE_NAME_PREFIX_MAP;
 }

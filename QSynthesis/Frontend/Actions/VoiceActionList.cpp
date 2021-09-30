@@ -10,7 +10,7 @@ VoiceActionList::~VoiceActionList() {
 }
 
 VoiceActionList::VoiceActionList(Qs::VariableSource source) {
-    assert(source == Qs::Default);
+    Q_ASSERT(source == Qs::Default);
 }
 
 void VoiceActionList::setNaturalStatus() {
@@ -18,6 +18,7 @@ void VoiceActionList::setNaturalStatus() {
     setActionsEnabled(true);
 
     saveAsFile->setEnabled(false);
+    restoreFile->setEnabled(false);
 }
 
 void VoiceActionList::updateStrings() {

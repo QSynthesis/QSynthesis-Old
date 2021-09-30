@@ -1,3 +1,5 @@
+#include "Document/SettingIniFile.h"
+#include "QSActions.h"
 #include "mainwindow.h"
 
 void MainWindow::clearRecentMenu() {

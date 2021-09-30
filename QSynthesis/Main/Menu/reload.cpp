@@ -1,3 +1,5 @@
+#include "Document/ShortcutsFile.h"
+#include "QSActions.h"
 #include "mainwindow.h"
 
 void MainWindow::reloadMenu() {
@@ -21,4 +23,7 @@ void MainWindow::reloadShortcuts() {
     welcomeActions->setCommonShortcuts(qShortcuts->commonShortcuts);
     tuningActions->setShortcuts(qShortcuts->projectShortcuts);
     voiceActions->setShortcuts(qShortcuts->voiceShortcuts);
+}
+
+void MainWindow::reloadConfig() {
 }

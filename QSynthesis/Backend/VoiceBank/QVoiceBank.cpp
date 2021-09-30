@@ -1,11 +1,13 @@
 #include "QVoiceBank.h"
+#include "QUtils.h"
 #include "Strings/UtaFilenames.h"
 
-QVoiceBank::QVoiceBank(QObject *parent) : VoiceInfo(parent) {
+QVoiceBank::QVoiceBank(QObject *parent) : QObject(parent), VoiceInfo(Qs::Default) {
     init();
 }
 
-QVoiceBank::QVoiceBank(const QString &dir, QObject *parent) : VoiceInfo(parent) {
+QVoiceBank::QVoiceBank(const QString &dir, QObject *parent)
+    : QObject(parent), VoiceInfo(Qs::Default) {
     init();
     setDirname(dir);
 }
@@ -15,94 +17,44 @@ QVoiceBank::~QVoiceBank() {
 }
 
 void QVoiceBank::init() {
-    connect(&ReadmeTxt, &QReadmeText::changed, this, &QVoiceBank::handleReadmeTxtChanged);
-    connect(&PrefixMap, &QPrefixMap::changed, this, &QVoiceBank::handlePrefixMapChanged);
-
-    connect(&OtoRoot, &QOtoLevel::levelCreated, this, &QVoiceBank::handleLevelCreated);
-    connect(&OtoRoot, &QOtoLevel::levelDestroyed, this, &QVoiceBank::handleLevelDestroyed);
-
-    connect(&OtoRoot, &QOtoLevel::levelChanged, this, &QVoiceBank::handleLevelChanged);
-    connect(&OtoRoot, &QOtoLevel::levelOtoIniChanged, this, &QVoiceBank::handleLevelOtoIniChanged);
-}
-
-void QVoiceBank::handleReadmeTxtChanged() {
-    emit readmeTxtChanged();
-}
-
-void QVoiceBank::handlePrefixMapChanged() {
-    emit prefixMapChanged();
-}
-
-void QVoiceBank::handleLevelCreated(QOtoLevel *level, bool init) {
-    QString path = level->dirname();
-    OtoLevels.insert(path, level);
-    emit otoDirCreated(path);
-}
-
-void QVoiceBank::handleLevelDestroyed(QOtoLevel *level, bool init) {
-    QString path = level->dirname();
-    OtoLevels.remove(path);
-    emit otoDirDestroyed(path);
-}
-
-void QVoiceBank::handleLevelChanged(QOtoLevel *level) {
-    QString path = level->dirname();
-    emit otoDirChanged(path);
-}
-
-void QVoiceBank::handleLevelOtoIniChanged(QOtoLevel *level) {
-    QString path = level->otoFilename();
-    emit otoFileChanged(path);
-}
-
-void QVoiceBank::loadOtoCache(QOtoLevel *level) {
-    QList<QOtoLevel *> dirs = level->dirs();
-    for (QOtoLevel *&oto : dirs) {
-        loadOtoCache(oto);
-        OtoCache.insert(oto->otoFilename(), oto->otoData());
-    }
 }
 
 bool QVoiceBank::loadOto() {
-    OtoLevels.clear();
-    OtoLevels.insert(m_dirname, &OtoRoot);
+    // Add Oto Dirs
+    QStringList dirs = findRecursiveDirs(m_filename);
+    dirs.prepend(m_filename);
+    for (auto it = dirs.begin(); it != dirs.end(); ++it) {
+        OtoInis.insert(*it, QOtoIni(*it));
+    }
 
-    this->blockSignals(true);
-    bool otoLoad = OtoRoot.load(); // Always true
-    this->blockSignals(false);
-
-    OtoCache.clear();
-    loadOtoCache(&OtoRoot);
-
+    bool otoLoad = true;
+    for (auto it = OtoInis.begin(); it != OtoInis.end(); ++it) {
+        otoLoad &= it->load();
+    }
     return otoLoad;
 }
 
 bool QVoiceBank::saveOto() {
-    this->blockSignals(true);
-    bool otoSave = OtoRoot.save();
-    this->blockSignals(false);
-
-    OtoCache.clear();
-    loadOtoCache(&OtoRoot);
-    return otoSave;
+    bool otoLoad = true;
+    for (auto it = OtoInis.begin(); it != OtoInis.end(); ++it) {
+        otoLoad &= it->save();
+    }
+    return otoLoad;
 }
 
 bool QVoiceBank::restoreOto() {
-    this->blockSignals(true);
-    OtoRoot.clear();
-
     bool result = true;
-    for (auto it = OtoCache.begin(); it != OtoCache.end(); ++it) {
-        QString filename = it.key();
-        QString dirname = PathFindUpper(filename);
+    for (auto it = OtoInis.begin(); it != OtoInis.end(); ++it) {
+        QString dirname = it->dirname();
 
         QDir dir;
         if (dir.exists(dirname)) {
-            dir.mkpath(dirname);
+            if (!dir.mkpath(dirname)) {
+                result = false;
+                break;
+            }
         }
-        QOtoIni file(filename);
-        file.OtoSamples = it.value();
-        if (!file.save()) {
+        if (!it->save()) {
             result = false;
             break;
         }
@@ -111,65 +63,64 @@ bool QVoiceBank::restoreOto() {
     if (!result) {
         return false;
     }
-
-    bool otoLoad = loadOto();
-    this->blockSignals(false);
-    return otoLoad;
+    return loadOto();
 }
 
 void QVoiceBank::clearOto() {
-    this->blockSignals(true);
-    OtoRoot.reset();
-    this->blockSignals(false);
+    OtoInis.clear();
 }
 
-bool QVoiceBank::loadCore() {
-    if (!isDirExist(m_dirname)) {
+bool QVoiceBank::loadCore(bool *valid) {
+    if (!isDirExist(m_filename)) {
         return false;
     }
+
     bool otoLoad = loadOto();
-    bool charLoad = loadCharTxt();
+    bool charLoad = VoiceInfo::loadCore(valid);
     bool readmeLoad = ReadmeTxt.load();
     bool mapLoad = PrefixMap.load();
 
-    return true;
+    return otoLoad && charLoad && readmeLoad && mapLoad;
 }
 
 bool QVoiceBank::saveCore() {
-    if (!isDirExist(m_dirname)) {
+    if (!isDirExist(m_filename)) {
         return false;
     }
 
-    bool otoSave = saveOto();
-    bool charSave = saveCharTxt();
+    bool charSave = VoiceInfo::saveCore();
     bool readmeSave = ReadmeTxt.save();
     bool mapSave = PrefixMap.save();
+    bool otoSave = saveOto();
 
     return charSave && readmeSave && mapSave && otoSave;
 }
 
 bool QVoiceBank::restore() {
-    if (!isDirExist(m_dirname)) {
-        return false;
+    QDir dir(m_filename);
+    if (!dir.exists()) {
+        if (!dir.mkpath(m_filename)) {
+            return false;
+        }
     }
 
-    bool otoRestore = restoreOto();
-    bool charRestore = saveCharTxt();
+    bool charRestore = VoiceInfo::load();
     bool readmeRestore = ReadmeTxt.save();
     bool mapRestore = PrefixMap.save();
+    bool otoRestore = restoreOto();
 
     return charRestore && readmeRestore && mapRestore && otoRestore;
 }
 
 void QVoiceBank::resetCore() {
     VoiceInfo::resetCore();
+    ReadmeTxt.clear();
     PrefixMap.clear();
-    OtoRoot.clear();
+    OtoInis.clear();
 }
 
 void QVoiceBank::prepareCore() {
     VoiceInfo::prepareCore();
-    ReadmeTxt.setFilename(m_dirname + Slash + FILE_NAME_VOICE_README);
-    PrefixMap.setFilename(m_dirname + Slash + FILE_NAME_PREFIX_MAP);
-    OtoRoot.setDirname(m_dirname);
+    ReadmeTxt.setDirname(m_filename);
+    PrefixMap.setDirname(m_filename);
 }

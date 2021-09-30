@@ -1,6 +1,5 @@
 #include "OtoVisionArea.h"
 #include "../VoiceBankGroup.h"
-#include "mainwindow.h"
 
 #define MIN(x, y) (x) < (y) ? (x) : (y)
 #define MAX(x, y) (x) > (y) ? (x) : (y)

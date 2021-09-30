@@ -17,10 +17,9 @@
 #include "CentralTab.h"
 #include "WelcomeTabs/FileListWidgetItem.h"
 #include "WelcomeTabs/WelcomeTabContent.h"
+#include "Actions/WelcomeActionList.h"
 
 #include "QUtils.h"
-
-class WelcomeActionList;
 
 // Welcoming Tab Class
 class WelcomeTab : public CentralTab {

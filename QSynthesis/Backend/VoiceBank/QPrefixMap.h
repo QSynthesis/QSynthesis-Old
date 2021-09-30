@@ -6,29 +6,37 @@
 #include <QObject>
 #include <QTextStream>
 
-#include "File/FileManager.h"
+#include "Files/BaseDirInfo.h"
 #include "Macros.h"
 #include "QUtauUtils.h"
 
-class QPrefixMap : public FileManager {
-    Q_OBJECT
+class QPrefixMap : public BaseDirInfo {
     Q_CHARSET
 public:
-    explicit QPrefixMap(QObject *parent = nullptr);
-    explicit QPrefixMap(const QString &filename, QObject *parent = nullptr);
+    QPrefixMap();
+    QPrefixMap(const QString &filename);
     ~QPrefixMap();
 
-    QString PrefixedLyric(int oNoteNum, const QString &oLyric) const;
+public:
+    QString prefixedLyric(int oNoteNum, const QString &oLyric) const;
     bool isEmpty() const;
 
-    QMap<int, QString> PrefixMap;
-    QMap<int, QString> SuffixMap;
+public:
+    bool fromLocalFile(const QString &filename);
+    bool toLocalFile(const QString &filename);
 
-private:
+protected:
     bool loadCore(bool *valid) override;
     bool saveCore() override;
 
     void resetCore() override;
+
+private:
+    QString infoFilename() const override;
+
+public:
+    QMap<int, QString> PrefixMap;
+    QMap<int, QString> SuffixMap;
 };
 
 #endif // QPREFIXMAP_H

@@ -1,16 +1,17 @@
 #include "../TuningTab.h"
 #include "Areas/Editor/NotesArea.h"
 #include "Interfaces/TracksInterface.h"
+#include "Plugin/PluginHandler.h"
 #include "ProjectInfoHandler.h"
 #include "Templates/TemporaryMenu.h"
 #include "TuningGroup.h"
-#include "mainwindow.h"
+
+void TuningTab::selectPlugin() {
+}
 
 void TuningTab::handleRunPlugin(const PluginInfo &plugin) {
     PluginTempData ns;
-
     QFileInfo file(m_filename);
-
     if (file.isFile()) {
         ns.project = file.absoluteFilePath();
     }
@@ -21,7 +22,6 @@ void TuningTab::handleRunPlugin(const PluginInfo &plugin) {
 
     QPoint orgRegion =
         QPoint(ns.start - ns.normalBegin(), ns.start - ns.normalBegin() + ns.notes.size() - 1);
-
     PluginHandler *handler = new PluginHandler(ns, plugin, m_workingDir, this);
 
     int code = handler->exec();

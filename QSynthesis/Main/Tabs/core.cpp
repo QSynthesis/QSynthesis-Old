@@ -1,3 +1,4 @@
+#include "QSTabs.h"
 #include "mainwindow.h"
 
 void MainWindow::initTabs() {

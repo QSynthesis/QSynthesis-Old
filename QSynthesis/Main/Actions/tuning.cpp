@@ -1,3 +1,4 @@
+#include "Tabs/TuningTab.h"
 #include "mainwindow.h"
 
 void MainWindow::handleAppendFile() {

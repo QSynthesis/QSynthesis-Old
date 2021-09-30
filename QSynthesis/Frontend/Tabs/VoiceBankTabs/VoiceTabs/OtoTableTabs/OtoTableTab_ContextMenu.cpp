@@ -191,7 +191,6 @@ void OtoTableTab::remove() {
 
     // Change backend value
     if (otoSamples[sequence].size() == 1) {
-        validCache.remove(otoSamples[sequence].filename());
         otoSamples.removeAt(sequence);
     } else {
         otoSamples[sequence].removeAt(index);
