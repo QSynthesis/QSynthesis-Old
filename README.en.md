@@ -32,6 +32,20 @@ Download from the release page, unzip and move the entire folder to your persona
 
 2. Do not open the same voice folder in two processes. This may cause competition problems
 
+## Dependencies
+
+### Entropia File System Watcher
+
+Cross-platform file system monitor, in the form of a static library linked to the executable file of this program.
+
+Link: https://github.com/SpartanJ/efsw
+
++ Windows: The efSW static library (.lib) compiled with MSVC2019 and MinGW 8.1.0 has been prepared for this repository. If the compiler you used to compile this project is one of them, no changes should be made; if not, you may compile the library based on your compiler and modify the .pro file.
+
++ Linux64: This repository has prepared the efsw static library (.a) compiled by g++. For other distributions of Linux, you may compile this library yourself and modify the .pro file.
+
++ MacOS: This repository has prepared the EFSW static library (.a) compiled by Clang 64. If you are compiling this project by another compiler, you may compile the library yourself and modify the .pro file.
+
 ## Build from source code
 
 ### Qt 5.15.2
