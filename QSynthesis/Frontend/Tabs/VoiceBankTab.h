@@ -66,6 +66,7 @@ private:
 private:
     void loadCore();
     bool saveCore();
+    void exitCore();
 
     void initTab();
     void initPlayer();

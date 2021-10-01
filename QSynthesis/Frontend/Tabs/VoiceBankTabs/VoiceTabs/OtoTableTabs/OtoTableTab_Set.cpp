@@ -3,7 +3,7 @@
 void OtoTableTab::setSample(const QOtoSample &sample) {
     table->blockSignals(true);
 
-    int sequence = otoSamples.findAuto(sample);
+    int sequence = m_otoSamples.findAuto(sample);
 
     QString filename = sample.filename();
     QString base = PathFindFileName(filename);
@@ -15,10 +15,10 @@ void OtoTableTab::setSample(const QOtoSample &sample) {
 
     if (sample.isEmpty()) {
         if (sequence >= 0) {
-            otoSamples.removeAt(sequence);
+            m_otoSamples.removeAt(sequence);
         }
     } else {
-        otoSamples.insertAuto(sample, true);
+        m_otoSamples.insertAuto(sample, true);
         for (int i = 0; i < sample.size(); ++i) {
             QGenonSettings genon = sample.at(i);
             insertRow(row, genon);
@@ -33,7 +33,7 @@ void OtoTableTab::moveSample(int row, int sequence, int index, int movement) {
     int targetRow = row + movement;
     int targetIndex = index + movement;
     // Swap at backend
-    otoSamples[sequence].move(index, targetIndex);
+    m_otoSamples[sequence].move(index, targetIndex);
 
     // Swap at frontend
     table->blockSignals(true);
@@ -45,7 +45,7 @@ void OtoTableTab::moveSample(int row, int sequence, int index, int movement) {
 }
 
 void OtoTableTab::moveSample(const QGenonSettings &genon, int index, int movement) {
-    int sequence = otoSamples.findAuto(genon.mFileName);
+    int sequence = m_otoSamples.findAuto(genon.mFileName);
     int row = findFirstRow(genon.mFileName);
     moveSample(row + index, sequence, index, movement);
 }
@@ -55,14 +55,14 @@ void OtoTableTab::changeSample(const QGenonSettings &genon, int index) {
 
     int row = findFirstRow(filename);
     int targetIndex = 0;
-    int sequence = otoSamples.findAuto(filename, &targetIndex);
+    int sequence = m_otoSamples.findAuto(filename, &targetIndex);
 
     if (sequence < 0) {
         return;
     }
 
     // Change backend value
-    otoSamples[sequence][index] = genon;
+    m_otoSamples[sequence][index] = genon;
 
     int targetRow = row + index;
     // Change frontend value
@@ -82,16 +82,16 @@ void OtoTableTab::addSample(const QGenonSettings &genon, int index) {
     int row = findFirstRow(filename);
     int targetIndex = 0;
     int targetRow = row;
-    int sequence = otoSamples.findAuto(filename, &targetIndex);
+    int sequence = m_otoSamples.findAuto(filename, &targetIndex);
 
     if (sequence < 0) {
         // Add to backend
         QOtoSample sample(filename);
         sample.append(genon);
-        otoSamples.insert(targetIndex, sample);
+        m_otoSamples.insert(targetIndex, sample);
     } else {
         // Change backend value
-        QOtoSample &sample = otoSamples[sequence];
+        QOtoSample &sample = m_otoSamples[sequence];
         sample.insert(index, genon);
         targetRow += index;
     }
@@ -111,16 +111,16 @@ void OtoTableTab::removeSample(const QGenonSettings &genon, int index) {
     int row = findFirstRow(filename);
     int targetIndex = 0;
     int targetRow = row;
-    int sequence = otoSamples.findAuto(filename, &targetIndex);
+    int sequence = m_otoSamples.findAuto(filename, &targetIndex);
 
     if (sequence < 0) {
         return;
     }
     // Change backend value
-    if (otoSamples[sequence].size() == 1) {
-        otoSamples.removeAt(sequence);
+    if (m_otoSamples[sequence].size() == 1) {
+        m_otoSamples.removeAt(sequence);
     } else {
-        otoSamples[sequence].removeAt(index);
+        m_otoSamples[sequence].removeAt(index);
     }
     targetRow += index;
 
@@ -134,12 +134,12 @@ void OtoTableTab::removeSample(const QGenonSettings &genon, int index) {
 
 bool OtoTableTab::selectSample(const QGenonSettings &genon) {
     QString filename = genon.mFileName;
-    int sequence = otoSamples.findAuto(filename);
+    int sequence = m_otoSamples.findAuto(filename);
 
     table->setFocus();
 
     if (sequence >= 0) {
-        const QOtoSample &sample = otoSamples.at(sequence);
+        const QOtoSample &sample = m_otoSamples.at(sequence);
         int index = sample.indexOf(genon);
         if (index >= 0) {
             int row = findFirstRow(filename);

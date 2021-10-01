@@ -57,8 +57,7 @@ bool QGenonSettings::valid() const {
 }
 
 QString QGenonSettings::frqFile() const {
-    QFileInfo info(mFileName);
-    return info.absolutePath() + Slash + info.baseName() + "_wav.frq";
+    return toFrqFileName(mFileName);
 }
 
 bool QGenonSettings::frqExist() const {
@@ -72,6 +71,19 @@ QString QGenonSettings::mrqFile() const {
 
 bool QGenonSettings::mrqExist() const {
     return isFileExist(mrqFile());
+}
+
+QString QGenonSettings::fromFrqFileName(const QString &filename) {
+    QString suffix = "_wav.frq";
+    if (filename.endsWith(suffix)) {
+        return filename.mid(0, filename.size() - suffix.size()) + ".wav";
+    }
+    return "";
+}
+
+QString QGenonSettings::toFrqFileName(const QString &filename) {
+    QFileInfo info(filename);
+    return info.absolutePath() + Slash + info.baseName() + "_wav.frq";
 }
 
 QCorrectGenon::QCorrectGenon() {

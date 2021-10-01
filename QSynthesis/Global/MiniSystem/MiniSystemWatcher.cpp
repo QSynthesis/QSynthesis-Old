@@ -14,13 +14,13 @@ void MiniSystemWatcher::watch() {
     efsw::FileWatcher::watch();
 }
 
-bool MiniSystemWatcher::addPath(const QString &dir, bool recursive) {
+long MiniSystemWatcher::addPath(const QString &dir, bool recursive) {
     long id = efsw::FileWatcher::FileWatcher::addWatch(dir.toStdString(), this, recursive);
     if (id > 0) {
         m_idMap.insert(dir, id);
-        return true;
+        return id;
     }
-    return false;
+    return 0;
 }
 
 bool MiniSystemWatcher::removePath(const QString &dir) {

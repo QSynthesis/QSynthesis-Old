@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
 
     MainWindow w;
     w.initAndShow();
-    w.fromCommandLine(argc, argv);
+    w.fromCommandLine();
 
     int code = a.exec();
 

@@ -32,6 +32,9 @@ struct QGenonSettings {
 
     QString mrqFile() const; // Moresampler Frequency Map File
     bool mrqExist() const;
+
+    static QString fromFrqFileName(const QString &filename);
+    static QString toFrqFileName(const QString &filename);
 };
 
 // Fixed Sample Variables

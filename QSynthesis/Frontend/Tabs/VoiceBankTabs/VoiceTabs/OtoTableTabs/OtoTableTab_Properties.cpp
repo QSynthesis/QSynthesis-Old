@@ -26,8 +26,8 @@ void OtoTableTab::setInvalidColor(const QColor &invalidColor) {
     emit colorChanged();
 }
 
-QOtoSampleList OtoTableTab::OtoSamples() const {
-    return otoSamples;
+QOtoSampleList OtoTableTab::otoSamples() const {
+    return m_otoSamples;
 }
 
 QColor OtoTableTab::emptyColor() const {

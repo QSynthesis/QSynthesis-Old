@@ -9,6 +9,7 @@
 #include "VoiceBankArea.h"
 
 class OtoOperation;
+class QOtoIni;
 
 class OtoDataArea : public VoiceBankArea {
     Q_OBJECT
@@ -18,21 +19,27 @@ public:
 
     void initExtern();
 
+public:
     void saveOperation(OtoOperation *o);                     // Out
     bool handleOperation(OtoOperation *o, bool undo = true); // In
 
+    void loadTables(const QList<QOtoIni> &data);
+    QList<QOtoIni> exportTables() const;
+
+    bool notifyTable(const QStringList &files);
+    bool contains(const QString &dirname) const;
+
+private:
     bool addTable(const QString &dirname, const QOtoSampleList &samples);
     bool removeTable(const QString &dirname);
-    bool refreshTable(const QString &dirname);
+    void removeAllTables();
 
-    bool contains(const QString &dirname) const;
-    void removeAll();
-
-    QMap<QString, OtoTableTab *> TableMap;
-
-    OtoTableTab *currentTab();
+    void complementSamples(const QString &dirname, QOtoSampleList &samples);
 
 public:
+    QMap<QString, OtoTableTab *> TableMap;
+    OtoTableTab *currentTab();
+
     bool locateSample(const QGenonSettings &genon);
     void receiveFromVision(const QGenonSettings &sample); // Oto Handle
 

@@ -170,7 +170,7 @@ void TuningTab::selectAlias() {
         index = menu->start();
         menu->deleteLater();
     } else {
-        index = qMainTabs->useSelector(alias, tr("Select Alias"), -1);
+        index = qMainTabs->useSelector(alias, tr("Select lyric"), -1);
     }
 
     if (index >= 0) {

@@ -5,7 +5,6 @@
 #include "QUtils.h"
 
 #include <QFile>
-#include <QFileSystemWatcher>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>

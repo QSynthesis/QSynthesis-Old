@@ -10,7 +10,6 @@
 #include <QDragMoveEvent>
 #include <QDropEvent>
 #include <QFileDialog>
-#include <QFileSystemWatcher>
 #include <QGraphicsSceneEvent>
 #include <QMainWindow>
 #include <QMenuBar>
@@ -261,8 +260,10 @@ private:
     void handleSetConstant();
     void handleSetBlank();
 
-    void handleOpenRecentFile();  // Temporary
-    void handleClearRecentMenu(); // Temporary
+    void handleOpenRecentFile();   // Temporary
+    void handleMoreRecentFile();   // Temporary
+    void handleMoreRecentFolder(); // Temporary
+    void handleClearRecentMenu();  // Temporary
 
     void handleExecutePlugin(); // Temporary
     void handleOpenPluginDir(); // Temporary
@@ -274,7 +275,7 @@ public:
 
     // Exec
 public:
-    void fromCommandLine(int argc, char **argv); // Load from command line
+    void fromCommandLine(); // Load from command line
     void fromApplication();
 
 private:

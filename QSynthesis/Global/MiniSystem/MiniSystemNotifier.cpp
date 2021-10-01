@@ -14,6 +14,9 @@ MiniSystemNotifier::MiniSystemNotifier(const QString &path, long id, MiniSystem:
 }
 
 MiniSystemNotifier::~MiniSystemNotifier() {
+    if (isActive()) {
+        stop();
+    }
 }
 
 void MiniSystemNotifier::init() {

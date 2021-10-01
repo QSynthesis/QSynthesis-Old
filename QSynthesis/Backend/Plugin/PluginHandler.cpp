@@ -1,4 +1,5 @@
 #include "PluginHandler.h"
+#include "MiniSystem/MiniSystemNotifier.h"
 #include "Note/QNoteEnvelope.h"
 #include "Note/QNoteMode2.h"
 #include "QUtauConstants.h"
@@ -53,14 +54,14 @@ int PluginHandler::exec() {
     exePath = file.absoluteFilePath();
     pluginWorkingDir = file.absolutePath();
 
-    QFileSystemWatcher watcher;
+    MiniSystemNotifier *notifier = qSystem->createNotifier(tmpPath, MiniSystem::File);
     bool fileChanged = false;
-    watcher.addPath(tmpPath);
 
-    connect(&watcher, &QFileSystemWatcher::fileChanged, this, [&fileChanged]() mutable {
-        qDebug() << "File changed.";
-        fileChanged = true;
-    });
+    connect(notifier, &MiniSystemNotifier::fileChanged, this,
+            [&fileChanged](const QStringList &files) mutable {
+                Q_UNUSED(files)
+                fileChanged = true;
+            });
 
     // open dialog
     if (plugin.useShell()) {
@@ -76,6 +77,8 @@ int PluginHandler::exec() {
 
         dlg->deleteLater();
     }
+
+    qSystem->removeNotifier(notifier);
 
     if (stateCode != 1) {
         qDebug() << "Plugin is canceled.";

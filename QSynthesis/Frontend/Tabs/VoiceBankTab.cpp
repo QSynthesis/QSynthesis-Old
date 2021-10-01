@@ -1,6 +1,7 @@
 ﻿#include <QDebug>
 #include <QFile>
 
+#include "QUtauStrings.h"
 #include "VoiceBankTab.h"
 #include "VoiceBankTabs/VoiceBankGroup.h"
 
@@ -9,6 +10,7 @@ VoiceBankTab::VoiceBankTab(CentralTabWidget *parent) : CentralTab(parent) {
 }
 
 VoiceBankTab::~VoiceBankTab() {
+    exitCore();
     clearHistory();
 }
 
@@ -91,5 +93,23 @@ void VoiceBankTab::handleSavedStateChanged() {
 }
 
 void VoiceBankTab::handleFileChanged(const QStringList &files) {
-
+    QStringList sampleFiles;
+    bool changed = false;
+    for (auto it = files.begin(); it != files.end(); ++it) {
+        if (it->endsWith(FILE_NAME_OTO_INI, Qt::CaseInsensitive) ||
+            it->endsWith(FILE_NAME_PREFIX_MAP, Qt::CaseInsensitive) ||
+            it->endsWith(FILE_NAME_CHAR_TEXT, Qt::CaseInsensitive) ||
+            it->endsWith(FILE_NAME_VOICE_README, Qt::CaseInsensitive)) {
+            changed = true;
+        } else {
+            sampleFiles.append(*it);
+        }
+    }
+    if (dataArea->notifyTable(sampleFiles)) {
+        changed = true;
+    }
+    if (changed) {
+        savedHistoryIndex = -1;
+        setEdited(true);
+    }
 }

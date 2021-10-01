@@ -1,7 +1,6 @@
 #ifndef BASEFILE_H
 #define BASEFILE_H
 
-#include <QFileSystemWatcher>
 #include <QObject>
 
 #include "Types.h"

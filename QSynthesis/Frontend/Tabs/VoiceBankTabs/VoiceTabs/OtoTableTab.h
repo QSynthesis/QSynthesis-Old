@@ -26,7 +26,7 @@ public:
 
     // From initialization
     void setOtoSamples(const QOtoSampleList &otoSamples);
-    QOtoSampleList OtoSamples() const;
+    QOtoSampleList otoSamples() const;
 
     // From undo and redo
     void setSample(const QOtoSample &sample);
@@ -43,7 +43,7 @@ public:
     void setCurrentSample(const QGenonSettings &genon);
 
     // From update
-    void refresh();
+    bool refreshFile(const QString &filename);
 
     int selectedRow() const;
     bool isSelectionSingle() const;
@@ -107,7 +107,7 @@ public:
 private:
     QVBoxLayout *mainLayout;
     QTableWidget *table;
-    QOtoSampleList otoSamples;
+    QOtoSampleList m_otoSamples;
 
     QString m_dirname;
 

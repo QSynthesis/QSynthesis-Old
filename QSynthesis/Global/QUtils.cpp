@@ -87,8 +87,7 @@ void CreateDir(QString fullPath) {
 
 void DestroyDir(QString fullPath) {
     QDir dir(fullPath);
-
-    if (dir.exists()) {
+    if (!fullPath.isEmpty() && dir.exists()) {
         dir.removeRecursively();
     }
 }

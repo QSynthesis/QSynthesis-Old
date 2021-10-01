@@ -141,7 +141,7 @@ void OtoTableTab::sendCurrentToVision(int row, int sequence, int index) {
 
 void OtoTableTab::sendCurrentToVision(const QGenonSettings &sample, int index) {
     currentRow = findFirstRow(sample.mFileName);
-    currentSequence = otoSamples.findAuto(sample.mFileName);
+    currentSequence = m_otoSamples.findAuto(sample.mFileName);
     currentIndex = index;
 
     emit currentChanged(sample, currentIndex);
@@ -161,11 +161,11 @@ void OtoTableTab::handleCellChanged(int row, int column) {
 
     int index = row - firstRow;
 
-    int sequence = otoSamples.findAuto(genon.mFileName);
+    int sequence = m_otoSamples.findAuto(genon.mFileName);
     if (sequence < 0) {
         return;
     }
-    QOtoSample &sample = otoSamples[sequence];
+    QOtoSample &sample = m_otoSamples[sequence];
     QGenonSettings &originGenon = sample[index];
 
     // Numerical judge
@@ -224,7 +224,7 @@ void OtoTableTab::handleSelectionChanged() {
         sendNoneToVision();
     } else {
         QGenonSettings genon = getGenonSettings(currentRow);
-        int sequence = otoSamples.findAuto(genon.mFileName);
+        int sequence = m_otoSamples.findAuto(genon.mFileName);
         int firstRow = findFirstRow(genon.mFileName);
         int index = currentRow - firstRow;
 
@@ -250,7 +250,7 @@ bool OtoTableTab::eventFilter(QObject *obj, QEvent *event) {
 }
 
 void OtoTableTab::setOtoSamples(const QOtoSampleList &otoSamples) {
-    this->otoSamples = otoSamples;
+    this->m_otoSamples = otoSamples;
 
     table->blockSignals(true);
     for (auto it = otoSamples.begin(); it != otoSamples.end(); ++it) {
@@ -267,10 +267,10 @@ void OtoTableTab::setCurrentSample(const QGenonSettings &genon) {
     if (currentRow < 0 || currentRow >= table->rowCount()) {
         return;
     }
-    if (currentSequence < 0 || currentSequence >= otoSamples.size()) {
+    if (currentSequence < 0 || currentSequence >= m_otoSamples.size()) {
         return;
     }
-    QOtoSample &sample = otoSamples[currentSequence];
+    QOtoSample &sample = m_otoSamples[currentSequence];
     if (currentIndex < 0 || currentIndex >= sample.size()) {
         return;
     }
@@ -286,30 +286,55 @@ void OtoTableTab::setCurrentSample(const QGenonSettings &genon) {
     updateRowStatus(currentRow);
 }
 
-void OtoTableTab::refresh() {
-    QDir dir(m_dirname);
-    QFileInfoList waveInfos =
-        dir.entryInfoList({"*.wav"}, QDir::NoDotAndDotDot | QDir::Files, QDir::Time);
+bool OtoTableTab::refreshFile(const QString &filename) {
+    QFileInfo info(filename);
+    QString path;
+    bool wavChanged = false;
+    bool wavAdded = false;
 
     table->blockSignals(true);
-    for (QFileInfo &info : waveInfos) {
-        QString path = info.absoluteFilePath();
+    if (filename.endsWith(".wav", Qt::CaseInsensitive)) {
+        path = info.absoluteFilePath();
         int targetPosition = 0;
-        int index = otoSamples.findAuto(path, &targetPosition);
+        int index = m_otoSamples.findAuto(path, &targetPosition);
         if (index < 0) {
-            QGenonSettings genon;
-            genon.mFileName = path;
-            QOtoSample sample(path);
-            sample.append(genon);
-            otoSamples.insert(targetPosition, sample);
+            if (info.isFile()) {
+                QGenonSettings genon;
+                genon.mFileName = path;
+                QOtoSample sample(path);
+                sample.append(genon);
+                m_otoSamples.insert(targetPosition, sample);
 
-            int row = findFirstRow(genon.mFileName);
-            insertRow(row, genon);
+                int row = findFirstRow(genon.mFileName);
+                insertRow(row, genon);
+                wavAdded = true;
+            }
+        } else {
+            wavChanged = true;
         }
+    } else if (filename.endsWith(".frq", Qt::CaseInsensitive)) {
+        wavChanged = true;
+        path = QGenonSettings::fromFrqFileName(filename);
     }
     table->blockSignals(false);
-    selectNone();
-    sendNoneToVision();
+
+    if (wavChanged && !path.isEmpty()) {
+        int row = findFirstRow(path);
+        for (int i = row; i < table->rowCount(); ++i) {
+            if (m_dirname + Slash + fileNameAtRow(i) != path) {
+                break;
+            }
+            updateRowStatus(i);
+        }
+
+        int current = table->currentRow();
+        if (current >= 0 && current < table->rowCount()) {
+            if (m_dirname + Slash + fileNameAtRow(current) == path) {
+                handleSelectionChanged();
+            }
+        }
+    }
+    return wavAdded;
 }
 
 int OtoTableTab::selectedRow() const {

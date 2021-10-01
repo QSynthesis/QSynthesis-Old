@@ -271,6 +271,7 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/TuningTab_Render.cpp \
     Frontend/Tabs/TuningTabs/TuningTab_Unchange.cpp \
     Frontend/Tabs/VoiceBankTab.cpp \
+    Frontend/Tabs/VoiceBankTabs/Areas/OtoDataAreas/OtoDataArea_Change.cpp \
     Frontend/Tabs/VoiceBankTabs/Areas/OtoDataAreas/OtoDataArea_Operation.cpp \
     Frontend/Tabs/VoiceBankTabs/Areas/OtoDataArea.cpp \
     Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.cpp \
@@ -601,21 +602,43 @@ win32 {
     Resources/platforms/win/res.rc
 
     win32-msvc {
-        message("msvc")
         CONFIG(release, debug|release) {
-            LIBS += -L$$PWD/Libraries/windows/msvc2019_64 -lefsw
+            contains(DEFINES, WIN64) {
+                LIBS += -L$$PWD/Libraries/windows/msvc2019_64/ -lefsw-static-release
+                PRE_TARGETDEPS += $$PWD/Libraries/windows/msvc2019_64/efsw-static-release.lib
+            } else {
+                LIBS += -L$$PWD/Libraries/windows/msvc2019/ -lefsw-static-release
+                PRE_TARGETDEPS += $$PWD/Libraries/windows/msvc2019/efsw-static-release.lib
+            }
         }
         else:CONFIG(debug, debug|release) {
-            LIBS += -L$$PWD/Libraries/windows/msvc2019_64 -lefsw-debug
+            contains(DEFINES, WIN64) {
+                LIBS += -L$$PWD/Libraries/windows/msvc2019_64/ -lefsw-static-debug
+                PRE_TARGETDEPS += $$PWD/Libraries/windows/msvc2019_64/efsw-static-debug.lib
+            } else {
+                LIBS += -L$$PWD/Libraries/windows/msvc2019/ -lefsw-static-debug
+                PRE_TARGETDEPS += $$PWD/Libraries/windows/msvc2019/efsw-static-debug.lib
+            }
         }
     }
     win32-g++ {
-        message("g++")
         CONFIG(release, debug|release) {
-            LIBS += -L$$PWD/Libraries/windows/mingw81_64 -lefsw
+            !contains(QT_ARCH, i386) {
+                LIBS += -L$$PWD/Libraries/windows/mingw81_64/ -lefsw-static-release
+                PRE_TARGETDEPS += $$PWD/Libraries/windows/mingw81_64/efsw-static-release.lib
+            } else {
+                LIBS += -L$$PWD/Libraries/windows/mingw81/ -lefsw-static-release
+                PRE_TARGETDEPS += $$PWD/Libraries/windows/mingw81/efsw-static-release.lib
+            }
         }
         else:CONFIG(debug, debug|release) {
-            LIBS += -L$$PWD/Libraries/windows/mingw81_64 -lefsw-debug
+            !contains(QT_ARCH, i386) {
+                LIBS += -L$$PWD/Libraries/windows/mingw81_64/ -lefsw-static-debug
+                PRE_TARGETDEPS += $$PWD/Libraries/windows/mingw81_64/efsw-static-debug.lib
+            } else {
+                LIBS += -L$$PWD/Libraries/windows/mingw81/ -lefsw-static-debug
+                PRE_TARGETDEPS += $$PWD/Libraries/windows/mingw81/efsw-static-debug.lib
+            }
         }
     }
 }
@@ -624,12 +647,12 @@ else:macx {
 }
 else:unix {
     CONFIG(release, debug|release) {
-        LIBS += -L$$PWD/Libraries/linux/ -lefsw-static-release
-        PRE_TARGETDEPS += $$PWD/Libraries/linux/libefsw-static-release.a
+        LIBS += -L$$PWD/Libraries/linux64/ -lefsw-static-release
+        PRE_TARGETDEPS += $$PWD/Libraries/linux64/libefsw-static-release.a
     }
     else:CONFIG(debug, debug|release) {
-        LIBS += -L$$PWD/Libraries/linux/ -lefsw-static-debug
-        PRE_TARGETDEPS += $$PWD/Libraries/linux/libefsw-static-debug.a
+        LIBS += -L$$PWD/Libraries/linux64/ -lefsw-static-debug
+        PRE_TARGETDEPS += $$PWD/Libraries/linux64/libefsw-static-debug.a
     }
 }
 

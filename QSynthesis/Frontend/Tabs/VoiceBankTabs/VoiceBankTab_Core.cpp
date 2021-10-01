@@ -11,7 +11,7 @@ bool VoiceBankTab::load() {
         QMessageBox::warning(this, MainTitle, tr("Unable to open folder!"));
         voicebank.reset();
     } else {
-        notifier = qSystem->createNotifier(m_filename, MiniSystem::File);
+        notifier = qSystem->createNotifier(m_filename, MiniSystem::Directory);
         connect(notifier, &MiniSystemNotifier::fileChanged, this, &VoiceBankTab::handleFileChanged);
     }
 
@@ -46,7 +46,6 @@ bool VoiceBankTab::restore() {
     }
 
     visionArea->reset();
-    dataArea->removeAll();
 
     loadCore();
     setEdited(false);
@@ -86,9 +85,11 @@ void VoiceBankTab::loadCore() {
 
     // Oto
     auto &map = voicebank.OtoInis;
+    QList<QOtoIni> list;
     for (auto it = map.begin(); it != map.end(); ++it) {
-        dataArea->addTable(it->dirname(), it->OtoSamples);
+        list.append(it.value());
     }
+    dataArea->loadTables(list);
 }
 
 bool VoiceBankTab::saveCore() {
@@ -132,13 +133,16 @@ bool VoiceBankTab::saveCore() {
     voicebank.PrefixMap.SuffixMap = infoArea->suffixMap();
 
     // Oto
-    auto &map = dataArea->TableMap;
-    for (auto it = map.begin(); it != map.end(); ++it) {
-        OtoTableTab *tab = it.value();
-        auto it2 = voicebank.OtoInis.find(tab->dirname());
-        if (it2 != voicebank.OtoInis.end()) {
-            it2->OtoSamples = tab->OtoSamples();
-        }
+    QList<QOtoIni> list = dataArea->exportTables();
+    voicebank.OtoInis.clear();
+    for (auto it = list.begin(); it != list.end(); ++it) {
+        const QOtoIni &oto = *it;
+        voicebank.OtoInis.insert(oto.dirname(), oto);
     }
     return true;
+}
+
+void VoiceBankTab::exitCore() {
+    qSystem->removeNotifier(notifier);
+    notifier = nullptr;
 }

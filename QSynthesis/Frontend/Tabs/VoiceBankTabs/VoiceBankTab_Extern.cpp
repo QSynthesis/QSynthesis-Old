@@ -22,7 +22,7 @@ bool VoiceBankTab::exportCurrentSettings(const QString &filename) {
     OtoTableTab *tab = dataArea->currentTab();
 
     QOtoIni otoIni;
-    otoIni.OtoSamples = tab->OtoSamples();
+    otoIni.OtoSamples = tab->otoSamples();
 
     bool res = otoIni.toLocalFile(filename);
     if (!res) {

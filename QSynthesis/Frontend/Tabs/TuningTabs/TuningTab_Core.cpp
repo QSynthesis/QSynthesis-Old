@@ -115,6 +115,7 @@ void TuningTab::exitCore() {
         removeAllCaches();
     }
     qSystem->removeNotifier(notifier);
+    notifier = nullptr;
 }
 
 bool TuningTab::saveOrSaveAs(const QString &filename) {

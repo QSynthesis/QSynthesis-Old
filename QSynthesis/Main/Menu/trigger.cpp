@@ -6,11 +6,29 @@
 
 void MainWindow::handleOpenRecentFile() {
     QAction *action = qobject_cast<QAction *>(sender());
-    QString fileName = action->data().toString();
-    if (isDirExist(fileName)) {
-        addVoiceBankTab(fileName);
+    QString filename = action->data().toString();
+    if (isDirExist(filename)) {
+        addVoiceBankTab(filename);
     } else {
-        addTuningTab(fileName, false);
+        addTuningTab(filename, false);
+    }
+}
+
+void MainWindow::handleMoreRecentFile() {
+    QStringList projects = qSetting->projects.valid();
+
+    int index = tabs->useSelector(projects, tr("Select file"), -1);
+    if (index >= 0) {
+        addTuningTab(projects.at(index), false);
+    }
+}
+
+void MainWindow::handleMoreRecentFolder() {
+    QStringList folders = qSetting->folders.valid();
+
+    int index = tabs->useSelector(folders, tr("Select folder"), -1);
+    if (index >= 0) {
+        addTuningTab(folders.at(index), false);
     }
 }
 

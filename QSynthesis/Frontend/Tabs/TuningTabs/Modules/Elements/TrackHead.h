@@ -3,7 +3,6 @@
 
 #include <QActionGroup>
 #include <QDial>
-#include <QFileSystemWatcher>
 #include <QLabel>
 #include <QMenu>
 #include <QPushButton>

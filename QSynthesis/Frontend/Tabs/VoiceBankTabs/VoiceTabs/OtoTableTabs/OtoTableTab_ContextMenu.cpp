@@ -100,9 +100,9 @@ void OtoTableTab::moveUp() {
     QGenonSettings genon = getGenonSettings(row);
     int firstRow = findFirstRow(genon.mFileName);
     int index = row - firstRow;
-    int sequence = otoSamples.findAuto(genon.mFileName);
+    int sequence = m_otoSamples.findAuto(genon.mFileName);
 
-    genon = otoSamples.at(sequence).at(index);
+    genon = m_otoSamples.at(sequence).at(index);
     moveSample(row, sequence, index, -1);
     emit sampleMoved(genon, index, -1);
 }
@@ -115,9 +115,9 @@ void OtoTableTab::moveDown() {
     QGenonSettings genon = getGenonSettings(row);
     int firstRow = findFirstRow(genon.mFileName);
     int index = row - firstRow;
-    int sequence = otoSamples.findAuto(genon.mFileName);
+    int sequence = m_otoSamples.findAuto(genon.mFileName);
 
-    genon = otoSamples.at(sequence).at(index);
+    genon = m_otoSamples.at(sequence).at(index);
     moveSample(row, sequence, index, 1);
     emit sampleMoved(genon, index, 1);
 }
@@ -130,10 +130,10 @@ void OtoTableTab::moveTop() {
     QGenonSettings genon = getGenonSettings(row);
     int firstRow = findFirstRow(genon.mFileName);
     int index = row - firstRow;
-    int sequence = otoSamples.findAuto(genon.mFileName);
+    int sequence = m_otoSamples.findAuto(genon.mFileName);
     int movement = -index;
 
-    genon = otoSamples.at(sequence).at(index);
+    genon = m_otoSamples.at(sequence).at(index);
     moveSample(row, sequence, index, movement);
     emit sampleMoved(genon, index, movement);
 }
@@ -146,10 +146,10 @@ void OtoTableTab::moveBottom() {
     QGenonSettings genon = getGenonSettings(row);
     int firstRow = findFirstRow(genon.mFileName);
     int index = row - firstRow;
-    int sequence = otoSamples.findAuto(genon.mFileName);
-    int movement = otoSamples.at(sequence).size() - 1 - index;
+    int sequence = m_otoSamples.findAuto(genon.mFileName);
+    int movement = m_otoSamples.at(sequence).size() - 1 - index;
 
-    genon = otoSamples.at(sequence).at(index);
+    genon = m_otoSamples.at(sequence).at(index);
     moveSample(row, sequence, index, movement);
     emit sampleMoved(genon, index, movement);
 }
@@ -162,10 +162,10 @@ void OtoTableTab::duplicate() {
     QGenonSettings genon = getGenonSettings(row);
     int firstRow = findFirstRow(genon.mFileName);
     int index = row - firstRow;
-    int sequence = otoSamples.findAuto(genon.mFileName);
+    int sequence = m_otoSamples.findAuto(genon.mFileName);
 
-    genon = otoSamples.at(sequence).at(index);
-    otoSamples[sequence].insert(index + 1, genon);
+    genon = m_otoSamples.at(sequence).at(index);
+    m_otoSamples[sequence].insert(index + 1, genon);
 
     table->blockSignals(true);
     insertRow(row + 1, genon);
@@ -185,15 +185,15 @@ void OtoTableTab::remove() {
     QGenonSettings genon = getGenonSettings(row);
     int firstRow = findFirstRow(genon.mFileName);
     int index = row - firstRow;
-    int sequence = otoSamples.findAuto(genon.mFileName);
+    int sequence = m_otoSamples.findAuto(genon.mFileName);
 
-    genon = otoSamples.at(sequence).at(index);
+    genon = m_otoSamples.at(sequence).at(index);
 
     // Change backend value
-    if (otoSamples[sequence].size() == 1) {
-        otoSamples.removeAt(sequence);
+    if (m_otoSamples[sequence].size() == 1) {
+        m_otoSamples.removeAt(sequence);
     } else {
-        otoSamples[sequence].removeAt(index);
+        m_otoSamples[sequence].removeAt(index);
     }
 
     table->blockSignals(true);

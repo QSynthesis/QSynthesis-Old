@@ -98,15 +98,15 @@ WelcomeTabContent::WelcomeTabContent(WelcomeTab *tab, QWidget *parent)
 }
 
 void WelcomeTabContent::refresh() {
-    QStringList ustFiles = qSetting->projects.valid();
-    QStringList voiceBanks = qSetting->folders.valid();
+    QStringList projects = qSetting->projects.valid();
+    QStringList folders = qSetting->folders.valid();
 
     filesList->clear();
 
     if (sBtnGroup->currentButton() == sBtnFiles) {
         // ust
         filesList->setType(FileListWidget::Files);
-        for (auto it = ustFiles.begin(); it != ustFiles.end(); ++it) {
+        for (auto it = projects.begin(); it != projects.end(); ++it) {
             QString fullName = *it;
             QFileInfo fileinfo = QFileInfo(fullName);
             QString filename = fileinfo.fileName();
@@ -126,7 +126,7 @@ void WelcomeTabContent::refresh() {
         // voice
         VoiceInfo info;
         filesList->setType(FileListWidget::Folders);
-        for (auto it = voiceBanks.begin(); it != voiceBanks.end(); ++it) {
+        for (auto it = folders.begin(); it != folders.end(); ++it) {
             QString fullName = *it;
             QFileInfo fileinfo = QFileInfo(fullName);
             QString filename = fileinfo.fileName();

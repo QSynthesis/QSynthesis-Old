@@ -34,7 +34,7 @@ public:
     void watch();
 
 public:
-    bool addPath(const QString &dir, bool recursive = false);
+    long addPath(const QString &dir, bool recursive = false);
     bool removePath(const QString &dir);
     void removeAllPaths();
 

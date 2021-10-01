@@ -2,7 +2,6 @@
 #define PLUGINHANDLER_H
 
 #include <QFile>
-#include <QFileSystemWatcher>
 #include <QString>
 #include <QTextStream>
 #include <QVector>
