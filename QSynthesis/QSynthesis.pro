@@ -644,6 +644,14 @@ win32 {
 }
 else:macx {
     ICON = Resources/platforms/mac/qsynth2.icns
+    CONFIG(release, debug|release) {
+        LIBS += -L$$PWD/Libraries/macosx/clang64/ -lefsw-static-release
+        PRE_TARGETDEPS += $$PWD/Libraries/macosx/clang64/libefsw-static-release.a
+    }
+    else:CONFIG(debug, debug|release) {
+        LIBS += -L$$PWD/Libraries/macosx/clang64/ -lefsw-static-debug
+        PRE_TARGETDEPS += $$PWD/Libraries/macosx/clang64/libefsw-static-debug.a
+    }
 }
 else:unix {
     CONFIG(release, debug|release) {
