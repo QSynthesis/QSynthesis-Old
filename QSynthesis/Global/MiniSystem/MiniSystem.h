@@ -29,7 +29,8 @@ public:
     void stop();
 
 public:
-    MiniSystemNotifier *createNotifier(const QString &path, Type type = Directory);
+    MiniSystemNotifier *createNotifier(const QString &path, Type type = Directory,
+                                       bool check = true);
     void removeNotifier(MiniSystemNotifier *notifier);
     void removeAllNotifiers();
 

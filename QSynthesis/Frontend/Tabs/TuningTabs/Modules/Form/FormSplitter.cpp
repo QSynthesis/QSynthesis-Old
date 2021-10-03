@@ -3,7 +3,8 @@
 FormSplitter::FormSplitter(QWidget *parent) : QSplitter(Qt::Vertical, parent) {
     forms.clear();
     topWidget = nullptr;
-    mainIndex = 0;
+    m_mainIndex = 0;
+    m_autoUnfold = false;
 
     setHandleWidth(3);
     setFrameStyle(QFrame::NoFrame);
@@ -31,8 +32,7 @@ void FormSplitter::insertForm(int index, BaseForm *form, int stretch) {
 void FormSplitter::removeForm(BaseForm *form) {
     forms.removeOne(form);
 
-    disconnect(form, &BaseForm::visibilityChanged, this,
-               &FormSplitter::onFormVisibilityChanged);
+    disconnect(form, &BaseForm::visibilityChanged, this, &FormSplitter::onFormVisibilityChanged);
     modifyFeatures();
 }
 
@@ -46,6 +46,7 @@ void FormSplitter::setTopWidget(QWidget *w, int stretch) {
 
 void FormSplitter::removeTopWidget() {
     if (topWidget) {
+        delete topWidget;
         topWidget = nullptr;
         modifyFeatures();
     }
@@ -65,19 +66,27 @@ void FormSplitter::setStretchFactor(int index, int stretch) {
 
 void FormSplitter::setMainIndex(int index) {
     if (index < forms.size()) {
-        mainIndex = index;
+        m_mainIndex = index;
     }
 }
 
 void FormSplitter::setMainForm(BaseForm *form) {
     int index = forms.indexOf(form);
     if (index >= 0) {
-        mainIndex = index;
+        m_mainIndex = index;
     }
 }
 
-int FormSplitter::MainIndex() {
-    return mainIndex;
+int FormSplitter::mainIndex() const {
+    return m_mainIndex;
+}
+
+bool FormSplitter::autoUnfold() const {
+    return m_autoUnfold;
+}
+
+void FormSplitter::setAutoUnfold(bool autoUnfold) {
+    m_autoUnfold = autoUnfold;
 }
 
 void FormSplitter::onFormVisibilityChanged(bool b) {
@@ -87,7 +96,7 @@ void FormSplitter::onFormVisibilityChanged(bool b) {
     bool flag = false;
     int index = forms.indexOf(form);
 
-    if (index < 0 || topWidget) {
+    if (index < 0 || (topWidget && !m_autoUnfold)) {
         modifyFeatures();
         return;
     }
@@ -101,11 +110,11 @@ void FormSplitter::onFormVisibilityChanged(bool b) {
 
     // All forms have been folded
     if (!flag) {
-        if (index == mainIndex) {
-            int i = (mainIndex == forms.size() - 1) ? (mainIndex - 1) : (mainIndex + 1);
+        if (index == m_mainIndex) {
+            int i = (m_mainIndex == forms.size() - 1) ? (m_mainIndex - 1) : (m_mainIndex + 1);
             forms[i]->reverseFold();
         } else {
-            forms[mainIndex]->reverseFold();
+            forms[m_mainIndex]->reverseFold();
         }
     }
     modifyFeatures();
@@ -114,9 +123,7 @@ void FormSplitter::onFormVisibilityChanged(bool b) {
 }
 
 void FormSplitter::modifyFeatures() {
-    int i;
-
-    for (i = 0; i < forms.size(); ++i) {
+    for (int i = 0; i < forms.size(); ++i) {
         if ((i == 0 && !topWidget) || (i > 0 && !forms[i - 1]->unfolded())) {
             forms[i]->titleBar()->setTopVisible(false);
             handle(indexOf(forms[i]))->setEnabled(false);
@@ -134,9 +141,7 @@ void FormSplitter::modifyFeatures() {
 }
 
 void FormSplitter::modifyStretches() {
-    int i;
-
-    for (i = 0; i < forms.size(); ++i) {
+    for (int i = 0; i < forms.size(); ++i) {
         if (!forms[i]->unfolded()) {
             setStretchFactor(i, 1);
         }

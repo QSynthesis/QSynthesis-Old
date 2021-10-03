@@ -27,6 +27,8 @@ SOURCES += \
     Backend/Document/SettingIniFile.cpp \
     Backend/Document/ShortcutsFile.cpp \
     Backend/Document/VoiceInfo.cpp \
+    Backend/Encapsulate/FindOption.cpp \
+    Backend/Encapsulate/NoteProperties.cpp \
     Backend/Import/QFrequencyFile.cpp \
     Backend/Import/QMidiFile.cpp \
     Backend/Import/QPresampFile.cpp \
@@ -34,6 +36,8 @@ SOURCES += \
     Backend/Import/QVocaloidFile.cpp \
     Backend/Import/QWaveInfo.cpp \
     Backend/Managers/ColorTheme.cpp \
+    Backend/Managers/DataManager.cpp \
+    Backend/Managers/DataManagers/DataManager_Keys.cpp \
     Backend/Managers/MemoryManager.cpp \
     Backend/Managers/PluginManager.cpp \
     Backend/Managers/VoiceManager.cpp \
@@ -99,9 +103,6 @@ SOURCES += \
     Frontend/Dialogs/ScriptPluginDialog.cpp \
     Frontend/Dialogs/SelectsDialog.cpp \
     Frontend/Dialogs/TerminalDialog.cpp \
-    Frontend/Singletons/AppAssistant.cpp \
-    Frontend/Singletons/AppAssistants/AppAssistant_Keys.cpp \
-    Frontend/Singletons/AppAssistants/AppAssistant_Strings.cpp \
     Frontend/Singletons/CentralTabWidget.cpp \
     Frontend/Singletons/CentralTabWidgets/CentralTabWidget_Base.cpp \
     Frontend/Singletons/CentralTabWidgets/CentralTabWidget_Features.cpp \
@@ -133,6 +134,7 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Drag.cpp \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Draw.cpp \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Events.cpp \
+    Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Find.cpp \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Lyric.cpp \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Modify.cpp \
     Frontend/Tabs/TuningTabs/Areas/Editor/NotesAreas/NotesArea_Move.cpp \
@@ -227,7 +229,6 @@ SOURCES += \
     Frontend/Tabs/TuningTabs/Interfaces/TracksInterface.cpp \
     Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.cpp \
     Frontend/Tabs/TuningTabs/Modules/Buttons/PlayButtonGroup.cpp \
-    Frontend/Tabs/TuningTabs/Modules/Buttons/TrackButton.cpp \
     Frontend/Tabs/TuningTabs/Modules/Editor/FindReplaceDialog.cpp \
     Frontend/Tabs/TuningTabs/Modules/Editor/SpriteAdjustDialog.cpp \
     Frontend/Tabs/TuningTabs/Modules/Elements/PianoKey.cpp \
@@ -319,8 +320,11 @@ SOURCES += \
     Frontend/Tabs/WelcomeTabs/FileListWidget.cpp \
     Frontend/Tabs/WelcomeTabs/FileListWidgetItem.cpp \
     Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp \
+    Frontend/Templates/IconButton.cpp \
     Frontend/Templates/LabelButton.cpp \
     Frontend/Templates/TemporaryMenu.cpp \
+    Frontend/Templates/TextButton.cpp \
+    Frontend/Templates/VCheckBox.cpp \
     Frontend/Templates/VectorButton.cpp \
     Global/Macros.cpp \
     Global/Methods.cpp \
@@ -390,6 +394,8 @@ HEADERS += \
     Backend/Document/SettingIniFile.h \
     Backend/Document/ShortcutsFile.h \
     Backend/Document/VoiceInfo.h \
+    Backend/Encapsulate/FindOption.h \
+    Backend/Encapsulate/NoteProperties.h \
     Backend/Import/QFrequencyFile.h \
     Backend/Import/QMidiFile.h \
     Backend/Import/QPresampFile.h \
@@ -397,6 +403,7 @@ HEADERS += \
     Backend/Import/QVocaloidFile.h \
     Backend/Import/QWaveInfo.h \
     Backend/Managers/ColorTheme.h \
+    Backend/Managers/DataManager.h \
     Backend/Managers/MemoryManager.h \
     Backend/Managers/PluginManager.h \
     Backend/Managers/VoiceManager.h \
@@ -464,7 +471,6 @@ HEADERS += \
     Frontend/Dialogs/TerminalDialog.h \
     Frontend/QSActions.h \
     Frontend/QSTabs.h \
-    Frontend/Singletons/AppAssistant.h \
     Frontend/Singletons/CentralTabWidget.h \
     Frontend/Singletons/ComboSelector.h \
     Frontend/Tabs/BaseTab.h \
@@ -509,7 +515,6 @@ HEADERS += \
     Frontend/Tabs/TuningTabs/Interfaces/TracksInterface.h \
     Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.h \
     Frontend/Tabs/TuningTabs/Modules/Buttons/PlayButtonGroup.h \
-    Frontend/Tabs/TuningTabs/Modules/Buttons/TrackButton.h \
     Frontend/Tabs/TuningTabs/Modules/Editor/FindReplaceDialog.h \
     Frontend/Tabs/TuningTabs/Modules/Editor/SpriteAdjustDialog.h \
     Frontend/Tabs/TuningTabs/Modules/Elements/PianoKey.h \
@@ -568,8 +573,11 @@ HEADERS += \
     Frontend/Tabs/WelcomeTabs/FileListWidget.h \
     Frontend/Tabs/WelcomeTabs/FileListWidgetItem.h \
     Frontend/Tabs/WelcomeTabs/WelcomeTabContent.h \
+    Frontend/Templates/IconButton.h \
     Frontend/Templates/LabelButton.h \
     Frontend/Templates/TemporaryMenu.h \
+    Frontend/Templates/TextButton.h \
+    Frontend/Templates/VCheckBox.h \
     Frontend/Templates/VectorButton.h \
     Global/Macros.h \
     Global/Methods.h \

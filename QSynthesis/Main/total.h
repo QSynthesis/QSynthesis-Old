@@ -1,11 +1,11 @@
 #ifndef TOTAL_H
 #define TOTAL_H
 
-#include "Singletons/AppAssistant.h"
+#include "Managers/DataManager.h"
 #include "mainwindow.h"
 
-#include <QTextCodec>
 #include <QFontDatabase>
+#include <QTextCodec>
 
 void initLocale();
 

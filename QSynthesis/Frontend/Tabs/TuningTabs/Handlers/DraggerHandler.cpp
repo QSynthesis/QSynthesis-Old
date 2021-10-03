@@ -164,6 +164,24 @@ void DraggerHandler::removeAllT(GraphicsDragger::Element element) {
     }
 }
 
+void DraggerHandler::addFind(GraphicsNote *p) {
+    findedNotes.insertAuto(p);
+    p->setHighlighted(true);
+}
+
+void DraggerHandler::removeFind(GraphicsNote *p) {
+    findedNotes.removeAuto(p);
+    p->setHighlighted(false);
+
+}
+
+void DraggerHandler::removeAllFind() {
+    for (auto it = findedNotes.begin(); it != findedNotes.end(); ++it) {
+        (*it)->setHighlighted(false);
+    }
+    findedNotes.clear();
+}
+
 void DraggerHandler::startDrag(GraphicsDragger *obj, QPointF pos) {
     dragging = true;
     center = obj;

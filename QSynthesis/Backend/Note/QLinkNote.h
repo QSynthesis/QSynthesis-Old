@@ -5,31 +5,11 @@
 #include <QJsonObject>
 #include <QVector>
 
+#include "Encapsulate/NoteProperties.h"
 #include "QControlPoint.h"
 #include "QGenonSettings.h"
 #include "QUtauConstants.h"
 #include "QUtauStrings.h"
-
-struct NoteProperties {
-    NoteProperties();
-    void clear();
-
-    QString length;
-    QString intensity;
-    QString modulation;
-
-    QString preUttr;
-    QString overlap;
-
-    QString tempo;
-
-    QString flags;
-    QString velocity;
-    QString startpoint;
-
-    QString preUttrOto;
-    QString overlapOto;
-};
 
 class QLinkNote {
 public:

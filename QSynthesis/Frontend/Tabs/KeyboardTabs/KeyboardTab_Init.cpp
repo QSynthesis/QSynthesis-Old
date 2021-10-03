@@ -6,8 +6,7 @@
 void KeyboardTab::initTab() {
     m_type = Qs::Keyboard;
 
-    notifier = MiniSystem::instance()->createNotifier(m_filename, MiniSystem::File);
-    connect(notifier, &MiniSystemNotifier::fileChanged, this, &KeyboardTab::handleFileChanged);
+    notifier = nullptr;
 
     initValues();
     initComponents();

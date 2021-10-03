@@ -4,6 +4,7 @@
 #include "Forms/ParamsForm.h"
 #include "Forms/TracksForm.h"
 #include "Managers/MemoryManager.h"
+#include "Modules/Editor/FindReplaceDialog.h"
 #include "Modules/Form/FormSplitter.h"
 #include "ProjectInfoHandler.h"
 #include "TuningGroup.h"
@@ -28,6 +29,7 @@ void TuningTab::initTab() {
 
 void TuningTab::initComponents() {
     mainSplitter = new FormSplitter(this);
+    mainSplitter->setAutoUnfold(true);
 
     mainLayout = new QVBoxLayout(this);
     mainLayout->setMargin(0);

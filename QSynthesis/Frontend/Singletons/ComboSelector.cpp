@@ -1,7 +1,7 @@
 #include "ComboSelector.h"
 #include "application.h"
 
-#include "Singletons/AppAssistant.h"
+#include "Managers/DataManager.h"
 
 Q_SINGLETON_DECLARE(ComboSelector)
 
@@ -93,7 +93,7 @@ void ComboSelector::focusInEvent(QFocusEvent *event) {
 }
 
 bool ComboSelector::eventFilter(QObject *obj, QEvent *event) {
-    if (AppAssistant::keyIsDown(event)) {
+    if (DataManager::keyIsDown(event)) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         int key = keyEvent->key();
         if ((key == Qt::Key_Up || key == Qt::Key_Down)) {

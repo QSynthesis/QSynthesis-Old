@@ -9,12 +9,12 @@
 #include <QVBoxLayout>
 #include <QWidget>
 
-#include "../Buttons/TrackButton.h"
 #include "Controls/FixedLineEdit.h"
 #include "Document/VoiceInfo.h"
 #include "MoreWidget.h"
 #include "QUtils.h"
 #include "Templates/LabelButton.h"
+#include "Templates/TextButton.h"
 #include "VoiceBank/QOtoReference.h"
 
 class HeadsArea;
@@ -72,7 +72,7 @@ private:
     QGridLayout *dialLayout;
     QVBoxLayout *buttonLayout;
 
-    TrackButton *btnMute, *btnSolo;
+    TextButton *btnMute, *btnSolo;
     QDial *panDial, *volDial;
 
     QLabel *lbPanIcon, *lbVolIcon;

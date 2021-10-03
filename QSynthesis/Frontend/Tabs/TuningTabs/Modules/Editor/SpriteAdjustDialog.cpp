@@ -2,8 +2,10 @@
 
 SpriteAdjustDialog::SpriteAdjustDialog(QWidget *parent) : TransparentContainer(parent) {
     mainLayout = new QVBoxLayout(this);
+    mainLayout->setSpacing(10);
 
-    checkBoxesLayout = new QHBoxLayout();
+    topLayout = new QHBoxLayout();
+    bottomLayout = new QHBoxLayout();
 
     cbVisible = new QCheckBox(tr("Foreground visible"));
     scAlpha = new SlideLineControl(tr("Foreground opacity (0~100)"));
@@ -23,6 +25,12 @@ SpriteAdjustDialog::SpriteAdjustDialog(QWidget *parent) : TransparentContainer(p
     cbBottomLeft->setAutoExclusive(true);
     cbBottomRight->setAutoExclusive(true);
 
+    QSizeF padding2(5, 5);
+    QSize btnSize2(24, 24);
+    btnClose = new IconButton(padding2);
+    btnClose->setIcon(":/images/close-line.svg");
+    btnClose->setFixedSize(btnSize2);
+
     connect(cbVisible, &QCheckBox::clicked, this, &SpriteAdjustDialog::handleVisibilityClicked);
 
     connect(scAlpha, &SlideLineControl::valueChanged, this,
@@ -33,14 +41,19 @@ SpriteAdjustDialog::SpriteAdjustDialog(QWidget *parent) : TransparentContainer(p
     connect(cbBottomLeft, &QCheckBox::clicked, this, &SpriteAdjustDialog::handleCornerClicked);
     connect(cbBottomRight, &QCheckBox::clicked, this, &SpriteAdjustDialog::handleCornerClicked);
 
-    checkBoxesLayout->addWidget(cbTopLeft);
-    checkBoxesLayout->addWidget(cbTopRight);
-    checkBoxesLayout->addWidget(cbBottomLeft);
-    checkBoxesLayout->addWidget(cbBottomRight);
+    connect(btnClose, &IconButton::clicked, this, &SpriteAdjustDialog::handleCloseBtnClicked);
 
-    mainLayout->addWidget(cbVisible);
+    topLayout->addWidget(cbVisible);
+    topLayout->addWidget(btnClose);
+
+    bottomLayout->addWidget(cbTopLeft);
+    bottomLayout->addWidget(cbTopRight);
+    bottomLayout->addWidget(cbBottomLeft);
+    bottomLayout->addWidget(cbBottomRight);
+
+    mainLayout->addLayout(topLayout);
     mainLayout->addWidget(scAlpha);
-    mainLayout->addLayout(checkBoxesLayout);
+    mainLayout->addLayout(bottomLayout);
 
     setMinimumWidth(400);
 }
@@ -94,4 +107,8 @@ void SpriteAdjustDialog::handleCornerClicked() {
 
 void SpriteAdjustDialog::handleAlphaChanged(double value) {
     emit alphaChanged(int(value));
+}
+
+void SpriteAdjustDialog::handleCloseBtnClicked() {
+    emit closeRequested();
 }

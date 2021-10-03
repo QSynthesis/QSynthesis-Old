@@ -25,6 +25,8 @@ NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *view) : GraphicsA
     m_spriteVisible = qSetting->spriteVisibility;
     m_spritePosition = qSetting->spritePosition;
 
+    m_finding = false;
+
     m_moving = false;
     m_selecting = false;
     m_drawingItem = nullptr;

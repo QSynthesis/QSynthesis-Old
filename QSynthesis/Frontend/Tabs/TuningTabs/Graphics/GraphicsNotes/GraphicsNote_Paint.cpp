@@ -83,3 +83,13 @@ void GraphicsNote::drawParams(QPainter *painter) {
     painter->setFont(uiFont());
     painter->drawText(textRect, Qt::AlignVCenter, strPara, &entityRect);
 }
+
+void GraphicsNote::drawHighlight(QPainter *painter) {
+    painter->setPen(Qt::NoPen);
+    painter->setBrush(QBrush(m_highlightColor));
+
+    QRectF rect = m_screen->boundingRect();
+    rect.setLeft(x() - m_screen->x());
+    rect.setWidth(width());
+    painter->drawRect(rect);
+}

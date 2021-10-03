@@ -11,6 +11,7 @@
 #include "../../Graphics/GraphicsPoint.h"
 #include "../../Graphics/GraphicsRubber.h"
 #include "../../Graphics/GraphicsSprite.h"
+#include "Encapsulate/FindOption.h"
 #include "Graphics/GraphicsArea.h"
 #include "Graphics/GraphicsLineEdit.h"
 #include "Note/QLinkNote.h"
@@ -135,6 +136,7 @@ public:
 
     void insertLyrics(const QStringList &lyrics);
     void replaceSingleLyric(const QString &lyric, GraphicsNote *p);
+    void replaceLyrics(const QList<int> &indexs, const QStringList &lyrics);
     void replaceSelectedLyrics(const QStringList &lyrics, bool ignoreRest);
 
     void insertRest();
@@ -326,6 +328,27 @@ private:
     void stopSelecting();
 
     void analyseSelect();
+
+    // Find
+private:
+    FindOption m_findOption;
+    bool m_finding;
+
+    void updateFindStatus();
+    void updateFindStatusAt(int index);
+    void updateNoteFindStatus(GraphicsNote *p);
+    void updateFindIndexs();
+
+public:
+    bool finding() const;
+    void setFinding(bool finding);
+
+    FindOption findOption() const;
+    void setFindOption(const FindOption &opt);
+
+    void findAtIndex(int index);
+
+    void replaceByFind(const ReplaceOption &opt, bool all);
 
     // Play
 private:

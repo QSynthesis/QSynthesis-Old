@@ -227,6 +227,9 @@ void TuningActionList::makeDefaultShortcuts() {
 
     switchNoteState->setShortcut(QKeySequence("X"));
     switchParamsState->setShortcut(QKeySequence("Z"));
+    switchEnvelope->setShortcut(QKeySequence("C"));
+
+    showSpriteAdjust->setShortcut(QKeySequence("Ctrl+Shift+F"));
 }
 
 QList<QKeySequence> TuningActionList::defaultShortcuts() {

@@ -93,6 +93,9 @@ public:
     bool drawing() const;
     void setDrawing(bool drawing);
 
+    bool highlighted() const;
+    void setHighlighted(bool highlighted);
+
     // Values
 public:
     QGenonSettings genonSettings() const;
@@ -171,6 +174,8 @@ private:
     bool m_stretch;
     bool m_drawing;
 
+    bool m_highlighted;
+
     GraphicsNote *m_prev, *m_next;   // Pointers of note right before and after
     GraphicsNote *m_MPrev, *m_MNext; // Reference for moving curves
 
@@ -204,6 +209,7 @@ private:
 public:
     void drawNote(QPainter *painter);
     void drawParams(QPainter *painter);
+    void drawHighlight(QPainter *painter);
 
 public:
     void afterPress();
@@ -241,6 +247,8 @@ private:
     QColor m_lyricBlockColor;
 
     QColor m_paramsColor;
+
+    QColor m_highlightColor;
 
 private:
     void openContextMenu();

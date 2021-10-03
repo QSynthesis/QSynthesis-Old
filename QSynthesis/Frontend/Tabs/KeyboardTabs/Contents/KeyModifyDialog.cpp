@@ -1,5 +1,5 @@
 #include "KeyModifyDialog.h"
-#include "AppAssistant.h"
+#include "Managers/DataManager.h"
 
 #include <QKeyEvent>
 
@@ -74,7 +74,7 @@ bool KeyModifyDialog::keyDownEvent(QKeyEvent *event) {
     }
 
     // Exclude special keys
-    if (AppAssistant::isUnusableKey(key) || key == Qt::Key_unknown) {
+    if (DataManager::isUnusableKey(key) || key == Qt::Key_unknown) {
         return normalRes;
     }
 
@@ -82,7 +82,7 @@ bool KeyModifyDialog::keyDownEvent(QKeyEvent *event) {
     int keyBind = 0;
 
     // Set current key
-    if (!AppAssistant::isModifierKey(key)) {
+    if (!DataManager::isModifierKey(key)) {
         keyBind = key;
     }
     // No current key but has last key

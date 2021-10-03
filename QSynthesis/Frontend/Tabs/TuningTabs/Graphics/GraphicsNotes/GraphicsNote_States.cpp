@@ -46,3 +46,15 @@ bool GraphicsNote::drawing() const {
 void GraphicsNote::setDrawing(bool drawing) {
     m_drawing = drawing;
 }
+
+bool GraphicsNote::highlighted() const {
+    return m_highlighted;
+}
+
+void GraphicsNote::setHighlighted(bool highlighted) {
+    bool old = m_highlighted;
+    m_highlighted = highlighted;
+    if (old != m_highlighted) {
+        m_screen->update();
+    }
+}

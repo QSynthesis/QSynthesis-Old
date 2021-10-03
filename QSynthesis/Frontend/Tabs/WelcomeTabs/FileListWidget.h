@@ -7,8 +7,8 @@
 #include <QListWidget>
 #include <QMenu>
 
-#include "AppAssistant.h"
 #include "FileListWidgetItem.h"
+#include "Managers/DataManager.h"
 #include "QUtils.h"
 
 class FileListWidget : public QListWidget {

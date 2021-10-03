@@ -32,5 +32,9 @@
         <file>images/EnvGroupBtn3_Line.svg</file>
         <file>themes/theme-mac-dark.qss</file>
         <file>texts/about.html</file>
+        <file>images/arrow-left-line.svg</file>
+        <file>images/arrow-right-line.svg</file>
+        <file>images/file-search-line.svg</file>
+        <file>images/find-replace-line.svg</file>
     </qresource>
 </RCC>

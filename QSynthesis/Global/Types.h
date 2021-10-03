@@ -129,11 +129,13 @@ namespace Qs {
 
     enum EnvelopeBatch { P1P4Fade, P2P3Fade, DefaultEnvelope };
 
-    QString NoteStatusToString(NoteStatus status);
+    QString noteStatusToString(NoteStatus status);
 
     QString pitchPointToString(const PitchPoint &oType);
 
     PitchPoint stringToPitchPoint(const QString &oString);
+
+    QString buttonStatusToString(ButtonStatus status);
 
 } // namespace Qs
 

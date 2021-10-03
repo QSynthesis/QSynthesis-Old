@@ -16,11 +16,11 @@ int main(int argc, char *argv[]) {
 
     created(); // Create
 
-    AppAssistant::translate(":/translations/qsynthesis_cn.qm");
+    DataManager::translate(":/translations/qsynthesis_cn.qm");
 #if defined(Q_OS_MAC)
     AppAssistant::translate(AppPath + "/translations/qt_zh_CN.qm");
 #else
-    AppAssistant::translate(QCoreApplication::applicationDirPath() + "/translations/qt_zh_CN.qm");
+    DataManager::translate(QCoreApplication::applicationDirPath() + "/translations/qt_zh_CN.qm");
 #endif
 
     MainWindow w;

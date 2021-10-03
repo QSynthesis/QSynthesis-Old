@@ -10,6 +10,7 @@
 
 #include "Controls/SlideLineControl.h"
 #include "Customs/TransparentContainer.h"
+#include "Templates/IconButton.h"
 
 class SpriteAdjustDialog : public TransparentContainer {
     Q_OBJECT
@@ -27,16 +28,21 @@ public:
 
 private:
     QVBoxLayout *mainLayout;
-    QHBoxLayout *checkBoxesLayout;
+    QHBoxLayout *topLayout;
+    QHBoxLayout *bottomLayout;
 
     QCheckBox *cbVisible;
     SlideLineControl *scAlpha;
     QCheckBox *cbTopLeft, *cbTopRight, *cbBottomLeft, *cbBottomRight;
 
+    IconButton *btnClose;
+
 private:
     void handleVisibilityClicked();
     void handleCornerClicked();
     void handleAlphaChanged(double value);
+
+    void handleCloseBtnClicked();
 
 signals:
     void visibilityChanged(bool visibility);

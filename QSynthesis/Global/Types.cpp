@@ -1,6 +1,6 @@
 #include "Types.h"
 
-QString Qs::NoteStatusToString(Qs::NoteStatus status) {
+QString Qs::noteStatusToString(Qs::NoteStatus status) {
     QString name;
     switch (status) {
     case Rest:
@@ -49,4 +49,20 @@ Qs::PitchPoint Qs::stringToPitchPoint(const QString &oString) {
     }
 
     return aResult;
+}
+
+QString Qs::buttonStatusToString(Qs::ButtonStatus status) {
+    QString name;
+    switch (status) {
+    case RollOut:
+        name = "rollOut";
+        break;
+    case RollOver:
+        name = "rollOver";
+        break;
+    case RollDown:
+        name = "rollDown";
+        break;
+    }
+    return name;
 }

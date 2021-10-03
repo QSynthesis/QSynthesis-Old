@@ -95,6 +95,14 @@ void MainWindow::handleInsertLyrics() {
 }
 
 void MainWindow::handleFindReplace() {
+    qDebug() << "[Action]"
+             << "Find And Replace";
+
+    CentralTab *tab = currentTab();
+    if (tab->tabType() == Qs::Tuning) {
+        TuningTab *tab1 = qobject_cast<TuningTab *>(tab);
+        tab1->showFindReplace();
+    }
 }
 
 void MainWindow::handleTranspose() {

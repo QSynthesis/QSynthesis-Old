@@ -25,6 +25,10 @@ public:
     void removeOneT(GraphicsDragger *obj);
     void removeAllT(GraphicsDragger::Element element = GraphicsDragger::Unknown);
 
+    void addFind(GraphicsNote *p);
+    void removeFind(GraphicsNote *p);
+    void removeAllFind();
+
     void startDrag(GraphicsDragger *obj, QPointF pos);
     void duringDrag(GraphicsDragger *obj, QPointF pos);
     void stopDrag(GraphicsDragger *obj);
@@ -50,6 +54,8 @@ public:
 
     ItemList<GraphicsLifter> selectedHandles; // objects selected or dragged
     ItemList<GraphicsLifter> involvedHandles; // non-processing objects involved
+
+    ItemList<GraphicsNote> findedNotes;
 
     void filter(GraphicsDragger::Element element);
     void filter(const QList<GraphicsDragger::Element> &list);

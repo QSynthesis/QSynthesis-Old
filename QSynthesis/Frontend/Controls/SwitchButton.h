@@ -20,6 +20,8 @@ public:
 
 private:
     void init();
+
+protected:
     void mouseDoubleClickEvent(QMouseEvent *event) override;
 
 signals:

@@ -39,7 +39,7 @@ void initSingletons() {
     SettingIniFile::createCase();
     ConfigFile::createCase();
     ShortcutsFile::createCase();
-    AppAssistant::createCase();
+    DataManager::createCase();
 
     PluginManager::createCase();
     VoiceManager::createCase();
@@ -67,7 +67,7 @@ void removeSingletons() {
     SettingIniFile::destroyCase();
     ConfigFile::destroyCase();
     ShortcutsFile::destroyCase();
-    AppAssistant::destroyCase();
+    DataManager::destroyCase();
 
     ShortcutsFile::removeDefault();
 

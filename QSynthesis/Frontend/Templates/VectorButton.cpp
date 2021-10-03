@@ -10,6 +10,19 @@ VectorButton::VectorButton(bool single, QSizeF padding, QWidget *parent)
     init();
 }
 
+void VectorButton::init() {
+    setFocusPolicy(Qt::ClickFocus);
+
+    m_status = false;
+    rollState = Qs::RollOut;
+
+    m_imgOn = m_imgOff = "";
+
+    m_upColor = Qt::darkGray;
+    m_overColor = Qt::lightGray;
+    m_downColor = Qt::darkGray;
+}
+
 void VectorButton::setValues(bool single, QSizeF padding) {
     m_single = single;
     m_padding = padding;
@@ -117,24 +130,13 @@ void VectorButton::mouseReleaseEvent(QMouseEvent *event) {
     rollState = Qs::RollOver;
     setIconCore();
 
-    emit clicked();
+    if (rect().contains(event->pos())) {
+        emit clicked();
+    }
 }
 
 void VectorButton::resizeEvent(QResizeEvent *event) {
     reloadIcons();
-}
-
-void VectorButton::init() {
-    setFocusPolicy(Qt::ClickFocus);
-
-    m_status = false;
-    rollState = Qs::RollOut;
-
-    m_imgOn = m_imgOff = "";
-
-    m_upColor = Qt::darkGray;
-    m_overColor = Qt::lightGray;
-    m_downColor = Qt::darkGray;
 }
 
 void VectorButton::setIconCore() {

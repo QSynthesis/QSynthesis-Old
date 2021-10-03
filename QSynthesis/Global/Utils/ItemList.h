@@ -67,6 +67,9 @@ int ItemList<T>::binarySearch(T *dragger) {
     int i, j, mid;
     i = 0;
     j = this->size() - 1;
+    if (!this || !dragger) {
+        return -1;
+    }
     while (i <= j) {
         mid = i + (j - i) / 2;
         if (*this->at(mid) < *dragger) {

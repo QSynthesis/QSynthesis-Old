@@ -210,6 +210,7 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
         for (int i = 0; i < indexs.size(); ++i) {
             GraphicsNote *p = NotesList.at(indexs[i]);
             p->updateNoteStatus();
+            updateNoteFindStatus(p);
         }
         adjustNoteComponents(QPoint(indexs.front() - 1, indexs.back() + 1));
         selectSequence(indexs);

@@ -25,6 +25,7 @@ void GraphicsNote::updateColorTheme() {
     m_selectColor = qViewIn->noteSelect();
     m_lyricBlockColor = qViewIn->noteLyricBlock();
     m_paramsColor = qViewIn->noteParams();
+    m_highlightColor = qViewIn->noteHighlight();
 
     update();
 }
@@ -39,6 +40,7 @@ void GraphicsNote::init() {
 
     m_stretch = false;
     m_drawing = false;
+    m_highlighted = false;
 
     m_time = 0;
     m_tick = 0;

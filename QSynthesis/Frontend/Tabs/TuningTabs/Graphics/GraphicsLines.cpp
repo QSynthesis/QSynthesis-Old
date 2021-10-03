@@ -44,6 +44,10 @@ void GraphicsLines::paint(QPainter *painter, const QStyleOptionGraphicsItem *opt
     Mode2Handler *curves = m_note->curves();
     EnvelopeHandler *envelope = m_note->envelope();
 
+    if (m_note->highlighted()) {
+        m_note->drawHighlight(painter);
+    }
+
     if (curves->visible()) {
         curves->drawMode1(painter);
         curves->drawMode2(painter);

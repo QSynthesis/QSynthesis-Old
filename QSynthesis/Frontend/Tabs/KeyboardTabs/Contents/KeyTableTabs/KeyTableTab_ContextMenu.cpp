@@ -1,5 +1,5 @@
 #include "../KeyTableTab.h"
-#include "Singletons/AppAssistant.h"
+#include "Managers/DataManager.h"
 #include "Tabs/KeyboardTab.h"
 #include "Templates/TemporaryMenu.h"
 
@@ -42,7 +42,7 @@ void KeyTableTab::handleModifyKeyBind() {
         return;
     }
 
-    if (modifiers == 0 && AppAssistant::isSpecialKey(static_cast<Qt::Key>(key))) {
+    if (modifiers == 0 && DataManager::isSpecialKey(static_cast<Qt::Key>(key))) {
         return;
     }
 

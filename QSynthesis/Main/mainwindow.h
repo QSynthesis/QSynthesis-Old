@@ -325,9 +325,6 @@ private:
     void initMemory();
 
 public:
-    // File Filters
-    static void reloadBackendStrings();
-
     static void exitOnNoIOPermission();
 
 signals:

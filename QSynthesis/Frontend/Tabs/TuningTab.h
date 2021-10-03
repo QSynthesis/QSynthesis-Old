@@ -192,6 +192,7 @@ public:
     void showPlayHeadCenter();
 
     void showSpriteAdjust();
+    void showFindReplace();
 
 public:
     // Edit

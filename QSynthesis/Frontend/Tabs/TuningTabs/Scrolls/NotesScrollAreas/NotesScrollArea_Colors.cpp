@@ -132,6 +132,9 @@ QColor NotesScrollArea::noteLyricBlock() const {
 QColor NotesScrollArea::noteParams() const {
     return note.params;
 }
+QColor NotesScrollArea::noteHighlight() const {
+    return note.highlight;
+}
 QColor NotesScrollArea::rubberFrame() const {
     return rubber.frame;
 }
@@ -313,6 +316,10 @@ void NotesScrollArea::setNoteLyricBlock(const QColor &color) {
 }
 void NotesScrollArea::setNoteParams(const QColor &color) {
     note.params = color;
+    emit noteThemeUpdated();
+}
+void NotesScrollArea::setNoteHighlight(const QColor &color) {
+    note.highlight = color;
     emit noteThemeUpdated();
 }
 void NotesScrollArea::setRubberFrame(const QColor &color) {

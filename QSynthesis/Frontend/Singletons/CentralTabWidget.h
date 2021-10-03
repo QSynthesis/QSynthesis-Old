@@ -6,6 +6,7 @@
 #include "Tabs/CentralTab.h"
 
 class VectorButton;
+class IconButton;
 
 #define qMainTabs CentralTabWidget::instance()
 
@@ -48,7 +49,7 @@ private:
 
     void tabIndexChangeCore(int index, bool changed) override;
 
-    QHash<CentralTab *, VectorButton *> closeBtns;
+    QHash<CentralTab *, IconButton *> closeBtns;
 
 private:
     ComboSelector *selector;

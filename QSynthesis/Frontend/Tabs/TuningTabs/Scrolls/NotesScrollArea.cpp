@@ -13,6 +13,7 @@ NotesScrollArea::NotesScrollArea(QWidget *parent) : GraphicsBaseView(parent) {
     initLight();
 
     adjuster = new SpriteAdjustDialog(this);
+    finder = new FindReplaceDialog(this);
 
     connect(adjuster, &SpriteAdjustDialog::visibilityChanged, this,
             &NotesScrollArea::handleVisibilityChanged);
@@ -23,7 +24,22 @@ NotesScrollArea::NotesScrollArea(QWidget *parent) : GraphicsBaseView(parent) {
     connect(adjuster, &SpriteAdjustDialog::closeRequested, this,
             &NotesScrollArea::handleAdjusterCloseRequested);
 
+    connect(finder, &FindReplaceDialog::findStateChanged, this,
+            &NotesScrollArea::handleFindStateChanged);
+    connect(finder, &FindReplaceDialog::prevRequested, this,
+            &NotesScrollArea::handleFindPrevRequested);
+    connect(finder, &FindReplaceDialog::nextRequested, this,
+            &NotesScrollArea::handleFindNextRequested);
+    connect(finder, &FindReplaceDialog::replaceRequested, this,
+            &NotesScrollArea::handleReplaceRequested);
+    connect(finder, &FindReplaceDialog::replaceAllRequested, this,
+            &NotesScrollArea::handleReplaceAllRequested);
+    connect(finder, &FindReplaceDialog::closeRequested, this,
+            &NotesScrollArea::handleFinderCloseRequested);
+
     adjuster->hide();
+    finder->hide();
+
     adjustModules();
 }
 
@@ -38,6 +54,10 @@ void NotesScrollArea::setAdjusterVisible(bool visible) {
 
         adjuster->setEnabled(true);
         adjuster->setFocus();
+
+        if (finderVisible()) {
+            setFinderVisible(false);
+        }
     } else {
         adjuster->setEnabled(false);
     }
@@ -49,13 +69,45 @@ bool NotesScrollArea::adjusterVisible() const {
     return adjuster->isVisible();
 }
 
+void NotesScrollArea::setFinderVisible(bool visible) {
+    if (visible) {
+        finder->setEnabled(true);
+        finder->setFocus();
+
+        if (adjusterVisible()) {
+            setAdjusterVisible(false);
+        }
+    } else {
+        finder->setEnabled(false);
+    }
+    finder->setVisible(visible);
+    adjustModules();
+
+    // Call NotesArea
+    scene()->setFinding(visible);
+}
+
+bool NotesScrollArea::finderVisible() const {
+    return finder->isVisible();
+}
+
+void NotesScrollArea::updateFinderCaption(int cur, int total) {
+    finder->setCurrent(cur);
+    finder->setTotal(total);
+}
+
 NotesArea *NotesScrollArea::scene() const {
     return qobject_cast<NotesArea *>(GraphicsBaseView::scene());
 }
 
 void NotesScrollArea::adjustModules() {
     if (adjuster->isVisible()) {
+        // adjuster->resize(width() / 3 - 20, adjuster->height());
         adjuster->move(20, 0);
+    }
+    if (finder->isVisible()) {
+        finder->resize(width() / 3 - 20, finder->height());
+        finder->move(width() - finder->width() - 20, 0);
     }
 }
 
@@ -81,10 +133,46 @@ void NotesScrollArea::handleAdjusterCloseRequested() {
     setAdjusterVisible(false);
 }
 
+void NotesScrollArea::handleFindStateChanged() {
+    scene()->setFindOption(
+        FindOption(finder->findText(), finder->matchCase(), finder->matchWord()));
+}
+
+void NotesScrollArea::handleFindPrevRequested() {
+    int index = finder->current() - 1;
+    if (index <= 0) {
+        return;
+    }
+    scene()->findAtIndex(index - 1);
+}
+
+void NotesScrollArea::handleFindNextRequested() {
+    int index = finder->current() - 1;
+    if (index == finder->total() - 1) {
+        return;
+    }
+    scene()->findAtIndex(index + 1);
+}
+
+void NotesScrollArea::handleReplaceRequested() {
+    scene()->replaceByFind(ReplaceOption(finder->replaceText(), finder->preserveCase()), false);
+}
+
+void NotesScrollArea::handleReplaceAllRequested() {
+    scene()->replaceByFind(ReplaceOption(finder->replaceText(), finder->preserveCase()), true);
+}
+
+void NotesScrollArea::handleFinderCloseRequested() {
+    setFinderVisible(false);
+}
+
 void NotesScrollArea::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Escape) {
         if (adjuster->isVisible()) {
             setAdjusterVisible(false);
+            return;
+        } else if (finder->isVisible()) {
+            setFinderVisible(false);
             return;
         }
     }
@@ -154,6 +242,7 @@ void NotesScrollArea::initLight() {
     note.select = QColor(0, 0, 0, 48);
     note.lyricBlock = Qt::white;
     note.params = Qt::darkGray;
+    note.highlight = QColor(0, 255, 255, 32);
 
     // GraphicsRubber
     rubber.frame = Qt::black;
@@ -219,6 +308,7 @@ void NotesScrollArea::initDark() {
     note.select = QColor(255, 255, 255, 48);
     note.lyricBlock = Qt::white;
     note.params = Qt::lightGray;
+    note.highlight = QColor(0, 255, 255, 32);
 
     // GraphicsRubber
     rubber.frame = QColor(255, 255, 255, 96);

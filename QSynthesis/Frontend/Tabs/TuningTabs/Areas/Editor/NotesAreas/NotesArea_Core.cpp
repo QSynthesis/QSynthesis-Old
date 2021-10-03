@@ -24,6 +24,8 @@ GraphicsNote *NotesArea::createNoteCore(const QLinkNote &note) {
     p->curves()->fromNoteVibrato();  // Add Vibrato
     p->envelope()->fromNotePoints(); // Add Env Points
 
+    updateNoteFindStatus(p);
+
     return p;
 }
 
@@ -38,6 +40,9 @@ void NotesArea::removeNoteCore(GraphicsNote *p) {
     }
     if (p->isSelected()) {
         qDragOut.removeOne(p);
+    }
+    if (p->highlighted()){
+        qDragOut.removeFind(p);
     }
 
     p->removeLifter(); // Remove Lifter

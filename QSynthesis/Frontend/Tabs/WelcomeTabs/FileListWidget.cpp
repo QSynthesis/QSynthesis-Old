@@ -138,7 +138,7 @@ void FileListWidget::onRightClick(QModelIndex index) {
 }
 
 bool FileListWidget::eventFilter(QObject *obj, QEvent *event) {
-    if (AppAssistant::keyIsDown(event)) {
+    if (DataManager::keyIsDown(event)) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         int key = keyEvent->key();
         if (key == Qt::Key_Enter || key == Qt::Key_Return) {

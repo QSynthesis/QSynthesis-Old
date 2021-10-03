@@ -1,5 +1,5 @@
-#ifndef APPASSISTANT_H
-#define APPASSISTANT_H
+#ifndef DATAMANAGER_H
+#define DATAMANAGER_H
 
 #include <QKeyEvent>
 #include <QTranslator>
@@ -7,12 +7,17 @@
 #include "Macros.h"
 #include "application.h"
 
-class AppAssistant : public QObject {
+#define qData DataManager::instance()
+
+class DataManager : public QObject {
     Q_OBJECT
-    Q_SINGLETON(AppAssistant)
+    Q_SINGLETON(DataManager)
 public:
-    explicit AppAssistant(QObject *parent = nullptr);
-    ~AppAssistant();
+    explicit DataManager(QObject *parent = nullptr);
+    ~DataManager();
+
+public:
+    void reloadStrings();
 
     // Keys
 public:
@@ -31,4 +36,4 @@ private:
     static QList<QTranslator *> Translators;
 };
 
-#endif // APPASSISTANT_H
+#endif // DATAMANAGER_H

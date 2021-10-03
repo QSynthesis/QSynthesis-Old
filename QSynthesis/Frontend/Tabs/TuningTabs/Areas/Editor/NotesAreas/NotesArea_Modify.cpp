@@ -1,21 +1,28 @@
 #include "../../../Forms/EditorForm.h"
-#include "../../../Scrolls/NotesScrollArea.h"
 #include "../../../Operations/LengthOperation.h"
 #include "../../../Operations/LyricsOperation.h"
 #include "../../../Operations/SequenceOperation.h"
 #include "../../../Operations/TempoOperation.h"
+#include "../../../Scrolls/NotesScrollArea.h"
 #include "../../../TuningGroup.h"
 #include "../NotesArea.h"
 
 void NotesArea::replaceSingleLyric(const QString &lyric, GraphicsNote *p) {
-    QList<int> indexs;
+    replaceLyrics({NotesList.indexOf(p)}, {lyric});
+}
+
+void NotesArea::replaceLyrics(const QList<int> &indexs, const QStringList &lyrics) {
     QStringList orgs, news;
 
-    orgs.append(p->Note.lyric);
-    news.append(lyric);
-    indexs.append(NotesList.indexOf(p));
+    for (int i = 0; i < indexs.size(); ++i) {
+        GraphicsNote *p = NotesList.at(indexs.at(i));
+        QString lrc = lyrics.at(i);
 
-    p->Note.lyric = lyric;
+        orgs.append(p->Note.lyric);
+        news.append(lrc);
+
+        p->Note.lyric = lrc;
+    }
 
     // New Operation
     LyricsOperation *l = new LyricsOperation();
@@ -29,8 +36,13 @@ void NotesArea::replaceSingleLyric(const QString &lyric, GraphicsNote *p) {
     saveOperation(l);
 
     // Adjust vision
-    p->updateNoteStatus();
-    p->adjustComponents();
+
+    for (int i = 0; i < indexs.size(); ++i) {
+        GraphicsNote *p = NotesList.at(indexs.at(i));
+        p->updateNoteStatus();
+        p->adjustComponents();
+        updateNoteFindStatus(p);
+    }
 
     adjustNoteComponents(QPoint(indexs.front() - 1, indexs.back() + 1));
 }
@@ -46,7 +58,7 @@ void NotesArea::replaceSelectedLyrics(const QStringList &lyrics, bool ignoreRest
     auto it = lyrics.begin();
 
     QList<int> indexs;
-    QStringList orgs, news;
+    QStringList lyrics2;
 
     QPoint range = continuousSelection();
     bool isContinuous = isSelectionContinuous();
@@ -76,33 +88,13 @@ void NotesArea::replaceSelectedLyrics(const QStringList &lyrics, bool ignoreRest
             }
         }
 
-        orgs.append(p->Note.lyric);
-        news.append(lrc);
+        lyrics2.append(lrc);
         indexs.append(i);
-
-        p->Note.lyric = lrc;
 
         ++it;
     }
 
-    // New Operation
-    LyricsOperation *l = new LyricsOperation();
-
-    // Set History Values
-    l->setIndex(indexs);
-    l->setOrigin(orgs);
-    l->setModified(news);
-
-    // Save Operation
-    saveOperation(l);
-
-    // Adjust vision
-    for (int i = 0; i < indexs.size(); ++i) {
-        GraphicsNote *p = NotesList.at(indexs[i]);
-        p->updateNoteStatus();
-    }
-
-    adjustNoteComponents(QPoint(indexs.front() - 1, indexs.back() + 1));
+    replaceLyrics(indexs, lyrics2);
 }
 
 void NotesArea::insertRest() {

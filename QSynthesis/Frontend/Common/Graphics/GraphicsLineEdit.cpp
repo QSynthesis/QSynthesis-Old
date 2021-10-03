@@ -1,5 +1,5 @@
 #include "GraphicsLineEdit.h"
-#include "AppAssistant.h"
+#include "Managers/DataManager.h"
 
 #include <QApplication>
 #include <QEvent>
@@ -50,7 +50,7 @@ void GraphicsLineEdit::moveCursorToEnd() {
 
 bool GraphicsLineEdit::eventFilter(QObject *obj, QEvent *event) {
     if (obj == this) {
-        if (AppAssistant::keyIsDown(event)) {
+        if (DataManager::keyIsDown(event)) {
             QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
             int key = keyEvent->key();
             if (key == Qt::Key_Return || key == Qt::Key_Enter) {

@@ -21,13 +21,15 @@ public:
     explicit VectorButton(QWidget *parent = nullptr);
     explicit VectorButton(bool single, QSizeF padding, QWidget *parent = nullptr);
 
+private:
+    void init();
+
+public:
     void setValues(bool single = true, QSizeF padding = QSizeF(0, 0));
 
     void setIcons(QString on, QString off = "");
     void setStatus(bool b);
     bool status() const;
-
-    friend class ToolMultiButton;
 
     QColor upColor() const;
     void setUpColor(const QColor &upColor);
@@ -61,7 +63,6 @@ private:
     QColor m_overColor;
     QColor m_downColor;
 
-    void init();
     void setIconCore();
 
 signals:

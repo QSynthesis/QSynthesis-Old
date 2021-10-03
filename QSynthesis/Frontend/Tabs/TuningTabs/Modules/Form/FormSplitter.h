@@ -23,12 +23,16 @@ public:
 
     void setMainIndex(int index);
     void setMainForm(BaseForm *form);
-    int MainIndex();
+    int mainIndex() const;
+
+    bool autoUnfold() const;
+    void setAutoUnfold(bool autoUnfold);
 
 private:
     QVector<BaseForm *> forms;
     QWidget *topWidget;
-    int mainIndex;
+    int m_mainIndex;
+    bool m_autoUnfold;
 
     void onFormVisibilityChanged(bool b);
 

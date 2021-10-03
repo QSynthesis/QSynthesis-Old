@@ -1,5 +1,6 @@
 ﻿#include "mainwindow.h"
 #include "Document/SettingIniFile.h"
+#include "Managers/DataManager.h"
 
 Q_SINGLETON_DECLARE(MainWindow)
 
@@ -32,7 +33,7 @@ void MainWindow::initAndShow() {
     initMemory(); // Check If Last Crushed
 
     // Start
-    reloadBackendStrings();
+    qData->reloadStrings();
 
     reloadRecentMenu(); // load recent menu
     reloadMenu();       // load menu strings

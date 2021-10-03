@@ -1,15 +1,6 @@
 ﻿#include "QLinkNote.h"
 #include "Utils/Templates.h"
 
-NoteProperties::NoteProperties() {
-    clear();
-}
-
-void NoteProperties::clear() {
-    length = intensity = modulation = preUttr = overlap = flags = velocity = startpoint =
-        preUttrOto = overlapOto = tempo = NODEF_STRING;
-}
-
 QLinkNote::QLinkNote() {
     clear();
 }

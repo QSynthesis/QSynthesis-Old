@@ -120,7 +120,7 @@ CentralTabWidget>QTabBar::tab {
     border-right: 1px solid #F3F3F3;
     border-left: 1px solid #F3F3F3;
     color: #333333;
-    padding: 12px 15px;
+    padding: 10px 15px;
     background-color: #ECECEC;
 }
 
@@ -565,24 +565,24 @@ TrackHead>LabelButton[invalid="true"]::hover {
     color: red;
 }
 
-TrackHead>TrackButton {
-    border: 1px solid #CCCCCC;
-    background-color: white;
-    color: #2B579A;
-    border-radius: 2px;
+TrackHead>TextButton {
+    border: 2px solid transparent;
+    color: #909090;
+    font-weight: bold;
+    padding: 2px;
+    background-color: transparent;
 }
 
-TrackHead>TrackButton:disabled {
-    color: #CCCCCC;
+TrackHead>TextButton:hover {
+    background-color: rgba(0, 0, 0, 10%);
 }
 
-TrackHead>TrackButton:hover {
-    background-color: #2B579A;
-    color: white;
+TrackHead>TextButton:pressed {
+    background-color: rgba(0, 0, 0, 7.5%);
 }
 
-TrackHead>TrackButton:pressed {
-    background-color: #002050;
+TrackHead>TextButton:checked {
+    color: #16B5F6;
 }
 
 /* TrackContent */
@@ -753,7 +753,7 @@ QTableWidget[type=keyboard]>QHeaderView::section:vertical:checked {
 
 /* ComboSelector */
 
-ComboSelector, SpriteAdjustDialog {
+ComboSelector, SpriteAdjustDialog, FindReplaceDialog {
     background-color: transparent;
     qproperty-wallpaper: #F3F3F3;
     /* border-top: 10px solid qlineargradient(y0:0, y1:1, stop: 0 #ECECEC, stop: 1 transparent); */
@@ -859,16 +859,21 @@ VectorButton {
     qproperty-downColor: #7F7F7F;
 }
 
-VectorButton[type=tab-close][highlight=false] {
-    qproperty-upColor: #A0A0A0;
-    qproperty-overColor: #CCCCCC;
-    qproperty-downColor: #BABABA;
+/* IconButton */
+
+IconButton {
+    qproperty-upColor: transparent;
+    qproperty-overColor: rgba(0, 0, 0, 10%);
+    qproperty-downColor: rgba(0, 0, 0, 7.5%);
+    qproperty-iconColor: #666666;
 }
 
-VectorButton[type=tab-close][highlight=true] {
-    qproperty-upColor: #666666;
-    qproperty-overColor: #999999;
-    qproperty-downColor: #7F7F7F;
+IconButton[type=tab-close][highlight=false] {
+    qproperty-iconColor: #999999;
+}
+
+IconButton[type=tab-close][highlight=true] {
+    qproperty-iconColor: #333333;
 }
 
 /* QMessageBox */
@@ -931,4 +936,35 @@ QSlider::handle:horizontal:hover {
 QSlider::handle:horizontal:pressed {
     border-color: #333333;
     background-color: #333333;
+}
+
+/* FindReplaceDialog */
+
+FindReplaceDialog>TextButton {
+    border: 2px solid transparent;
+    color: #909090;
+    font-weight: bold;
+    padding: 3px;
+    background-color: transparent;
+}
+
+FindReplaceDialog>TextButton:hover {
+    background-color: rgba(0, 0, 0, 10%);
+}
+
+FindReplaceDialog>TextButton:pressed {
+    background-color: rgba(0, 0, 0, 7.5%);
+}
+
+FindReplaceDialog>TextButton:checked {
+    color: #16B5F6;
+}
+
+FindReplaceDialog>QFrame[type=finder-separator] {
+    border: none;
+    background: rgba(0, 0, 0, 10%);
+}
+
+FindReplaceDialog>.QLabel[type=finder-result] {
+    padding: 0 10px;
 }

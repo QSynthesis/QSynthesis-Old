@@ -171,3 +171,7 @@ void TuningTab::showPlayHeadCenter() {
 void TuningTab::showSpriteAdjust() {
     m_ptrs->notesScroll->setAdjusterVisible(!m_ptrs->notesScroll->adjusterVisible());
 }
+
+void TuningTab::showFindReplace() {
+    m_ptrs->notesScroll->setFinderVisible(!m_ptrs->notesScroll->finderVisible());
+}

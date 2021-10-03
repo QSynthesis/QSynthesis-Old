@@ -34,11 +34,12 @@ void MiniSystem::stop() {
     }
 }
 
-MiniSystemNotifier *MiniSystem::createNotifier(const QString &path, MiniSystem::Type type) {
+MiniSystemNotifier *MiniSystem::createNotifier(const QString &path, MiniSystem::Type type,
+                                               bool check) {
     QFileInfo info(path);
     if (type == File) {
         QString dir = info.absolutePath();
-        if (!info.isFile()) {
+        if (check && !info.isFile()) {
             return nullptr;
         }
 
@@ -65,7 +66,7 @@ MiniSystemNotifier *MiniSystem::createNotifier(const QString &path, MiniSystem::
         return n;
     } else {
         QString dir = path;
-        if (!info.isDir()) {
+        if (check && !info.isDir()) {
             return nullptr;
         }
 

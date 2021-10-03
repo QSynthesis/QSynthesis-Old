@@ -34,8 +34,10 @@ void KeyboardTab::saveCore() {
 }
 
 void KeyboardTab::exitCore() {
-    qSystem->removeNotifier(notifier);
-    notifier = nullptr;
+    if (notifier) {
+        qSystem->removeNotifier(notifier);
+        notifier = nullptr;
+    }
 }
 
 bool KeyboardTab::checkNoConflict() {

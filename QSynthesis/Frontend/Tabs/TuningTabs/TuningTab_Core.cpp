@@ -20,9 +20,6 @@ bool TuningTab::load() {
             QMessageBox::warning(this, MainTitle, tr("Invalid format!"));
         }
         ustFile.reset();
-    } else {
-        notifier = qSystem->createNotifier(m_filename, MiniSystem::File);
-        connect(notifier, &MiniSystemNotifier::fileChanged, this, &TuningTab::handleFileChanged);
     }
     loadCore();
     return aResult;
@@ -34,11 +31,6 @@ bool TuningTab::save() {
 
 bool TuningTab::saveAs(const QString &filename) {
     bool res = saveOrSaveAs(filename);
-    if (res) {
-        qSystem->removeNotifier(notifier);
-        notifier = qSystem->createNotifier(m_filename, MiniSystem::File);
-        connect(notifier, &MiniSystemNotifier::fileChanged, this, &TuningTab::handleFileChanged);
-    }
     return res;
 }
 
@@ -114,8 +106,10 @@ void TuningTab::exitCore() {
     if (edited) {
         removeAllCaches();
     }
-    qSystem->removeNotifier(notifier);
-    notifier = nullptr;
+    if (notifier) {
+        qSystem->removeNotifier(notifier);
+        notifier = nullptr;
+    }
 }
 
 bool TuningTab::saveOrSaveAs(const QString &filename) {

@@ -169,6 +169,7 @@ void TrackHead::init() {
     lbNameFlags = new FixedLineEdit(this);
     btnVoiceRes = new LabelButton(this);
 
+    btnVoiceRes->setProperty("type", "name");
     btnVoiceRes->setProperty("invalid", "false");
 
     connect(lbNameFlags, &FixedLineEdit::editingFinished2, this, &TrackHead::onLineEditFinished);
@@ -197,13 +198,8 @@ void TrackHead::init() {
     dialLayout->addWidget(lbVolIcon, 1, 1, Qt::AlignCenter);
 
     // buttonLayout
-    btnMute = new TrackButton("M", this);
-    btnMute->setProperty("type", "letter");
-    btnSolo = new TrackButton("S", this);
-    btnSolo->setProperty("type", "letter");
-
-    btnMute->setFixedSize(20, 20);
-    btnSolo->setFixedSize(20, 20);
+    btnMute = new TextButton("M", this);
+    btnSolo = new TextButton("S", this);
 
     btnMute->setCheckable(true);
     btnSolo->setCheckable(true);

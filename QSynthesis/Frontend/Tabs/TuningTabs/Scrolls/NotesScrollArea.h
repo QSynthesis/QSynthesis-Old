@@ -3,6 +3,7 @@
 
 #include <QMenu>
 
+#include "../Modules/Editor/FindReplaceDialog.h"
 #include "../Modules/Editor/SpriteAdjustDialog.h"
 #include "Graphics/GraphicsBaseView.h"
 
@@ -91,6 +92,7 @@ class NotesScrollArea : public GraphicsBaseView {
     Q_PROPERTY(QColor noteSelect READ noteSelect WRITE setNoteSelect NOTIFY themeUpdated)
     Q_PROPERTY(
         QColor noteLyricBlock READ noteLyricBlock WRITE setNoteLyricBlock NOTIFY themeUpdated)
+    Q_PROPERTY(QColor noteHighlight READ noteHighlight WRITE setNoteHighlight NOTIFY themeUpdated)
     Q_PROPERTY(QColor noteParams READ noteParams WRITE setNoteParams NOTIFY themeUpdated)
     Q_PROPERTY(QColor rubberFrame READ rubberFrame WRITE setRubberFrame NOTIFY themeUpdated)
     Q_PROPERTY(QColor rubberFill READ rubberFill WRITE setRubberFill NOTIFY themeUpdated)
@@ -105,10 +107,16 @@ public:
     void setAdjusterVisible(bool visible);
     bool adjusterVisible() const;
 
+    void setFinderVisible(bool visible);
+    bool finderVisible() const;
+
+    void updateFinderCaption(int cur, int total);
+
     NotesArea *scene() const;
 
 private:
     SpriteAdjustDialog *adjuster;
+    FindReplaceDialog *finder;
 
     void adjustModules();
 
@@ -116,6 +124,13 @@ private:
     void handleAlphaChanged(int alpha);
     void handleCornerChanged(Qt::Corner corner);
     void handleAdjusterCloseRequested();
+
+    void handleFindStateChanged();
+    void handleFindPrevRequested();
+    void handleFindNextRequested();
+    void handleReplaceRequested();
+    void handleReplaceAllRequested();
+    void handleFinderCloseRequested();
 
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event) override;
@@ -178,6 +193,7 @@ public:
     QColor noteSelect() const;
     QColor noteLyricBlock() const;
     QColor noteParams() const;
+    QColor noteHighlight() const;
 
     QColor rubberFrame() const;
     QColor rubberFill() const;
@@ -231,6 +247,7 @@ public:
     void setNoteSelect(const QColor &color);
     void setNoteLyricBlock(const QColor &color);
     void setNoteParams(const QColor &color);
+    void setNoteHighlight(const QColor &color);
 
     void setRubberFrame(const QColor &color);
     void setRubberFill(const QColor &color);
@@ -302,6 +319,7 @@ private:
         QColor select;
         QColor lyricBlock;
         QColor params;
+        QColor highlight;
     };
 
     struct RubberBand {

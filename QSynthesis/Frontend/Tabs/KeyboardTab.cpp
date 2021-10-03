@@ -81,6 +81,14 @@ void KeyboardTab::leave() {
 void KeyboardTab::setFilename(const QString &value) {
     CentralTab::setFilename(value);
     keys.setFilename(m_filename);
+
+    if (notifier) {
+        qSystem->removeNotifier(notifier);
+    }
+    notifier = qSystem->createNotifier(m_filename, MiniSystem::File, false);
+    if (notifier) {
+        connect(notifier, &MiniSystemNotifier::fileChanged, this, &KeyboardTab::handleFileChanged);
+    }
 }
 
 void KeyboardTab::setFixedname(const QString &value) {
