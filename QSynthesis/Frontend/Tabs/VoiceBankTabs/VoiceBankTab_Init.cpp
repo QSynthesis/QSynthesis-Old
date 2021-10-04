@@ -1,6 +1,18 @@
 #include "../VoiceBankTab.h"
 #include "VoiceBankGroup.h"
 
+void VoiceBankTab::initTab() {
+    m_type = Qs::Folder;
+
+    m_ptrs = new VoiceBankGroup(this);
+
+    notifier = nullptr;
+
+    initValues();
+    initComponents();
+    initPlayer();
+}
+
 void VoiceBankTab::initComponents() {
     // Init splitters
     mainSplitter = new QSplitter(Qt::Vertical, this);

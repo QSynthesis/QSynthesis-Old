@@ -18,16 +18,6 @@ VoiceBankGroup *VoiceBankTab::ptrs() const {
     return m_ptrs;
 }
 
-void VoiceBankTab::initTab() {
-    m_type = Qs::Folder;
-
-    m_ptrs = new VoiceBankGroup(this);
-
-    initValues();
-    initComponents();
-    initPlayer();
-}
-
 void VoiceBankTab::setFilename(const QString &value) {
     CentralTab::setFilename(value);
     updateTabName();

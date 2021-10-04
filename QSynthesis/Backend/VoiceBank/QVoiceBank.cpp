@@ -80,7 +80,9 @@ bool QVoiceBank::loadCore(bool *valid) {
     bool readmeLoad = ReadmeTxt.load();
     bool mapLoad = PrefixMap.load();
 
-    return otoLoad && charLoad && readmeLoad && mapLoad;
+    Q_UNUSED(charLoad)
+
+    return otoLoad && readmeLoad && mapLoad;
 }
 
 bool QVoiceBank::saveCore() {

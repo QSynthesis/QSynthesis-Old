@@ -143,6 +143,8 @@ bool VoiceBankTab::saveCore() {
 }
 
 void VoiceBankTab::exitCore() {
-    qSystem->removeNotifier(notifier);
-    notifier = nullptr;
+    if (notifier) {
+        qSystem->removeNotifier(notifier);
+        notifier = nullptr;
+    }
 }
