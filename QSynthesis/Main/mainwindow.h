@@ -275,7 +275,7 @@ public:
 
     // Exec
 public:
-    void fromCommandLine(); // Load from command line
+    void fromCommandLine(const QStringList &args); // Load from command line
     void fromApplication();
 
 private:

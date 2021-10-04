@@ -1,4 +1,5 @@
-﻿#include "application.h"
+﻿#include "Managers/ClientManager.h"
+#include "application.h"
 #include "total.h"
 
 int main(int argc, char *argv[]) {
@@ -14,6 +15,14 @@ int main(int argc, char *argv[]) {
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("GBK"));
 #endif
 
+//    ClientManager c;
+//    if (c.tryCallServer()) {
+//        return 1;
+//    }
+//    if (!c.startAsServer()) {
+//        return -1;
+//    }
+
     created(); // Create
 
     DataManager::translate(":/translations/qsynthesis_cn.qm");
@@ -25,7 +34,7 @@ int main(int argc, char *argv[]) {
 
     MainWindow w;
     w.initAndShow();
-    w.fromCommandLine();
+    w.fromCommandLine(a.arguments());
 
     int code = a.exec();
 

@@ -168,6 +168,7 @@ bool MainWindow::addMultipleTabs(const QStringList &filenames, bool noCloseIfInv
             flag |= !!addTuningTab(filename, noCloseIfInvalid ? (tabs->count() == 0) : false);
         }
     }
+
     return flag;
 }
 

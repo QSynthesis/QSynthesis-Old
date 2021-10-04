@@ -35,6 +35,7 @@ SOURCES += \
     Backend/Import/QSynthVFile.cpp \
     Backend/Import/QVocaloidFile.cpp \
     Backend/Import/QWaveInfo.cpp \
+    Backend/Managers/ClientManager.cpp \
     Backend/Managers/ColorTheme.cpp \
     Backend/Managers/DataManager.cpp \
     Backend/Managers/DataManagers/DataManager_Keys.cpp \
@@ -402,6 +403,7 @@ HEADERS += \
     Backend/Import/QSynthVFile.h \
     Backend/Import/QVocaloidFile.h \
     Backend/Import/QWaveInfo.h \
+    Backend/Managers/ClientManager.h \
     Backend/Managers/ColorTheme.h \
     Backend/Managers/DataManager.h \
     Backend/Managers/MemoryManager.h \
