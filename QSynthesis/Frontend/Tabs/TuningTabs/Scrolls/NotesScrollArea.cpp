@@ -186,6 +186,7 @@ void NotesScrollArea::resizeEvent(QResizeEvent *event) {
     if (event->oldSize().width() != event->size().width()) {
         adjustModules();
     }
+    return GraphicsBaseView::resizeEvent(event);
 }
 
 void NotesScrollArea::wheelEvent(QWheelEvent *event) {
@@ -201,7 +202,7 @@ void NotesScrollArea::wheelEvent(QWheelEvent *event) {
         return GraphicsBaseView::wheelEvent(event);
     }
     if (c == Qt::NoModifier) {
-        return GraphicsBaseView::wheelEvent(event);
+        QApplication::sendEvent(verticalScrollBar(), event);
     } else if (c == qConfig->moveH) {
         event->setModifiers(Qt::AltModifier);
         QApplication::sendEvent(horizontalScrollBar(), event);

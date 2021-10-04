@@ -48,16 +48,15 @@ void WaveformScrollArea::wheelEvent(QWheelEvent *event) {
     if (c & Qt::AltModifier) {
         return;
     }
-    if (c == Qt::NoModifier) {
+    if (isTouch) {
+        event->setModifiers(Qt::NoModifier);
         return GraphicsBaseView::wheelEvent(event);
+    }
+    if (c == Qt::NoModifier) {
+        QApplication::sendEvent(verticalScrollBar(), event);
     } else if (c == qConfig->moveH) {
-        if (isTouch) {
-            event->setModifiers(Qt::NoModifier);
-            return GraphicsBaseView::wheelEvent(event);
-        } else {
-            event->setModifiers(Qt::AltModifier);
-            QApplication::sendEvent(horizontalScrollBar(), event);
-        }
+        event->setModifiers(Qt::AltModifier);
+        QApplication::sendEvent(horizontalScrollBar(), event);
     } else if (c == qConfig->zoomWaveH) {
         emit horizontalZoomRequested(qAbs(delta.x()) > qAbs(delta.y()) ? delta.x() : delta.y());
     }

@@ -124,7 +124,7 @@ QSize FileListWidgetItem::sizeHint(const QStyleOptionViewItem &option,
 
 void FileListWidgetItem::drawFocus(QPainter *painter, const QStyleOptionViewItem &option,
                                    const QRect &rect) const {
-    qDebug() << "focus";
+    // qDebug() << "focus";
 }
 
 bool FileListWidgetItem::editorEvent(QEvent *event, QAbstractItemModel *model,

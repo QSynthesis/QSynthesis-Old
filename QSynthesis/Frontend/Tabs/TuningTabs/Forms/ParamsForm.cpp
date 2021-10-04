@@ -73,5 +73,5 @@ void ParamsForm::setStatus(Params status) {
 }
 
 void ParamsForm::handleUnfolded(bool unfolded) {
-    m_ptrs->liftersScroll->updateSceneRect(m_ptrs->liftersArea->sceneRect());
+    // m_ptrs->liftersScroll->updateSceneRect(m_ptrs->liftersArea->sceneRect());
 }
