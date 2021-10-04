@@ -110,7 +110,7 @@ void MiniSystemNotifier::sendChangedSignalDirectly(MiniSystemWatcher::Action act
 
 void MiniSystemNotifier::prepareChangedSignal(const QString &filename) {
     m_pending.insert(filename);
-    if (!qRoot->isActiveWindow() && !isActive()) {
+    if (qRoot->isActiveWindow() && !isActive()) {
         sendPendingSignals();
     }
 }
