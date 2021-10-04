@@ -41,7 +41,7 @@ void FileNameSet::filter() {
 }
 
 bool FileNameSet::unshift(const QString &s) {
-    QString filename = QDir::fromNativeSeparators(s);
+    QString filename = removeTailSlashes(QDir::fromNativeSeparators(s));
     int index = m_files.indexOf(filename);
     if (index >= 0) {
         return false;
@@ -52,13 +52,13 @@ bool FileNameSet::unshift(const QString &s) {
 }
 
 void FileNameSet::advance(const QString &s) {
-    QString filename = QDir::fromNativeSeparators(s);
+    QString filename = removeTailSlashes(QDir::fromNativeSeparators(s));
     remove(filename);
     unshift(filename);
 }
 
 bool FileNameSet::push(const QString &s) {
-    QString filename = QDir::fromNativeSeparators(s);
+    QString filename = removeTailSlashes(QDir::fromNativeSeparators(s));
     int index = m_files.indexOf(filename);
     if (index >= 0) {
         return false;
@@ -69,7 +69,7 @@ bool FileNameSet::push(const QString &s) {
 }
 
 bool FileNameSet::remove(const QString &s) {
-    QString filename = QDir::fromNativeSeparators(s);
+    QString filename = removeTailSlashes(QDir::fromNativeSeparators(s));
     int index = m_files.indexOf(filename);
     if (index < 0) {
         return false;

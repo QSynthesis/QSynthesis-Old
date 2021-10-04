@@ -56,9 +56,6 @@ public:
     static QString lastErrorLog();
     static Error createLastError(Error err, const QString &log);
 
-private:
-    static QString removeLastSlashes(QString dirname);
-
 signals:
     void fileChanged(long id, Action action, const QString &filename, const QString &oldFilename);
 };

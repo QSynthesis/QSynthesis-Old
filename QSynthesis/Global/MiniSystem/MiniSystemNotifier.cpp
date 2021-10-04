@@ -14,9 +14,6 @@ MiniSystemNotifier::MiniSystemNotifier(const QString &path, long id, MiniSystem:
 }
 
 MiniSystemNotifier::~MiniSystemNotifier() {
-    if (isActive()) {
-        stop();
-    }
 }
 
 void MiniSystemNotifier::init() {
@@ -25,6 +22,8 @@ void MiniSystemNotifier::init() {
     connect(qRoot, &MainWindow::awake, this, &MiniSystemNotifier::onAwake);
     connect(qRoot, &MainWindow::sleep, this, &MiniSystemNotifier::onSleep);
     connect(this, &QTimer::timeout, this, &MiniSystemNotifier::onTimer);
+    connect(this, &MiniSystemNotifier::killRequested, this,
+            &MiniSystemNotifier::handleKillRequested);
 }
 
 MiniSystem *MiniSystemNotifier::system() const {
@@ -45,6 +44,13 @@ long MiniSystemNotifier::id() const {
 
 void MiniSystemNotifier::setId(long id) {
     m_id = id;
+}
+
+void MiniSystemNotifier::requestKill() {
+    emit killRequested();
+    while (isActive()) {
+        // Wait for stop
+    }
 }
 
 void MiniSystemNotifier::handleFileChanged(long id, MiniSystemWatcher::Action action,
@@ -123,7 +129,16 @@ void MiniSystemNotifier::sendPendingSignals() {
     }
 }
 
+void MiniSystemNotifier::handleKillRequested() {
+    if (isActive()) {
+        stop();
+    }
+}
+
 void MiniSystemNotifier::onTimer() {
+    if (isActive()) {
+        stop();
+    }
     sendPendingSignals();
 }
 

@@ -235,6 +235,14 @@ bool equalDouble(double a, double b) {
     return QString::number(a) == QString::number(b);
 }
 
+QString removeTailSlashes(const QString &dirname) {
+    QString path = dirname;
+    while (!path.isEmpty() && (path.endsWith('/') || path.endsWith('\\'))) {
+        path = path.mid(0, path.size() - 1);
+    }
+    return path;
+}
+
 void RevealFile(QString filename) {
 #if defined(Q_OS_WINDOWS)
     if (isFileExist(filename)) {

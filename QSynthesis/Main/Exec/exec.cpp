@@ -14,6 +14,7 @@ bool MainWindow::execOpen() {
 bool MainWindow::execOpenFolder() {
     QString path = QFileDialog::getExistingDirectory(this, tr("Open Voice Bank"));
     if (!path.isEmpty()) {
+        // path = removeTailSlashes(path);
         return addVoiceBankTab(path);
     } else {
         return false;

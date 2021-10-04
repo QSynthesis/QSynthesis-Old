@@ -90,8 +90,8 @@ void EditorForm::setStatus(Editor status) {
 }
 
 void EditorForm::handleUnfolded(bool unfolded) {
-    qDebug() << m_ptrs->notesArea->sceneRect()
-             << m_ptrs->notesScroll->verticalScrollBar()->maximum();
+    qDebug() << m_ptrs->notesArea->sceneRect();
+    m_ptrs->notesScroll->updateSceneRect(m_ptrs->notesArea->sceneRect());
 }
 
 void EditorForm::updatePlayStatus(bool playing) {

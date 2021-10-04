@@ -52,8 +52,6 @@ private:
     QSet<MiniSystemNotifier *> dirNotifiers;
 
     static void exitOnWatchFailed();
-
-signals:
 };
 
 #endif // MINISYSTEM_H

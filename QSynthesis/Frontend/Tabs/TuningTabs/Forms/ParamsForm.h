@@ -27,6 +27,9 @@ private:
     ParamsInterface *content;
     TuningGroup *m_ptrs;
 
+    void handleUnfolded(bool unfolded) override;
+
+private:
     void handleSwitchChanged();
     void handleSwitchDoubleClicked();
 signals:

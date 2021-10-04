@@ -53,6 +53,7 @@ void BaseForm::setDefaultTitleBar() {
 }
 
 void BaseForm::handleUnfolded(bool unfolded) {
+    Q_UNUSED(unfolded)
 }
 
 bool BaseForm::unfolded() const {

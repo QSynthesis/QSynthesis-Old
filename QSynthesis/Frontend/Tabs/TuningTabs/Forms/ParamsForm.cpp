@@ -1,6 +1,8 @@
 #include "ParamsForm.h"
 #include "../../TuningTab.h"
+#include "../Areas/Params/LiftersArea.h"
 #include "../Interfaces/ParamsInterface.h"
+#include "../Scrolls/LiftersScrollArea.h"
 #include "../TuningGroup.h"
 
 using namespace Qs::Panels;
@@ -68,4 +70,8 @@ void ParamsForm::setStatus(Params status) {
     }
     btnsGroup->setCurrentIndex(int(status));
     content->setVisionStatus(status);
+}
+
+void ParamsForm::handleUnfolded(bool unfolded) {
+    m_ptrs->liftersScroll->updateSceneRect(m_ptrs->liftersArea->sceneRect());
 }

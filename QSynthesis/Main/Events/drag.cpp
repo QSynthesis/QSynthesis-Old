@@ -1,3 +1,4 @@
+#include "QUtils.h"
 #include "mainwindow.h"
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *event) {
@@ -22,7 +23,7 @@ void MainWindow::dropEvent(QDropEvent *event) {
     QStringList fileNames;
 
     for (int i = 0; i < urls.size(); ++i) {
-        fileNames.append(urls[i].toLocalFile());
+        fileNames.append(removeTailSlashes(urls[i].toLocalFile()));
     }
 
     addMultipleTabs(fileNames);

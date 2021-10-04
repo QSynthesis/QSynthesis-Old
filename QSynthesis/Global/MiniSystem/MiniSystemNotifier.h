@@ -29,6 +29,9 @@ public:
     long id() const;
     void setId(long id);
 
+public:
+    void requestKill(); // This method must be called from other thread
+
 private:
     QString m_path;
     long m_id;
@@ -47,12 +50,15 @@ private:
     void prepareChangedSignal(const QString &filename);
     void sendPendingSignals();
 
+    void handleKillRequested();
+
     void onTimer();
     void onAwake();
     void onSleep();
 
 signals:
     void fileChanged(const QStringList &files);
+    void killRequested();
 };
 
 #endif // MINISYSTEMNOTIFIER_H

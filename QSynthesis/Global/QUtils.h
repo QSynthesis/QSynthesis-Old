@@ -71,6 +71,8 @@ QList<double> toDoubleList(const QStringList &list);
 
 bool equalDouble(double a, double b);
 
+QString removeTailSlashes(const QString &dirname);
+
 void RevealFile(QString filename);
 
 #endif // QUTILS_H

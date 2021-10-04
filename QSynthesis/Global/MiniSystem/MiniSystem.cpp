@@ -31,6 +31,7 @@ void MiniSystem::start() {
 void MiniSystem::stop() {
     if (m_thread->isRunning()) {
         m_thread->quit();
+        m_thread->wait();
     }
 }
 
@@ -123,6 +124,7 @@ void MiniSystem::removeNotifier(MiniSystemNotifier *notifier) {
             fileNotifiers.erase(it2);
         }
 
+        notifier->requestKill();
         delete notifier;
     } else {
         QString dir = info.absoluteFilePath();
@@ -147,18 +149,21 @@ void MiniSystem::removeNotifier(MiniSystemNotifier *notifier) {
             dirNotifiers.erase(it2);
         }
 
+        notifier->requestKill();
         delete notifier;
     }
 }
 
 void MiniSystem::removeAllNotifiers() {
     for (auto it = fileNotifiers.begin(); it != fileNotifiers.end(); ++it) {
+        (*it)->requestKill();
         delete *it;
     }
     m_fileWatcher.removeAllPaths();
     fileNotifiers.clear();
     filesMap.clear();
     for (auto it = dirNotifiers.begin(); it != dirNotifiers.end(); ++it) {
+        (*it)->requestKill();
         delete *it;
     }
     m_dirWatcher.removeAllPaths();

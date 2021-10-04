@@ -1,7 +1,7 @@
 #include "MiniSystemWatcher.h"
+#include "QUtils.h"
 
 #include <QDir>
-#include <iostream>
 
 MiniSystemWatcher::MiniSystemWatcher(QObject *parent) : QObject(parent) {
     qRegisterMetaType<Action>("Action");
@@ -48,7 +48,7 @@ QStringList MiniSystemWatcher::directories() {
     const std::list<std::string> &base = efsw::FileWatcher::directories();
     QStringList res;
     for (auto it = base.begin(); it != base.end(); ++it) {
-        res.append(removeLastSlashes(QString::fromStdString(*it)));
+        res.append(removeTailSlashes(QString::fromStdString(*it)));
     }
     return res;
 }
@@ -67,7 +67,7 @@ void MiniSystemWatcher::handleFileAction(efsw::WatchID watchid, const std::strin
     Q_UNUSED(watchid)
     Q_UNUSED(dir)
 
-    QString qDir = removeLastSlashes(QDir::fromNativeSeparators(QString::fromStdString(dir)));
+    QString qDir = removeTailSlashes(QDir::fromNativeSeparators(QString::fromStdString(dir)));
     emit fileChanged(watchid, static_cast<Action>(action),
                      qDir + '/' + QString::fromStdString(filename),
                      qDir + '/' + QString::fromStdString(oldFilename));
@@ -81,11 +81,4 @@ MiniSystemWatcher::Error MiniSystemWatcher::createLastError(MiniSystemWatcher::E
                                                             const QString &log) {
     return static_cast<Error>(
         efsw::Errors::Log::createLastError(static_cast<efsw::Error>(err), log.toStdString()));
-}
-
-QString MiniSystemWatcher::removeLastSlashes(QString dirname) {
-    while (!dirname.isEmpty() && (dirname.endsWith('/') || dirname.endsWith('\\'))) {
-        dirname = dirname.mid(0, dirname.size() - 1);
-    }
-    return dirname;
 }

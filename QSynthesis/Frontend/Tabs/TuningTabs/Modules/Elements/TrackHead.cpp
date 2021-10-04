@@ -307,6 +307,7 @@ void TrackHead::browse() {
     if (m_mode == 1) {
         QString path = QFileDialog::getExistingDirectory(this, tr("Open Voice Bank"));
         if (!path.isEmpty()) {
+            // path = removeTailSlashes(path);
             m_parent->ptrs()->tab->switchToOtoReferenceMap(path);
             setVoiceDir(path);
         }
