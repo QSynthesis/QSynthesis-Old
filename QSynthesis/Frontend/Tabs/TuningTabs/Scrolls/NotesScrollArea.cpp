@@ -197,13 +197,17 @@ void NotesScrollArea::wheelEvent(QWheelEvent *event) {
     if (c & Qt::AltModifier) {
         return;
     }
-    if (isTouch) {
-        event->setModifiers(Qt::NoModifier);
-        return GraphicsBaseView::wheelEvent(event);
-    }
     if (c == Qt::NoModifier) {
+        if (isTouch) {
+            event->setModifiers(Qt::NoModifier);
+            return GraphicsBaseView::wheelEvent(event);
+        }
         QApplication::sendEvent(verticalScrollBar(), event);
     } else if (c == qConfig->moveH) {
+        if (isTouch) {
+            event->setModifiers(Qt::NoModifier);
+            return GraphicsBaseView::wheelEvent(event);
+        }
         event->setModifiers(Qt::AltModifier);
         QApplication::sendEvent(horizontalScrollBar(), event);
     } else if (c == qConfig->zoomH) {
