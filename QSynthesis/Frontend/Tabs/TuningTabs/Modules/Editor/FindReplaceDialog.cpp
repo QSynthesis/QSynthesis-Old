@@ -154,6 +154,11 @@ void FindReplaceDialog::setTotal(int total) {
     updateCaption();
 }
 
+void FindReplaceDialog::setFindTextFocus() {
+    findEdit->setFocus();
+    findEdit->selectAll();
+}
+
 void FindReplaceDialog::updateCaption() {
     lbResult->setText(QString::number(m_current) + "/" + QString::number(m_total));
 }
@@ -191,11 +196,6 @@ void FindReplaceDialog::handleFindTextChanged(const QString &text) {
 
 void FindReplaceDialog::handleCloseBtnClicked() {
     emit closeRequested();
-}
-
-void FindReplaceDialog::focusInEvent(QFocusEvent *event) {
-    findEdit->setFocus();
-    findEdit->selectAll();
 }
 
 bool FindReplaceDialog::eventFilter(QObject *obj, QEvent *event) {

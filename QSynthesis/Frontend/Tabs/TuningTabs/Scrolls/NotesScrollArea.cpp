@@ -48,16 +48,16 @@ NotesScrollArea::~NotesScrollArea() {
 
 void NotesScrollArea::setAdjusterVisible(bool visible) {
     if (visible) {
+        if (finderVisible()) {
+            setFinderVisible(false);
+        }
+
         adjuster->setVisibility(scene() ? scene()->spriteVisible() : false);
         adjuster->setAlpha(scene() ? int(scene()->spriteAlpha() * 100) : 0);
         adjuster->setCorner(scene() ? scene()->spritePosition() : Qt::BottomRightCorner);
 
         adjuster->setEnabled(true);
         adjuster->setFocus();
-
-        if (finderVisible()) {
-            setFinderVisible(false);
-        }
     } else {
         adjuster->setEnabled(false);
     }
@@ -71,12 +71,11 @@ bool NotesScrollArea::adjusterVisible() const {
 
 void NotesScrollArea::setFinderVisible(bool visible) {
     if (visible) {
-        finder->setEnabled(true);
-        finder->setFocus();
-
         if (adjusterVisible()) {
             setAdjusterVisible(false);
         }
+        finder->setEnabled(true);
+        finder->setFindTextFocus();
     } else {
         finder->setEnabled(false);
     }
@@ -197,20 +196,13 @@ void NotesScrollArea::wheelEvent(QWheelEvent *event) {
     if (c & Qt::AltModifier) {
         return;
     }
+    if (isTouch) {
+        event->setModifiers(Qt::NoModifier);
+        return GraphicsBaseView::wheelEvent(event);
+    }
     if (c == Qt::NoModifier) {
         return GraphicsBaseView::wheelEvent(event);
-    } else if (c == qConfig->moveV) {
-        event->setModifiers(Qt::NoModifier);
-        if (isTouch) {
-            return GraphicsBaseView::wheelEvent(event);
-        }
-        event->setModifiers(Qt::NoModifier);
-        QApplication::sendEvent(verticalScrollBar(), event);
     } else if (c == qConfig->moveH) {
-        event->setModifiers(Qt::NoModifier);
-        if (isTouch) {
-            return GraphicsBaseView::wheelEvent(event);
-        }
         event->setModifiers(Qt::AltModifier);
         QApplication::sendEvent(horizontalScrollBar(), event);
     } else if (c == qConfig->zoomH) {

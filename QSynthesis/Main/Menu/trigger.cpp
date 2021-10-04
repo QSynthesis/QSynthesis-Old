@@ -2,6 +2,7 @@
 #include "Managers/PluginManager.h"
 #include "QSActions.h"
 #include "QSTabs.h"
+#include "Utils/Templates.h"
 #include "mainwindow.h"
 
 void MainWindow::handleOpenRecentFile() {
@@ -17,7 +18,8 @@ void MainWindow::handleOpenRecentFile() {
 void MainWindow::handleMoreRecentFile() {
     QStringList projects = qSetting->projects.valid();
 
-    int index = tabs->useSelector(projects, tr("Select file"), -1);
+    int index =
+        tabs->useSelector(batchReplace(projects, QDir::toNativeSeparators), tr("Select file"), -1);
     if (index >= 0) {
         addTuningTab(projects.at(index), false);
     }
@@ -26,7 +28,8 @@ void MainWindow::handleMoreRecentFile() {
 void MainWindow::handleMoreRecentFolder() {
     QStringList folders = qSetting->folders.valid();
 
-    int index = tabs->useSelector(folders, tr("Select folder"), -1);
+    int index =
+        tabs->useSelector(batchReplace(folders, QDir::toNativeSeparators), tr("Select folder"), -1);
     if (index >= 0) {
         addTuningTab(folders.at(index), false);
     }

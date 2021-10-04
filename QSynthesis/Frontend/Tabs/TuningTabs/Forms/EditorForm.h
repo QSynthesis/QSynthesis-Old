@@ -35,6 +35,8 @@ private:
     EditorInterface *content;
     TuningGroup *m_ptrs;
 
+    void handleUnfolded(bool unfolded) override;
+
 public:
     void updatePlayStatus(bool playing);
 

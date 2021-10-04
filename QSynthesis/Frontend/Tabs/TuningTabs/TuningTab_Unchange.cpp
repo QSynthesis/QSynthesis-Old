@@ -124,9 +124,6 @@ void TuningTab::handleFormStatusChanged() {
     qSetting->tracksFormVisibility = tracksForm->unfolded();
     qSetting->editorFormVisibility = editorForm->unfolded();
     qSetting->paramsFormVisibility = paramsForm->unfolded();
-
-    m_ptrs->liftersScroll->horizontalScrollBar()->setValue(
-        m_ptrs->notesScroll->horizontalScrollBar()->value());
 }
 
 bool TuningTab::isFree() const {

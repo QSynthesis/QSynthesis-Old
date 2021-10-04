@@ -30,7 +30,7 @@ void MainWindow::reloadRecentMenu() {
             break;
         }
         QString name = *it;
-        QAction *action = new QAction(name, recentMenu);
+        QAction *action = new QAction(QDir::toNativeSeparators(name), recentMenu);
         action->setData(name);
         connect(action, &QAction::triggered, this, &MainWindow::handleOpenRecentFile);
         ustFiles.append(action);
@@ -43,7 +43,7 @@ void MainWindow::reloadRecentMenu() {
             break;
         }
         QString name = *it;
-        QAction *action = new QAction(name, recentMenu);
+        QAction *action = new QAction(QDir::toNativeSeparators(name), recentMenu);
         action->setData(name);
         connect(action, &QAction::triggered, this, &MainWindow::handleOpenRecentFile);
         voiceBanks.append(action);

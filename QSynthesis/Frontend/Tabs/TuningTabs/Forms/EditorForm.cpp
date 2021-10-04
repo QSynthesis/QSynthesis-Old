@@ -2,6 +2,7 @@
 #include "../../TuningTab.h"
 #include "../Areas/Editor/NotesArea.h"
 #include "../Interfaces/EditorInterface.h"
+#include "../Scrolls/NotesScrollArea.h"
 #include "../TuningGroup.h"
 
 using namespace Qs::Panels;
@@ -77,7 +78,7 @@ TuningGroup *EditorForm::ptrs() const {
 }
 
 Editor EditorForm::status() const {
-    return Editor(btnsGroup->currentIndex());
+    return static_cast<Editor>(btnsGroup->currentIndex());
 }
 
 void EditorForm::setStatus(Editor status) {
@@ -86,6 +87,11 @@ void EditorForm::setStatus(Editor status) {
     }
     btnsGroup->setCurrentIndex(int(status));
     content->setVisionStatus(status);
+}
+
+void EditorForm::handleUnfolded(bool unfolded) {
+    qDebug() << m_ptrs->notesArea->sceneRect()
+             << m_ptrs->notesScroll->verticalScrollBar()->maximum();
 }
 
 void EditorForm::updatePlayStatus(bool playing) {

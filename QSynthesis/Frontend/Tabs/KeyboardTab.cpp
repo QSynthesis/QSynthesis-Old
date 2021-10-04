@@ -1,5 +1,7 @@
 ﻿#include "KeyboardTab.h"
 
+#include <QTabBar>
+
 KeyboardTab::KeyboardTab(CentralTabWidget *parent) : CentralTab(parent) {
     initTab();
 }

@@ -52,6 +52,9 @@ void BaseForm::setDefaultTitleBar() {
     setTitleBar(new FormTitleBar(this));
 }
 
+void BaseForm::handleUnfolded(bool unfolded) {
+}
+
 bool BaseForm::unfolded() const {
     return m_unfolded;
 }
@@ -67,7 +70,7 @@ void BaseForm::setUnfolded(bool value) {
         setMaximumHeight(m_titleBar->height());
     }
     adjustSize();
-
+    handleUnfolded(value);
     emit visibilityChanged(value);
 }
 

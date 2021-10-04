@@ -32,6 +32,8 @@ public:
     int total() const;
     void setTotal(int total);
 
+    void setFindTextFocus();
+
 private:
     QGridLayout *mainLayout;
 
@@ -65,8 +67,6 @@ private:
     void handleCloseBtnClicked();
 
 private:
-    void focusInEvent(QFocusEvent *event) override;
-
     bool eventFilter(QObject *obj, QEvent *event) override;
 
 signals:

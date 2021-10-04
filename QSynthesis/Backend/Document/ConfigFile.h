@@ -23,7 +23,7 @@ public:
     Qt::KeyboardModifiers zoomH;
     Qt::KeyboardModifiers zoomV;
     Qt::KeyboardModifiers moveH;
-    Qt::KeyboardModifiers moveV;
+    Qt::KeyboardModifiers zoomWaveH;
     Qt::KeyboardModifiers selectR;
     Qt::KeyboardModifiers selectC;
     Qt::KeyboardModifiers sceneDrag;

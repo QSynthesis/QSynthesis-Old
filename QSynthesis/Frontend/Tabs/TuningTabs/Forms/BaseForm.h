@@ -30,6 +30,8 @@ protected:
 
     bool m_unfolded;
 
+    virtual void handleUnfolded(bool unfolded);
+
 private:
     void init();
 

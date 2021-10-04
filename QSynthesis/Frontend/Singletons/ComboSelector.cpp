@@ -184,6 +184,7 @@ void ComboSelector::addItems(const QStringList &texts) {
 }
 
 void ComboSelector::setItems(const QStringList &texts) {
+    listWidget->scrollToTop();
     listWidget->clear();
     listWidget->addItems(texts);
 }

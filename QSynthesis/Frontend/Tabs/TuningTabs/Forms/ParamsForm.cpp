@@ -59,7 +59,7 @@ void ParamsForm::handleSwitchDoubleClicked() {
 }
 
 Params ParamsForm::status() const {
-    return Params(btnsGroup->currentIndex());
+    return static_cast<Params>(btnsGroup->currentIndex());
 }
 
 void ParamsForm::setStatus(Params status) {

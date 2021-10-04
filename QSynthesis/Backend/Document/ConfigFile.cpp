@@ -25,7 +25,7 @@ void ConfigFile::resetCore() {
     zoomH = Qt::ControlModifier | Qt::ShiftModifier;
     zoomV = Qt::ControlModifier;
     moveH = Qt::ShiftModifier;
-    moveV = Qt::NoModifier;
+    zoomWaveH = Qt::ControlModifier;
     selectR = Qt::ControlModifier;
     selectC = Qt::ShiftModifier;
     sceneDrag = Qt::ControlModifier | Qt::ShiftModifier;

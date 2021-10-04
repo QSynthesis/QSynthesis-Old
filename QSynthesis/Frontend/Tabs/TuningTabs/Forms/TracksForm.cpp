@@ -46,7 +46,7 @@ TuningGroup *TracksForm::ptrs() const {
 }
 
 Tracks TracksForm::status() const {
-    return Tracks(btnsGroup->currentIndex());
+    return static_cast<Tracks>(btnsGroup->currentIndex());
 }
 
 void TracksForm::setStatus(Tracks status) {
