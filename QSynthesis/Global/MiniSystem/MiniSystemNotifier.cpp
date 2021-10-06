@@ -3,13 +3,7 @@
 
 MiniSystemNotifier::MiniSystemNotifier(const QString &path, MiniSystem::Type type,
                                        MiniSystem *system, QObject *parent)
-    : QTimer(parent), m_path(path), m_id(0), m_system(system), m_type(type) {
-    init();
-}
-
-MiniSystemNotifier::MiniSystemNotifier(const QString &path, long id, MiniSystem::Type type,
-                                       MiniSystem *system, QObject *parent)
-    : QTimer(parent), m_path(path), m_id(id), m_system(system), m_type(type) {
+    : QTimer(parent), m_path(path), m_system(system), m_type(type) {
     init();
 }
 
@@ -38,14 +32,6 @@ MiniSystem::Type MiniSystemNotifier::type() const {
     return m_type;
 }
 
-long MiniSystemNotifier::id() const {
-    return m_id;
-}
-
-void MiniSystemNotifier::setId(long id) {
-    m_id = id;
-}
-
 void MiniSystemNotifier::requestKill() {
     emit killRequested();
     while (isActive()) {
@@ -55,9 +41,7 @@ void MiniSystemNotifier::requestKill() {
 
 void MiniSystemNotifier::handleFileChanged(long id, MiniSystemWatcher::Action action,
                                            const QString &filename, const QString &oldFilename) {
-    if (id != m_id) {
-        return;
-    }
+    Q_UNUSED(id)
     switch (m_type) {
     case MiniSystem::File:
         if (filename == m_path) {

@@ -11,8 +11,6 @@ class MiniSystemNotifier : public QTimer {
 private:
     explicit MiniSystemNotifier(const QString &path, MiniSystem::Type type, MiniSystem *system,
                                 QObject *parent = nullptr);
-    explicit MiniSystemNotifier(const QString &path, long id, MiniSystem::Type type,
-                                MiniSystem *system, QObject *parent = nullptr);
     ~MiniSystemNotifier();
 
     friend class MiniSystem;
@@ -26,15 +24,11 @@ public:
 
     MiniSystem::Type type() const;
 
-    long id() const;
-    void setId(long id);
-
 public:
     void requestKill(); // This method must be called from other thread
 
 private:
     QString m_path;
-    long m_id;
 
     MiniSystem *m_system;
     MiniSystem::Type m_type;

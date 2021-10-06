@@ -61,7 +61,7 @@ MiniSystemNotifier *MiniSystem::createNotifier(const QString &path, MiniSystem::
         }
 
         // Plus
-        MiniSystemNotifier *n = new MiniSystemNotifier(path, id, type, this);
+        MiniSystemNotifier *n = new MiniSystemNotifier(path, type, this);
         n->moveToThread(m_thread);
         fileNotifiers.insert(n);
         return n;
@@ -72,23 +72,35 @@ MiniSystemNotifier *MiniSystem::createNotifier(const QString &path, MiniSystem::
         }
 
         // Search
-        auto it = dirsMap.find(dir);
+        PathTree::Iterator it = dirsTree.find(dir);
         long id = 0;
-        if (it != dirsMap.end()) {
-            QPair<long, long> &pair = it.value();
-            pair.first++;
-            id = pair.second;
+        if (it) {
+            it->inc();
         } else {
+            // Set up tree
+            PathTree::Node *node = dirsTree.insert(dir);
+            node->inc();
+
+            if (node->parent() == dirsTree.root()) {
+                const QList<PathTree::Node *> &childs = node->childs();
+                for (auto it = childs.begin(); it != childs.end(); ++it) {
+                    m_dirWatcher.removePathById((*it)->id());
+                    qDebug() << "[Mini System] Remove Sub Dir Watch" << (*it)->id();
+                    (*it)->setId(0, true); // Proxy by the parent node
+                }
+            }
+
             id = m_dirWatcher.addPath(dir, true);
             qDebug() << "[Mini System] Add Dir Watch" << id;
             if (id <= 0) {
                 exitOnWatchFailed();
             }
-            dirsMap.insert(dir, qMakePair(1, id));
+
+            node->setId(id, true);
         }
 
         // Plus
-        MiniSystemNotifier *n = new MiniSystemNotifier(path, id, type, this);
+        MiniSystemNotifier *n = new MiniSystemNotifier(path, type, this);
         n->moveToThread(m_thread);
         dirNotifiers.insert(n);
         return n;
@@ -130,18 +142,30 @@ void MiniSystem::removeNotifier(MiniSystemNotifier *notifier) {
         QString dir = info.absoluteFilePath();
 
         // Search
-        auto it = dirsMap.find(dir);
-        if (it == dirsMap.end()) {
+        PathTree::Iterator it = dirsTree.find(dir);
+        if (!it) {
             return;
         }
 
         // Subtract
-        auto &pair = it.value();
-        pair.first--;
-        if (pair.first == 0) {
+        PathTree::Node *node = it;
+        node->dec();
+        if (node->count() == 0) {
             m_dirWatcher.removePath(dir);
-            qDebug() << "[Mini System] Remove Dir Watch" << pair.second;
-            dirsMap.erase(it);
+            qDebug() << "[Mini System] Remove Dir Watch" << node->id();
+
+            PathTree::Node *parent = node->parent();
+            QList<PathTree::Node *> childs = dirsTree.removeOne(node);
+            if (parent == dirsTree.root()) {
+                for (auto it = childs.begin(); it != childs.end(); ++it) {
+                    long id = m_dirWatcher.addPath((*it)->path());
+                    qDebug() << "[Mini System] Add Sub Dir Watch" << id;
+                    if (id <= 0) {
+                        exitOnWatchFailed();
+                    }
+                    (*it)->setId(id, true); // Add children's path to watcher
+                }
+            }
         }
 
         auto it2 = dirNotifiers.find(notifier);
@@ -168,7 +192,7 @@ void MiniSystem::removeAllNotifiers() {
     }
     m_dirWatcher.removeAllPaths();
     dirNotifiers.clear();
-    dirsMap.clear();
+    dirsTree.clear();
 }
 
 void MiniSystem::handleThreadFinished() {

@@ -3,6 +3,7 @@
 
 #include "Macros.h"
 #include "MiniSystemWatcher.h"
+#include "PathTree.h"
 
 #include <QThread>
 
@@ -46,7 +47,7 @@ private:
 
 private:
     QMap<QString, QPair<long, long>> filesMap;
-    QMap<QString, QPair<long, long>> dirsMap;
+    PathTree dirsTree;
 
     QSet<MiniSystemNotifier *> fileNotifiers;
     QSet<MiniSystemNotifier *> dirNotifiers;

@@ -332,6 +332,7 @@ SOURCES += \
     Global/MiniSystem/MiniSystem.cpp \
     Global/MiniSystem/MiniSystemNotifier.cpp \
     Global/MiniSystem/MiniSystemWatcher.cpp \
+    Global/MiniSystem/PathTree.cpp \
     Global/QUtils.cpp \
     Global/Types.cpp \
     Global/UTAU/QUtauUtils.cpp \
@@ -586,6 +587,7 @@ HEADERS += \
     Global/MiniSystem/MiniSystem.h \
     Global/MiniSystem/MiniSystemNotifier.h \
     Global/MiniSystem/MiniSystemWatcher.h \
+    Global/MiniSystem/PathTree.h \
     Global/MiniSystem/efsw/efsw.hpp \
     Global/QUtils.h \
     Global/Types.h \
