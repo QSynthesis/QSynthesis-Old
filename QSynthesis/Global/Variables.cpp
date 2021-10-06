@@ -15,6 +15,8 @@ QString UntitledFileName;
 QString UntitledPrefix;
 QString DeletedPrefix;
 
+QString fileManagerName;
+
 QString openFilterString;
 QString saveFilterString;
 QString importFilterString;

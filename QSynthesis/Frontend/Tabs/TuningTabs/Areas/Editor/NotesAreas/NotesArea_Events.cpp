@@ -7,8 +7,6 @@
 void NotesArea::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     QGraphicsItem *curItem = itemAt(event->scenePos(), QTransform());
 
-    qDebug() << m_view->maximumViewportSize();
-
     if (isLyricEditing() && curItem != m_lyricEdit) {
         editFinish();
     }

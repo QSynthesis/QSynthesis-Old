@@ -30,14 +30,7 @@ void ImageLabel::mouseReleaseEvent(QMouseEvent *event) {
         return;
     }
 
-#if defined(Q_OS_WINDOWS)
-    QString revealStr = tr("Show in Explorer(&S)");
-#elif defined(Q_OS_MAC)
-    QString revealStr = tr("Show in Finder(&S)");
-#else
-    QString revealStr = tr("Show in File Manager(&S)");
-#endif
-
+    QString revealStr = tr("Show in %1(&S)").arg(fileManagerName);
     QStringList list{revealStr, "", tr("Replace..."), tr("Remove")};
     TemporaryMenu *menu = new TemporaryMenu(list, this);
 

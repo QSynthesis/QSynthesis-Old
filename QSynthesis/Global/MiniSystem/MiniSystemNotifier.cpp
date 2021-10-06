@@ -11,6 +11,8 @@ MiniSystemNotifier::~MiniSystemNotifier() {
 }
 
 void MiniSystemNotifier::init() {
+    m_notifyWhenActive = false;
+
     connect(m_type == MiniSystem::File ? &m_system->m_fileWatcher : &m_system->m_dirWatcher,
             &MiniSystemWatcher::fileChanged, this, &MiniSystemNotifier::handleFileChanged);
     connect(qRoot, &MainWindow::awake, this, &MiniSystemNotifier::onAwake);
@@ -30,6 +32,14 @@ QString MiniSystemNotifier::path() const {
 
 MiniSystem::Type MiniSystemNotifier::type() const {
     return m_type;
+}
+
+bool MiniSystemNotifier::notifyWhenActive() const {
+    return m_notifyWhenActive;
+}
+
+void MiniSystemNotifier::setNotifyWhenActive(bool notifyWhenActive) {
+    m_notifyWhenActive = notifyWhenActive;
 }
 
 void MiniSystemNotifier::requestKill() {
@@ -100,7 +110,7 @@ void MiniSystemNotifier::sendChangedSignalDirectly(MiniSystemWatcher::Action act
 
 void MiniSystemNotifier::prepareChangedSignal(const QString &filename) {
     m_pending.insert(filename);
-    if (qRoot->isActiveWindow() && !isActive()) {
+    if ((!m_notifyWhenActive || qRoot->isActiveWindow()) && !isActive()) {
         sendPendingSignals();
     }
 }
@@ -114,24 +124,22 @@ void MiniSystemNotifier::sendPendingSignals() {
 }
 
 void MiniSystemNotifier::handleKillRequested() {
-    if (isActive()) {
-        stop();
-    }
+    stopAnyway();
 }
 
 void MiniSystemNotifier::onTimer() {
-    if (isActive()) {
-        stop();
-    }
+    stopAnyway();
     sendPendingSignals();
 }
 
 void MiniSystemNotifier::onAwake() {
-    sendPendingSignals();
+    if (m_notifyWhenActive) {
+        sendPendingSignals();
+    }
 }
 
 void MiniSystemNotifier::onSleep() {
-    if (isActive()) {
-        stop();
+    if (m_notifyWhenActive) {
+        stopAnyway();
     }
 }

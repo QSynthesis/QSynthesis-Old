@@ -98,21 +98,9 @@ void FileListWidget::onRightClick(QModelIndex index) {
 
     QString revealStr;
     if (m_type == Files) {
-#if defined(Q_OS_WINDOWS)
-        revealStr = tr("Show in Explorer(&S)");
-#elif defined(Q_OS_MAC)
-        revealStr = tr("Show in Finder(&S)");
-#else
-        revealStr = tr("Show in File Manager(&S)");
-#endif
+        revealStr = tr("Show in %1(&S)").arg(fileManagerName);
     } else {
-#if defined(Q_OS_WINDOWS)
-        revealStr = tr("Open in Explorer(&S)");
-#elif defined(Q_OS_MAC)
-        revealStr = tr("Open in Finder(&S)");
-#else
-        revealStr = tr("Open in File Manager(&S)");
-#endif
+        revealStr = tr("Open in %1(&S)").arg(fileManagerName);
     }
 
     QStringList list{tr("Open(&O)"), tr("Remove from list(&R)"), revealStr};

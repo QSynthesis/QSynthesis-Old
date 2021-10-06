@@ -24,6 +24,9 @@ public:
 
     MiniSystem::Type type() const;
 
+    bool notifyWhenActive() const;
+    void setNotifyWhenActive(bool notifyWhenActive);
+
 public:
     void requestKill(); // This method must be called from other thread
 
@@ -34,6 +37,8 @@ private:
     MiniSystem::Type m_type;
 
     QSet<QString> m_pending;
+
+    bool m_notifyWhenActive;
 
     void handleFileChanged(long id, MiniSystemWatcher::Action action, const QString &filename,
                            const QString &oldFilename);
@@ -49,6 +54,13 @@ private:
     void onTimer();
     void onAwake();
     void onSleep();
+
+private:
+    inline void stopAnyway() {
+        if (isActive()) {
+            stop();
+        }
+    }
 
 signals:
     void fileChanged(const QStringList &files);

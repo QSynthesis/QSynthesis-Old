@@ -11,13 +11,7 @@ void OtoTableTab::openContextMenu() {
     }
 
     QString revealStr;
-#if defined(Q_OS_WINDOWS)
-    revealStr = tr("Show in Explorer(&S)");
-#elif defined(Q_OS_MAC)
-    revealStr = tr("Show in Finder(&S)");
-#else
-    revealStr = tr("Show in File Manager(&S)");
-#endif
+    revealStr = tr("Show in Explorer(&S)").arg(fileManagerName);
 
     QStringList list{tr("Play"),
                      revealStr,

@@ -241,14 +241,7 @@ void TrackHead::onLabelBtnClicked() {
     int selectionCount = 0;
 
     if (m_mode == 1) {
-        // Cross-platform file manager name
-#if defined(Q_OS_WINDOWS)
-        revealStr = tr("Open in Explorer(&S)");
-#elif defined(Q_OS_MAC)
-        revealStr = tr("Open in Finder(&S)");
-#else
-        revealStr = tr("Open in File Manager(&S)");
-#endif
+        revealStr = tr("Open in %1(&S)").arg(fileManagerName);
         // Add Voice
         selectionCount = dirs.size();
         if (dirs.isEmpty()) {
@@ -267,14 +260,7 @@ void TrackHead::onLabelBtnClicked() {
         }
 
     } else {
-        // Cross-platform file manager name
-#if defined(Q_OS_WINDOWS)
-        revealStr = tr("Show in Explorer(&S)");
-#elif defined(Q_OS_MAC)
-        revealStr = tr("Show in Finder(&S)");
-#else
-        revealStr = tr("Show in File Manager(&S)");
-#endif
+        revealStr = tr("Show in %1(&S)").arg(fileManagerName);
     }
     list << "" << revealStr << tr("Browse");
     menu->setTexts(list);

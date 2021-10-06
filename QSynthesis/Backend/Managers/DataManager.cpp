@@ -16,6 +16,14 @@ void DataManager::reloadStrings() {
     UntitledFileName = tr("Untitled");
     DeletedPrefix = tr("(Deleted)");
 
+#ifdef Q_OS_WINDOWS
+    fileManagerName = tr("Explorer");
+#elif defined(Q_OS_MAC)
+    fileManagerName = tr("Finder");
+#else
+    fileManagerName = tr("file manager");
+#endif
+
 #if defined(Q_OS_WINDOWS)
     openFilterString = tr("UTAU Sequence Text(*.ust);;All Files(*.*)");
     saveFilterString = tr("UTAU Sequence Text(*.ust);;All Files(*.*)");
