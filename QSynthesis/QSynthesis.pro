@@ -667,12 +667,12 @@ else:macx {
 }
 else:unix {
     CONFIG(release, debug|release) {
-        LIBS += -L$$PWD/Libraries/linux64/ -lefsw-static-release
-        PRE_TARGETDEPS += $$PWD/Libraries/linux64/libefsw-static-release.a
+        LIBS += -L$$PWD/Libraries/linux/x86_64/ -lefsw-static-release
+        PRE_TARGETDEPS += $$PWD/Libraries/linux/x86_64/libefsw-static-release.a
     }
     else:CONFIG(debug, debug|release) {
-        LIBS += -L$$PWD/Libraries/linux64/ -lefsw-static-debug
-        PRE_TARGETDEPS += $$PWD/Libraries/linux64/libefsw-static-debug.a
+        LIBS += -L$$PWD/Libraries/linux/x86_64/ -lefsw-static-debug
+        PRE_TARGETDEPS += $$PWD/Libraries/linux/x86_64/libefsw-static-debug.a
     }
 }
 

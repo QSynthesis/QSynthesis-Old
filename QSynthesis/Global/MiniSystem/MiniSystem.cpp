@@ -81,22 +81,26 @@ MiniSystemNotifier *MiniSystem::createNotifier(const QString &path, MiniSystem::
             PathTree::Node *node = dirsTree.insert(dir);
             node->inc();
 
-            if (node->parent() == dirsTree.root()) {
+            PathTree::Node *parent = node->parent();
+            if (parent == dirsTree.root()) {
                 const QList<PathTree::Node *> &childs = node->childs();
                 for (auto it = childs.begin(); it != childs.end(); ++it) {
                     m_dirWatcher.removePathById((*it)->id());
                     qDebug() << "[Mini System] Remove Sub Dir Watch" << (*it)->id();
                     (*it)->setId(0, true); // Proxy by the parent node
                 }
-            }
 
-            id = m_dirWatcher.addPath(dir, true);
-            qDebug() << "[Mini System] Add Dir Watch" << id;
-            if (id <= 0) {
-                exitOnWatchFailed();
+                id = m_dirWatcher.addPath(dir, true);
+                qDebug() << "[Mini System] Add Dir Watch" << id;
+                if (id <= 0) {
+                    exitOnWatchFailed();
+                }
+                node->setId(id, true);
+            } else {
+                id = parent->id();
+                node->setId(id);
+                qDebug() << "[Mini System] Add Parent proxy" << id;
             }
-
-            node->setId(id, true);
         }
 
         // Plus
@@ -151,19 +155,26 @@ void MiniSystem::removeNotifier(MiniSystemNotifier *notifier) {
         PathTree::Node *node = it;
         node->dec();
         if (node->count() == 0) {
-            m_dirWatcher.removePath(dir);
-            qDebug() << "[Mini System] Remove Dir Watch" << node->id();
-
             PathTree::Node *parent = node->parent();
             QList<PathTree::Node *> childs = dirsTree.removeOne(node);
             if (parent == dirsTree.root()) {
+                m_dirWatcher.removePath(dir);
+                qDebug() << "[Mini System] Remove Dir Watch" << node->id();
+
                 for (auto it = childs.begin(); it != childs.end(); ++it) {
                     long id = m_dirWatcher.addPath((*it)->path());
                     qDebug() << "[Mini System] Add Sub Dir Watch" << id;
                     if (id <= 0) {
                         exitOnWatchFailed();
                     }
-                    (*it)->setId(id, true); // Add children's path to watcher
+                    (*it)->setId(id, true); // Add each child's path to watcher
+                }
+            } else {
+                long id = parent->id();
+                qDebug() << "[Mini System] Remove Parent proxy" << id;
+
+                for (auto it = childs.begin(); it != childs.end(); ++it) {
+                    (*it)->setId(id, true); // Change each child's watch id
                 }
             }
         }
