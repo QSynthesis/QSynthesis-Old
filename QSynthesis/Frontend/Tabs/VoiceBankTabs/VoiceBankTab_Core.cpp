@@ -11,8 +11,7 @@ bool VoiceBankTab::load() {
         QMessageBox::warning(this, MainTitle, tr("Unable to open folder!"));
         voicebank.reset();
     } else {
-        notifier = qSystem->createNotifier(m_filename, MiniSystem::Directory);
-        connect(notifier, &MiniSystemNotifier::fileChanged, this, &VoiceBankTab::handleFileChanged);
+        addNotifier();
     }
 
     loadCore();
@@ -24,7 +23,10 @@ bool VoiceBankTab::save() {
     if (!saveCore()) {
         return false;
     }
+
+    removeNotifier();
     bool aResult = voicebank.save();
+
     if (!aResult) {
         // No permission granted to write file
         QMessageBox::warning(this, MainTitle, tr("Unable to modify files!"));
@@ -34,7 +36,8 @@ bool VoiceBankTab::save() {
         setEdited(false);
     }
 
-    updateTabName();
+    addNotifier();
+
     return aResult;
 }
 
@@ -143,8 +146,5 @@ bool VoiceBankTab::saveCore() {
 }
 
 void VoiceBankTab::exitCore() {
-    if (notifier) {
-        qSystem->removeNotifier(notifier);
-        notifier = nullptr;
-    }
+    removeNotifier();
 }

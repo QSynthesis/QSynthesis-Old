@@ -14,6 +14,21 @@ VoiceBankTab::~VoiceBankTab() {
     clearHistory();
 }
 
+void VoiceBankTab::addNotifier() {
+    removeNotifier();
+    notifier = qSystem->createNotifier(m_filename, MiniSystem::Directory);
+    if (notifier) {
+        connect(notifier, &MiniSystemNotifier::fileChanged, this, &VoiceBankTab::handleFileChanged);
+    }
+}
+
+void VoiceBankTab::removeNotifier() {
+    if (notifier) {
+        qSystem->removeNotifier(notifier);
+        notifier = nullptr;
+    }
+}
+
 VoiceBankGroup *VoiceBankTab::ptrs() const {
     return m_ptrs;
 }

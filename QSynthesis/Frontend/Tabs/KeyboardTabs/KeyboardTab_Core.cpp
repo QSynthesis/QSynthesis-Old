@@ -4,6 +4,61 @@
 #include "Actions/WelcomeActionList.h"
 #include "TabWidget.h"
 
+bool KeyboardTab::load() {
+    bool valid = true;
+    bool success = keys.load(&valid);
+
+    // Always success
+    if (success && valid) {
+    }
+    addNotifier();
+
+    loadCore();
+    return true;
+}
+
+bool KeyboardTab::save() {
+    if (!checkNoConflict()) {
+        return false;
+    }
+
+    ShortcutsFile orgKeys;
+    orgKeys.commonShortcuts = keys.commonShortcuts;
+    orgKeys.projectShortcuts = keys.projectShortcuts;
+    orgKeys.voiceShortcuts = keys.voiceShortcuts;
+
+    saveCore();
+
+    removeNotifier();
+    bool result = keys.save();
+
+    if (!result) {
+        keys.commonShortcuts = orgKeys.commonShortcuts;
+        keys.projectShortcuts = orgKeys.projectShortcuts;
+        keys.voiceShortcuts = orgKeys.voiceShortcuts;
+
+        QMessageBox::about(this, ErrorTitle, tr("Unable to save file!"));
+    } else {
+        externModified = false;
+        savedHistoryIndex = historyIndex; // Update saved history index
+        setEdited(false);
+    }
+
+    addNotifier();
+
+    return result;
+}
+
+bool KeyboardTab::restore() {
+    clearHistory();
+    if (externModified) {
+        savedHistoryIndex = -1;
+    }
+    setEdited(savedHistoryIndex != historyIndex);
+    loadCore();
+    return true;
+}
+
 void KeyboardTab::loadCore() {
     BaseActionList *actionList = WelcomeActionList::instance();
     const QList<QAction *> &actions = actionList->commonActions();
@@ -34,10 +89,7 @@ void KeyboardTab::saveCore() {
 }
 
 void KeyboardTab::exitCore() {
-    if (notifier) {
-        qSystem->removeNotifier(notifier);
-        notifier = nullptr;
-    }
+    removeNotifier();
 }
 
 bool KeyboardTab::checkNoConflict() {

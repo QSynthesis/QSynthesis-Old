@@ -45,6 +45,9 @@ public:
 private:
     MiniSystemNotifier *notifier;
 
+    void addNotifier();
+    void removeNotifier();
+
 public:
     bool load() override; // All load function will be called only once
     bool save() override;

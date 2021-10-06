@@ -156,10 +156,11 @@ void MiniSystem::removeNotifier(MiniSystemNotifier *notifier) {
         node->dec();
         if (node->count() == 0) {
             PathTree::Node *parent = node->parent();
+            int removedId = node->id();
             QList<PathTree::Node *> childs = dirsTree.removeOne(node);
             if (parent == dirsTree.root()) {
                 m_dirWatcher.removePath(dir);
-                qDebug() << "[Mini System] Remove Dir Watch" << node->id();
+                qDebug() << "[Mini System] Remove Dir Watch" << removedId;
 
                 for (auto it = childs.begin(); it != childs.end(); ++it) {
                     long id = m_dirWatcher.addPath((*it)->path());

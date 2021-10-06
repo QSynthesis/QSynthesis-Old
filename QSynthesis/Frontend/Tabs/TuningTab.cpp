@@ -23,17 +23,24 @@ TuningTab::~TuningTab() {
     DestroyDir(m_workingDir);
 }
 
-void TuningTab::setFilename(const QString &value) {
-    CentralTab::setFilename(value);
-    updateTabName();
-
-    if (notifier) {
-        qSystem->removeNotifier(notifier);
-    }
+void TuningTab::addNotifier() {
+    removeNotifier();
     notifier = qSystem->createNotifier(m_filename, MiniSystem::File);
     if (notifier) {
         connect(notifier, &MiniSystemNotifier::fileChanged, this, &TuningTab::handleFileChanged);
     }
+}
+
+void TuningTab::removeNotifier() {
+    if (notifier) {
+        qSystem->removeNotifier(notifier);
+        notifier = nullptr;
+    }
+}
+
+void TuningTab::setFilename(const QString &value) {
+    CentralTab::setFilename(value);
+    updateTabName();
 }
 
 void TuningTab::setEdited(bool value) {
@@ -98,9 +105,6 @@ void TuningTab::handleSavedStateChanged() {
 }
 
 void TuningTab::handleFileChanged(const QStringList &files) {
-    if (deleted) {
-        return;
-    }
     savedHistoryIndex = -1;
     if (isFileExist(m_filename)) {
         externModified = true;
@@ -108,4 +112,5 @@ void TuningTab::handleFileChanged(const QStringList &files) {
     } else {
         setDeleted(true);
     }
+    removeNotifier();
 }

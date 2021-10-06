@@ -37,6 +37,9 @@ public:
 private:
     MiniSystemNotifier *notifier;
 
+    void addNotifier();
+    void removeNotifier();
+
 public:
     bool load() override;
     bool save() override;

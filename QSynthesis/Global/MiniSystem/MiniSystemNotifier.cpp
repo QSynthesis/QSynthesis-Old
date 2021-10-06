@@ -18,6 +18,7 @@ void MiniSystemNotifier::init() {
     connect(qRoot, &MainWindow::awake, this, &MiniSystemNotifier::onAwake);
     connect(qRoot, &MainWindow::sleep, this, &MiniSystemNotifier::onSleep);
     connect(this, &QTimer::timeout, this, &MiniSystemNotifier::onTimer);
+
     connect(this, &MiniSystemNotifier::killRequested, this,
             &MiniSystemNotifier::handleKillRequested);
 }
@@ -109,18 +110,23 @@ void MiniSystemNotifier::sendChangedSignalDirectly(MiniSystemWatcher::Action act
 }
 
 void MiniSystemNotifier::prepareChangedSignal(const QString &filename) {
+    m_mutex.lock();
     m_pending.insert(filename);
+    m_mutex.unlock();
+
     if ((!m_notifyWhenActive || qRoot->isActiveWindow()) && !isActive()) {
         sendPendingSignals();
     }
 }
 
 void MiniSystemNotifier::sendPendingSignals() {
+    m_mutex.lock();
     if (!m_pending.isEmpty()) {
         start();
         emit fileChanged(m_pending.values());
         m_pending.clear();
     }
+    m_mutex.unlock();
 }
 
 void MiniSystemNotifier::handleKillRequested() {

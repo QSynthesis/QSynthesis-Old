@@ -1,6 +1,7 @@
 ﻿#ifndef MINISYSTEMNOTIFIER_H
 #define MINISYSTEMNOTIFIER_H
 
+#include <QMutex>
 #include <QTimer>
 
 #include "MiniSystem.h"
@@ -28,7 +29,7 @@ public:
     void setNotifyWhenActive(bool notifyWhenActive);
 
 public:
-    void requestKill(); // This method must be called from other thread
+    void requestKill();            // This method must be called from other thread
 
 private:
     QString m_path;
@@ -37,6 +38,8 @@ private:
     MiniSystem::Type m_type;
 
     QSet<QString> m_pending;
+
+    QMutex m_mutex;
 
     bool m_notifyWhenActive;
 
@@ -64,7 +67,9 @@ private:
 
 signals:
     void fileChanged(const QStringList &files);
+
     void killRequested();
+    void lockRequested(bool locked);
 };
 
 #endif // MINISYSTEMNOTIFIER_H

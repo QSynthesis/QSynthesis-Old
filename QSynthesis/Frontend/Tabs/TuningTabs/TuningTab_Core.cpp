@@ -20,6 +20,8 @@ bool TuningTab::load() {
             QMessageBox::warning(this, MainTitle, tr("Invalid format!"));
         }
         ustFile.reset();
+    } else {
+        addNotifier();
     }
     loadCore();
     return aResult;
@@ -106,10 +108,7 @@ void TuningTab::exitCore() {
     if (edited) {
         removeAllCaches();
     }
-    if (notifier) {
-        qSystem->removeNotifier(notifier);
-        notifier = nullptr;
-    }
+    removeNotifier();
 }
 
 bool TuningTab::saveOrSaveAs(const QString &filename) {
@@ -126,9 +125,8 @@ bool TuningTab::saveOrSaveAs(const QString &filename) {
     }
     saveCore(); // Replace
 
-    notifier ? notifier->blockSignals(true) : true;
+    removeNotifier();
     bool aResult = ustFile.save();
-    notifier ? notifier->blockSignals(true) : false;
 
     if (!aResult) {
         // No permission granted to write file
@@ -150,6 +148,8 @@ bool TuningTab::saveOrSaveAs(const QString &filename) {
         externModified = false;
         savedHistoryIndex = historyIndex; // Update saved history index
         setEdited(false);
+
+        addNotifier();
     }
 
     return aResult;
