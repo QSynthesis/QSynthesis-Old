@@ -3,7 +3,6 @@
 
 bool MainWindow::handleTabCloseRequent(int index) {
     CentralTab *tab = tabAt(index);
-    tabs->setCurrentIndex(index);
 
     bool accept = true;
     QString title;
@@ -28,6 +27,8 @@ bool MainWindow::handleTabCloseRequent(int index) {
     }
 
     if (!accept) {
+        tabs->setCurrentIndex(index);
+
         QMessageBox msgbox(this);
         msgbox.setText(title);
         msgbox.setWindowTitle(MainTitle);
