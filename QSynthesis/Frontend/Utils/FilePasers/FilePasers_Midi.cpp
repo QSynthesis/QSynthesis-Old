@@ -1,13 +1,13 @@
+#include "../FileParser.h"
 #include "Dialogs/Template/SelectsDialog.h"
 #include "Documents/Import/QMidiFile.h"
-#include "mainwindow.h"
+#include "QUtauUtils.h"
+#include "SequenceTextFiles/SectionNotes.h"
 
-bool MainWindow::parseMidiFile(const QString &filename, SectionNotes &oNotes) {
+bool FileParser::parseMidiFile(const QString &filename, SectionNotes &oNotes) {
     QMidiFile midi;
-    bool aSuccess = midi.load(filename);
-
-    if (!aSuccess) {
-        QMessageBox::warning(this, MainTitle, tr("Unable to read MIDI file!"));
+    if (!midi.load(filename)) {
+        QMessageBox::warning(Q_W(parent()), MainTitle, tr("Unable to read MIDI file!"));
         return 0;
     }
 
@@ -81,8 +81,8 @@ bool MainWindow::parseMidiFile(const QString &filename, SectionNotes &oNotes) {
     }
 
     QVector<bool> result;
-    SelectsDialog *dlg =
-        new SelectsDialog(tr("Import Midi"), tr("Tracks in file"), titles, result, true, this);
+    SelectsDialog *dlg = new SelectsDialog(tr("Import Midi"), tr("Tracks in file"), titles, result,
+                                           true, Q_W(parent()));
 
     int code = dlg->exec();
     dlg->deleteLater();

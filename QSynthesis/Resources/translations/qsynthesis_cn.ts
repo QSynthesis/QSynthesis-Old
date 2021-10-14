@@ -13,35 +13,43 @@
     </message>
 </context>
 <context>
+    <name>Application</name>
+    <message>
+        <location filename="../../Application/application.cpp" line="111"/>
+        <source>No write file permission!</source>
+        <translation type="unfinished">没有写入文件权限！</translation>
+    </message>
+</context>
+<context>
     <name>BackstageDialog</name>
     <message>
-        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="51"/>
+        <location filename="../../Frontend/Dialogs/Extern/BackstageDialog.cpp" line="51"/>
         <source>Rendering...</source>
         <translation type="unfinished">正在渲染...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="52"/>
-        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="281"/>
+        <location filename="../../Frontend/Dialogs/Extern/BackstageDialog.cpp" line="52"/>
+        <location filename="../../Frontend/Dialogs/Extern/BackstageDialog.cpp" line="281"/>
         <source>Loading...</source>
         <translation type="unfinished">加载中...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="53"/>
+        <location filename="../../Frontend/Dialogs/Extern/BackstageDialog.cpp" line="53"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="265"/>
+        <location filename="../../Frontend/Dialogs/Extern/BackstageDialog.cpp" line="265"/>
         <source>Resample Process: </source>
         <translation type="unfinished">重采样进度：</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="271"/>
+        <location filename="../../Frontend/Dialogs/Extern/BackstageDialog.cpp" line="271"/>
         <source>Concatenate Process: </source>
         <translation type="unfinished">拼接进度：</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/BackstageDialog.cpp" line="277"/>
+        <location filename="../../Frontend/Dialogs/Extern/BackstageDialog.cpp" line="277"/>
         <source>Attempt to end render...</source>
         <translation type="unfinished">尝试结束渲染...</translation>
     </message>
@@ -222,124 +230,124 @@
 <context>
     <name>DataManager</name>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="15"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="11"/>
         <source>Error</source>
         <translation type="unfinished">错误</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="16"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="12"/>
         <source>Untitled</source>
         <translation type="unfinished">未命名</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="17"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="13"/>
         <source>(Deleted)</source>
         <translation type="unfinished">(已删除)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="20"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="16"/>
         <source>Explorer</source>
         <translation type="unfinished">文件资源管理器</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="22"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="18"/>
         <source>Finder</source>
         <translation type="unfinished">Finder</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="24"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="20"/>
         <source>file manager</source>
         <translation type="unfinished">文件管理器</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="28"/>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="29"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="24"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="25"/>
         <source>UTAU Sequence Text(*.ust);;All Files(*.*)</source>
         <translation type="unfinished">UTAU 序列文本(*.ust);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="31"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="27"/>
         <source>Standard MIDI Files(*.mid);;Synthesizer V Files(*.svp *.s5p);;VOCALOID Files(*.vsqx *.vsq);;All Files(*.*)</source>
         <translation type="unfinished">标准Midi文件(*.mid);;Synthesizer V 文件(*.svp *.s5p);;VOCALOID 文件(*.vsqx *.vsq);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="34"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="30"/>
         <source>Standard MIDI Files(*.mid);;UTAU Sequence Text(*.ust);;Synthesizer V Files(*.svp *.s5p);;VOCALOID Files(*.vsqx *.vsq);;All Files(*.*)</source>
         <translation type="unfinished">标准Midi文件(*.mid);;UTAU 序列文本(*.ust);;Synthesizer V 文件(*.svp *.s5p);;VOCALOID 文件(*.vsqx *.vsq);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="37"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="33"/>
         <source>Standard MIDI Files(*.mid);;UTAU Sequence Text(*.ust);;Synthesizer V Files(*.svp);;VOCALOID Files(*.vsqx);;All Files(*.*)</source>
         <translation type="unfinished">标准Midi文件(*.mid);;UTAU 序列文本(*.ust);;Synthesizer V 文件(*.svp);;VOCALOID 文件(*.vsqx);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="40"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="36"/>
         <source>Standard MIDI Files(*.mid);;Synthesizer V Files(*.svp);;VOCALOID Files(*.vsqx);;All Files(*.*)</source>
         <translation type="unfinished">标准Midi文件(*.mid);;Synthesizer V 文件(*.svp);;VOCALOID 文件(*.vsqx);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="42"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="38"/>
         <source>Voice Configurations(oto.ini);;All Files(*.*)</source>
         <translation type="unfinished">音源设定文件(oto.ini);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="43"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="39"/>
         <source>Image Files(*.bmp *.jpg *.jpeg *.png *.gif *.webp);;All Files(*.*)</source>
         <translation type="unfinished">图片文件(*.bmp *.jpg *.jpeg *.png *.gif *.webp);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="45"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="41"/>
         <source>Audio Files(*.wav);;All Files(*.*)</source>
         <translation type="unfinished">音频文件(*.wav);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="46"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="42"/>
         <source>Executable(*.exe);;All Files(*.*)</source>
         <translation type="unfinished">可执行文件(*.exe);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="48"/>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="49"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="44"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="45"/>
         <source>UTAU Sequence Text(*.ust);;All Files(*)</source>
         <translation type="unfinished">UTAU 序列文本(*.ust);;所有文件(*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="51"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="47"/>
         <source>Standard MIDI Files(*.mid);;Synthesizer V Files(*.svp *.s5p);;VOCALOID Files(*.vsqx *.vsq);;All Files(*)</source>
         <translation type="unfinished">标准Midi文件(*.mid);;Synthesizer V 文件(*.svp *.s5p);;VOCALOID 文件(*.vsqx *.vsq);;所有文件(*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="54"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="50"/>
         <source>Standard MIDI Files(*.mid);;UTAU Sequence Text(*.ust);;Synthesizer V Files(*.svp *.s5p);;VOCALOID Files(*.vsqx *.vsq);;All Files(*)</source>
         <translation type="unfinished">标准Midi文件(*.mid);;UTAU 序列文本(*.ust);;Synthesizer V 文件(*.svp *.s5p);;VOCALOID 文件(*.vsqx *.vsq);;所有文件(*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="57"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="53"/>
         <source>Standard MIDI Files(*.mid);;UTAU Sequence Text(*.ust);;Synthesizer V Files(*.svp);;VOCALOID Files(*.vsqx);;All Files(*)</source>
         <translation type="unfinished">标准Midi文件(*.mid);;UTAU 序列文本(*.ust);;Synthesizer V 文件(*.svp);;VOCALOID 文件(*.vsqx);;所有文件(*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="60"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="56"/>
         <source>Standard MIDI Files(*.mid);;Synthesizer V Files(*.svp);;VOCALOID Files(*.vsqx);;All Files(*)</source>
         <translation type="unfinished">标准Midi文件(*.mid);;Synthesizer V 文件(*.svp);;VOCALOID 文件(*.vsqx);;所有文件(*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="62"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="58"/>
         <source>Voice Configurations(oto.ini);;All Files(*)</source>
         <translation type="unfinished">音源设定文件(oto.ini);;所有文件(*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="63"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="59"/>
         <source>Image Files(*.bmp *.jpg *.jpeg *.png *.gif *.webp);;All Files(*)</source>
         <translation type="unfinished">图片文件(*.bmp *.jpg *.jpeg *.png *.gif *.webp);;所有文件(*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="65"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="61"/>
         <source>Audio Files(*.wav);;All Files(*)</source>
         <translation type="unfinished">音频文件(*.wav);;所有文件(*)</translation>
     </message>
     <message>
-        <location filename="../../Backend/Managers/DataManager.cpp" line="66"/>
+        <location filename="../../Application/Managers/DataManager.cpp" line="62"/>
         <source>Executable(*)</source>
         <translation type="unfinished">可执行文件(*)</translation>
     </message>
@@ -347,17 +355,17 @@
 <context>
     <name>EditorForm</name>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForm.cpp" line="19"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/EditorForm.cpp" line="19"/>
         <source>Note</source>
         <translation type="unfinished">音符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForm.cpp" line="20"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/EditorForm.cpp" line="20"/>
         <source>Pitch</source>
         <translation type="unfinished">音高</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/EditorForm.cpp" line="21"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/EditorForm.cpp" line="21"/>
         <source>Envelope</source>
         <translation type="unfinished">音量包络</translation>
     </message>
@@ -429,17 +437,17 @@
 <context>
     <name>EnvButtonGroup</name>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.cpp" line="19"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/EnvButtonGroup.cpp" line="19"/>
         <source>Envelope crossFade (p2p3)</source>
         <translation type="unfinished">设置音量包络淡化 (p2p3)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.cpp" line="20"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/EnvButtonGroup.cpp" line="20"/>
         <source>Envelope crossFade (p1p4)</source>
         <translation type="unfinished">设置音量包络淡化 (p1p4)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Buttons/EnvButtonGroup.cpp" line="21"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/EnvButtonGroup.cpp" line="21"/>
         <source>Reset Envelope</source>
         <translation type="unfinished">重置音量包络</translation>
     </message>
@@ -451,12 +459,12 @@
         <translation type="obsolete">插件</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/ExecutePluginDialog.cpp" line="31"/>
+        <location filename="../../Frontend/Dialogs/Extern/ExecutePluginDialog.cpp" line="31"/>
         <source>Plug-in running...</source>
         <translation type="unfinished">插件运行中...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/ExecutePluginDialog.cpp" line="32"/>
+        <location filename="../../Frontend/Dialogs/Extern/ExecutePluginDialog.cpp" line="32"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
@@ -464,22 +472,22 @@
 <context>
     <name>FileListWidget</name>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="101"/>
+        <location filename="../../Frontend/Tabs/Welcome/FileListWidget.cpp" line="102"/>
         <source>Show in %1(&amp;S)</source>
         <translation type="unfinished">在%1中显示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="103"/>
+        <location filename="../../Frontend/Tabs/Welcome/FileListWidget.cpp" line="104"/>
         <source>Open in %1(&amp;S)</source>
         <translation type="unfinished">在%1中打开(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="106"/>
+        <location filename="../../Frontend/Tabs/Welcome/FileListWidget.cpp" line="107"/>
         <source>Open(&amp;O)</source>
         <translation type="unfinished">打开(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/FileListWidget.cpp" line="106"/>
+        <location filename="../../Frontend/Tabs/Welcome/FileListWidget.cpp" line="107"/>
         <source>Remove from list(&amp;R)</source>
         <translation type="unfinished">从列表中移除(&amp;R)</translation>
     </message>
@@ -509,45 +517,73 @@
     </message>
 </context>
 <context>
+    <name>FileParser</name>
+    <message>
+        <location filename="../../Frontend/Utils/FilePasers/FilePasers_Midi.cpp" line="10"/>
+        <source>Unable to read MIDI file!</source>
+        <translation type="unfinished">无法读取MIDI文件！</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Utils/FilePasers/FilePasers_Midi.cpp" line="71"/>
+        <source>Track %1</source>
+        <translation type="unfinished">音轨 %1</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Utils/FilePasers/FilePasers_Midi.cpp" line="73"/>
+        <source>%1 notes</source>
+        <translation type="unfinished">%1 个音符</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Utils/FilePasers/FilePasers_Midi.cpp" line="84"/>
+        <source>Import Midi</source>
+        <translation type="unfinished">导入 Midi</translation>
+    </message>
+    <message>
+        <location filename="../../Frontend/Utils/FilePasers/FilePasers_Midi.cpp" line="84"/>
+        <source>Tracks in file</source>
+        <translation type="unfinished">需要导入的音轨</translation>
+    </message>
+</context>
+<context>
     <name>FindReplaceDialog</name>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Editor/FindReplaceDialog.cpp" line="13"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/FindReplaceDialog.cpp" line="13"/>
         <source>Find</source>
         <translation type="unfinished">查找</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Editor/FindReplaceDialog.cpp" line="14"/>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Editor/FindReplaceDialog.cpp" line="65"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/FindReplaceDialog.cpp" line="14"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/FindReplaceDialog.cpp" line="65"/>
         <source>Replace</source>
         <translation type="unfinished">替换</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Editor/FindReplaceDialog.cpp" line="23"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/FindReplaceDialog.cpp" line="23"/>
         <source>Case sensitive</source>
         <translation type="unfinished">区分大小写</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Editor/FindReplaceDialog.cpp" line="24"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/FindReplaceDialog.cpp" line="24"/>
         <source>Whole words only</source>
         <translation type="unfinished">全字匹配</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Editor/FindReplaceDialog.cpp" line="25"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/FindReplaceDialog.cpp" line="25"/>
         <source>Preserve case</source>
         <translation type="unfinished">保留大小写</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Editor/FindReplaceDialog.cpp" line="63"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/FindReplaceDialog.cpp" line="63"/>
         <source>Previous occurrence</source>
         <translation type="unfinished">上一个匹配项</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Editor/FindReplaceDialog.cpp" line="64"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/FindReplaceDialog.cpp" line="64"/>
         <source>Next occurrence</source>
         <translation type="unfinished">下一个匹配项</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Editor/FindReplaceDialog.cpp" line="66"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/FindReplaceDialog.cpp" line="66"/>
         <source>Replace all</source>
         <translation type="unfinished">替换全部</translation>
     </message>
@@ -555,27 +591,27 @@
 <context>
     <name>GraphicsNote</name>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="8"/>
+        <location filename="../../Frontend/Tabs/Tuning/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="8"/>
         <source>Portamento</source>
         <translation type="unfinished">滑音</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="9"/>
+        <location filename="../../Frontend/Tabs/Tuning/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="9"/>
         <source>Vibrato</source>
         <translation type="unfinished">颤音</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="10"/>
+        <location filename="../../Frontend/Tabs/Tuning/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="10"/>
         <source>Vibrato Editor</source>
         <translation type="unfinished">颤音编辑</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="15"/>
+        <location filename="../../Frontend/Tabs/Tuning/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="15"/>
         <source>Note Properties...</source>
         <translation type="unfinished">音符属性...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="16"/>
+        <location filename="../../Frontend/Tabs/Tuning/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="16"/>
         <source>Voice Bank Manage</source>
         <translation type="unfinished">音源管理</translation>
     </message>
@@ -584,12 +620,12 @@
         <translation type="obsolete">音源管理</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="12"/>
+        <location filename="../../Frontend/Tabs/Tuning/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="12"/>
         <source>Tempo...</source>
         <translation type="unfinished">曲速...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="13"/>
+        <location filename="../../Frontend/Tabs/Tuning/Graphics/GraphicsNotes/GraphicsNote_ContextMenu.cpp" line="13"/>
         <source>Remove Tempo</source>
         <translation type="unfinished">删除曲速</translation>
     </message>
@@ -609,7 +645,7 @@
         <translation type="obsolete">在文件管理器中显示</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="34"/>
+        <location filename="../../Frontend/Tabs/Voice/Modules/ImageLabel.cpp" line="34"/>
         <source>Replace...</source>
         <translation type="unfinished">替换...</translation>
     </message>
@@ -630,22 +666,22 @@
         <translation type="obsolete">在文件管理器中显示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="33"/>
+        <location filename="../../Frontend/Tabs/Voice/Modules/ImageLabel.cpp" line="33"/>
         <source>Show in %1(&amp;S)</source>
         <translation type="unfinished">在%1中显示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="34"/>
+        <location filename="../../Frontend/Tabs/Voice/Modules/ImageLabel.cpp" line="34"/>
         <source>Remove</source>
         <translation type="unfinished">移除</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="56"/>
+        <location filename="../../Frontend/Tabs/Voice/Modules/ImageLabel.cpp" line="56"/>
         <source>Open File</source>
         <translation type="unfinished">打开文件</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Modules/ImageLabel.cpp" line="64"/>
+        <location filename="../../Frontend/Tabs/Voice/Modules/ImageLabel.cpp" line="64"/>
         <source>This file is not a valid image file!</source>
         <translation type="unfinished">这不是合法的图片文件！</translation>
     </message>
@@ -653,12 +689,12 @@
 <context>
     <name>InputDialog</name>
     <message>
-        <location filename="../../Frontend/Dialogs/InputDialog.cpp" line="23"/>
+        <location filename="../../Frontend/Dialogs/Template/InputDialog.cpp" line="23"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/InputDialog.cpp" line="24"/>
+        <location filename="../../Frontend/Dialogs/Template/InputDialog.cpp" line="24"/>
         <source>OK</source>
         <translation type="unfinished">确定</translation>
     </message>
@@ -666,42 +702,42 @@
 <context>
     <name>InsertLyricsDialog</name>
     <message>
-        <location filename="../../Frontend/Dialogs/InsertLyricsDialog.cpp" line="35"/>
+        <location filename="../../Frontend/Dialogs/Project/InsertLyricsDialog.cpp" line="35"/>
         <source>Insert Lyrics</source>
         <translation type="unfinished">插入歌词</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/InsertLyricsDialog.cpp" line="40"/>
+        <location filename="../../Frontend/Dialogs/Project/InsertLyricsDialog.cpp" line="40"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/InsertLyricsDialog.cpp" line="41"/>
+        <location filename="../../Frontend/Dialogs/Project/InsertLyricsDialog.cpp" line="41"/>
         <source>OK</source>
         <translation type="unfinished">确定</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/InsertLyricsDialog.cpp" line="42"/>
+        <location filename="../../Frontend/Dialogs/Project/InsertLyricsDialog.cpp" line="42"/>
         <source>Reset</source>
         <translation type="unfinished">重置</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/InsertLyricsDialog.cpp" line="44"/>
+        <location filename="../../Frontend/Dialogs/Project/InsertLyricsDialog.cpp" line="44"/>
         <source>Lyrics (Split by space)</source>
         <translation type="unfinished">歌词（以空格划分）</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/InsertLyricsDialog.cpp" line="46"/>
+        <location filename="../../Frontend/Dialogs/Project/InsertLyricsDialog.cpp" line="46"/>
         <source>Ignore rests</source>
         <translation type="unfinished">忽略休止符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/InsertLyricsDialog.cpp" line="47"/>
+        <location filename="../../Frontend/Dialogs/Project/InsertLyricsDialog.cpp" line="47"/>
         <source>Replace lyrics</source>
         <translation type="unfinished">替换歌词</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/InsertLyricsDialog.cpp" line="48"/>
+        <location filename="../../Frontend/Dialogs/Project/InsertLyricsDialog.cpp" line="48"/>
         <source>Separate into characters</source>
         <translation type="unfinished">以字符分割</translation>
     </message>
@@ -709,7 +745,7 @@
 <context>
     <name>KeyModifyDialog</name>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/Contents/KeyModifyDialog.cpp" line="11"/>
+        <location filename="../../Frontend/Tabs/Keyboard/Contents/KeyModifyDialog.cpp" line="11"/>
         <source>Press desired key combination and then press ENTER.</source>
         <translation type="unfinished">先按所需的组合键，再按Enter键。</translation>
     </message>
@@ -724,42 +760,42 @@
 <context>
     <name>KeyTableTab</name>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/Contents/KeyTableTab.cpp" line="17"/>
+        <location filename="../../Frontend/Tabs/Keyboard/Contents/KeyTableTab.cpp" line="17"/>
         <source>Command</source>
         <translation type="unfinished">命令</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/Contents/KeyTableTab.cpp" line="17"/>
+        <location filename="../../Frontend/Tabs/Keyboard/Contents/KeyTableTab.cpp" line="17"/>
         <source>Source</source>
         <translation type="unfinished">源</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/Contents/KeyTableTab.cpp" line="17"/>
+        <location filename="../../Frontend/Tabs/Keyboard/Contents/KeyTableTab.cpp" line="17"/>
         <source>Key Bind</source>
         <translation type="unfinished">键绑定</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/Contents/KeyTableTab.cpp" line="129"/>
+        <location filename="../../Frontend/Tabs/Keyboard/Contents/KeyTableTab.cpp" line="129"/>
         <source>Default</source>
         <translation type="unfinished">默认</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/Contents/KeyTableTab.cpp" line="129"/>
+        <location filename="../../Frontend/Tabs/Keyboard/Contents/KeyTableTab.cpp" line="129"/>
         <source>User</source>
         <translation type="unfinished">用户</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/Contents/KeyTableTabs/KeyTableTab_ContextMenu.cpp" line="9"/>
+        <location filename="../../Frontend/Tabs/Keyboard/Contents/KeyTableTabs/KeyTableTab_ContextMenu.cpp" line="9"/>
         <source>Modify key bind</source>
         <translation type="unfinished">修改快捷键</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/Contents/KeyTableTabs/KeyTableTab_ContextMenu.cpp" line="9"/>
+        <location filename="../../Frontend/Tabs/Keyboard/Contents/KeyTableTabs/KeyTableTab_ContextMenu.cpp" line="9"/>
         <source>Remove key bind</source>
         <translation type="unfinished">删除快捷键</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/Contents/KeyTableTabs/KeyTableTab_ContextMenu.cpp" line="9"/>
+        <location filename="../../Frontend/Tabs/Keyboard/Contents/KeyTableTabs/KeyTableTab_ContextMenu.cpp" line="9"/>
         <source>Reset key bind</source>
         <translation type="unfinished">重置快捷键</translation>
     </message>
@@ -786,7 +822,7 @@
         <translation type="obsolete">无法加载设定文件！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTab.cpp" line="47"/>
+        <location filename="../../Frontend/Tabs/Keyboard/KeyboardTab_Core.cpp" line="40"/>
         <source>Unable to save file!</source>
         <translation type="unfinished">无法保存文件！</translation>
     </message>
@@ -795,17 +831,17 @@
         <translation type="obsolete">常规</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/KeyboardTab_Init.cpp" line="21"/>
+        <location filename="../../Frontend/Tabs/Keyboard/KeyboardTab_Init.cpp" line="21"/>
         <source>General</source>
         <translation type="unfinished">常规</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/KeyboardTab_Init.cpp" line="22"/>
+        <location filename="../../Frontend/Tabs/Keyboard/KeyboardTab_Init.cpp" line="22"/>
         <source>Project</source>
         <translation type="unfinished">工程</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/KeyboardTab_Init.cpp" line="23"/>
+        <location filename="../../Frontend/Tabs/Keyboard/KeyboardTab_Init.cpp" line="23"/>
         <source>Voice Manage</source>
         <translation type="unfinished">音源管理</translation>
     </message>
@@ -814,32 +850,32 @@
         <translation type="obsolete">音源管理</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/KeyboardTab_Init.cpp" line="38"/>
+        <location filename="../../Frontend/Tabs/Keyboard/KeyboardTab_Init.cpp" line="38"/>
         <source>Reset Current</source>
         <translation type="unfinished">重置当前页</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/KeyboardTab_Core.cpp" line="59"/>
+        <location filename="../../Frontend/Tabs/Keyboard/KeyboardTab_Core.cpp" line="111"/>
         <source>There&apos;s a conflict between item %1 and item %2 in general key bind!</source>
         <translation type="unfinished">常规快捷键第%1项与第%2项重复！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/KeyboardTab_Core.cpp" line="64"/>
+        <location filename="../../Frontend/Tabs/Keyboard/KeyboardTab_Core.cpp" line="116"/>
         <source>There&apos;s a conflict between item %1 in general key bind and item %2 in project key bind!</source>
         <translation type="unfinished">常规快捷键第%1项与工程快捷键第%2项重复！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/KeyboardTab_Core.cpp" line="71"/>
+        <location filename="../../Frontend/Tabs/Keyboard/KeyboardTab_Core.cpp" line="123"/>
         <source>There&apos;s a conflict between item %1 and item %2 in project key bind!</source>
         <translation type="unfinished">工程快捷键第%1项与第%2项重复！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/KeyboardTab_Core.cpp" line="76"/>
+        <location filename="../../Frontend/Tabs/Keyboard/KeyboardTab_Core.cpp" line="128"/>
         <source>There&apos;s a conflict between item %1 in general key bind and item %2 in voice manage key bind!</source>
         <translation type="unfinished">常规快捷键第%1项与音源管理快捷键第%2项重复！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/KeyboardTabs/KeyboardTab_Core.cpp" line="83"/>
+        <location filename="../../Frontend/Tabs/Keyboard/KeyboardTab_Core.cpp" line="135"/>
         <source>There&apos;s a conflict between item %1 and item %2 in voice manage key bind!</source>
         <translation type="unfinished">音源管理快捷键第%1项与第%2项重复！</translation>
     </message>
@@ -847,82 +883,77 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../Main/Exec/exec.cpp" line="6"/>
+        <location filename="../../MainWindow/Exec/exec.cpp" line="9"/>
         <source>Open File</source>
         <translation type="unfinished">打开文件</translation>
     </message>
     <message>
-        <location filename="../../Main/Exec/exec.cpp" line="15"/>
+        <location filename="../../MainWindow/Exec/exec.cpp" line="18"/>
         <source>Open Voice Bank</source>
         <translation type="unfinished">打开音源文件夹</translation>
     </message>
     <message>
-        <location filename="../../Main/Exec/exec.cpp" line="46"/>
+        <location filename="../../MainWindow/Exec/exec.cpp" line="49"/>
         <source>Save As</source>
         <translation type="unfinished">另存为</translation>
     </message>
     <message>
-        <location filename="../../Main/Exec/exec.cpp" line="60"/>
+        <location filename="../../MainWindow/Exec/exec.cpp" line="63"/>
         <source>You can&apos;t overwrite a file opened in QSynthesis!</source>
         <translation type="unfinished">你无法覆盖已在QSynthesis中打开的文件！</translation>
     </message>
     <message>
-        <location filename="../../Main/Exec/exec.cpp" line="76"/>
+        <location filename="../../MainWindow/Exec/exec.cpp" line="79"/>
         <source>Import</source>
         <translation type="unfinished">导入</translation>
     </message>
     <message>
-        <location filename="../../Main/Import/midi.cpp" line="10"/>
         <source>Unable to read MIDI file!</source>
-        <translation type="unfinished">无法读取MIDI文件！</translation>
+        <translation type="obsolete">无法读取MIDI文件！</translation>
     </message>
     <message>
-        <location filename="../../Main/Import/midi.cpp" line="71"/>
         <source>Track %1</source>
-        <translation type="unfinished">音轨 %1</translation>
+        <translation type="obsolete">音轨 %1</translation>
     </message>
     <message>
-        <location filename="../../Main/Import/midi.cpp" line="73"/>
         <source>%1 notes</source>
-        <translation type="unfinished">%1 个音符</translation>
+        <translation type="obsolete">%1 个音符</translation>
     </message>
     <message>
-        <location filename="../../Main/Import/midi.cpp" line="85"/>
         <source>Import Midi</source>
-        <translation type="unfinished">导入 Midi</translation>
+        <translation type="obsolete">导入 Midi</translation>
     </message>
     <message>
-        <location filename="../../Main/Import/midi.cpp" line="85"/>
         <source>Tracks in file</source>
-        <translation type="unfinished">需要导入的音轨</translation>
+        <translation type="obsolete">需要导入的音轨</translation>
     </message>
     <message>
-        <location filename="../../Main/Menu/reload.cpp" line="6"/>
+        <location filename="../../MainWindow/Menu/reload.cpp" line="6"/>
         <source>File(&amp;F)</source>
         <translation type="unfinished">文件(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../../Main/Menu/reload.cpp" line="7"/>
+        <location filename="../../MainWindow/Menu/reload.cpp" line="7"/>
         <source>Edit(&amp;E)</source>
         <translation type="unfinished">编辑(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../Main/Menu/reload.cpp" line="8"/>
+        <location filename="../../MainWindow/Menu/reload.cpp" line="8"/>
         <source>Modify(&amp;M)</source>
         <translation type="unfinished">修改(&amp;M)</translation>
     </message>
     <message>
-        <location filename="../../Main/Menu/reload.cpp" line="9"/>
+        <location filename="../../MainWindow/Menu/reload.cpp" line="9"/>
         <source>Preview(&amp;P)</source>
         <translation type="unfinished">预览(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../../Main/Menu/reload.cpp" line="10"/>
+        <location filename="../../MainWindow/Menu/reload.cpp" line="10"/>
         <source>Tools(&amp;T)</source>
         <translation type="unfinished">工具(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../../Main/Menu/reload.cpp" line="11"/>
+        <location filename="../../MainWindow/Menu/reload.cpp" line="11"/>
         <source>Help(&amp;H)</source>
         <translation type="unfinished">帮助(&amp;H)</translation>
     </message>
@@ -967,7 +998,7 @@
         <translation type="obsolete">追加导入...</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="87"/>
+        <location filename="../../MainWindow/Tabs/handlers.cpp" line="87"/>
         <source>Close</source>
         <translation type="unfinished">关闭</translation>
     </message>
@@ -1120,7 +1151,7 @@
         <translation type="obsolete">变量值</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/core.cpp" line="93"/>
+        <location filename="../../MainWindow/Tabs/core.cpp" line="93"/>
         <source>Settings</source>
         <translation type="unfinished">设置</translation>
     </message>
@@ -1137,7 +1168,7 @@
         <translation type="obsolete">语言</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/core.cpp" line="83"/>
+        <location filename="../../MainWindow/Tabs/core.cpp" line="83"/>
         <source>Welcome</source>
         <translation type="unfinished">欢迎使用</translation>
     </message>
@@ -1150,80 +1181,79 @@
         <translation type="obsolete">检查更新</translation>
     </message>
     <message>
-        <location filename="../../Main/Actions/common.cpp" line="200"/>
+        <location filename="../../MainWindow/Actions/common.cpp" line="200"/>
         <source>About QSynthesis</source>
         <translation type="unfinished">关于 QSynthesis</translation>
     </message>
     <message>
-        <location filename="../../Main/Actions/common.cpp" line="204"/>
+        <location filename="../../MainWindow/Actions/common.cpp" line="204"/>
         <source>About Qt</source>
         <translation type="unfinished">关于 Qt</translation>
     </message>
     <message>
-        <location filename="../../Main/Actions/tuning.cpp" line="13"/>
+        <location filename="../../MainWindow/Actions/tuning.cpp" line="14"/>
         <source>Append</source>
         <translation type="unfinished">追加导入</translation>
     </message>
     <message>
-        <location filename="../../Main/Actions/tuning.cpp" line="27"/>
+        <location filename="../../MainWindow/Actions/tuning.cpp" line="25"/>
         <source>Export selection</source>
         <translation type="unfinished">导出选区</translation>
     </message>
     <message>
-        <location filename="../../Main/Actions/tuning.cpp" line="36"/>
+        <location filename="../../MainWindow/Actions/tuning.cpp" line="34"/>
         <source>Export entire track</source>
         <translation type="unfinished">导出整个音轨</translation>
     </message>
     <message>
-        <location filename="../../Main/Modules/managers.cpp" line="13"/>
+        <location filename="../../MainWindow/Modules/managers.cpp" line="9"/>
         <source>Cannot load voice banks.</source>
         <translation type="unfinished">无法加载音源。</translation>
     </message>
     <message>
-        <location filename="../../Main/Modules/managers.cpp" line="21"/>
+        <location filename="../../MainWindow/Modules/managers.cpp" line="17"/>
         <source>Cannot load plugins.</source>
         <translation type="unfinished">无法加载插件。</translation>
     </message>
     <message>
-        <location filename="../../Main/Modules/managers.cpp" line="28"/>
+        <location filename="../../MainWindow/Modules/managers.cpp" line="24"/>
         <source>Cannot load themes.</source>
         <translation type="unfinished">无法加载主题。</translation>
     </message>
     <message>
-        <location filename="../../Main/Modules/managers.cpp" line="35"/>
+        <location filename="../../MainWindow/Modules/managers.cpp" line="31"/>
         <source>Cannot load translations.</source>
         <translation type="unfinished">无法加载翻译文件。</translation>
     </message>
     <message>
-        <location filename="../../Main/Modules/managers.cpp" line="55"/>
-        <location filename="../../Main/Refresh/recent.cpp" line="73"/>
+        <location filename="../../MainWindow/Modules/managers.cpp" line="51"/>
+        <location filename="../../MainWindow/Refresh/recent.cpp" line="73"/>
         <source>Null</source>
         <translation type="unfinished">无</translation>
     </message>
     <message>
-        <location filename="../../Main/Modules/managers.cpp" line="70"/>
+        <location filename="../../MainWindow/Modules/managers.cpp" line="66"/>
         <source>Open plugin directory(&amp;O)</source>
         <translation type="unfinished">打开插件文件夹(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../Main/Refresh/recent.cpp" line="78"/>
+        <location filename="../../MainWindow/Refresh/recent.cpp" line="78"/>
         <source>More files...</source>
         <translation type="unfinished">更多文件...</translation>
     </message>
     <message>
-        <location filename="../../Main/Refresh/recent.cpp" line="84"/>
+        <location filename="../../MainWindow/Refresh/recent.cpp" line="84"/>
         <source>More directories...</source>
         <translation type="unfinished">更多文件夹...</translation>
     </message>
     <message>
-        <location filename="../../Main/Refresh/recent.cpp" line="92"/>
+        <location filename="../../MainWindow/Refresh/recent.cpp" line="92"/>
         <source>Clear Recent List</source>
         <translation type="unfinished">清除最近文件记录</translation>
     </message>
     <message>
-        <location filename="../../Main/Static/abnormal.cpp" line="4"/>
         <source>No write file permission!</source>
-        <translation type="unfinished">没有写入文件权限！</translation>
+        <translation type="obsolete">没有写入文件权限！</translation>
     </message>
     <message>
         <source>Voice directory not found.</source>
@@ -1330,37 +1360,37 @@
         <translation type="obsolete">可执行文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Main/Modules/filedata.cpp" line="24"/>
+        <location filename="../../MainWindow/Modules/filedata.cpp" line="22"/>
         <source>Unable to write %1!</source>
         <translation type="unfinished">无法写入 %1！</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/change.cpp" line="26"/>
+        <location filename="../../MainWindow/Tabs/change.cpp" line="26"/>
         <source>You have opened the upper directory of this folder, please close first.</source>
         <translation type="unfinished">你已打开此文件夹的上层目录，请先关闭。</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/change.cpp" line="30"/>
+        <location filename="../../MainWindow/Tabs/change.cpp" line="30"/>
         <source>You have opened the lower directory of this folder, please close first.</source>
         <translation type="unfinished">你已打开此文件夹的下层目录，请先关闭。</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/core.cpp" line="103"/>
+        <location filename="../../MainWindow/Tabs/core.cpp" line="103"/>
         <source>Keyboard</source>
         <translation type="unfinished">键盘映射</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="15"/>
+        <location filename="../../MainWindow/Tabs/handlers.cpp" line="15"/>
         <source>You have not saved the file, do you want to save it?</source>
         <translation type="unfinished">是否将更改保存到文件中？</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="19"/>
+        <location filename="../../MainWindow/Tabs/handlers.cpp" line="19"/>
         <source>You have not saved the directory, do you want to save it?</source>
         <translation type="unfinished">是否将更改保存到目录中？</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="24"/>
+        <location filename="../../MainWindow/Tabs/handlers.cpp" line="24"/>
         <source>You have not saved the configuration, do you want to save it?</source>
         <translation type="unfinished">是否将更改保存到配置中？</translation>
     </message>
@@ -1373,42 +1403,42 @@
         <translation type="obsolete">否</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="38"/>
+        <location filename="../../MainWindow/Tabs/handlers.cpp" line="38"/>
         <source>Save(&amp;S)</source>
         <translation type="unfinished">保存(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="39"/>
+        <location filename="../../MainWindow/Tabs/handlers.cpp" line="39"/>
         <source>Don&apos;t save(&amp;N)</source>
         <translation type="unfinished">不保存(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="40"/>
+        <location filename="../../MainWindow/Tabs/handlers.cpp" line="40"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="87"/>
+        <location filename="../../MainWindow/Tabs/handlers.cpp" line="87"/>
         <source>Close Others</source>
         <translation type="unfinished">关闭其他</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="87"/>
+        <location filename="../../MainWindow/Tabs/handlers.cpp" line="87"/>
         <source>Close Saved</source>
         <translation type="unfinished">关闭已保存</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="87"/>
+        <location filename="../../MainWindow/Tabs/handlers.cpp" line="87"/>
         <source>Close All</source>
         <translation type="unfinished">关闭所有</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="91"/>
+        <location filename="../../MainWindow/Tabs/handlers.cpp" line="91"/>
         <source>Show in %1(&amp;S)</source>
         <translation type="unfinished">在%1中显示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Main/Tabs/handlers.cpp" line="95"/>
+        <location filename="../../MainWindow/Tabs/handlers.cpp" line="95"/>
         <source>Open in %1(&amp;S)</source>
         <translation type="unfinished">在%1中打开(&amp;S)</translation>
     </message>
@@ -1437,32 +1467,32 @@
         <translation type="obsolete">在文件管理器中打开(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Main/Actions/voice.cpp" line="13"/>
+        <location filename="../../MainWindow/Actions/voice.cpp" line="13"/>
         <source>Export current settings</source>
         <translation type="unfinished">导出当前设定</translation>
     </message>
     <message>
-        <location filename="../../Main/Actions/preview.cpp" line="6"/>
+        <location filename="../../MainWindow/Actions/preview.cpp" line="7"/>
         <source>Light (Default)</source>
         <translation type="unfinished">浅色（默认)</translation>
     </message>
     <message>
-        <location filename="../../Main/Actions/preview.cpp" line="6"/>
+        <location filename="../../MainWindow/Actions/preview.cpp" line="7"/>
         <source>Dark (Default)</source>
         <translation type="unfinished">深色（默认)</translation>
     </message>
     <message>
-        <location filename="../../Main/Actions/preview.cpp" line="7"/>
+        <location filename="../../MainWindow/Actions/preview.cpp" line="8"/>
         <source>Select color theme (Up/down keys to preview)</source>
         <translation type="unfinished">选择颜色主题(按上下键预览)</translation>
     </message>
     <message>
-        <location filename="../../Main/Menu/trigger.cpp" line="22"/>
+        <location filename="../../MainWindow/Menu/trigger.cpp" line="22"/>
         <source>Select file</source>
         <translation type="unfinished">选择文件</translation>
     </message>
     <message>
-        <location filename="../../Main/Menu/trigger.cpp" line="32"/>
+        <location filename="../../MainWindow/Menu/trigger.cpp" line="32"/>
         <source>Select folder</source>
         <translation type="unfinished">选择文件夹</translation>
     </message>
@@ -1470,7 +1500,7 @@
 <context>
     <name>MiniSystem</name>
     <message>
-        <location filename="../../Global/MiniSystem/MiniSystem.cpp" line="214"/>
+        <location filename="../../Application/MiniSystem/MiniSystem.cpp" line="213"/>
         <source>No write file permission!</source>
         <translation type="unfinished">没有写入文件权限！</translation>
     </message>
@@ -1517,69 +1547,69 @@
 <context>
     <name>NotePropertiesDialog</name>
     <message>
-        <location filename="../../Frontend/Dialogs/NotePropertiesDialog.cpp" line="20"/>
+        <location filename="../../Frontend/Dialogs/Project/NotePropertiesDialog.cpp" line="20"/>
         <source>Note Properties</source>
         <translation type="unfinished">音符属性</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/NotePropertiesDialog.cpp" line="24"/>
+        <location filename="../../Frontend/Dialogs/Project/NotePropertiesDialog.cpp" line="24"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/NotePropertiesDialog.cpp" line="25"/>
+        <location filename="../../Frontend/Dialogs/Project/NotePropertiesDialog.cpp" line="25"/>
         <source>OK</source>
         <translation type="unfinished">确定</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/NotePropertiesDialog.cpp" line="27"/>
+        <location filename="../../Frontend/Dialogs/Project/NotePropertiesDialog.cpp" line="27"/>
         <source>Intensity</source>
         <translation type="unfinished">音量</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/NotePropertiesDialog.cpp" line="28"/>
+        <location filename="../../Frontend/Dialogs/Project/NotePropertiesDialog.cpp" line="28"/>
         <source>Modulation</source>
         <translation type="unfinished">移调</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/NotePropertiesDialog.cpp" line="30"/>
+        <location filename="../../Frontend/Dialogs/Project/NotePropertiesDialog.cpp" line="30"/>
         <source>Flags</source>
         <translation type="unfinished">Flags</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/NotePropertiesDialog.cpp" line="31"/>
+        <location filename="../../Frontend/Dialogs/Project/NotePropertiesDialog.cpp" line="31"/>
         <source>PreUtterance</source>
         <translation type="unfinished">先行声音</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/NotePropertiesDialog.cpp" line="32"/>
+        <location filename="../../Frontend/Dialogs/Project/NotePropertiesDialog.cpp" line="32"/>
         <source>Overlap</source>
         <translation type="unfinished">重叠</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/NotePropertiesDialog.cpp" line="33"/>
+        <location filename="../../Frontend/Dialogs/Project/NotePropertiesDialog.cpp" line="33"/>
         <source>Length</source>
         <translation type="unfinished">音长</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/NotePropertiesDialog.cpp" line="34"/>
+        <location filename="../../Frontend/Dialogs/Project/NotePropertiesDialog.cpp" line="34"/>
         <source>Consonant Velocity</source>
         <translation type="unfinished">辅音速度</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/NotePropertiesDialog.cpp" line="35"/>
+        <location filename="../../Frontend/Dialogs/Project/NotePropertiesDialog.cpp" line="35"/>
         <source>Start Point</source>
         <translation type="unfinished">起始点</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/NotePropertiesDialog.cpp" line="204"/>
-        <location filename="../../Frontend/Dialogs/NotePropertiesDialog.cpp" line="205"/>
+        <location filename="../../Frontend/Dialogs/Project/NotePropertiesDialog.cpp" line="204"/>
+        <location filename="../../Frontend/Dialogs/Project/NotePropertiesDialog.cpp" line="205"/>
         <source>Not found</source>
         <translation type="unfinished">无</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/NotePropertiesDialog.cpp" line="211"/>
-        <location filename="../../Frontend/Dialogs/NotePropertiesDialog.cpp" line="212"/>
+        <location filename="../../Frontend/Dialogs/Project/NotePropertiesDialog.cpp" line="211"/>
+        <location filename="../../Frontend/Dialogs/Project/NotePropertiesDialog.cpp" line="212"/>
         <source>oto</source>
         <translation>oto</translation>
     </message>
@@ -1587,32 +1617,32 @@
 <context>
     <name>OtoInfoArea</name>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.cpp" line="15"/>
+        <location filename="../../Frontend/Tabs/Voice/Areas/OtoInfoArea.cpp" line="15"/>
         <source>Name</source>
         <translation type="unfinished">名称</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.cpp" line="16"/>
+        <location filename="../../Frontend/Tabs/Voice/Areas/OtoInfoArea.cpp" line="16"/>
         <source>Author</source>
         <translation type="unfinished">作者</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.cpp" line="29"/>
+        <location filename="../../Frontend/Tabs/Voice/Areas/OtoInfoArea.cpp" line="29"/>
         <source>Description</source>
         <translation type="unfinished">描述</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.cpp" line="30"/>
+        <location filename="../../Frontend/Tabs/Voice/Areas/OtoInfoArea.cpp" line="30"/>
         <source>Pitch</source>
         <translation type="unfinished">音高</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoArea.cpp" line="31"/>
+        <location filename="../../Frontend/Tabs/Voice/Areas/OtoInfoArea.cpp" line="31"/>
         <source>Foreground</source>
         <translation type="unfinished">前景</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoInfoAreas/OtoInfoArea_Avatar.cpp" line="58"/>
+        <location filename="../../Frontend/Tabs/Voice/Areas/OtoInfoAreas/OtoInfoArea_Avatar.cpp" line="58"/>
         <source>Null</source>
         <translation type="unfinished">无</translation>
     </message>
@@ -1620,17 +1650,17 @@
 <context>
     <name>OtoPlayerArea</name>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoPlayerArea.cpp" line="66"/>
+        <location filename="../../Frontend/Tabs/Voice/Areas/OtoPlayerArea.cpp" line="66"/>
         <source>%1Hz %2bit </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoPlayerArea.cpp" line="67"/>
+        <location filename="../../Frontend/Tabs/Voice/Areas/OtoPlayerArea.cpp" line="67"/>
         <source>Mono</source>
         <translation type="unfinished">单声道</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/Areas/OtoPlayerArea.cpp" line="67"/>
+        <location filename="../../Frontend/Tabs/Voice/Areas/OtoPlayerArea.cpp" line="67"/>
         <source>Stereo</source>
         <translation type="unfinished">立体声</translation>
     </message>
@@ -1638,57 +1668,57 @@
 <context>
     <name>OtoTableTab</name>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="29"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/OtoTableTab.cpp" line="29"/>
         <source>File Name</source>
         <translation type="unfinished">文件名</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="29"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/OtoTableTab.cpp" line="29"/>
         <source>Alias</source>
         <translation type="unfinished">辅助记号</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="29"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/OtoTableTab.cpp" line="29"/>
         <source>Offset</source>
         <translation type="unfinished">偏移</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="29"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/OtoTableTab.cpp" line="29"/>
         <source>Consonant</source>
         <translation type="unfinished">辅音</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="30"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/OtoTableTab.cpp" line="30"/>
         <source>Blank</source>
         <translation type="unfinished">空白</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="30"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/OtoTableTab.cpp" line="30"/>
         <source>PreUtterance</source>
         <translation type="unfinished">先行声音</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="30"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/OtoTableTab.cpp" line="30"/>
         <source>Overlap</source>
         <translation type="unfinished">重叠</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp" line="30"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/OtoTableTab.cpp" line="30"/>
         <source>Frq</source>
         <translation type="unfinished">Frq</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="16"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="16"/>
         <source>Play</source>
         <translation type="unfinished">播放</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="19"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="19"/>
         <source>Move up</source>
         <translation type="unfinished">上移一级</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="20"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="20"/>
         <source>Move down</source>
         <translation type="unfinished">下移一级</translation>
     </message>
@@ -1701,27 +1731,27 @@
         <translation type="obsolete">移动到底层</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="21"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="21"/>
         <source>Move to top</source>
         <translation type="unfinished">移动到顶层</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="22"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="22"/>
         <source>Move to bottom</source>
         <translation type="unfinished">移动到底层</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="24"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="24"/>
         <source>Duplicate</source>
         <translation type="unfinished">建立副本</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="25"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="25"/>
         <source>Remove</source>
         <translation type="unfinished">删除</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="14"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp" line="14"/>
         <source>Show in Explorer(&amp;S)</source>
         <translation type="unfinished">在文件资源管理器中显示(&amp;S)</translation>
     </message>
@@ -1752,17 +1782,17 @@
 <context>
     <name>ParamsForm</name>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/ParamsForm.cpp" line="18"/>
+        <location filename="../../Frontend/Tabs/Tuning/Params/ParamsForm.cpp" line="18"/>
         <source>Intensity</source>
         <translation type="unfinished">音量</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/ParamsForm.cpp" line="19"/>
+        <location filename="../../Frontend/Tabs/Tuning/Params/ParamsForm.cpp" line="19"/>
         <source>Modulation</source>
         <translation type="unfinished">移调</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/ParamsForm.cpp" line="20"/>
+        <location filename="../../Frontend/Tabs/Tuning/Params/ParamsForm.cpp" line="20"/>
         <source>Velocity</source>
         <translation type="unfinished">辅音速度</translation>
     </message>
@@ -1770,17 +1800,17 @@
 <context>
     <name>PrefixMapTab</name>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/PrefixMapTab.cpp" line="51"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/PrefixMapTab.cpp" line="51"/>
         <source>Pitch</source>
         <translation type="unfinished">音阶</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/PrefixMapTab.cpp" line="51"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/PrefixMapTab.cpp" line="51"/>
         <source>Prefix</source>
         <translation type="unfinished">前缀</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceTabs/PrefixMapTab.cpp" line="51"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceTabs/PrefixMapTab.cpp" line="51"/>
         <source>Suffix</source>
         <translation type="unfinished">后缀</translation>
     </message>
@@ -1788,52 +1818,52 @@
 <context>
     <name>ProjectSettingsDialog</name>
     <message>
-        <location filename="../../Frontend/Dialogs/ProjectSettingsDialog.cpp" line="21"/>
+        <location filename="../../Frontend/Dialogs/Project/ProjectSettingsDialog.cpp" line="22"/>
         <source>Project Settings</source>
         <translation type="unfinished">工程设定</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/ProjectSettingsDialog.cpp" line="25"/>
+        <location filename="../../Frontend/Dialogs/Project/ProjectSettingsDialog.cpp" line="26"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/ProjectSettingsDialog.cpp" line="26"/>
+        <location filename="../../Frontend/Dialogs/Project/ProjectSettingsDialog.cpp" line="27"/>
         <source>OK</source>
         <translation type="unfinished">确定</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/ProjectSettingsDialog.cpp" line="27"/>
+        <location filename="../../Frontend/Dialogs/Project/ProjectSettingsDialog.cpp" line="28"/>
         <source>Clear</source>
         <translation type="unfinished">清除</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/ProjectSettingsDialog.cpp" line="28"/>
+        <location filename="../../Frontend/Dialogs/Project/ProjectSettingsDialog.cpp" line="29"/>
         <source>Browse</source>
         <translation type="unfinished">浏览</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/ProjectSettingsDialog.cpp" line="36"/>
+        <location filename="../../Frontend/Dialogs/Project/ProjectSettingsDialog.cpp" line="37"/>
         <source>Wavtool</source>
         <translation type="unfinished">合成器</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/ProjectSettingsDialog.cpp" line="37"/>
+        <location filename="../../Frontend/Dialogs/Project/ProjectSettingsDialog.cpp" line="38"/>
         <source>Output File Name</source>
         <translation type="unfinished">导出文件名</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/ProjectSettingsDialog.cpp" line="38"/>
+        <location filename="../../Frontend/Dialogs/Project/ProjectSettingsDialog.cpp" line="39"/>
         <source>Cache Directory</source>
         <translation type="unfinished">缓存目录</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/ProjectSettingsDialog.cpp" line="88"/>
+        <location filename="../../Frontend/Dialogs/Project/ProjectSettingsDialog.cpp" line="89"/>
         <source>Wavtool doesn&apos;t esist!</source>
         <translation type="unfinished">合成器不存在！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/ProjectSettingsDialog.cpp" line="112"/>
+        <location filename="../../Frontend/Dialogs/Project/ProjectSettingsDialog.cpp" line="113"/>
         <source>Set Wavtool</source>
         <translation type="unfinished">设置合成器</translation>
     </message>
@@ -1860,12 +1890,12 @@
 <context>
     <name>ScriptPluginDialog</name>
     <message>
-        <location filename="../../Frontend/Dialogs/ScriptPluginDialog.cpp" line="31"/>
+        <location filename="../../Frontend/Dialogs/Extern/ScriptPluginDialog.cpp" line="31"/>
         <source>Plug-in running...</source>
         <translation type="unfinished">插件运行中...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/ScriptPluginDialog.cpp" line="32"/>
+        <location filename="../../Frontend/Dialogs/Extern/ScriptPluginDialog.cpp" line="32"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
@@ -1881,17 +1911,17 @@
         <translation type="obsolete">设置这里的曲速</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Editor/Areas/SectionsArea.cpp" line="246"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Areas/SectionsArea.cpp" line="246"/>
         <source>Set Global Tempo...</source>
         <translation type="unfinished">设置全局曲速...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Editor/Areas/SectionsArea.cpp" line="246"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Areas/SectionsArea.cpp" line="246"/>
         <source>Set Tempo here...</source>
         <translation type="unfinished">设置这里的曲速...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Editor/Areas/SectionsArea.cpp" line="246"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Areas/SectionsArea.cpp" line="246"/>
         <source>Remove Tempo</source>
         <translation type="unfinished">删除曲速</translation>
     </message>
@@ -1899,17 +1929,17 @@
 <context>
     <name>SelectsDialog</name>
     <message>
-        <location filename="../../Frontend/Dialogs/SelectsDialog.cpp" line="24"/>
+        <location filename="../../Frontend/Dialogs/Template/SelectsDialog.cpp" line="24"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/SelectsDialog.cpp" line="25"/>
+        <location filename="../../Frontend/Dialogs/Template/SelectsDialog.cpp" line="25"/>
         <source>OK</source>
         <translation type="unfinished">确定</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/SelectsDialog.cpp" line="84"/>
+        <location filename="../../Frontend/Dialogs/Template/SelectsDialog.cpp" line="84"/>
         <source>Please select at least one!</source>
         <translation type="unfinished">请至少选择一个条目！</translation>
     </message>
@@ -1917,339 +1947,339 @@
 <context>
     <name>SettingTab</name>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="12"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="12"/>
         <source>(Undefined)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="32"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="32"/>
         <source>Settings</source>
         <translation type="unfinished">设置</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="41"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="41"/>
         <source>Edit •</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="43"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="43"/>
         <source>KeyBoard Modifier •</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="45"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="45"/>
         <source>Mouse Click Modifier •</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="47"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="47"/>
         <source>Render •</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="49"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="49"/>
         <source>Cache •</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="75"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="75"/>
         <source>Edit</source>
         <translation type="unfinished">编辑</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="81"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="81"/>
         <source>Clear other properties on Words Changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="86"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="86"/>
         <source>Notes batch move</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="94"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="94"/>
         <source>Keyboard Modifier</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="101"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="101"/>
         <source>None</source>
         <translation type="unfinished">无</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="115"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="115"/>
         <source>Horizontal Zoom </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="118"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="118"/>
         <source>Vertical Zoom </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="121"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="121"/>
         <source>Horizontal Move </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="124"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="124"/>
         <source>Vertical Move </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="126"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="126"/>
         <source>Wheel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="143"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="143"/>
         <source>Page Drag </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="146"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="146"/>
         <source>Region Select when drawing </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="149"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="149"/>
         <source>Add Point at note forward in Mode2 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="151"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="151"/>
         <source>Drag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="167"/>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="191"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="167"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="191"/>
         <source>Point horizontal attach </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="170"/>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="194"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="170"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="194"/>
         <source>Point vertical attach </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="173"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="173"/>
         <source>Point align to semitone </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="175"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="175"/>
         <source>Mode2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="197"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="197"/>
         <source>Point align to half volume </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="199"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="199"/>
         <source>Envelope</source>
         <translation type="unfinished">音量包络</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="215"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="215"/>
         <source>Open default menu </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="218"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="218"/>
         <source>Open plugin menu </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="221"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="221"/>
         <source>Open similar sample menu </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="224"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="224"/>
         <source>Open tool menu </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="227"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="227"/>
         <source>Render immediately </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="229"/>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="305"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="229"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="305"/>
         <source>Right Click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="247"/>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="271"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="247"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="271"/>
         <source>Move notes followed </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="250"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="250"/>
         <source>Cover single note </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="253"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="253"/>
         <source>Cover any notes </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="255"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="255"/>
         <source>Drag Backward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="274"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="274"/>
         <source>Stretch notes followed </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="277"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="277"/>
         <source>Add rest note </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="279"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="279"/>
         <source>Drag Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="294"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="294"/>
         <source>Mouse Click Modifier</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="301"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="301"/>
         <source>Left Click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="302"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="302"/>
         <source>Double Left Click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="303"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="303"/>
         <source>Middle Click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="304"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="304"/>
         <source>Double Middle Click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="306"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="306"/>
         <source>Double Right Click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="313"/>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="353"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="313"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="353"/>
         <source>Add point </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="315"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="315"/>
         <source>Mode2-Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="329"/>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="369"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="329"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="369"/>
         <source>Remove point </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="332"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="332"/>
         <source>Change point type </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="335"/>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="375"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="335"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="375"/>
         <source>Open point panel </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="337"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="337"/>
         <source>Mode2-Modify</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="355"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="355"/>
         <source>Envelope-Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="372"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="372"/>
         <source>Standardize the point </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="377"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="377"/>
         <source>Envelope-Modify</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="392"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="392"/>
         <source>Render</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="398"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="398"/>
         <source>Don&apos;t use Base64 encoding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="403"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="403"/>
         <source>Don&apos;t use Command Prompt (CMD)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="424"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="424"/>
         <source>Threads for rendering: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="437"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="437"/>
         <source>Cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="443"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="443"/>
         <source>No Cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="449"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="449"/>
         <source>No clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="450"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="450"/>
         <source>Clear on file close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="451"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="451"/>
         <source>Clear on window close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="452"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="452"/>
         <source>Clear prior cache when more than </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/SettingTab.cpp" line="478"/>
+        <location filename="../../Frontend/Tabs/Setting/SettingTab.cpp" line="478"/>
         <source>Clear</source>
         <translation type="unfinished">清除</translation>
     </message>
@@ -2296,7 +2326,7 @@
 <context>
     <name>SpriteAdjustDialog</name>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Editor/SpriteAdjustDialog.cpp" line="10"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/SpriteAdjustDialog.cpp" line="10"/>
         <source>Foreground visible</source>
         <translation type="unfinished">前景可见</translation>
     </message>
@@ -2305,27 +2335,27 @@
         <translation type="obsolete">前景不透明度</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Editor/SpriteAdjustDialog.cpp" line="11"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/SpriteAdjustDialog.cpp" line="11"/>
         <source>Foreground opacity (0~100)</source>
         <translation type="unfinished">前景不透明度（0~100）</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Editor/SpriteAdjustDialog.cpp" line="18"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/SpriteAdjustDialog.cpp" line="18"/>
         <source>Top left</source>
         <translation type="unfinished">左上</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Editor/SpriteAdjustDialog.cpp" line="19"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/SpriteAdjustDialog.cpp" line="19"/>
         <source>Top right</source>
         <translation type="unfinished">右上</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Editor/SpriteAdjustDialog.cpp" line="20"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/SpriteAdjustDialog.cpp" line="20"/>
         <source>Bottom left</source>
         <translation type="unfinished">左下</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Editor/SpriteAdjustDialog.cpp" line="21"/>
+        <location filename="../../Frontend/Tabs/Tuning/Editor/Modules/SpriteAdjustDialog.cpp" line="21"/>
         <source>Bottom right</source>
         <translation type="unfinished">右下</translation>
     </message>
@@ -2333,17 +2363,17 @@
 <context>
     <name>TerminalDialog</name>
     <message>
-        <location filename="../../Frontend/Dialogs/TerminalDialog.cpp" line="34"/>
+        <location filename="../../Frontend/Dialogs/Extern/TerminalDialog.cpp" line="34"/>
         <source>Rendering...</source>
         <translation type="unfinished">正在渲染...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/TerminalDialog.cpp" line="35"/>
+        <location filename="../../Frontend/Dialogs/Extern/TerminalDialog.cpp" line="35"/>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Dialogs/TerminalDialog.cpp" line="260"/>
+        <location filename="../../Frontend/Dialogs/Extern/TerminalDialog.cpp" line="260"/>
         <source>Fail to stop rendering.</source>
         <translation type="unfinished">停止渲染失败。</translation>
     </message>
@@ -2351,37 +2381,37 @@
 <context>
     <name>TrackHead</name>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="112"/>
+        <location filename="../../Frontend/Tabs/Tuning/Tracks/Elements/TrackHead.cpp" line="113"/>
         <source>Untitled Track</source>
         <translation type="unfinished">未命名音轨</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="115"/>
+        <location filename="../../Frontend/Tabs/Tuning/Tracks/Elements/TrackHead.cpp" line="116"/>
         <source>No Singer</source>
         <translation type="unfinished">没有音源</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="120"/>
+        <location filename="../../Frontend/Tabs/Tuning/Tracks/Elements/TrackHead.cpp" line="121"/>
         <source>Invalid voice directory.</source>
         <translation type="unfinished">非法的音源目录。</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="130"/>
+        <location filename="../../Frontend/Tabs/Tuning/Tracks/Elements/TrackHead.cpp" line="131"/>
         <source>No Resampler</source>
         <translation type="unfinished">没有重采样器</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="135"/>
+        <location filename="../../Frontend/Tabs/Tuning/Tracks/Elements/TrackHead.cpp" line="136"/>
         <source>Invalid resampler path.</source>
         <translation type="unfinished">非法的重采样器路径。</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="244"/>
+        <location filename="../../Frontend/Tabs/Tuning/Tracks/Elements/TrackHead.cpp" line="245"/>
         <source>Open in %1(&amp;S)</source>
         <translation type="unfinished">在%1中打开(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="263"/>
+        <location filename="../../Frontend/Tabs/Tuning/Tracks/Elements/TrackHead.cpp" line="264"/>
         <source>Show in %1(&amp;S)</source>
         <translation type="unfinished">在%1中显示(&amp;S)</translation>
     </message>
@@ -2398,7 +2428,7 @@
         <translation type="obsolete">在文件管理器中打开(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="248"/>
+        <location filename="../../Frontend/Tabs/Tuning/Tracks/Elements/TrackHead.cpp" line="249"/>
         <source>Null</source>
         <translation type="unfinished">无</translation>
     </message>
@@ -2415,7 +2445,7 @@
         <translation type="obsolete">在文件管理器中显示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="265"/>
+        <location filename="../../Frontend/Tabs/Tuning/Tracks/Elements/TrackHead.cpp" line="266"/>
         <source>Browse</source>
         <translation type="unfinished">浏览</translation>
     </message>
@@ -2448,12 +2478,12 @@
         <translation type="obsolete">在文件管理器中显示</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="294"/>
+        <location filename="../../Frontend/Tabs/Tuning/Tracks/Elements/TrackHead.cpp" line="295"/>
         <source>Open Voice Bank</source>
         <translation type="unfinished">打开音源文件夹</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Modules/Elements/TrackHead.cpp" line="302"/>
+        <location filename="../../Frontend/Tabs/Tuning/Tracks/Elements/TrackHead.cpp" line="303"/>
         <source>Set Resampler</source>
         <translation type="unfinished">设置重采样器</translation>
     </message>
@@ -2472,12 +2502,12 @@
         <translation type="obsolete">概览</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/TracksForm.cpp" line="16"/>
+        <location filename="../../Frontend/Tabs/Tuning/Tracks/TracksForm.cpp" line="16"/>
         <source>Overview</source>
         <translation type="unfinished">概览</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Forms/TracksForm.cpp" line="17"/>
+        <location filename="../../Frontend/Tabs/Tuning/Tracks/TracksForm.cpp" line="17"/>
         <source>Configuration</source>
         <translation type="unfinished">配置</translation>
     </message>
@@ -2843,42 +2873,42 @@
 <context>
     <name>TuningTab</name>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Core.cpp" line="17"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Core.cpp" line="16"/>
         <source>Unable to open file!</source>
         <translation type="unfinished">无法打开文件！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Core.cpp" line="20"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Core.cpp" line="19"/>
         <source>Invalid format!</source>
         <translation type="unfinished">意外的文件格式!</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Core.cpp" line="135"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Core.cpp" line="132"/>
         <source>Unable to write file!</source>
         <translation type="unfinished">无法写入文件！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="103"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Modify.cpp" line="103"/>
         <source>Remove Rests</source>
         <translation type="unfinished">删除休止符</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="103"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Modify.cpp" line="103"/>
         <source>Remove rests shorter than...</source>
         <translation type="unfinished">删除指定长度以下的休止符...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="138"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Modify.cpp" line="138"/>
         <source>Transpose</source>
         <translation type="unfinished">变调</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="138"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Modify.cpp" line="138"/>
         <source>Pitch Shift(semitones)</source>
         <translation type="unfinished">音阶移动（半音程）</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="173"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Modify.cpp" line="173"/>
         <source>Select lyric</source>
         <translation type="unfinished">选择歌词</translation>
     </message>
@@ -2887,32 +2917,32 @@
         <translation type="obsolete">选择歌词</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="58"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Modify.cpp" line="58"/>
         <source>Beats per minute (10~512)...</source>
         <translation type="unfinished">每分钟的节拍数（10~512)...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="62"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Modify.cpp" line="62"/>
         <source>Set Global Tempo</source>
         <translation type="unfinished">设置全局曲速</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Modify.cpp" line="65"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Modify.cpp" line="65"/>
         <source>Set Tempo</source>
         <translation type="unfinished">设置曲速</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Unchange.cpp" line="35"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Unchange.cpp" line="36"/>
         <source>No audio files have been generated recently.</source>
         <translation type="unfinished">最近没有生成音频文件。</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Unchange.cpp" line="39"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Unchange.cpp" line="40"/>
         <source>Export wave file</source>
         <translation type="unfinished">导出Wave文件</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Unchange.cpp" line="45"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Unchange.cpp" line="46"/>
         <source>Unable to copy file, please check permissions!</source>
         <translation type="unfinished">无法复制文件，请检查权限！</translation>
     </message>
@@ -2921,35 +2951,35 @@
         <translation type="obsolete">无法复制文件，请检查权限！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="42"/>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="163"/>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="183"/>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="317"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Render.cpp" line="42"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Render.cpp" line="163"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Render.cpp" line="183"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Render.cpp" line="317"/>
         <source>Unable to create batch file!</source>
         <translation type="unfinished">无法创建批处理文件！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="380"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Render.cpp" line="380"/>
         <source>Voice database is not available.</source>
         <translation type="unfinished">音源目录不可用。</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="385"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Render.cpp" line="385"/>
         <source>Wavtool doesn&apos;t exist.</source>
         <translation type="unfinished">合成器不存在。</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="388"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Render.cpp" line="388"/>
         <source>Wavtool is not executable.</source>
         <translation type="unfinished">合成器不是可执行文件。</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="393"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Render.cpp" line="393"/>
         <source>Resampler doesn&apos;t exist.</source>
         <translation type="unfinished">重采样器不存在。</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Render.cpp" line="396"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Render.cpp" line="396"/>
         <source>Resampler is not executable.</source>
         <translation type="unfinished">重采样器不是可执行文件。</translation>
     </message>
@@ -2962,7 +2992,7 @@
         <translation type="obsolete">重采样器不可用。</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/TuningTab_Play.cpp" line="123"/>
+        <location filename="../../Frontend/Tabs/Tuning/TuningTab_Play.cpp" line="123"/>
         <source>Wave file format error, please check the settings!</source>
         <translation type="unfinished">Wave文件格式错误，请检查设定！</translation>
     </message>
@@ -3072,38 +3102,38 @@
 <context>
     <name>VoiceBankTab</name>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Core.cpp" line="11"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceBankTab_Core.cpp" line="11"/>
         <source>Unable to open folder!</source>
         <translation type="unfinished">无法打开文件夹！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Core.cpp" line="30"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceBankTab_Core.cpp" line="32"/>
         <source>Unable to modify files!</source>
         <translation type="unfinished">无法修改文件！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Core.cpp" line="44"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceBankTab_Core.cpp" line="47"/>
         <source>Unable to restore voice database!</source>
         <translation type="unfinished">无法恢复音源！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Core.cpp" line="103"/>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Core.cpp" line="116"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceBankTab_Core.cpp" line="106"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceBankTab_Core.cpp" line="119"/>
         <source>Unable to copy the image to voice bank directory!</source>
         <translation type="unfinished">无法建立图片文件副本！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Extern.cpp" line="18"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceBankTab_Extern.cpp" line="18"/>
         <source>Don&apos;t save to current voice folder!</source>
         <translation type="unfinished">请勿保存在本音源文件夹内！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Extern.cpp" line="29"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceBankTab_Extern.cpp" line="29"/>
         <source>Unable to write file!</source>
         <translation type="unfinished">无法写入文件！</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/VoiceBankTabs/VoiceBankTab_Play.cpp" line="108"/>
+        <location filename="../../Frontend/Tabs/Voice/VoiceBankTab_Play.cpp" line="108"/>
         <source>Audio file format error, please check the file!</source>
         <translation type="unfinished">音频格式错误，请检查文件！</translation>
     </message>
@@ -3111,32 +3141,32 @@
 <context>
     <name>WelcomeTabContent</name>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="27"/>
+        <location filename="../../Frontend/Tabs/Welcome/WelcomeTabContent.cpp" line="27"/>
         <source>New</source>
         <translation type="unfinished">新建</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="29"/>
+        <location filename="../../Frontend/Tabs/Welcome/WelcomeTabContent.cpp" line="29"/>
         <source>Open</source>
         <translation type="unfinished">打开</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="37"/>
+        <location filename="../../Frontend/Tabs/Welcome/WelcomeTabContent.cpp" line="37"/>
         <source>Projects</source>
         <translation type="unfinished">工程文件</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="38"/>
+        <location filename="../../Frontend/Tabs/Welcome/WelcomeTabContent.cpp" line="38"/>
         <source>Folders</source>
         <translation type="unfinished">音源目录</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="39"/>
+        <location filename="../../Frontend/Tabs/Welcome/WelcomeTabContent.cpp" line="39"/>
         <source>Templates</source>
         <translation type="unfinished">模板</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/WelcomeTabs/WelcomeTabContent.cpp" line="58"/>
+        <location filename="../../Frontend/Tabs/Welcome/WelcomeTabContent.cpp" line="58"/>
         <source>No data.</source>
         <translation type="unfinished">没有记录。</translation>
     </message>

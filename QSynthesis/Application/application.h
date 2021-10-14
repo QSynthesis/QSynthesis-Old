@@ -66,6 +66,8 @@ public:
 public:
     static QString tempDir();
 
+    void exitOnPermissionDenied();
+
 protected:
     MiniSystem *m_system;
 

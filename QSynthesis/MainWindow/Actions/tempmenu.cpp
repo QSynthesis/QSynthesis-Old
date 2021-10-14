@@ -11,7 +11,7 @@ void MainWindow::handleOpenRecentFile() {
     if (isDirExist(filename)) {
         addVoiceBankTab(filename);
     } else {
-        addTuningTab(filename, false);
+        addTuningTab(filename);
     }
 }
 
@@ -21,7 +21,7 @@ void MainWindow::handleMoreRecentFile() {
     int index =
         tabs->useSelector(batchReplace(projects, QDir::toNativeSeparators), tr("Select file"), -1);
     if (index >= 0) {
-        addTuningTab(projects.at(index), false);
+        addTuningTab(projects.at(index));
     }
 }
 
@@ -31,7 +31,7 @@ void MainWindow::handleMoreRecentFolder() {
     int index =
         tabs->useSelector(batchReplace(folders, QDir::toNativeSeparators), tr("Select folder"), -1);
     if (index >= 0) {
-        addTuningTab(folders.at(index), false);
+        addTuningTab(folders.at(index));
     }
 }
 

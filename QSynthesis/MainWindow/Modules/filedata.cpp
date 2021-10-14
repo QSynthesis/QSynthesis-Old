@@ -20,6 +20,6 @@ void MainWindow::saveSettingIni() {
     if (!qSetting->save()) {
         QMessageBox::warning(qRoot, MainTitle,
                              tr("Unable to write %1!").arg(FILE_NAME_SETTING_INI));
-        exitOnNoIOPermission();
+        qApp->exitOnPermissionDenied();
     }
 }

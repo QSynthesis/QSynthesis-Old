@@ -106,3 +106,8 @@ ColorTheme *Application::theme() const {
 QString Application::tempDir() {
     return qMemory->tempDir();
 }
+
+void Application::exitOnPermissionDenied() {
+    QMessageBox::critical(nullptr, ErrorTitle, tr("No write file permission!"));
+    exit(1);
+}

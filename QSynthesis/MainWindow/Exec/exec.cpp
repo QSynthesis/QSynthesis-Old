@@ -1,10 +1,12 @@
 #include "QSTabs.h"
 #include "SettingIniFile.h"
+#include "Utils/FileParser.h"
 #include "application.h"
 #include "mainwindow.h"
 
 bool MainWindow::execOpen() {
-    QStringList paths = QFileDialog::getOpenFileNames(this, tr("Open File"), ".", openFilterString);
+    QStringList paths =
+        QFileDialog::getOpenFileNames(nullptr, tr("Open File"), ".", openFilterString);
     if (!paths.isEmpty()) {
         return addMultipleTabs(paths);
     } else {
@@ -13,7 +15,7 @@ bool MainWindow::execOpen() {
 }
 
 bool MainWindow::execOpenFolder() {
-    QString path = QFileDialog::getExistingDirectory(this, tr("Open Voice Bank"));
+    QString path = QFileDialog::getExistingDirectory(nullptr, tr("Open Voice Bank"));
     if (!path.isEmpty()) {
         // path = removeTailSlashes(path);
         return addVoiceBankTab(path);
@@ -44,7 +46,7 @@ bool MainWindow::execSave(CentralTab *tab) {
 bool MainWindow::execSaveAs(TuningTab *tab) {
     QString filename = tab->fullFileName();
     QString path =
-        QFileDialog::getSaveFileName(this, tr("Save As"), filename, saveFilterString, nullptr);
+        QFileDialog::getSaveFileName(nullptr, tr("Save As"), filename, saveFilterString, nullptr);
     if (path.isEmpty()) {
         return false;
     }
@@ -74,19 +76,14 @@ bool MainWindow::execSaveAs(TuningTab *tab) {
 }
 
 bool MainWindow::execImport() {
-    QString path = QFileDialog::getOpenFileName(this, tr("Import"), ".", importFilterString);
+    QString path = QFileDialog::getOpenFileName(nullptr, tr("Import"), ".", importFilterString);
     if (!path.isEmpty()) {
-        QString suffix = PathFindSuffix(path).toLower();
-        if (suffix == "mid") {
-            SectionNotes notes;
-            bool success = parseMidiFile(path, notes);
-            if (!success) {
-                return false;
-            }
+        FileParser parser(this);
+        SectionNotes notes;
+        if (parser.parseFile(path, notes)) {
             addEmptyTab(notes);
+            return true;
         }
-        return true;
-    } else {
-        return false;
     }
+    return false;
 }

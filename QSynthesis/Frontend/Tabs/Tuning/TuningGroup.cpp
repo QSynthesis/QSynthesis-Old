@@ -1,6 +1,6 @@
 #include "TuningGroup.h"
 
-TuningGroup::TuningGroup(TuningTab *parent) : QObject(parent), tab(parent) {
+TuningGroup::TuningGroup(TuningTab *parent) : LayerGroup(parent), tab(parent) {
     currentWidth = 60;
     currentHeight = 32;
     currentAdsorb = 1;

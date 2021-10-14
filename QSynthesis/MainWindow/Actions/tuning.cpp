@@ -1,4 +1,5 @@
 #include "Tabs/Tuning/TuningTab.h"
+#include "Utils/FileParser.h"
 #include "mainwindow.h"
 
 void MainWindow::handleAppendFile() {
@@ -10,21 +11,18 @@ void MainWindow::handleAppendFile() {
         return;
     }
 
-    QString path = QFileDialog::getOpenFileName(this, tr("Append"), ".", appendFilterString);
+    QString path = QFileDialog::getOpenFileName(nullptr, tr("Append"), ".", appendFilterString);
     if (!path.isEmpty()) {
-        QString suffix = PathFindSuffix(path).toLower();
-        if (suffix == "mid") {
-            SectionNotes notes;
-            bool success = parseMidiFile(path, notes);
-            if (success) {
-                tab1->appendFile(notes);
-            }
+        FileParser parser(this);
+        SectionNotes notes;
+        if (parser.parseFile(path, notes)) {
+            tab1->appendFile(notes);
         }
     }
 }
 
 void MainWindow::handleExportSelection() {
-    QString path = QFileDialog::getSaveFileName(this, tr("Export selection"), ".",
+    QString path = QFileDialog::getSaveFileName(nullptr, tr("Export selection"), ".",
                                                 exportSelectionFilterString);
     if (!path.isEmpty()) {
     } else {

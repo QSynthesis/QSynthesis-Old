@@ -1,11 +1,10 @@
 #ifndef VOICEBANKGROUP_H
 #define VOICEBANKGROUP_H
 
-#include <QObject>
+#include "Central/LayerGroup.h"
+#include "VoiceBankTab.h"
 
-#include "../VoiceBankTab.h"
-
-class VoiceBankGroup : public QObject {
+class VoiceBankGroup : public LayerGroup {
     Q_OBJECT
 public:
     explicit VoiceBankGroup(VoiceBankTab *parent = nullptr);

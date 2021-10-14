@@ -57,14 +57,10 @@ private:
 
     void initValues();
 
-    // Import
+    // Exec
 public:
-    // Parse MIDI file
-    bool parseMidiFile(const QString &filename, SectionNotes &oNotes);
-    // Parse Synthesizer V project
-    bool parseSynthVFile(const QString &filename, bool svp, SectionNotes &oNotes);
-    // Parse Vocaloid project
-    bool parseVocaloidFile(const QString &filename, bool vsqx, SectionNotes &oNotes);
+    void fromCommandLine(const QStringList &args); // Load from command line
+    void fromApplication();
 
     // Tabs
 public:
@@ -75,13 +71,12 @@ public:
     SettingTab *addSettingTab();   // Open setting tab
 
     TuningTab *addEmptyTab(const SectionNotes &oNotes = SectionNotes()); // Open empty ust project
-    bool addMultipleTabs(const QStringList &filenames,
-                         bool noCloseIfInvalid = true); // Open multiple projects or folders
+    TuningTab *addTuningTab(const QString &filename); // Open project
 
-    TuningTab *addTuningTab(const QString &filename,
-                            bool noCloseIfInvalid = true); // Open project
     VoiceBankTab *addVoiceBankTab(const QString &filename = "",
                                   bool notify = true); // Open voice bank
+
+    bool addMultipleTabs(const QStringList &filenames); // Open multiple projects or folders
 
     void removeTab(CentralTab *tab); // Close tab
     void removeTab(int index);
@@ -273,11 +268,7 @@ public:
     void reloadShortcuts();
     void reloadConfig();
 
-    // Exec
-public:
-    void fromCommandLine(const QStringList &args); // Load from command line
-    void fromApplication();
-
+    // File
 private:
     bool execOpen();
     bool execOpenFolder();
@@ -285,7 +276,7 @@ private:
     bool execSaveAs(TuningTab *tab);
     bool execImport();
 
-    // Refresh
+    // States
 private:
     // Methods called when tab changed
     void reloadTitle();
@@ -323,9 +314,6 @@ private:
     void reloadLanguages();
 
     void initMemory();
-
-public:
-    static void exitOnNoIOPermission();
 
 signals:
     void awake();

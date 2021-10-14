@@ -37,7 +37,7 @@ void TuningTab::exportRecentAudio() {
         return;
     }
 
-    QString path = QFileDialog::getSaveFileName(this, tr("Export wave file"),
+    QString path = QFileDialog::getSaveFileName(nullptr, tr("Export wave file"),
                                                 PathFindFileName(tempFileName), audioFilterString);
 
     if (!path.isEmpty()) {

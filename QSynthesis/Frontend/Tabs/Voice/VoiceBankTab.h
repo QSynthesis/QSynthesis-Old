@@ -13,15 +13,15 @@
 
 #include "../Central/CentralTab.h"
 #include "Actions/VoiceActionList.h"
+#include "Areas/OtoDataArea.h"
+#include "Areas/OtoInfoArea.h"
+#include "Areas/OtoPlayerArea.h"
+#include "Areas/OtoVisionArea.h"
 #include "MiniSystem/MiniSystemNotifier.h"
+#include "Operations/VoiceOperation.h"
 #include "QUtauUtils.h"
 #include "Utils/FileNameSet.h"
 #include "VoiceBank/QVoiceBank.h"
-#include "VoiceBankTabs/Areas/OtoDataArea.h"
-#include "VoiceBankTabs/Areas/OtoInfoArea.h"
-#include "VoiceBankTabs/Areas/OtoPlayerArea.h"
-#include "VoiceBankTabs/Areas/OtoVisionArea.h"
-#include "VoiceBankTabs/Operations/VoiceOperation.h"
 
 class QOtoReference;
 

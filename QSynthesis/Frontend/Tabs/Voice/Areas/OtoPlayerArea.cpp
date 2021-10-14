@@ -1,8 +1,8 @@
 #include "OtoPlayerArea.h"
-#include "../../VoiceBankTab.h"
 #include "../VoiceBankGroup.h"
+#include "../VoiceBankTab.h"
 
-OtoPlayerArea::OtoPlayerArea(VoiceBankTab *tab,QWidget *parent) : VoiceBankArea(tab, parent) {
+OtoPlayerArea::OtoPlayerArea(VoiceBankTab *tab, QWidget *parent) : VoiceBankArea(tab, parent) {
     init();
 }
 

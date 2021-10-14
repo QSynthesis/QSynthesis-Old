@@ -1,6 +1,7 @@
 #ifndef TUNNINGGROUP_H
 #define TUNNINGGROUP_H
 
+#include "Central/LayerGroup.h"
 #include "Controllers/DraggerHandler.h"
 #include "TuningTab.h"
 
@@ -26,7 +27,7 @@ class LiftersArea;
 class ParamsDialArea;
 
 // Save every element's pointer to a group in order to use them in each element
-class TuningGroup : public QObject {
+class TuningGroup : public LayerGroup {
     Q_OBJECT
 
 public:

@@ -1,5 +1,4 @@
 #include "QSActions.h"
-#include "SettingIniFile.h"
 #include "application.h"
 #include "mainwindow.h"
 

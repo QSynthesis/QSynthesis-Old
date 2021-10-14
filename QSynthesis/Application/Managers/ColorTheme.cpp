@@ -1,5 +1,6 @@
 #include "ColorTheme.h"
 #include "application.h"
+#include "mainwindow.h"
 
 ColorTheme::ColorTheme() {
 }
@@ -24,7 +25,7 @@ void ColorTheme::loadTheme(int index) {
 #endif
 
     if (qss.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qApp->setStyleSheet(qss.readAll());
+        qRoot->setStyleSheet(qss.readAll());
         qss.close();
     }
 }

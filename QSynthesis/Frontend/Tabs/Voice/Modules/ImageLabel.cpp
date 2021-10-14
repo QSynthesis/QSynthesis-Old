@@ -53,7 +53,7 @@ void ImageLabel::mouseReleaseEvent(QMouseEvent *event) {
 }
 
 void ImageLabel::handleReplace() {
-    QString path = QFileDialog::getOpenFileName(this, tr("Open File"), ".", imageFilterString);
+    QString path = QFileDialog::getOpenFileName(nullptr, tr("Open File"), ".", imageFilterString);
     if (path.isEmpty()) {
         return;
     }

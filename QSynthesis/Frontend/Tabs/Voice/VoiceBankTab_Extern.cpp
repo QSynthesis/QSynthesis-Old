@@ -1,4 +1,4 @@
-#include "../VoiceBankTab.h"
+#include "VoiceBankTab.h"
 #include "VoiceBank/QOtoReference.h"
 
 void VoiceBankTab::updateOtoReferences() {

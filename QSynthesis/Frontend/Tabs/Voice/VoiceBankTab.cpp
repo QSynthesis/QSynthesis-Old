@@ -2,8 +2,8 @@
 #include <QFile>
 
 #include "QUtauStrings.h"
+#include "VoiceBankGroup.h"
 #include "VoiceBankTab.h"
-#include "VoiceBankTabs/VoiceBankGroup.h"
 #include "application.h"
 
 VoiceBankTab::VoiceBankTab(CentralTabWidget *parent) : CentralTab(parent) {

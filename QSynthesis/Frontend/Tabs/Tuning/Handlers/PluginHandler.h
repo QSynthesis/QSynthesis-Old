@@ -18,6 +18,7 @@ public:
                            const QString &workingDir, QWidget *parent = nullptr);
     ~PluginHandler();
 
+public:
     int exec();
 
 private:

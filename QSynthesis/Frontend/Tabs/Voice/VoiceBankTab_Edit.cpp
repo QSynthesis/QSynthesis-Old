@@ -1,4 +1,4 @@
-#include "../VoiceBankTab.h"
+#include "VoiceBankTab.h"
 #include "Operations/NonOtoOperation.h"
 #include "Operations/OtoOperation.h"
 

@@ -90,4 +90,6 @@ public:                                                                         
     Q_CHARSET_INSTANCE_DECLARE(T)                                                                  \
     Q_CHARSET_STATIC_DECLARE(T)
 
+#define Q_W(T) qobject_cast<QWidget *>(T)
+
 #endif // MACROS_H

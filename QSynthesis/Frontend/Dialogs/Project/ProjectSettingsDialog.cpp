@@ -110,7 +110,7 @@ void ProjectSettingsDialog::onClearBtnClicked() {
 }
 
 void ProjectSettingsDialog::onBrowseBtnClicked() {
-    QString path = QFileDialog::getOpenFileName(this, tr("Set Wavtool"), ".", toolsFilterString);
+    QString path = QFileDialog::getOpenFileName(nullptr, tr("Set Wavtool"), ".", toolsFilterString);
     if (!path.isEmpty()) {
         ccWavtool->Combo()->setCurrentText(
             QDir::toNativeSeparators(PathFindFileName(path, AppPath)));

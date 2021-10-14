@@ -292,7 +292,7 @@ void TrackHead::onLabelBtnClicked() {
 
 void TrackHead::browse() {
     if (m_mode == 1) {
-        QString path = QFileDialog::getExistingDirectory(this, tr("Open Voice Bank"));
+        QString path = QFileDialog::getExistingDirectory(nullptr, tr("Open Voice Bank"));
         if (!path.isEmpty()) {
             // path = removeTailSlashes(path);
             m_parent->ptrs()->tab->switchToOtoReferenceMap(path);
@@ -300,7 +300,7 @@ void TrackHead::browse() {
         }
     } else {
         QString path =
-            QFileDialog::getOpenFileName(this, tr("Set Resampler"), ".", toolsFilterString);
+            QFileDialog::getOpenFileName(nullptr, tr("Set Resampler"), ".", toolsFilterString);
         if (!path.isEmpty()) {
             setResampler(path);
         }

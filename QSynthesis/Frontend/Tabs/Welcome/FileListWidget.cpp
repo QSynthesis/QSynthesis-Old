@@ -141,7 +141,7 @@ bool FileListWidget::eventFilter(QObject *obj, QEvent *event) {
 }
 
 void FileListWidget::handleOpen(const QString &filename) {
-    qRoot->addMultipleTabs({filename}, false);
+    qRoot->addMultipleTabs({filename});
 }
 
 void FileListWidget::handleRemove(const QString &filename) {

@@ -93,7 +93,7 @@ void TuningTab::initWorkingDir() {
     QDir dir;
     if (dir.exists(m_workingDir)) {
     } else if (!dir.mkpath(m_workingDir)) {
-        qRoot->exitOnNoIOPermission();
+        qApp->exitOnPermissionDenied();
     }
 
     savedRenderArgs.clear();

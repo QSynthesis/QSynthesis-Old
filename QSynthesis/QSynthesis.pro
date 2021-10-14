@@ -120,6 +120,7 @@ SOURCES += \
     Frontend/Singletons/ComboSelector.cpp \
     Frontend/Tabs/Central/CentralTab.cpp \
     Frontend/Tabs/Central/CentralTabContent.cpp \
+    Frontend/Tabs/Central/LayerGroup.cpp \
     Frontend/Tabs/Keyboard/Contents/KeyModifyDialog.cpp \
     Frontend/Tabs/Keyboard/Contents/KeyTableTab.cpp \
     Frontend/Tabs/Keyboard/Contents/KeyTableTabs/KeyTableTab_ContextMenu.cpp \
@@ -283,54 +284,58 @@ SOURCES += \
     Frontend/Tabs/Tuning/TuningTab_Render.cpp \
     Frontend/Tabs/Tuning/TuningTab_Unchange.cpp \
     Frontend/Tabs/Voice/VoiceBankTab.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoDataArea.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoDataAreas/OtoDataArea_Change.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoDataAreas/OtoDataArea_Operation.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoInfoArea.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoInfoAreas/OtoInfoArea_Avatar.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoInfoAreas/OtoInfoArea_Change.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoInfoAreas/OtoInfoArea_Operation.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoPlayerArea.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoVisionArea.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoVisionAreas/OtoVisionArea_Cursor.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoVisionAreas/OtoVisionArea_Handle.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoVisionAreas/OtoVisionArea_Operation.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoVisionAreas/OtoVisionArea_Scroll.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/VoiceBankArea.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/WaveformArea.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Graphics/GraphicsOtoHandle.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Modules/ImageLabel.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Modules/PlayerLabel.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Operations/NonOtoOperation.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Operations/NonOtoOperations/InfoTextOperation.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Operations/NonOtoOperations/PrefixOperation.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Operations/OtoOperation.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Operations/OtoOperations/OtoChangeOperation.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Operations/OtoOperations/OtoMoveOperation.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Operations/OtoOperations/OtoVariateOperation.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Operations/VoiceOperation.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Scrolls/ImageScrollArea.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/Scrolls/WaveformScrollArea.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceBankGroup.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceBankTab_Core.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceBankTab_Edit.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceBankTab_Extern.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceBankTab_Init.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceBankTab_Oto.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceBankTab_Play.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceBankTab_Unchange.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceTabs/ImageTab.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceTabs/OtoTableTab.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_Properties.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_Row.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceTabs/OtoTableTabs/OtoTableTab_Set.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceTabs/PrefixMapTab.cpp \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceTabs/TextBoxTab.cpp \
+    Frontend/Tabs/Voice/Areas/OtoDataArea.cpp \
+    Frontend/Tabs/Voice/Areas/OtoDataAreas/OtoDataArea_Change.cpp \
+    Frontend/Tabs/Voice/Areas/OtoDataAreas/OtoDataArea_Operation.cpp \
+    Frontend/Tabs/Voice/Areas/OtoInfoArea.cpp \
+    Frontend/Tabs/Voice/Areas/OtoInfoAreas/OtoInfoArea_Avatar.cpp \
+    Frontend/Tabs/Voice/Areas/OtoInfoAreas/OtoInfoArea_Change.cpp \
+    Frontend/Tabs/Voice/Areas/OtoInfoAreas/OtoInfoArea_Operation.cpp \
+    Frontend/Tabs/Voice/Areas/OtoPlayerArea.cpp \
+    Frontend/Tabs/Voice/Areas/OtoVisionArea.cpp \
+    Frontend/Tabs/Voice/Areas/OtoVisionAreas/OtoVisionArea_Cursor.cpp \
+    Frontend/Tabs/Voice/Areas/OtoVisionAreas/OtoVisionArea_Handle.cpp \
+    Frontend/Tabs/Voice/Areas/OtoVisionAreas/OtoVisionArea_Operation.cpp \
+    Frontend/Tabs/Voice/Areas/OtoVisionAreas/OtoVisionArea_Scroll.cpp \
+    Frontend/Tabs/Voice/Areas/VoiceBankArea.cpp \
+    Frontend/Tabs/Voice/Areas/WaveformArea.cpp \
+    Frontend/Tabs/Voice/Graphics/GraphicsOtoHandle.cpp \
+    Frontend/Tabs/Voice/Modules/ImageLabel.cpp \
+    Frontend/Tabs/Voice/Modules/PlayerLabel.cpp \
+    Frontend/Tabs/Voice/Operations/NonOtoOperation.cpp \
+    Frontend/Tabs/Voice/Operations/NonOtoOperations/InfoTextOperation.cpp \
+    Frontend/Tabs/Voice/Operations/NonOtoOperations/PrefixOperation.cpp \
+    Frontend/Tabs/Voice/Operations/OtoOperation.cpp \
+    Frontend/Tabs/Voice/Operations/OtoOperations/OtoChangeOperation.cpp \
+    Frontend/Tabs/Voice/Operations/OtoOperations/OtoMoveOperation.cpp \
+    Frontend/Tabs/Voice/Operations/OtoOperations/OtoVariateOperation.cpp \
+    Frontend/Tabs/Voice/Operations/VoiceOperation.cpp \
+    Frontend/Tabs/Voice/Scrolls/ImageScrollArea.cpp \
+    Frontend/Tabs/Voice/Scrolls/WaveformScrollArea.cpp \
+    Frontend/Tabs/Voice/VoiceBankGroup.cpp \
+    Frontend/Tabs/Voice/VoiceBankTab_Core.cpp \
+    Frontend/Tabs/Voice/VoiceBankTab_Edit.cpp \
+    Frontend/Tabs/Voice/VoiceBankTab_Extern.cpp \
+    Frontend/Tabs/Voice/VoiceBankTab_Init.cpp \
+    Frontend/Tabs/Voice/VoiceBankTab_Oto.cpp \
+    Frontend/Tabs/Voice/VoiceBankTab_Play.cpp \
+    Frontend/Tabs/Voice/VoiceBankTab_Unchange.cpp \
+    Frontend/Tabs/Voice/VoiceTabs/ImageTab.cpp \
+    Frontend/Tabs/Voice/VoiceTabs/OtoTableTab.cpp \
+    Frontend/Tabs/Voice/VoiceTabs/OtoTableTabs/OtoTableTab_ContextMenu.cpp \
+    Frontend/Tabs/Voice/VoiceTabs/OtoTableTabs/OtoTableTab_Properties.cpp \
+    Frontend/Tabs/Voice/VoiceTabs/OtoTableTabs/OtoTableTab_Row.cpp \
+    Frontend/Tabs/Voice/VoiceTabs/OtoTableTabs/OtoTableTab_Set.cpp \
+    Frontend/Tabs/Voice/VoiceTabs/PrefixMapTab.cpp \
+    Frontend/Tabs/Voice/VoiceTabs/TextBoxTab.cpp \
     Frontend/Tabs/Welcome/FileListWidget.cpp \
     Frontend/Tabs/Welcome/FileListWidgetItem.cpp \
     Frontend/Tabs/Welcome/WelcomeTab.cpp \
     Frontend/Tabs/Welcome/WelcomeTabContent.cpp \
+    Frontend/Utils/FileParser.cpp \
+    Frontend/Utils/FilePasers/FileParser_SynthV.cpp \
+    Frontend/Utils/FilePasers/FileParser_Vocaloid.cpp \
+    Frontend/Utils/FilePasers/FilePasers_Midi.cpp \
     Global/Macros.cpp \
     Global/Methods.cpp \
     Global/QUtils.cpp \
@@ -348,30 +353,23 @@ SOURCES += \
     MainWindow/Actions/editor.cpp \
     MainWindow/Actions/preview.cpp \
     MainWindow/Actions/shortcuts.cpp \
-    MainWindow/Actions/special.cpp \
+    MainWindow/Actions/tempmenu.cpp \
     MainWindow/Actions/tuning.cpp \
     MainWindow/Actions/voice.cpp \
     MainWindow/Events/drag.cpp \
     MainWindow/Events/window.cpp \
     MainWindow/Exec/exec.cpp \
-    MainWindow/Exec/launch.cpp \
-    MainWindow/Exec/welcome.cpp \
-    MainWindow/Import/midi.cpp \
-    MainWindow/Import/synthv.cpp \
-    MainWindow/Import/vocaloid.cpp \
-    MainWindow/Menu/init.cpp \
+    MainWindow/Menu/initmenu.cpp \
     MainWindow/Menu/reload.cpp \
-    MainWindow/Menu/trigger.cpp \
     MainWindow/Modules/filedata.cpp \
     MainWindow/Modules/managers.cpp \
     MainWindow/Modules/memory.cpp \
-    MainWindow/Refresh/recent.cpp \
-    MainWindow/Refresh/status.cpp \
-    MainWindow/Static/abnormal.cpp \
-    MainWindow/Static/data.cpp \
+    MainWindow/States/recent.cpp \
+    MainWindow/States/status.cpp \
     MainWindow/Tabs/change.cpp \
-    MainWindow/Tabs/core.cpp \
+    MainWindow/Tabs/find.cpp \
     MainWindow/Tabs/handlers.cpp \
+    MainWindow/Tabs/inittabs.cpp \
     MainWindow/Tabs/untitle.cpp \
     MainWindow/mainwindow.cpp
 
@@ -488,6 +486,7 @@ HEADERS += \
     Frontend/Singletons/ComboSelector.h \
     Frontend/Tabs/Central/CentralTab.h \
     Frontend/Tabs/Central/CentralTabContent.h \
+    Frontend/Tabs/Central/LayerGroup.h \
     Frontend/Tabs/Keyboard/Contents/KeyModifyDialog.h \
     Frontend/Tabs/Keyboard/Contents/KeyTableTab.h \
     Frontend/Tabs/Keyboard/KeyboardTab.h \
@@ -558,34 +557,35 @@ HEADERS += \
     Frontend/Tabs/Tuning/TuningGroup.h \
     Frontend/Tabs/Tuning/TuningTab.h \
     Frontend/Tabs/Voice/VoiceBankTab.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoDataArea.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoInfoArea.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoPlayerArea.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/OtoVisionArea.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/VoiceBankArea.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Areas/WaveformArea.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Graphics/GraphicsOtoHandle.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Modules/ImageLabel.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Modules/PlayerLabel.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Operations/NonOtoOperation.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Operations/NonOtoOperations/InfoTextOperation.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Operations/NonOtoOperations/PrefixOperation.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Operations/OtoOperation.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Operations/OtoOperations/OtoChangeOperation.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Operations/OtoOperations/OtoMoveOperation.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Operations/OtoOperations/OtoVariateOperation.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Operations/VoiceOperation.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Scrolls/ImageScrollArea.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/Scrolls/WaveformScrollArea.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceBankGroup.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceTabs/ImageTab.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceTabs/OtoTableTab.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceTabs/PrefixMapTab.h \
-    Frontend/Tabs/Voice/VoiceBankTabs/VoiceTabs/TextBoxTab.h \
+    Frontend/Tabs/Voice/Areas/OtoDataArea.h \
+    Frontend/Tabs/Voice/Areas/OtoInfoArea.h \
+    Frontend/Tabs/Voice/Areas/OtoPlayerArea.h \
+    Frontend/Tabs/Voice/Areas/OtoVisionArea.h \
+    Frontend/Tabs/Voice/Areas/VoiceBankArea.h \
+    Frontend/Tabs/Voice/Areas/WaveformArea.h \
+    Frontend/Tabs/Voice/Graphics/GraphicsOtoHandle.h \
+    Frontend/Tabs/Voice/Modules/ImageLabel.h \
+    Frontend/Tabs/Voice/Modules/PlayerLabel.h \
+    Frontend/Tabs/Voice/Operations/NonOtoOperation.h \
+    Frontend/Tabs/Voice/Operations/NonOtoOperations/InfoTextOperation.h \
+    Frontend/Tabs/Voice/Operations/NonOtoOperations/PrefixOperation.h \
+    Frontend/Tabs/Voice/Operations/OtoOperation.h \
+    Frontend/Tabs/Voice/Operations/OtoOperations/OtoChangeOperation.h \
+    Frontend/Tabs/Voice/Operations/OtoOperations/OtoMoveOperation.h \
+    Frontend/Tabs/Voice/Operations/OtoOperations/OtoVariateOperation.h \
+    Frontend/Tabs/Voice/Operations/VoiceOperation.h \
+    Frontend/Tabs/Voice/Scrolls/ImageScrollArea.h \
+    Frontend/Tabs/Voice/Scrolls/WaveformScrollArea.h \
+    Frontend/Tabs/Voice/VoiceBankGroup.h \
+    Frontend/Tabs/Voice/VoiceTabs/ImageTab.h \
+    Frontend/Tabs/Voice/VoiceTabs/OtoTableTab.h \
+    Frontend/Tabs/Voice/VoiceTabs/PrefixMapTab.h \
+    Frontend/Tabs/Voice/VoiceTabs/TextBoxTab.h \
     Frontend/Tabs/Welcome/FileListWidget.h \
     Frontend/Tabs/Welcome/FileListWidgetItem.h \
     Frontend/Tabs/Welcome/WelcomeTab.h \
     Frontend/Tabs/Welcome/WelcomeTabContent.h \
+    Frontend/Utils/FileParser.h \
     Global/Macros.h \
     Global/Methods.h \
     Global/QUtils.h \

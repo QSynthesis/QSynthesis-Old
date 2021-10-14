@@ -66,14 +66,14 @@ int PluginHandler::exec() {
 
     // open dialog
     if (plugin.useShell()) {
-        ScriptPluginDialog *dlg = new ScriptPluginDialog(tmpPath, exePath, pluginWorkingDir,
-                                                         qobject_cast<QWidget *>(parent()));
+        ScriptPluginDialog *dlg =
+            new ScriptPluginDialog(tmpPath, exePath, pluginWorkingDir, Q_W(parent()));
         stateCode = dlg->exec();
 
         dlg->deleteLater();
     } else {
-        ExecutePluginDialog *dlg = new ExecutePluginDialog(tmpPath, exePath, pluginWorkingDir,
-                                                           qobject_cast<QWidget *>(parent()));
+        ExecutePluginDialog *dlg =
+            new ExecutePluginDialog(tmpPath, exePath, pluginWorkingDir, Q_W(parent()));
         stateCode = dlg->exec();
 
         dlg->deleteLater();

@@ -2,5 +2,5 @@
 
 void MainWindow::reloadTitle() {
     QString title = tabs->currentTitle() + " - " + WindowTitle;
-    this->setWindowTitle(title);
+    setWindowTitle(title);
 }

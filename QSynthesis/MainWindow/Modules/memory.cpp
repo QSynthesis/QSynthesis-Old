@@ -3,6 +3,6 @@
 
 void MainWindow::initMemory() {
     if (!qMemory->load()) {
-        exitOnNoIOPermission();
+        qApp->exitOnPermissionDenied();
     }
 }

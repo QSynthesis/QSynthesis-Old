@@ -2,6 +2,8 @@
 #include "mainwindow.h"
 
 void MainWindow::initMenuBar() {
+    QMenuBar *bar = menuBar();
+
     fileMenu = new QMenu(this);
     editMenu = new QMenu(this);
     modifyMenu = new QMenu(this);
@@ -16,7 +18,6 @@ void MainWindow::initMenuBar() {
     toolMenu->setFocusPolicy(Qt::StrongFocus);
     helpMenu->setFocusPolicy(Qt::StrongFocus);
 
-    QMenuBar *bar = menuBar();
     bar->addMenu(fileMenu);
     bar->addMenu(editMenu);
     bar->addMenu(modifyMenu);
@@ -26,6 +27,8 @@ void MainWindow::initMenuBar() {
 }
 
 void MainWindow::initActionLists() {
+    QMenuBar *bar = menuBar();
+
     // Action Lists
     welcomeActions = new WelcomeActionList(this);
     tuningActions = new TuningActionList(this);
@@ -243,8 +246,8 @@ void MainWindow::initActionLists() {
         tracksMenu->setVisible(false);
         editorMenu->setVisible(false);
 
-        menuBar()->addMenu(tracksMenu);
-        menuBar()->addMenu(editorMenu);
+        bar->addMenu(tracksMenu);
+        bar->addMenu(editorMenu);
     }
 
     // Set Voice Actions

@@ -1,6 +1,6 @@
 #include "VoiceBankGroup.h"
 
-VoiceBankGroup::VoiceBankGroup(VoiceBankTab *parent) : QObject(parent), tab(parent) {
+VoiceBankGroup::VoiceBankGroup(VoiceBankTab *parent) : LayerGroup(parent), tab(parent) {
     tab = parent;
 }
 

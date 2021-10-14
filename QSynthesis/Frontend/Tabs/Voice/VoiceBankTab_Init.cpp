@@ -1,4 +1,4 @@
-#include "../VoiceBankTab.h"
+#include "VoiceBankTab.h"
 #include "VoiceBankGroup.h"
 
 void VoiceBankTab::initTab() {
