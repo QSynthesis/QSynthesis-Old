@@ -1,12 +1,12 @@
 #include "CentralTabWidget.h"
-#include "Templates/IconButton.h"
-#include "Templates/VectorButton.h"
+#include "Controls/Buttons/IconButton.h"
+#include "Controls/Buttons/VectorButton.h"
 
 #include <QPushButton>
 
 Q_SINGLETON_DECLARE(CentralTabWidget)
 
-//CentralTabWidget::CentralTabWidget(QWidget *parent) : TabWidget(parent) {
+// CentralTabWidget::CentralTabWidget(QWidget *parent) : TabWidget(parent) {
 //    createCasePrivate();
 
 //    selector = new ComboSelector(this);
@@ -14,10 +14,10 @@ Q_SINGLETON_DECLARE(CentralTabWidget)
 //    selector->hide();
 //}
 
-//CentralTabWidget::~CentralTabWidget() {
+// CentralTabWidget::~CentralTabWidget() {
 //}
 
-//void CentralTabWidget::addTabCore(int index) {
+// void CentralTabWidget::addTabCore(int index) {
 //    VectorButton *btn = new VectorButton(true, QSizeF(3, 3));
 //    btn->setProperty("type", "tab-close");
 //    btn->setProperty("highlight", currentIndex() == index);
@@ -37,11 +37,11 @@ Q_SINGLETON_DECLARE(CentralTabWidget)
 //    btn->setFixedSize(18, 18);
 //}
 
-//void CentralTabWidget::removeTabCore(int index) {
+// void CentralTabWidget::removeTabCore(int index) {
 //    closeBtns.remove(tabAt(index));
 //}
 
-//void CentralTabWidget::tabIndexChangeCore(int index, bool changed) {
+// void CentralTabWidget::tabIndexChangeCore(int index, bool changed) {
 //    CentralTab *cur = currentTab();
 //    CentralTab *prev = previousTab();
 
@@ -63,7 +63,7 @@ Q_SINGLETON_DECLARE(CentralTabWidget)
 //    }
 //}
 
-//void CentralTabWidget::adjustSelector() {
+// void CentralTabWidget::adjustSelector() {
 //    if (selector->isVisible()) {
 //        selector->adjustSize();
 //        selector->resize(width() / 2, height() / 2);
@@ -71,7 +71,7 @@ Q_SINGLETON_DECLARE(CentralTabWidget)
 //    }
 //}
 
-//void CentralTabWidget::resizeEvent(QResizeEvent *event) {
+// void CentralTabWidget::resizeEvent(QResizeEvent *event) {
 //    if (selector->isVisible()) {
 //        adjustSelector();
 //    }

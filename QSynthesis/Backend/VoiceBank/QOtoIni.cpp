@@ -1,5 +1,5 @@
 #include "QOtoIni.h"
-#include "Files/NormalFile.h"
+#include "NormalFile.h"
 #include "QUtauStrings.h"
 #include "QUtauUtils.h"
 #include "QUtils.h"

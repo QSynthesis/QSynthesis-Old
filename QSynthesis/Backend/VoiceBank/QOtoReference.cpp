@@ -2,7 +2,7 @@
 #include "QPrefixMap.h"
 #include "QVoiceBank.h"
 #include "Strings/UtaFilenames.h"
-#include "Tabs/VoiceBankTab.h"
+#include "Voice/VoiceBankTab.h"
 
 QMap<QString, QPair<int, QOtoReference *>> QOtoReference::otoRefMap;
 

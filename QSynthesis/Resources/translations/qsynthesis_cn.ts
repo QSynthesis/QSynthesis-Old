@@ -1881,17 +1881,17 @@
         <translation type="obsolete">设置这里的曲速</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="246"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Editor/Areas/SectionsArea.cpp" line="246"/>
         <source>Set Global Tempo...</source>
         <translation type="unfinished">设置全局曲速...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="246"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Editor/Areas/SectionsArea.cpp" line="246"/>
         <source>Set Tempo here...</source>
         <translation type="unfinished">设置这里的曲速...</translation>
     </message>
     <message>
-        <location filename="../../Frontend/Tabs/TuningTabs/Areas/Editor/SectionsArea.cpp" line="246"/>
+        <location filename="../../Frontend/Tabs/TuningTabs/Editor/Areas/SectionsArea.cpp" line="246"/>
         <source>Remove Tempo</source>
         <translation type="unfinished">删除曲速</translation>
     </message>

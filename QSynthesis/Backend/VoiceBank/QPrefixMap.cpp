@@ -1,5 +1,5 @@
 ﻿#include "QPrefixMap.h"
-#include "Files/NormalFile.h"
+#include "NormalFile.h"
 #include "QUtauConstants.h"
 #include "QUtauStrings.h"
 #include "Utils/CharsetHandler.h"

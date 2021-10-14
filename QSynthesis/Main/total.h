@@ -9,11 +9,7 @@
 
 void initLocale();
 
-void initSingletons();
-
 void initFonts();
-
-void removeSingletons();
 
 void created();
 

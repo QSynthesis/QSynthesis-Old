@@ -15,21 +15,21 @@ int main(int argc, char *argv[]) {
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("GBK"));
 #endif
 
-//    ClientManager c;
-//    if (c.tryCallServer()) {
-//        return 1;
-//    }
-//    if (!c.startAsServer()) {
-//        return -1;
-//    }
+    //    ClientManager c;
+    //    if (c.tryCallServer()) {
+    //        return 1;
+    //    }
+    //    if (!c.startAsServer()) {
+    //        return -1;
+    //    }
 
     created(); // Create
 
-    DataManager::translate(":/translations/qsynthesis_cn.qm");
+    qData->translate(":/translations/qsynthesis_cn.qm");
 #if defined(Q_OS_MAC)
-    DataManager::translate(AppPath + "/translations/qt_zh_CN.qm");
+    qData->translate(AppPath + "/translations/qt_zh_CN.qm");
 #else
-    DataManager::translate(QCoreApplication::applicationDirPath() + "/translations/qt_zh_CN.qm");
+    qData->translate(QCoreApplication::applicationDirPath() + "/translations/qt_zh_CN.qm");
 #endif
 
     MainWindow w;

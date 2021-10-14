@@ -6,7 +6,7 @@
 #include <QObject>
 #include <QTextStream>
 
-#include "Files/BaseDirInfo.h"
+#include "BaseDirInfo.h"
 #include "Macros.h"
 #include "QUtauUtils.h"
 

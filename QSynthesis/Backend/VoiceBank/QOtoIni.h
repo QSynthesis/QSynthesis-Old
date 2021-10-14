@@ -1,7 +1,7 @@
 #ifndef QOTOINI_H
 #define QOTOINI_H
 
-#include "Files/BaseDirInfo.h"
+#include "BaseDirInfo.h"
 #include "Macros.h"
 #include "QOtoSampleList.h"
 

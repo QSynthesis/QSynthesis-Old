@@ -1,5 +1,5 @@
 #include "QReadmeText.h"
-#include "Files/NormalFile.h"
+#include "NormalFile.h"
 #include "QUtauStrings.h"
 #include "Utils/CharsetHandler.h"
 

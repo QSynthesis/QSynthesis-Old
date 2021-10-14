@@ -1,10 +1,10 @@
 ﻿#ifndef QSYNTHTABS_H
 #define QSYNTHTABS_H
 
-#include "Tabs/KeyboardTab.h"
-#include "Tabs/SettingTab.h"
-#include "Tabs/TuningTab.h"
-#include "Tabs/VoiceBankTab.h"
-#include "Tabs/WelcomeTab.h"
+#include "Tabs/Keyboard/KeyboardTab.h"
+#include "Tabs/Setting/SettingTab.h"
+#include "Tabs/Tuning/TuningTab.h"
+#include "Tabs/Voice/VoiceBankTab.h"
+#include "Tabs/Welcome/WelcomeTab.h"
 
 #endif // QSYNTHTABS_H

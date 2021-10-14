@@ -1,16 +1,16 @@
 #include "total.h"
-#include "Document/ConfigFile.h"
-#include "Document/PluginInfo.h"
-#include "Document/SequenceTextFile.h"
-#include "Document/SettingIniFile.h"
-#include "Document/ShortcutsFile.h"
-#include "Document/VoiceInfo.h"
+#include "ConfigFile.h"
 #include "Managers/MemoryManager.h"
 #include "Managers/PluginManager.h"
 #include "Managers/VoiceManager.h"
+#include "PluginInfo.h"
+#include "SequenceTextFile.h"
+#include "SettingIniFile.h"
+#include "ShortcutsFile.h"
 #include "VoiceBank/QOtoIni.h"
 #include "VoiceBank/QPrefixMap.h"
 #include "VoiceBank/QReadmeText.h"
+#include "VoiceInfo.h"
 
 void initLocale() {
     QTextCodec *loc;
@@ -31,21 +31,6 @@ void initLocale() {
     QReadmeText::setCodeForDefault(gbk);      // readme.txt
 }
 
-void initSingletons() {
-    MiniSystem::createCase();
-
-    ShortcutsFile::createDefault();
-
-    SettingIniFile::createCase();
-    ConfigFile::createCase();
-    ShortcutsFile::createCase();
-    DataManager::createCase();
-
-    PluginManager::createCase();
-    VoiceManager::createCase();
-    MemoryManager::createCase();
-}
-
 void initFonts() {
     QString fonts = fontsProfile();
 #ifdef Q_OS_MAC
@@ -59,21 +44,6 @@ void initFonts() {
 #endif
 }
 
-void removeSingletons() {
-    PluginManager::destroyCase();
-    VoiceManager::destroyCase();
-    MemoryManager::destroyCase();
-
-    SettingIniFile::destroyCase();
-    ConfigFile::destroyCase();
-    ShortcutsFile::destroyCase();
-    DataManager::destroyCase();
-
-    ShortcutsFile::removeDefault();
-
-    MiniSystem::destroyCase();
-}
-
 void created() {
     MainTitle = "QSynthesis For UTAU";
     WindowTitle = MainTitle + QString(" v%1").arg(Version);
@@ -82,9 +52,7 @@ void created() {
 
     initFonts();
     initLocale();
-    initSingletons();
 }
 
 void destroyed() {
-    removeSingletons();
 }

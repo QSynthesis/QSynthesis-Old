@@ -1,11 +1,11 @@
 #ifndef QVOICEBANK_H
 #define QVOICEBANK_H
 
-#include "Document/VoiceInfo.h"
 #include "QOtoIni.h"
 #include "QOtoSampleList.h"
 #include "QPrefixMap.h"
 #include "QReadmeText.h"
+#include "VoiceInfo.h"
 
 class QVoiceBank : public QObject, public VoiceInfo {
     Q_OBJECT

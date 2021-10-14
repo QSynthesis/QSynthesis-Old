@@ -12,8 +12,8 @@
 #include <QStringList>
 #include <QWidget>
 
-#include "../Controls/FixedLineEdit.h"
-#include "Customs/TransparentContainer.h"
+#include "Widgets/TransparentContainer.h"
+#include "Controls/Inputs/FixedLineEdit.h"
 #include "Macros.h"
 
 #define qSelector ComboSelector::instance()

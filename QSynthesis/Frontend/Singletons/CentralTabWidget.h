@@ -1,9 +1,9 @@
 #ifndef CENTRALTABWIDGET_H
 #define CENTRALTABWIDGET_H
 
+#include "Central/CentralTab.h"
 #include "ComboSelector.h"
-#include "TabWidget.h"
-#include "Tabs/CentralTab.h"
+#include "Containers/TabWidget.h"
 
 class VectorButton;
 class IconButton;

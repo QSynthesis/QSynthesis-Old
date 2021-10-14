@@ -1,7 +1,7 @@
 #ifndef QREADMETEXT_H
 #define QREADMETEXT_H
 
-#include "Files/BaseDirInfo.h"
+#include "BaseDirInfo.h"
 #include "Macros.h"
 
 class QReadmeText : public BaseDirInfo {
