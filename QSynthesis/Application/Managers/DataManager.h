@@ -13,6 +13,8 @@ public:
     ~DataManager();
 
 public:
+    bool load();
+
     void reloadStrings();
 
     // Keys

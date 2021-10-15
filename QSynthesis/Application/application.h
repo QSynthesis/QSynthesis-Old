@@ -44,6 +44,8 @@ private:
     void initApp();
     void quitApp();
 
+    void setUpCurrentDir();
+
 protected:
     bool notify(QObject *obj, QEvent *event) override;
 

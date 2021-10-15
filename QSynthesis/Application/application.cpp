@@ -15,6 +15,8 @@ Application::~Application() {
 }
 
 void Application::initApp() {
+    setUpCurrentDir();
+
     m_system = new MiniSystem();
 
     m_defShortcuts = new ShortcutsFile(Qs::Default);
@@ -44,6 +46,18 @@ void Application::quitApp() {
     m_voice->deleteLater();
     m_memory->deleteLater();
     delete m_theme;
+}
+
+void Application::setUpCurrentDir() {
+#if defined(Q_OS_MAC)
+    QDir bin(QCoreApplication::applicationDirPath());
+    bin.cdUp(); /* Fix this on Mac because of the .app folder, */
+    bin.cdUp(); /* which means that the actual executable is   */
+    bin.cdUp(); /* three levels deep. Grrr.                    */
+    QDir::setCurrent(bin.absolutePath());
+#elif defined(Q_OS_WINDOWS)
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("GBK"));
+#endif
 }
 
 bool Application::notify(QObject *obj, QEvent *event) {

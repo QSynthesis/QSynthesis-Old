@@ -24,13 +24,14 @@ void MainWindow::initModules() {
         QMessageBox::critical(this, ErrorTitle, tr("Cannot load themes."));
         exit(4);
     }
-    ColorTheme::loadTheme(qSetting->themeIndex);
+    qTheme->loadTheme(qSetting->themeIndex);
 
     // Languages
     if (!isDirExist(languagesProfile())) {
         QMessageBox::critical(this, ErrorTitle, tr("Cannot load translations."));
         exit(5);
     }
+    qData->load();
 }
 
 void MainWindow::freeModules() {

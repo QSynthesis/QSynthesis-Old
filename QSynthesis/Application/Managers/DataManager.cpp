@@ -7,6 +7,16 @@ DataManager::DataManager(QObject *parent) : QObject(parent) {
 DataManager::~DataManager() {
 }
 
+bool DataManager::load() {
+    translate(":/translations/qsynthesis_cn.qm");
+#if defined(Q_OS_MAC)
+    translate(AppPath + "/translations/qt_zh_CN.qm");
+#else
+    translate(QCoreApplication::applicationDirPath() + "/translations/qt_zh_CN.qm");
+#endif
+    return true;
+}
+
 void DataManager::reloadStrings() {
     ErrorTitle = tr("Error");
     UntitledFileName = tr("Untitled");
