@@ -10,7 +10,8 @@ public:
     explicit ConcatenateWork(QObject *parent = nullptr);
     ~ConcatenateWork();
 
-    void start() override;
+protected:
+    void startCore() override;
 
 public:
     QString workingDir() const;

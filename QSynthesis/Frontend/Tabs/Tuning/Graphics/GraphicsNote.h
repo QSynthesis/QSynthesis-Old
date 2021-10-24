@@ -258,6 +258,7 @@ public:
     void reverseVibratoEditor();
     void openProperty();
     void configueLyric();
+    void insertLyrics();
 
     void openTempoEdit();
     void removeTempo();

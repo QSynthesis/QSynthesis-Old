@@ -157,14 +157,15 @@ bool CopyFile(QString fileName, QString newName) {
     }
 }
 
-void RemoveFilesWithPrefix(QString strDir, QString prefix) {
+int RemoveFilesWithPrefix(QString strDir, QString prefix) {
     if (!isDirExist(strDir)) {
-        return;
+        return 0;
     }
 
     QDir dir;
     QFileInfoList fileList;
     QFileInfo curFile;
+    int cnt = 0;
 
     dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot);
     dir.setPath(strDir);
@@ -174,9 +175,41 @@ void RemoveFilesWithPrefix(QString strDir, QString prefix) {
         curFile = fileList[i];
         if (prefix.isEmpty() || curFile.fileName().startsWith(prefix)) {
             QFile fileTemp(curFile.filePath());
-            fileTemp.remove();
+            if (fileTemp.remove()) {
+                cnt++;
+            }
         }
     }
+    return cnt;
+}
+
+int RemoveFilesWithPrefixNumber(QString strDir, int prefix) {
+    if (!isDirExist(strDir)) {
+        return 0;
+    }
+
+    QDir dir;
+    QFileInfoList fileList;
+    QFileInfo curFile;
+    int cnt = 0;
+
+    dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot);
+    dir.setPath(strDir);
+    fileList = dir.entryInfoList();
+
+    for (int i = fileList.size() - 1; i >= 0; i--) {
+        curFile = fileList[i];
+        QString num = QString::number(prefix);
+        QString filename = curFile.fileName();
+        if (filename.startsWith(num) &&
+            (filename.size() == num.size() || !filename.at(num.size()).isNumber())) {
+            QFile fileTemp(curFile.filePath());
+            if (fileTemp.remove()) {
+                cnt++;
+            }
+        }
+    }
+    return cnt;
 }
 
 QDateTime GetFileLastModifyTime(QString filename) {

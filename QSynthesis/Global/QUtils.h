@@ -59,7 +59,9 @@ bool RemoveFile(QString fileName);
 
 bool CopyFile(QString fileName, QString newName);
 
-void RemoveFilesWithPrefix(QString strDir, QString prefix);
+int RemoveFilesWithPrefix(QString strDir, QString prefix);
+
+int RemoveFilesWithPrefixNumber(QString strDir, int prefix);
 
 QDateTime GetFileLastModifyTime(QString filename);
 

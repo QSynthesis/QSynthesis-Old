@@ -185,3 +185,12 @@ QList<RenderArgs> NotesArea::prepareRender() {
 QList<RenderArgs> NotesArea::allRenderArgs() const {
     return getRenderArgsCore(QPoint(-1, -1));
 }
+
+RenderArgs NotesArea::renderArgsAt(int index) const {
+    auto a = getRenderArgsCore(QPoint(index, index));
+    return a.front();
+}
+
+QList<RenderArgs> NotesArea::renderArgsWithin(int x, int y) const {
+    return getRenderArgsCore(QPoint(x, y));
+}

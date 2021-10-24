@@ -1,18 +1,18 @@
 #include "BackstageDialog.h"
-#include "BackstageDialogs/ConcatenateWork.h"
-#include "BackstageDialogs/ResampleWork.h"
+#include "Process/ConcatenateWork.h"
+#include "Process/ResampleWork.h"
 #include "QUtils.h"
 
 #include <QMessageBox>
 #include <QThread>
 #include <cmath>
 
-BackstageDialog::BackstageDialog(QString dir,QWidget *parent)
+BackstageDialog::BackstageDialog(QString dir, QWidget *parent)
     : BaseDialog(parent), m_workingDir(dir), m_threadCount(1) {
     init();
 }
 
-BackstageDialog::BackstageDialog(QString dir, int threads,QWidget *parent)
+BackstageDialog::BackstageDialog(QString dir, int threads, QWidget *parent)
     : BaseDialog(parent), m_workingDir(dir), m_threadCount(threads) {
     init();
 }

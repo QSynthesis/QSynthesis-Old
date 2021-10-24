@@ -23,5 +23,5 @@ void EditorForm::handleMenuBtnClicked() {
     m_ptrs->tab->tabActions->playHeadDisplay->setChecked(!m_ptrs->notesArea->playHeadOnCenter());
     m_ptrs->tab->tabActions->playHeadCenter->setChecked(m_ptrs->notesArea->playHeadOnCenter());
 
-    m_ptrs->tab->tabActions->editorMenu->exec(QCursor::pos());
+    m_ptrs->tab->tabActions->editorMenu->exec(btnMenu->mapToGlobal(btnMenu->rect().center()));
 }

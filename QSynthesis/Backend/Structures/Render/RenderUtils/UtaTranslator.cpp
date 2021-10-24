@@ -87,20 +87,20 @@ QStringList UtaTranslator::convertEnvelopeFromVector(const QVector<QControlPoint
         return listEnv;
     }
 
-    listEnv << QString::number(tpoints[0].mX);
-    listEnv << QString::number(tpoints[1].mX);
-    listEnv << QString::number(tpoints[tpoints.size() - 2].mX);
-    listEnv << QString::number(tpoints[0].mY);
-    listEnv << QString::number(tpoints[1].mY);
-    listEnv << QString::number(tpoints[tpoints.size() - 2].mY);
-    listEnv << QString::number(tpoints[tpoints.size() - 1].mY);
+    listEnv << QString::number(tpoints.at(0).mX);
+    listEnv << QString::number(tpoints.at(1).mX);
+    listEnv << QString::number(tpoints.at(tpoints.size() - 2).mX);
+    listEnv << QString::number(tpoints.at(0).mY);
+    listEnv << QString::number(tpoints.at(1).mY);
+    listEnv << QString::number(tpoints.at(tpoints.size() - 2).mY);
+    listEnv << QString::number(tpoints.at(tpoints.size() - 1).mY);
     listEnv << strOverlap;
     if (tpoints.size() == 5) {
-        listEnv << QString::number(tpoints[tpoints.size() - 1].mX);
-        listEnv << QString::number(tpoints[2].mX);
-        listEnv << QString::number(tpoints[2].mY);
-    } else if (tpoints[tpoints.size() - 1].mX != 0) {
-        listEnv << QString::number(tpoints[tpoints.size() - 1].mX);
+        listEnv << QString::number(tpoints.at(tpoints.size() - 1).mX);
+        listEnv << QString::number(tpoints.at(2).mX);
+        listEnv << QString::number(tpoints.at(2).mY);
+    } else if (tpoints.at(tpoints.size() - 1).mX != 0) {
+        listEnv << QString::number(tpoints.at(tpoints.size() - 1).mX);
     }
     return listEnv;
 }
@@ -109,13 +109,14 @@ QString UtaTranslator::fixFlags(const QString &s) {
     QString s2 = "";
 
     for (QString::size_type i = 0; i < s.size(); ++i) {
-        if (s[i] == '\"') {
+        QChar ch = s.at(i);
+        if (ch == '\"') {
             continue;
         }
-        if (s[i] == 'e' || s[i] == 'E') {
+        if (ch == 'e' || ch == 'E') {
             s2 += '/';
         }
-        s2 += s[i];
+        s2 += ch;
     }
 
     return s2;

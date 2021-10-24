@@ -3,5 +3,5 @@
 #include "../TracksInterface.h"
 
 void TracksInterface::handleMenuBtnClicked() {
-    m_ptrs->tab->tabActions->tracksMenu->exec(QCursor::pos());
+    m_ptrs->tab->tabActions->tracksMenu->exec(btnMenu->mapToGlobal(btnMenu->rect().center()));
 }

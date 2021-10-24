@@ -2,7 +2,7 @@
 #include "Macros.h"
 #include "QUtauStrings.h"
 
-QString Version = "0.1.84";
+QString Version = "0.1.86";
 QString TempDirName = "QSyntehsis_Temporary";
 
 QString AppPath;

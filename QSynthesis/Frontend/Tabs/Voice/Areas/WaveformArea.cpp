@@ -329,13 +329,13 @@ void WaveformArea::updateRegionBack() {
 }
 
 void WaveformArea::drawSingleChannel(QPainter &painter, int W, int H) {
-    float A = pow(2.0, 8.0 * m_wavefile.bytePerSample() - 1);
+    float A = pow(2.0, 8.0 * m_wavefile.bytesPerSample() - 1);
 
     double x = 0, y = double(H) / 2;
     double H2 = H / 2 - 10;
 
     QRect rect(painter.clipRegion().boundingRect());
-    const QVector<short> &data = m_wavefile.data();
+    auto &data = m_wavefile.channel1();
     int count = data.size();
     double delta = 0.5;
 
@@ -361,15 +361,15 @@ void WaveformArea::drawSingleChannel(QPainter &painter, int W, int H) {
 }
 
 void WaveformArea::drawDoubleChannel(QPainter &painter, int W, int H) {
-    float A = pow(2.0, 8.0 * m_wavefile.bytePerSample() - 1);
+    float A = pow(2.0, 8.0 * m_wavefile.bytesPerSample() - 1);
 
     double x = 0, y1 = double(H) / 4, y2 = double(H) * 3 / 4;
     double H2 = H / 4 - 10;
 
     QRect rect(painter.clipRegion().boundingRect());
 
-    const QVector<short> &data = m_wavefile.data();
-    const QVector<short> &data2 = m_wavefile.data2();
+    auto &data = m_wavefile.channel1();
+    auto &data2 = m_wavefile.channel2();
 
     int count = data.size();
     double delta = 0.5;

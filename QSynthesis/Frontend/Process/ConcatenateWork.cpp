@@ -8,7 +8,7 @@ ConcatenateWork::ConcatenateWork(QObject *parent) : BaseWork(parent) {
 ConcatenateWork::~ConcatenateWork() {
 }
 
-void ConcatenateWork::start() {
+void ConcatenateWork::startCore() {
     m_process->setProgram(m_wavtool);
     m_process->setWorkingDirectory(m_workingDir);
     m_process->setArguments(m_args.fullArguments());

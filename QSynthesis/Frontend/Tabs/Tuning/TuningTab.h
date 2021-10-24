@@ -1,6 +1,7 @@
 ﻿#ifndef TUNINGTAB_H
 #define TUNINGTAB_H
 
+#include <QAudioOutput>
 #include <QClipboard>
 #include <QJsonDocument>
 #include <QMediaPlayer>
@@ -16,6 +17,7 @@
 #include "Controls/Others/TemporaryMenu.h"
 #include "MiniSystem/MiniSystemNotifier.h"
 #include "PluginInfo.h"
+#include "Process/RealtimeRenderer.h"
 #include "Render/RenderArgs.h"
 #include "SequenceTextFile.h"
 #include "VoiceBank/QOtoReference.h"
@@ -125,7 +127,6 @@ private:
     void initTab(); // Common initialization for building function
 
     void initComponents();
-    void initPlayer();
     void initValues();
     void initWorkingDir();
 
@@ -230,23 +231,17 @@ protected:
 
     // Render
 private:
-    QMap<int, RenderArgs> savedRenderArgs;
-    QList<RenderArgs> currentRenderArgs;
-
     QString m_workingDir;
 
 private:
     bool renderCore();
-
-    void renderBefore();
     bool renderSelection();
+
+    void fixRenderArgs(RenderArgs &args);
 
     // Play
 private:
-    QMediaPlayer *m_player;
-
-    bool m_playing;
-    bool m_playable;
+    double m_startTime;
 
 public:
     // Preview
@@ -254,27 +249,53 @@ public:
     void replay() override;
     void stop() override;
 
-    void jump(qint64 position, bool play = true);
-    void pause();
-    void resume();
-
     qint64 duration() const;
     qint64 position() const;
 
     bool isPlaying() const;
-    void onPlaying(qint64 n);
-
-    void setMedia(const QMediaContent &media);
 
 private:
-    void setPlaying(bool playing);
-    void setPlayable(bool playable);
-
     void forcePausePlaying();
 
+public:
+    // Realtime
+    void updateCache(int tick);
+
+    bool isRendered(int index) const;
+    bool isNotRendered(int index) const;
+
+    void removeCacheFrom(int index);
+    void removeCacheAt(int index);
+    void removeCacheWithin(int x, int y);
+    void clearCache();
+
 private:
-    void handleStateChanged(QMediaPlayer::State newState);
-    void handleStatusChanged(QMediaPlayer::MediaStatus newStatus);
+    void initAudio();
+    void quitAudio();
+
+    void updateCacheCore(int index, int length = -1);
+    void updateBufferCore(int toIndex);
+
+    void handleWorkFinished(int seq, const QString &filename);
+
+private:
+    QSet<int> renderingWorks;
+    QMap<int, QString> renderedWorks;
+
+    RealtimeRenderer *renderer;
+    QTimer *audioTimer;
+
+    QAudioOutput *m_audio;
+    QIODevice *m_audioBuf;
+
+    QByteArray m_audioData;
+    int m_startBuffer;
+    int m_startIndex, m_processedIndex;
+
+    void initRenderer();
+
+    void handleAudioTimeout();
+    void handleAudioStateChanged(QAudio::State state);
 
     // Oto
 public:

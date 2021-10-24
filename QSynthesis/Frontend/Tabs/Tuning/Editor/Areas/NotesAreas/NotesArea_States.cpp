@@ -129,3 +129,8 @@ void NotesArea::setSpritePosition(Qt::Corner position) {
     updateSprite();
     qSetting->spritePosition = position;
 }
+
+void NotesArea::setRenderRange(int x, int y) {
+    m_renderRange.setX(x);
+    m_renderRange.setY(y);
+}

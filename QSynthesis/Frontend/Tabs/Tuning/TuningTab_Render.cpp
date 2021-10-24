@@ -71,27 +71,14 @@ bool TuningTab::renderSelection() {
     int i;
     int count = args.size();
 
-    currentRenderArgs.clear();
-
     for (i = 0; i < count; ++i) {
-        ResamplerArgs &res = args[i].resamplerArgs;
-        WavtoolArgs &wav = args[i].wavtoolArgs;
+        fixRenderArgs(args[i]);
 
-        QString aFlags = res.flags();
+        ResamplerArgs res = args.at(i).resamplerArgs;
+        WavtoolArgs wav = args.at(i).wavtoolArgs;
+
         QGenonSettings aGenon = res.genonSettings();
         QCorrectGenon aCorrect = res.correctGenon();
-
-        aFlags += globalFlags;
-        aFlags = UtaTranslator::fixFlags(aFlags);
-
-        res.setFlags(aFlags);          // Add Global Flags
-        wav.setOutFile(tempAudioName); // Set Temp Wav
-
-        res.setOutFile(cacheDirPath + Slash + res.outFile());
-        wav.setInFile(cacheDirPath + Slash + wav.inFile());
-
-        args[i].resamplerPath = resamplerPath; // Set Resampler Path
-        args[i].wavtoolPath = wavtoolPath;
 
         if (wav.isRest()) {
             fs << "@\"%tool%\" \"%output%\" \"%oto%\\R.wav\" 0";
@@ -132,17 +119,6 @@ bool TuningTab::renderSelection() {
             fs << Qt::endl;
         }
         fs << Qt::endl;
-
-        // Remove Obsolete Cache
-        auto it = savedRenderArgs.find(res.sequence());
-        if (it == savedRenderArgs.end()) {
-            savedRenderArgs.insert(res.sequence(), args.at(i));
-        } else if (it.value() != args.at(i)) {
-            savedRenderArgs[res.sequence()] = args.at(i);
-            RemoveFilesWithPrefix(cacheDirPath, QString::number(res.sequence()));
-        }
-
-        currentRenderArgs.append(args.at(i));
     }
 
     fs << Qt::endl;
@@ -226,24 +202,13 @@ bool TuningTab::renderSelection() {
     currentRenderArgs.clear();
 
     for (i = 0; i < count; ++i) {
-        ResamplerArgs &res = args[i].resamplerArgs;
-        WavtoolArgs &wav = args[i].wavtoolArgs;
+        fixRenderArgs(args[i]);
 
-        QString aFlags = res.flags();
+        ResamplerArgs res = args.at(i).resamplerArgs;
+        WavtoolArgs wav = args.at(i).wavtoolArgs;
+
         QGenonSettings aGenon = res.genonSettings();
         QCorrectGenon aCorrect = res.correctGenon();
-
-        aFlags += globalFlags;
-        aFlags = UtaTranslator::fixFlags(aFlags);
-
-        res.setFlags(aFlags);          // Add Global Flags
-        wav.setOutFile(tempAudioName); // Set Temp Wav
-
-        res.setOutFile(cacheDirPath + Slash + res.outFile());
-        wav.setInFile(cacheDirPath + Slash + wav.inFile());
-
-        args[i].resamplerPath = resamplerPath; // Set Resampler Path
-        args[i].wavtoolPath = wavtoolPath;
 
         if (wav.isRest()) {
             fs << "\"${tool}\" \"${output}\" \"${oto}/R.wav\" 0";
@@ -284,17 +249,6 @@ bool TuningTab::renderSelection() {
             fs << Qt::endl;
         }
         fs << Qt::endl;
-
-        // Remove Obsolete Cache
-        auto it = savedRenderArgs.find(res.sequence());
-        if (it == savedRenderArgs.end()) {
-            savedRenderArgs.insert(res.sequence(), args.at(i));
-        } else if (it.value() != args.at(i)) {
-            savedRenderArgs[res.sequence()] = args.at(i);
-            RemoveFilesWithPrefix(cacheDirPath, QString::number(res.sequence()));
-        }
-
-        currentRenderArgs.append(args.at(i));
     }
 
     fs << Qt::endl;
@@ -345,34 +299,25 @@ bool TuningTab::renderSelection() {
     return 1;
 }
 
-void TuningTab::renderBefore() {
-    QList<RenderArgs> args = m_ptrs->notesArea->allRenderArgs();
-    QString wavtool = projectInfo->wavtool();
-    QString resampler = m_ptrs->tracksContent->defaultResampler();
-    QString globalFlags = m_ptrs->tracksContent->defaultFlags();
-
+void TuningTab::fixRenderArgs(RenderArgs &args) {
     QString cacheDirPath = defaultCacheDir();
     QString tempAudioName = FILE_NAME_TEMP_AUDIO;
 
-    for (int i = 0; i < args.size(); ++i) {
-        ResamplerArgs &res = args[i].resamplerArgs;
-        WavtoolArgs &wav = args[i].wavtoolArgs;
+    ResamplerArgs &res = args.resamplerArgs;
+    WavtoolArgs &wav = args.wavtoolArgs;
 
-        args[i].wavtoolPath = wavtool;
-        args[i].resamplerPath = resampler;
+    args.wavtoolPath = projectInfo->wavtool();
+    args.resamplerPath = m_ptrs->tracksContent->defaultResampler();
 
-        QString aFlags = res.flags();
-        aFlags += globalFlags;
-        aFlags = UtaTranslator::fixFlags(aFlags);
+    QString aFlags = res.flags();
+    aFlags += m_ptrs->tracksContent->defaultFlags();
+    aFlags = UtaTranslator::fixFlags(aFlags);
 
-        res.setFlags(aFlags);          // Add Global Flags
-        wav.setOutFile(tempAudioName); // Set Temp Wav
+    res.setFlags(aFlags);          // Add Global Flags
+    wav.setOutFile(tempAudioName); // Set Temp Wav
 
-        res.setOutFile(cacheDirPath + Slash + res.outFile());
-        wav.setInFile(cacheDirPath + Slash + wav.inFile());
-
-        savedRenderArgs.insert(res.sequence(), args.at(i));
-    }
+    res.setOutFile(cacheDirPath + Slash + res.outFile());
+    wav.setInFile(cacheDirPath + Slash + wav.inFile());
 }
 
 bool TuningTab::renderCore() {
@@ -407,8 +352,8 @@ bool TuningTab::renderCore() {
              << "Generate Batch File Success";
 
     // Close File
-    setMedia(QMediaContent());
-    setPlaying(false);
+    // setMedia(QMediaContent());
+    // setPlaying(false);
 
     // Open Dialog And Wait
     TerminalDialog *dlg = new TerminalDialog(workingDir(), this);

@@ -30,6 +30,8 @@ void GraphicsBaseView::init() {
     m_verticalAnimation->setPropertyName("value");
     m_horizontalAnimation->setEasingCurve(QEasingCurve::OutCubic);
     m_verticalAnimation->setDuration(125);
+
+    setAcceptDrops(false);
 }
 
 QRectF GraphicsBaseView::GraphicsBaseView::viewportRect() const {

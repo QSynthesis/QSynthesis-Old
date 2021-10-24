@@ -151,7 +151,7 @@ void GraphicsNote::afterRelease() {
         // Release the mouse
         if (m_drawing) {
             // Born
-            qDebug() << "Release mouse from Note";
+            // qDebug() << "Release mouse from Note";
             this->ungrabMouse();
             setDrawing(false);
             m_editor->afterDraw(this);

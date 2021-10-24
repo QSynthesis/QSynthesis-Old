@@ -57,6 +57,7 @@ SOURCES += \
     Backend/Utils/NormalFile.cpp \
     Backend/Utils/QSettingFile.cpp \
     Backend/Utils/QSettingFiles/QSettingSection.cpp \
+    Backend/Utils/QWavetool.cpp \
     Backend/VoiceBank/QOtoIni.cpp \
     Backend/VoiceBank/QOtoReference.cpp \
     Backend/VoiceBank/QPrefixMap.cpp \
@@ -103,9 +104,6 @@ SOURCES += \
     Frontend/Controls/Inputs/FixedTextEdit.cpp \
     Frontend/Controls/Others/TemporaryMenu.cpp \
     Frontend/Dialogs/Extern/BackstageDialog.cpp \
-    Frontend/Dialogs/Extern/BackstageDialogs/BaseWork.cpp \
-    Frontend/Dialogs/Extern/BackstageDialogs/ConcatenateWork.cpp \
-    Frontend/Dialogs/Extern/BackstageDialogs/ResampleWork.cpp \
     Frontend/Dialogs/Extern/ExecutePluginDialog.cpp \
     Frontend/Dialogs/Extern/ScriptPluginDialog.cpp \
     Frontend/Dialogs/Extern/TerminalDialog.cpp \
@@ -114,6 +112,10 @@ SOURCES += \
     Frontend/Dialogs/Project/ProjectSettingsDialog.cpp \
     Frontend/Dialogs/Template/InputDialog.cpp \
     Frontend/Dialogs/Template/SelectsDialog.cpp \
+    Frontend/Process/BaseWork.cpp \
+    Frontend/Process/ConcatenateWork.cpp \
+    Frontend/Process/RealtimeRenderer.cpp \
+    Frontend/Process/ResampleWork.cpp \
     Frontend/Singletons/CentralTabWidget.cpp \
     Frontend/Singletons/CentralTabWidgets/CentralTabWidget_Base.cpp \
     Frontend/Singletons/CentralTabWidgets/CentralTabWidget_Features.cpp \
@@ -166,6 +168,7 @@ SOURCES += \
     Frontend/Tabs/Tuning/Editor/Areas/NotesAreas/NotesArea_Adjust.cpp \
     Frontend/Tabs/Tuning/Editor/Areas/NotesAreas/NotesArea_Assist.cpp \
     Frontend/Tabs/Tuning/Editor/Areas/NotesAreas/NotesArea_Associate.cpp \
+    Frontend/Tabs/Tuning/Editor/Areas/NotesAreas/NotesArea_Bar.cpp \
     Frontend/Tabs/Tuning/Editor/Areas/NotesAreas/NotesArea_Const.cpp \
     Frontend/Tabs/Tuning/Editor/Areas/NotesAreas/NotesArea_Core.cpp \
     Frontend/Tabs/Tuning/Editor/Areas/NotesAreas/NotesArea_Drag.cpp \
@@ -197,6 +200,7 @@ SOURCES += \
     Frontend/Tabs/Tuning/Editor/Modules/FindReplaceDialog.cpp \
     Frontend/Tabs/Tuning/Editor/Modules/PlayButtonGroup.cpp \
     Frontend/Tabs/Tuning/Editor/Modules/SpriteAdjustDialog.cpp \
+    Frontend/Tabs/Tuning/Graphics/GraphicsBar.cpp \
     Frontend/Tabs/Tuning/Graphics/GraphicsLifter.cpp \
     Frontend/Tabs/Tuning/Graphics/GraphicsLifters/GraphicsLifter_Assist.cpp \
     Frontend/Tabs/Tuning/Graphics/GraphicsLifters/GraphicsLifter_Events.cpp \
@@ -281,6 +285,7 @@ SOURCES += \
     Frontend/Tabs/Tuning/TuningTab_Plugin.cpp \
     Frontend/Tabs/Tuning/TuningTab_ProjectSettings.cpp \
     Frontend/Tabs/Tuning/TuningTab_Properties.cpp \
+    Frontend/Tabs/Tuning/TuningTab_Realtime.cpp \
     Frontend/Tabs/Tuning/TuningTab_Render.cpp \
     Frontend/Tabs/Tuning/TuningTab_Unchange.cpp \
     Frontend/Tabs/Voice/VoiceBankTab.cpp \
@@ -423,6 +428,7 @@ HEADERS += \
     Backend/Utils/NormalFile.h \
     Backend/Utils/QSettingFile.h \
     Backend/Utils/QSettingFiles/QSettingSection.h \
+    Backend/Utils/QWavetool.h \
     Backend/VoiceBank/QOtoIni.h \
     Backend/VoiceBank/QOtoReference.h \
     Backend/VoiceBank/QPrefixMap.h \
@@ -469,9 +475,6 @@ HEADERS += \
     Frontend/Controls/Inputs/FixedTextEdit.h \
     Frontend/Controls/Others/TemporaryMenu.h \
     Frontend/Dialogs/Extern/BackstageDialog.h \
-    Frontend/Dialogs/Extern/BackstageDialogs/BaseWork.h \
-    Frontend/Dialogs/Extern/BackstageDialogs/ConcatenateWork.h \
-    Frontend/Dialogs/Extern/BackstageDialogs/ResampleWork.h \
     Frontend/Dialogs/Extern/ExecutePluginDialog.h \
     Frontend/Dialogs/Extern/ScriptPluginDialog.h \
     Frontend/Dialogs/Extern/TerminalDialog.h \
@@ -480,6 +483,10 @@ HEADERS += \
     Frontend/Dialogs/Project/ProjectSettingsDialog.h \
     Frontend/Dialogs/Template/InputDialog.h \
     Frontend/Dialogs/Template/SelectsDialog.h \
+    Frontend/Process/BaseWork.h \
+    Frontend/Process/ConcatenateWork.h \
+    Frontend/Process/RealtimeRenderer.h \
+    Frontend/Process/ResampleWork.h \
     Frontend/QSActions.h \
     Frontend/QSTabs.h \
     Frontend/Singletons/CentralTabWidget.h \
@@ -511,6 +518,7 @@ HEADERS += \
     Frontend/Tabs/Tuning/Editor/Modules/FindReplaceDialog.h \
     Frontend/Tabs/Tuning/Editor/Modules/PlayButtonGroup.h \
     Frontend/Tabs/Tuning/Editor/Modules/SpriteAdjustDialog.h \
+    Frontend/Tabs/Tuning/Graphics/GraphicsBar.h \
     Frontend/Tabs/Tuning/Graphics/GraphicsLifter.h \
     Frontend/Tabs/Tuning/Graphics/GraphicsLines.h \
     Frontend/Tabs/Tuning/Graphics/GraphicsNote.h \

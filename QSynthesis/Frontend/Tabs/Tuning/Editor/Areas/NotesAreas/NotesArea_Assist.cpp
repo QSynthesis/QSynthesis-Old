@@ -58,6 +58,16 @@ double NotesArea::convertWidthToLength(int width) const {
     return double(width) / curWidth * 480;
 }
 
+double NotesArea::convertTickToTime(int tick) const {
+    if (tick >= totalLength()) {
+        return -1;
+    }
+    int index = findNoteAtTick(tick);
+    GraphicsNote *p = NotesList.at(index);
+    double unit = 120.0 / p->tempo() / 0.96;
+    return p->time() + (tick - p->tick()) * unit;
+}
+
 int NotesArea::findNoteAtPos(double x) const {
     int i = 0;
     int j = NotesList.size() - 1;
@@ -65,7 +75,7 @@ int NotesArea::findNoteAtPos(double x) const {
 
     while (i <= j) {
         mid = i + (j - i) / 2;
-        if (NotesList[mid]->x() + NotesList[mid]->width() < x) {
+        if (NotesList.at(mid)->x() + NotesList.at(mid)->width() < x) {
             i = mid + 1;
         } else {
             j = mid - 1;
@@ -85,6 +95,22 @@ int NotesArea::findNoteAtPosAbs(double x) const {
     return findNoteAtPos(x);
 }
 
+QPoint NotesArea::viewportNotesRange() const {
+    QRectF vp = viewportRect();
+
+    if (NotesList.isEmpty()) {
+        return QPoint(-1, -1);
+    }
+
+    int aIndex = findNoteAtPos(vp.left());
+    int bIndex = findNoteAtPos(vp.right());
+
+    if (bIndex >= NotesList.size()) {
+        bIndex = NotesList.size() - 1;
+    }
+    return QPoint(aIndex, bIndex);
+}
+
 int NotesArea::findNoteAtTick(int x) const {
     int i = 0;
     int j = NotesList.size() - 1;
@@ -92,17 +118,28 @@ int NotesArea::findNoteAtTick(int x) const {
 
     while (i <= j) {
         mid = i + (j - i) / 2;
-        if (NotesList[mid]->tick() == x) {
-            break;
-        } else if (NotesList[mid]->tick() < x) {
+        if (NotesList.at(mid)->tick() + NotesList.at(mid)->Note.length < x) {
             i = mid + 1;
         } else {
             j = mid - 1;
         }
     }
 
-    if (i > j) {
-        return -1;
+    return i;
+}
+
+int NotesArea::findNoteAtTime(double x) const {
+    int i = 0;
+    int j = NotesList.size() - 1;
+    int mid;
+
+    while (i <= j) {
+        mid = i + (j - i) / 2;
+        if (NotesList.at(mid)->time() + NotesList.at(mid)->duration() < x) {
+            i = mid + 1;
+        } else {
+            j = mid - 1;
+        }
     }
 
     return i;

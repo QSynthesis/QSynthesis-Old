@@ -14,6 +14,7 @@
 void NotesArea::saveOperation(NoteOperation *n) {
     n = static_cast<NoteOperation *>(n->simplify(n));
     if (n) {
+        removeCacheByOperation(n, false);
         m_ptrs->tab->addHistory(n);
     } else {
         qDebug() << "[NoteOperation]"
@@ -96,25 +97,6 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
         callForLengthen();
         break;
     }
-    case NoteOperation::Length: {
-        LengthOperation *l = static_cast<LengthOperation *>(n);
-        const QList<int> &indexs = l->index();
-        const QList<int> &orgs = l->origin();
-        const QList<int> &news = l->modified();
-
-        for (int i = 0; i < indexs.size(); ++i) {
-            // Change Notes Core
-            NotesList[indexs.at(i)]->Note.length = undo ? orgs.at(i) : news.at(i);
-        }
-        updateNoteTickAfter(indexs.front());
-
-        // Adjust vision
-        adjustNotes(QPoint(indexs.front(), -1));
-        selectSequence(indexs);
-
-        callForLengthen();
-        break;
-    }
     case NoteOperation::Add:
     case NoteOperation::Remove: {
         SequenceOperation *s = static_cast<SequenceOperation *>(n);
@@ -146,6 +128,25 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
             }
             selectSequence(indexs);
         }
+        callForLengthen();
+        break;
+    }
+    case NoteOperation::Length: {
+        LengthOperation *l = static_cast<LengthOperation *>(n);
+        const QList<int> &indexs = l->index();
+        const QList<int> &orgs = l->origin();
+        const QList<int> &news = l->modified();
+
+        for (int i = 0; i < indexs.size(); ++i) {
+            // Change Notes Core
+            NotesList[indexs.at(i)]->Note.length = undo ? orgs.at(i) : news.at(i);
+        }
+        updateNoteTickAfter(indexs.front());
+
+        // Adjust vision
+        adjustNotes(QPoint(indexs.front(), -1));
+        selectSequence(indexs);
+
         callForLengthen();
         break;
     }
@@ -306,9 +307,80 @@ void NotesArea::executeOperation(NoteOperation *n, bool undo) {
     default:
         break;
     }
+    removeCacheByOperation(n, undo);
 
     if (n->next() && !undo) {
         executeOperation(n->next(), undo);
+    }
+}
+
+void NotesArea::removeCacheByOperation(NoteOperation *n, bool undo) {
+    NoteOperation::Type type = n->type();
+
+    switch (type) {
+    case NoteOperation::Move: {
+        MoveOperation *m = static_cast<MoveOperation *>(n);
+        int index = m->index(); // leftmost note of selection
+        int f = undo ? -1 : 1;
+
+        // If Undo, the movement should be opposite
+        int movement = m->movement() * f;
+
+        // If Undo, the left of selection is added by movement
+        if (undo) {
+            index += m->movement();
+        }
+
+        QPoint range = QPoint(index, index + m->verticals().size() - 1);
+        // Include Involved Notes
+        if (movement > 0) {
+            range.ry() += movement;
+        } else {
+            range.rx() += movement;
+        }
+
+        // Include Neighbor Notes
+        range.rx()--;
+        range.ry()++;
+
+        m_ptrs->tab->removeCacheWithin(range.x(), range.y());
+        break;
+    }
+    case NoteOperation::Add:
+    case NoteOperation::Remove: {
+        SequenceOperation *s = static_cast<SequenceOperation *>(n);
+        QList<int> indexs = s->index();
+        m_ptrs->tab->removeCacheFrom(indexs.front() - 1);
+        break;
+    }
+    case NoteOperation::Length:
+    case NoteOperation::Mode2:
+    case NoteOperation::Envelope:
+    case NoteOperation::Mode1:
+    case NoteOperation::Vibrato:
+    case NoteOperation::Lyrics:
+    case NoteOperation::Intensity:
+    case NoteOperation::Modulation:
+    case NoteOperation::Velocity:
+    case NoteOperation::StartPoint:
+    case NoteOperation::PreUtterance:
+    case NoteOperation::VoiceOverlap:
+    case NoteOperation::Flags: {
+        const QList<int> &indexs = n->index();
+        for (int i = 0; i < indexs.size(); ++i) {
+            int index = indexs.at(i);
+            m_ptrs->tab->removeCacheWithin(index - 1, index + 1);
+        }
+        break;
+    }
+    case NoteOperation::Tempo: {
+        TempoOperation *t = static_cast<TempoOperation *>(n);
+        int index = t->index();
+        m_ptrs->tab->removeCacheFrom(index - 1);
+        break;
+    }
+    default:
+        break;
     }
 }
 
@@ -319,6 +391,10 @@ void NotesArea::callForChange() {
 void NotesArea::callForLengthen() {
     m_ptrs->editorContent->adjustCanvas(totalLength());
     m_ptrs->tracksContent->adjustDefaultTrack();
+}
+
+void NotesArea::callForPlayback() {
+    m_ptrs->tab->updateCache(m_playToTick);
 }
 
 double NotesArea::globalTempo() const {

@@ -762,13 +762,22 @@ ComboSelector>FixedLineEdit {
 
 ComboSelector>QListWidget {
     border: none;
-    color: #CCCCCC;
     background-color: transparent;
 }
 
 ComboSelector>QListWidget::item {
     font-size: 15px;
+    color: #CCCCCC;
     padding: 3px 3px;
+    background-color: transparent;
+}
+
+ComboSelector>QListWidget::item:hover {
+    background-color: rgba(255, 255, 255, 10%);
+}
+
+ComboSelector>QListWidget::item::selected {
+    background-color: rgba(0, 96, 192, 25%)
 }
 
 /* QScrollBar */

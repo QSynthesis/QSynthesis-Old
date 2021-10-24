@@ -22,7 +22,7 @@ class SectionsArea : public MoreWidget {
     Q_PROPERTY(QColor lineColor READ lineColor WRITE setLineColor NOTIFY colorChanged)
 
 public:
-    explicit SectionsArea(EditorInterface *editor,QWidget *parent = nullptr);
+    explicit SectionsArea(EditorInterface *editor, QWidget *parent = nullptr);
     virtual ~SectionsArea();
 
     TuningGroup *ptrs() const;
@@ -63,7 +63,8 @@ private:
     QColor m_noteTempoColor;
 
     void paintEvent(QPaintEvent *event) override;
-    void contextMenuEvent(QContextMenuEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
 
 signals:
     void colorChanged();

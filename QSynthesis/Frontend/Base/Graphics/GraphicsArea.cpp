@@ -1,6 +1,5 @@
 #include "GraphicsArea.h"
 #include "Graphics/GraphicsBaseView.h"
-#include "mainwindow.h"
 
 GraphicsArea::GraphicsArea(GraphicsBaseView *view) : QGraphicsScene(view), m_view(view) {
     // setItemIndexMethod(QGraphicsScene::ItemIndexMethod::NoIndex);
@@ -162,27 +161,4 @@ void GraphicsArea::enterEvent(QEnterEvent *event) {
 
 void GraphicsArea::leaveEvent(QEvent *event) {
     Q_UNUSED(event)
-}
-
-void GraphicsArea::dragEnterEvent(QGraphicsSceneDragDropEvent *event) {
-    QDragEnterEvent e(event->pos().toPoint(), event->possibleActions(), event->mimeData(),
-                      event->buttons(), event->modifiers());
-    QApplication::sendEvent(qRoot, &e);
-}
-
-void GraphicsArea::dragMoveEvent(QGraphicsSceneDragDropEvent *event) {
-    QDragMoveEvent e(event->pos().toPoint(), event->possibleActions(), event->mimeData(),
-                     event->buttons(), event->modifiers());
-    QApplication::sendEvent(qRoot, &e);
-}
-
-void GraphicsArea::dragLeaveEvent(QGraphicsSceneDragDropEvent *event) {
-    QDragLeaveEvent e;
-    QApplication::sendEvent(qRoot, &e);
-}
-
-void GraphicsArea::dropEvent(QGraphicsSceneDragDropEvent *event) {
-    QDropEvent e(event->pos().toPoint(), event->possibleActions(), event->mimeData(),
-                 event->buttons(), event->modifiers());
-    QApplication::sendEvent(qRoot, &e);
 }

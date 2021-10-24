@@ -234,46 +234,56 @@ void SectionsArea::paintEvent(QPaintEvent *event) {
     }
 }
 
-void SectionsArea::contextMenuEvent(QContextMenuEvent *event) {
+void SectionsArea::mousePressEvent(QMouseEvent *event) {
     const QList<GraphicsNote *> &SNotesList = m_ptrs->notesArea->NotesList;
     int x = event->pos().x();
 
-    int index = m_ptrs->notesArea->findNoteAtPosAbs(x);
-    if (index >= SNotesList.size()) {
-        return;
-    }
-
-    QStringList list{tr("Set Global Tempo..."), tr("Set Tempo here..."), tr("Remove Tempo")};
-    TemporaryMenu *menu = new TemporaryMenu(list, this);
-
-    GraphicsNote *p = index >= 0 ? SNotesList.at(index) : nullptr;
-    if (p) {
-        menu->setVisibleAt(0, false);
-        menu->setEnabledAt(2, SNotesList.at(index)->tempoEdited());
-    } else {
-        menu->setVisibleAt(1, false);
-        menu->setVisibleAt(2, false);
-    }
-
-    int action = menu->start();
-    menu->deleteLater();
-
-    switch (action) {
-    case 0:
-        qDragOut.removeAll();
-        m_ptrs->tab->showTempoEdit();
-        break;
-    case 1:
-        if (p) {
-            p->openTempoEdit();
+    if (event->button() == Qt::LeftButton) {
+        m_ptrs->notesArea->setPlayPosition(x);
+    } else if (event->button() == Qt::RightButton) {
+        int index = m_ptrs->notesArea->findNoteAtPosAbs(x);
+        if (index >= SNotesList.size()) {
+            return;
         }
-        break;
-    case 2:
+
+        QStringList list{tr("Set Global Tempo..."), tr("Set Tempo here..."), tr("Remove Tempo")};
+        TemporaryMenu *menu = new TemporaryMenu(list, this);
+
+        GraphicsNote *p = index >= 0 ? SNotesList.at(index) : nullptr;
         if (p) {
-            p->removeTempo();
+            menu->setVisibleAt(0, false);
+            menu->setEnabledAt(2, SNotesList.at(index)->tempoEdited());
+        } else {
+            menu->setVisibleAt(1, false);
+            menu->setVisibleAt(2, false);
         }
-        break;
-    default:
-        break;
+
+        int action = menu->start();
+        menu->deleteLater();
+
+        switch (action) {
+        case 0:
+            qDragOut.removeAll();
+            m_ptrs->tab->showTempoEdit();
+            break;
+        case 1:
+            if (p) {
+                p->openTempoEdit();
+            }
+            break;
+        case 2:
+            if (p) {
+                p->removeTempo();
+            }
+            break;
+        default:
+            break;
+        }
+    }
+}
+
+void SectionsArea::mouseMoveEvent(QMouseEvent *event) {
+    if (event->buttons() & Qt::LeftButton) {
+        m_ptrs->notesArea->setPlayPosition(event->x());
     }
 }

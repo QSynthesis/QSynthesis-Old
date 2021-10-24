@@ -23,16 +23,14 @@ void TuningTab::moveToEnd() {
 }
 
 void TuningTab::removeAllCaches() {
-    QString dir = defaultCacheDir();
-    if (isDirExist(dir)) {
-        RemoveFilesWithPrefix(dir, "");
-    }
+    removeCacheFrom(0);
 }
 
 void TuningTab::exportRecentAudio() {
     QString tempFileName = tempAudioFile();
 
-    if (!m_playable || !isFileExist(tempFileName)) {
+    // if (!m_playable || !isFileExist(tempFileName)) {
+    if (!isFileExist(tempFileName)) {
         QMessageBox::warning(this, MainTitle, tr("No audio files have been generated recently."));
         return;
     }

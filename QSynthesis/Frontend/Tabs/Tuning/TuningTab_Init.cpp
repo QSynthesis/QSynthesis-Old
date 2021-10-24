@@ -23,8 +23,9 @@ void TuningTab::initTab() {
     initValues();
     initComponents();
 
+    initRenderer();
+
     // Make Working Directory
-    initPlayer();
     initWorkingDir();
 }
 
@@ -95,6 +96,4 @@ void TuningTab::initWorkingDir() {
     } else if (!dir.mkpath(m_workingDir)) {
         qApp->exitOnPermissionDenied();
     }
-
-    savedRenderArgs.clear();
 }

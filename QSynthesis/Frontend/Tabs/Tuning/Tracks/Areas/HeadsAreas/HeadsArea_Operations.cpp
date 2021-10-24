@@ -6,6 +6,7 @@
 void HeadsArea::saveOperation(TrackOperation *t) {
     t = static_cast<TrackOperation *>(t->simplify(t));
     if (t) {
+        removeCacheByOperation(t, false);
         m_ptrs->tab->addHistory(t);
     } else {
         qDebug() << "[Track Operation] Addition Refused";
@@ -41,7 +42,36 @@ bool HeadsArea::handleOperation(TrackOperation *t, bool undo) {
     default:
         break;
     }
+    removeCacheByOperation(t, undo);
     return true;
+}
+
+void HeadsArea::removeCacheByOperation(TrackOperation *t, bool undo) {
+    TrackOperation::Type type = t->type();
+
+    switch (type) {
+    case TrackOperation::Modify: {
+        TrackModifyOperation *tm = static_cast<TrackModifyOperation *>(t);
+        switch (tm->change()) {
+        case TrackModifyOperation::Resampler: {
+            m_ptrs->tab->removeAllCaches();
+            break;
+        }
+        case TrackModifyOperation::Flags: {
+            m_ptrs->tab->removeAllCaches();
+            break;
+        }
+        case TrackModifyOperation::VoiceDatabase: {
+            m_ptrs->tab->removeAllCaches();
+            break;
+        }
+        default:
+            break;
+        }
+    }
+    default:
+        break;
+    }
 }
 
 void HeadsArea::handleNameChanged(QString orgVal, QString newVal) {

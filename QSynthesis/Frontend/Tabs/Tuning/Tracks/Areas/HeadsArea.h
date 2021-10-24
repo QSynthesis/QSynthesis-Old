@@ -47,6 +47,9 @@ public:
     void saveOperation(TrackOperation *t);
     bool handleOperation(TrackOperation *t, bool undo = true);
 
+private:
+    void removeCacheByOperation(TrackOperation *t, bool undo);
+
 public:
     void reloadByVoice(const QString &voice);
 

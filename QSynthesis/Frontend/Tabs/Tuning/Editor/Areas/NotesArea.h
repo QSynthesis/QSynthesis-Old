@@ -5,6 +5,7 @@
 #include <QRubberBand>
 #include <QWidget>
 
+#include "../../Graphics/GraphicsBar.h"
 #include "../../Graphics/GraphicsLifter.h"
 #include "../../Graphics/GraphicsNote.h"
 #include "../../Graphics/GraphicsPlayHead.h"
@@ -50,6 +51,7 @@ public:
     const double lyricEditZIndex = 6;
     const double rubberBandZIndex = 7;
     const double playHeadZIndex = 8;
+    const double barZIndex = 9;
 
 private:
     TuningGroup *m_ptrs;
@@ -89,11 +91,13 @@ public:
 
 private:
     void executeOperation(NoteOperation *n, bool undo);
+    void removeCacheByOperation(NoteOperation *n, bool undo);
 
     // Call
 public:
     void callForChange();
     void callForLengthen();
+    void callForPlayback();
 
     double globalTempo() const;
     void setGlobalTempo(double globalTempo);
@@ -184,8 +188,13 @@ public:
     QList<QLinkNote> selectedNotes() const;
 
     QList<RenderArgs> allRenderArgs() const;
+    RenderArgs renderArgsAt(int index) const;
+    QList<RenderArgs> renderArgsWithin(int x, int y) const;
 
     QList<NoteProperties> selectedProperties() const;
+
+    int playToNote() const;
+    double playToTick() const;
 
     // Draw
 public:
@@ -260,6 +269,8 @@ public:
     Qt::Corner spritePosition() const;
     void setSpritePosition(Qt::Corner position);
 
+    void setRenderRange(int x, int y);
+
     // Update
 public:
     void updateNoteTickAfter(int index);
@@ -281,9 +292,14 @@ public:
     QPair<int, int> convertPositionToValue(QPointF pos) const;
     double convertWidthToLength(int width) const;
 
+    double convertTickToTime(int tick) const;
+
     int findNoteAtPos(double x) const;
     int findNoteAtTick(int x) const;
+    int findNoteAtTime(double x) const;
     int findNoteAtPosAbs(double x) const;
+
+    QPoint viewportNotesRange() const;
 
     QRectF viewportRect() const;
 
@@ -355,8 +371,9 @@ public:
     // Play
 private:
     GraphicsPlayHead *playHead;
-    int playToNote;
-    qint64 playToPosition;
+    int m_playToNote;
+    qint64 m_playToPosition;
+    double m_playToTick;
 
     void initPlayModules();
 
@@ -367,7 +384,7 @@ public:
     void advancePlaying(qint64 position);
     void stopPlaying();
 
-    void jumpPlaying(double x);
+    void setPlayPosition(double x);
 
     // Sprite
 private:
@@ -379,6 +396,16 @@ private:
 
 public:
     void reloadSprite();
+
+    // Bar
+private:
+    GraphicsBar *bar;
+
+    void initBarModules();
+    void updateBar();
+
+public:
+    void reloadBar();
 
     // Events
 private:

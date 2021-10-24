@@ -12,6 +12,8 @@ void GraphicsNote::openContextMenu() {
         tr("Tempo..."),
         tr("Remove Tempo"),
         "",
+        tr("Insert Lyrics"),
+        "",
         tr("Note Properties..."),
         tr("Voice Bank Manage"),
     };
@@ -44,9 +46,12 @@ void GraphicsNote::openContextMenu() {
         removeTempo();
         break;
     case 5:
-        openProperty();
+        insertLyrics();
         break;
     case 6:
+        openProperty();
+        break;
+    case 7:
         configueLyric();
         break;
     default:
@@ -92,6 +97,10 @@ void GraphicsNote::openProperty() {
 
 void GraphicsNote::configueLyric() {
     m_editor->ptrs()->tab->configueLyric();
+}
+
+void GraphicsNote::insertLyrics() {
+    m_editor->ptrs()->tab->showLyricInsertion();
 }
 
 void GraphicsNote::openTempoEdit() {

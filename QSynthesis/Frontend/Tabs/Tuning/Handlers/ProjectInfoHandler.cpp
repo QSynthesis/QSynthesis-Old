@@ -42,6 +42,7 @@ void ProjectInfoHandler::modifyValues(const QString &wavtool, const QString &out
 void ProjectInfoHandler::saveOperation(ProjectOperation *p) {
     p = static_cast<ProjectOperation *>(p->simplify(p));
     if (p) {
+        removeCacheByOperation(p, false);
         m_tab->addHistory(p);
     } else {
         qDebug() << "[Project Info] Addition Refused";
@@ -51,5 +52,10 @@ void ProjectInfoHandler::saveOperation(ProjectOperation *p) {
 bool ProjectInfoHandler::handleOperation(ProjectOperation *p, bool undo) {
     m_wavtool = undo ? p->orgWavtool() : p->newWavtool();
     m_outFile = undo ? p->orgOutfile() : p->newOutfile();
+    removeCacheByOperation(p, undo);
     return true;
+}
+
+void ProjectInfoHandler::removeCacheByOperation(ProjectOperation *p, bool undo) {
+    m_tab->removeAllCaches();
 }

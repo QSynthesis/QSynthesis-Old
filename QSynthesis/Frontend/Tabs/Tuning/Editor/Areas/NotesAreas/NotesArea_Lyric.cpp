@@ -55,7 +55,7 @@ bool NotesArea::isLyricEditing() const {
 }
 
 bool NotesArea::isPlaying() const {
-    return playHead->isVisible();
+    return playHead->playing();
 }
 
 void NotesArea::editNoteLyric(GraphicsNote *pNote) {

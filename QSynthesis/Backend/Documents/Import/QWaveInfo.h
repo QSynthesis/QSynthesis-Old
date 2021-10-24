@@ -28,8 +28,6 @@ public:
 
     bool isEmpty() const;
 
-    const QVector<qint16> &data() const;
-    const QVector<qint16> &data2() const;
     double duration() const;
 
     quint32 totalSample() const;
@@ -38,7 +36,14 @@ public:
 
     quint32 sampleRate() const;
     quint16 channels() const;
-    quint16 bytePerSample() const;
+    quint16 bytesPerSample() const;
+
+    quint16 blockAlign() const;
+
+    const QVector<qint32> &channel1() const;
+    const QVector<qint32> &channel2() const;
+
+    const QByteArray &data() const;
 
 private:
     AudioFormat m_audioFormat;
@@ -46,14 +51,19 @@ private:
     quint16 m_channels;
 
     quint16 m_blockAlign;
-    quint16 m_blockPerSample;
+    quint16 m_bitsPerSample;
 
     quint32 m_sampleRate;
     quint32 m_byteRate;
     quint32 m_dataLength;
 
-    QVector<qint16> m_data;
-    QVector<qint16> m_data2;
+    QByteArray m_data;
+
+    QVector<qint32> m_channel1;
+    QVector<qint32> m_channel2;
+
+    void toChannel1();
+    void toChannel2();
 };
 
 #endif // QWAVEINFO_H

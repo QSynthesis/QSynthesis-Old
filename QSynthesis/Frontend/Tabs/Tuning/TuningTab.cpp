@@ -102,7 +102,7 @@ void TuningTab::updatePasteMenu() {
 }
 
 void TuningTab::handleSavedStateChanged() {
-    setPlayable(false);
+    forcePausePlaying();
 }
 
 void TuningTab::handleFileChanged(const QStringList &files) {

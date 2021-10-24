@@ -104,3 +104,11 @@ QList<NoteProperties> NotesArea::selectedProperties() const {
     }
     return list;
 }
+
+double NotesArea::playToTick() const {
+    return m_playToTick;
+}
+
+int NotesArea::playToNote() const {
+    return m_playToNote;
+}

@@ -36,11 +36,6 @@ protected:
 
     virtual void enterEvent(QEnterEvent *event);
     virtual void leaveEvent(QEvent *event);
-
-    void dragEnterEvent(QGraphicsSceneDragDropEvent *event) override;
-    void dragMoveEvent(QGraphicsSceneDragDropEvent *event) override;
-    void dragLeaveEvent(QGraphicsSceneDragDropEvent *event) override;
-    void dropEvent(QGraphicsSceneDragDropEvent *event) override;
 };
 
 #endif // GRAPHICSAREA_H

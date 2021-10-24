@@ -30,6 +30,9 @@ public:
     void saveOperation(ProjectOperation *p);
     bool handleOperation(ProjectOperation *p, bool undo = true);
 
+private:
+    void removeCacheByOperation(ProjectOperation *p, bool undo);
+
 signals:
 };
 

@@ -88,8 +88,6 @@ void TuningTab::loadCore() {
     setCurrentSettings(ustFile.sectionSettings());
     m_ptrs->notesArea->inputNotes(ustFile.sectionNotes().toList());
     m_ptrs->notesArea->centralizeVision(0);
-
-    renderBefore();
 }
 
 void TuningTab::saveCore() {
@@ -103,6 +101,7 @@ void TuningTab::saveCore() {
 }
 
 void TuningTab::exitCore() {
+    renderer->terminateAllWorks();
     switchToOtoReferenceMap("");
     if (edited) {
         removeAllCaches();
@@ -141,6 +140,7 @@ bool TuningTab::saveOrSaveAs(const QString &filename) {
     } else {
         if (saveAs) {
             setFilename(filename);
+            clearCache();
         }
         deleted = false;
         untitled = false;

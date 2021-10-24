@@ -35,6 +35,7 @@ NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *view) : GraphicsA
     initLyricModules();
     initSelectModules();
     initPlayModules();
+    initBarModules();
 
     connect(this, &QGraphicsScene::sceneRectChanged, this, &NotesArea::handleSceneRectChanged);
 
@@ -71,6 +72,8 @@ void NotesArea::adjustSize() {
                         m_ptrs->currentHeight * 84));
     adjustNotes();
     adjustPlayHead();
+
+    updateBar();
 }
 
 void NotesArea::updateBackground() {

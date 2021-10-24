@@ -69,10 +69,6 @@ void NotesArea::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
         } else if (m_pitchesEnabled || m_envelopesEnabled) {
             prepareDrawPoint(event);
         }
-    } else if (event->button() == Qt::RightButton) {
-        if (isPlaying()) {
-            jumpPlaying(event->scenePos().x());
-        }
     }
 }
 
@@ -141,10 +137,12 @@ void NotesArea::leaveEvent(QEvent *event) {
 
 void NotesArea::moveEvent(QGraphicsSceneMoveEvent *event) {
     updateSprite();
+    updateBar();
 }
 
 void NotesArea::resizeEvent(QGraphicsSceneResizeEvent *event) {
     updateSprite();
+    updateBar();
 }
 
 bool NotesArea::eventFilter(QObject *obj, QEvent *event) {

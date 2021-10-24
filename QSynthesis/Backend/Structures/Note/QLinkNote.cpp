@@ -140,8 +140,6 @@ QJsonObject QLinkNote::toJson() const {
         }
     }
 
-    qDebug() << obj;
-
     return obj;
 }
 

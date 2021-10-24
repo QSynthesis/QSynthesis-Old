@@ -1,5 +1,5 @@
-#include "../../Editor/Areas/NotesArea.h"
 #include "../../Controllers/Mode2Handler.h"
+#include "../../Editor/Areas/NotesArea.h"
 #include "../../TuningGroup.h"
 #include "../GraphicsPoint.h"
 #include "application.h"
@@ -134,7 +134,7 @@ void GraphicsPoint::autoRelease() {
         // Release the mouse
         if (m_drawing) {
             // Born
-            qDebug() << "Release mouse from SimplePoint";
+            // qDebug() << "Release mouse from Point";
             this->ungrabMouse();
             setDrawing(false);
             m_editor->afterDraw(this);

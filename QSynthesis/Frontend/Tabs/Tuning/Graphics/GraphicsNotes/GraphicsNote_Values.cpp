@@ -101,7 +101,6 @@ double GraphicsNote::velocity() const {
 }
 
 double GraphicsNote::startPoint() const {
-
     return (Note.stp == NODEF_DOUBLE) ? DEFAULT_VALUE_START_POINT : Note.stp;
 }
 
