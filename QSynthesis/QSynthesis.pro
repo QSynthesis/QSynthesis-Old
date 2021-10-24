@@ -698,9 +698,9 @@ INCLUDEPATH += \
     Backend/Common \
     Backend/Structures \
     Backend/Utils \
-    Backend/Documents\Files \
-    Backend/Documents\Dirinfos \
-    Backend/Documents\Import \
+    Backend/Documents/DirInfos \
+    Backend/Documents/Files \
+    Backend/Documents/Import \
     Frontend \
     Frontend/Base \
     Frontend/Base/Widgets \
