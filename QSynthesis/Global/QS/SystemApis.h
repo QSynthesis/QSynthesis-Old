@@ -6,7 +6,7 @@
 
 QTextCodec *GetUtfCodec(const QByteArray &data);
 
-QStringList findRecursiveDirs(const QString &oBaseFolder);
+QStringList FindRecursiveDirs(const QString &base);
 
 bool CopyFile(const QString &fileName, const QString &newName);
 

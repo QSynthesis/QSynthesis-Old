@@ -1,4 +1,5 @@
 #include "Variables.h"
+#include "Constants.h"
 #include "Macros.h"
 #include "QUtauStrCore.h"
 

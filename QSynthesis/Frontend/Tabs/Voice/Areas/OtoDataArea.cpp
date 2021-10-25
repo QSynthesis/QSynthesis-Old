@@ -115,7 +115,7 @@ bool OtoDataArea::notifyTable(const QStringList &files) {
                 auto it = TableMap.find(filename);
                 if (it == TableMap.end()) {
                     // A folder has been created
-                    QStringList dirs = findRecursiveDirs(filename);
+                    QStringList dirs = FindRecursiveDirs(filename);
                     dirs.prepend(filename);
                     for (auto it2 = dirs.begin(); it2 != dirs.end(); ++it2) {
                         const QString &dirname = *it2;

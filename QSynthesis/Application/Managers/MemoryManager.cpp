@@ -11,12 +11,12 @@ MemoryManager::~MemoryManager() {
 }
 
 bool MemoryManager::load() {
-    const QString tempDirPrefix = "qs";
-    const QString tempMemoryPrefix = "QSynthesis_Memory_";
+    const QString &tempDirPrefix = DIR_NAME_TEMP_PREFIX;
+    const QString &tempMemoryPrefix = KEY_NAME_MEMORY_PREFIX;
     int maxIndex = 1;
 
     // Normal path under windows is "C:\Users\{usename}\AppData\Local\Temp\"
-    QString tempDirName = QDir::tempPath() + Slash + TempDirName;
+    QString tempDirName = QDir::tempPath() + Slash + DIR_NAME_TEMP;
 
     QDir tempDir(tempDirName);
     if (tempDir.exists()) {

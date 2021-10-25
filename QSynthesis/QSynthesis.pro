@@ -41,6 +41,7 @@ SOURCES += \
     Backend/Structures/Transfer/NoteProperties.cpp \
     Backend/Structures/Transfer/NoteReadonlys.cpp \
     Backend/Structures/Transfer/PluginTempData.cpp \
+    Backend/Utils/QDumpFile.cpp \
     Backend/Utils/QFileSet.cpp \
     Backend/Utils/QSettingFile.cpp \
     Backend/Utils/QWavetool.cpp \
@@ -417,6 +418,7 @@ HEADERS += \
     Backend/Structures/Transfer/NoteProperties.h \
     Backend/Structures/Transfer/NoteReadonlys.h \
     Backend/Structures/Transfer/PluginTempData.h \
+    Backend/Utils/QDumpFile.h \
     Backend/Utils/QFileSet.h \
     Backend/Utils/QSettingFile.h \
     Backend/Utils/QWavetool.h \

@@ -15,16 +15,16 @@ QTextCodec *GetUtfCodec(const QByteArray &data) {
     }
 }
 
-QStringList findRecursiveDirs(const QString &oBaseFolder) {
-    QDir aDir;
-    aDir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
-    aDir.setPath(oBaseFolder);
+QStringList FindRecursiveDirs(const QString &base) {
+    QDir dir;
+    dir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
+    dir.setPath(base);
 
-    if (!aDir.exists()) {
+    if (!dir.exists()) {
         return {};
     }
 
-    QDirIterator iter(aDir, QDirIterator::Subdirectories);
+    QDirIterator iter(dir, QDirIterator::Subdirectories);
     QStringList res;
 
     while (iter.hasNext()) {

@@ -21,7 +21,7 @@ void QVoiceBank::init() {
 
 bool QVoiceBank::loadOto() {
     // Add Oto Dirs
-    QStringList dirs = findRecursiveDirs(m_filename);
+    QStringList dirs = FindRecursiveDirs(m_filename);
     dirs.prepend(m_filename);
     for (auto it = dirs.begin(); it != dirs.end(); ++it) {
         OtoInis.insert(*it, QOtoIni(*it));

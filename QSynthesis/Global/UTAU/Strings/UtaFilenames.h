@@ -14,8 +14,7 @@ namespace UtaFilenames {
 
     const QString FILE_NAME_TEMP_AUDIO = "temp.wav";
 
-    const QString DIR_NAME_VOICE = "voice";
-    const QString DIR_NAME_PLUGIN = "plugins";
+    const QString FILE_NAME_SETTING_INI = "setting.ini";
 
 // Cross-platform File Names
 #ifdef Q_OS_WINDOWS
@@ -25,6 +24,9 @@ namespace UtaFilenames {
     const QString FILE_NAME_TEMP_BATCH = "temp.sh";
     const QString FILE_NAME_HELPER_BATCH = "temp_helper.sh";
 #endif
+
+    const QString DIR_NAME_VOICE = "voice";
+    const QString DIR_NAME_PLUGIN = "plugins";
 
 } // namespace UtaFilenames
 

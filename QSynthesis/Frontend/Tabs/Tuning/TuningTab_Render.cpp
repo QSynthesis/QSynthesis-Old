@@ -199,8 +199,6 @@ bool TuningTab::renderSelection() {
 
     int count = args.size();
 
-    currentRenderArgs.clear();
-
     for (i = 0; i < count; ++i) {
         fixRenderArgs(args[i]);
 

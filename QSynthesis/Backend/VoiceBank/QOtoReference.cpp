@@ -100,7 +100,7 @@ QStringList QOtoReference::findAliasStartsWith(const QString &prefix) const {
 bool QOtoReference::loadOtoIni() {
     bool result = true;
 
-    QStringList dirs = findRecursiveDirs(m_voiceDir);
+    QStringList dirs = FindRecursiveDirs(m_voiceDir);
     dirs.prepend(m_voiceDir);
 
     clearOtoIni();
