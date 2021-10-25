@@ -2,7 +2,7 @@
 #define CONCATENATEWORK_H
 
 #include "BaseWork.h"
-#include "Render/WavtoolArgs.h"
+#include "QUtauRender.h"
 
 class ConcatenateWork : public BaseWork {
     Q_OBJECT

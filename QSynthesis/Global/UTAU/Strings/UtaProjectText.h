@@ -70,7 +70,6 @@ namespace UtaProjectText {
     const QString KEY_NAME_LABEL = "Label";
 
     // Head
-    const QString UST_VERSION_1_2 = "1.2";
     const QString UST_VERSION_PREFIX = "UST Version ";
     const QString UST_VERSION_PREFIX_NOSPACE = "UST Version";
 

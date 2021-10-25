@@ -3,7 +3,8 @@
 
 #include <QString>
 
-struct NoteProperties {
+class NoteProperties {
+public:
     NoteProperties();
     void clear();
 

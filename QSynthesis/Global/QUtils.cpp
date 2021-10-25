@@ -114,31 +114,6 @@ bool isSubDir(QString dirname, QString subdirname) {
     return false;
 }
 
-bool CombineFile(QString oFile1, QString oFile2, QString oFile3) {
-    QFile aFile1(oFile1);
-    QFile aFile2(oFile2);
-    QFile aFile3(oFile3);
-
-    if (aFile1.open(QIODevice::ReadOnly) && aFile2.open(QIODevice::ReadOnly) &&
-        aFile3.open(QIODevice::WriteOnly)) {
-
-    } else {
-        return 0;
-    }
-
-    QByteArray bytes1, bytes2;
-    bytes1 = aFile1.readAll();
-    bytes2 = aFile2.readAll();
-
-    aFile3.write(bytes1 + bytes2);
-
-    aFile1.close();
-    aFile2.close();
-    aFile3.close();
-
-    return 1;
-}
-
 bool RemoveFile(QString fileName) {
     QFileInfo FileInfo(fileName);
 
@@ -238,80 +213,6 @@ bool isNumber(QString s, bool considerDot, bool considerNeg) {
     return flag;
 }
 
-QList<int> toIntList(const QStringList &list) {
-    QList<int> res;
-    for (auto it = list.begin(); it != list.end(); ++it) {
-        bool isNum;
-        int num = it->toInt(&isNum);
-        if (!isNum) {
-            return {};
-        }
-        res.append(num);
-    }
-    return res;
-}
-
-QList<double> toDoubleList(const QStringList &list) {
-    QList<double> res;
-    for (auto it = list.begin(); it != list.end(); ++it) {
-        bool isNum;
-        int num = it->toDouble(&isNum);
-        if (!isNum) {
-            return {};
-        }
-        res.append(num);
-    }
-    return res;
-}
-
 bool equalDouble(double a, double b) {
     return QString::number(a) == QString::number(b);
-}
-
-QString removeTailSlashes(const QString &dirname) {
-    QString path = dirname;
-    while (!path.isEmpty() && (path.endsWith('/') || path.endsWith('\\'))) {
-        path = path.mid(0, path.size() - 1);
-    }
-    return path;
-}
-
-void RevealFile(QString filename) {
-#if defined(Q_OS_WINDOWS)
-    if (isFileExist(filename)) {
-        QStringList cmds;
-        cmds << "/e,"
-             << "/select," << QDir::toNativeSeparators(filename);
-        QProcess::startDetached("explorer.exe", cmds);
-    } else if (isDirExist(filename)) {
-        QStringList cmds;
-        cmds << "/e,"
-             << "/root," << QDir::toNativeSeparators(filename);
-        QProcess::startDetached("explorer.exe", cmds);
-    }
-#elif defined(Q_OS_MAC)
-    if (isDirExist(filename)) {
-        if (!filename.endsWith(Slash)) {
-            filename.append(Slash);
-        }
-        QProcess::startDetached("bash", {"-c", "open \'" + filename + "\'"});
-    } else if (isFileExist(filename)) {
-        QStringList scriptArgs;
-        scriptArgs << QLatin1String("-e")
-                   << QString::fromLatin1("tell application \"Finder\" to reveal POSIX file \"%1\"")
-                          .arg(filename);
-        QProcess::execute(QLatin1String("/usr/bin/osascript"), scriptArgs);
-        scriptArgs.clear();
-        scriptArgs << QLatin1String("-e")
-                   << QLatin1String("tell application \"Finder\" to activate");
-        QProcess::execute("/usr/bin/osascript", scriptArgs);
-    }
-#else
-    if (isDirExist(filename)) {
-        QProcess::startDetached("bash", {"-c", "xdg-open \'" + filename + "\'"});
-    } else if (isFileExist(filename)) {
-        QString arg = PathFindUpper(filename);
-        QProcess::startDetached("bash", {"-c", "xdg-open \'" + arg + "\'"});
-    }
-#endif
 }

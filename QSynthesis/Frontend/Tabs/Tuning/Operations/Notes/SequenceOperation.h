@@ -1,8 +1,8 @@
 ﻿#ifndef SEQUENCEOPERATION_H
 #define SEQUENCEOPERATION_H
 
-#include "Note/QLinkNote.h"
 #include "../NoteOperation.h"
+#include "QUtauBasic.h"
 
 class SequenceOperation : public NoteOperation {
 public:

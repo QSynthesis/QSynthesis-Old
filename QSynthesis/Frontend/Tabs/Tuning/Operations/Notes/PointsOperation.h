@@ -2,7 +2,7 @@
 #define POINTSOPERATION_H
 
 #include "PropsOperation.h"
-#include "QControlPoint.h"
+#include "QUtauBasic.h"
 
 class PointsOperation : public PropsOperation<QList<QControlPoint>> {
 public:

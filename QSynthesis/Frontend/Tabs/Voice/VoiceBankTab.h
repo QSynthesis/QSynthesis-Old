@@ -19,8 +19,8 @@
 #include "Areas/OtoVisionArea.h"
 #include "MiniSystem/MiniSystemNotifier.h"
 #include "Operations/VoiceOperation.h"
-#include "QUtauUtils.h"
-#include "Utils/FileNameSet.h"
+#include "QFileSet.h"
+#include "QUtauBasic.h"
 #include "VoiceBank/QVoiceBank.h"
 
 class QOtoReference;

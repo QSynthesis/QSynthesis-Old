@@ -1,4 +1,5 @@
 #include "MemoryManager.h"
+#include "Constants.h"
 
 MemoryManager::MemoryManager(QObject *parent) : QObject(parent) {
 }
@@ -62,7 +63,6 @@ bool MemoryManager::load() {
     return true;
 }
 
-QString MemoryManager::tempDir() const
-{
+QString MemoryManager::tempDir() const {
     return m_tempDir;
 }

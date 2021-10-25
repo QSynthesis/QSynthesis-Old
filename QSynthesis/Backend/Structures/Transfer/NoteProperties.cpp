@@ -1,5 +1,5 @@
 #include "NoteProperties.h"
-#include "QUtauConstants.h"
+#include "QUtauBasic.h"
 
 NoteProperties::NoteProperties() {
     clear();

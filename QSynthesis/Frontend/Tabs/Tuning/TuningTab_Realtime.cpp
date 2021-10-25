@@ -211,7 +211,7 @@ void TuningTab::updateCacheCore(int index, int length) {
 
 void TuningTab::updateBufferCore(int toIndex) {
     auto SNotesList = m_ptrs->notesArea->NotesList;
-    while (toIndex >= m_processedIndex) {
+    while (toIndex >= m_processedIndex && m_processedIndex < SNotesList.size()) {
         int index = m_processedIndex;
         if (!renderedWorks.contains(index)) {
             break;
@@ -270,6 +270,14 @@ void TuningTab::updateBufferCore(int toIndex) {
         }
         m_processedIndex++;
     }
+    if (m_processedIndex >= SNotesList.size()) {
+        QByteArray appendix;
+        int appendSamples = 44100 * m_audioTail / 1000;
+        int appendBytes = appendSamples * 2;
+        appendix.resize(appendBytes);
+        appendix.fill(0);
+        m_audioData.append(appendix);
+    }
 }
 
 void TuningTab::handleWorkFinished(int seq, const QString &filename) {
@@ -299,13 +307,15 @@ void TuningTab::initRenderer() {
     m_processedIndex = -1;
 
     m_startBuffer = 0;
+
+    m_audioDelay = 200;
+    m_audioTail = 200;
 }
 
 void TuningTab::handleAudioTimeout() {
     audioTimer->stop();
 
-    int indexNeed = qMin(m_ptrs->notesArea->findNoteAtTime(position() + 5000),
-                         m_ptrs->notesArea->NotesList.size() - 1);
+    int indexNeed = m_ptrs->notesArea->findNoteAtTime(position() + 5000);
     if (indexNeed >= m_processedIndex) {
         updateCacheCore(m_processedIndex, indexNeed - m_processedIndex + 1);
     }

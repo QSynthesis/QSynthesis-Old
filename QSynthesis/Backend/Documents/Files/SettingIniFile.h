@@ -3,8 +3,7 @@
 
 #include "BaseFile.h"
 #include "Macros.h"
-#include "QSettingFile.h"
-#include "Utils/FileNameSet.h"
+#include "QFileSet.h"
 
 #include <QDebug>
 #include <QFile>
@@ -35,10 +34,10 @@ public:
     QString tool1Path;
     QString tool2Path;
 
-    FileNameSet projects;
-    FileNameSet folders;
-    FileNameSet wavtools;
-    FileNameSet resamplers;
+    QFileSet projects;
+    QFileSet folders;
+    QFileSet wavtools;
+    QFileSet resamplers;
 
     QRect windowRect;
     bool windowMaximized;

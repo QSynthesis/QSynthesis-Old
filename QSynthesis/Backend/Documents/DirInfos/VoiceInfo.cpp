@@ -1,12 +1,15 @@
 #include "VoiceInfo.h"
-#include "NormalFile.h"
 #include "QSettingFile.h"
-#include "QUtauStrings.h"
-#include "QUtils.h"
-#include "Strings/UtaCharacterText.h"
-#include "Utils/CharsetHandler.h"
+#include "QUtauStrCore.h"
+#include "QUtauStrExtern.h"
+#include "SystemApis.h"
 
-using namespace UtaCharacterText;
+#include <QDir>
+#include <QFile>
+#include <QTextStream>
+
+using namespace UtaCharText;
+using namespace UtaFilenames;
 
 Q_CHARSET_DECLARE(VoiceInfo)
 
@@ -32,17 +35,19 @@ void VoiceInfo::init() {
 }
 
 bool VoiceInfo::loadCore(bool *valid) {
-    NormalFile file(filename());
-    if (!file.load()) {
+    QFile file(filename());
+    QByteArray data;
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         return false;
     }
 
-    QByteArray data = file.data();
-    QString charset = CharsetHandler::detectCharset(data);
-    QTextStream in(&data);
+    data = file.readAll();
+    file.close();
 
-    if (!charset.isEmpty()) {
-        m_codec = QTextCodec::codecForName(charset.toLatin1());
+    QTextCodec *codec = GetUtfCodec(data);
+    QTextStream in(&data);
+    if (codec) {
+        m_codec = codec;
     }
     in.setCodec(m_codec);
 
@@ -75,6 +80,12 @@ bool VoiceInfo::loadCore(bool *valid) {
 }
 
 bool VoiceInfo::saveCore() {
+    QFile file(filename());
+    QByteArray data;
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        return false;
+    }
+
     QSettingSection section;
     if (!m_name.isEmpty()) {
         section.addPair(KEY_NAME_CHAR_NAME, m_name);
@@ -92,16 +103,15 @@ bool VoiceInfo::saveCore() {
 
     QStringList lines = section.toLines();
 
-    QByteArray data;
     QTextStream out(&data);
     out.setCodec(m_codec);
     for (auto it = lines.begin(); it != lines.end(); ++it) {
         out << *it << Qt::endl;
     }
 
-    NormalFile file(filename());
-    file.setData(data);
-    return file.save();
+    file.write(data);
+    file.close();
+    return true;
 }
 
 QString VoiceInfo::name() const {
@@ -110,7 +120,7 @@ QString VoiceInfo::name() const {
 
 QString VoiceInfo::title() const {
     if (m_name.isEmpty()) {
-        return PathFindFileName(dirname());
+        return QFileInfo(dirname()).fileName();
     } else {
         return m_name;
     }

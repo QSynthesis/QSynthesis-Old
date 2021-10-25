@@ -25,7 +25,7 @@ qint64 TuningTab::position() const {
     if (!m_audio) {
         return -1;
     }
-    double time = m_startTime + m_audio->processedUSecs() / 1000 /*- 160*/;
+    double time = m_startTime + m_audio->processedUSecs() / 1000 - m_audioDelay;
     return qMax(time, m_startTime);
 }
 

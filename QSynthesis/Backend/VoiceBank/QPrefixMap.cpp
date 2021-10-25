@@ -1,8 +1,10 @@
 ﻿#include "QPrefixMap.h"
-#include "NormalFile.h"
-#include "QUtauConstants.h"
-#include "QUtauStrings.h"
-#include "Utils/CharsetHandler.h"
+#include "QUtauBasic.h"
+#include "QUtauStrCore.h"
+#include "SystemApis.h"
+
+using namespace Utau;
+using namespace UtaFilenames;
 
 Q_CHARSET_DECLARE(QPrefixMap)
 
@@ -55,38 +57,37 @@ bool QPrefixMap::isEmpty() const {
 }
 
 bool QPrefixMap::fromLocalFile(const QString &filename) {
-    NormalFile file(filename);
+    QFile file(filename);
+    QByteArray data;
     if (!file.exists()) {
         return true;
     }
-    if (!file.load()) {
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         return false;
     }
+
+    data = file.readAll();
+    file.close();
+
+    QTextCodec *codec = GetUtfCodec(data);
+    QTextStream in(&data);
+    if (codec) {
+        m_codec = codec;
+    }
+    in.setCodec(m_codec);
 
     int min = TONE_NUMBER_BASE;
     int max = min + (TONE_OCTAVE_MAX - TONE_OCTAVE_MIN + 1) * TONE_OCTAVE_STEPS - 1;
 
-    QByteArray data = file.data();
-
-    // Detect Code
-    QString charset = CharsetHandler::detectCharset(data);
-    QTextStream in(&data);
-
-    if (!charset.isEmpty()) {
-        m_codec = QTextCodec::codecForName(charset.toLatin1());
-    }
-
-    in.setCodec(m_codec);
-
     QString line;
-    QVector<QString> lineStrings;
+    QStringList lineStrings;
 
     while (!in.atEnd()) {
         line = in.readLine();
         if (!line.isEmpty()) {
-            lineStrings = qstring_to_qvector_qstring(line, "\t");
+            lineStrings = line.split("\t");
             if (lineStrings.size() >= 3) {
-                int noteNum = tone_name_to_tone_number(lineStrings[0]);
+                int noteNum = ToneNameToToneNum(lineStrings[0]);
                 if (noteNum >= min && noteNum <= max) {
                     PrefixMap[noteNum] = lineStrings[1];
                     SuffixMap[noteNum] = lineStrings[2];
@@ -98,7 +99,8 @@ bool QPrefixMap::fromLocalFile(const QString &filename) {
 }
 
 bool QPrefixMap::toLocalFile(const QString &filename) {
-    NormalFile file(filename);
+    QFile file(filename);
+    QByteArray data;
 
     // Delete when empty
     if (isEmpty()) {
@@ -108,20 +110,23 @@ bool QPrefixMap::toLocalFile(const QString &filename) {
             return true;
         }
     }
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        return false;
+    }
 
-    QByteArray data;
     QTextStream out(&data);
     out.setCodec(m_codec);
 
     for (auto it = PrefixMap.begin(); it != PrefixMap.end(); ++it) {
         int key = it.key();
-        out << tone_number_to_tone_name(key) << '\t';
+        out << ToneNumToToneName(key) << '\t';
         out << PrefixMap[key] << "\t";
         out << SuffixMap[key] << Qt::endl;
     }
 
-    file.setData(data);
-    return file.save();
+    file.write(data);
+    file.close();
+    return true;
 }
 
 bool QPrefixMap::loadCore(bool *valid) {

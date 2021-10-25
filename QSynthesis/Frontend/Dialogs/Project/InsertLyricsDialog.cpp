@@ -1,5 +1,5 @@
 #include "InsertLyricsDialog.h"
-#include "QUtauUtils.h"
+#include "QUtauBasic.h"
 #include "QUtils.h"
 #include "application.h"
 
@@ -91,7 +91,7 @@ void InsertLyricsDialog::setDefaultLyrics() {
     QStringList list;
 
     for (auto it = orgLyrics.begin(); it != orgLyrics.end(); ++it) {
-        if (ignoreRest() && isRestNoteLyric(*it)) {
+        if (ignoreRest() && Utau::isRestLyric(*it)) {
             continue;
         }
         if (!separateIntoChar()) {

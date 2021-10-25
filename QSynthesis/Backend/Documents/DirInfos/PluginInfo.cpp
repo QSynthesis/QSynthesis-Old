@@ -1,12 +1,15 @@
 #include "PluginInfo.h"
-#include "NormalFile.h"
 #include "QSettingFile.h"
-#include "QUtauStrings.h"
-#include "QUtils.h"
-#include "Strings/UtaPluginText.h"
-#include "Utils/CharsetHandler.h"
+#include "QUtauStrCore.h"
+#include "QUtauStrExtern.h"
+#include "SystemApis.h"
+
+#include <QDir>
+#include <QFile>
+#include <QTextStream>
 
 using namespace UtaPluginText;
+using namespace UtaFilenames;
 
 Q_CHARSET_DECLARE(PluginInfo)
 
@@ -32,17 +35,19 @@ void PluginInfo::init() {
 }
 
 bool PluginInfo::loadCore(bool *valid) {
-    NormalFile file(filename());
-    if (!file.load()) {
+    QFile file(filename());
+    QByteArray data;
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         return false;
     }
 
-    QByteArray data = file.data();
-    QString charset = CharsetHandler::detectCharset(data);
-    QTextStream in(&data);
+    data = file.readAll();
+    file.close();
 
-    if (!charset.isEmpty()) {
-        m_codec = QTextCodec::codecForName(charset.toLatin1());
+    QTextCodec *codec = GetUtfCodec(data);
+    QTextStream in(&data);
+    if (codec) {
+        m_codec = codec;
     }
     in.setCodec(m_codec);
 
@@ -84,6 +89,12 @@ bool PluginInfo::loadCore(bool *valid) {
 }
 
 bool PluginInfo::saveCore() {
+    QFile file(filename());
+    QByteArray data;
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        return false;
+    }
+
     QSettingSection section;
     section.addPair(KEY_NAME_PLUGIN_NAME, m_name);
     section.addPair(KEY_NAME_PLUGIN_EXECUTABLE, QDir::toNativeSeparators(m_execute));
@@ -103,16 +114,15 @@ bool PluginInfo::saveCore() {
 
     QStringList lines = section.toLines();
 
-    QByteArray data;
     QTextStream out(&data);
     out.setCodec(m_codec);
     for (auto it = lines.begin(); it != lines.end(); ++it) {
         out << *it << Qt::endl;
     }
 
-    NormalFile file(filename());
-    file.setData(data);
-    return file.save();
+    file.write(data);
+    file.close();
+    return true;
 }
 
 bool PluginInfo::useShell() const {
@@ -124,7 +134,7 @@ QString PluginInfo::exePath() const {
 }
 
 void PluginInfo::setExePath(const QString &path) {
-    m_execute = PathFindFileName(path, m_filename);
+    m_execute = path.mid(m_filename.size());
 }
 
 QString PluginInfo::name() const {
@@ -187,5 +197,5 @@ bool PluginInfo::allNote() const {
 }
 
 bool PluginInfo::valid() const {
-    return isFileExist(exePath());
+    return QFileInfo(exePath()).isFile();
 }

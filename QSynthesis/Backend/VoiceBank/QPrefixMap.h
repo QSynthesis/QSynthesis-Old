@@ -8,7 +8,6 @@
 
 #include "BaseDirInfo.h"
 #include "Macros.h"
-#include "QUtauUtils.h"
 
 class QPrefixMap : public BaseDirInfo {
     Q_CHARSET

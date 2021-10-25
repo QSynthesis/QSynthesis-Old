@@ -5,10 +5,8 @@
 #include <QFile>
 #include <QObject>
 
-#include "QGenonSettings.h"
+#include "QUtauBasic.h"
 #include "QOtoSampleList.h"
-#include "QUtauConstants.h"
-#include "QUtauUtils.h"
 
 #include "QUtils.h"
 

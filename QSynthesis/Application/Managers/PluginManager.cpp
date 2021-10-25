@@ -1,6 +1,5 @@
 #include "PluginManager.h"
 #include "MiniSystem/MiniSystemNotifier.h"
-#include "UTAU/QUtauStrings.h"
 #include "application.h"
 
 #include <QDir>

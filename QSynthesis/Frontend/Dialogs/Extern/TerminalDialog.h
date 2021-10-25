@@ -10,9 +10,8 @@
 #include <QWidget>
 
 #include "BaseDialog.h"
+#include "QUtauRender.h"
 #include "QUtils.h"
-#include "Render/ResamplerArgs.h"
-#include "Render/WavtoolArgs.h"
 
 #ifdef Q_OS_WINDOWS
 #include "Windows.h"

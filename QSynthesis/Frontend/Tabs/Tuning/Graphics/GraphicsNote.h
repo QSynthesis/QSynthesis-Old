@@ -14,7 +14,7 @@
 #include "../Controllers/Mode2Handler.h"
 #include "Graphics/GraphicsDragger.h"
 #include "GraphicsLines.h"
-#include "Note/QLinkNote.h"
+#include "QUtauBasic.h"
 #include "QUtils.h"
 
 class NotesArea;
@@ -203,7 +203,7 @@ private:
     QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant &value) override;
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
-              QWidget *widget = nullptr) override;
+               QWidget *widget = nullptr) override;
 
 public:
     void drawNote(QPainter *painter);

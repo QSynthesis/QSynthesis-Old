@@ -23,17 +23,12 @@ SOURCES += \
     Application/application.cpp \
     Backend/Base/BaseDirInfo.cpp \
     Backend/Base/BaseFile.cpp \
-    Backend/Common/QControlPoint.cpp \
-    Backend/Common/QGenonSettings.cpp \
     Backend/Common/QOtoSample.cpp \
     Backend/Common/QOtoSampleList.cpp \
     Backend/Documents/DirInfos/PluginInfo.cpp \
     Backend/Documents/DirInfos/VoiceInfo.cpp \
     Backend/Documents/Files/ConfigFile.cpp \
     Backend/Documents/Files/SequenceTextFile.cpp \
-    Backend/Documents/Files/SequenceTextFiles/SectionNotes.cpp \
-    Backend/Documents/Files/SequenceTextFiles/SectionSettings.cpp \
-    Backend/Documents/Files/SequenceTextFiles/SectionVersion.cpp \
     Backend/Documents/Files/SettingIniFile.cpp \
     Backend/Documents/Files/ShortcutsFile.cpp \
     Backend/Documents/Import/QFrequencyFile.cpp \
@@ -43,20 +38,11 @@ SOURCES += \
     Backend/Documents/Import/QVocaloidFile.cpp \
     Backend/Documents/Import/QWaveInfo.cpp \
     Backend/Structures/Find/FindOption.cpp \
-    Backend/Structures/Note/QLinkNote.cpp \
-    Backend/Structures/Note/Utils/QNoteEnvelope.cpp \
-    Backend/Structures/Note/Utils/QNoteMode2.cpp \
-    Backend/Structures/Render/RenderArgs.cpp \
-    Backend/Structures/Render/RenderUtils/UtaPitchCurves.cpp \
-    Backend/Structures/Render/RenderUtils/UtaTranslator.cpp \
-    Backend/Structures/Render/ResamplerArgs.cpp \
-    Backend/Structures/Render/WavtoolArgs.cpp \
     Backend/Structures/Transfer/NoteProperties.cpp \
     Backend/Structures/Transfer/NoteReadonlys.cpp \
     Backend/Structures/Transfer/PluginTempData.cpp \
-    Backend/Utils/NormalFile.cpp \
+    Backend/Utils/QFileSet.cpp \
     Backend/Utils/QSettingFile.cpp \
-    Backend/Utils/QSettingFiles/QSettingSection.cpp \
     Backend/Utils/QWavetool.cpp \
     Backend/VoiceBank/QOtoIni.cpp \
     Backend/VoiceBank/QOtoReference.cpp \
@@ -343,14 +329,34 @@ SOURCES += \
     Frontend/Utils/FilePasers/FilePasers_Midi.cpp \
     Global/Macros.cpp \
     Global/Methods.cpp \
+    Global/QS/Constants.cpp \
+    Global/QS/Primary.cpp \
+    Global/QS/SystemApis.cpp \
     Global/QUtils.cpp \
-    Global/Types.cpp \
-    Global/UTAU/QUtauUtils.cpp \
-    Global/Utils/CharsetHandler.cpp \
-    Global/Utils/FileNameSet.cpp \
+    Global/QS/Types.cpp \
+    Global/QS/Variables.cpp \
+    Global/UTAU/Common/QControlPoint.cpp \
+    Global/UTAU/Common/QCorrectGenon.cpp \
+    Global/UTAU/Common/QGenonSettings.cpp \
+    Global/UTAU/Common/QLinkNote.cpp \
+    Global/UTAU/Common/QUtauStd.cpp \
+    Global/UTAU/DataSets/SectionNotes.cpp \
+    Global/UTAU/DataSets/SectionSettings.cpp \
+    Global/UTAU/DataSets/SectionVersion.cpp \
+    Global/UTAU/QUtauBasic.cpp \
+    Global/UTAU/QUtauRender.cpp \
+    Global/UTAU/QUtauSections.cpp \
+    Global/UTAU/QUtauStrCore.cpp \
+    Global/UTAU/QUtauStrExtern.cpp \
+    Global/UTAU/Render/Args/RenderArgs.cpp \
+    Global/UTAU/Render/Args/ResamplerArgs.cpp \
+    Global/UTAU/Render/Args/WavtoolArgs.cpp \
+    Global/UTAU/Render/QBatchRenderer.cpp \
+    Global/UTAU/Render/QBatchRenderer_Unix.cpp \
+    Global/UTAU/Render/QBatchRenderer_Win.cpp \
+    Global/UTAU/Render/Utils/UtaPitchCurves.cpp \
+    Global/UTAU/Render/Utils/UtaTranslator.cpp \
     Global/Utils/ItemList.cpp \
-    Global/Utils/Templates.cpp \
-    Global/Variables.cpp \
     Main/main.cpp \
     Main/resources.cpp \
     Main/total.cpp \
@@ -393,18 +399,12 @@ HEADERS += \
     Application/application.h \
     Backend/Base/BaseDirInfo.h \
     Backend/Base/BaseFile.h \
-    Backend/Common/QControlPoint.h \
-    Backend/Common/QGenonSettings.h \
     Backend/Common/QOtoSample.h \
     Backend/Common/QOtoSampleList.h \
     Backend/Documents/DirInfos/PluginInfo.h \
     Backend/Documents/DirInfos/VoiceInfo.h \
     Backend/Documents/Files/ConfigFile.h \
     Backend/Documents/Files/SequenceTextFile.h \
-    Backend/Documents/Files/SequenceTextFiles/SectionNotes.h \
-    Backend/Documents/Files/SequenceTextFiles/SectionSettings.h \
-    Backend/Documents/Files/SequenceTextFiles/SectionVersion.h \
-    Backend/Documents/Files/SequenceTextFiles/SequenceTextData.h \
     Backend/Documents/Files/SettingIniFile.h \
     Backend/Documents/Files/ShortcutsFile.h \
     Backend/Documents/Import/QFrequencyFile.h \
@@ -414,20 +414,11 @@ HEADERS += \
     Backend/Documents/Import/QVocaloidFile.h \
     Backend/Documents/Import/QWaveInfo.h \
     Backend/Structures/Find/FindOption.h \
-    Backend/Structures/Note/QLinkNote.h \
-    Backend/Structures/Note/Utils/QNoteEnvelope.h \
-    Backend/Structures/Note/Utils/QNoteMode2.h \
-    Backend/Structures/Render/RenderArgs.h \
-    Backend/Structures/Render/RenderUtils/UtaPitchCurves.h \
-    Backend/Structures/Render/RenderUtils/UtaTranslator.h \
-    Backend/Structures/Render/ResamplerArgs.h \
-    Backend/Structures/Render/WavtoolArgs.h \
     Backend/Structures/Transfer/NoteProperties.h \
     Backend/Structures/Transfer/NoteReadonlys.h \
     Backend/Structures/Transfer/PluginTempData.h \
-    Backend/Utils/NormalFile.h \
+    Backend/Utils/QFileSet.h \
     Backend/Utils/QSettingFile.h \
-    Backend/Utils/QSettingFiles/QSettingSection.h \
     Backend/Utils/QWavetool.h \
     Backend/VoiceBank/QOtoIni.h \
     Backend/VoiceBank/QOtoReference.h \
@@ -596,21 +587,37 @@ HEADERS += \
     Frontend/Utils/FileParser.h \
     Global/Macros.h \
     Global/Methods.h \
+    Global/QS/Constants.h \
+    Global/QS/Primary.h \
+    Global/QS/SystemApis.h \
     Global/QUtils.h \
-    Global/Types.h \
-    Global/UTAU/QUtauConstants.h \
-    Global/UTAU/QUtauStrings.h \
-    Global/UTAU/QUtauUtils.h \
-    Global/UTAU/Strings/UtaCharacterText.h \
+    Global/QS/Types.h \
+    Global/QS/Variables.h \
+    Global/UTAU/Common/QControlPoint.h \
+    Global/UTAU/Common/QCorrectGenon.h \
+    Global/UTAU/Common/QGenonSettings.h \
+    Global/UTAU/Common/QLinkNote.h \
+    Global/UTAU/Common/QUtauStd.h \
+    Global/UTAU/DataSets/SectionNotes.h \
+    Global/UTAU/DataSets/SectionSettings.h \
+    Global/UTAU/DataSets/SectionVersion.h \
+    Global/UTAU/QUtauBasic.h \
+    Global/UTAU/QUtauRender.h \
+    Global/UTAU/QUtauSections.h \
+    Global/UTAU/QUtauStrCore.h \
+    Global/UTAU/QUtauStrExtern.h \
+    Global/UTAU/Render/Args/RenderArgs.h \
+    Global/UTAU/Render/Args/ResamplerArgs.h \
+    Global/UTAU/Render/Args/WavtoolArgs.h \
+    Global/UTAU/Render/QBatchRenderer.h \
+    Global/UTAU/Render/Utils/UtaPitchCurves.h \
+    Global/UTAU/Render/Utils/UtaTranslator.h \
+    Global/UTAU/Strings/UtaCharText.h \
     Global/UTAU/Strings/UtaFilenames.h \
     Global/UTAU/Strings/UtaPluginText.h \
     Global/UTAU/Strings/UtaProjectText.h \
-    Global/UTAU/Strings/UtaSettingText.h \
-    Global/Utils/CharsetHandler.h \
-    Global/Utils/FileNameSet.h \
+    Global/UTAU/Strings/UtaSettingIni.h \
     Global/Utils/ItemList.h \
-    Global/Utils/Templates.h \
-    Global/Variables.h \
     Main/resources.h \
     Main/total.h \
     MainWindow/mainwindow.h
@@ -692,6 +699,7 @@ RESOURCES += \
 
 INCLUDEPATH += \
     Global \
+    Global/QS \
     Global/UTAU \
     Backend \
     Backend/Base \

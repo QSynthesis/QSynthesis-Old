@@ -3,6 +3,8 @@
 #include "total.h"
 
 int main(int argc, char *argv[]) {
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
     Application a(argc, argv);
 
     created(); // Create

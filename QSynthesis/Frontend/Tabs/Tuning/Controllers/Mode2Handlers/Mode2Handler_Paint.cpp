@@ -4,7 +4,7 @@
 #include "../Mode2Handler.h"
 #include "Methods.h"
 
-using namespace Qs;
+using namespace Utau;
 
 #include <QPainterPath>
 
@@ -16,7 +16,7 @@ void Mode2Handler::drawMode2(QPainter *painter) {
     QControlPoint prevT, currT;
 
     QPainterPath path;
-    PitchPoint type;
+    PointType type;
 
     double thickness = m_solid ? 1.5 : 1.5;
 

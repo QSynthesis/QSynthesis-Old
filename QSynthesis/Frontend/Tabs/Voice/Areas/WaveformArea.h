@@ -8,7 +8,7 @@
 #include "../Graphics/GraphicsOtoHandle.h"
 #include "Base/Graphics/GraphicsArea.h"
 #include "QFrequencyFile.h"
-#include "QGenonSettings.h"
+#include "QUtauBasic.h"
 #include "QWaveInfo.h"
 
 class WaveformScrollArea;

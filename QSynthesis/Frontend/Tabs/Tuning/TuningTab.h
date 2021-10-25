@@ -18,7 +18,7 @@
 #include "MiniSystem/MiniSystemNotifier.h"
 #include "PluginInfo.h"
 #include "Process/RealtimeRenderer.h"
-#include "Render/RenderArgs.h"
+#include "QUtauRender.h"
 #include "SequenceTextFile.h"
 #include "VoiceBank/QOtoReference.h"
 
@@ -291,6 +291,8 @@ private:
     QByteArray m_audioData;
     int m_startBuffer;
     int m_startIndex, m_processedIndex;
+
+    double m_audioDelay, m_audioTail;
 
     void initRenderer();
 

@@ -1,5 +1,7 @@
 #include "TerminalDialog.h"
-#include "QUtauStrings.h"
+#include "QUtauStrCore.h"
+
+using namespace UtaFilenames;
 
 TerminalDialog::TerminalDialog(QString dir,QWidget *parent)
     : BaseDialog(parent), m_workingDir(dir), m_batchFile(FILE_NAME_TEMP_BATCH) {

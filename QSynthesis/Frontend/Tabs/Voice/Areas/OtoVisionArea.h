@@ -6,7 +6,7 @@
 #include <QWidget>
 
 #include "../Scrolls/WaveformScrollArea.h"
-#include "QGenonSettings.h"
+#include "QUtauBasic.h"
 #include "VoiceBankArea.h"
 #include "WaveformArea.h"
 
@@ -15,7 +15,7 @@ class OtoOperation;
 class OtoVisionArea : public VoiceBankArea {
     Q_OBJECT
 public:
-    explicit OtoVisionArea(VoiceBankTab *tab,QWidget *parent = nullptr);
+    explicit OtoVisionArea(VoiceBankTab *tab, QWidget *parent = nullptr);
     ~OtoVisionArea();
 
     void initExtern();

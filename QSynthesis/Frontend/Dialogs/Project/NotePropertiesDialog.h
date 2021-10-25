@@ -8,7 +8,7 @@
 #include "BaseDialog.h"
 #include "Controls/Group/LineControl.h"
 #include "Controls/Group/SlideLineControl.h"
-#include "Note/QLinkNote.h"
+#include "QUtauBasic.h"
 #include "QUtils.h"
 #include "Transfer/NoteProperties.h"
 

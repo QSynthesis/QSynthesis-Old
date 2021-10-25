@@ -2,7 +2,7 @@
 #define GRAPHICSPOINT_H
 
 #include "Graphics/GraphicsDragger.h"
-#include "QControlPoint.h"
+#include "QUtauBasic.h"
 #include "QUtils.h"
 
 class NotesArea;
@@ -82,7 +82,7 @@ private:
     void linkPress(QPointF pos) override;
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
-              QWidget *widget = nullptr) override;
+               QWidget *widget = nullptr) override;
 };
 
 #endif // GRAPHICSPOINT_H

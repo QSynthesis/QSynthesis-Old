@@ -12,17 +12,14 @@
 #include <QPainter>
 #include <QProcess>
 
+#include "Constants.h"
 #include "Macros.h"
+#include "Primary.h"
+#include "SystemApis.h"
 #include "Types.h"
 #include "Variables.h"
 
 class MainWindow;
-
-// Global Constants
-const QRect NO_RECT = QRect(0, 0, 0, 0);
-const QRectF NO_RECTF = QRectF(0, 0, 0, 0);
-
-const QString CLIPBOARD_FORMAT_NAME_NOTE = "qsynthesis/notes";
 
 // Global Functions
 QFont mainFont(int pixelSize = 15, int weight = QFont::Normal, bool italic = false);
@@ -53,11 +50,7 @@ bool isSameFile(QString filename1, QString filename2);
 
 bool isSubDir(QString dirname, QString subdirname);
 
-bool CombineFile(QString oFile1, QString oFile2, QString oFile3);
-
 bool RemoveFile(QString fileName);
-
-bool CopyFile(QString fileName, QString newName);
 
 int RemoveFilesWithPrefix(QString strDir, QString prefix);
 
@@ -67,14 +60,6 @@ QDateTime GetFileLastModifyTime(QString filename);
 
 bool isNumber(QString s, bool considerDot, bool considerNeg);
 
-QList<int> toIntList(const QStringList &list);
-
-QList<double> toDoubleList(const QStringList &list);
-
 bool equalDouble(double a, double b);
-
-QString removeTailSlashes(const QString &dirname);
-
-void RevealFile(QString filename);
 
 #endif // QUTILS_H

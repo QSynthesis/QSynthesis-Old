@@ -7,6 +7,8 @@
 
 #include <QScrollBar>
 
+using namespace Utau;
+
 NotesArea::NotesArea(EditorInterface *editor, NotesScrollArea *view) : GraphicsArea(view) {
     m_ptrs = editor->ptrs();
 

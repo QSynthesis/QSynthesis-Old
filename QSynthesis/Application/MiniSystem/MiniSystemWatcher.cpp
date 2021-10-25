@@ -1,5 +1,5 @@
 #include "MiniSystemWatcher.h"
-#include "QUtils.h"
+#include "Primary.h"
 
 #include <QDir>
 

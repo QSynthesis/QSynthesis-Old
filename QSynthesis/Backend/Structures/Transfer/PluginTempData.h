@@ -3,11 +3,11 @@
 
 #include <QObject>
 
-#include "../Note/QLinkNote.h"
 #include "NoteReadonlys.h"
-#include "SequenceTextFiles/SequenceTextData.h"
+#include "QUtauSections.h"
 
-struct PluginTempData {
+class PluginTempData {
+public:
     PluginTempData();
 
     QString project;

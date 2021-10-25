@@ -4,6 +4,8 @@
 #include "Strings/UtaFilenames.h"
 #include "Voice/VoiceBankTab.h"
 
+using namespace UtaFilenames;
+
 QMap<QString, QPair<int, QOtoReference *>> QOtoReference::otoRefMap;
 
 QOtoReference::QOtoReference(QObject *parent) : QObject(parent) {

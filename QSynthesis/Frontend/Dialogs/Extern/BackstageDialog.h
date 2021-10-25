@@ -5,8 +5,8 @@
 #include <QMutex>
 #include <QPushButton>
 
+#include "QUtauRender.h"
 #include "Widgets/BaseDialog.h"
-#include "Render/RenderArgs.h"
 
 class ResampleWork;
 class ConcatenateWork;
@@ -16,8 +16,8 @@ class BackstageDialog : public BaseDialog {
 public:
     enum Status { Resampling, Concatenating, Loading, Terminating };
 
-    explicit BackstageDialog(QString dir,QWidget *parent = nullptr);
-    explicit BackstageDialog(QString dir, int threads,QWidget *parent = nullptr);
+    explicit BackstageDialog(QString dir, QWidget *parent = nullptr);
+    explicit BackstageDialog(QString dir, int threads, QWidget *parent = nullptr);
     ~BackstageDialog();
 
     int exec() override;

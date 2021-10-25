@@ -18,7 +18,7 @@ void Mode2Handler::toNotePoints() {
         }
         m_note->Note.Mode2Pitch.push_back(p->TPoint);
     }
-    m_note->Note.mode2Sort();
+    ::insertSort(m_note->Note.Mode2Pitch);
 }
 
 bool Mode2Handler::removePoints(const QList<GraphicsPoint *> &points) {

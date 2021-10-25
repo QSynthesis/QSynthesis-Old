@@ -1,12 +1,9 @@
 ﻿#include "SequenceTextFile.h"
-#include "Note/Utils/QNoteEnvelope.h"
-#include "Note/Utils/QNoteMode2.h"
-#include "QUtauConstants.h"
-#include "QUtauStrings.h"
-#include "QUtauUtils.h"
-#include "Utils/CharsetHandler.h"
+#include "SystemApis.h"
+#include "Variables.h"
 
 using namespace UtaProjectText;
+using namespace Utau;
 
 Q_CHARSET_DECLARE(SequenceTextFile)
 
@@ -28,7 +25,6 @@ SequenceTextFile::SequenceTextFile(Qs::VariableSource source) : BaseFile(source)
 }
 
 bool SequenceTextFile::loadCore(bool *valid) {
-    // Open file
     QFile file(m_filename);
     QByteArray data;
     bool isUnicode = false;
@@ -37,18 +33,17 @@ bool SequenceTextFile::loadCore(bool *valid) {
         if (*valid) {
             *valid = true;
         }
-        return 0;
+        return false;
     }
 
     data = file.readAll();
     file.close();
 
     // Detect Code
-    QString charset = CharsetHandler::detectCharset(data);
+    QTextCodec *codec = GetUtfCodec(data);
     QTextStream in(&data);
-
-    if (!charset.isEmpty()) {
-        m_codec = QTextCodec::codecForName(charset.toLatin1());
+    if (codec) {
+        m_codec = codec;
     }
     in.setCodec(m_codec);
 
@@ -171,7 +166,7 @@ bool SequenceTextFile::loadCore(bool *valid) {
 bool SequenceTextFile::saveCore() {
     QFile file(m_filename);
     if (!file.open(QFile::WriteOnly | QIODevice::Text)) {
-        return 0;
+        return false;
     }
 
     QTextStream out(&file);
@@ -274,8 +269,8 @@ bool SequenceTextFile::parseSectionNote(const QStringList &sectionList, QLinkNot
     double valueDouble;
     bool isInt, isDouble;
 
-    QNoteMode2 mode2;
-    QNoteEnvelope envelope;
+    PBStrings mode2;
+    QString strEnv;
 
     for (i = 0; i < sectionList.size(); ++i) {
         line = sectionList.at(i);
@@ -339,30 +334,30 @@ bool SequenceTextFile::parseSectionNote(const QStringList &sectionList, QLinkNot
                 note.pbstart = valueDouble; // Mode1 Start
             }
         } else if (key == KEY_NAME_PBS) {
-            mode2.SetPBS(value); // Mode2 Start
+            mode2.PBS = value; // Mode2 Start
         } else if (key == KEY_NAME_PBW) {
-            mode2.SetPBW(value); // Mode2 Intervals
+            mode2.PBW = value; // Mode2 Intervals
         } else if (key == KEY_NAME_PBY) {
-            mode2.SetPBY(value); // Mode2 Offsets
+            mode2.PBY = value; // Mode2 Offsets
         } else if (key == KEY_NAME_PBM) {
-            mode2.SetPBM(value); // Mode2 Types
+            mode2.PBM = value; // Mode2 Types
         } else if (key == KEY_NAME_PB_START) {
             if (isDouble) {
                 note.pbstart = valueDouble; // Mode1 Start
             }
         } else if (key == KEY_NAME_PICHES || key == KEY_NAME_PITCHES ||
                    key == KEY_NAME_PITCH_BEND) {
-            note.pitches = qstring_to_qvector_double(value).toList(); // Mode1 Pitch
+            note.pitches = StringsToDoubles(value.split(COMMA)); // Mode1 Pitch
         } else if (key == KEY_NAME_VBR) {
-            note.vibrato = qstring_to_qvector_double(value).toList(); // Mode2 Vibrato
+            note.vibrato = StringsToDoubles(value.split(COMMA)); // Vibrato
         } else if (key == KEY_NAME_ENVELOPE) {
-            envelope.setStrEnvelope(value); // Envelope
+            strEnv = value; // Envelope
         } else if (!key.startsWith('@')) {
             note.customData.append(qMakePair(key, value)); // Custom Values
         }
     }
-    note.Mode2Pitch = mode2.GetCorrectedPortamento().toList(); // Mode2 Pitch
-    note.envelope = envelope.getEnvelope().toList();
+    note.Mode2Pitch = StringToPortamento(mode2); // Mode2 Pitch
+    note.envelope = StringToEnvelope(strEnv);
 
     return isValid;
 }
@@ -420,13 +415,13 @@ bool SequenceTextFile::parseSectionSettings(const QStringList &sectionList,
         } else if (key == KEY_NAME_OUTPUT_FILE) {
             settings.outputFileName = value; // Output File Name
         } else if (key == KEY_NAME_VOICE_DIR) {
-            settings.voiceDirectory = fromUSTVoiceDir(value); // Voice Directory
+            settings.voiceDirectory = fromUSTVoiceDir(value, AppPath); // Voice Directory
         } else if (key == KEY_NAME_CACHE_DIR) {
             settings.cacheDirectory = value; // Cache Directory
         } else if (key == KEY_NAME_TOOL1) {
-            settings.wavtoolPath = fromUSTToolsDir(value); // Wavtool
+            settings.wavtoolPath = fromUSTToolsDir(value, AppPath); // Wavtool
         } else if (key == KEY_NAME_TOOL2) {
-            settings.resamplerPath = fromUSTToolsDir(value); // Resampler
+            settings.resamplerPath = fromUSTToolsDir(value, AppPath); // Resampler
         } else if (key == KEY_NAME_MODE2) {
             if (value != "True") {
                 isValid = false;
@@ -463,21 +458,15 @@ void SequenceTextFile::writeSectionNote(int num, const QLinkNote &note, QTextStr
     writeSectionName(num, out);
 
     // Items maybe not exist
-    QString aVibrato = qvector_double_to_qstring(note.vibrato.toVector());
-    QString aPitchBend = qvector_double_to_qstring(note.pitches.toVector());
+    QString aVibrato = DoublesToStrings(note.vibrato).join(COMMA);
+    QString aPitchBend = DoublesToStrings(note.pitches).join(COMMA);
 
     // Complex items
-    QNoteMode2 mode2;
-    QNoteEnvelope envelope;
-
-    QString aPBS, aPBW, aPBY, aPBM;
+    PBStrings mode2;
     QString strEnvelope;
 
-    mode2.SetCorrectedPortamento(note.Mode2Pitch.toVector());
-    mode2.ExportStrings(aPBS, aPBW, aPBY, aPBM);
-
-    envelope.setEnvelope(note.envelope.toVector());
-    strEnvelope = envelope.strEnvelope();
+    mode2 = PortamentoToString(note.Mode2Pitch);
+    strEnvelope = EnvelopeToString(note.envelope);
 
     // Items always exists
     out << KEY_NAME_LENGTH << "=" << note.length << Qt::endl;
@@ -514,11 +503,13 @@ void SequenceTextFile::writeSectionNote(int num, const QLinkNote &note, QTextStr
         out << KEY_NAME_PITCH_BEND << "=" << aPitchBend << Qt::endl;
     }
     if (!note.Mode2Pitch.isEmpty()) {
-        out << KEY_NAME_PBS << "=" << aPBS << Qt::endl;
-        out << KEY_NAME_PBW << "=" << aPBW << Qt::endl;
-        out << KEY_NAME_PBY << "=" << aPBY << Qt::endl;
-        if (!aPBM.isEmpty()) {
-            out << KEY_NAME_PBM << "=" << aPBM << Qt::endl;
+        out << KEY_NAME_PBS << "=" << mode2.PBS << Qt::endl;
+        out << KEY_NAME_PBW << "=" << mode2.PBW << Qt::endl;
+        if (!mode2.PBY.isEmpty()) {
+            out << KEY_NAME_PBY << "=" << mode2.PBY << Qt::endl;
+        }
+        if (!mode2.PBS.isEmpty()) {
+            out << KEY_NAME_PBM << "=" << mode2.PBM << Qt::endl;
         }
     }
     if (!note.envelope.isEmpty()) {
@@ -561,12 +552,14 @@ void SequenceTextFile::writeSectionSettings(QTextStream &oStream) {
     oStream << KEY_NAME_TEMPO << "=" << m_sectionSettings.globalTempo << Qt::endl;
     oStream << KEY_NAME_TRACKS << "=" << VALUE_TRACKS_SINGLE << Qt::endl;
     oStream << KEY_NAME_PROJECT_NAME << "=" << m_sectionSettings.projectName << Qt::endl;
-    oStream << KEY_NAME_VOICE_DIR << "=" << toUSTVoiceDir(m_sectionSettings.voiceDirectory)
+    oStream << KEY_NAME_VOICE_DIR << "=" << toUSTVoiceDir(m_sectionSettings.voiceDirectory, AppPath)
             << Qt::endl;
     oStream << KEY_NAME_OUTPUT_FILE << "=" << m_sectionSettings.outputFileName << Qt::endl;
     oStream << KEY_NAME_CACHE_DIR << "=" << m_sectionSettings.cacheDirectory << Qt::endl;
-    oStream << KEY_NAME_TOOL1 << "=" << toUSTToolsDir(m_sectionSettings.wavtoolPath) << Qt::endl;
-    oStream << KEY_NAME_TOOL2 << "=" << toUSTToolsDir(m_sectionSettings.resamplerPath) << Qt::endl;
+    oStream << KEY_NAME_TOOL1 << "=" << toUSTToolsDir(m_sectionSettings.wavtoolPath, AppPath)
+            << Qt::endl;
+    oStream << KEY_NAME_TOOL2 << "=" << toUSTToolsDir(m_sectionSettings.resamplerPath, AppPath)
+            << Qt::endl;
 
     if (m_sectionSettings.isMode2) {
         oStream << KEY_NAME_MODE2 << "=" << VALUE_MODE2_ON << Qt::endl;

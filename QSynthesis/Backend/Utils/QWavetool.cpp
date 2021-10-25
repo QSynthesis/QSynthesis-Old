@@ -1,8 +1,6 @@
 #include "QWavetool.h"
 #include "QUtils.h"
 
-#include "Tuning/Controllers/EnvelopeHandler.h"
-
 QWavetool::QWavetool() {
 }
 
@@ -73,9 +71,9 @@ QByteArray QWavetool::truncatedData() const {
 QByteArray QWavetool::processedData() const {
     QByteArray data = truncatedData();
 
-    QVector<QControlPoint> env = m_args.envelope();
+    QList<QControlPoint> env = m_args.envelope();
     if (env.size() < 4 || env.size() > 5) {
-        env = EnvelopeHandler::defaultEnvelope.toVector();
+        env = Utau::DefaultEnvelope();
     }
     int p3 = (env.size() >= 4) ? (env.size() - 2) : env.size();
 

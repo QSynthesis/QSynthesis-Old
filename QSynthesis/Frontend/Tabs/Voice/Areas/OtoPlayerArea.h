@@ -2,7 +2,7 @@
 #define OTOPLAYERAREA_H
 
 #include "../Modules/PlayerLabel.h"
-#include "QGenonSettings.h"
+#include "QUtauBasic.h"
 #include "VoiceBankArea.h"
 
 #include <QLabel>
@@ -11,7 +11,7 @@
 class OtoPlayerArea : public VoiceBankArea {
     Q_OBJECT
 public:
-    explicit OtoPlayerArea(VoiceBankTab *tab,QWidget *parent = nullptr);
+    explicit OtoPlayerArea(VoiceBankTab *tab, QWidget *parent = nullptr);
     ~OtoPlayerArea();
 
 private:

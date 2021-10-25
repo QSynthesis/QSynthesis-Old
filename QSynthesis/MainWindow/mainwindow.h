@@ -20,7 +20,6 @@
 #include <QTranslator>
 
 #include "CentralTabWidget.h"
-#include "QUtauUtils.h"
 #include "QUtils.h"
 #include "SequenceTextFile.h"
 

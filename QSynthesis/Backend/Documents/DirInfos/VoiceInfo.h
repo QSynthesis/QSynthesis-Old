@@ -8,7 +8,7 @@
 class VoiceInfo : public BaseDirInfo {
     Q_CHARSET
 public:
-    VoiceInfo();
+     VoiceInfo();
     VoiceInfo(const QString &dirname);
     ~VoiceInfo();
 

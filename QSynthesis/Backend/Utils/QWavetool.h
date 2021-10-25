@@ -1,8 +1,8 @@
 #ifndef QWAVETOOL_H
 #define QWAVETOOL_H
 
+#include "QUtauRender.h"
 #include "QWaveInfo.h"
-#include "Structures/Render/WavtoolArgs.h"
 
 class QWavetool {
 public:

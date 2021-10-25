@@ -1,6 +1,7 @@
 #ifndef MEMORYMANAGER_H
 #define MEMORYMANAGER_H
 
+#include <QDir>
 #include <QObject>
 #include <QSharedMemory>
 

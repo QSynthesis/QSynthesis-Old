@@ -12,7 +12,7 @@ protected:
     BaseDirInfo(Qs::VariableSource source);
 
 public:
-    QString filename() const override;
+    QString filename() const override final;
     void setFilename(const QString &filename) = delete;
 
     QString dirname() const;

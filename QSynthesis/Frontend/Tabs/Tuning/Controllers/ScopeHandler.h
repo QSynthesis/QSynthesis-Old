@@ -1,7 +1,7 @@
 #ifndef SCOPEHANDLER_H
 #define SCOPEHANDLER_H
 
-#include "QControlPoint.h"
+#include "QUtauBasic.h"
 #include "QUtils.h"
 #include "Utils/ItemList.h"
 

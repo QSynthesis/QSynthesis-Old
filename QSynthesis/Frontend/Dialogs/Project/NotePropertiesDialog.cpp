@@ -1,5 +1,7 @@
 #include "NotePropertiesDialog.h"
 
+using namespace Utau;
+
 #include <cmath>
 
 NotePropertiesDialog::NotePropertiesDialog(NoteProperties &np, int count,QWidget *parent)

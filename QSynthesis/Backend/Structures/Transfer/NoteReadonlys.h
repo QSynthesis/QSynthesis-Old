@@ -3,9 +3,10 @@
 
 #include <QString>
 
-#include "QUtauConstants.h"
+#include "QUtauBasic.h"
 
-struct NoteReadonlys {
+class NoteReadonlys {
+public:
     double preuttr;
     double overlap;
     double stpoint;

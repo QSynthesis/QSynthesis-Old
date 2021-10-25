@@ -3,7 +3,10 @@
 
 #include "BaseFile.h"
 #include "Macros.h"
-#include "SequenceTextFiles/SequenceTextData.h"
+
+#include "QUtauBasic.h"
+#include "QUtauSections.h"
+#include "QUtauStrCore.h"
 
 #include <QFile>
 #include <QTextCodec>

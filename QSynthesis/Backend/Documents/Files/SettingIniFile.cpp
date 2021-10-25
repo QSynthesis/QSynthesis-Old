@@ -1,9 +1,10 @@
 ﻿#include "SettingIniFile.h"
-#include "QUtils.h"
-#include "UTAU/Strings/UtaSettingText.h"
-#include "Utils/Templates.h"
+#include "Constants.h"
+#include "Primary.h"
+#include "QSettingFile.h"
+#include "QUtauStrCore.h"
 
-using namespace UtaSettingText;
+using namespace UtaSettingIni;
 
 Q_CHARSET_DECLARE(SettingIniFile)
 
@@ -22,10 +23,10 @@ SettingIniFile::~SettingIniFile() {
 
 void SettingIniFile::init() {
     m_codec = defaultCodec;
-    projects.setType(FileNameSet::File);
-    folders.setType(FileNameSet::Directory);
-    wavtools.setType(FileNameSet::File);
-    resamplers.setType(FileNameSet::File);
+    projects.setType(QFileSet::File);
+    folders.setType(QFileSet::Directory);
+    wavtools.setType(QFileSet::File);
+    resamplers.setType(QFileSet::File);
 }
 
 bool SettingIniFile::loadCore(bool *valid) {

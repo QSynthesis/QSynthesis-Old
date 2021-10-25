@@ -1,7 +1,7 @@
 #ifndef QOTOSAMPLE_H
 #define QOTOSAMPLE_H
 
-#include "QGenonSettings.h"
+#include "QUtauBasic.h"
 
 #include <QDir>
 #include <QFileInfo>

@@ -1,10 +1,13 @@
 #include "QReadmeText.h"
-#include "NormalFile.h"
-#include "QUtauStrings.h"
-#include "Utils/CharsetHandler.h"
+#include "QUtauBasic.h"
+#include "QUtauStrCore.h"
+#include "SystemApis.h"
 
+#include <QFile>
 #include <QTextCodec>
 #include <QTextStream>
+
+using namespace UtaFilenames;
 
 Q_CHARSET_STATIC_DECLARE(QReadmeText)
 
@@ -21,27 +24,32 @@ QReadmeText::~QReadmeText() {
 }
 
 bool QReadmeText::fromLocalFile(const QString &filename) {
-    NormalFile file(filename);
+    QFile file(filename);
+    QByteArray data;
     if (!file.exists()) {
         return true;
     }
-    if (!file.load()) {
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         return false;
     }
 
-    QByteArray data = file.data();
+    data = file.readAll();
+    file.close();
 
-    // Detect Code
-    QString charset = CharsetHandler::detectCharset(data);
-    if (!charset.isEmpty()) {
-        m_codec = QTextCodec::codecForName(charset.toLatin1());
+    QTextCodec *codec = GetUtfCodec(data);
+    QTextStream in(&data);
+    if (codec) {
+        m_codec = codec;
     }
+    in.setCodec(m_codec);
+
     Text = m_codec->toUnicode(data);
     return true;
 }
 
 bool QReadmeText::toLocalFile(const QString &filename) {
-    NormalFile file(filename);
+    QFile file(filename);
+    QByteArray data;
 
     // Delete when empty
     if (Text.isEmpty()) {
@@ -51,8 +59,14 @@ bool QReadmeText::toLocalFile(const QString &filename) {
             return true;
         }
     }
-    file.setData(m_codec->fromUnicode(Text));
-    return file.save();
+
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        return false;
+    }
+
+    file.write(m_codec->fromUnicode(Text));
+    file.close();
+    return true;
 }
 
 bool QReadmeText::loadCore(bool *valid) {

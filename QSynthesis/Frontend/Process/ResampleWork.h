@@ -2,7 +2,7 @@
 #define RESAMPLEWORK_H
 
 #include "BaseWork.h"
-#include "Render/ResamplerArgs.h"
+#include "QUtauRender.h"
 
 class ResampleWork : public BaseWork {
     Q_OBJECT
