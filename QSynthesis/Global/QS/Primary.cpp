@@ -33,3 +33,19 @@ QList<double> toDoubleList(const QStringList &list) {
     }
     return res;
 }
+
+bool isNumber(QString s, bool considerDot, bool considerNeg) {
+    bool flag = true;
+
+    for (int i = 0; i < s.size(); ++i) {
+        QChar ch = s.at(i);
+        if ((ch >= '0' && ch <= '9') || (considerDot && ch == '.') || (considerNeg && ch == '-')) {
+            // is Number
+        } else {
+            flag = false;
+            break;
+        }
+    }
+
+    return flag;
+}

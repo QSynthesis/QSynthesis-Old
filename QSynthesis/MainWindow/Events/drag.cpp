@@ -23,7 +23,7 @@ void MainWindow::dropEvent(QDropEvent *event) {
     QStringList fileNames;
 
     for (int i = 0; i < urls.size(); ++i) {
-        fileNames.append(removeTailSlashes(urls[i].toLocalFile()));
+        fileNames.append(_FIN(urls[i].toLocalFile()));
     }
 
     addMultipleTabs(fileNames);

@@ -251,7 +251,7 @@ void TrackHead::onLabelBtnClicked() {
         } else {
             for (int i = 0; i < dirs.size(); ++i) {
                 const VoiceInfo &voice = dirs.at(i);
-                if (isSameFile(voice.dirname(), m_voice)) {
+                if (isSamePath(voice.dirname(), m_voice)) {
                     menu->setCheckedAt(i, true);
                 } else {
                     menu->setCheckedAt(i, false);

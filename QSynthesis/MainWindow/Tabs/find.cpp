@@ -10,7 +10,7 @@ int MainWindow::findTuningTab(const QString &filename) {
         if (!tab || tab->isDeleted() || tab->isUntitled()) {
             continue;
         }
-        if (isSameFile(tab->filename(), filename)) {
+        if (isSamePath(tab->filename(), filename)) {
             j = i;
             break;
         }
@@ -26,15 +26,15 @@ int MainWindow::findVoiceBankTab(const QString &dirname, Qs::DirRelation *relati
     for (i = 0; i < tabs->count(); ++i) {
         VoiceBankTab *tab = qobject_cast<VoiceBankTab *>(tabAt(i));
         if (tab) {
-            if (isSameFile(tab->filename(), dirname)) {
+            if (isSamePath(tab->filename(), dirname)) {
                 *relation = Qs::SameDir;
                 j = i;
                 break;
-            } else if (isSubDir(tab->filename(), dirname)) {
+            } else if (isPrefixedWith(dirname, tab->filename())) {
                 *relation = Qs::ParentDir;
                 j = i;
                 break;
-            } else if (isSubDir(dirname, tab->filename())) {
+            } else if (isPrefixedWith(tab->filename(), dirname)) {
                 *relation = Qs::SubDir;
                 j = i;
                 break;

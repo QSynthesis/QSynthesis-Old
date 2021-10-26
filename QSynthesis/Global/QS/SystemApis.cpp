@@ -1,6 +1,5 @@
 #include "SystemApis.h"
 
-#include <QDir>
 #include <QDirIterator>
 #include <QFile>
 #include <QProcess>
@@ -39,11 +38,7 @@ QStringList FindRecursiveDirs(const QString &base) {
 
 bool CopyFile(const QString &fileName, const QString &newName) {
     QFile file(newName);
-    if (file.exists()) {
-        return file.remove() && QFile::copy(fileName, newName);
-    } else {
-        return QFile::copy(fileName, newName);
-    }
+    return (!file.exists() || file.remove()) && QFile::copy(fileName, newName);
 }
 
 bool CombineFile(const QString &fileName1, const QString &fileName2, const QString &newName) {
@@ -68,6 +63,61 @@ bool CombineFile(const QString &fileName1, const QString &fileName2, const QStri
     file3.close();
 
     return true;
+}
+
+int RemoveFilesWithPrefixString(const QString &strDir, const QString &prefix) {
+    if (!isDirExist(strDir)) {
+        return 0;
+    }
+
+    QDir dir;
+    QFileInfoList fileList;
+    QFileInfo curFile;
+    int cnt = 0;
+
+    dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot);
+    dir.setPath(strDir);
+    fileList = dir.entryInfoList();
+
+    for (int i = fileList.size() - 1; i >= 0; i--) {
+        curFile = fileList.at(i);
+        if (prefix.isEmpty() || curFile.fileName().startsWith(prefix)) {
+            QFile fileTemp(curFile.filePath());
+            if (fileTemp.remove()) {
+                cnt++;
+            }
+        }
+    }
+    return cnt;
+}
+
+int RemoveFilesWithPrefixNumber(const QString &strDir, int prefix) {
+    if (!isDirExist(strDir)) {
+        return 0;
+    }
+
+    QDir dir;
+    QFileInfoList fileList;
+    QFileInfo curFile;
+    int cnt = 0;
+
+    dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot);
+    dir.setPath(strDir);
+    fileList = dir.entryInfoList();
+
+    for (int i = fileList.size() - 1; i >= 0; i--) {
+        curFile = fileList.at(i);
+        QString num = QString::number(prefix);
+        QString filename = curFile.fileName();
+        if (filename.startsWith(num) &&
+            (filename.size() == num.size() || !filename.at(num.size()).isNumber())) {
+            QFile fileTemp(curFile.filePath());
+            if (fileTemp.remove()) {
+                cnt++;
+            }
+        }
+    }
+    return cnt;
 }
 
 void RevealFile(const QString &filename) {

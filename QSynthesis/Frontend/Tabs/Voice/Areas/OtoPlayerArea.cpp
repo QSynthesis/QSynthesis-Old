@@ -79,7 +79,7 @@ void OtoPlayerArea::setPlaying(bool playing) {
 void OtoPlayerArea::receiveFromVision(const QGenonSettings &sample) {
     QString filename = sample.mFileName;
 
-    if (!isSameFile(filename, m_sample.mFileName)) {
+    if (!isSamePath(filename, m_sample.mFileName)) {
         m_ptrs->tab->setMedia(QMediaContent(QUrl::fromLocalFile(filename)));
         m_sample = sample;
     }

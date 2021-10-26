@@ -7,11 +7,15 @@
 #define _FIN(T) removeTailSlashes(QDir::fromNativeSeparators(T))
 #define _FOUT(T) removeTailSlashes(QDir::toNativeSeparators(T))
 
+#define isPrefixedWith(A, B) A.startsWith(B) && (A != B)
+
 QString removeTailSlashes(const QString &dirname);
 
 QList<int> toIntList(const QStringList &list);
 
 QList<double> toDoubleList(const QStringList &list);
+
+bool isNumber(QString s, bool considerDot, bool considerNeg);
 
 // Template Functions
 template <class T>
