@@ -5,7 +5,7 @@
 #include <cmath>
 
 void GraphicsNote::updateNoteStatus() {
-    if (isRestNoteLyric(Note.lyric)) {
+    if (Utau::isRestLyric(Note.lyric)) {
         m_genonSettings = QGenonSettings();
         setStatus(Qs::Rest);
     } else {

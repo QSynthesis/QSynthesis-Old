@@ -50,7 +50,7 @@ void MainWindow::freeAndQuit() {
     quitWindow();
 
     // Modules
-    freeModules();
+    quitModules();
 }
 
 void MainWindow::initWindow() {

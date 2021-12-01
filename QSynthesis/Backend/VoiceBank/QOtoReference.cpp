@@ -4,7 +4,7 @@
 #include "Strings/UtaFilenames.h"
 #include "Voice/VoiceBankTab.h"
 
-using namespace UtaFilenames;
+using namespace Utau;
 
 QMap<QString, QPair<int, QOtoReference *>> QOtoReference::otoRefMap;
 

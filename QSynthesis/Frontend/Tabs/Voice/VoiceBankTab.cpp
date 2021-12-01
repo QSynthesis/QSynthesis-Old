@@ -1,10 +1,13 @@
-﻿#include <QDebug>
+﻿#include "VoiceBankTab.h"
+#include "QUtauBasic.h"
+#include "QUtauStrCore.h"
+#include "VoiceBankGroup.h"
+#include "application.h"
+
+#include <QDebug>
 #include <QFile>
 
-#include "QUtauStrings.h"
-#include "VoiceBankGroup.h"
-#include "VoiceBankTab.h"
-#include "application.h"
+using namespace Utau;
 
 VoiceBankTab::VoiceBankTab(CentralTabWidget *parent) : CentralTab(parent) {
     initTab();

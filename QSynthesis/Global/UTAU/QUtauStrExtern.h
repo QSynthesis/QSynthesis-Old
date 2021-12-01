@@ -5,7 +5,7 @@
 #include "Strings/UtaPluginText.h"
 
 // Supplements
-namespace UtaPluginText {
+namespace Utau {
 
     const QString KEY_NAME_PLUGIN_CHARSET = "charset";
 

@@ -11,7 +11,9 @@
 #define isFileExist(s) (!isPathRelative(s) && QFileInfo(s).isFile())
 #define isDirExist(s) (!isPathRelative(s) && QFileInfo(s).isDir())
 #define isSamePath(A, B) (QFileInfo(A).canonicalFilePath() == QFileInfo(B).canonicalFilePath())
+#define CreateDir(s) (QDir(s).mkpath(s))
 #define DestroyDir(s) (isDirExist(s) && QDir(s).removeRecursively())
+#define RemoveFile(s) QFile::remove(s)
 
 QTextCodec *GetUtfCodec(const QByteArray &data);
 

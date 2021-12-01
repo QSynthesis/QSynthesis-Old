@@ -1,8 +1,8 @@
 #include "../../../Tracks/TracksInterface.h"
 #include "../../../TuningGroup.h"
 #include "../NotesArea.h"
-#include "Render/RenderUtils/UtaPitchCurves.h"
-#include "Render/RenderUtils/UtaTranslator.h"
+#include "Render/Utils/UtaPitchCurves.h"
+#include "Render/Utils/UtaTranslator.h"
 
 QList<RenderArgs> NotesArea::getRenderArgsCore(QPoint range) const {
     QList<RenderArgs> args;
@@ -35,13 +35,13 @@ QList<RenderArgs> NotesArea::getRenderArgsCore(QPoint range) const {
         double aOverlap = aCorrect.VoiceOverlap;
         double aStartPoint = aCorrect.StartPoint;
 
-        QVector<QControlPoint> aPitch;
-        QVector<QControlPoint> aEnvelope;
-        QVector<double> aVibrato;
+        QList<QControlPoint> aPitch;
+        QList<QControlPoint> aEnvelope;
+        QList<double> aVibrato;
 
         // Compute Mode2 Pitch Bend
-        QVector<QControlPoint> aPrevPitch;
-        QVector<double> aPrevVibrato;
+        QList<QControlPoint> aPrevPitch;
+        QList<double> aPrevVibrato;
         QString aPrevLyric = "";
 
         int aPrevLength = 480;
@@ -53,8 +53,8 @@ QList<RenderArgs> NotesArea::getRenderArgsCore(QPoint range) const {
         double aNextPreUttr = 0;
         double aNextOverlap = 0;
 
-        QVector<QControlPoint> aNextPitch;
-        QVector<double> aNextVibrato;
+        QList<QControlPoint> aNextPitch;
+        QList<double> aNextVibrato;
 
         if (aGenon.mFileName.isEmpty()) {
             aGenon.mFileName = m_ptrs->tracksContent->defaultVoiceDir() + Slash + aLyric + ".wav";
@@ -65,8 +65,8 @@ QList<RenderArgs> NotesArea::getRenderArgsCore(QPoint range) const {
             aPrevLength = aPrevNote->Note.length;
             aPrevLyric = aPrevNote->Note.lyric;
             aPrevNoteNum = aPrevNote->Note.noteNum;
-            aPrevPitch = aPrevNote->Note.Mode2Pitch.toVector(); // Mode2 Pitch Control Points
-            aPrevVibrato = aPrevNote->Note.vibrato.toVector();  // Mode2 Vibrato
+            aPrevPitch = aPrevNote->Note.Mode2Pitch; // Mode2 Pitch Control Points
+            aPrevVibrato = aPrevNote->Note.vibrato;  // Mode2 Vibrato
 
             if (!aPrevPitch.isEmpty()) {
                 GraphicsNote *NoteBeforePrev = aPrevNote->prev();
@@ -82,9 +82,9 @@ QList<RenderArgs> NotesArea::getRenderArgsCore(QPoint range) const {
 
         // Current Note
         {
-            aPitch = aNote->Note.Mode2Pitch.toVector();  // Mode2 Mode2 Pitch Control Points
-            aEnvelope = aNote->Note.envelope.toVector(); // Envelope
-            aVibrato = aNote->Note.vibrato.toVector();   // Mode2 Vibrato
+            aPitch = aNote->Note.Mode2Pitch;  // Mode2 Mode2 Pitch Control Points
+            aEnvelope = aNote->Note.envelope; // Envelope
+            aVibrato = aNote->Note.vibrato;   // Mode2 Vibrato
 
             // Correct the y coordinate of first point
             if (!aPitch.isEmpty()) {
@@ -102,8 +102,8 @@ QList<RenderArgs> NotesArea::getRenderArgsCore(QPoint range) const {
             aNextPreUttr = nextGenon.PreUtterance; // PreUtterance
             aNextOverlap = nextGenon.VoiceOverlap; // Overlap
 
-            aNextPitch = aNextNote->Note.Mode2Pitch.toVector(); // Mode2 Mode2 Pitch Control Points
-            aNextVibrato = aNextNote->Note.vibrato.toVector();  // Mode2 Vibrato
+            aNextPitch = aNextNote->Note.Mode2Pitch; // Mode2 Mode2 Pitch Control Points
+            aNextVibrato = aNextNote->Note.vibrato;  // Mode2 Vibrato
 
             // Correct the y coordinate of first point
             if (!aNextPitch.isEmpty()) {
@@ -112,11 +112,11 @@ QList<RenderArgs> NotesArea::getRenderArgsCore(QPoint range) const {
         }
 
         if (aPitch.isEmpty()) {
-            aPitch = UtaTranslator::defaultPitch(aPrevNoteNum, aPrevLyric, aNoteNum);
+            aPitch = UtaTranslator::getDefaultPitch(aPrevNoteNum, aPrevLyric, aNoteNum);
         }
 
         // Convert Mode2 to Mode1
-        QVector<int> aPitchValues;
+        QList<int> aPitchValues;
         aPitchValues = UtaPitchCurves::convert_from_vector_point(
             aTempo, aPitch, aVibrato, aPreUttr, aStartPoint, aLength, aNextPitch, aNextVibrato,
             aNextPreUttr, aNextOverlap, aNextLength, aPrevPitch, aPrevVibrato, aPrevLength);
@@ -130,9 +130,9 @@ QList<RenderArgs> NotesArea::getRenderArgsCore(QPoint range) const {
         aRealLength = int((aRealLength + 25) / 50) * 50;
 
         // Cache Name
-        QString aToneName = tone_number_to_tone_name(aNoteNum);
-        QString cacheName = QString::number(i) + "_" + UtaTranslator::compatibleFileName(aLyric) +
-                            "_" + aToneName + "_" + QString::number(aLength) + ".wav";
+        QString aToneName = Utau::ToneNumToToneName(aNoteNum);
+        QString cacheName = QString::number(i) + "_" + UtaTranslator::fixFilename(aLyric) + "_" +
+                            aToneName + "_" + QString::number(aLength) + ".wav";
 
         // Save Values to Class
         ResamplerArgs res;
@@ -141,6 +141,7 @@ QList<RenderArgs> NotesArea::getRenderArgsCore(QPoint range) const {
         // Resampler Arguments
         res.setGenonSettings(aGenon);     // Genon Settings
         res.setToneName(aToneName);       // Note Num
+        res.setInFile(aGenon.mFileName);  // Input File
         res.setOutFile(cacheName);        // Output File
         res.setIntensity(aIntensity);     // Intensity
         res.setModulation(aModulation);   // Modulation

@@ -1,7 +1,6 @@
 #include "QUtauStrCore.h"
 #include "Common/QUtauStd.h"
 
-using namespace UtaFilenames;
 using namespace Utau;
 
 #include <QDir>

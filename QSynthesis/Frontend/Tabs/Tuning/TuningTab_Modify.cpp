@@ -157,7 +157,7 @@ void TuningTab::selectAlias() {
         return;
     }
     QString lrc = notes.front().lyric;
-    if (isRestNoteLyric(lrc)) {
+    if (Utau::isRestLyric(lrc)) {
         return;
     }
     lrc = lrc.mid(0, 1);

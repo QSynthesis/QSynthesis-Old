@@ -1,8 +1,9 @@
 #include "../FileParser.h"
 #include "Dialogs/Template/SelectsDialog.h"
 #include "Documents/Import/QMidiFile.h"
-#include "QUtauUtils.h"
-#include "SequenceTextFiles/SectionNotes.h"
+#include "QUtauSections.h"
+
+using namespace Utau;
 
 bool FileParser::parseMidiFile(const QString &filename, SectionNotes &oNotes) {
     QMidiFile midi;
@@ -17,10 +18,10 @@ bool FileParser::parseMidiFile(const QString &filename, SectionNotes &oNotes) {
     }
 
     QStringList trackNames;
-    QVector<int> trackNoteCounts;
-    QVector<QPoint> trackRanges;
+    QList<int> trackNoteCounts;
+    QList<QPoint> trackRanges;
     QStringList trackRangeStrings;
-    QVector<QPair<int, double>> tempos;
+    QList<QPair<int, double>> tempos;
 
     for (int i = 0; i < tracksCount; ++i) {
         QList<QMidiEvent *> list = midi.eventsForTrack(i);
@@ -55,8 +56,8 @@ bool FileParser::parseMidiFile(const QString &filename, SectionNotes &oNotes) {
 
     // Pitch range
     for (int i = 0; i < trackRanges.size(); ++i) {
-        QString low = tone_number_to_tone_name(trackRanges[i].x());
-        QString high = tone_number_to_tone_name(trackRanges[i].y());
+        QString low = Utau::ToneNumToToneName(trackRanges[i].x());
+        QString high = Utau::ToneNumToToneName(trackRanges[i].y());
         if (trackNoteCounts[i] == 0) {
             trackRangeStrings.append("");
         } else {
@@ -80,7 +81,7 @@ bool FileParser::parseMidiFile(const QString &filename, SectionNotes &oNotes) {
         titles.append(str);
     }
 
-    QVector<bool> result;
+    QList<bool> result;
     SelectsDialog *dlg = new SelectsDialog(tr("Import Midi"), tr("Tracks in file"), titles, result,
                                            true, Q_W(parent()));
 
@@ -100,11 +101,11 @@ bool FileParser::parseMidiFile(const QString &filename, SectionNotes &oNotes) {
     }
 
     // Parse notes
-    QVector<QLinkNote> notes;
+    QList<QLinkNote> notes;
     {
         int resolution = midi.resolution();
-        QVector<QPoint> noteOns, noteOffs;
-        QVector<QPair<int, QString>> lyrics;
+        QList<QPoint> noteOns, noteOffs;
+        QList<QPair<int, QString>> lyrics;
 
         QList<QMidiEvent *> list = midi.eventsForTrack(track);
         for (int i = 0; i < list.size(); ++i) {

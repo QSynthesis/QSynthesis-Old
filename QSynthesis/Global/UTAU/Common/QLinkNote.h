@@ -5,6 +5,7 @@
 #include <QJsonObject>
 #include <QList>
 
+#include "QControlPoint.h"
 #include "QUtauStd.h"
 
 class Utau::Note {

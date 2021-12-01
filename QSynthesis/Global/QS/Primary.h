@@ -19,7 +19,7 @@ bool isNumber(QString s, bool considerDot, bool considerNeg);
 
 // Template Functions
 template <class T>
-inline void insertSort(const QList<T> &array) {
+inline void insertSort(QList<T> &array) {
     int i, j;
     T key;
 
@@ -35,7 +35,7 @@ inline void insertSort(const QList<T> &array) {
 }
 
 template <class T>
-inline void insertSort(const QVector<T> &array) {
+inline void insertSort(QVector<T> &array) {
     int i, j;
     T key;
 

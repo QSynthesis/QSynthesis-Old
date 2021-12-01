@@ -3,7 +3,7 @@
 
 #include <QString>
 
-namespace UtaProjectText {
+namespace Utau {
 
     // Sections
     const QString SECTION_BEGIN_MARK = "[#";

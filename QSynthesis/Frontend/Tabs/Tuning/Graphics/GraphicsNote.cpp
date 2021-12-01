@@ -44,7 +44,7 @@ void GraphicsNote::init() {
 
     m_time = 0;
     m_tick = 0;
-    m_tempo = DEFAULT_VALUE_TEMPO;
+    m_tempo = Utau::DEFAULT_VALUE_TEMPO;
 
     m_lengthRef = 0;
 

@@ -1,7 +1,9 @@
 #include "GraphicsLifter.h"
 #include "../Params/Areas/LiftersArea.h"
 #include "../Scrolls/LiftersScrollArea.h"
-#include "QUtauConstants.h"
+#include "QUtauBasic.h"
+
+using namespace Utau;
 
 int GraphicsLifter::Radius = 6;
 

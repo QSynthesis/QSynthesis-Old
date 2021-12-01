@@ -24,8 +24,8 @@ int CentralTabWidget::useSelector(const QStringList &items, const QString &clues
         loop.quit();
     });
     selector->show();
-
     adjustSelector();
+
     loop.exec();
 
     selector->disconnect();

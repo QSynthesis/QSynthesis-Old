@@ -16,7 +16,7 @@ public:
     Point(double oX, double oY);
     Point(double oX, double oY, PointType oP);
 
-    Point &operator=(const Point &oPoint);
+    //    Point &operator=(const Point &oPoint);
 
     Point operator+(const Point &oPoint) const;
     Point &operator+=(const Point &oPoint);

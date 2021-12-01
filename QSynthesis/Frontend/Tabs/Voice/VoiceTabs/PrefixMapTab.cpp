@@ -1,6 +1,7 @@
 #include "PrefixMapTab.h"
-#include "QUtauConstants.h"
-#include "QUtauUtils.h"
+#include "QUtauBasic.h"
+
+using namespace Utau;
 
 PrefixMapTab::PrefixMapTab(TabWidget *parent) : BaseTab(parent) {
     init();
@@ -74,7 +75,7 @@ void PrefixMapTab::initTable() {
         int countRow = mapTable->rowCount();
         mapTable->insertRow(countRow);
 
-        QTableWidgetItem *toneItem = new QTableWidgetItem(tone_number_to_tone_name(i));
+        QTableWidgetItem *toneItem = new QTableWidgetItem(ToneNumToToneName(i));
         toneItem->setFlags(toneItem->flags() & ~Qt::ItemIsEditable);
 
         mapTable->setItem(countRow, 0, toneItem);

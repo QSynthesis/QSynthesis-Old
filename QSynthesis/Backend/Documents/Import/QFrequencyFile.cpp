@@ -27,9 +27,8 @@ bool QFrequencyFile::load(const QString &filename) {
     QDataStream data(&file);
     char prefix[8];
 
-    data.readRawData(prefix, 8); // 0x8
-
-    if (memcmp(prefix, "FREQ0003", 8) != 0) {
+    if (data.readRawData(prefix, 8) != 8 || memcmp(prefix, "FREQ0003", 8) != 0) {
+        file.close();
         return false;
     }
 

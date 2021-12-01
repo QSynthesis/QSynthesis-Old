@@ -47,7 +47,7 @@ bool Genon::operator!=(const Genon &oGenon) const {
     return !((*this) == oGenon);
 }
 
-QDebug operator<<(QDebug debug, const Genon &oGenon) {
+QDebug Utau::operator<<(QDebug debug, const Genon &oGenon) {
     QString info =
         QString("QGenonSettings(file:\"%1\"; alias:\"%2\"; off:%3; con:%4; bla:%5; pre:%6; ove:%7)")
             .arg(QFileInfo(oGenon.mFileName).fileName(), oGenon.mAlias,

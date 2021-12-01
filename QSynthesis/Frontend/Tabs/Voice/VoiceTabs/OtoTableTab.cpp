@@ -88,20 +88,20 @@ void OtoTableTab::setGenonSettings(int row, const QGenonSettings &genon) {
     table->item(row, 4)->setText(QString::number(genon.mBlank));
     table->item(row, 5)->setText(QString::number(genon.mPreUtterance));
     table->item(row, 6)->setText(QString::number(genon.mVoiceOverlap));
-    table->item(row, 7)->setText(genon.frqExist() ? "TRUE" : "FALSE");
+    table->item(row, 7)->setText(isFileExist(Utau::toFrqName(genon.mFileName)) ? "TRUE" : "FALSE");
 }
 
 void OtoTableTab::updateRowStatus(int row) {
     table->blockSignals(true);
     QGenonSettings genon = getGenonSettings(row);
-    if (!genon.valid()) {
+    if (!isFileExist(genon.mFileName)) {
         turnLineToInvalid(row);
     } else if (genon.isEmpty()) {
         turnLineToEmpty(row);
     } else {
         turnLineToNormal(row);
     }
-    table->item(row, 7)->setText(genon.frqExist() ? "TRUE" : "FALSE");
+    table->item(row, 7)->setText(isFileExist(Utau::toFrqName(genon.mFileName)) ? "TRUE" : "FALSE");
     table->blockSignals(false);
 }
 
@@ -314,7 +314,7 @@ bool OtoTableTab::refreshFile(const QString &filename) {
         }
     } else if (filename.endsWith(".frq", Qt::CaseInsensitive)) {
         wavChanged = true;
-        path = QGenonSettings::fromFrqFileName(filename);
+        path = Utau::fromFrqName(filename);
     }
     table->blockSignals(false);
 
@@ -388,5 +388,5 @@ bool OtoTableTab::isCurrentValid() const {
     if (row < 0 || row >= table->rowCount()) {
         return false;
     }
-    return getGenonSettings(row).valid();
+    return isFileExist(getGenonSettings(row).mFileName);
 }

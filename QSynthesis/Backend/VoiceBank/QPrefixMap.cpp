@@ -4,7 +4,6 @@
 #include "SystemApis.h"
 
 using namespace Utau;
-using namespace UtaFilenames;
 
 Q_CHARSET_DECLARE(QPrefixMap)
 

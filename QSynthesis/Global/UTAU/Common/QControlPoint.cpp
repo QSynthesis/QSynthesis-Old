@@ -33,13 +33,14 @@ Point::Point(double oX, double oY, PointType oP) {
     mP = oP;
 }
 
-Point &Point::operator=(const Point oPoint) {
-    mX = oPoint.mX;
-    mY = oPoint.mY;
-    mP = oPoint.mP;
-
-    return *this;
-}
+// Point &Point::operator=(const Point &oPoint) {
+//    if (this != &oPoint) {
+//        mX = oPoint.mX;
+//        mY = oPoint.mY;
+//        mP = oPoint.mP;
+//    }
+//    return *this;
+//}
 
 Point Point::operator+(const Point &oPoint) const {
     Point aResult;
@@ -88,7 +89,7 @@ bool Point::operator<(const Point &oPoint) const {
     return mX < oPoint.mX;
 }
 
-QDebug operator<<(QDebug debug, const Point &oPoint) {
+QDebug Utau::operator<<(QDebug debug, const Point &oPoint) {
     QString info =
         QString("Point(mX:%1; mY:%2; mP:%3)").arg(oPoint.mX).arg(oPoint.mY).arg(oPoint.mP);
     debug.noquote() << info;

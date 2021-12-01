@@ -2,7 +2,6 @@
 #include "SystemApis.h"
 #include "Variables.h"
 
-using namespace UtaProjectText;
 using namespace Utau;
 
 Q_CHARSET_DECLARE(SequenceTextFile)
@@ -209,15 +208,15 @@ void SequenceTextFile::setSectionVersion(const SectionVersion &value) {
     m_sectionVersion = value;
 }
 
-QVector<QLinkNote> SequenceTextFile::sectionNotes() const {
+QList<QLinkNote> SequenceTextFile::sectionNotes() const {
     return m_sectionNotes;
 }
 
-QVector<QLinkNote> &SequenceTextFile::sectionNotes() {
+QList<QLinkNote> &SequenceTextFile::sectionNotes() {
     return m_sectionNotes;
 }
 
-void SequenceTextFile::setSectionNotes(const QVector<QLinkNote> &value) {
+void SequenceTextFile::setSectionNotes(const QList<QLinkNote> &value) {
     m_sectionNotes = value;
 }
 

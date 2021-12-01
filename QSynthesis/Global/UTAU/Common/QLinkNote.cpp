@@ -226,7 +226,7 @@ Note Note::fromJson(const QJsonObject &obj) {
     return note;
 }
 
-QDebug operator<<(QDebug debug, const Note &oNote) {
+QDebug Utau::operator<<(QDebug debug, const Note &oNote) {
     QString info = QString("Note(lyric:%1; length:%2; noteNum:%3)")
                        .arg(oNote.lyric)
                        .arg(oNote.length)

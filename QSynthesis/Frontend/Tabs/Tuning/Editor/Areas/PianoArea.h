@@ -5,8 +5,7 @@
 #include <QMouseEvent>
 #include <QPushButton>
 
-#include "QUtauConstants.h"
-#include "QUtauUtils.h"
+#include "QUtauBasic.h"
 #include "MoreWidget.h"
 
 class EditorInterface;

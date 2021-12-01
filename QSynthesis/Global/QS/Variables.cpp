@@ -3,7 +3,7 @@
 #include "Macros.h"
 #include "QUtauStrCore.h"
 
-using namespace UtaFilenames;
+using namespace Utau;
 
 QString AppPath;
 QString AppFontName;

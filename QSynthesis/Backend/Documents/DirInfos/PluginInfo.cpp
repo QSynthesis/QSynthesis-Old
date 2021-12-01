@@ -8,8 +8,7 @@
 #include <QFile>
 #include <QTextStream>
 
-using namespace UtaPluginText;
-using namespace UtaFilenames;
+using namespace Utau;
 
 Q_CHARSET_DECLARE(PluginInfo)
 

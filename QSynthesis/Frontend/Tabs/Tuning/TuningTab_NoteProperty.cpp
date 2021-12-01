@@ -1,6 +1,6 @@
 #include "Dialogs/Project/NotePropertiesDialog.h"
 #include "Editor/Areas/NotesArea.h"
-#include "Note/QLinkNote.h"
+#include "QUtauBasic.h"
 #include "TuningGroup.h"
 #include "TuningTab.h"
 

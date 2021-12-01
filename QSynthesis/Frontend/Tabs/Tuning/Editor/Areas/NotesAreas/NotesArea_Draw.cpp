@@ -130,20 +130,20 @@ void NotesArea::changePointFromCursor(GraphicsPoint *p) {
     bool mode2 = s->type() == Qs::Mode2;
 
     if (mode2) {
-        Qs::PitchPoint type = p->TPoint.mP;
+        Utau::PointType type = p->TPoint.mP;
         // First point is not able to change
         if (p->specialPos() == Qs::Leftmost) {
             return;
         }
 
-        if (type == Qs::sJoin) { // S type
-            type = Qs::linearJoin;
-        } else if (type == Qs::rJoin) { // R type
-            type = Qs::jJoin;
-        } else if (type == Qs::jJoin) { // J type
-            type = Qs::sJoin;
+        if (type == Utau::sJoin) { // S type
+            type = Utau::linearJoin;
+        } else if (type == Utau::rJoin) { // R type
+            type = Utau::jJoin;
+        } else if (type == Utau::jJoin) { // J type
+            type = Utau::sJoin;
         } else {
-            type = Qs::rJoin;
+            type = Utau::rJoin;
         }
 
         p->TPoint.mP = type;

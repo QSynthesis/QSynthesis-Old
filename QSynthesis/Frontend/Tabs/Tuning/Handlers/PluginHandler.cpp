@@ -1,10 +1,6 @@
 #include "PluginHandler.h"
 #include "MiniSystem/MiniSystemNotifier.h"
-#include "Note/Utils/QNoteEnvelope.h"
-#include "Note/Utils/QNoteMode2.h"
-#include "QUtauConstants.h"
-#include "QUtauStrings.h"
-#include "QUtauUtils.h"
+#include "QUtauBasic.h"
 #include "QUtils.h"
 #include "Strings/UtaProjectText.h"
 #include "application.h"
@@ -12,7 +8,7 @@
 #include "Dialogs/Extern/ExecutePluginDialog.h"
 #include "Dialogs/Extern/ScriptPluginDialog.h"
 
-using namespace UtaProjectText;
+using namespace Utau;
 
 PluginHandler::PluginHandler(PluginTempData &data, const PluginInfo &plugin,
                              const QString &workingDir, QWidget *parent)
@@ -313,11 +309,8 @@ bool PluginHandler::parseSectionNote(const QStringList &oSectionList, QLinkNote 
     double valueDouble;
     bool isInt, isDouble;
 
-    QNoteMode2 mode2;
-    QNoteEnvelope envelope;
-
-    mode2.SetCorrectedPortamento(oNote.Mode2Pitch.toVector());
-    envelope.setEnvelope(oNote.envelope.toVector());
+    PBStrings mode2;
+    QString strEnv;
 
     for (i = 0; i < oSectionList.size(); ++i) {
         eq = oSectionList[i].indexOf("=");
@@ -390,34 +383,34 @@ bool PluginHandler::parseSectionNote(const QStringList &oSectionList, QLinkNote 
                 oNote.pbstart = NODEF_DOUBLE;
             }
         } else if (key == KEY_NAME_PBS) {
-            mode2.SetPBS(value); // Mode2 Start
+            mode2.PBS = value; // Mode2 Start
         } else if (key == KEY_NAME_PBW) {
-            mode2.SetPBW(value); // Mode2 Intervals
+            mode2.PBW = value; // Mode2 Intervals
         } else if (key == KEY_NAME_PBY) {
-            mode2.SetPBY(value); // Mode2 Offsets
+            mode2.PBY = value; // Mode2 Offsets
         } else if (key == KEY_NAME_PBM) {
-            mode2.SetPBM(value); // Mode2 Types
+            mode2.PBM = value; // Mode2 Types
         } else if (key == KEY_NAME_PICHES || key == KEY_NAME_PITCHES ||
                    key == KEY_NAME_PITCH_BEND) {
             if (value.isEmpty()) {
                 oNote.pitches.clear();
             } else {
-                oNote.pitches = qstring_to_qvector_double(value).toList(); // Mode1 Pitch
+                oNote.pitches = StringsToDoubles(value.split(COMMA)); // Mode1 Pitch
             }
         } else if (key == KEY_NAME_VBR) {
             if (value.isEmpty()) {
                 oNote.vibrato.clear();
             } else {
-                oNote.vibrato = qstring_to_qvector_double(value).toList(); // Mode2 Vibrato
+                oNote.vibrato = StringsToDoubles(value.split(COMMA)); // Mode2 Vibrato
             }
         } else if (key == KEY_NAME_ENVELOPE) {
-            envelope.setStrEnvelope(value); // Envelope
+            strEnv = value; // Envelope
         } else if (!key.startsWith('@')) {
             oNote.customData.append(qMakePair(key, value)); // Custom Values
         }
     }
-    oNote.Mode2Pitch = mode2.GetCorrectedPortamento().toList(); // Mode2 Pitch
-    oNote.envelope = envelope.getEnvelope().toList();
+    oNote.Mode2Pitch = StringToPortamento(mode2); // Mode2 Pitch
+    oNote.envelope = StringToEnvelope(strEnv);
 
     return isValid;
 }
@@ -446,21 +439,15 @@ void PluginHandler::writeSectionNote(int num, const QLinkNote &oNote,
     }
 
     // 可能不出现的条目
-    QString aVibrato = qvector_double_to_qstring(oNote.vibrato.toVector());
-    QString aPitchBend = qvector_double_to_qstring(oNote.pitches.toVector());
+    QString aVibrato = DoublesToStrings(oNote.vibrato).join(COMMA);
+    QString aPitchBend = DoublesToStrings(oNote.pitches).join(COMMA);
 
     // 复杂条目
-    QNoteMode2 mode2;
-    QNoteEnvelope envelope;
+    PBStrings mode2;
+    QString strEnvelope;
 
-    QString aPBS, aPBW, aPBY, aPBM;
-    QString aEnvelope;
-
-    mode2.SetCorrectedPortamento(oNote.Mode2Pitch.toVector());
-    mode2.ExportStrings(aPBS, aPBW, aPBY, aPBM);
-
-    envelope.setEnvelope(oNote.envelope.toVector());
-    aEnvelope = envelope.strEnvelope();
+    mode2 = PortamentoToString(oNote.Mode2Pitch);
+    strEnvelope = EnvelopeToString(oNote.envelope);
 
     // Items always exist
     oStream << KEY_NAME_LENGTH << "=" << oNote.length << Qt::endl;
@@ -497,15 +484,17 @@ void PluginHandler::writeSectionNote(int num, const QLinkNote &oNote,
         oStream << KEY_NAME_PITCH_BEND << "=" << aPitchBend << Qt::endl;
     }
     if (!oNote.Mode2Pitch.isEmpty()) {
-        oStream << KEY_NAME_PBS << "=" << aPBS << Qt::endl;
-        oStream << KEY_NAME_PBW << "=" << aPBW << Qt::endl;
-        oStream << KEY_NAME_PBY << "=" << aPBY << Qt::endl;
-        if (!aPBM.isEmpty()) {
-            oStream << KEY_NAME_PBM << "=" << aPBM << Qt::endl;
+        oStream << KEY_NAME_PBS << "=" << mode2.PBS << Qt::endl;
+        oStream << KEY_NAME_PBW << "=" << mode2.PBW << Qt::endl;
+        if (!mode2.PBY.isEmpty()) {
+            oStream << KEY_NAME_PBY << "=" << mode2.PBY << Qt::endl;
+        }
+        if (!mode2.PBS.isEmpty()) {
+            oStream << KEY_NAME_PBM << "=" << mode2.PBM << Qt::endl;
         }
     }
     if (!oNote.envelope.isEmpty()) {
-        oStream << KEY_NAME_ENVELOPE << "=" << aEnvelope << Qt::endl;
+        oStream << KEY_NAME_ENVELOPE << "=" << strEnvelope << Qt::endl;
     }
     if (!oNote.vibrato.isEmpty()) {
         oStream << KEY_NAME_VBR << "=" << aVibrato << Qt::endl;

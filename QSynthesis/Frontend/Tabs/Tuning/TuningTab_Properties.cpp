@@ -1,5 +1,7 @@
 #include "TuningTab.h"
 
+using namespace Utau;
+
 QString TuningTab::fullFileName() const {
     QString filename = m_filename;
     if (!filename.endsWith(".ust", Qt::CaseInsensitive)) {

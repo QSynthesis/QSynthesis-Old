@@ -198,11 +198,11 @@ void WaveformArea::setSample(const QGenonSettings &genon) {
     m_sample.clear();
     m_orgSample.clear();
 
-    if (genon.valid() && m_wavefile.load(genon.mFileName)) {
+    if (m_wavefile.load(genon.mFileName)) {
         m_sample = genon;
         m_orgSample = genon;
 
-        m_frqfile.load(genon.frqFile());
+        m_frqfile.load(Utau::toFrqName(genon.mFileName));
     } else {
         m_wavefile.reset();
         m_frqfile.reset();

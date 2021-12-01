@@ -8,7 +8,9 @@
 
 #include "Dialogs/Extern/BackstageDialog.h"
 #include "Dialogs/Extern/TerminalDialog.h"
-#include "Render/RenderUtils/UtaTranslator.h"
+#include "Render/Utils/UtaTranslator.h"
+
+using namespace Utau;
 
 bool TuningTab::renderSelection() {
     // Step 1: Call Notes-Area
@@ -86,7 +88,7 @@ bool TuningTab::renderSelection() {
             fs << " 0 0";
             fs << Qt::endl;
         } else {
-            fs << "@echo " << UtaTranslator::loadingBar(i + 1, count) << Qt::endl;
+            fs << "@echo " << UtaTranslator::LoadingBar(i + 1, count) << Qt::endl;
 
             fs << "@set params=" << res.paramsArguments().join(" ") << Qt::endl;
             fs << "@set flag="

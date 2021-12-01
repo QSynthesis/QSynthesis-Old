@@ -1,7 +1,6 @@
 #include "QSActions.h"
 #include "QSTabs.h"
 #include "SettingIniFile.h"
-#include "Utils/Templates.h"
 #include "application.h"
 #include "mainwindow.h"
 
@@ -59,5 +58,5 @@ void MainWindow::handleExecutePlugin() {
 }
 
 void MainWindow::handleOpenPluginDir() {
-    RevealFile(AppPath + Slash + DIR_NAME_PLUGIN);
+    RevealFile(qPlugins->dirname());
 }

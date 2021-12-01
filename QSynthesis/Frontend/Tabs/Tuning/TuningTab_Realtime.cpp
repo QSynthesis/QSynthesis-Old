@@ -270,13 +270,15 @@ void TuningTab::updateBufferCore(int toIndex) {
         }
         m_processedIndex++;
     }
-    if (m_processedIndex >= SNotesList.size()) {
+    if (m_processedIndex == SNotesList.size()) {
         QByteArray appendix;
         int appendSamples = 44100 * m_audioTail / 1000;
         int appendBytes = appendSamples * 2;
         appendix.resize(appendBytes);
         appendix.fill(0);
         m_audioData.append(appendix);
+
+        m_processedIndex++;
     }
 }
 
@@ -319,7 +321,6 @@ void TuningTab::handleAudioTimeout() {
     if (indexNeed >= m_processedIndex) {
         updateCacheCore(m_processedIndex, indexNeed - m_processedIndex + 1);
     }
-
     updateBufferCore(indexNeed);
 
     if (!m_audioData.isEmpty() && m_startBuffer < m_audioData.size()) {

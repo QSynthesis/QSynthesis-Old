@@ -7,6 +7,8 @@
 #include <QTimer>
 #include <cmath>
 
+using namespace Utau;
+
 PianoArea::PianoArea(EditorInterface *editor, QWidget *parent) : MoreWidget(parent) {
     m_ptrs = editor->ptrs();
     setAttribute(Qt::WA_StyledBackground);
@@ -131,7 +133,7 @@ void PianoArea::handleUpdateToneLabel() {
 
     int toY = index * currentHeight;
 
-    QString name = tone_number_to_tone_name(curNoteNum);
+    QString name = ToneNumToToneName(curNoteNum);
     if (name.contains('#')) {
         lbToneName->setProperty("black", true);
         style()->polish(lbToneName);

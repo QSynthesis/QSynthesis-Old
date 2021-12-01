@@ -19,7 +19,7 @@ void MainWindow::initSettingIni() {
 void MainWindow::saveSettingIni() {
     if (!qSetting->save()) {
         QMessageBox::warning(qRoot, MainTitle,
-                             tr("Unable to write %1!").arg(FILE_NAME_SETTING_INI));
+                             tr("Unable to write %1!").arg(Utau::FILE_NAME_SETTING_INI));
         qApp->exitOnPermissionDenied();
     }
 }

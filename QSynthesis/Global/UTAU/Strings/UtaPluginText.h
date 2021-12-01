@@ -3,7 +3,7 @@
 
 #include <QString>
 
-namespace UtaPluginText {
+namespace Utau {
 
     const QString KEY_NAME_PLUGIN_NAME = "name";
     const QString KEY_NAME_PLUGIN_EXECUTABLE = "execute";

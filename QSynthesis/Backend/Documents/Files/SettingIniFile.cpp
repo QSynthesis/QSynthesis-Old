@@ -4,7 +4,7 @@
 #include "QSettingFile.h"
 #include "QUtauStrCore.h"
 
-using namespace UtaSettingIni;
+using namespace Utau;
 
 Q_CHARSET_DECLARE(SettingIniFile)
 

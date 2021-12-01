@@ -4,7 +4,6 @@
 #include "SystemApis.h"
 
 using namespace Utau;
-using namespace UtaFilenames;
 
 Q_CHARSET_DECLARE(QOtoIni)
 
@@ -48,7 +47,9 @@ bool QOtoIni::fromLocalFile(const QString &filename) {
         if (line.isEmpty()) {
             continue;
         }
-        OtoSamples.insertAuto(Utau::StringToGenon(line));
+        QGenonSettings genon = Utau::StringToGenon(line);
+        genon.mFileName.prepend(dirname() + Slash);
+        OtoSamples.insertAuto(genon);
     }
 
     return true;

@@ -299,7 +299,7 @@ private:
     // Modules
 private:
     void initModules();
-    void freeModules();
+    void quitModules();
 
     void initConfig();
     void initShortcuts();

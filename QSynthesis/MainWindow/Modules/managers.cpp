@@ -34,7 +34,7 @@ void MainWindow::initModules() {
     qData->load();
 }
 
-void MainWindow::freeModules() {
+void MainWindow::quitModules() {
     qVoice->quit();
     qPlugins->quit();
 }

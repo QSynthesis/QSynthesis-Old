@@ -12,7 +12,7 @@ void OtoTableTab::setDirname(const QString &dirname) {
 
 void OtoTableTab::playSound(int row) const {
     QGenonSettings genon = getGenonSettings(row);
-    if (genon.valid()) {
+    if (isFileExist(genon.mFileName)) {
         QSound::play(genon.mFileName);
     }
 }

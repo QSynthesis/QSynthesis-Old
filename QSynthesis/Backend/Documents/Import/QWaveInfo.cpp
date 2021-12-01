@@ -30,6 +30,7 @@ bool QWaveInfo::load(const QString &filename) {
     if (memcmp(strRiff, "RIFF", 4) != 0 || memcmp(strWave, "WAVE", 4) != 0 ||
         memcmp(strFmt, "fmt ", 4) != 0 || infoBytes < 16) {
         qDebug() << "Wave format invalid.";
+        file.close();
         return false;
     }
 
@@ -45,6 +46,7 @@ bool QWaveInfo::load(const QString &filename) {
     // Not PCM
     if (audioFormat != AudioFormat::PCM) {
         qDebug() << "Not PCM.";
+        file.close();
         return 0;
     }
 
@@ -84,6 +86,7 @@ bool QWaveInfo::load(const QString &filename) {
 
     if (!findData) {
         qDebug() << "Data sign missing.";
+        file.close();
         return false;
     }
 

@@ -76,8 +76,8 @@ void TuningTab::appendFile(const SectionNotes &notes) {
     if (notes.isEmpty()) {
         return;
     }
-    QVector<QLinkNote> newNotes = notes;
-    m_ptrs->notesArea->pasteNotes(newNotes.toList());
+    QList<QLinkNote> newNotes = notes;
+    m_ptrs->notesArea->pasteNotes(newNotes);
     change();
 }
 
@@ -86,7 +86,7 @@ void TuningTab::loadCore() {
              << "Add notes from ust file.";
 
     setCurrentSettings(ustFile.sectionSettings());
-    m_ptrs->notesArea->inputNotes(ustFile.sectionNotes().toList());
+    m_ptrs->notesArea->inputNotes(ustFile.sectionNotes());
     m_ptrs->notesArea->centralizeVision(0);
 }
 
@@ -94,7 +94,7 @@ void TuningTab::saveCore() {
     qDebug() << "[Save UST]"
              << "Replace notes with GUI notes.";
 
-    QVector<QLinkNote> notes = m_ptrs->notesArea->allNotes().toVector();
+    QList<QLinkNote> notes = m_ptrs->notesArea->allNotes();
     ustFile.setSectionVersion(SectionVersion());
     ustFile.setSectionSettings(currentSettings());
     ustFile.setSectionNotes(notes);
@@ -165,7 +165,7 @@ bool TuningTab::saveTempFile() {
 
     ust.setSectionVersion(SectionVersion());
     ust.setSectionSettings(currentSettings());
-    ust.setSectionNotes(m_ptrs->notesArea->allNotes().toVector());
+    ust.setSectionNotes(m_ptrs->notesArea->allNotes());
 
     return ust.save();
 }

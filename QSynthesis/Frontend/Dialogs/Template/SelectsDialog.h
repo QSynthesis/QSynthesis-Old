@@ -16,13 +16,13 @@ class SelectsDialog : public BaseDialog {
     Q_OBJECT
 public:
     SelectsDialog(const QString &title, const QString &caption, const QStringList &list,
-                  QVector<bool> &result, bool single,QWidget *parent = nullptr);
+                  QList<bool> &result, bool single, QWidget *parent = nullptr);
     ~SelectsDialog();
 
     int exec() override;
 
 private:
-    QVector<bool> &m_result;
+    QList<bool> &m_result;
 
     bool m_single;
     QStringList m_options;

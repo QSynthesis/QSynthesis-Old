@@ -1,6 +1,6 @@
 #include "FileParser.h"
+#include "QUtauSections.h"
 #include "QUtils.h"
-#include "SequenceTextFiles/SectionNotes.h"
 
 FileParser::FileParser(QWidget *parent) : QObject(parent) {
 }

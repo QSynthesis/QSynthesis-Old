@@ -1,8 +1,9 @@
 #include "../FileParser.h"
 #include "Dialogs/Template/SelectsDialog.h"
-#include "QUtauUtils.h"
+#include "QUtauSections.h"
 #include "QVocaloidFile.h"
-#include "SequenceTextFiles/SectionNotes.h"
+
+using namespace Utau;
 
 bool FileParser::parseVocaloidFile(const QString &filename, bool vsqx, SectionNotes &oNotes) {
     return false;

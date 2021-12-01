@@ -33,6 +33,7 @@ SOURCES += \
     Backend/Documents/Files/ShortcutsFile.cpp \
     Backend/Documents/Import/QFrequencyFile.cpp \
     Backend/Documents/Import/QMidiFile.cpp \
+    Backend/Documents/Import/QPmkFile.cpp \
     Backend/Documents/Import/QPresampFile.cpp \
     Backend/Documents/Import/QSynthVFile.cpp \
     Backend/Documents/Import/QVocaloidFile.cpp \
@@ -410,6 +411,7 @@ HEADERS += \
     Backend/Documents/Files/ShortcutsFile.h \
     Backend/Documents/Import/QFrequencyFile.h \
     Backend/Documents/Import/QMidiFile.h \
+    Backend/Documents/Import/QPmkFile.h \
     Backend/Documents/Import/QPresampFile.h \
     Backend/Documents/Import/QSynthVFile.h \
     Backend/Documents/Import/QVocaloidFile.h \

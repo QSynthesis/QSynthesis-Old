@@ -8,10 +8,23 @@ QTextCodec *GetUtfCodec(const QByteArray &data) {
     QTextCodec *autoCodec = QTextCodec::codecForUtfText(data);
     QString name = autoCodec->name();
     if (name == "ISO-8859-1") {
-        return nullptr;
+        autoCodec = nullptr;
     } else {
         return autoCodec;
     }
+
+    QList<QTextCodec *> codecs{QTextCodec::codecForName("UTF-8")};
+    for (auto it = codecs.begin(); it != codecs.end(); ++it) {
+        QTextCodec::ConverterState state;
+        QTextCodec *codec = *it;
+        QString text = codec->toUnicode(data.constData(), data.size(), &state);
+        Q_UNUSED(text)
+        if (state.invalidChars == 0) {
+            autoCodec = codec;
+            break;
+        }
+    }
+    return autoCodec;
 }
 
 QStringList FindRecursiveDirs(const QString &base) {

@@ -3,7 +3,7 @@
 
 #include <QString>
 
-namespace UtaSettingIni {
+namespace Utau {
 
     const QString KEY_NAME_CACHE_ENABLE = "CacheEnabled";
     const QString KEY_NAME_CACHE_DELETE_BY_SIZE = "CacheDeleteBySize";

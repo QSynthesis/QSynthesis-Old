@@ -3,7 +3,7 @@
 
 #include <QString>
 
-namespace UtaFilenames {
+namespace Utau {
 
     const QString FILE_NAME_PLUGIN_TEXT = "plugin.txt";
     const QString FILE_NAME_CHAR_TEXT = "character.txt";

@@ -30,9 +30,9 @@ public:
     SectionSettings &sectionSettings();
     void setSectionSettings(const SectionSettings &value);
 
-    QVector<QLinkNote> sectionNotes() const;
-    QVector<QLinkNote> &sectionNotes();
-    void setSectionNotes(const QVector<QLinkNote> &value);
+    QList<QLinkNote> sectionNotes() const;
+    QList<QLinkNote> &sectionNotes();
+    void setSectionNotes(const QList<QLinkNote> &value);
 
     void clearSectionNotes();
     void appendSectionNote(const QLinkNote &oNote);
@@ -51,7 +51,7 @@ private:
     SectionSettings m_sectionSettings;
 
     // Notes
-    QVector<QLinkNote> m_sectionNotes;
+    QList<QLinkNote> m_sectionNotes;
 
     bool parseSectionName(const QString &name, QString &result);
     bool parseSectionNote(const QStringList &sectionList, QLinkNote &note);

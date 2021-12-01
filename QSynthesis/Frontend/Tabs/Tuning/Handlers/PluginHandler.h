@@ -6,9 +6,9 @@
 #include <QTextStream>
 #include <QVector>
 
-#include "Note/QLinkNote.h"
 #include "PluginInfo.h"
-#include "SequenceTextFiles/SequenceTextData.h"
+#include "QUtauBasic.h"
+#include "QUtauSections.h"
 #include "Structures/Transfer/PluginTempData.h"
 
 class PluginHandler : public QObject {

@@ -6,7 +6,7 @@
 #include "Strings/UtaSettingIni.h"
 
 // Supplements
-namespace UtaSettingIni {
+namespace Utau {
 
     const QString KEY_PREFIX_VOICE = "Voice";
     const QString KEY_PREFIX_WAVTOOL = "Wavtool";

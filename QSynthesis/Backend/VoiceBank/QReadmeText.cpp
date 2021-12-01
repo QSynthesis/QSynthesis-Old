@@ -7,7 +7,7 @@
 #include <QTextCodec>
 #include <QTextStream>
 
-using namespace UtaFilenames;
+using namespace Utau;
 
 Q_CHARSET_STATIC_DECLARE(QReadmeText)
 
@@ -37,6 +37,7 @@ bool QReadmeText::fromLocalFile(const QString &filename) {
     file.close();
 
     QTextCodec *codec = GetUtfCodec(data);
+    qDebug() << "Char" << codec;
     QTextStream in(&data);
     if (codec) {
         m_codec = codec;

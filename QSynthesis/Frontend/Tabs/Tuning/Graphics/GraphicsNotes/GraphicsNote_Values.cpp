@@ -2,6 +2,8 @@
 #include "../../TuningGroup.h"
 #include "../GraphicsNote.h"
 
+using namespace Utau;
+
 QGenonSettings GraphicsNote::genonSettings() const {
     return m_genonSettings;
 }

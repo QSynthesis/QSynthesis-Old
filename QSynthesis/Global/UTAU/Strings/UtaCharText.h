@@ -3,7 +3,7 @@
 
 #include <QString>
 
-namespace UtaCharText {
+namespace Utau {
 
     const QString KEY_NAME_CHAR_NAME = "name";
     const QString KEY_NAME_CHAR_IMAGE = "image";

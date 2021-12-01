@@ -8,8 +8,7 @@
 #include <QFile>
 #include <QTextStream>
 
-using namespace UtaCharText;
-using namespace UtaFilenames;
+using namespace Utau;
 
 Q_CHARSET_DECLARE(VoiceInfo)
 

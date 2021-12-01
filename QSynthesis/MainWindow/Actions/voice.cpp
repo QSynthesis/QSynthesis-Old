@@ -11,7 +11,7 @@ void MainWindow::handleExportCurrent() {
     }
 
     QString path = QFileDialog::getSaveFileName(nullptr, tr("Export current settings"),
-                                                FILE_NAME_OTO_INI, exportOtoIniFilterString);
+                                                Utau::FILE_NAME_OTO_INI, exportOtoIniFilterString);
     if (!path.isEmpty()) {
         tab1->exportCurrentSettings(path);
     }

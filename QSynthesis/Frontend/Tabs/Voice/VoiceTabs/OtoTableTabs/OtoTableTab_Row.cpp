@@ -13,11 +13,11 @@ void OtoTableTab::insertRow(int row, const QGenonSettings &genon) {
     list.append(QString::number(genon.mBlank));
     list.append(QString::number(genon.mPreUtterance));
     list.append(QString::number(genon.mVoiceOverlap));
-    list.append(genon.frqExist() ? "TRUE" : "FALSE");
+    list.append(isFileExist(Utau::toFrqName(genon.mFileName)) ? "TRUE" : "FALSE");
     insertRow(row, list);
 
     // empty Genon, set line to green
-    if (!genon.valid()) {
+    if (!isFileExist(genon.mFileName)) {
         turnLineToInvalid(row);
     } else if (genon.isEmpty()) {
         turnLineToEmpty(row);
