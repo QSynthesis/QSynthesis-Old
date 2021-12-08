@@ -1,81 +1,77 @@
 # QSynthesis
 
-## 介绍
+## Introduction
 
-歌声合成工具，兼容“歌声合成ツールUTAU”的所有工程文件、音源库、引擎，以及几乎所有的插件。
+Singing composition tool, compatible with "singing composition for Halloween ー UTAU" all project files, sound source library, engine, and almost all plug-ins.
 
-使用Qt开发，含有部分独立的跨平台代码，支持Windows、MacOS与Linux系统。
+Use Qt development, including part of the independent cross-platform code, support Windows, MacOS and Linux systems.
 
-支持English、简体中文、繁體中文、日本語。
+Supports English, simplified Chinese, traditional Chinese, and Japanese.
 
-支持用户自定义颜色主题，默认提供浅色、深色两个主题。
+Supports custom color themes, light and dark themes are provided by default.
 
-## 软件部署
+## Deployment
 
 ### Windows
 
-从发布页面下载后，解压，将整个文件夹拷贝至您的个人目录，并手动创建桌面快捷方式即可。
-
-建议赋予管理员权限。
+You are advised to grant administrator permissions.
 
 ### MacOS
 
-从发布页面下载后，解压，将整个文件夹拷贝至您的个人目录，使用“xattr -cr”对文件夹赋予权限，然后可以手动创建桌面替身。
+Use "Xattr -cr" to grant permissions to the directory, and then manually create your desktop avatar.
 
 ### Linux
 
-从发布页面下载后，解压，将整个文件夹拷贝至您的个人目录，使用“chmod -R +x”对文件夹赋予权限，然后执行“./QSynthesis -d”自动创建.desktop快捷方式，剪切至桌面即可。
+Use "chmod -r +x" to grant permissions to the folder, and then run "./QSynthesis -d "to automatically create. Desktop shortcut, cut to your desktop.
 
-## 使用说明
+## Instructions
 
-1. 在Windows平台，本软件是64位程序，某些32位的引擎与插件可能无法正常调用
-2.  请勿在两个进程中打开同一个音源文件夹，会有竞争问题
+1. On Windows, this software is a 64-bit program, and some 32-bit engines and plug-ins may not be executed normally
 
-## 依赖
+2. Do not open the same voice folder in two processes. This may cause competition problems
+
+## Dependencies
 
 ### Entropia File System Watcher
 
-跨平台文件系统监视器，以静态库的形式链接到本程序的可执行文件中。
+Cross-platform file system monitor, in the form of a static library linked to the executable file of this program.
 
-链接：https://github.com/SpartanJ/efsw
+Link: https://github.com/SpartanJ/efsw
 
-+ Windows：此仓库已准备了使用 MSVC2019 与 MinGW 8.1.0 编译的 efsw 静态库(.lib)，如果您用来编译本项目的编译器是其中之一，那么不用做任何改动；如果不是，那么请根据使用您的编译器编译此库，并修改.pro文件。
++ Windows: The efSW static library (.lib) compiled with MSVC2019 and MinGW 8.1.0 has been prepared for this repository. If the compiler you used to compile this project is one of them, no changes should be made; if not, you may compile the library based on your compiler and modify the .pro file.
 
-+ Linux64：此仓库已准备了使用 g++ 构建的 efsw 静态库(.a)。其他发行版的Linux请自行编译此库，并修改.pro文件。
++ Linux64: This repository has prepared the efsw static library (.a) compiled by g++. For other distributions of Linux, you may compile this library yourself and modify the .pro file.
 
-+ MacOS：此仓库已准备了使用 Clang 64 构建的 efsw 静态库(.a)。如果使用其他编译器编译本项目，请自行编译此库，并修改.pro文件。
++ MacOS: This repository has prepared the EFSW static library (.a) compiled by Clang 64. If you are compiling this project by another compiler, you may compile the library yourself and modify the .pro file.
 
-## 源代码构建
+## Build from source code
 
 ### Qt 5.15.2
 
-在您的设备上安装 Qt 5.15.2， 执行qmake可直接编译。
+Install Qt 5.15.2 on your device and run qmake to compile directly.
 
-### 运行
+### Run
 
-在工作目录下创建voice、plugins、config三个目录，继续在config中创建translations、themes两个目录，即可正常运行。
+In the working directory to create voice, plugins, config three directories, continue to create translations in the config, themes, two directories, can run normally.
 
-### 启动器
+### Launcher
 
-在Windows与Linux平台使用额外的启动器，只调用平台API，用以设置工作目录与创建本体进程，代码已开源。
+Use additional launchers on Windows and Linux, only call platform API to set up working directory and create ontology process, the code is open source.
 
-## 获取引擎
+## Get engine
 
 ### Windows
 
-可用的引擎较多，直接拷贝UTAU自带的resampler.exe与wavtool.exe至QSynthesis目录并调用即可
+There are many available engines, you can copy UTAU's own resampler.exe and wavtool.exe to QSynthesis directory and use them.
 
 ### MacOS & Linux
 
-可从以下页面获取 macres(tn_fnds) 的发布版本，已做了跨平台适配。
+The release of macres (tn_fnds), which has been adapted across platforms, is available on the following page.
 
-可从以下页面获取 world4utau 的发布版本，已做了跨平台适配。
+The release of world4utau, which has been adapted across platforms, is available on the following page.
 
-可从以下页面获取 wavtool-yawu 的发布版本。
+The release of wavtool-yawu is available from the following page.
 
-## 参与贡献
+### Warning
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+This project is no longer in development.
