@@ -96,7 +96,7 @@ bool TerminalDialog::runInCmd() {
             &TerminalDialog::onProcessFinished);
 
     m_pTerminal->setWorkingDirectory(workingDir);
-    m_pTerminal->start("/bin/bash", {tempPath});
+    m_pTerminal->start("/bin/sh", {tempPath});
 #elif defined(Q_OS_MAC)
     qDebug() << workingDir;
     m_pTerminal = new QProcess(this);

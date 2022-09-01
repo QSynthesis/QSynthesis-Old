@@ -16,7 +16,7 @@ bool QBatchRenderer::generateUnixBatch(const QList<RenderArgs> &args) const {
         (args.isEmpty() ? Utau::DEFAULT_VALUE_TEMPO : args.front().resamplerArgs.tempo());
 
     // Initial part of temp.sh
-    fs << "#!/bin/bash" << Qt::endl;
+    fs << "#!/bin/sh" << Qt::endl;
     fs << Qt::endl;
 
     fs << "export loadmodule=" << Qt::endl;
@@ -122,7 +122,7 @@ bool QBatchRenderer::generateUnixHelper() const {
 
     QTextStream fs(&helperFile);
 
-    fs << "#!/bin/bash" << Qt::endl;
+    fs << "#!/bin/sh" << Qt::endl;
     fs << Qt::endl;
 
     fs << "if [ ! -f \"${temp}\" ]; then" << Qt::endl;
