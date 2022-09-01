@@ -152,7 +152,7 @@ void RevealFile(const QString &filename) {
         if (!filename.endsWith(Slash)) {
             filename.append(Slash);
         }
-        QProcess::startDetached("bash", {"-c", "open \'" + filename + "\'"});
+        QProcess::startDetached("sh", {"-c", "open \'" + filename + "\'"});
     } else if (info.isFile()) {
         QStringList scriptArgs;
         scriptArgs << QLatin1String("-e")
@@ -166,10 +166,10 @@ void RevealFile(const QString &filename) {
     }
 #else
     if (info.isDir()) {
-        QProcess::startDetached("bash", {"-c", "xdg-open \'" + filename + "\'"});
+        QProcess::startDetached("sh", {"-c", "xdg-open \'" + filename + "\'"});
     } else if (info.isFile()) {
         QString arg = PathFindUpper(filename);
-        QProcess::startDetached("bash", {"-c", "xdg-open \'" + arg + "\'"});
+        QProcess::startDetached("sh", {"-c", "xdg-open \'" + arg + "\'"});
     }
 #endif
 }

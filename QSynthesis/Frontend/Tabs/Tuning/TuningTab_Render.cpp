@@ -165,7 +165,7 @@ bool TuningTab::renderSelection() {
     QTextStream fs(&tempFile);
 
     // Initial part of temp.sh
-    fs << "#!/bin/bash" << Qt::endl;
+    fs << "#!/bin/sh" << Qt::endl;
     fs << Qt::endl;
 
     fs << "export loadmodule=" << Qt::endl;
@@ -274,7 +274,7 @@ bool TuningTab::renderSelection() {
 
     fs.setDevice(&helperFile);
 
-    fs << "#!/bin/bash" << Qt::endl;
+    fs << "#!/bin/sh" << Qt::endl;
     fs << Qt::endl;
 
     fs << "if [ ! -f \"${temp}\" ]; then" << Qt::endl;
