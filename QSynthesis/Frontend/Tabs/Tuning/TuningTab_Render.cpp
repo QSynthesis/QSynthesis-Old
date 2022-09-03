@@ -217,7 +217,7 @@ bool TuningTab::renderSelection() {
             fs << Qt::endl;
         } else {
             fs << "echo "
-               << "\'" << UtaTranslator::loadingBar(i + 1, count) << "\'" << Qt::endl;
+               << "\'" << UtaTranslator::LoadingBar(i + 1, count) << "\'" << Qt::endl;
 
             fs << "export params="
                << "\'" << res.paramsArguments().join(" ") << "\'" << Qt::endl;

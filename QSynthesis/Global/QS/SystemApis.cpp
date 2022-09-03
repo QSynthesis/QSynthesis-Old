@@ -1,4 +1,5 @@
 #include "SystemApis.h"
+#include "QUtils.h"
 
 #include <QDirIterator>
 #include <QFile>

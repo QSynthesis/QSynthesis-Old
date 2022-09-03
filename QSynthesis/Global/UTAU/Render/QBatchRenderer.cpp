@@ -1,6 +1,7 @@
 #include "QBatchRenderer.h"
 #include "Utils/UtaPitchCurves.h"
 #include "Utils/UtaTranslator.h"
+#include <QPoint>
 
 QBatchRenderer::QBatchRenderer() {
 }
